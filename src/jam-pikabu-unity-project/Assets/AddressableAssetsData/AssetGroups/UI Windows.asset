@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: UI Windows
+  m_EditorClassIdentifier: 
+  m_GroupName: UI Windows
+  m_GUID: fff620ccb4b456b478a8b4fa39586493
+  m_SerializeEntries:
+  - m_GUID: 146a86d0c195f4d46a3d177f83c2f82b
+    m_Address: CheatWindow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1e895cf6bf50df4438914a807e9dc16c
+    m_Address: PreviewItemWindow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6a57fd527b5e1cd49ae1b3b65e432b26
+    m_Address: MainMenu
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a219c20ca7697c64da63aeef305c3190
+    m_Address: PlayerHUD
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b1f1c63cbe650de4f85e6cce44fa1542
+    m_Address: GameWinWindow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bf72d04ba0e6b0f458a192d5c6932e8c
+    m_Address: InfoWindow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c949cbb2dafcddd4cbdfd6dfa5c1ae5a
+    m_Address: SettingsWindow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e969de76507f579458801d9518a32a97
+    m_Address: GameLostWindow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 8c977aa4f64b21b42892fe1ca41dafc7, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 91a0f6c430b2ac646ada888d1bc0dad8, type: 2}
+    - {fileID: 11400000, guid: 056311172a8305e438825107613c3a5c, type: 2}

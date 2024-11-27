@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Localization-Assets-Shared
+  m_EditorClassIdentifier: 
+  m_GroupName: Localization-Assets-Shared
+  m_GUID: a0732659b76a4de4d8dae777dd4457f5
+  m_SerializeEntries:
+  - m_GUID: 1762038bbd89ad34781483ab60a19df3
+    m_Address: Assets/Plugins/Localization/Tables/MAIN MENU Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1842a506bb373764ea40f57771e7307a
+    m_Address: Assets/Plugins/Localization/Tables/FIREARMS Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 257c2cea6ea3f7644b70dd1457151e70
+    m_Address: Assets/Plugins/Localization/Tables/SHOP Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 51531d1d1c63c7c4aa9e1863c88deff7
+    m_Address: Assets/Plugins/Localization/Tables/GAME OVER Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7ef1c7b9b0ea58145985bf77e2ac94a2
+    m_Address: Assets/Plugins/Localization/Tables/COMMON Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a17a10c6ed09ff248b952b3e362f0e43
+    m_Address: Assets/Plugins/Localization/Tables/CONSTRUCTIONS Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d693a6601d37362449d043359976de76
+    m_Address: Assets/Plugins/Localization/Tables/Tutorial Table Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fcf0f7f56465a694cb4a6aeae9dd874e
+    m_Address: Assets/Plugins/Localization/Tables/Settings Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 1
+  m_Settings: {fileID: 11400000, guid: 8c977aa4f64b21b42892fe1ca41dafc7, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 6df65e3f9b7481d4093da4a166a9b833, type: 2}
+    - {fileID: 11400000, guid: c9966ee8e49ad8444a0b7950ec374490, type: 2}

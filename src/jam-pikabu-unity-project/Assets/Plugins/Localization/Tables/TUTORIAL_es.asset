@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: TUTORIAL_es
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: es
+  m_SharedData: {fileID: 11400000, guid: d693a6601d37362449d043359976de76, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 2194680379798978653
+  m_TableData:
+  - m_Id: 112046644738908160
+    m_Localized: Elige {0} y presiona comprar.
+    m_Metadata:
+      m_Items:
+      - rid: 2194680379798978653
+  - m_Id: 112046752704487424
+    m_Localized: Elige {0} y presiona comprar.
+    m_Metadata:
+      m_Items:
+      - rid: 2194680379798978653
+  - m_Id: 312303898624
+    m_Localized: Presiona <color="yellow">wasd</color> para moverte.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112043397806546944
+    m_Localized: "Los <color=\"red\">enemigos</color> ya est\xE1n en camino,\n\xA1no
+      dejes que destruyan los <color=\"yellow\">generadores</color>!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112043413698764800
+    m_Localized: "\xA1Acaba con los que quedan y mantente atento,\nlos zombis <color=\"red\">devorar\xE1n</color>\ntodo
+      lo que encuentren a su paso!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112043438730371072
+    m_Localized: "Vamos a fortalecer nuestra defensa.\nElige una torreta para construir
+      presion\xE1ndola."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112043449203548160
+    m_Localized: 'Arrastra la torreta al campo para crearla.
+
+      Construye <color="yellow">2</color>
+      torretas para continuar.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112043459408289792
+    m_Localized: "\xA1Bien hecho, sobreviviste a este d\xEDa!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112046629740077056
+    m_Localized: "Mejoremos nuestra defensa.\nAbre el men\xFA de construcci\xF3n."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112046672849133568
+    m_Localized: Ahora instala la nueva torreta.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112046682332454912
+    m_Localized: "Abramos otro espacio para torretas.\nAbre el men\xFA de construcci\xF3n."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112046708009984000
+    m_Localized: "Haz clic en este bot\xF3n para desbloquear un nuevo espacio."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112046721175904256
+    m_Localized: Ahora lleva contigo otra torreta.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112046732869623808
+    m_Localized: "Vamos a tomar un arma m\xE1s potente.\nAbre el men\xFA de armas."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112046761378308096
+    m_Localized: Vamos a quitar el arma vieja.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112046771423666176
+    m_Localized: Ahora equipa el arma nueva.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112046792042864640
+    m_Localized: 'Controla la cantidad de <color="yellow">repuestos</color>.
+
+      Sin
+      ellos, no puedes construir.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 114916295274876928
+    m_Localized: "Presiona la <color=\"yellow\">icono de la torreta</color>\no <color=\"yellow\">R
+      CLIC</color>\npara cancelar la construcci\xF3n."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112046809080127488
+    m_Localized: Y no te olvides de tu <color="red">salud</color>.
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 2194680379798978653
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 112046644738908160
+        - id: 112046752704487424

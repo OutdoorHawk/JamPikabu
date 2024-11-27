@@ -1,0 +1,138 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: TUTORIAL_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: d693a6601d37362449d043359976de76, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 2194680379798978651
+  m_TableData:
+  - m_Id: 112046644738908160
+    m_Localized: Select {0} and press buy.
+    m_Metadata:
+      m_Items:
+      - rid: 2194680379798978651
+  - m_Id: 112046752704487424
+    m_Localized: Select {0} and press buy.
+    m_Metadata:
+      m_Items:
+      - rid: 2194680379798978651
+  - m_Id: 312303898624
+    m_Localized: Press <color="yellow">wasd</color> to move.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112043397806546944
+    m_Localized: '<color="red">Enemies</color> are on their way,
+
+      don''t let
+      them destroy the <color="yellow">generators</color>!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112043413698764800
+    m_Localized: 'Finish off the remaining ones and stay alert,
+
+      zombies will
+      <color="red">devour</color>
+
+      everything in their path!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112043438730371072
+    m_Localized: 'Let''s strengthen our defense.
+
+      Choose a turret to build
+      by clicking on it.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112043449203548160
+    m_Localized: 'Drag the turret onto the field to place it.
+
+      Build <color="yellow">2</color>
+      turrets to continue.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112043459408289792
+    m_Localized: Good job, you survived the day!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112046629740077056
+    m_Localized: 'Let''s improve our defense.
+
+      Open the building menu.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112046672849133568
+    m_Localized: Now place the new turret.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112046682332454912
+    m_Localized: 'Let''s unlock another slot for turrets.
+
+      Open the building
+      menu.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112046708009984000
+    m_Localized: Click this button to unlock a new slot.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112046721175904256
+    m_Localized: Now take another turret with you.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112046732869623808
+    m_Localized: 'Let''s pick a more powerful weapon.
+
+      Open the weapon menu.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112046761378308096
+    m_Localized: Let's remove the old weapon.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112046771423666176
+    m_Localized: Now equip the new weapon.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 114916295274876928
+    m_Localized: 'Press the <color="yellow">turret icon</color>
+
+      or <color="yellow">R
+      CLICK</color>
+
+      to cancel the building process.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112046792042864640
+    m_Localized: 'Keep track of the <color="yellow">spare parts</color>.
+
+      You
+      can''t build without them.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112046809080127488
+    m_Localized: And don't forget about your <color="red">health</color>.
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 2194680379798978651
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 112046644738908160
+        - id: 112046752704487424

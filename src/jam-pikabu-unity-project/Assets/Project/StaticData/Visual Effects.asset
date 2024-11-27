@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4721cd32b9ca436da81b4bc1b2ba3ddc, type: 3}
+  m_Name: Visual Effects
+  m_EditorClassIdentifier: 
+  _hitVfxPrefabs:
+  - {fileID: 7226583673155636401, guid: a2ab56839e1c9504ea9d141e95d0b16b, type: 3}
+  - {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
+  - {fileID: 8443315704496310910, guid: 6ef35fa36e3a65043b2d800600204bdd, type: 3}
+  _cutVfxPrefabs:
+  - {fileID: 2955623459812423943, guid: f5507a8c6a22c404ab324980c4e8a11b, type: 3}
+  _stepEffect: {fileID: 8514744612147769543, guid: 746c4c54aee2cbf44bcbbf5fe03226a7,
+    type: 3}
+  _bloodDecals:
+  - _decalType: 0
+    _decalPrefabs:
+    - {fileID: 2907471069151294238, guid: 7d41c417804c0f341ae4ca306463bde8, type: 3}
+    _sizeMinMaxValues: {x: 1, y: 2}
+    _maxAmount: 40
+  - _decalType: 1
+    _decalPrefabs:
+    - {fileID: 6111641882519419181, guid: 429f1fe76668d20448de16ea1c5c4ed4, type: 3}
+    _sizeMinMaxValues: {x: 0.75, y: 1}
+    _maxAmount: 3
+  _characterLayer:
+    serializedVersion: 2
+    m_Bits: 576
+  _decalsSpawnDelay: 0.5

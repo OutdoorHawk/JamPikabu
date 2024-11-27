@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: COMMON Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: COMMON
+  m_TableCollectionNameGuidString: 7ef1c7b9b0ea58145985bf77e2ac94a2
+  m_Entries:
+  - m_Id: 200184684544
+    m_Key: C_ADS_CURRENCY_BUTTON
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1687593934848
+    m_Key: C_ADS_UNLOCK_FOR_1_LEVEL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 303043949768704
+    m_Key: C_BACK_BUTTON
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5846586802524160
+    m_Key: C_LOADING
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 2194680338860474368
+  references:
+    version: 2
+    RefIds:
+    - rid: 2194680338860474368
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
+        asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1730921172809

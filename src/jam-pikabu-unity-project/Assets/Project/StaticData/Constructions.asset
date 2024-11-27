@@ -1,0 +1,694 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d61486ac57c4b33a7acddab7ab28ef7, type: 3}
+  m_Name: Constructions
+  m_EditorClassIdentifier: 
+  _maxSlots: 4
+  _startConstructionSlots: 2
+  _constructionLayer:
+    serializedVersion: 2
+    m_Bits: 81985
+  _sellConstructionSlotIcon: {fileID: 21300042, guid: 1eaee135ce037439d925cee5e41ce026,
+    type: 3}
+  _startupConstructions: 0a000000
+  _configs:
+  - ConstructionType: 10
+    ConstructionSetup:
+      Icon: {fileID: 21300000, guid: 58c9fb8b8aeda7b4bbb4f2e637af2008, type: 3}
+      ConstructionSize: {x: 2.65, y: 2.65, z: 2.65}
+      Hp: 50
+      ViewPrefab: {fileID: 0}
+      ViewPath: Pistol_Turret_Simple
+      LayoutOrder: 0
+      ObstacleSetup:
+        ActiveDuration: 0
+        InactiveDuration: 0
+        BoxCastSize: {x: 0, y: 0, z: 0}
+        CastMask:
+          serializedVersion: 2
+          m_Bits: 0
+      TurretSetup:
+        FireRate: 2.5
+        DetectRadius: 9.375
+        DetectMask:
+          serializedVersion: 2
+          m_Bits: 4096
+        FirearmType: 0
+        FarmAmount: 0
+      ProjectileSetup:
+        ProjectileCount: 1
+        Pierce: 1
+        Speed: 75
+        ContactRadius: 0
+        RaycastLength: 2.5
+        Lifetime: 5
+        OrbitRadius: 0
+        PrefabPath: 
+        HitMask:
+          serializedVersion: 2
+          m_Bits: 4096
+        ViewPrefab: {fileID: 4400315991094382037, guid: 02ae0bca40d8e0d4f9a0eced13a6aca4,
+          type: 3}
+      BuildCostSetup:
+        CurrencyType: 1
+        Amount: 15
+      DamageEffectSetup:
+        EffectTypeId: 1
+        ExplosiveArmamentType: 0
+        Value: 3
+        ActivationChance: 0
+      EffectSetups: []
+      StatusSetups: []
+      NameLocale:
+        m_TableReference:
+          m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+        m_TableEntryReference:
+          m_KeyId: 44263576264388608
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      DescriptionLocale:
+        m_TableReference:
+          m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+        m_TableEntryReference:
+          m_KeyId: 44264103991717888
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  - ConstructionType: 1
+    ConstructionSetup:
+      Icon: {fileID: 21300000, guid: 75943e08c26b03140a7763c535937913, type: 3}
+      ConstructionSize: {x: 2.65, y: 2.65, z: 2.65}
+      Hp: 50
+      ViewPrefab: {fileID: 0}
+      ViewPath: MachineGunTurret_Simple
+      LayoutOrder: 1
+      ObstacleSetup:
+        ActiveDuration: 0
+        InactiveDuration: 0
+        BoxCastSize: {x: 0, y: 0, z: 0}
+        CastMask:
+          serializedVersion: 2
+          m_Bits: 0
+      TurretSetup:
+        FireRate: 8
+        DetectRadius: 10
+        DetectMask:
+          serializedVersion: 2
+          m_Bits: 4096
+        FirearmType: 0
+        FarmAmount: 0
+      ProjectileSetup:
+        ProjectileCount: 2
+        Pierce: 1
+        Speed: 75
+        ContactRadius: 0
+        RaycastLength: 2
+        Lifetime: 5
+        OrbitRadius: 0
+        PrefabPath: 
+        HitMask:
+          serializedVersion: 2
+          m_Bits: 4096
+        ViewPrefab: {fileID: 4400315991094382037, guid: 02ae0bca40d8e0d4f9a0eced13a6aca4,
+          type: 3}
+      BuildCostSetup:
+        CurrencyType: 1
+        Amount: 30
+      DamageEffectSetup:
+        EffectTypeId: 1
+        ExplosiveArmamentType: 0
+        Value: 2
+        ActivationChance: 100
+      EffectSetups: []
+      StatusSetups: []
+      NameLocale:
+        m_TableReference:
+          m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+        m_TableEntryReference:
+          m_KeyId: 44263614831013888
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      DescriptionLocale:
+        m_TableReference:
+          m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+        m_TableEntryReference:
+          m_KeyId: 44264141534932992
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  - ConstructionType: 2
+    ConstructionSetup:
+      Icon: {fileID: 21300000, guid: 0922f2988c1474848980efd882f78b19, type: 3}
+      ConstructionSize: {x: 2.65, y: 2.65, z: 2.65}
+      Hp: 50
+      ViewPrefab: {fileID: 0}
+      ViewPath: Crossbow_Simple
+      LayoutOrder: 2
+      ObstacleSetup:
+        ActiveDuration: 0
+        InactiveDuration: 0
+        BoxCastSize: {x: 0, y: 0, z: 0}
+        CastMask:
+          serializedVersion: 2
+          m_Bits: 0
+      TurretSetup:
+        FireRate: 0.5
+        DetectRadius: 8.75
+        DetectMask:
+          serializedVersion: 2
+          m_Bits: 4096
+        FirearmType: 0
+        FarmAmount: 0
+      ProjectileSetup:
+        ProjectileCount: 2
+        Pierce: 1
+        Speed: 25
+        ContactRadius: 0
+        RaycastLength: 1.5
+        Lifetime: 5
+        OrbitRadius: 0
+        PrefabPath: 
+        HitMask:
+          serializedVersion: 2
+          m_Bits: 4096
+        ViewPrefab: {fileID: 8585614296445781692, guid: 5ebe672256aaa46458693efc59b2fe0f,
+          type: 3}
+      BuildCostSetup:
+        CurrencyType: 1
+        Amount: 40
+      DamageEffectSetup:
+        EffectTypeId: 0
+        ExplosiveArmamentType: 0
+        Value: 0
+        ActivationChance: 0
+      EffectSetups:
+      - EffectTypeId: 4
+        ExplosiveArmamentType: 1
+        Value: 0
+        ActivationChance: 100
+      StatusSetups: []
+      NameLocale:
+        m_TableReference:
+          m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+        m_TableEntryReference:
+          m_KeyId: 44263713078390784
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      DescriptionLocale:
+        m_TableReference:
+          m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+        m_TableEntryReference:
+          m_KeyId: 44264336159027200
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  - ConstructionType: 11
+    ConstructionSetup:
+      Icon: {fileID: 21300000, guid: 22846fc6d517b1446aa1d4f5b5b51fc7, type: 3}
+      ConstructionSize: {x: 2.65, y: 2.65, z: 2.65}
+      Hp: 150
+      ViewPrefab: {fileID: 0}
+      ViewPath: FenceSimple
+      LayoutOrder: 4
+      ObstacleSetup:
+        ActiveDuration: 0
+        InactiveDuration: 0
+        BoxCastSize: {x: 0, y: 0, z: 0}
+        CastMask:
+          serializedVersion: 2
+          m_Bits: 0
+      TurretSetup:
+        FireRate: 0
+        DetectRadius: 0
+        DetectMask:
+          serializedVersion: 2
+          m_Bits: 0
+        FirearmType: 0
+        FarmAmount: 0
+      ProjectileSetup:
+        ProjectileCount: 1
+        Pierce: 1
+        Speed: 50
+        ContactRadius: 0
+        RaycastLength: 2.5
+        Lifetime: 5
+        OrbitRadius: 0
+        PrefabPath: 
+        HitMask:
+          serializedVersion: 2
+          m_Bits: 4160
+        ViewPrefab: {fileID: 0}
+      BuildCostSetup:
+        CurrencyType: 1
+        Amount: 35
+      DamageEffectSetup:
+        EffectTypeId: 0
+        ExplosiveArmamentType: 0
+        Value: 0
+        ActivationChance: 0
+      EffectSetups: []
+      StatusSetups: []
+      NameLocale:
+        m_TableReference:
+          m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+        m_TableEntryReference:
+          m_KeyId: 44263810516267008
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      DescriptionLocale:
+        m_TableReference:
+          m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+        m_TableEntryReference:
+          m_KeyId: 44264429587148800
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  - ConstructionType: 5
+    ConstructionSetup:
+      Icon: {fileID: 21300000, guid: b0d9d36a80f57a448b9ae2b4b944da78, type: 3}
+      ConstructionSize: {x: 2.65, y: 2.65, z: 2.65}
+      Hp: 50
+      ViewPrefab: {fileID: 0}
+      ViewPath: SniperTurret_Simple
+      LayoutOrder: 3
+      ObstacleSetup:
+        ActiveDuration: 0
+        InactiveDuration: 0
+        BoxCastSize: {x: 0, y: 0, z: 0}
+        CastMask:
+          serializedVersion: 2
+          m_Bits: 0
+      TurretSetup:
+        FireRate: 0.5
+        DetectRadius: 12.5
+        DetectMask:
+          serializedVersion: 2
+          m_Bits: 4096
+        FirearmType: 0
+        FarmAmount: 0
+      ProjectileSetup:
+        ProjectileCount: 2
+        Pierce: 1
+        Speed: 75
+        ContactRadius: 0
+        RaycastLength: 2
+        Lifetime: 8
+        OrbitRadius: 0
+        PrefabPath: 
+        HitMask:
+          serializedVersion: 2
+          m_Bits: 4096
+        ViewPrefab: {fileID: 6570404094163987394, guid: 0ae961a8602a08541bf811816ab0f1dc,
+          type: 3}
+      BuildCostSetup:
+        CurrencyType: 1
+        Amount: 35
+      DamageEffectSetup:
+        EffectTypeId: 1
+        ExplosiveArmamentType: 0
+        Value: 20
+        ActivationChance: 0
+      EffectSetups: []
+      StatusSetups: []
+      NameLocale:
+        m_TableReference:
+          m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+        m_TableEntryReference:
+          m_KeyId: 44263794603077632
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      DescriptionLocale:
+        m_TableReference:
+          m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+        m_TableEntryReference:
+          m_KeyId: 44264404085780480
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  - ConstructionType: 3
+    ConstructionSetup:
+      Icon: {fileID: 21300000, guid: 2464ef126dc60394796c29c9a3e20f0e, type: 3}
+      ConstructionSize: {x: 2.65, y: 2.65, z: 2.65}
+      Hp: 50
+      ViewPrefab: {fileID: 0}
+      ViewPath: Crossbow_Simple
+      LayoutOrder: 5
+      ObstacleSetup:
+        ActiveDuration: 0
+        InactiveDuration: 0
+        BoxCastSize: {x: 0, y: 0, z: 0}
+        CastMask:
+          serializedVersion: 2
+          m_Bits: 0
+      TurretSetup:
+        FireRate: 1
+        DetectRadius: 8.75
+        DetectMask:
+          serializedVersion: 2
+          m_Bits: 4096
+        FirearmType: 0
+        FarmAmount: 0
+      ProjectileSetup:
+        ProjectileCount: 2
+        Pierce: 1
+        Speed: 25
+        ContactRadius: 0
+        RaycastLength: 1.5
+        Lifetime: 5
+        OrbitRadius: 0
+        PrefabPath: 
+        HitMask:
+          serializedVersion: 2
+          m_Bits: 4096
+        ViewPrefab: {fileID: 8447405271196763960, guid: 6f85568b120904b4f93b0c28c087d381,
+          type: 3}
+      BuildCostSetup:
+        CurrencyType: 1
+        Amount: 35
+      DamageEffectSetup:
+        EffectTypeId: 0
+        ExplosiveArmamentType: 0
+        Value: 0
+        ActivationChance: 0
+      EffectSetups:
+      - EffectTypeId: 4
+        ExplosiveArmamentType: 3
+        Value: 0
+        ActivationChance: 0
+      StatusSetups: []
+      NameLocale:
+        m_TableReference:
+          m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+        m_TableEntryReference:
+          m_KeyId: 44263765557522432
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      DescriptionLocale:
+        m_TableReference:
+          m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+        m_TableEntryReference:
+          m_KeyId: 44264391184101376
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  - ConstructionType: 6
+    ConstructionSetup:
+      Icon: {fileID: 21300000, guid: 5b26cf6e977a08d45bfd0207e8a3bd4d, type: 3}
+      ConstructionSize: {x: 2.65, y: 2.65, z: 2.65}
+      Hp: 50
+      ViewPrefab: {fileID: 0}
+      ViewPath: SawTurret_Simple
+      LayoutOrder: 6
+      ObstacleSetup:
+        ActiveDuration: 0
+        InactiveDuration: 0
+        BoxCastSize: {x: 0, y: 0, z: 0}
+        CastMask:
+          serializedVersion: 2
+          m_Bits: 0
+      TurretSetup:
+        FireRate: 0.5
+        DetectRadius: 7
+        DetectMask:
+          serializedVersion: 2
+          m_Bits: 4096
+        FirearmType: 0
+        FarmAmount: 0
+      ProjectileSetup:
+        ProjectileCount: 2
+        Pierce: 4
+        Speed: 12.5
+        ContactRadius: 0
+        RaycastLength: 0.65
+        Lifetime: 15
+        OrbitRadius: 0
+        PrefabPath: 
+        HitMask:
+          serializedVersion: 2
+          m_Bits: 4096
+        ViewPrefab: {fileID: 5062728030915025874, guid: 5163e4d19fe747247aa22897d58ed8f2,
+          type: 3}
+      BuildCostSetup:
+        CurrencyType: 1
+        Amount: 50
+      DamageEffectSetup:
+        EffectTypeId: 1
+        ExplosiveArmamentType: 0
+        Value: 25
+        ActivationChance: 0
+      EffectSetups: []
+      StatusSetups: []
+      NameLocale:
+        m_TableReference:
+          m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+        m_TableEntryReference:
+          m_KeyId: 44263846100742144
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      DescriptionLocale:
+        m_TableReference:
+          m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+        m_TableEntryReference:
+          m_KeyId: 44264461312864256
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  - ConstructionType: 8
+    ConstructionSetup:
+      Icon: {fileID: 21300000, guid: a3a719173b3df15418496d2d9d44f864, type: 3}
+      ConstructionSize: {x: 2.65, y: 2.65, z: 2.65}
+      Hp: 50
+      ViewPrefab: {fileID: 0}
+      ViewPath: Booster_Simple
+      LayoutOrder: 7
+      ObstacleSetup:
+        ActiveDuration: 0
+        InactiveDuration: 0
+        BoxCastSize: {x: 0, y: 0, z: 0}
+        CastMask:
+          serializedVersion: 2
+          m_Bits: 0
+      TurretSetup:
+        FireRate: 0
+        DetectRadius: 6.875
+        DetectMask:
+          serializedVersion: 2
+          m_Bits: 327680
+        FirearmType: 0
+        FarmAmount: 0
+      ProjectileSetup:
+        ProjectileCount: 1
+        Pierce: 1
+        Speed: 75
+        ContactRadius: 0
+        RaycastLength: 2.5
+        Lifetime: 5
+        OrbitRadius: 0
+        PrefabPath: 
+        HitMask:
+          serializedVersion: 2
+          m_Bits: 0
+        ViewPrefab: {fileID: 0}
+      BuildCostSetup:
+        CurrencyType: 1
+        Amount: 45
+      DamageEffectSetup:
+        EffectTypeId: 0
+        ExplosiveArmamentType: 0
+        Value: 0
+        ActivationChance: 0
+      EffectSetups: []
+      StatusSetups:
+      - StatusTypeId: 7
+        EnchantType: 0
+        Value: 0.25
+        Duration: 0.25
+        Period: 0
+        ActivationChance: 100
+        Multiplicative: 1
+        Accumulative: 0
+        AccumulativeLimit: 0
+      NameLocale:
+        m_TableReference:
+          m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+        m_TableEntryReference:
+          m_KeyId: 44263880301096960
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      DescriptionLocale:
+        m_TableReference:
+          m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+        m_TableEntryReference:
+          m_KeyId: 44264471328862208
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  - ConstructionType: 9
+    ConstructionSetup:
+      Icon: {fileID: 21300000, guid: fe639136d7bb0084a87331466f34fb78, type: 3}
+      ConstructionSize: {x: 2.65, y: 2.65, z: 2.65}
+      Hp: 50
+      ViewPrefab: {fileID: 0}
+      ViewPath: Farm_Simple
+      LayoutOrder: 8
+      ObstacleSetup:
+        ActiveDuration: 0
+        InactiveDuration: 0
+        BoxCastSize: {x: 0, y: 0, z: 0}
+        CastMask:
+          serializedVersion: 2
+          m_Bits: 0
+      TurretSetup:
+        FireRate: 0.1
+        DetectRadius: 0
+        DetectMask:
+          serializedVersion: 2
+          m_Bits: 0
+        FirearmType: 0
+        FarmAmount: 9
+      ProjectileSetup:
+        ProjectileCount: 1
+        Pierce: 1
+        Speed: 75
+        ContactRadius: 0
+        RaycastLength: 2.5
+        Lifetime: 5
+        OrbitRadius: 0
+        PrefabPath: 
+        HitMask:
+          serializedVersion: 2
+          m_Bits: 0
+        ViewPrefab: {fileID: 0}
+      BuildCostSetup:
+        CurrencyType: 1
+        Amount: 50
+      DamageEffectSetup:
+        EffectTypeId: 0
+        ExplosiveArmamentType: 0
+        Value: 0
+        ActivationChance: 0
+      EffectSetups: []
+      StatusSetups: []
+      NameLocale:
+        m_TableReference:
+          m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+        m_TableEntryReference:
+          m_KeyId: 44263911636742144
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      DescriptionLocale:
+        m_TableReference:
+          m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+        m_TableEntryReference:
+          m_KeyId: 44264488953327616
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  - ConstructionType: 7
+    ConstructionSetup:
+      Icon: {fileID: 21300000, guid: 5fbf2163558185f47b80293ea2fbab48, type: 3}
+      ConstructionSize: {x: 2.65, y: 2.65, z: 2.65}
+      Hp: 50
+      ViewPrefab: {fileID: 0}
+      ViewPath: RocketLauncherTurret_Simple
+      LayoutOrder: 9
+      ObstacleSetup:
+        ActiveDuration: 0
+        InactiveDuration: 0
+        BoxCastSize: {x: 0, y: 0, z: 0}
+        CastMask:
+          serializedVersion: 2
+          m_Bits: 0
+      TurretSetup:
+        FireRate: 0.19
+        DetectRadius: 7.5
+        DetectMask:
+          serializedVersion: 2
+          m_Bits: 4096
+        FirearmType: 0
+        FarmAmount: 0
+      ProjectileSetup:
+        ProjectileCount: 1
+        Pierce: 1
+        Speed: 5
+        ContactRadius: 0
+        RaycastLength: 0.2
+        Lifetime: 15
+        OrbitRadius: 0
+        PrefabPath: 
+        HitMask:
+          serializedVersion: 2
+          m_Bits: 4096
+        ViewPrefab: {fileID: 5872097707078188109, guid: 30cbf1e61570fa64ba27f0d49aa7e2b7,
+          type: 3}
+      BuildCostSetup:
+        CurrencyType: 1
+        Amount: 60
+      DamageEffectSetup:
+        EffectTypeId: 0
+        ExplosiveArmamentType: 0
+        Value: 0
+        ActivationChance: 0
+      EffectSetups:
+      - EffectTypeId: 4
+        ExplosiveArmamentType: 2
+        Value: 0
+        ActivationChance: 100
+      StatusSetups: []
+      NameLocale:
+        m_TableReference:
+          m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+        m_TableEntryReference:
+          m_KeyId: 44264535354912768
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      DescriptionLocale:
+        m_TableReference:
+          m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+        m_TableEntryReference:
+          m_KeyId: 44264514056237056
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []

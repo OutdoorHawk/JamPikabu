@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: CONSTRUCTIONS Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: CONSTRUCTIONS
+  m_TableCollectionNameGuidString: a17a10c6ed09ff248b952b3e362f0e43
+  m_Entries:
+  - m_Id: 44263576264388608
+    m_Key: C_PISTOLS_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44263614831013888
+    m_Key: C_MACHINE_GUN_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44263713078390784
+    m_Key: C_HARPOON_STUN_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44263765557522432
+    m_Key: C_HARPOON_FREEZE_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44263794603077632
+    m_Key: C_SNIPER_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44263810516267008
+    m_Key: C_FENCE_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44263846100742144
+    m_Key: C_SAW_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44263880301096960
+    m_Key: C_BOOSTER_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44263911636742144
+    m_Key: C_FARM_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44264103991717888
+    m_Key: C_PISTOLS_DESCRIPTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44264141534932992
+    m_Key: C_MACHINE_GUN_DESCRIPTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44264336159027200
+    m_Key: C_HARPOON_STUN_DESCRIPTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44264391184101376
+    m_Key: C_HARPOON_FREEZE_DESCRIPTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44264404085780480
+    m_Key: C_SNIPER_DESCRIPTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44264429587148800
+    m_Key: C_FENCE_DESCRIPTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44264461312864256
+    m_Key: C_SAW_DESCRIPTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44264471328862208
+    m_Key: C_BOOSTER_DESCRIPTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44264488953327616
+    m_Key: C_FARM_DESCRIPTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44264514056237056
+    m_Key: C_ROCKET_DESCRIPTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44264535354912768
+    m_Key: C_ROCKET_NAME
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 2814284846592688130
+  references:
+    version: 2
+    RefIds:
+    - rid: 2814284846592688130
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
+        asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1720378451187

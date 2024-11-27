@@ -1,0 +1,27 @@
+﻿using Code.Gameplay.StaticData;
+using Code.Progress.Provider;
+using Code.Progress.SaveLoadService;
+using Zenject;
+
+namespace Code.Gameplay.Cheats.Cheats.Abstract
+{
+    public abstract class BaseCheat
+    {
+        protected GameContext _gameContext;
+        protected ISaveLoadService _saveLoadService;
+        protected IProgressProvider _progressProvider;
+        protected MetaContext _metaContext;
+        protected IStaticDataService _staticDataService;
+
+        [Inject]
+        private void Construct(GameContext gameContext, MetaContext metaContext, ISaveLoadService saveLoadService, 
+            IProgressProvider progressProvider, IStaticDataService staticDataService)
+        {
+            _staticDataService = staticDataService;
+            _metaContext = metaContext;
+            _progressProvider = progressProvider;
+            _saveLoadService = saveLoadService;
+            _gameContext = gameContext;
+        }
+    }
+}

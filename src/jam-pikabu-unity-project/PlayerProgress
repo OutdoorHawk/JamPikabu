@@ -1,0 +1,14 @@
+{
+  "p": {
+    "masterVolume": 1.0,
+    "soundFXVolume": 1.0,
+    "musicVolume": 1.0,
+    "screamVolume": 1.0,
+    "mouseSensitivity": 1.0,
+    "savedLanguageString": "Russian (ru)"
+  },
+  "s": {},
+  "e": {
+    "es_meta": []
+  }
+}

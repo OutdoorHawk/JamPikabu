@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: MAIN MENU_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 1762038bbd89ad34781483ab60a19df3, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 2194680340899692627
+  m_TableData:
+  - m_Id: 8836341760
+    m_Localized: PLAY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 142827577344
+    m_Localized: SELECT DEFENCE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 323815989248
+    m_Localized: SELECT WEAPON
+    m_Metadata:
+      m_Items: []
+  - m_Id: 507966906368
+    m_Localized: SETTINGS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2191103352832
+    m_Localized: 'LEVEL: {0}'
+    m_Metadata:
+      m_Items:
+      - rid: 2194680340899692627
+  - m_Id: 6165192903970816
+    m_Localized: Congratulations
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6165241520148480
+    m_Localized: "You\u2019ve completed all the levels!\n\n<color=red>ENDLESS MODE</color>
+      unlocked.\n\nNew enemies, weapons, and levels are coming soon. Stay tuned for
+      updates!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6165266056826880
+    m_Localized: Got it
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6172227049574400
+    m_Localized: Endless Mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6523363661139968
+    m_Localized: 'BEST SCORE:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6530706759176192
+    m_Localized: normal mode
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 2194680340899692627
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 2191103352832

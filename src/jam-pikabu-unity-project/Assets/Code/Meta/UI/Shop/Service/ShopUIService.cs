@@ -1,0 +1,72 @@
+using System;
+using System.Collections.Generic;
+using Code.Common.Entity;
+using Code.Common.Extensions;
+using Code.Gameplay.StaticData;
+using Code.Meta.UI.HardCurrencyHolder.Service;
+using Code.Meta.UI.Shop.Configs;
+
+namespace Code.Meta.UI.Shop.Service
+{
+    public class ShopUIService : IShopUIService
+    {
+        private readonly List<int> _purchasedItems = new();
+        private readonly Dictionary<int, ShopItemConfig> _availableItems = new();
+
+        private readonly IStaticDataService _staticData;
+        private readonly IStorageUIService _storageUIService;
+
+        public event Action ShopChanged;
+
+        public ShopUIService(IStaticDataService staticData, IStorageUIService storageUIService)
+        {
+            _staticData = staticData;
+            _storageUIService = storageUIService;
+        }
+
+        public void UpdatePurchasedItems(IEnumerable<int> purchasedItems)
+        {
+            _purchasedItems.RefreshList(purchasedItems);
+        }
+
+        public void UpdatePurchasedItem(int shopItemId)
+        {
+            _availableItems.Remove(shopItemId);
+            _purchasedItems.Add(shopItemId);
+
+            ShopChanged?.Invoke();
+        }
+
+        public List<ShopItemConfig> GetAvailableShopItems()
+        {
+            return new List<ShopItemConfig>(_availableItems.Values);
+        }
+
+        public ShopItemConfig GetConfig(int shopItemId)
+        {
+            return _availableItems.GetValueOrDefault(shopItemId);
+        }
+
+        public bool IsItemPurchased(int shopItemId)
+        {
+            return _purchasedItems.Contains(shopItemId);
+        }
+
+        public void CreateBuyRequest(int shopItemId, bool forAd = false)
+        {
+            CreateMetaEntity.Empty()
+                .With(x => x.isBuyRequest = true)
+                .With(x => x.AddShopItemId(shopItemId), when: shopItemId is not 0)
+                .With(x => x.isForAd = forAd)
+                ;
+        }
+
+        public void Cleanup()
+        {
+            _purchasedItems.Clear();
+            _availableItems.Clear();
+
+            ShopChanged = null;
+        }
+    }
+}

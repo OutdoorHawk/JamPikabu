@@ -1,0 +1,53 @@
+﻿namespace Code.Gameplay.Sound
+{
+    public enum SoundSourceTypeId
+    {
+        Unknown = 0,
+        Music = 1,
+        Ambience = 2,
+        RareSfx = 3,
+        CommonSfx = 4,
+        TurretSfx = 5,
+    }
+    
+    public enum SoundTypeId
+    {
+        Unknown = 0,
+        GameplayMusic = 1,
+        Ambience = 2,
+        Base_Pistol_Shot = 3,
+        Submachine_Uzi_Shot = 4,
+        Nailgun_Shot = 5,
+        Submachine_MP5_Shot = 6,
+        Shotgun_Auto_Shot = 7,
+        Assault_Rifle_Shot = 8,
+        Gun_Reload = 9,
+        MachineGun_Shot = 10,
+        HarpoonStun_Shot = 11,
+        HarpoonFreeze_Shot = 12,
+        Sniper_Shot = 13,
+        Saw_Hit = 14,
+        Rocket_Launcher_Shot = 15,
+        Booster = 16,
+        Farm = 17,
+        Base_Pistol_Turret_Shot = 18,
+        Construction_Fly = 19,
+        Construction_Place = 20,
+        Saw_Shoot = 21,
+        Soft_Currency_Collect = 22,
+        Hard_Currency_Collect = 23,
+        Hard_Currency_Spend = 24,
+        Enemy_Take_Damage = 25,
+        Enemy_Dead = 26,
+        Enemy_Jump = 27,
+        Enemy_Hit = 28,
+        Footstep = 29,
+        UI_Click = 30,
+        Purchased = 31,
+        Level_Win = 32,
+        Level_Lost = 33,
+        Reward = 34,
+        Main_Menu_Music = 35,
+        DestroyConstruction = 36,
+    }
+}

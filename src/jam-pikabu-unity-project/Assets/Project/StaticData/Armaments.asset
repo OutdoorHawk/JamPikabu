@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89ac77edc34e43d1a58a322f19d34449, type: 3}
+  m_Name: Armaments
+  m_EditorClassIdentifier: 
+  _explosionArmaments:
+  - TypeId: 1
+    EffectSetups:
+    - EffectTypeId: 1
+      ExplosiveArmamentType: 0
+      Value: 12
+      ActivationChance: 100
+    StatusSetups:
+    - StatusTypeId: 5
+      EnchantType: 0
+      Value: 20
+      Duration: 1
+      Period: 0
+      ActivationChance: 100
+      Multiplicative: 0
+      Accumulative: 0
+      AccumulativeLimit: 0
+    Radius: 2
+    ViewPrefab: {fileID: -8778324469858245688, guid: 1f5b0af96a58d2d49ae32c4bbffa6375,
+      type: 3}
+  - TypeId: 2
+    EffectSetups:
+    - EffectTypeId: 1
+      ExplosiveArmamentType: 0
+      Value: 30
+      ActivationChance: 100
+    StatusSetups:
+    - StatusTypeId: 5
+      EnchantType: 0
+      Value: 20
+      Duration: 1.9
+      Period: 0
+      ActivationChance: 100
+      Multiplicative: 0
+      Accumulative: 0
+      AccumulativeLimit: 0
+    Radius: 4.25
+    ViewPrefab: {fileID: 7706254017149844511, guid: 43164d7fa1ef4de4eb3d84601ab64afc,
+      type: 3}
+  - TypeId: 3
+    EffectSetups:
+    - EffectTypeId: 1
+      ExplosiveArmamentType: 0
+      Value: 5
+      ActivationChance: 100
+    StatusSetups:
+    - StatusTypeId: 2
+      EnchantType: 0
+      Value: -0.15
+      Duration: 3
+      Period: 0
+      ActivationChance: 100
+      Multiplicative: 1
+      Accumulative: 1
+      AccumulativeLimit: 5
+    Radius: 3
+    ViewPrefab: {fileID: 5799594365920516099, guid: 764e2ff878847684b8e6a56f034aee47,
+      type: 3}

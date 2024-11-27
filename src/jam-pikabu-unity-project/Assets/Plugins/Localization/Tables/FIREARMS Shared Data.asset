@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: FIREARMS Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: FIREARMS
+  m_TableCollectionNameGuidString: 1842a506bb373764ea40f57771e7307a
+  m_Entries:
+  - m_Id: 5154185216
+    m_Key: F_PISTOL_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44521542842462208
+    m_Key: F_SUBMACHINE_UZI_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44521599788527616
+    m_Key: F_NAILGUN_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44521625285701632
+    m_Key: F_MP5_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44521656839450624
+    m_Key: F_SHOTGUN_AUTO_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44521699688460288
+    m_Key: F_ASSAULT_RIFLE_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44522331551969280
+    m_Key: F_PISTOL_DESCRIPTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44522352343134208
+    m_Key: F_UZI_DESCRIPTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44522403161321472
+    m_Key: F_NAILGUN_DESCRIPTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44522437768523776
+    m_Key: F_MP5_DESCRIPTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44522453845291008
+    m_Key: F_SHOTGUN_AUTO_DESCRIPTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44522480294572032
+    m_Key: F_ASSAULT_RIFLE_DESCRIPTION
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 2814284846592688135
+  references:
+    version: 2
+    RefIds:
+    - rid: 2814284846592688135
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
+        asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1720378804797

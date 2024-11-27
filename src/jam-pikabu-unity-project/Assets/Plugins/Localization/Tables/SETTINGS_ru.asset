@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: SETTINGS_ru
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: ru
+  m_SharedData: {fileID: 11400000, guid: fcf0f7f56465a694cb4a6aeae9dd874e, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 6916624384
+    m_Localized: "\u041D\u0410\u0421\u0422\u0420\u041E\u0419\u041A\u0418"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76424630272
+    m_Localized: "\u041E\u0411\u0429\u0410\u042F \u0413\u0420\u041E\u041C\u041A\u041E\u0421\u0422\u042C"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190195126272
+    m_Localized: "\u0413\u0420\u041E\u041C\u041A\u041E\u0421\u0422\u042C \u041C\u0423\u0417\u042B\u041A\u0418"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 214673084416
+    m_Localized: "\u0413\u0420\u041E\u041C\u041A\u041E\u0421\u0422\u042C \u042D\u0424\u0424\u0415\u041A\u0422\u041E\u0412"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4343544781426688
+    m_Localized: "\u0421\u0414\u0410\u0422\u042C\u0421\u042F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4346524670840832
+    m_Localized: "\u0412\u042B \u0423\u0412\u0415\u0420\u0415\u041D\u042B \u0427\u0422\u041E
+      \u0425\u041E\u0422\u0418\u0422\u0415 \u0421\u0414\u0410\u0422\u042C\u0421\u042F?\n\n\u0412\u0415\u0421\u042C
+      \u041F\u0420\u041E\u0413\u0420\u0415\u0421\u0421 \u0423\u0420\u041E\u0412\u041D\u042F
+      \u0411\u0423\u0414\u0415\u0422 \u041F\u041E\u0422\u0415\u0420\u042F\u041D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4346572527849472
+    m_Localized: "\u0414\u0410"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4346594724106240
+    m_Localized: "\u041D\u0415\u0422"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

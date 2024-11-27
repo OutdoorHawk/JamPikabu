@@ -1,0 +1,15 @@
+﻿namespace Code.Gameplay.Windows
+{
+    public enum WindowTypeId
+    {
+        Unknown = 0,
+        MainMenu = 1,
+        PlayerHUD = 2,
+        PreviewItem = 3,
+        Cheats = 6,
+        Tutorial = 7,
+        InfoWindow = 12,
+        
+        Count
+    }
+}

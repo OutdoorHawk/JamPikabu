@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: FIREARMS_es
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: es
+  m_SharedData: {fileID: 11400000, guid: 1842a506bb373764ea40f57771e7307a, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 44522480294572032
+    m_Localized: "Potente y confiable, m\xE1s fuerte que la mayor\xEDa de las armas
+      del arsenal"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44522453845291008
+    m_Localized: Una escopeta potente que impacta a varios objetivos a la vez
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44522437768523776
+    m_Localized: "Subfusil equilibrado con buena precisi\xF3n y rendimiento estable"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44522403161321472
+    m_Localized: "Dispara proyectiles perforantes, ideal para da\xF1o continuo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44522352343134208
+    m_Localized: "Alta cadencia de disparo, excelente para eliminaciones r\xE1pidas"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44522331551969280
+    m_Localized: "Un arma inicial confiable con bajo da\xF1o y rendimiento constante"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5154185216
+    m_Localized: Pistola
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44521542842462208
+    m_Localized: Uzi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44521599788527616
+    m_Localized: Clavadora
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44521625285701632
+    m_Localized: MP5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44521656839450624
+    m_Localized: "Escopeta Autom\xE1tica"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44521699688460288
+    m_Localized: Rifle de Asalto
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

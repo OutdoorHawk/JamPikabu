@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: SETTINGS_es
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: es
+  m_SharedData: {fileID: 11400000, guid: fcf0f7f56465a694cb4a6aeae9dd874e, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 6916624384
+    m_Localized: AJUSTES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76424630272
+    m_Localized: VOLUMEN GENERAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190195126272
+    m_Localized: "VOLUMEN DE LA M\xDASICA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 214673084416
+    m_Localized: VOLUMEN DE EFECTOS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4343544781426688
+    m_Localized: RENDIRSE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4346524670840832
+    m_Localized: "\xBFEst\xE1s seguro de que quieres rendirte?\n\nTodo el progreso
+      del nivel se perder\xE1."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4346572527849472
+    m_Localized: "S\xED"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4346594724106240
+    m_Localized: no
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

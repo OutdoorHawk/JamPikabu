@@ -1,0 +1,37 @@
+﻿namespace Code.Common.Extensions.Animations
+{
+    public enum AnimationParameter
+    {
+        Empty = 0,
+        Speed = 1,
+        Idle = 2,
+        Walk = 3,
+        Sprint = 4,
+        Jump = 5,
+        Crouch = 6,
+        GetUpFront = 7,
+        GetUpBack = 8,
+        Prone = 9,
+        Flip = 10,
+        Climb = 11,
+        Dance = 12,
+        Fall = 13,
+        AimingRifle = 14,
+        TurnAround = 15,
+        VelocityX = 16,
+        VelocityZ = 17,
+        Attack = 18,
+        HitReaction = 19,
+        AimFirearm = 20,
+        AimRotationSpeed = 21,
+        ReloadFirearmRifle = 22,
+        EquipFirearm = 23,
+        Recoil = 24,
+        EquipTwoHanded = 25,
+        EquipOneHanded = 26,
+        AttackType = 27,
+        RunType = 28,
+        Target = 29,
+        Ability = 30,
+    }
+}

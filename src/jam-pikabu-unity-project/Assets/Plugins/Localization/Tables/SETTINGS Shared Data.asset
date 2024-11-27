@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: SETTINGS Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: SETTINGS
+  m_TableCollectionNameGuidString: fcf0f7f56465a694cb4a6aeae9dd874e
+  m_Entries:
+  - m_Id: 6916624384
+    m_Key: ST_TITLE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76424630272
+    m_Key: ST_MASTER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190195126272
+    m_Key: ST_MUSIC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 214673084416
+    m_Key: ST_SFX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4343544781426688
+    m_Key: ST_GIVE_UP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4346524670840832
+    m_Key: ST_SURE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4346572527849472
+    m_Key: ST_YES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4346594724106240
+    m_Key: ST_NO
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 8314641359454863360
+  references:
+    version: 2
+    RefIds:
+    - rid: 8314641359454863360
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
+        asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1731438277627
