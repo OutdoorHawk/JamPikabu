@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Code.Infrastructure.View.Factory;
-using Cysharp.Threading.Tasks;
 using Entitas;
 
 namespace Code.Infrastructure.View.Systems

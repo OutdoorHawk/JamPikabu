@@ -14,7 +14,6 @@ using Code.Gameplay.Windows.Service;
 using Code.Infrastructure.AssetManagement.AssetProvider;
 using Code.Infrastructure.Common.CoroutineRunner;
 using Code.Infrastructure.Common.GameIdentifier;
-using Code.Infrastructure.DI.Factory;
 using Code.Infrastructure.Localization;
 using Code.Infrastructure.SceneContext;
 using Code.Infrastructure.SceneLoading;
@@ -152,7 +151,6 @@ namespace Code.Infrastructure.DI.Installers
 
         private void BindFactories()
         {
-            Container.Bind<IZenjectFactory>().To<ZenjectFactory>().AsSingle();
             Container.Bind<ISystemFactory>().To<SystemFactory>().AsSingle();
             Container.Bind<IShopItemFactory>().To<ShopItemFactory>().AsSingle();
         }

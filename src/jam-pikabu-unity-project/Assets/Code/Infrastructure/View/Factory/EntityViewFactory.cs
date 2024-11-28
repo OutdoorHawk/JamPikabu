@@ -1,5 +1,4 @@
 using Code.Infrastructure.AssetManagement.AssetProvider;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -19,7 +18,7 @@ namespace Code.Infrastructure.View.Factory
 
         public EntityView CreateViewForEntityFromResources(GameEntity entity)
         {
-            EntityView viewPrefab = _assetProvider.LoadAssetFromResouses<EntityView>(entity.ViewPathResources);
+            EntityView viewPrefab = _assetProvider.LoadAssetFromResources<EntityView>(entity.ViewPathResources);
             EntityView view = _instantiator.InstantiatePrefabForComponent<EntityView>(
                 viewPrefab,
                 position: GetStartPosition(entity),
@@ -42,23 +41,6 @@ namespace Code.Infrastructure.View.Factory
             EntityView viewComponent = view.GetComponent<EntityView>();
             viewComponent.SetEntity(entity);
 
-            return viewComponent;
-        }
-
-        public async UniTask<EntityView> CreateViewForEntityFromAddressables(GameEntity entity)
-        {
-            GameObject viewPrefab = await _assetProvider.Load<GameObject>(entity.ViewPathAddressables);
-
-            GameObject view = _instantiator.InstantiatePrefab(
-                viewPrefab,
-                position: GetStartPosition(entity),
-                rotation: GetStartRotation(entity),
-                parentTransform: entity.hasTargetParent ? entity.TargetParent : null);
-
-            EntityView viewComponent = view.GetComponent<EntityView>();
-            viewComponent.SetEntity(entity);
-
-            entity.isViewPrefabLoadProcessing = false;
             return viewComponent;
         }
 
