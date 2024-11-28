@@ -1,19 +1,15 @@
-﻿using Code.Common.Extensions;
-using Code.Gameplay.Windows;
+﻿using Code.Gameplay.Windows;
 using Code.Gameplay.Windows.Common;
 using Code.Infrastructure.States.GameStates;
 using Code.Infrastructure.States.StateMachine;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
 namespace Code.Gameplay.Settings.Window
 {
     public class SettingsWindow : BaseWindow
     {
-        [SerializeField] private Button _giveUpButton;
-
         private IGameStateMachine _gameStateMachine;
 
         [Inject]
@@ -29,29 +25,29 @@ namespace Code.Gameplay.Settings.Window
             if (_gameStateMachine.ActiveState is GameLoopState)
             {
                 Time.timeScale = 0;
-                _giveUpButton.EnableElement();
                 return;
             }
-
-            _giveUpButton.DisableElement();
         }
 
         protected override void Cleanup()
         {
             base.Cleanup();
-            Time.timeScale = 1;
+
+            if (_gameStateMachine.ActiveState is GameLoopState)
+            {
+                Time.timeScale = 1;
+                return;
+            }
         }
 
         protected override void SubscribeUpdates()
         {
             base.SubscribeUpdates();
-            _giveUpButton.onClick.AddListener(OpenConfirmWindow);
         }
 
         protected override void Unsubscribe()
         {
             base.Unsubscribe();
-            _giveUpButton.onClick.RemoveListener(OpenConfirmWindow);
         }
 
         private void OpenConfirmWindow()

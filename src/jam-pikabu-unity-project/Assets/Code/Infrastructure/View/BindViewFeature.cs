@@ -9,7 +9,6 @@ namespace Code.Infrastructure.View
         {
             Add(systems.Create<BindEntityViewFromResourcesPathSystem>());
             Add(systems.Create<BindEntityViewFromPrefabSystem>());
-            Add(systems.Create<BindEntityViewFromAddressablesPathSystem>());
             Add(systems.Create<SetupParentForViewSystem>());
         }
     }

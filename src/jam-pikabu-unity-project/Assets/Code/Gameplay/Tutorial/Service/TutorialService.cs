@@ -105,10 +105,10 @@ namespace Code.Gameplay.Tutorial.Service
             foreach (var processor in _processors)
                 _tutorialProcessors.Add(processor.TypeId, processor);
 
-            /*List<TutorialConfig> tutorialsConfigs = _staticData.Data.Tutorials.Configs;
+            List<TutorialConfig> tutorialsConfigs = _staticData.GetStaticData<TutorialStaticData>().Configs;
 
             _configs.AddRange(tutorialsConfigs);
-            _configs.Sort((x, y) => x.Order.CompareTo(y.Order));*/
+            _configs.Sort((x, y) => x.Order.CompareTo(y.Order));
         }
 
         private void TryStartTutorial()

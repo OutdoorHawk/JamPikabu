@@ -8,6 +8,7 @@ using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Common.Time;
 using Code.Gameplay.Input.Service;
 using Code.Gameplay.Sound.Service;
+using Code.Gameplay.StaticData;
 using Code.Gameplay.Tutorial.Service;
 using Code.Gameplay.Windows.Factory;
 using Code.Gameplay.Windows.Service;
@@ -110,7 +111,7 @@ namespace Code.Infrastructure.DI.Installers
         private void BindGameplayServices()
         {
             Container.BindInterfacesTo<SoundService>().FromInstance(_soundService).AsSingle();
-            // Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
+            Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
             Container.Bind<IMousePositionService>().To<MousePositionService>().AsSingle();
             Container.Bind<ICameraProvider>().To<CameraProvider>().AsSingle();
         }
@@ -130,7 +131,7 @@ namespace Code.Infrastructure.DI.Installers
         private void BindCommonServices()
         {
             Container.Bind<ICollisionRegistry>().To<CollisionRegistry>().AsSingle();
-            Container.Bind<IPhysicsService>().To<PhysicsService>().AsSingle();
+            Container.Bind<IPhysics2DService>().To<Physics2DService>().AsSingle();
             Container.Bind<ITimeService>().To<UnityTimeService>().AsSingle();
             Container.Bind<ISceneLoader>().FromInstance(_sceneLoader).AsSingle();
 

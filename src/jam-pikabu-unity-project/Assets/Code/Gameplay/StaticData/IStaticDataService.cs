@@ -1,18 +1,8 @@
-﻿using Code.Gameplay.Sound;
-using Code.Gameplay.Sound.Config;
-
-namespace Code.Gameplay.StaticData
+﻿namespace Code.Gameplay.StaticData
 {
-    public class IStaticDataService
+    public interface IStaticDataService
     {
-        public SoundConfig GetSoundConfig(SoundTypeId soundTypeId)
-        {
-            return null;
-        }
-
-        public void Load()
-        {
-            
-        }
+        public void Load();
+        T GetStaticData<T>() where T : class, IStaticData;
     }
 }

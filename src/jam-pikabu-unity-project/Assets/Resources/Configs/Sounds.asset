@@ -1,0 +1,331 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5fdd7bcdfc50b34d9a9525f8b4a9526, type: 3}
+  m_Name: Sounds
+  m_EditorClassIdentifier: 
+  _sounds:
+  - SoundType: 1
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: 0a16d9e28f256284a8fb1d9f17eda5fa, type: 3}
+      - {fileID: 8300000, guid: 3b8adf2e1414a0043a56f1c745f8e9f2, type: 3}
+      - {fileID: 8300000, guid: 7e647de1a4a40904c9e85eda42ab1601, type: 3}
+      - {fileID: 8300000, guid: de430ed5aaec98c4fae1afbea84d369f, type: 3}
+      - {fileID: 8300000, guid: 75f874c6520a55c4a867e803c7049a91, type: 3}
+      - {fileID: 8300000, guid: d0aceae90d0557e4da926e3fb6665105, type: 3}
+      SourceType: 1
+      Volume: 1
+      RandomizePitch: 0
+      PitchMin: 0.8
+      PitchMax: 1.2
+  - SoundType: 35
+    Data:
+      Clips: []
+      SourceType: 1
+      Volume: 1
+      RandomizePitch: 0
+      PitchMin: 0.8
+      PitchMax: 1.2
+  - SoundType: 2
+    Data:
+      Clips: []
+      SourceType: 2
+      Volume: 1
+      RandomizePitch: 0
+      PitchMin: 0.8
+      PitchMax: 1.2
+  - SoundType: 3
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: ca52d812fd8927a43859abbf66aad067, type: 3}
+      SourceType: 4
+      Volume: 0.3
+      RandomizePitch: 1
+      PitchMin: 1
+      PitchMax: 1.3
+  - SoundType: 4
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: ea74f36c09a75fa4f9195fa49fc1e5a4, type: 3}
+      SourceType: 4
+      Volume: 0.5
+      RandomizePitch: 1
+      PitchMin: 1.3
+      PitchMax: 1.5
+  - SoundType: 5
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: 68ee233918c43c9409c65d99eaa79990, type: 3}
+      SourceType: 4
+      Volume: 0.25
+      RandomizePitch: 1
+      PitchMin: 0.8
+      PitchMax: 1.2
+  - SoundType: 6
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: 68ee233918c43c9409c65d99eaa79990, type: 3}
+      SourceType: 4
+      Volume: 0.15
+      RandomizePitch: 1
+      PitchMin: 1
+      PitchMax: 1.5
+  - SoundType: 7
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: 99a8d2a445f2e2040bcea949b9a59f63, type: 3}
+      SourceType: 4
+      Volume: 1
+      RandomizePitch: 1
+      PitchMin: 0.9
+      PitchMax: 1.1
+  - SoundType: 8
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: ea74f36c09a75fa4f9195fa49fc1e5a4, type: 3}
+      - {fileID: 8300000, guid: 8325f74d6ce5cfd408c84c605d8dc2f5, type: 3}
+      SourceType: 4
+      Volume: 0.9
+      RandomizePitch: 1
+      PitchMin: 0.8
+      PitchMax: 1.5
+  - SoundType: 9
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: 9350a956f66f59142a21f97c1e8a7b79, type: 3}
+      SourceType: 4
+      Volume: 0.1
+      RandomizePitch: 0
+      PitchMin: 0.8
+      PitchMax: 1.2
+  - SoundType: 18
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: a542eeadbc09231478b42c9e778b68c9, type: 3}
+      SourceType: 4
+      Volume: 0.5
+      RandomizePitch: 1
+      PitchMin: 1
+      PitchMax: 1.4
+  - SoundType: 10
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: 6834a1feffadac64c8f6455b2827b9ed, type: 3}
+      SourceType: 4
+      Volume: 0.5
+      RandomizePitch: 1
+      PitchMin: 2.5
+      PitchMax: 3
+  - SoundType: 11
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: 5ba88cf39a863934eb50fc5c3a921c9e, type: 3}
+      - {fileID: 8300000, guid: 07c9db2553291474fa06e16dd6a89345, type: 3}
+      SourceType: 4
+      Volume: 1
+      RandomizePitch: 1
+      PitchMin: 0.8
+      PitchMax: 1.2
+  - SoundType: 15
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: 92661b0806b9da346962fcb86eaf8030, type: 3}
+      SourceType: 4
+      Volume: 0.95
+      RandomizePitch: 1
+      PitchMin: 1
+      PitchMax: 1.4
+  - SoundType: 20
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: f91a7523eb186884c9473c90e9efcc14, type: 3}
+      SourceType: 4
+      Volume: 0.3
+      RandomizePitch: 1
+      PitchMin: 0.8
+      PitchMax: 1.2
+  - SoundType: 19
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: f54595f11fb50574ab0885af282de411, type: 3}
+      SourceType: 4
+      Volume: 0.3
+      RandomizePitch: 1
+      PitchMin: 0.8
+      PitchMax: 1.2
+  - SoundType: 13
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: 25df8c5142e40f64392b1eb157cf8641, type: 3}
+      SourceType: 4
+      Volume: 1
+      RandomizePitch: 1
+      PitchMin: 0.8
+      PitchMax: 1.2
+  - SoundType: 14
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: 2d54e2dd760db7340968f0deb6dad176, type: 3}
+      SourceType: 4
+      Volume: 0.1
+      RandomizePitch: 1
+      PitchMin: 1
+      PitchMax: 1.5
+  - SoundType: 21
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: 8f397b346bbea304bbdd31dfe5c56bd7, type: 3}
+      SourceType: 4
+      Volume: 0.32
+      RandomizePitch: 1
+      PitchMin: 0.8
+      PitchMax: 1.2
+  - SoundType: 16
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: 00985454724094641bcc6ae3c76291e7, type: 3}
+      SourceType: 4
+      Volume: 0.4
+      RandomizePitch: 1
+      PitchMin: 0.8
+      PitchMax: 1.2
+  - SoundType: 17
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: 3cfaf8af7b7032e488aa67baa41b2f63, type: 3}
+      SourceType: 4
+      Volume: 0.75
+      RandomizePitch: 1
+      PitchMin: 1.5
+      PitchMax: 2
+  - SoundType: 22
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: 48ca705042588a34297d6304a32f266b, type: 3}
+      SourceType: 4
+      Volume: 0.25
+      RandomizePitch: 1
+      PitchMin: 0.8
+      PitchMax: 1.2
+  - SoundType: 23
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: 7a24607528ea9244d877b0ed5cb7e692, type: 3}
+      SourceType: 4
+      Volume: 0.4
+      RandomizePitch: 1
+      PitchMin: 0.8
+      PitchMax: 1.2
+  - SoundType: 24
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: d7d7eb70e282f3f4fb365f83c7b9a8c0, type: 3}
+      SourceType: 4
+      Volume: 0.4
+      RandomizePitch: 0
+      PitchMin: 0.8
+      PitchMax: 1.2
+  - SoundType: 25
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: dc444aa1e8caeac4ca387e5c54b1a5ae, type: 3}
+      SourceType: 4
+      Volume: 0.25
+      RandomizePitch: 1
+      PitchMin: 0.8
+      PitchMax: 1.2
+  - SoundType: 26
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: 538e83c29d5400543bd120424e3a6517, type: 3}
+      - {fileID: 8300000, guid: bd4a25ccada42b344983a21f2176751a, type: 3}
+      - {fileID: 8300000, guid: 633eb69e0c12f5b44a85a35482380805, type: 3}
+      - {fileID: 8300000, guid: d867281f2da688643ac91a1c0ae8d7a9, type: 3}
+      - {fileID: 8300000, guid: 53ec0e6bc1078a94e90d3b8d6e0c84c1, type: 3}
+      - {fileID: 8300000, guid: 06bb293e0e7ceb94f9e99e0a60d7a3c6, type: 3}
+      SourceType: 4
+      Volume: 0.9
+      RandomizePitch: 1
+      PitchMin: 0.8
+      PitchMax: 1.2
+  - SoundType: 27
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: 2b3c79c8e0bafac469b4eddd15e07749, type: 3}
+      SourceType: 4
+      Volume: 0.3
+      RandomizePitch: 1
+      PitchMin: 0.8
+      PitchMax: 1.2
+  - SoundType: 28
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: 9bd7b1cae492a8143b604599e4bfd11f, type: 3}
+      SourceType: 4
+      Volume: 0.75
+      RandomizePitch: 1
+      PitchMin: 0.8
+      PitchMax: 1.2
+  - SoundType: 29
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: 823ded38e667d744c9c3a9f25a9a276f, type: 3}
+      SourceType: 4
+      Volume: 1
+      RandomizePitch: 1
+      PitchMin: 0.8
+      PitchMax: 1.2
+  - SoundType: 30
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: 781b38b6cced3b74fa0776f958a0005f, type: 3}
+      SourceType: 4
+      Volume: 0.15
+      RandomizePitch: 0
+      PitchMin: 0.8
+      PitchMax: 1.2
+  - SoundType: 31
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: e11e84a74e131ab41be42ffea266a564, type: 3}
+      SourceType: 4
+      Volume: 0.15
+      RandomizePitch: 0
+      PitchMin: 0.8
+      PitchMax: 1.2
+  - SoundType: 36
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: a522e47c85a8fae4ba89f37d62a8701a, type: 3}
+      SourceType: 4
+      Volume: 0.3
+      RandomizePitch: 1
+      PitchMin: 0.8
+      PitchMax: 1.2
+  - SoundType: 32
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: 88792945859b9a34db46ee9dc44658f4, type: 3}
+      SourceType: 3
+      Volume: 0.3
+      RandomizePitch: 0
+      PitchMin: 0.8
+      PitchMax: 1.2
+  - SoundType: 33
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: 2046a871cefd2cd4990d5eba1d2fa8fb, type: 3}
+      SourceType: 3
+      Volume: 0.2
+      RandomizePitch: 0
+      PitchMin: 0.8
+      PitchMax: 1.2

@@ -1,21 +1,32 @@
+using System;
+using System.Collections.Generic;
+using Code.Gameplay.StaticData;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Code.Gameplay.Windows.Configs
 {
     [CreateAssetMenu(menuName = "StaticData/" + nameof(WindowsStaticData), fileName = "Windows")]
-    public class WindowsStaticData : ScriptableObject
+    public class WindowsStaticData : BaseStaticData
     {
         [TabGroup("Windows"), SerializeField] private WindowConfig[] _configs;
-
         [TabGroup("Windows"), SerializeField] private RectTransform _uiRoot;
 
-        [TabGroup("Data"), SerializeField] private ResultTexts _resultTexts;
-        [TabGroup("Data"), SerializeField] private float _tutorialDuration = 12;
+        private readonly Dictionary<WindowTypeId, WindowConfig> _windows = new();
         
         public RectTransform UIRoot => _uiRoot;
-        public float TutorialDuration => _tutorialDuration;
-        public ResultTexts ResultTexts => _resultTexts;
-        public WindowConfig[] Configs => _configs;
+
+        public override void OnConfigInit()
+        {
+            base.OnConfigInit();
+            
+            foreach (var config in _configs)
+                _windows.Add(config.Type, config);
+        }
+
+        public WindowConfig GetWindow(WindowTypeId type)
+        {
+            return _windows[type];
+        }
     }
 }

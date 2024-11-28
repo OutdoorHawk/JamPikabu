@@ -30,6 +30,7 @@ namespace Code.Gameplay.Sound.Service
         private IStaticDataService _staticDataService;
         private IAssetProvider _assetProvider;
         private ILoggerService _loggerService;
+        private SoundsStaticData _staticData;
 
         private MainSoundContainer _mainSoundContainer;
         private CancellationTokenSource _gamePlayMusicToken = new();
@@ -40,18 +41,18 @@ namespace Code.Gameplay.Sound.Service
 
         private const int MIN_MIXER_VOLUME = -60;
         private const int MAX_MIXER_VOLUME = 5;
-        private const string MAIN_SOUND_CONTAINER = "MainSoundContainer";
+        private const string MAIN_SOUND_CONTAINER = "Sound/MainSoundContainer";
         
         public event Action OnSongUpdated;
 
         [Inject]
         private void Construct
         (
-            IStaticDataService staticDataService, 
+            IStaticDataService staticDataService,
             IProgressProvider progressProvider,
             ILoggerService loggerService,
             IAssetProvider assetProvider
-            )
+        )
         {
             _assetProvider = assetProvider;
             _loggerService = loggerService;
@@ -95,7 +96,7 @@ namespace Code.Gameplay.Sound.Service
 
         public void OnEnterLoadProgress()
         {
-            InitSoundService().Forget();
+            InitSoundService();
         }
 
         public void OnExitLoadProgress()
@@ -115,7 +116,7 @@ namespace Code.Gameplay.Sound.Service
 
         public void PlaySound(SoundTypeId typeId)
         {
-            SoundConfig soundSetup = _staticDataService.GetSoundConfig(typeId);
+            SoundConfig soundSetup = _staticDataService.GetStaticData<SoundsStaticData>().GetSoundConfig(typeId);
 
             if (soundSetup == null)
             {
@@ -128,7 +129,8 @@ namespace Code.Gameplay.Sound.Service
 
         public void PlaySound(SoundTypeId typeId, AudioSource audioSource)
         {
-            SoundConfig soundSetup = _staticDataService.GetSoundConfig(typeId);
+            var staticData = _staticDataService.GetStaticData<SoundsStaticData>();
+            SoundConfig soundSetup = staticData.GetSoundConfig(typeId);
 
             if (soundSetup == null)
             {
@@ -141,7 +143,7 @@ namespace Code.Gameplay.Sound.Service
 
         public void PlayOneShotSound(SoundTypeId soundTypeId, AudioSource audioSource)
         {
-            SoundConfig config = _staticDataService.GetSoundConfig(soundTypeId);
+            SoundConfig config = GetSoundConfig(soundTypeId);
             SoundSetup setup = config.Data;
             audioSource.clip = GetClip(audioSource.clip, setup);
             SetupPitch(setup, audioSource);
@@ -150,17 +152,18 @@ namespace Code.Gameplay.Sound.Service
 
         public void PlayOneShotSound(SoundTypeId soundTypeId)
         {
-            SoundConfig config = _staticDataService.GetSoundConfig(soundTypeId);
+            SoundConfig config = GetSoundConfig(soundTypeId);
             SoundSetup setup = config.Data;
             AudioSource soundSource = GetSourceForSoundType(setup);
             soundSource.clip = GetClip(soundSource.clip, setup);
             SetupPitch(setup, soundSource);
             soundSource.PlayOneShot(soundSource.clip, volumeScale: setup.Volume);
         }
+        
 
         public void StopSound(SoundTypeId typeId)
         {
-            SoundConfig clip = _staticDataService.GetSoundConfig(typeId);
+            SoundConfig clip = _staticDataService.GetStaticData<SoundsStaticData>().GetSoundConfig(typeId);
             StopClip(clip);
         }
 
@@ -171,9 +174,10 @@ namespace Code.Gameplay.Sound.Service
 
         #region Private Methods
         
-        private async UniTaskVoid InitSoundService()
+        private void InitSoundService()
         {
-            var go = await _assetProvider.Load<GameObject>(MAIN_SOUND_CONTAINER);
+            _staticData = _staticDataService.GetStaticData<SoundsStaticData>();
+            var go = _assetProvider.LoadAssetFromResources<MainSoundContainer>(MAIN_SOUND_CONTAINER);
             _mainSoundContainer = Instantiate(go, transform).GetComponent<MainSoundContainer>();
             
             for (SoundVolumeTypeId i = 0; i < SoundVolumeTypeId.Count; i++)
@@ -315,7 +319,7 @@ namespace Code.Gameplay.Sound.Service
 
         private void IncreaseClipIndex()
         {
-            SoundConfig soundSetup = _staticDataService.GetSoundConfig(SoundTypeId.GameplayMusic);
+            SoundConfig soundSetup = GetSoundConfig(SoundTypeId.GameplayMusic);
             AudioClip[] musicClips = soundSetup.Data.Clips;
 
             int currentSongIndex = PlayerPrefs.GetInt(SoundExtensions.CurrentMusicClipIndex, -1);
@@ -330,7 +334,7 @@ namespace Code.Gameplay.Sound.Service
 
         private void DecreaseClipIndex()
         {
-            SoundConfig soundSetup = _staticDataService.GetSoundConfig(SoundTypeId.GameplayMusic);
+            SoundConfig soundSetup = GetSoundConfig(SoundTypeId.GameplayMusic);
             AudioClip[] musicClips = soundSetup.Data.Clips;
 
             int currentSongIndex = PlayerPrefs.GetInt(SoundExtensions.CurrentMusicClipIndex, 0);
@@ -346,7 +350,7 @@ namespace Code.Gameplay.Sound.Service
         private AudioClip GetCurrentMusicClipInternal()
         {
             int currentSongIndex = PlayerPrefs.GetInt(SoundExtensions.CurrentMusicClipIndex, 0);
-            SoundConfig soundSetup = _staticDataService.GetSoundConfig(SoundTypeId.GameplayMusic);
+            SoundConfig soundSetup = GetSoundConfig(SoundTypeId.GameplayMusic);
             AudioClip currentClip = soundSetup.Data.Clips[currentSongIndex];
             return currentClip;
         }
@@ -382,6 +386,11 @@ namespace Code.Gameplay.Sound.Service
         {
             _gamePlayMusicToken?.Cancel();
             _gamePlayMusicToken = CancellationTokenSource.CreateLinkedTokenSource(sourceDestroyToken);
+        }
+        
+        private SoundConfig GetSoundConfig(SoundTypeId soundTypeId)
+        {
+            return _staticData.GetSoundConfig(soundTypeId);
         }
 
         #endregion

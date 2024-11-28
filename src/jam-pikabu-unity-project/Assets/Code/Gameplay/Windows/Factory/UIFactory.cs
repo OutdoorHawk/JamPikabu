@@ -1,6 +1,6 @@
-using System;
 using Code.Gameplay.StaticData;
-using Code.Infrastructure.DI.Factory;
+using Code.Gameplay.Windows.Configs;
+using Code.Infrastructure.AssetManagement.AssetProvider;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
@@ -11,14 +11,18 @@ namespace Code.Gameplay.Windows.Factory
     public class UIFactory : IUIFactory
     {
         private readonly IStaticDataService _staticDataService;
-        private readonly IZenjectFactory _zenjectFactory;
+        private readonly IInstantiator _instantiator;
+        private readonly IAssetProvider _assetProvider;
 
         private Transform _uiRoot;
 
+        private const string PATH = "Windows/";
+
         [Inject]
-        public UIFactory(IStaticDataService staticDataService, IZenjectFactory zenjectFactory)
+        public UIFactory(IStaticDataService staticDataService, IInstantiator instantiator, IAssetProvider assetProvider)
         {
-            _zenjectFactory = zenjectFactory;
+            _assetProvider = assetProvider;
+            _instantiator = instantiator;
             _staticDataService = staticDataService;
         }
 
@@ -29,21 +33,21 @@ namespace Code.Gameplay.Windows.Factory
             if (UIRoot != null)
                 Object.Destroy(UIRoot.gameObject);
 
-            throw new NotImplementedException();
-            /*GameObject uiRoot = _zenjectFactory.Instantiate(_staticDataService.Data.WindowsStaticData.UIRoot.gameObject);
+            WindowsStaticData windows = _staticDataService.GetStaticData<WindowsStaticData>();
+            GameObject uiRoot = _instantiator.InstantiatePrefabForComponent<GameObject>(windows.UIRoot.gameObject);
             uiRoot.transform.SetParent(null);
-            _uiRoot = uiRoot.transform;*/
+            _uiRoot = uiRoot.transform;
         }
 
-        public async UniTask<T> CreateWindow<T>(WindowTypeId type) where T : BaseWindow
+        public UniTask<T> CreateWindow<T>(WindowTypeId type) where T : BaseWindow
         {
-            throw new NotImplementedException();
-
-            /*WindowConfig config = _staticDataService.GetWindow(type);
-            GameObject window = await _zenjectFactory.Instantiate(config.WindowName, UIRoot);
+            WindowsStaticData windows = _staticDataService.GetStaticData<WindowsStaticData>();
+            WindowConfig config = windows.GetWindow(type);
+            BaseWindow windowPrefab = _assetProvider.LoadAssetFromResources<BaseWindow>(PATH + config.WindowName);
+            BaseWindow window = _instantiator.InstantiatePrefabForComponent<BaseWindow>(windowPrefab);
             T typedWindow = window.GetComponent<T>();
             typedWindow.SetWindowType(type);
-            return typedWindow;*/
+            return new UniTask<T>(typedWindow);
         }
     }
 }
