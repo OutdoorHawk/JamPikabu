@@ -34,7 +34,7 @@ namespace Code.Gameplay.Windows.Factory
                 Object.Destroy(UIRoot.gameObject);
 
             WindowsStaticData windows = _staticDataService.GetStaticData<WindowsStaticData>();
-            GameObject uiRoot = _instantiator.InstantiatePrefabForComponent<GameObject>(windows.UIRoot.gameObject);
+            GameObject uiRoot = _instantiator.InstantiatePrefab(windows.UIRoot.gameObject);
             uiRoot.transform.SetParent(null);
             _uiRoot = uiRoot.transform;
         }

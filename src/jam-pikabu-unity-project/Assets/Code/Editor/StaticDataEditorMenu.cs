@@ -18,8 +18,7 @@ namespace Project.Code.Editor
         {
             var tree = new OdinMenuTree();
             
-            tree.AddAssetAtPath("GameStaticData", "Assets/Resources/GameStaticData.asset");
-            tree.AddAllAssetsAtPath("Configs", "Assets/Project/StaticData", true);
+            tree.AddAllAssetsAtPath("Configs", "Assets/Resources/Configs", true);
 
             return tree;
         }
