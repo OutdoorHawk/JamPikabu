@@ -22,6 +22,8 @@ namespace Code.Gameplay.Sound.Config
 
         private void LoadSounds()
         {
+            _soundsConfigs.Clear();
+            
             foreach (var sounds in _sounds)
                 _soundsConfigs.Add(sounds.SoundType, sounds);
         }

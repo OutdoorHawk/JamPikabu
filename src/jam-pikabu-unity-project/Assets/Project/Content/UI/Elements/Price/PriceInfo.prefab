@@ -105,7 +105,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8073352417879274364}
-  - component: {fileID: 1602661074323674519}
+  - component: {fileID: 5475631430975127571}
   m_Layer: 5
   m_Name: PriceInfo
   m_TagString: Untagged
@@ -134,7 +134,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000015258789, y: 34}
   m_SizeDelta: {x: 390.55988, y: 88.9661}
   m_Pivot: {x: 0.5, y: 0}
---- !u!114 &1602661074323674519
+--- !u!114 &5475631430975127571
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2056075883761923338}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76b5dd4b97164e858a8072d657e94eb9, type: 3}
+  m_Script: {fileID: 11500000, guid: c968159f283e418d823dfa62547d212a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _amountText: {fileID: 788746499505026813}

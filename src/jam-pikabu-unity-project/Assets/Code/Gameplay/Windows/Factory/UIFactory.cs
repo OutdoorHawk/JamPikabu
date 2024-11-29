@@ -41,13 +41,21 @@ namespace Code.Gameplay.Windows.Factory
 
         public UniTask<T> CreateWindow<T>(WindowTypeId type) where T : BaseWindow
         {
-            WindowsStaticData windows = _staticDataService.GetStaticData<WindowsStaticData>();
-            WindowConfig config = windows.GetWindow(type);
-            BaseWindow windowPrefab = _assetProvider.LoadAssetFromResources<BaseWindow>(PATH + config.WindowName);
+            BaseWindow windowPrefab = GetWindowPrefab(type);
             BaseWindow window = _instantiator.InstantiatePrefabForComponent<BaseWindow>(windowPrefab);
+            
             T typedWindow = window.GetComponent<T>();
             typedWindow.SetWindowType(type);
             return new UniTask<T>(typedWindow);
+        }
+
+        private BaseWindow GetWindowPrefab(WindowTypeId type)
+        {
+            WindowsStaticData windows = _staticDataService.GetStaticData<WindowsStaticData>();
+            WindowConfig config = windows.GetWindow(type);
+            BaseWindow windowPrefab = config.WindowPrefab;
+            windowPrefab ??= _assetProvider.LoadAssetFromResources<BaseWindow>(PATH + config.WindowName);
+            return windowPrefab;
         }
     }
 }

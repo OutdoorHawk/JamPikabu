@@ -7,5 +7,6 @@ namespace Code.Gameplay.Windows.Configs
     {
         public WindowTypeId Type;
         public string WindowName;
+        public BaseWindow WindowPrefab;
     }
 }

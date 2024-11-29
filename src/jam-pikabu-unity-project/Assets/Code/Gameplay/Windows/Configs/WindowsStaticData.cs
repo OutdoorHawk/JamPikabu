@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Code.Gameplay.StaticData;
 using Sirenix.OdinInspector;
@@ -13,13 +12,15 @@ namespace Code.Gameplay.Windows.Configs
         [TabGroup("Windows"), SerializeField] private RectTransform _uiRoot;
 
         private readonly Dictionary<WindowTypeId, WindowConfig> _windows = new();
-        
+
         public RectTransform UIRoot => _uiRoot;
 
         public override void OnConfigInit()
         {
             base.OnConfigInit();
-            
+
+            _windows.Clear();
+
             foreach (var config in _configs)
                 _windows.Add(config.Type, config);
         }

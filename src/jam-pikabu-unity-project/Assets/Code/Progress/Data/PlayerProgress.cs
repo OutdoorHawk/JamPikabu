@@ -10,8 +10,6 @@ namespace Code.Progress.Data
         [JsonProperty("pl")] public PlayerSettings PlayerSettings = new();
         [JsonProperty("e")] public EntityData EntityData = new();
         [JsonProperty("s")] public PlayerLevelsProgress Levels = new();
-        [JsonProperty("ct")] public PlayerConstructionsProgress Constructions = new();
-        [JsonProperty("fm")] public PlayerFireamsProgress Fireams = new();
         [JsonProperty("t")] public TutorialProgress Tutorial = new();
     }
 }
