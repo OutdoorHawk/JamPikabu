@@ -42,7 +42,7 @@ namespace Code.Gameplay.Windows.Factory
         public UniTask<T> CreateWindow<T>(WindowTypeId type) where T : BaseWindow
         {
             BaseWindow windowPrefab = GetWindowPrefab(type);
-            BaseWindow window = _instantiator.InstantiatePrefabForComponent<BaseWindow>(windowPrefab);
+            BaseWindow window = _instantiator.InstantiatePrefabForComponent<BaseWindow>(windowPrefab, UIRoot);
             
             T typedWindow = window.GetComponent<T>();
             typedWindow.SetWindowType(type);

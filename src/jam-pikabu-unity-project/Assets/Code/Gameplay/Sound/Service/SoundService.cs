@@ -312,8 +312,11 @@ namespace Code.Gameplay.Sound.Service
         private async UniTask PlayCurrentSong()
         {
             AudioClip currentClip = GetCurrentMusicClipInternal();
+            
+            if (currentClip == null)
+                return;
+            
             await FadeToClip(_mainSoundContainer.MusicSource, currentClip);
-            PlayGameplayMusic().Forget();
             OnSongUpdated?.Invoke();
         }
 
