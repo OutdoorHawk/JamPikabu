@@ -7,7 +7,6 @@ namespace Code.Common.Extensions
         Default = 0,
         Hook = 1,
         Loot = 2,
-     
     }
 
     public static class CollisionExtensions
