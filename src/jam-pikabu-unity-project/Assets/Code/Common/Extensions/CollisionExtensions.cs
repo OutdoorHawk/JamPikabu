@@ -5,11 +5,9 @@ namespace Code.Common.Extensions
     public enum CollisionLayer
     {
         Default = 0,
-        Hero = 6,
-        Enemy = 12,
-        ConstructionSurface = 15,
-        Construction = 16,
-        Collectable = 19,
+        Hook = 1,
+        Loot = 2,
+     
     }
 
     public static class CollisionExtensions
