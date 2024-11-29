@@ -43,7 +43,8 @@ GameObject:
   - component: {fileID: 1119177507459878939}
   - component: {fileID: 1724159662234699868}
   - component: {fileID: 2646404816553883564}
-  m_Layer: 0
+  - component: {fileID: 1319459597885691735}
+  m_Layer: 6
   m_Name: ClawsSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,6 +168,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &1319459597885691735
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647668107292037077}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &2592965180317805821
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +238,8 @@ GameObject:
   - component: {fileID: 2206967952627178395}
   - component: {fileID: 8002437029127362612}
   - component: {fileID: 5865662774030074819}
-  m_Layer: 0
+  - component: {fileID: 2279632031365170690}
+  m_Layer: 6
   m_Name: ClawsSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,6 +363,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &2279632031365170690
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2640381768287908272}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &2672592290927760949
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,7 +401,8 @@ GameObject:
   - component: {fileID: 8380280819326021600}
   - component: {fileID: 4310530425602801188}
   - component: {fileID: 7684373389331636025}
-  m_Layer: 0
+  - component: {fileID: 54603668740912841}
+  m_Layer: 6
   m_Name: TopSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -469,6 +526,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &54603668740912841
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2672592290927760949}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &3433205667147464951
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,7 +564,8 @@ GameObject:
   - component: {fileID: 3443764670840383495}
   - component: {fileID: 7046683639095133401}
   - component: {fileID: 3084855854064382528}
-  m_Layer: 0
+  - component: {fileID: 1292171203800408416}
+  m_Layer: 6
   m_Name: ClawsSprite (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -604,6 +689,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &1292171203800408416
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3433205667147464951}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &3644038301247179745
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,7 +727,8 @@ GameObject:
   - component: {fileID: 5065078271381025896}
   - component: {fileID: 3912054984685220579}
   - component: {fileID: 540715434597015870}
-  m_Layer: 0
+  - component: {fileID: 1677836851585381394}
+  m_Layer: 6
   m_Name: ClawsSprite (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -739,6 +852,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &1677836851585381394
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3644038301247179745}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &3680361773883108435
 GameObject:
   m_ObjectHideFlags: 0
@@ -854,7 +994,8 @@ GameObject:
   - component: {fileID: 1195991799285598335}
   - component: {fileID: 1538772356094134620}
   - component: {fileID: 4849979502312771471}
-  m_Layer: 0
+  - component: {fileID: 291383425909385030}
+  m_Layer: 6
   m_Name: ClawsSprite (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -978,6 +1119,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &291383425909385030
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4587065071045109913}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &5594500354466703235
 GameObject:
   m_ObjectHideFlags: 0
@@ -1021,7 +1189,8 @@ GameObject:
   - component: {fileID: 9044033414387626726}
   - component: {fileID: 3552171846257254966}
   - component: {fileID: 4486955162705811870}
-  m_Layer: 0
+  - component: {fileID: 8548611756614314741}
+  m_Layer: 6
   m_Name: ClawsSprite (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1145,6 +1314,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &8548611756614314741
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5682659995615939706}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &6351519165437180244
 GameObject:
   m_ObjectHideFlags: 0
@@ -1189,7 +1385,8 @@ GameObject:
   - component: {fileID: 1545259296071511674}
   - component: {fileID: 5107334980049392858}
   - component: {fileID: 6468903387440404903}
-  m_Layer: 0
+  - component: {fileID: 2005161007989653179}
+  m_Layer: 6
   m_Name: ClawsSprite (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1313,6 +1510,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &2005161007989653179
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6373540061740086167}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &6408628182252871915
 GameObject:
   m_ObjectHideFlags: 0
@@ -1324,7 +1548,8 @@ GameObject:
   - component: {fileID: 7479947047157297444}
   - component: {fileID: 2596642739286484610}
   - component: {fileID: 4970909092006915345}
-  m_Layer: 0
+  - component: {fileID: 8697511452031186868}
+  m_Layer: 6
   m_Name: ClawsSprite (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1448,6 +1673,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &8697511452031186868
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6408628182252871915}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &6433870087118970341
 GameObject:
   m_ObjectHideFlags: 0
@@ -1590,7 +1842,8 @@ GameObject:
   - component: {fileID: 2311222555092522001}
   - component: {fileID: 8713609056134393852}
   - component: {fileID: 3371753302993330071}
-  m_Layer: 0
+  - component: {fileID: 1361131309008162430}
+  m_Layer: 6
   m_Name: ClawsSprite (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1714,6 +1967,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &1361131309008162430
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8670617891657165623}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &8917367453336438831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1725,7 +2005,8 @@ GameObject:
   - component: {fileID: 4831366136014645169}
   - component: {fileID: 5832006627891767266}
   - component: {fileID: 6284095630577831510}
-  m_Layer: 0
+  - component: {fileID: 8240958636216111242}
+  m_Layer: 6
   m_Name: ClawsSprite (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1849,6 +2130,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &8240958636216111242
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8917367453336438831}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &8921172376400326145
 GameObject:
   m_ObjectHideFlags: 0
@@ -1860,7 +2168,8 @@ GameObject:
   - component: {fileID: 4770628088836037072}
   - component: {fileID: 553363655135832541}
   - component: {fileID: 1751770194881662838}
-  m_Layer: 0
+  - component: {fileID: 7041853176345123563}
+  m_Layer: 6
   m_Name: TopSprite (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1984,6 +2293,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &7041853176345123563
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8921172376400326145}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &9167057195743308137
 GameObject:
   m_ObjectHideFlags: 0
