@@ -69,7 +69,7 @@ namespace UnityEngine.InputSystem
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""4bf6fc4b-11a8-459f-a84f-74552343180e"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -78,43 +78,7 @@ namespace UnityEngine.InputSystem
                     ""name"": ""Sprint"",
                     ""type"": ""Button"",
                     ""id"": ""ce3f0908-a5dc-417b-b9ef-e674d95680eb"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Crouch"",
-                    ""type"": ""Button"",
-                    ""id"": ""8606c4c8-669e-462d-9b96-02e1e18c44a4"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Reload"",
-                    ""type"": ""Button"",
-                    ""id"": ""e9dc5e6e-3421-48f8-b5ce-2ce6dac96bae"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Dash"",
-                    ""type"": ""Button"",
-                    ""id"": ""29402fca-32e3-4b72-b187-fbddd9e6f8de"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Defence"",
-                    ""type"": ""Button"",
-                    ""id"": ""fd1da7ce-4cc5-4ad1-8d53-b7ac28aa5ac2"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -432,61 +396,6 @@ namespace UnityEngine.InputSystem
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Sprint"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d6fe0d3f-1579-44dc-a7ce-91d271b4b6aa"",
-                    ""path"": ""<Keyboard>/c"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Crouch"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""bc0abfe8-4c6d-4c28-8e70-11acb8c943a4"",
-                    ""path"": ""<Keyboard>/ctrl"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Crouch"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""540fa3e2-ab16-46a7-914d-c6817478f237"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Reload"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""390feea0-02e0-4026-8608-a2aa48ab2a29"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Dash"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""48e2dfc5-19f2-41fa-acbb-096b9caf77d6"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Defence"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1503,10 +1412,6 @@ namespace UnityEngine.InputSystem
             m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
             m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
-            m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
-            m_Player_Reload = m_Player.FindAction("Reload", throwIfNotFound: true);
-            m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
-            m_Player_Defence = m_Player.FindAction("Defence", throwIfNotFound: true);
             m_Player_Escape = m_Player.FindAction("Escape", throwIfNotFound: true);
             m_Player_Selection = m_Player.FindAction("Selection", throwIfNotFound: true);
             m_Player_Selection1 = m_Player.FindAction("Selection1", throwIfNotFound: true);
@@ -1610,10 +1515,6 @@ namespace UnityEngine.InputSystem
         private readonly InputAction m_Player_Aim;
         private readonly InputAction m_Player_Jump;
         private readonly InputAction m_Player_Sprint;
-        private readonly InputAction m_Player_Crouch;
-        private readonly InputAction m_Player_Reload;
-        private readonly InputAction m_Player_Dash;
-        private readonly InputAction m_Player_Defence;
         private readonly InputAction m_Player_Escape;
         private readonly InputAction m_Player_Selection;
         private readonly InputAction m_Player_Selection1;
@@ -1632,10 +1533,6 @@ namespace UnityEngine.InputSystem
             public InputAction @Aim => m_Wrapper.m_Player_Aim;
             public InputAction @Jump => m_Wrapper.m_Player_Jump;
             public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
-            public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
-            public InputAction @Reload => m_Wrapper.m_Player_Reload;
-            public InputAction @Dash => m_Wrapper.m_Player_Dash;
-            public InputAction @Defence => m_Wrapper.m_Player_Defence;
             public InputAction @Escape => m_Wrapper.m_Player_Escape;
             public InputAction @Selection => m_Wrapper.m_Player_Selection;
             public InputAction @Selection1 => m_Wrapper.m_Player_Selection1;
@@ -1671,18 +1568,6 @@ namespace UnityEngine.InputSystem
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
-                @Crouch.started += instance.OnCrouch;
-                @Crouch.performed += instance.OnCrouch;
-                @Crouch.canceled += instance.OnCrouch;
-                @Reload.started += instance.OnReload;
-                @Reload.performed += instance.OnReload;
-                @Reload.canceled += instance.OnReload;
-                @Dash.started += instance.OnDash;
-                @Dash.performed += instance.OnDash;
-                @Dash.canceled += instance.OnDash;
-                @Defence.started += instance.OnDefence;
-                @Defence.performed += instance.OnDefence;
-                @Defence.canceled += instance.OnDefence;
                 @Escape.started += instance.OnEscape;
                 @Escape.performed += instance.OnEscape;
                 @Escape.canceled += instance.OnEscape;
@@ -1729,18 +1614,6 @@ namespace UnityEngine.InputSystem
                 @Sprint.started -= instance.OnSprint;
                 @Sprint.performed -= instance.OnSprint;
                 @Sprint.canceled -= instance.OnSprint;
-                @Crouch.started -= instance.OnCrouch;
-                @Crouch.performed -= instance.OnCrouch;
-                @Crouch.canceled -= instance.OnCrouch;
-                @Reload.started -= instance.OnReload;
-                @Reload.performed -= instance.OnReload;
-                @Reload.canceled -= instance.OnReload;
-                @Dash.started -= instance.OnDash;
-                @Dash.performed -= instance.OnDash;
-                @Dash.canceled -= instance.OnDash;
-                @Defence.started -= instance.OnDefence;
-                @Defence.performed -= instance.OnDefence;
-                @Defence.canceled -= instance.OnDefence;
                 @Escape.started -= instance.OnEscape;
                 @Escape.performed -= instance.OnEscape;
                 @Escape.canceled -= instance.OnEscape;
@@ -2047,10 +1920,6 @@ namespace UnityEngine.InputSystem
             void OnAim(InputAction.CallbackContext context);
             void OnJump(InputAction.CallbackContext context);
             void OnSprint(InputAction.CallbackContext context);
-            void OnCrouch(InputAction.CallbackContext context);
-            void OnReload(InputAction.CallbackContext context);
-            void OnDash(InputAction.CallbackContext context);
-            void OnDefence(InputAction.CallbackContext context);
             void OnEscape(InputAction.CallbackContext context);
             void OnSelection(InputAction.CallbackContext context);
             void OnSelection1(InputAction.CallbackContext context);

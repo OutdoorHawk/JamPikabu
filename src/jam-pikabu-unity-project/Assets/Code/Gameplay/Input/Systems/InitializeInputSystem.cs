@@ -20,7 +20,6 @@ namespace Code.Gameplay.Input.Systems
         {
             InputEntity inputEntity = CreateInputEntity.Empty()
                 .With(x => x.isInput = true)
-                .With(x => x.isRagdollInput = false)
                 .With(x => x.isPauseInput = false)
                 .AddMouseAxis(Vector2.zero)
                 .AddMovementAxis(Vector2.zero);

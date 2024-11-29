@@ -67,12 +67,9 @@ namespace Code.Gameplay.Input.Service
         public void RagdollStateInput()
         {
             PlayerInput.Player.MovementAxis.Disable();
-            PlayerInput.Player.Dash.Disable();
             PlayerInput.Player.Jump.Disable();
-            PlayerInput.Player.Crouch.Disable();
             PlayerInput.Player.Fire.Disable();
             PlayerInput.Player.Sprint.Disable();
-            PlayerInput.Player.Reload.Disable();
             PlayerInput.Player.Aim.Disable();
             PlayerInput.Player.Fire.Disable();
         }
@@ -80,13 +77,9 @@ namespace Code.Gameplay.Input.Service
         public void PauseStateInput()
         {
             PlayerInput.Player.MovementAxis.Disable();
-            PlayerInput.Player.Dash.Disable();
             PlayerInput.Player.Jump.Disable();
-            PlayerInput.Player.Crouch.Disable();
             PlayerInput.Player.Fire.Disable();
             PlayerInput.Player.Sprint.Disable();
-            PlayerInput.Player.Defence.Disable();
-            PlayerInput.Player.Reload.Disable();
             PlayerInput.Player.Selection.Disable();
             PlayerInput.Player.Aim.Disable();
             PlayerInput.Player.Fire.Disable();
@@ -95,14 +88,10 @@ namespace Code.Gameplay.Input.Service
         public void DisableAllInput()
         {
             PlayerInput.Player.MovementAxis.Disable();
-            PlayerInput.Player.Dash.Disable();
             PlayerInput.Player.Jump.Disable();
-            PlayerInput.Player.Crouch.Disable();
             PlayerInput.Player.Fire.Disable();
             PlayerInput.Player.Sprint.Disable();
-            PlayerInput.Player.Defence.Disable();
             PlayerInput.Player.Escape.Disable();
-            PlayerInput.Player.Reload.Disable();
             PlayerInput.Player.Selection.Disable();
             PlayerInput.Player.Aim.Disable();
             PlayerInput.UI.Disable();

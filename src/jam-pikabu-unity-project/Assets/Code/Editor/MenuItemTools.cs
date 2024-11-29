@@ -19,6 +19,12 @@ namespace Code.Editor
         {
             EditorSceneManager.OpenScene($"Assets/Project/Scenes/{SceneTypeId.MainMenu}.unity", OpenSceneMode.Single);
         }
+        
+        [MenuItem("Tools/Scenes/Open Gameplay Scene", false, 2)]
+        public static void OpenGameplayScene()
+        {
+            EditorSceneManager.OpenScene($"Assets/Project/Scenes/{SceneTypeId.GameplayScene}.unity", OpenSceneMode.Single);
+        }
 
         [MenuItem("Tools/PlayerProgress/DeleteProgress")]
         public static void ClearPlayerProgress()

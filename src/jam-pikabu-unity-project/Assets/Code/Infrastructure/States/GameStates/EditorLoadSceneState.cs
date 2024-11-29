@@ -35,9 +35,11 @@ namespace Code.Infrastructure.States.GameStates
         private void InitCurrentScene()
         {
             if (SceneManager.GetActiveScene().name is nameof(SceneTypeId.MainMenu) or nameof(SceneTypeId.BootstrapScene))
-                _gameStateMachine.Enter<LoadMainMenuState>();
+               // _gameStateMachine.Enter<LoadMainMenuState>();
+                _gameStateMachine.Enter<LoadLevelState, LoadLevelPayloadParameters>(new LoadLevelPayloadParameters(levelName: nameof(SceneTypeId.GameplayScene)));
             else
             {
+                
             }
         }
     }

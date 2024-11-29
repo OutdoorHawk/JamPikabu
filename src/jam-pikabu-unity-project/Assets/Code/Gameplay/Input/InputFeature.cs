@@ -11,7 +11,6 @@ namespace Code.Gameplay.Input
             
             Add(systemFactory.Create<EmitInputSystem>());
             
-            Add(systemFactory.Create<RagdollInputStateReactiveSystem>());
             Add(systemFactory.Create<PauseInputStateReactiveSystem>());
         }
     }

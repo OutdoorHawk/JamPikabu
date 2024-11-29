@@ -8,36 +8,25 @@
 //------------------------------------------------------------------------------
 public static class InputComponentsLookup {
 
-    public const int Aim = 0;
-    public const int Crouch = 1;
-    public const int Dash = 2;
-    public const int Defence = 3;
-    public const int Escape = 4;
-    public const int Fire = 5;
-    public const int Input = 6;
-    public const int Jump = 7;
-    public const int MouseAxis = 8;
-    public const int MovementAxis = 9;
-    public const int PauseInput = 10;
-    public const int RagdollInput = 11;
-    public const int Reload = 12;
-    public const int Selection1 = 13;
-    public const int Selection2 = 14;
-    public const int Selection3 = 15;
-    public const int Selection4 = 16;
-    public const int Selection5 = 17;
-    public const int Selection6 = 18;
-    public const int Selection = 19;
-    public const int Sprint = 20;
-    public const int Tab = 21;
+    public const int Escape = 0;
+    public const int Fire = 1;
+    public const int Input = 2;
+    public const int Jump = 3;
+    public const int MouseAxis = 4;
+    public const int MovementAxis = 5;
+    public const int PauseInput = 6;
+    public const int Selection1 = 7;
+    public const int Selection2 = 8;
+    public const int Selection3 = 9;
+    public const int Selection4 = 10;
+    public const int Selection5 = 11;
+    public const int Selection6 = 12;
+    public const int Selection = 13;
+    public const int Sprint = 14;
 
-    public const int TotalComponents = 22;
+    public const int TotalComponents = 15;
 
     public static readonly string[] componentNames = {
-        "Aim",
-        "Crouch",
-        "Dash",
-        "Defence",
         "Escape",
         "Fire",
         "Input",
@@ -45,8 +34,6 @@ public static class InputComponentsLookup {
         "MouseAxis",
         "MovementAxis",
         "PauseInput",
-        "RagdollInput",
-        "Reload",
         "Selection1",
         "Selection2",
         "Selection3",
@@ -54,15 +41,10 @@ public static class InputComponentsLookup {
         "Selection5",
         "Selection6",
         "Selection",
-        "Sprint",
-        "Tab"
+        "Sprint"
     };
 
     public static readonly System.Type[] componentTypes = {
-        typeof(AimComponent),
-        typeof(CrouchComponent),
-        typeof(DashComponent),
-        typeof(DefenceComponent),
         typeof(EscapeComponent),
         typeof(FireComponent),
         typeof(Input),
@@ -70,8 +52,6 @@ public static class InputComponentsLookup {
         typeof(MouseAxisComponent),
         typeof(MovementAxisComponent),
         typeof(PauseInputComponent),
-        typeof(RagdollInputComponent),
-        typeof(ReloadComponent),
         typeof(Selection1Component),
         typeof(Selection2Component),
         typeof(Selection3Component),
@@ -79,7 +59,6 @@ public static class InputComponentsLookup {
         typeof(Selection5Component),
         typeof(Selection6Component),
         typeof(SelectionComponent),
-        typeof(SprintComponent),
-        typeof(TabComponent)
+        typeof(SprintComponent)
     };
 }
