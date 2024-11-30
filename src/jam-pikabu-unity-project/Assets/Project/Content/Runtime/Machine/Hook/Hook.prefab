@@ -1583,7 +1583,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 63a8969200fe78b4e85078a0882751be, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 1
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -1638,6 +1638,8 @@ GameObject:
   - component: {fileID: 6435023142707515542}
   - component: {fileID: 4980072462494989518}
   - component: {fileID: 4828034779292530861}
+  - component: {fileID: 6435694416827113444}
+  - component: {fileID: 735089653608966166}
   - component: {fileID: 3189160936382281905}
   m_Layer: 0
   m_Name: Hook
@@ -1700,6 +1702,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EntityView: {fileID: 0}
+--- !u!114 &6435694416827113444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8467267079005572864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 331719999b6c40da82e5238baaa4f35c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EntityView: {fileID: 0}
+  _animator: {fileID: 2021293028700899008}
+  _moveAngleDuration: 0.25
+--- !u!114 &735089653608966166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8467267079005572864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 643322da4ba342a5b09ed0ce304f05eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EntityView: {fileID: 0}
+  _behaviour: {fileID: 6435694416827113444}
 --- !u!50 &3189160936382281905
 Rigidbody2D:
   serializedVersion: 5

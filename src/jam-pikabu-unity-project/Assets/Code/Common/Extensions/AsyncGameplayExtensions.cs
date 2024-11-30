@@ -341,5 +341,25 @@ namespace Code.Common.Extensions
             tempPosition.y = endValue;
             scrollRect.normalizedPosition = tempPosition;
         }
+        
+        public static async UniTask ToFloatParameter(this Animator behaviour, int hash, float endValue, float duration,
+            CancellationToken token, AnimationCurve curve = null)
+        {
+            float startTime = Time.time;
+            float startValue = behaviour.GetFloat(hash);
+            float clampedDuration = ClampDuration(duration);
+       
+            while (Time.time - startTime < duration)
+            {
+                float elapsedTime = Time.time - startTime;
+                float progress = elapsedTime / clampedDuration;
+                float t = curve?.Evaluate(progress) ?? progress;
+                float currentValue = Mathf.LerpUnclamped(startValue, endValue, t);
+                behaviour.SetFloat(hash, currentValue);
+                await UniTask.Yield(token);
+            }
+
+            behaviour.SetFloat(hash, endValue);
+        }
     }
 }

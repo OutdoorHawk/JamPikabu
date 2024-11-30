@@ -1,4 +1,5 @@
 ﻿
+using Code.Gameplay.Features.GrapplingHook.Behaviours;
 using Entitas;
 using UnityEngine;
 
@@ -15,4 +16,6 @@ namespace Code.Gameplay.Features.GrapplingHook
     [Game] public sealed class XAxisMovementAvailable : IComponent {}
     [Game] public sealed class YAxisMovementAvailable : IComponent {}
     [Game] public sealed class XAxisMoveDirection : IComponent { public float Value; }
+    
+    [Game] public sealed class GrapplingHookBehaviourComponent : IComponent { public GrapplingHookBehaviour Value; }
 }
