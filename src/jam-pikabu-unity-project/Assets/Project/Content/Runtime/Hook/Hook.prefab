@@ -1717,6 +1717,9 @@ MonoBehaviour:
   EntityView: {fileID: 0}
   _animator: {fileID: 2021293028700899008}
   _moveAngleDuration: 0.25
+  _ascentDelay: 0.25
+  _openClawsDelay: 0.2
+  _collectAnimationDelay: 1
 --- !u!114 &735089653608966166
 MonoBehaviour:
   m_ObjectHideFlags: 0

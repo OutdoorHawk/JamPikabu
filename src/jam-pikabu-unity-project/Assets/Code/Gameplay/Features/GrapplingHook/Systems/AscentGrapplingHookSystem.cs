@@ -44,6 +44,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
 
                 if (newPosition.y >= maxWorldY)
                 {
+                    hook.isAscentAvailable = false;
                     hook.isAscentRequested = false;
                     hook.isCollectLootRequest = true;
                     hook.GrapplingHookBehaviour.OpenClaws();

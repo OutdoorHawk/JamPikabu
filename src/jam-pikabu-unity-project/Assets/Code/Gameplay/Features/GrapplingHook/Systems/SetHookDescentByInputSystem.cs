@@ -3,7 +3,7 @@ using Entitas;
 
 namespace Code.Gameplay.Features.GrapplingHook.Systems
 {
-    public class SetHookDescentByInputSystem : ReactiveSystem<InputEntity>
+    public class SetHookDescentByInputSystem : ReactiveSystem<InputEntity>, ICleanupSystem
     {
         private readonly IGroup<GameEntity> _hooks;
 
@@ -30,6 +30,14 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
             foreach (var hook in _hooks)
             {
                 hook.isDescentRequested = true;
+            }
+        }
+
+        public void Cleanup()
+        {
+            foreach (var hook in _hooks)
+            {
+                //hook.isDescentRequested = false;
             }
         }
     }

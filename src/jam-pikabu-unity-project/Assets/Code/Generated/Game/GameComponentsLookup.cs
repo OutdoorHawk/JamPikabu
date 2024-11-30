@@ -35,21 +35,22 @@ public static class GameComponentsLookup {
     public const int AscentRequested = 24;
     public const int CollectLootRaycastRadius = 25;
     public const int CollectLootRequest = 26;
-    public const int DescentAvailable = 27;
-    public const int DescentRequested = 28;
-    public const int GrapplingHook = 29;
-    public const int GrapplingHookBehaviour = 30;
-    public const int StopMovementRaycastRadius = 31;
-    public const int XAxisMoveDirection = 32;
-    public const int XAxisMovementAvailable = 33;
-    public const int XAxisSpeed = 34;
-    public const int XMovementLimits = 35;
-    public const int YAxisDownSpeed = 36;
-    public const int YAxisMovementAvailable = 37;
-    public const int YAxisUpSpeed = 38;
-    public const int AudioSourceBehaviour = 39;
+    public const int Descending = 27;
+    public const int DescentAvailable = 28;
+    public const int DescentRequested = 29;
+    public const int GrapplingHook = 30;
+    public const int GrapplingHookBehaviour = 31;
+    public const int StopMovementRaycastRadius = 32;
+    public const int XAxisMoveDirection = 33;
+    public const int XAxisMovementAvailable = 34;
+    public const int XAxisSpeed = 35;
+    public const int XMovementLimits = 36;
+    public const int YAxisDownSpeed = 37;
+    public const int YAxisMovementAvailable = 38;
+    public const int YAxisUpSpeed = 39;
+    public const int AudioSourceBehaviour = 40;
 
-    public const int TotalComponents = 40;
+    public const int TotalComponents = 41;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -79,6 +80,7 @@ public static class GameComponentsLookup {
         "AscentRequested",
         "CollectLootRaycastRadius",
         "CollectLootRequest",
+        "Descending",
         "DescentAvailable",
         "DescentRequested",
         "GrapplingHook",
@@ -122,6 +124,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.GrapplingHook.AscentRequested),
         typeof(Code.Gameplay.Features.GrapplingHook.CollectLootRaycastRadius),
         typeof(Code.Gameplay.Features.GrapplingHook.CollectLootRequest),
+        typeof(Code.Gameplay.Features.GrapplingHook.Descending),
         typeof(Code.Gameplay.Features.GrapplingHook.DescentAvailable),
         typeof(Code.Gameplay.Features.GrapplingHook.DescentRequested),
         typeof(Code.Gameplay.Features.GrapplingHook.GrapplingHook),

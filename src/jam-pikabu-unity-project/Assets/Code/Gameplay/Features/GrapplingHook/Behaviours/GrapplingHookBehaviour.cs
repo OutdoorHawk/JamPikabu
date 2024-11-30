@@ -40,7 +40,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Behaviours
 
         public void OpenClaws()
         {
-            OpenAsync().Forget();
+            WaitForLootAndOpenAsync().Forget();
         }
 
         public void CloseClawsAndReturn()
@@ -48,12 +48,14 @@ namespace Code.Gameplay.Features.GrapplingHook.Behaviours
             CloseAndAscentAsync().Forget();
         }
 
-        private async UniTaskVoid OpenAsync()
+        private async UniTaskVoid WaitForLootAndOpenAsync()
         {
             await DelaySeconds(_openClawsDelay, destroyCancellationToken);
             _animator.SetBool(AnimationParameter.Open.AsHash(), true);
+            
             await DelaySeconds(_collectAnimationDelay, destroyCancellationToken);
-            Entity.isDescentAvailable = true;
+            
+            Entity.isCollectLootRequest = false; //todo temporary
         }
 
         private async UniTaskVoid CloseAndAscentAsync()
@@ -66,6 +68,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Behaviours
             {
                 Entity.isAscentRequested = true;
                 Entity.isDescentAvailable = false;
+                Entity.isDescending = false;
             }
         }
     }

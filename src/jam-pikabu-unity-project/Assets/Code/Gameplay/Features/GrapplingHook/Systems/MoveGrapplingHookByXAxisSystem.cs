@@ -36,11 +36,6 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
                 newPosition.x = Mathf.Clamp(newPosition.x, minWorldX, maxWorldX);
                 
                 hookRigidbody2D.MovePosition(newPosition);
-
-                if (hook.hasGrapplingHookBehaviour)
-                {
-                    hook.GrapplingHookBehaviour.SetupXMovement(hook.XAxisMoveDirection);
-                }
             }
         }
     }

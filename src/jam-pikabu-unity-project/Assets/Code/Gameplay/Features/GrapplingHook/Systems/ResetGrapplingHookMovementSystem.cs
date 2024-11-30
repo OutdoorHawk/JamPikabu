@@ -19,6 +19,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
             {
                 hook.isXAxisMovementAvailable = true;
                 hook.isAscentAvailable = true;
+                hook.isDescentAvailable = true;
             }
         }
     }

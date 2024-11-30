@@ -33,6 +33,8 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
         {
             foreach (var hook in _hooks.GetEntities(_hookBuffer))
             {
+                hook.isDescending = true;
+                
                 Rigidbody2D hookRigidbody2D = hook.Rigidbody2D;
                 Vector2 currentPosition = hookRigidbody2D.position;
                 Vector2 newPosition = currentPosition;

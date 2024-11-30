@@ -20,6 +20,7 @@ namespace Code.Gameplay.Features.GrapplingHook
     [Game] public sealed class GrapplingHookBehaviourComponent : IComponent { public GrapplingHookBehaviour Value; }
     [Game] public sealed class DescentRequested : IComponent {}
     [Game] public sealed class DescentAvailable : IComponent {}
+    [Game] public sealed class Descending : IComponent {}
     [Game] public sealed class AscentRequested : IComponent {}
     [Game] public sealed class AscentAvailable : IComponent {}
     [Game] public sealed class CollectLootRequest : IComponent {}

@@ -2,16 +2,15 @@
 
 namespace Code.Gameplay.Features.GrapplingHook.Systems
 {
-    public class BlockGrapplingHookXMovementWhenDescendingSystem : IExecuteSystem
+    public class BlockGrapplingHookMovementWhenCollectingLootSystem : IExecuteSystem
     {
         private readonly IGroup<GameEntity> _hooks;
 
-        public BlockGrapplingHookXMovementWhenDescendingSystem(GameContext gameContext)
+        public BlockGrapplingHookMovementWhenCollectingLootSystem(GameContext gameContext)
         {
             _hooks = gameContext.GetGroup(GameMatcher
                 .AllOf(GameMatcher.GrapplingHook,
-                    GameMatcher.Descending,
-                    GameMatcher.DescentAvailable
+                    GameMatcher.CollectLootRequest
                 ));
         }
 
@@ -20,6 +19,8 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
             foreach (var hook in _hooks)
             {
                 hook.isXAxisMovementAvailable = false;
+                hook.isDescentAvailable = false;
+                hook.isDescentRequested = false;
             }
         }
     }
