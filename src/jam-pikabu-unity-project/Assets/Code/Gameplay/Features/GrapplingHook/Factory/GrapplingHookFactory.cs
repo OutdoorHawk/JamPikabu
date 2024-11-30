@@ -22,6 +22,8 @@ namespace Code.Gameplay.Features.GrapplingHook.Factory
             return CreateGameEntity
                     .Empty()
                     .With(x => x.isGrapplingHook = true)
+                    .With(x => x.isXAxisMovementAvailable = true)
+                    .With(x => x.isYAxisMovementAvailable = true)
                     .AddXAxisSpeed(config.XAxisSpeed)
                     .AddYAxisDownSpeed(config.YAxisDownSpeed)
                     .AddYAxisUpSpeed(config.YAxisUpSpeed)

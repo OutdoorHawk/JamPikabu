@@ -6,7 +6,6 @@ namespace Code.Gameplay.Common
 {
   [Game, Meta] public sealed class Id : IComponent { [PrimaryEntityIndex] public int Value; }
   
-  [Game] public sealed class RigidbodyComponent : IComponent { public Rigidbody Value; }
   [Game] public sealed class Rigidbody2DComponent : IComponent { public Rigidbody2D Value; }
   
   [Game] public class CollisionId : IComponent { [EntityIndex] public int Value; }
