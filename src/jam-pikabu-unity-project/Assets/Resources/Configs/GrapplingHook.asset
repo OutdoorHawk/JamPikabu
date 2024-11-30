@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GrapplingHook
   m_EditorClassIdentifier: 
   XAxisSpeed: 4
-  YAxisDownSpeed: 1
+  YAxisDownSpeed: 5
   YAxisUpSpeed: 1
   StopMovementRaycastRadius: 2
   CollectLootRaycastRadius: 1

@@ -5,8 +5,8 @@ namespace Code.Common.Extensions
     public enum CollisionLayer
     {
         Default = 0,
-        Hook = 1,
-        Loot = 2,
+        Hook = 6,
+        Loot = 7,
     }
 
     public static class CollisionExtensions

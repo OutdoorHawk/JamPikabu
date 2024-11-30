@@ -99,6 +99,7 @@ namespace Code.Gameplay.Common.Physics
             for (int i = 0; i < hitCount; i++)
             {
                 GameEntity entity = _collisionRegistry.Get<GameEntity>(OverlapHits[i].GetInstanceID());
+                
                 if (entity == null)
                     continue;
 

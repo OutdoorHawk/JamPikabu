@@ -37,6 +37,7 @@ public sealed partial class GameEntity : INamedEntity
                         return new StringBuilder($"Hook ")
                             .With(s => s.Append($"Id:{Id}"), when: hasId)
                             .ToString();
+             
                 }
             }
         }

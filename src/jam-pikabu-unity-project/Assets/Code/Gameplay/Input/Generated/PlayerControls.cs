@@ -57,15 +57,6 @@ namespace UnityEngine.InputSystem
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Aim"",
-                    ""type"": ""Button"",
-                    ""id"": ""d6f7a04b-78fd-4bf2-814d-a9942ef1783b"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""4bf6fc4b-11a8-459f-a84f-74552343180e"",
@@ -407,39 +398,6 @@ namespace UnityEngine.InputSystem
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Escape"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""514ddab9-0db5-4cc8-9c80-6202991a96e5"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Aim"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5a030dbc-8a0a-45b6-bc07-67d8cc6f7ad4"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Aim"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""15db8bac-36f8-49c3-b0ff-824f6c47c591"",
-                    ""path"": ""<XRController>/{PrimaryAction}"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""XR"",
-                    ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1409,7 +1367,6 @@ namespace UnityEngine.InputSystem
             m_Player_MovementAxis = m_Player.FindAction("MovementAxis", throwIfNotFound: true);
             m_Player_MouseAxis = m_Player.FindAction("MouseAxis", throwIfNotFound: true);
             m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
-            m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
             m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
             m_Player_Escape = m_Player.FindAction("Escape", throwIfNotFound: true);
@@ -1512,7 +1469,6 @@ namespace UnityEngine.InputSystem
         private readonly InputAction m_Player_MovementAxis;
         private readonly InputAction m_Player_MouseAxis;
         private readonly InputAction m_Player_Fire;
-        private readonly InputAction m_Player_Aim;
         private readonly InputAction m_Player_Jump;
         private readonly InputAction m_Player_Sprint;
         private readonly InputAction m_Player_Escape;
@@ -1530,7 +1486,6 @@ namespace UnityEngine.InputSystem
             public InputAction @MovementAxis => m_Wrapper.m_Player_MovementAxis;
             public InputAction @MouseAxis => m_Wrapper.m_Player_MouseAxis;
             public InputAction @Fire => m_Wrapper.m_Player_Fire;
-            public InputAction @Aim => m_Wrapper.m_Player_Aim;
             public InputAction @Jump => m_Wrapper.m_Player_Jump;
             public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
             public InputAction @Escape => m_Wrapper.m_Player_Escape;
@@ -1559,9 +1514,6 @@ namespace UnityEngine.InputSystem
                 @Fire.started += instance.OnFire;
                 @Fire.performed += instance.OnFire;
                 @Fire.canceled += instance.OnFire;
-                @Aim.started += instance.OnAim;
-                @Aim.performed += instance.OnAim;
-                @Aim.canceled += instance.OnAim;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
@@ -1605,9 +1557,6 @@ namespace UnityEngine.InputSystem
                 @Fire.started -= instance.OnFire;
                 @Fire.performed -= instance.OnFire;
                 @Fire.canceled -= instance.OnFire;
-                @Aim.started -= instance.OnAim;
-                @Aim.performed -= instance.OnAim;
-                @Aim.canceled -= instance.OnAim;
                 @Jump.started -= instance.OnJump;
                 @Jump.performed -= instance.OnJump;
                 @Jump.canceled -= instance.OnJump;
@@ -1917,7 +1866,6 @@ namespace UnityEngine.InputSystem
             void OnMovementAxis(InputAction.CallbackContext context);
             void OnMouseAxis(InputAction.CallbackContext context);
             void OnFire(InputAction.CallbackContext context);
-            void OnAim(InputAction.CallbackContext context);
             void OnJump(InputAction.CallbackContext context);
             void OnSprint(InputAction.CallbackContext context);
             void OnEscape(InputAction.CallbackContext context);

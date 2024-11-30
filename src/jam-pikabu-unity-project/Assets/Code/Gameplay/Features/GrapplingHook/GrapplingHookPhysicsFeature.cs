@@ -10,8 +10,17 @@ namespace Code.Gameplay.Features.GrapplingHook
             Add(systems.Create<InitGrapplingHookSystem>());
             
             Add(systems.Create<SetHookXMovementDirectionByInputSystem>());
+            Add(systems.Create<SetHookDescentByInputSystem>());
+            
+            Add(systems.Create<BlockGrapplingHookXMovementWhenDescendingSystem>());
+            Add(systems.Create<BlockGrapplingHookXMovementWhenAscendingSystem>());
             
             Add(systems.Create<MoveGrapplingHookByXAxisSystem>());
+            
+            Add(systems.Create<DescentGrapplingHookSystem>());
+            Add(systems.Create<AscentGrapplingHookSystem>());
+            
+            Add(systems.Create<ResetGrapplingHookMovementSystem>());
         }
     }
 }

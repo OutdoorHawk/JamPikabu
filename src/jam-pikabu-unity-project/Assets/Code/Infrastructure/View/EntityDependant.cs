@@ -8,7 +8,7 @@ namespace Code.Infrastructure.View
 
     public GameEntity Entity => EntityView != null ? EntityView.Entity : null;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         EntityView ??= GetComponent<EntityView>();
     }

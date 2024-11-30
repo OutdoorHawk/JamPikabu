@@ -54,13 +54,13 @@ namespace Code.Infrastructure.View
 
         private void RegisterCollisions()
         {
-            foreach (Collider coll in GetComponentsInChildren<Collider>(includeInactive: true))
+            foreach (var coll in GetComponentsInChildren<Collider2D>(includeInactive: true))
                 _collisionRegistry.Register(coll.GetInstanceID(), _entity);
         }
 
         private void UnregisterCollisions()
         {
-            foreach (Collider coll in GetComponentsInChildren<Collider>())
+            foreach (var coll in GetComponentsInChildren<Collider2D>())
                 _collisionRegistry.Unregister(coll.GetInstanceID());
         }
 

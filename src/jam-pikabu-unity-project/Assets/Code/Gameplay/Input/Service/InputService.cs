@@ -70,7 +70,6 @@ namespace Code.Gameplay.Input.Service
             PlayerInput.Player.Jump.Disable();
             PlayerInput.Player.Fire.Disable();
             PlayerInput.Player.Sprint.Disable();
-            PlayerInput.Player.Aim.Disable();
             PlayerInput.Player.Fire.Disable();
         }
 
@@ -81,7 +80,6 @@ namespace Code.Gameplay.Input.Service
             PlayerInput.Player.Fire.Disable();
             PlayerInput.Player.Sprint.Disable();
             PlayerInput.Player.Selection.Disable();
-            PlayerInput.Player.Aim.Disable();
             PlayerInput.Player.Fire.Disable();
         }
 
@@ -93,7 +91,6 @@ namespace Code.Gameplay.Input.Service
             PlayerInput.Player.Sprint.Disable();
             PlayerInput.Player.Escape.Disable();
             PlayerInput.Player.Selection.Disable();
-            PlayerInput.Player.Aim.Disable();
             PlayerInput.UI.Disable();
             PlayerInput.Player.Fire.Disable();
         }

@@ -24,6 +24,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Factory
                     .With(x => x.isGrapplingHook = true)
                     .With(x => x.isXAxisMovementAvailable = true)
                     .With(x => x.isYAxisMovementAvailable = true)
+                    .With(x => x.isDescentAvailable = true)
                     .AddXAxisSpeed(config.XAxisSpeed)
                     .AddYAxisDownSpeed(config.YAxisDownSpeed)
                     .AddYAxisUpSpeed(config.YAxisUpSpeed)
