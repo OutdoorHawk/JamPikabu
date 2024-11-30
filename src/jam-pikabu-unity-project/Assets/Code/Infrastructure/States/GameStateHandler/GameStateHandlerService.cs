@@ -10,6 +10,7 @@ namespace Code.Infrastructure.States.GameStateHandler
         private readonly List<IEnterMainMenuStateHandler> _mainMenuStateHandlers;
         private readonly List<IEnterGameLoopStateHandler> _enterGameLoopStateHandlers;
         private readonly List<IExitGameLoopStateHandler> _exitGameLoopStateHandlers;
+        private readonly List<ILoadLevelStateHandler> _loadLevelStateHandlers;
 
         public GameStateHandlerService
         (
@@ -17,13 +18,15 @@ namespace Code.Infrastructure.States.GameStateHandler
             List<ILoadProgressStateHandler> enterLoadProgressStateHandlers,
             List<IEnterMainMenuStateHandler> mainMenuStateHandlers,
             List<IEnterGameLoopStateHandler> enterGameLoopStateHandlers,
-            List<IExitGameLoopStateHandler> exitGameLoopStateHandlers
+            List<IExitGameLoopStateHandler> exitGameLoopStateHandlers,
+            List<ILoadLevelStateHandler> loadLevelStateHandlers
         )
         {
             _enterBoostrtapStateHandlers = enterBoostrtapStateHandlers;
             _enterLoadProgressStateHandlers = enterLoadProgressStateHandlers;
             _enterGameLoopStateHandlers = enterGameLoopStateHandlers;
             _exitGameLoopStateHandlers = exitGameLoopStateHandlers;
+            _loadLevelStateHandlers = loadLevelStateHandlers;
             _mainMenuStateHandlers = mainMenuStateHandlers;
             
             _enterBoostrtapStateHandlers.Sort((x, y) => x.OrderType.CompareTo(y.OrderType));
@@ -31,6 +34,7 @@ namespace Code.Infrastructure.States.GameStateHandler
             _enterGameLoopStateHandlers.Sort((x, y) => x.OrderType.CompareTo(y.OrderType));
             _mainMenuStateHandlers.Sort((x, y) => x.OrderType.CompareTo(y.OrderType));
             _exitGameLoopStateHandlers.Sort((x, y) => x.OrderType.CompareTo(y.OrderType));
+            _loadLevelStateHandlers.Sort((x, y) => x.OrderType.CompareTo(y.OrderType));
         }
 
         public void RegisterHandler(IOrderableHandler handler)
@@ -48,6 +52,9 @@ namespace Code.Infrastructure.States.GameStateHandler
                     break;
                 case IEnterMainMenuStateHandler stateHandler:
                     _mainMenuStateHandlers.Add(stateHandler);
+                    break;
+                case ILoadLevelStateHandler stateHandler:
+                    _loadLevelStateHandlers.Add(stateHandler);
                     break;
             }
         }
@@ -75,7 +82,19 @@ namespace Code.Infrastructure.States.GameStateHandler
             foreach (var handler in _mainMenuStateHandlers) 
                 handler.OnEnterMainMenu();
         }
+
+        public void OnEnterLoadLevel()
+        {
+            foreach (var handler in _loadLevelStateHandlers) 
+                handler.OnEnterLoadLevel();
+        }
         
+        public void OnExitLoadLevel()
+        {
+            foreach (var handler in _loadLevelStateHandlers) 
+                handler.OnExitLoadLevel();
+        }
+
         public void OnEnterGameLoop()
         {
             foreach (var handler in _enterGameLoopStateHandlers) 

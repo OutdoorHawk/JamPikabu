@@ -13,5 +13,10 @@ MonoBehaviour:
   m_Name: GrapplingHook
   m_EditorClassIdentifier: 
   XAxisSpeed: 1
-  YAxisSpeed: 1
-  ViewPrefab: {fileID: 0}
+  YAxisDownSpeed: 1
+  YAxisUpSpeed: 1
+  StopMovementRaycastRadius: 2
+  CollectLootRaycastRadius: 1
+  MovementLimits: {x: -3.5, y: 3.5}
+  ViewPrefab: {fileID: 6435023142707515542, guid: 4d7c5494a46212041a040d26156fb0b4,
+    type: 3}

@@ -22,7 +22,7 @@ namespace Code.Gameplay.Features
             Add(systems.Create<CollidingViewFeature>());
             Add(systems.Create<CooldownSystem>());
 
-            Add(systems.Create<GrapplingHookFeature>());
+            Add(systems.Create<GrapplingHookPhysicsFeature>());
 
             Add(systems.Create<ProcessDestructedFeature>());
         }

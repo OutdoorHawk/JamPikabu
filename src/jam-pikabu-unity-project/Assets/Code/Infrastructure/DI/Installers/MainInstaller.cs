@@ -6,6 +6,7 @@ using Code.Gameplay.Common.EntityIndices;
 using Code.Gameplay.Common.MousePosition;
 using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Common.Time;
+using Code.Gameplay.Features.GrapplingHook.Factory;
 using Code.Gameplay.Input.Service;
 using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
@@ -154,6 +155,7 @@ namespace Code.Infrastructure.DI.Installers
         {
             Container.Bind<ISystemFactory>().To<SystemFactory>().AsSingle();
             Container.Bind<IShopItemFactory>().To<ShopItemFactory>().AsSingle();
+            Container.Bind<IGrapplingHookFactory>().To<GrapplingHookFactory>().AsSingle();
         }
 
         private void BindGameplayFactories()

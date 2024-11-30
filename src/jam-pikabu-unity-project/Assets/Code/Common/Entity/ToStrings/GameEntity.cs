@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 using Code.Common.Entity.ToStrings;
+using Code.Common.Extensions;
+using Code.Gameplay.Features.GrapplingHook;
 using Entitas;
 using UnityEngine;
 
@@ -30,7 +33,10 @@ public sealed partial class GameEntity : INamedEntity
             {
                 switch (component.GetType().Name)
                 {
-                    
+                    case nameof(GrapplingHook):
+                        return new StringBuilder($"Hook ")
+                            .With(s => s.Append($"Id:{Id}"), when: hasId)
+                            .ToString();
                 }
             }
         }
@@ -43,5 +49,4 @@ public sealed partial class GameEntity : INamedEntity
     }
 
     public string BaseToString() => base.ToString();
-    
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using Code.Gameplay.Common.Collisions;
+﻿using Code.Gameplay.Common.Collisions;
 using Code.Infrastructure.View.Registrars;
 using Entitas.VisualDebugging.Unity;
 using Sirenix.OdinInspector;
@@ -27,9 +26,6 @@ namespace Code.Infrastructure.View
             _entity = gameEntity;
             _entity.AddView(this);
             _entity.Retain(this);
-
-            throw new NotImplementedException();
-           //gameObject.RegisterListeners(_entity);
 
             InitRegistrars();
             RegisterCollisions();

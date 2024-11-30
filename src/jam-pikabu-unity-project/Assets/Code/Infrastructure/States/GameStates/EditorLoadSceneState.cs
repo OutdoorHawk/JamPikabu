@@ -39,7 +39,11 @@ namespace Code.Infrastructure.States.GameStates
                 _gameStateMachine.Enter<LoadLevelState, LoadLevelPayloadParameters>(new LoadLevelPayloadParameters(levelName: nameof(SceneTypeId.GameplayScene)));
             else
             {
-                
+                var parameters = new LoadLevelPayloadParameters(levelName: nameof(SceneTypeId.GameplayScene))
+                {
+                    InstantLoad = true
+                };
+                _gameStateMachine.Enter<LoadLevelState, LoadLevelPayloadParameters>(parameters);
             }
         }
     }
