@@ -37,7 +37,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
         {
             foreach (var hook in _hooks)
             {
-                //hook.isDescentRequested = false;
+                hook.isDescentRequested = false;
             }
         }
     }

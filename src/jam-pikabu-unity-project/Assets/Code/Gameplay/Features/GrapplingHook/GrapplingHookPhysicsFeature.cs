@@ -19,7 +19,9 @@ namespace Code.Gameplay.Features.GrapplingHook
             
             Add(systems.Create<MoveGrapplingHookByXAxisSystem>());
             
+            Add(systems.Create<ProcessDescentRequestSystem>());
             Add(systems.Create<DescentGrapplingHookSystem>());
+            
             Add(systems.Create<AscentGrapplingHookSystem>());
             
             Add(systems.Create<GrapplingHookVisualsSystem>());

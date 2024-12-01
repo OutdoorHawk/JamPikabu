@@ -22,7 +22,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
             _time = time;
             _hooks = gameContext.GetGroup(GameMatcher
                 .AllOf(GameMatcher.GrapplingHook,
-                    GameMatcher.DescentRequested,
+                    GameMatcher.Descending,
                     GameMatcher.DescentAvailable,
                     GameMatcher.Rigidbody2D,
                     GameMatcher.GrapplingHookBehaviour
@@ -33,8 +33,6 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
         {
             foreach (var hook in _hooks.GetEntities(_hookBuffer))
             {
-                hook.isDescending = true;
-                
                 Rigidbody2D hookRigidbody2D = hook.Rigidbody2D;
                 Vector2 currentPosition = hookRigidbody2D.position;
                 Vector2 newPosition = currentPosition;
