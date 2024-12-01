@@ -12,7 +12,7 @@ namespace Code.Gameplay.Features.RoundState
             Add(systems.Create<RequestRoundStartByInputSystem>());
             
             Add(systems.Create<ProcessRoundStartRequestSystem>());
-            Add(systems.Create<ProcessRoundSystem>());
+            Add(systems.Create<ProcessRoundTimerSystem>());
             
             Add(systems.Create<SetCanStartRoundWhenAllLootIsProcessedSystem>());
         }

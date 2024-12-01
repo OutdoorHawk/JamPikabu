@@ -1,4 +1,5 @@
-﻿using Entitas;
+﻿using Code.Gameplay.Features.RoundState.Behaviours;
+using Entitas;
 
 namespace Code.Gameplay.Features.RoundState
 {
@@ -10,4 +11,5 @@ namespace Code.Gameplay.Features.RoundState
     [Game] public sealed class RoundTimeLeft : IComponent { public float Value;  }
     [Game] public sealed class RoundDuration : IComponent { public float Value; }
     [Game] public sealed class RoundCost : IComponent { public int Value; }
+    [Game] public sealed class RoundStateViewBehaviourComponent : IComponent { public RoundStateViewBehaviour Value; }
 }

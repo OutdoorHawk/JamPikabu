@@ -71,10 +71,11 @@ public static class GameComponentsLookup {
     public const int RoundStartAvailable = 60;
     public const int RoundStartRequest = 61;
     public const int RoundStateController = 62;
-    public const int RoundTimeLeft = 63;
-    public const int AudioSourceBehaviour = 64;
+    public const int RoundStateViewBehaviour = 63;
+    public const int RoundTimeLeft = 64;
+    public const int AudioSourceBehaviour = 65;
 
-    public const int TotalComponents = 65;
+    public const int TotalComponents = 66;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -140,6 +141,7 @@ public static class GameComponentsLookup {
         "RoundStartAvailable",
         "RoundStartRequest",
         "RoundStateController",
+        "RoundStateViewBehaviour",
         "RoundTimeLeft",
         "AudioSourceBehaviour"
     };
@@ -208,6 +210,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.RoundState.RoundStartAvailable),
         typeof(Code.Gameplay.Features.RoundState.RoundStartRequest),
         typeof(Code.Gameplay.Features.RoundState.RoundStateController),
+        typeof(Code.Gameplay.Features.RoundState.RoundStateViewBehaviourComponent),
         typeof(Code.Gameplay.Features.RoundState.RoundTimeLeft),
         typeof(Code.Gameplay.Sound.AudioSourceBehaviourComponent)
     };
