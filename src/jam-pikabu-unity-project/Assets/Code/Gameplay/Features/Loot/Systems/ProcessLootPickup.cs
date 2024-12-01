@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Code.Common;
 using Code.Gameplay.Features.HUD;
 using Code.Gameplay.Features.Loot.Behaviours;
 using Code.Gameplay.Features.Loot.Configs;
@@ -16,6 +17,7 @@ namespace Code.Gameplay.Features.Loot.Systems
 {
     public class ProcessLootPickup : IExecuteSystem, ICleanupSystem
     {
+        private readonly GameContext _context;
         private readonly IGroup<GameEntity> _loot;
         private readonly ILootUIService _lootUIService;
 
@@ -27,6 +29,7 @@ namespace Code.Gameplay.Features.Loot.Systems
         public ProcessLootPickup(GameContext context, ILootUIService lootUIService, 
             IWindowService windowService, IStaticDataService staticData)
         {
+            _context = context;
             _windowService = windowService;
             _staticData = staticData;
             _lootUIService = lootUIService;
@@ -72,15 +75,19 @@ namespace Code.Gameplay.Features.Loot.Systems
             var lootContainer = playerHud.GetComponentInChildren<GameplayLootContainer>();
             LootItemUI lootItemUI = lootContainer.Items[^1];
                 
-            PlayMoveAnimationAsync(lootItemUI, loot).Forget();
+            PlayMoveAnimationAsync(lootItemUI, loot.Id).Forget();
         }
 
-        private async UniTaskVoid PlayMoveAnimationAsync(LootItemUI lootItemUI, GameEntity loot)
+        private async UniTaskVoid PlayMoveAnimationAsync(LootItemUI lootItemUI, int lootId)
         {
-            loot.Retain(this);
-            
             await UniTask.Yield(lootItemUI.destroyCancellationToken);
+
+            var loot = _context.GetEntityWithId(lootId);
+
+            if (loot.IsNullOrDestructed())
+                return;
             
+            loot.Retain(this);
             var lootStaticData = _staticData.GetStaticData<LootStaticData>();
             
             Vector3 screenPosition = RectTransformUtility.WorldToScreenPoint(_camera, lootItemUI.transform.position);

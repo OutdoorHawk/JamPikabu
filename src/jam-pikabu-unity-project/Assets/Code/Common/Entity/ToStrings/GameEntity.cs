@@ -5,6 +5,7 @@ using Code.Common.Entity.ToStrings;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.GrapplingHook;
 using Code.Gameplay.Features.Loot;
+using Code.Gameplay.Features.RoundState;
 using Entitas;
 using UnityEngine;
 
@@ -47,6 +48,10 @@ public sealed partial class GameEntity : INamedEntity
                             
                     case nameof(Loot):
                         return new StringBuilder($"Loot: ")
+                            .With(s => s.Append($"Id:{Id} "), when: hasId)
+                            .ToString();
+                    case nameof(RoundStateController):
+                        return new StringBuilder($"RoundStateController: ")
                             .With(s => s.Append($"Id:{Id} "), when: hasId)
                             .ToString();
              

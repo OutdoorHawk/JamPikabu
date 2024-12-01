@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 941126b668c946d5a10db97695651308, type: 3}
   m_Name: RoundState
   m_EditorClassIdentifier: 
-  RoundDuration: 30
+  RoundDuration: 7
   InitialRoundCost: 20
-  StartGoldAmount: 50
+  StartGoldAmount: 0
