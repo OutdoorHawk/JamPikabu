@@ -12,5 +12,10 @@ namespace Code.Gameplay.Features.Currency.Config
         {
             CurrencyType = type;
         }
+
+        public CostSetup()
+        {
+            
+        }
     }
 }

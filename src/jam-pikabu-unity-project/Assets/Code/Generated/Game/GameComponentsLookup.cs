@@ -55,7 +55,7 @@ public static class GameComponentsLookup {
     public const int YAxisDownSpeed = 44;
     public const int YAxisMovementAvailable = 45;
     public const int YAxisUpSpeed = 46;
-    public const int GoldForPickUp = 47;
+    public const int GoldValue = 47;
     public const int Loot = 48;
     public const int LootItemUI = 49;
     public const int LootPickupProcessing = 50;
@@ -113,7 +113,7 @@ public static class GameComponentsLookup {
         "YAxisDownSpeed",
         "YAxisMovementAvailable",
         "YAxisUpSpeed",
-        "GoldForPickUp",
+        "GoldValue",
         "Loot",
         "LootItemUI",
         "LootPickupProcessing",
@@ -170,7 +170,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.GrapplingHook.YAxisDownSpeed),
         typeof(Code.Gameplay.Features.GrapplingHook.YAxisMovementAvailable),
         typeof(Code.Gameplay.Features.GrapplingHook.YAxisUpSpeed),
-        typeof(Code.Gameplay.Features.Loot.GoldForPickUp),
+        typeof(Code.Gameplay.Features.Loot.GoldValue),
         typeof(Code.Gameplay.Features.Loot.Loot),
         typeof(Code.Gameplay.Features.Loot.LootItemUIComponent),
         typeof(Code.Gameplay.Features.Loot.LootPickupProcessing),

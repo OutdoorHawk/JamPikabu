@@ -18,7 +18,7 @@ namespace Code.Gameplay.Features.Currency.Config
             base.OnConfigInit();
 
             _currencyConfigs.Clear();
-            
+
             foreach (var config in _configs)
                 _currencyConfigs[config.CurrencyTypeId] = config;
         }

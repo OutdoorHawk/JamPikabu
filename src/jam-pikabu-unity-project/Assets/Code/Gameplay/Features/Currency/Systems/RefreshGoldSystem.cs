@@ -22,7 +22,7 @@ namespace Code.Gameplay.Features.Currency.Systems
         {
             foreach (var entity in _storages)
             {
-                _gameplayCurrencyService.UpdateCurrentAmount(entity.Gold);
+                _gameplayCurrencyService.UpdateCurrentGoldAmount(entity.Gold);
             }
         }
     }

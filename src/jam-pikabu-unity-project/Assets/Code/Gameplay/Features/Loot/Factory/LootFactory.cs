@@ -28,6 +28,7 @@ namespace Code.Gameplay.Features.Loot.Factory
                     .AddTargetParent(parent)
                     .AddLootTypeId(typeId)
                     .AddViewPrefab(lootSetup.ViewPrefab)
+                    .AddGoldValue(lootSetup.GoldForPicking)
                 ;
 
             switch (typeId)

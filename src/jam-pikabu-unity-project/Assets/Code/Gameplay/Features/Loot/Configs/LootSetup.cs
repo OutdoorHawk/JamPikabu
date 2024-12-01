@@ -1,4 +1,5 @@
 ﻿using System;
+using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Config;
 using Code.Infrastructure.View;
 using UnityEngine;
