@@ -5,6 +5,7 @@ using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.Features.Loot.Service;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows;
+using Code.Gameplay.Windows.Factory;
 using Code.Gameplay.Windows.Service;
 using Code.Infrastructure.View;
 using Cysharp.Threading.Tasks;
@@ -22,14 +23,17 @@ namespace Code.Gameplay.Features.Loot.Systems
         private readonly List<GameEntity> _buffer = new(64);
         private readonly IWindowService _windowService;
         private readonly IStaticDataService _staticData;
-        private readonly Camera _camera;
+        private readonly IUIFactory _uiFactory;
+        private Camera _camera;
 
-        public ProcessLootPickup(GameContext context, ILootUIService lootUIService, IWindowService windowService, IStaticDataService staticData)
+        public ProcessLootPickup(GameContext context, ILootUIService lootUIService, 
+            IWindowService windowService, IStaticDataService staticData, IUIFactory uiFactory)
         {
+            _uiFactory = uiFactory;
             _windowService = windowService;
             _staticData = staticData;
             _lootUIService = lootUIService;
-            _camera = Camera.main;
+          //  _camera = Camera.main;
 
             _loot = context.GetGroup(GameMatcher
                 .AllOf(
@@ -60,15 +64,24 @@ namespace Code.Gameplay.Features.Loot.Systems
 
         private async UniTaskVoid PlayMoveAnimationAsync(LootItemUI lootItemUI, GameEntity loot)
         {
+            _camera = _uiFactory.UIRoot.GetComponent<Canvas>().worldCamera;
             loot.Retain(this);
             
             await UniTask.Yield(lootItemUI.destroyCancellationToken);
             
             var lootStaticData = _staticData.GetStaticData<LootStaticData>();
             
-            Vector3 screenPosition = lootItemUI.transform.position;
-            screenPosition.z = _camera.WorldToScreenPoint(lootItemUI.transform.position).z;
+            Vector3 screenPosition = RectTransformUtility.WorldToScreenPoint(_camera, lootItemUI.transform.position);
+
+// Устанавливаем Z в фиксированное значение камеры
+// Например, используем -10, чтобы совпадать с Z камеры относительно мира
+            screenPosition.z = Mathf.Abs(_camera.transform.position.z);
+
+// Конвертируем экранные координаты в мировые
             Vector3 worldPosition = _camera.ScreenToWorldPoint(screenPosition);
+
+// Принудительно фиксируем Z в плоскости мира (например, Z=0 для 2D)
+            worldPosition.z = 0;
             
             float flyAnimationDuration = lootStaticData.CollectFlyAnimationDuration;
             float jumpPower = Random.Range(lootStaticData.CollectFlyMinMaxJump.x, lootStaticData.CollectFlyMinMaxJump.y);

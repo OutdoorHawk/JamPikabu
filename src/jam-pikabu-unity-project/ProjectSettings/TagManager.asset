@@ -57,6 +57,9 @@ TagManager:
   - name: TutorialHighlight
     uniqueID: 668880165
     locked: 0
+  - name: Loot
+    uniqueID: 780278883
+    locked: 0
   m_RenderingLayers:
   - Default
   - Character Blood Decal Layer
