@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Code.Common.Extensions
 {
@@ -34,5 +35,13 @@ namespace Code.Common.Extensions
     public static IEnumerable<T> OrEmpty<T>(this IEnumerable<T> self) => self ?? Enumerable.Empty<T>();
 
     public static IEnumerable<T> NoNulls<T>(this IEnumerable<T> self) => self.Where(element => element != null);
+
+    public static void ClearArray<T>(this T[] arr) where T : class
+    {
+      for (int i = 0; i < arr.Length; i++)
+      {
+        arr[i] = null;
+      }
+    }
   }
 }

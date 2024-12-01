@@ -13,9 +13,10 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
     {
         private readonly IPhysics2DService _physics2DService;
         private readonly IGroup<GameEntity> _hooks;
+
         private readonly GameEntity[] _buffer = new GameEntity[32];
         private readonly List<GameEntity> _bufferEntity = new(2);
-        
+
         private readonly CancellationTokenSource _tearDownToken = new();
 
         public GrapplingHookCollectLootSystem(GameContext context, IPhysics2DService physics2DService)
@@ -37,7 +38,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
             {
                 hook.isCollectLootRequest = false;
                 hook.isCollectingLoot = true;
-                
+
                 CollectLootAsync(hook).Forget();
             }
         }
@@ -45,7 +46,9 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
         private async UniTaskVoid CollectLootAsync(GameEntity hook)
         {
             hook.Retain(this);
-            
+
+            _buffer.ClearArray();
+
             int hitCount = _physics2DService.CircleCastNonAlloc
             (
                 hook.Rigidbody2D.position,
@@ -61,8 +64,17 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
                     if (loot.IsNullOrDestructed())
                         continue;
 
+                    loot.Retain(this);
+                }
+
+                foreach (var loot in _buffer)
+                {
+                    if (loot.IsNullOrDestructed())
+                        continue;
+
                     loot.isCollectLootRequest = true;
                     loot.isDestructed = true;
+                    loot.Release(this);
                     await DelaySeconds(hook.CollectLootPieceInterval, _tearDownToken.Token);
                 }
             }
