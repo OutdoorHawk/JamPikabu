@@ -10,4 +10,7 @@ namespace Code.Gameplay.Features.Loot
     [Game] public sealed class GoldValue : IComponent { public CostSetup Value; }
     [Game] public sealed class LootItemUIComponent : IComponent { public LootItemUI Value; }
     [Game] public sealed class LootPickupProcessing : IComponent { }
+    [Game] public sealed class Collected : IComponent { }
+    [Game] public sealed class ReadyToApply : IComponent { }
+    [Game] public sealed class Applied : IComponent { }
 }

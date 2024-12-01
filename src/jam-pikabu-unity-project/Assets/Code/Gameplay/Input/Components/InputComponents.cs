@@ -19,3 +19,4 @@ using UnityEngine;
 [Input] [Unique] public sealed class Selection4Component : IComponent { }
 [Input] [Unique] public sealed class Selection5Component : IComponent { }
 [Input] [Unique] public sealed class Selection6Component : IComponent { }
+[Input] [Unique] public sealed class EnterComponent : IComponent { }

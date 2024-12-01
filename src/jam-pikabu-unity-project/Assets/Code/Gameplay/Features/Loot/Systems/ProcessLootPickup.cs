@@ -5,7 +5,6 @@ using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.Features.Loot.Service;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows;
-using Code.Gameplay.Windows.Factory;
 using Code.Gameplay.Windows.Service;
 using Code.Infrastructure.View;
 using Cysharp.Threading.Tasks;
@@ -23,13 +22,11 @@ namespace Code.Gameplay.Features.Loot.Systems
         private readonly List<GameEntity> _buffer = new(64);
         private readonly IWindowService _windowService;
         private readonly IStaticDataService _staticData;
-        private readonly IUIFactory _uiFactory;
         private readonly Camera _camera;
 
         public ProcessLootPickup(GameContext context, ILootUIService lootUIService, 
-            IWindowService windowService, IStaticDataService staticData, IUIFactory uiFactory)
+            IWindowService windowService, IStaticDataService staticData)
         {
-            _uiFactory = uiFactory;
             _windowService = windowService;
             _staticData = staticData;
             _lootUIService = lootUIService;
@@ -47,19 +44,35 @@ namespace Code.Gameplay.Features.Loot.Systems
         {
             foreach (var loot in _loot)
             {
-                _lootUIService.CreateNewCollectedLootItem(loot.LootTypeId);
+                SetLootCollected(loot);
 
-                foreach (var collider in loot.Rigidbody2D.GetComponentsInChildren<Collider2D>())
-                    collider.enabled = false;
+                DisableCollisions(loot);
 
-                if (_windowService.TryGetWindow(WindowTypeId.PlayerHUD, out PlayerHUDWindow playerHud) == false)
-                    continue;
-
-                var lootContainer = playerHud.GetComponentInChildren<GameplayLootContainer>();
-                LootItemUI lootItemUI = lootContainer.Items[^1];
-                
-                PlayMoveAnimationAsync(lootItemUI, loot).Forget();
+                PlayFlyAnimation(loot);
             }
+        }
+
+        private void SetLootCollected(GameEntity loot)
+        {
+            _lootUIService.CreateNewCollectedLootItem(loot.LootTypeId);
+            loot.isCollected = true;
+        }
+
+        private static void DisableCollisions(GameEntity loot)
+        {
+            foreach (var collider in loot.Rigidbody2D.GetComponentsInChildren<Collider2D>())
+                collider.enabled = false;
+        }
+
+        private void PlayFlyAnimation(GameEntity loot)
+        {
+            if (_windowService.TryGetWindow(WindowTypeId.PlayerHUD, out PlayerHUDWindow playerHud) == false)
+                return;
+
+            var lootContainer = playerHud.GetComponentInChildren<GameplayLootContainer>();
+            LootItemUI lootItemUI = lootContainer.Items[^1];
+                
+            PlayMoveAnimationAsync(lootItemUI, loot).Forget();
         }
 
         private async UniTaskVoid PlayMoveAnimationAsync(LootItemUI lootItemUI, GameEntity loot)

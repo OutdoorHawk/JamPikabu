@@ -8,25 +8,27 @@
 //------------------------------------------------------------------------------
 public static class InputComponentsLookup {
 
-    public const int Escape = 0;
-    public const int Fire = 1;
-    public const int Input = 2;
-    public const int Jump = 3;
-    public const int MouseAxis = 4;
-    public const int MovementAxis = 5;
-    public const int PauseInput = 6;
-    public const int Selection1 = 7;
-    public const int Selection2 = 8;
-    public const int Selection3 = 9;
-    public const int Selection4 = 10;
-    public const int Selection5 = 11;
-    public const int Selection6 = 12;
-    public const int Selection = 13;
-    public const int Sprint = 14;
+    public const int Enter = 0;
+    public const int Escape = 1;
+    public const int Fire = 2;
+    public const int Input = 3;
+    public const int Jump = 4;
+    public const int MouseAxis = 5;
+    public const int MovementAxis = 6;
+    public const int PauseInput = 7;
+    public const int Selection1 = 8;
+    public const int Selection2 = 9;
+    public const int Selection3 = 10;
+    public const int Selection4 = 11;
+    public const int Selection5 = 12;
+    public const int Selection6 = 13;
+    public const int Selection = 14;
+    public const int Sprint = 15;
 
-    public const int TotalComponents = 15;
+    public const int TotalComponents = 16;
 
     public static readonly string[] componentNames = {
+        "Enter",
         "Escape",
         "Fire",
         "Input",
@@ -45,6 +47,7 @@ public static class InputComponentsLookup {
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(EnterComponent),
         typeof(EscapeComponent),
         typeof(FireComponent),
         typeof(Input),

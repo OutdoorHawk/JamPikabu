@@ -55,15 +55,26 @@ public static class GameComponentsLookup {
     public const int YAxisDownSpeed = 44;
     public const int YAxisMovementAvailable = 45;
     public const int YAxisUpSpeed = 46;
-    public const int GoldValue = 47;
-    public const int Loot = 48;
-    public const int LootItemUI = 49;
-    public const int LootPickupProcessing = 50;
-    public const int LootSpawner = 51;
-    public const int LootTypeId = 52;
-    public const int AudioSourceBehaviour = 53;
+    public const int Applied = 47;
+    public const int Collected = 48;
+    public const int GoldValue = 49;
+    public const int Loot = 50;
+    public const int LootItemUI = 51;
+    public const int LootPickupProcessing = 52;
+    public const int LootSpawner = 53;
+    public const int LootTypeId = 54;
+    public const int ReadyToApply = 55;
+    public const int RoundCost = 56;
+    public const int RoundDuration = 57;
+    public const int RoundInProcess = 58;
+    public const int RoundOver = 59;
+    public const int RoundStartAvailable = 60;
+    public const int RoundStartRequest = 61;
+    public const int RoundStateController = 62;
+    public const int RoundTimeLeft = 63;
+    public const int AudioSourceBehaviour = 64;
 
-    public const int TotalComponents = 54;
+    public const int TotalComponents = 65;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -113,12 +124,23 @@ public static class GameComponentsLookup {
         "YAxisDownSpeed",
         "YAxisMovementAvailable",
         "YAxisUpSpeed",
+        "Applied",
+        "Collected",
         "GoldValue",
         "Loot",
         "LootItemUI",
         "LootPickupProcessing",
         "LootSpawner",
         "LootTypeId",
+        "ReadyToApply",
+        "RoundCost",
+        "RoundDuration",
+        "RoundInProcess",
+        "RoundOver",
+        "RoundStartAvailable",
+        "RoundStartRequest",
+        "RoundStateController",
+        "RoundTimeLeft",
         "AudioSourceBehaviour"
     };
 
@@ -170,12 +192,23 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.GrapplingHook.YAxisDownSpeed),
         typeof(Code.Gameplay.Features.GrapplingHook.YAxisMovementAvailable),
         typeof(Code.Gameplay.Features.GrapplingHook.YAxisUpSpeed),
+        typeof(Code.Gameplay.Features.Loot.Applied),
+        typeof(Code.Gameplay.Features.Loot.Collected),
         typeof(Code.Gameplay.Features.Loot.GoldValue),
         typeof(Code.Gameplay.Features.Loot.Loot),
         typeof(Code.Gameplay.Features.Loot.LootItemUIComponent),
         typeof(Code.Gameplay.Features.Loot.LootPickupProcessing),
         typeof(Code.Gameplay.Features.Loot.LootSpawner),
         typeof(Code.Gameplay.Features.Loot.LootTypeIdComponent),
+        typeof(Code.Gameplay.Features.Loot.ReadyToApply),
+        typeof(Code.Gameplay.Features.RoundState.RoundCost),
+        typeof(Code.Gameplay.Features.RoundState.RoundDuration),
+        typeof(Code.Gameplay.Features.RoundState.RoundInProcess),
+        typeof(Code.Gameplay.Features.RoundState.RoundOver),
+        typeof(Code.Gameplay.Features.RoundState.RoundStartAvailable),
+        typeof(Code.Gameplay.Features.RoundState.RoundStartRequest),
+        typeof(Code.Gameplay.Features.RoundState.RoundStateController),
+        typeof(Code.Gameplay.Features.RoundState.RoundTimeLeft),
         typeof(Code.Gameplay.Sound.AudioSourceBehaviourComponent)
     };
 }

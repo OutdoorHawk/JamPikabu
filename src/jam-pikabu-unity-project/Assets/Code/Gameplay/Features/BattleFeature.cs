@@ -4,6 +4,7 @@ using Code.Gameplay.Features.Cooldowns.Systems;
 using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.GrapplingHook;
 using Code.Gameplay.Features.Loot;
+using Code.Gameplay.Features.RoundState;
 using Code.Infrastructure.Systems;
 using Code.Infrastructure.View;
 
@@ -15,10 +16,11 @@ namespace Code.Gameplay.Features
         {
             Add(systems.Create<BindViewFeature>());
 
+            Add(systems.Create<RoundStateFeature>());
+            
             Add(systems.Create<LootFeature>());
             
             Add(systems.Create<CurrencyFeature>());
-            
         }
     }
 

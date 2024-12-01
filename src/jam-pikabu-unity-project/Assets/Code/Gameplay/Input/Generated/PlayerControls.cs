@@ -145,6 +145,15 @@ namespace UnityEngine.InputSystem
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Enter"",
+                    ""type"": ""Button"",
+                    ""id"": ""32126dd2-3b3c-42b1-a15c-66fa16f9204f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -530,6 +539,17 @@ namespace UnityEngine.InputSystem
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Selection6"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""684f5983-26da-4acc-a56b-e817a619c1e6"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Enter"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1377,6 +1397,7 @@ namespace UnityEngine.InputSystem
             m_Player_Selection4 = m_Player.FindAction("Selection4", throwIfNotFound: true);
             m_Player_Selection5 = m_Player.FindAction("Selection5", throwIfNotFound: true);
             m_Player_Selection6 = m_Player.FindAction("Selection6", throwIfNotFound: true);
+            m_Player_Enter = m_Player.FindAction("Enter", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1479,6 +1500,7 @@ namespace UnityEngine.InputSystem
         private readonly InputAction m_Player_Selection4;
         private readonly InputAction m_Player_Selection5;
         private readonly InputAction m_Player_Selection6;
+        private readonly InputAction m_Player_Enter;
         public struct PlayerActions
         {
             private @PlayerControls m_Wrapper;
@@ -1496,6 +1518,7 @@ namespace UnityEngine.InputSystem
             public InputAction @Selection4 => m_Wrapper.m_Player_Selection4;
             public InputAction @Selection5 => m_Wrapper.m_Player_Selection5;
             public InputAction @Selection6 => m_Wrapper.m_Player_Selection6;
+            public InputAction @Enter => m_Wrapper.m_Player_Enter;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1544,6 +1567,9 @@ namespace UnityEngine.InputSystem
                 @Selection6.started += instance.OnSelection6;
                 @Selection6.performed += instance.OnSelection6;
                 @Selection6.canceled += instance.OnSelection6;
+                @Enter.started += instance.OnEnter;
+                @Enter.performed += instance.OnEnter;
+                @Enter.canceled += instance.OnEnter;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -1587,6 +1613,9 @@ namespace UnityEngine.InputSystem
                 @Selection6.started -= instance.OnSelection6;
                 @Selection6.performed -= instance.OnSelection6;
                 @Selection6.canceled -= instance.OnSelection6;
+                @Enter.started -= instance.OnEnter;
+                @Enter.performed -= instance.OnEnter;
+                @Enter.canceled -= instance.OnEnter;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1876,6 +1905,7 @@ namespace UnityEngine.InputSystem
             void OnSelection4(InputAction.CallbackContext context);
             void OnSelection5(InputAction.CallbackContext context);
             void OnSelection6(InputAction.CallbackContext context);
+            void OnEnter(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {
