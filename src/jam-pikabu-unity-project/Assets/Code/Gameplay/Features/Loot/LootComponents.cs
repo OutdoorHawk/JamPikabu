@@ -9,4 +9,5 @@ namespace Code.Gameplay.Features.Loot
     [Game] public sealed class LootTypeIdComponent : IComponent { public LootTypeId Value; }
     [Game] public sealed class GoldForPickUp : IComponent { public CostSetup Value; }
     [Game] public sealed class LootItemUIComponent : IComponent { public LootItemUI Value; }
+    [Game] public sealed class LootPickupProcessing : IComponent { }
 }

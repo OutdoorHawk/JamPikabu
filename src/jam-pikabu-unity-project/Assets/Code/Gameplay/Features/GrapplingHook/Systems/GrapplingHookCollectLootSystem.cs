@@ -73,7 +73,6 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
                         continue;
 
                     loot.isCollectLootRequest = true;
-                    loot.isDestructed = true;
                     loot.Release(this);
                     await DelaySeconds(hook.CollectLootPieceInterval, _tearDownToken.Token);
                 }
