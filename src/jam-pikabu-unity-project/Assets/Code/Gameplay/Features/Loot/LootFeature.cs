@@ -1,4 +1,5 @@
-﻿using Code.Infrastructure.Systems;
+﻿using Code.Gameplay.Features.Loot.Systems;
+using Code.Infrastructure.Systems;
 
 namespace Code.Gameplay.Features.Loot
 {
@@ -6,6 +7,8 @@ namespace Code.Gameplay.Features.Loot
     {
         public LootFeature(ISystemFactory systems)
         {
+            Add(systems.Create<SpawnLootSystem>());
+            Add(systems.Create<InitLootSpeedSystem>());
         }
     }
 }

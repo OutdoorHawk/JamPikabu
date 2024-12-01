@@ -20,43 +20,46 @@ public static class GameComponentsLookup {
     public const int CollisionId = 9;
     public const int Id = 10;
     public const int Rigidbody2D = 11;
-    public const int StartWorldPosition = 12;
-    public const int Transform = 13;
-    public const int WorldPosition = 14;
-    public const int CollidedBy = 15;
-    public const int Collider = 16;
-    public const int Collision = 17;
-    public const int TriggerCollider = 18;
-    public const int TriggeredBy = 19;
-    public const int Cooldown = 20;
-    public const int CooldownLeft = 21;
-    public const int CooldownUp = 22;
-    public const int AddGoldRequest = 23;
-    public const int CurrencyStorage = 24;
-    public const int CurrencyTypeId = 25;
-    public const int Gold = 26;
-    public const int AscentAvailable = 27;
-    public const int AscentRequested = 28;
-    public const int CollectLootRaycastRadius = 29;
-    public const int CollectLootRequest = 30;
-    public const int Descending = 31;
-    public const int DescentAvailable = 32;
-    public const int DescentRequested = 33;
-    public const int GrapplingHook = 34;
-    public const int GrapplingHookBehaviour = 35;
-    public const int StopMovementRaycastRadius = 36;
-    public const int XAxisMoveDirection = 37;
-    public const int XAxisMovementAvailable = 38;
-    public const int XAxisSpeed = 39;
-    public const int XMovementLimits = 40;
-    public const int YAxisDownSpeed = 41;
-    public const int YAxisMovementAvailable = 42;
-    public const int YAxisUpSpeed = 43;
-    public const int Loot = 44;
-    public const int LootTypeId = 45;
-    public const int AudioSourceBehaviour = 46;
+    public const int StartRotation = 12;
+    public const int StartWorldPosition = 13;
+    public const int Transform = 14;
+    public const int WorldPosition = 15;
+    public const int CollidedBy = 16;
+    public const int Collider = 17;
+    public const int Collision = 18;
+    public const int TriggerCollider = 19;
+    public const int TriggeredBy = 20;
+    public const int Cooldown = 21;
+    public const int CooldownLeft = 22;
+    public const int CooldownUp = 23;
+    public const int AddGoldRequest = 24;
+    public const int CurrencyStorage = 25;
+    public const int CurrencyTypeId = 26;
+    public const int Gold = 27;
+    public const int AscentAvailable = 28;
+    public const int AscentRequested = 29;
+    public const int CollectLootRaycastRadius = 30;
+    public const int CollectLootRequest = 31;
+    public const int Descending = 32;
+    public const int DescentAvailable = 33;
+    public const int DescentRequested = 34;
+    public const int GrapplingHook = 35;
+    public const int GrapplingHookBehaviour = 36;
+    public const int StopMovementRaycastRadius = 37;
+    public const int XAxisMoveDirection = 38;
+    public const int XAxisMovementAvailable = 39;
+    public const int XAxisSpeed = 40;
+    public const int XMovementLimits = 41;
+    public const int YAxisDownSpeed = 42;
+    public const int YAxisMovementAvailable = 43;
+    public const int YAxisUpSpeed = 44;
+    public const int GoldForPickUp = 45;
+    public const int Loot = 46;
+    public const int LootSpawner = 47;
+    public const int LootTypeId = 48;
+    public const int AudioSourceBehaviour = 49;
 
-    public const int TotalComponents = 47;
+    public const int TotalComponents = 50;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -71,6 +74,7 @@ public static class GameComponentsLookup {
         "CollisionId",
         "Id",
         "Rigidbody2D",
+        "StartRotation",
         "StartWorldPosition",
         "Transform",
         "WorldPosition",
@@ -103,7 +107,9 @@ public static class GameComponentsLookup {
         "YAxisDownSpeed",
         "YAxisMovementAvailable",
         "YAxisUpSpeed",
+        "GoldForPickUp",
         "Loot",
+        "LootSpawner",
         "LootTypeId",
         "AudioSourceBehaviour"
     };
@@ -121,6 +127,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Common.CollisionId),
         typeof(Code.Gameplay.Common.Id),
         typeof(Code.Gameplay.Common.Rigidbody2DComponent),
+        typeof(Code.Gameplay.Common.StartRotation),
         typeof(Code.Gameplay.Common.StartWorldPosition),
         typeof(Code.Gameplay.Common.TransformComponent),
         typeof(Code.Gameplay.Common.WorldPosition),
@@ -153,7 +160,9 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.GrapplingHook.YAxisDownSpeed),
         typeof(Code.Gameplay.Features.GrapplingHook.YAxisMovementAvailable),
         typeof(Code.Gameplay.Features.GrapplingHook.YAxisUpSpeed),
+        typeof(Code.Gameplay.Features.Loot.GoldForPickUp),
         typeof(Code.Gameplay.Features.Loot.Loot),
+        typeof(Code.Gameplay.Features.Loot.LootSpawner),
         typeof(Code.Gameplay.Features.Loot.LootTypeIdComponent),
         typeof(Code.Gameplay.Sound.AudioSourceBehaviourComponent)
     };

@@ -46,6 +46,9 @@ namespace Code.Infrastructure.View.Factory
 
         private Quaternion GetStartRotation(GameEntity entity)
         {
+            if (entity.hasStartRotation)
+                return Quaternion.Euler(entity.StartRotation);
+            
             return Quaternion.identity;
         }
 

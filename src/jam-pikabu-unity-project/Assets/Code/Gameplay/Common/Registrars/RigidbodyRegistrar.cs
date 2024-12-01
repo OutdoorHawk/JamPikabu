@@ -14,7 +14,6 @@ namespace Code.Gameplay.Common.Registrars
             
             if (TryGetComponent(out Rigidbody2D rigidbody2d))
                 Entity.AddRigidbody2D(rigidbody2d);
-           
         }
 
         public override void UnregisterComponents()

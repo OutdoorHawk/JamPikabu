@@ -12,6 +12,7 @@ namespace Code.Gameplay.Common
 
   [Game] public sealed class WorldPosition : IComponent { public Vector3 Value; }
   [Game] public sealed class StartWorldPosition : IComponent { public Vector3 Value; }
+  [Game] public sealed class StartRotation : IComponent { public Vector3 Value; }
  
   [Game] public sealed class TransformComponent : IComponent { public Transform Value; }
 

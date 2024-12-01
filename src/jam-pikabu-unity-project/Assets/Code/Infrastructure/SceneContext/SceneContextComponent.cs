@@ -7,7 +7,8 @@ namespace Code.Infrastructure.SceneContext
     {
         public Transform HookSpawnPoint;
         public Transform BoxSpawnPoint;
-        public Transform LootSpawnPoint;
+        public Transform LootParent;
+        public Transform[] LootSpawnPoints;
 
         [Inject]
         private void Construct(ISceneContextProvider sceneContextProvider)

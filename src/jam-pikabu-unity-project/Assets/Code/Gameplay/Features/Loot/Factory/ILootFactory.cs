@@ -4,6 +4,6 @@ namespace Code.Gameplay.Features.Loot.Factory
 {
     public interface ILootFactory
     {
-        GameEntity CreateLootEntity(LootTypeId typeId, Transform parent, Vector2 spawnPosition);
+        GameEntity CreateLootEntity(LootTypeId typeId, Transform parent, Vector2 at, Vector3 spawnRotation);
     }
 }

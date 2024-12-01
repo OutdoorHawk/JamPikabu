@@ -12,7 +12,7 @@ namespace Code.Infrastructure.View.Systems
         public SetupParentForViewSystem(GameContext game)
         {
             _entities = game.GetGroup(GameMatcher
-                .AllOf(GameMatcher.View, 
+                .AllOf(GameMatcher.View,
                     GameMatcher.Transform,
                     GameMatcher.TargetParent));
         }
@@ -23,8 +23,10 @@ namespace Code.Infrastructure.View.Systems
             {
                 entity.Transform.SetParent(entity.TargetParent);
                 entity.Transform.localPosition = Vector3.zero;
-                entity.Transform.rotation = Quaternion.identity;
 
+                if (entity.hasStartRotation == false)
+                    entity.Transform.rotation = Quaternion.identity;
+                
                 entity.RemoveTargetParent();
             }
         }

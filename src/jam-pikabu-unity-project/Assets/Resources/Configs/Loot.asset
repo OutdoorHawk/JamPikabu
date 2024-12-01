@@ -31,3 +31,5 @@ MonoBehaviour:
     GoldForPicking:
       CurrencyType: 1
       Amount: -2
+  LootSpawnInterval: 0.02
+  LootSpawnAmount: 75
