@@ -9,6 +9,8 @@ namespace Code.Gameplay.Features.Loot.Configs
     {
         public float LootSpawnInterval = 0.05f;
         public float LootSpawnAmount = 100;
+        public float CollectFlyAnimationDuration = 0.5f;
+        public Vector2 CollectFlyMinMaxJump = new(-1, 2);
         public EntityView LootItemUI;
         
         public override void OnConfigInit()

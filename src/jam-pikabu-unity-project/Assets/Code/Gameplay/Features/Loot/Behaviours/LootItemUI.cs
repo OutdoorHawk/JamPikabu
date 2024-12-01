@@ -23,7 +23,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         public void Show()
         {
             CanvasGroup
-                .DOFade(1, 0.25f)
+                .DOFade(1, 0.15f)
                 .SetLink(gameObject);
         }
     }

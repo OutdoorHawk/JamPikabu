@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using Code.Gameplay.Features.HUD;
 using Code.Gameplay.Features.Loot.Behaviours;
+using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.Features.Loot.Service;
+using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows;
 using Code.Gameplay.Windows.Service;
 using Code.Infrastructure.View;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Entitas;
 using UnityEngine;
@@ -18,11 +21,13 @@ namespace Code.Gameplay.Features.Loot.Systems
 
         private readonly List<GameEntity> _buffer = new(64);
         private readonly IWindowService _windowService;
+        private readonly IStaticDataService _staticData;
         private readonly Camera _camera;
 
-        public ProcessLootPickup(GameContext context, ILootUIService lootUIService, IWindowService windowService)
+        public ProcessLootPickup(GameContext context, ILootUIService lootUIService, IWindowService windowService, IStaticDataService staticData)
         {
             _windowService = windowService;
+            _staticData = staticData;
             _lootUIService = lootUIService;
             _camera = Camera.main;
 
@@ -48,17 +53,36 @@ namespace Code.Gameplay.Features.Loot.Systems
 
                 var lootContainer = playerHud.GetComponentInChildren<GameplayLootContainer>();
                 LootItemUI lootItemUI = lootContainer.Items[^1];
-
-                Vector3 screenPosition = lootItemUI.transform.position;
-                Vector3 worldPosition = _camera.ScreenToWorldPoint(new Vector2(screenPosition.x, screenPosition.y));
-
-                loot.Retain(this);
-                loot.Transform
-                    .DOJump(worldPosition, Random.Range(-1, 2), 1, 0.25f)
-                    .SetLink(loot.Transform.gameObject)
-                    .OnComplete(() => SwapWorldViewToUIView(loot, lootItemUI))
-                    ;
+                
+                PlayMoveAnimationAsync(lootItemUI, loot).Forget();
             }
+        }
+
+        private async UniTaskVoid PlayMoveAnimationAsync(LootItemUI lootItemUI, GameEntity loot)
+        {
+            loot.Retain(this);
+            
+            await UniTask.Yield(lootItemUI.destroyCancellationToken);
+            
+            var lootStaticData = _staticData.GetStaticData<LootStaticData>();
+            
+            Vector3 screenPosition = lootItemUI.transform.position;
+            screenPosition.z = _camera.WorldToScreenPoint(lootItemUI.transform.position).z;
+            Vector3 worldPosition = _camera.ScreenToWorldPoint(screenPosition);
+            
+            float flyAnimationDuration = lootStaticData.CollectFlyAnimationDuration;
+            float jumpPower = Random.Range(lootStaticData.CollectFlyMinMaxJump.x, lootStaticData.CollectFlyMinMaxJump.y);
+            
+            loot.Transform
+                .DOJump(worldPosition, jumpPower, 1, flyAnimationDuration)
+                .SetLink(loot.Transform.gameObject)
+                .OnComplete(() => SwapWorldViewToUIView(loot, lootItemUI))
+                ;
+
+            loot.Transform
+                .DORotate(Vector3.zero, flyAnimationDuration)
+                .SetLink(loot.Transform.gameObject)
+                ;
         }
 
         private void SwapWorldViewToUIView(GameEntity loot, LootItemUI lootItemUI)
