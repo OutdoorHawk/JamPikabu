@@ -1,6 +1,7 @@
 ﻿using Code.Common.Destruct;
 using Code.Gameplay.Features.CollidingView;
 using Code.Gameplay.Features.Cooldowns.Systems;
+using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.GrapplingHook;
 using Code.Infrastructure.Systems;
 using Code.Infrastructure.View;
@@ -12,6 +13,8 @@ namespace Code.Gameplay.Features
         public BattleFeature(ISystemFactory systems)
         {
             Add(systems.Create<BindViewFeature>());
+
+            Add(systems.Create<CurrencyFeature>());
         }
     }
 

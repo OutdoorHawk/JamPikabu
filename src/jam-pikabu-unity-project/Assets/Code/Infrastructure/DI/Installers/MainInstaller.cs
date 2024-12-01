@@ -6,6 +6,8 @@ using Code.Gameplay.Common.EntityIndices;
 using Code.Gameplay.Common.MousePosition;
 using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Common.Time;
+using Code.Gameplay.Features.Currency.Factory;
+using Code.Gameplay.Features.Currency.Service;
 using Code.Gameplay.Features.GrapplingHook.Factory;
 using Code.Gameplay.Input.Service;
 using Code.Gameplay.Sound.Service;
@@ -112,6 +114,7 @@ namespace Code.Infrastructure.DI.Installers
         private void BindGameplayServices()
         {
             Container.BindInterfacesTo<SoundService>().FromInstance(_soundService).AsSingle();
+            Container.BindInterfacesTo<GameplayCurrencyService>().AsSingle();
             Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
             Container.Bind<IMousePositionService>().To<MousePositionService>().AsSingle();
             Container.Bind<ICameraProvider>().To<CameraProvider>().AsSingle();
@@ -156,6 +159,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.Bind<ISystemFactory>().To<SystemFactory>().AsSingle();
             Container.Bind<IShopItemFactory>().To<ShopItemFactory>().AsSingle();
             Container.Bind<IGrapplingHookFactory>().To<GrapplingHookFactory>().AsSingle();
+            Container.Bind<ICurrencyFactory>().To<CurrencyFactory>().AsSingle();
         }
 
         private void BindGameplayFactories()
