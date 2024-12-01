@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Collections.Generic;
+using System.Threading;
 using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Loot.Configs;
@@ -42,18 +43,19 @@ namespace Code.Gameplay.Features.Loot.Systems
             lootSpawner.Retain(this);
 
             var staticData = _staticDataService.GetStaticData<LootStaticData>();
+            List<LootSetup> configs = staticData.Configs;
+            
             SceneContextComponent sceneContext = _provider.Context;
 
-            for (int i = 0; i < staticData.LootSpawnAmount / 3; i++)
+            for (int i = 0; i < staticData.LootSpawnAmount / configs.Count; i++)
             {
                 Transform spawn = GetSpawnPoint(sceneContext);
 
-                _lootFactory.CreateLootEntity(LootTypeId.Toy, sceneContext.LootParent, spawn.position, spawn.rotation.eulerAngles);
-                await DelaySeconds(staticData.LootSpawnInterval, _exitGameSource.Token);
-                _lootFactory.CreateLootEntity(LootTypeId.Trash, sceneContext.LootParent, spawn.position, spawn.rotation.eulerAngles);
-                await DelaySeconds(staticData.LootSpawnInterval, _exitGameSource.Token);
-                _lootFactory.CreateLootEntity(LootTypeId.GoldCoin, sceneContext.LootParent, spawn.position, spawn.rotation.eulerAngles);
-                await DelaySeconds(staticData.LootSpawnInterval, _exitGameSource.Token);
+                foreach (var lootSetup in configs)
+                {
+                    _lootFactory.CreateLootEntity(lootSetup.Type, sceneContext.LootParent, spawn.position, spawn.rotation.eulerAngles);
+                    await DelaySeconds(staticData.LootSpawnInterval, _exitGameSource.Token);
+                }
             }
 
             lootSpawner.Release(this);

@@ -1,4 +1,5 @@
 ﻿using Code.Gameplay.StaticData;
+using Code.Infrastructure.View;
 using UnityEngine;
 
 namespace Code.Gameplay.Features.Loot.Configs
@@ -8,6 +9,7 @@ namespace Code.Gameplay.Features.Loot.Configs
     {
         public float LootSpawnInterval = 0.05f;
         public float LootSpawnAmount = 100;
+        public EntityView LootItemUI;
         
         public override void OnConfigInit()
         {

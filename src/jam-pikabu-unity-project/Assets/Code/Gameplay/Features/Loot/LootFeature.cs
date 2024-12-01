@@ -9,6 +9,10 @@ namespace Code.Gameplay.Features.Loot
         {
             Add(systems.Create<SpawnLootSystem>());
             Add(systems.Create<InitLootSpeedSystem>());
+            
+            Add(systems.Create<ProcessLootPickup>());
+            
+            
         }
     }
 }

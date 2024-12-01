@@ -10,6 +10,8 @@ using Code.Gameplay.Features.Currency.Factory;
 using Code.Gameplay.Features.Currency.Service;
 using Code.Gameplay.Features.GrapplingHook.Factory;
 using Code.Gameplay.Features.Loot.Factory;
+using Code.Gameplay.Features.Loot.Service;
+using Code.Gameplay.Features.Loot.UIFactory;
 using Code.Gameplay.Input.Service;
 using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
@@ -162,6 +164,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.Bind<IGrapplingHookFactory>().To<GrapplingHookFactory>().AsSingle();
             Container.Bind<ICurrencyFactory>().To<CurrencyFactory>().AsSingle();
             Container.Bind<ILootFactory>().To<LootFactory>().AsSingle();
+            Container.BindInterfacesTo<LootItemUIFactory>().AsSingle();
         }
 
         private void BindGameplayFactories()
@@ -179,6 +182,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.Bind<IWindowService>().To<WindowService>().AsSingle();
             Container.BindInterfacesTo<StorageUIService>().AsSingle();
             Container.Bind<IShopUIService>().To<ShopUIService>().AsSingle();
+            Container.BindInterfacesTo<LootUIService>().AsSingle();
         }
 
         private void BindUIFactories()

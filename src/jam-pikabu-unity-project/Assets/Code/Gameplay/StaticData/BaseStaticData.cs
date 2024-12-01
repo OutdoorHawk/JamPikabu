@@ -11,7 +11,7 @@ namespace Code.Gameplay.StaticData
         
         private readonly Dictionary<int, T> _data = new();
 
-        public void AddIndex(Func<T, int> keySelector)
+        protected void AddIndex(Func<T, int> keySelector)
         {
             if (Configs == null || keySelector == null)
                 throw new ArgumentNullException();
@@ -25,7 +25,7 @@ namespace Code.Gameplay.StaticData
             }
         }
 
-        public T GetByKey(int key)
+        protected T GetByKey(int key)
         {
             _data.TryGetValue(key, out var value);
             return value;
