@@ -35,13 +35,13 @@ public sealed partial class GameEntity : INamedEntity
                 {
                     case nameof(GrapplingHook):
                         return new StringBuilder($"Hook ")
-                            .With(s => s.Append($"Id:{Id}"), when: hasId)
+                            .With(s => s.Append($"Id:{Id} "), when: hasId)
                             .ToString();
                     
                     case nameof(Code.Gameplay.Features.Currency.Gold):
                         return new StringBuilder($"Gold Storage: ")
-                            .With(s => s.Append($"Amount:{Gold}"), when: hasGold)
-                            .With(s => s.Append($"Id:{Id}"), when: hasId)
+                            .With(s => s.Append($"Amount: {Gold} "), when: hasGold)
+                            .With(s => s.Append($"Id:{Id} "), when: hasId)
                             .ToString();
              
                 }
