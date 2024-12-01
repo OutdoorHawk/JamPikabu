@@ -18,15 +18,14 @@ namespace Code.Gameplay.Features.Loot.Systems
         {
             return context.CreateCollector(GameMatcher
                 .AllOf(GameMatcher.Loot,
-                    GameMatcher.Rigidbody2D,
-                    GameMatcher.TargetParent
+                    GameMatcher.Rigidbody2D
                 )
                 .Added());
         }
 
         protected override bool Filter(GameEntity entity)
         {
-            return entity.isLoot && entity.hasRigidbody2D && entity.hasTargetParent;
+            return entity.isLoot && entity.hasRigidbody2D;
         }
 
         protected override void Execute(List<GameEntity> entities)

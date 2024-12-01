@@ -21,8 +21,10 @@ namespace Code.Infrastructure.View.Systems
         {
             foreach (GameEntity entity in _entities.GetEntities(_buffer))
             {
-                entity.Transform.SetParent(entity.TargetParent);
-                entity.Transform.localPosition = Vector3.zero;
+                entity.Transform.SetParent(entity.TargetParent, true);
+
+                if (entity.hasStartWorldPosition == false)
+                    entity.Transform.localPosition = Vector3.zero;
 
                 if (entity.hasStartRotation == false)
                     entity.Transform.rotation = Quaternion.identity;
