@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Entitas;
 
-namespace Code.Gameplay.Features.GrapplingHook
+namespace Code.Gameplay.Features.GrapplingHook.Systems
 {
     public class ProcessDescentRequestSystem : IExecuteSystem
     {

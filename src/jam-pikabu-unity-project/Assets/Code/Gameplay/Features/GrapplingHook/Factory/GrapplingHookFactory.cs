@@ -30,6 +30,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Factory
                     .AddYAxisUpSpeed(config.YAxisUpSpeed)
                     .AddStopMovementRaycastRadius(config.StopMovementRaycastRadius)
                     .AddCollectLootRaycastRadius(config.CollectLootRaycastRadius)
+                    .AddCollectLootPieceInterval(config.CollectLootPieceInterval)
                     .AddXMovementLimits(config.XMovementLimits)
                     .AddViewPrefab(config.ViewPrefab)
                     .AddTargetParent(parent)

@@ -38,28 +38,30 @@ public static class GameComponentsLookup {
     public const int Gold = 27;
     public const int AscentAvailable = 28;
     public const int AscentRequested = 29;
-    public const int CollectLootRaycastRadius = 30;
-    public const int CollectLootRequest = 31;
-    public const int Descending = 32;
-    public const int DescentAvailable = 33;
-    public const int DescentRequested = 34;
-    public const int GrapplingHook = 35;
-    public const int GrapplingHookBehaviour = 36;
-    public const int StopMovementRaycastRadius = 37;
-    public const int XAxisMoveDirection = 38;
-    public const int XAxisMovementAvailable = 39;
-    public const int XAxisSpeed = 40;
-    public const int XMovementLimits = 41;
-    public const int YAxisDownSpeed = 42;
-    public const int YAxisMovementAvailable = 43;
-    public const int YAxisUpSpeed = 44;
-    public const int GoldForPickUp = 45;
-    public const int Loot = 46;
-    public const int LootSpawner = 47;
-    public const int LootTypeId = 48;
-    public const int AudioSourceBehaviour = 49;
+    public const int CollectingLoot = 30;
+    public const int CollectLootPieceInterval = 31;
+    public const int CollectLootRaycastRadius = 32;
+    public const int CollectLootRequest = 33;
+    public const int Descending = 34;
+    public const int DescentAvailable = 35;
+    public const int DescentRequested = 36;
+    public const int GrapplingHook = 37;
+    public const int GrapplingHookBehaviour = 38;
+    public const int StopMovementRaycastRadius = 39;
+    public const int XAxisMoveDirection = 40;
+    public const int XAxisMovementAvailable = 41;
+    public const int XAxisSpeed = 42;
+    public const int XMovementLimits = 43;
+    public const int YAxisDownSpeed = 44;
+    public const int YAxisMovementAvailable = 45;
+    public const int YAxisUpSpeed = 46;
+    public const int GoldForPickUp = 47;
+    public const int Loot = 48;
+    public const int LootSpawner = 49;
+    public const int LootTypeId = 50;
+    public const int AudioSourceBehaviour = 51;
 
-    public const int TotalComponents = 50;
+    public const int TotalComponents = 52;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -92,6 +94,8 @@ public static class GameComponentsLookup {
         "Gold",
         "AscentAvailable",
         "AscentRequested",
+        "CollectingLoot",
+        "CollectLootPieceInterval",
         "CollectLootRaycastRadius",
         "CollectLootRequest",
         "Descending",
@@ -145,6 +149,8 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Currency.Gold),
         typeof(Code.Gameplay.Features.GrapplingHook.AscentAvailable),
         typeof(Code.Gameplay.Features.GrapplingHook.AscentRequested),
+        typeof(Code.Gameplay.Features.GrapplingHook.CollectingLoot),
+        typeof(Code.Gameplay.Features.GrapplingHook.CollectLootPieceInterval),
         typeof(Code.Gameplay.Features.GrapplingHook.CollectLootRaycastRadius),
         typeof(Code.Gameplay.Features.GrapplingHook.CollectLootRequest),
         typeof(Code.Gameplay.Features.GrapplingHook.Descending),

@@ -23,6 +23,7 @@ namespace Code.Gameplay.Features.GrapplingHook
             Add(systems.Create<DescentGrapplingHookSystem>());
             
             Add(systems.Create<AscentGrapplingHookSystem>());
+            Add(systems.Create<GrapplingHookCollectLootSystem>());
             
             Add(systems.Create<GrapplingHookVisualsSystem>());
 

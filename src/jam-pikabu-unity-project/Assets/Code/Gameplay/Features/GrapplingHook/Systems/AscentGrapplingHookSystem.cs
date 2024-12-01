@@ -47,7 +47,6 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
                     hook.isAscentAvailable = false;
                     hook.isAscentRequested = false;
                     hook.isCollectLootRequest = true;
-                    hook.GrapplingHookBehaviour.OpenClaws();
                 }
             }
         }

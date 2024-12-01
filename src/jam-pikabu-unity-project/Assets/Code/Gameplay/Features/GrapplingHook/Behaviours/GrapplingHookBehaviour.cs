@@ -40,22 +40,12 @@ namespace Code.Gameplay.Features.GrapplingHook.Behaviours
 
         public void OpenClaws()
         {
-            WaitForLootAndOpenAsync().Forget();
+            _animator.SetBool(AnimationParameter.Open.AsHash(), true);
         }
 
         public void CloseClawsAndReturn()
         {
             CloseAndAscentAsync().Forget();
-        }
-
-        private async UniTaskVoid WaitForLootAndOpenAsync()
-        {
-            await DelaySeconds(_openClawsDelay, destroyCancellationToken);
-            _animator.SetBool(AnimationParameter.Open.AsHash(), true);
-            
-            await DelaySeconds(_collectAnimationDelay, destroyCancellationToken);
-            
-            Entity.isCollectLootRequest = false; //todo temporary
         }
 
         private async UniTaskVoid CloseAndAscentAsync()
