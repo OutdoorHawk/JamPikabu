@@ -52,9 +52,11 @@ public static class GameComponentsLookup {
     public const int YAxisDownSpeed = 41;
     public const int YAxisMovementAvailable = 42;
     public const int YAxisUpSpeed = 43;
-    public const int AudioSourceBehaviour = 44;
+    public const int Loot = 44;
+    public const int LootTypeId = 45;
+    public const int AudioSourceBehaviour = 46;
 
-    public const int TotalComponents = 45;
+    public const int TotalComponents = 47;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -101,6 +103,8 @@ public static class GameComponentsLookup {
         "YAxisDownSpeed",
         "YAxisMovementAvailable",
         "YAxisUpSpeed",
+        "Loot",
+        "LootTypeId",
         "AudioSourceBehaviour"
     };
 
@@ -149,6 +153,8 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.GrapplingHook.YAxisDownSpeed),
         typeof(Code.Gameplay.Features.GrapplingHook.YAxisMovementAvailable),
         typeof(Code.Gameplay.Features.GrapplingHook.YAxisUpSpeed),
+        typeof(Code.Gameplay.Features.Loot.Loot),
+        typeof(Code.Gameplay.Features.Loot.LootTypeIdComponent),
         typeof(Code.Gameplay.Sound.AudioSourceBehaviourComponent)
     };
 }

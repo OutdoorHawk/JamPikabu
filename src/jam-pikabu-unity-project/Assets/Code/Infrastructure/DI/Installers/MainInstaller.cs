@@ -9,6 +9,7 @@ using Code.Gameplay.Common.Time;
 using Code.Gameplay.Features.Currency.Factory;
 using Code.Gameplay.Features.Currency.Service;
 using Code.Gameplay.Features.GrapplingHook.Factory;
+using Code.Gameplay.Features.Loot.Factory;
 using Code.Gameplay.Input.Service;
 using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
@@ -160,6 +161,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.Bind<IShopItemFactory>().To<ShopItemFactory>().AsSingle();
             Container.Bind<IGrapplingHookFactory>().To<GrapplingHookFactory>().AsSingle();
             Container.Bind<ICurrencyFactory>().To<CurrencyFactory>().AsSingle();
+            Container.Bind<ILootFactory>().To<LootFactory>().AsSingle();
         }
 
         private void BindGameplayFactories()

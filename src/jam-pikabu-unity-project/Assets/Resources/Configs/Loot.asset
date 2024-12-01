@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae18e344aba742529e8dd3cc9ddaed96, type: 3}
+  m_Name: Loot
+  m_EditorClassIdentifier: 
+  Configs:
+  - Type: 1
+    ViewPrefab: {fileID: 5581889664544084029, guid: c983db6717be2db4fa1dd83198dc28f5,
+      type: 3}
+    GoldForPicking:
+      CurrencyType: 1
+      Amount: 2
+  - Type: 2
+    ViewPrefab: {fileID: 2129731251533474509, guid: 60b0fb4eb71fef848858ea8da0e4f1eb,
+      type: 3}
+    GoldForPicking:
+      CurrencyType: 1
+      Amount: 4
+  - Type: 3
+    ViewPrefab: {fileID: 7632606086172137233, guid: d4904c11991e84a46901a2f9832e299c,
+      type: 3}
+    GoldForPicking:
+      CurrencyType: 1
+      Amount: -2
