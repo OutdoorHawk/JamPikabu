@@ -47,8 +47,6 @@ namespace Code.Gameplay.Features.Loot.Systems
 
                 foreach (var loot in _readyLoot.GetEntities(_buffer))
                 {
-                    Debug.LogError("Start apply");
-
                     CreateGameEntity.Empty()
                         .With(x => x.isAddGoldRequest = true)
                         .AddGold(loot.GoldValue.Amount)
