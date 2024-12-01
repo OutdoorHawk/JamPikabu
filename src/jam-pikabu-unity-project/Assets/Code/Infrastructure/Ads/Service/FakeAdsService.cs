@@ -1,6 +1,5 @@
 using Code.Infrastructure.States.GameStateHandler;
 using Code.Infrastructure.States.GameStateHandler.Handlers;
-using CrazyGames;
 
 namespace Code.Infrastructure.Ads.Service
 {
