@@ -1,3 +1,4 @@
+using Code.Gameplay.Windows;
 using Code.Gameplay.Windows.Service;
 using Code.Infrastructure.SceneLoading;
 using Code.Infrastructure.States.GameStateHandler;
@@ -61,6 +62,7 @@ namespace Code.Infrastructure.States.GameStates
         private async UniTask InitUIAsync()
         {
             _windowService.ClearUIRoot();
+            _windowService.OpenWindow(WindowTypeId.PlayerHUD);
         }
     }
 }

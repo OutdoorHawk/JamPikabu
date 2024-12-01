@@ -274,6 +274,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CheatButton
       objectReference: {fileID: 0}
+    - target: {fileID: 5963534566224387233, guid: 8345bef9efe2f8741b8dad2bc5f3779b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
