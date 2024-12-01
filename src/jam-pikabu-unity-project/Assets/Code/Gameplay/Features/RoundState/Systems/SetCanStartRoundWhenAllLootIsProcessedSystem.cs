@@ -6,8 +6,9 @@ namespace Code.Gameplay.Features.RoundState.Systems
     public class SetCanStartRoundWhenAllLootIsProcessedSystem : IExecuteSystem
     {
         private readonly IGroup<GameEntity> _roundController;
-        private readonly List<GameEntity> _buffer = new(2);
         private readonly IGroup<GameEntity> _loot;
+        private readonly IGroup<GameEntity> _busyHook;
+        private readonly List<GameEntity> _buffer = new(2);
 
         public SetCanStartRoundWhenAllLootIsProcessedSystem(GameContext context)
         {
@@ -32,8 +33,10 @@ namespace Code.Gameplay.Features.RoundState.Systems
                     continue;
 
                 controller.isRoundOver = false;
-                controller.isRoundStartAvailable = false;
+                controller.isRoundStartAvailable = true;
             }
         }
+
+      
     }
 }

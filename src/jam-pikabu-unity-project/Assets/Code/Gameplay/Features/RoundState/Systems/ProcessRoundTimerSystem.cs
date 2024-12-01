@@ -41,8 +41,9 @@ namespace Code.Gameplay.Features.RoundState.Systems
                     continue;
                 }
 
+                entity.isCooldownUp = true;
                 entity.isRoundInProcess = false;
-                entity.isRoundOver = true;
+               
                 view.RoundStateViewBehaviour.UpdateTimer(0);
             }
         }
