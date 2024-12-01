@@ -16,20 +16,23 @@ MonoBehaviour:
   - Type: 1
     ViewPrefab: {fileID: 5581889664544084029, guid: c983db6717be2db4fa1dd83198dc28f5,
       type: 3}
+    Icon: {fileID: 0}
     GoldForPicking:
       CurrencyType: 1
       Amount: 2
   - Type: 2
     ViewPrefab: {fileID: 2129731251533474509, guid: 60b0fb4eb71fef848858ea8da0e4f1eb,
       type: 3}
+    Icon: {fileID: 0}
     GoldForPicking:
       CurrencyType: 1
       Amount: 4
   - Type: 3
     ViewPrefab: {fileID: 7632606086172137233, guid: d4904c11991e84a46901a2f9832e299c,
       type: 3}
+    Icon: {fileID: 0}
     GoldForPicking:
       CurrencyType: 1
       Amount: -2
-  LootSpawnInterval: 0.02
+  LootSpawnInterval: 0.01
   LootSpawnAmount: 75
