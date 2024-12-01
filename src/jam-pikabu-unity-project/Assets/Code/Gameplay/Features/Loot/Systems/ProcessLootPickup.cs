@@ -24,7 +24,7 @@ namespace Code.Gameplay.Features.Loot.Systems
         private readonly IWindowService _windowService;
         private readonly IStaticDataService _staticData;
         private readonly IUIFactory _uiFactory;
-        private Camera _camera;
+        private readonly Camera _camera;
 
         public ProcessLootPickup(GameContext context, ILootUIService lootUIService, 
             IWindowService windowService, IStaticDataService staticData, IUIFactory uiFactory)
@@ -33,7 +33,7 @@ namespace Code.Gameplay.Features.Loot.Systems
             _windowService = windowService;
             _staticData = staticData;
             _lootUIService = lootUIService;
-          //  _camera = Camera.main;
+            _camera = Camera.main;
 
             _loot = context.GetGroup(GameMatcher
                 .AllOf(
@@ -64,7 +64,6 @@ namespace Code.Gameplay.Features.Loot.Systems
 
         private async UniTaskVoid PlayMoveAnimationAsync(LootItemUI lootItemUI, GameEntity loot)
         {
-            _camera = _uiFactory.UIRoot.GetComponent<Canvas>().worldCamera;
             loot.Retain(this);
             
             await UniTask.Yield(lootItemUI.destroyCancellationToken);
@@ -72,15 +71,8 @@ namespace Code.Gameplay.Features.Loot.Systems
             var lootStaticData = _staticData.GetStaticData<LootStaticData>();
             
             Vector3 screenPosition = RectTransformUtility.WorldToScreenPoint(_camera, lootItemUI.transform.position);
-
-// Устанавливаем Z в фиксированное значение камеры
-// Например, используем -10, чтобы совпадать с Z камеры относительно мира
             screenPosition.z = Mathf.Abs(_camera.transform.position.z);
-
-// Конвертируем экранные координаты в мировые
             Vector3 worldPosition = _camera.ScreenToWorldPoint(screenPosition);
-
-// Принудительно фиксируем Z в плоскости мира (например, Z=0 для 2D)
             worldPosition.z = 0;
             
             float flyAnimationDuration = lootStaticData.CollectFlyAnimationDuration;
