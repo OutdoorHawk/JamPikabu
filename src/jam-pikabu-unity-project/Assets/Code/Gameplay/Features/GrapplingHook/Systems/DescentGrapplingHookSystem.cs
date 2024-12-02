@@ -12,7 +12,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
         private readonly ITimeService _time;
         private readonly IGroup<GameEntity> _hooks;
         private readonly IPhysics2DService _physics2DService;
-        
+
         private readonly GameEntity[] _buffer = new GameEntity[8];
         private readonly List<GameEntity> _hookBuffer = new(2);
 
@@ -38,29 +38,30 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
 
                 const float moveDownDirection = -1;
                 const float yLimit = -5.6f;
-                
+
                 newPosition.y += moveDownDirection * hook.YAxisDownSpeed * _time.FixedDeltaTime;
-                
+
                 Transform parent = hookRigidbody2D.transform.parent;
                 float minWorldY = parent.TransformPoint(new Vector3(0, yLimit, 0)).y;
-                
+
                 newPosition.y = Mathf.Max(newPosition.y, minWorldY);
-                
+
                 hookRigidbody2D.MovePosition(newPosition);
-                
-                if (CheckReachedMinPosition(newPosition, minWorldY, hook)) 
+
+                if (CheckReachedMinPosition(newPosition, minWorldY, hook))
                     continue;
 
-                if (CheckCollidedWithLoot(hookRigidbody2D, hook)) 
+                if (CheckCollidedWithLoot(hookRigidbody2D, hook))
                     continue;
             }
         }
 
         private bool CheckCollidedWithLoot(Rigidbody2D hookRigidbody2D, GameEntity hook)
         {
+            Vector2 offset = new Vector2(0, 0.75f);
             int hitCount = _physics2DService.CircleCastNonAlloc
             (
-                hookRigidbody2D.position,
+                hookRigidbody2D.position - offset,
                 hook.StopMovementRaycastRadius,
                 CollisionLayer.Loot.AsMask(),
                 _buffer

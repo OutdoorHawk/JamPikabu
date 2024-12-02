@@ -10,8 +10,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
         {
             _hooks = gameContext.GetGroup(GameMatcher
                 .AllOf(GameMatcher.GrapplingHook,
-                    GameMatcher.Descending,
-                    GameMatcher.DescentAvailable
+                    GameMatcher.Descending
                 ));
         }
 

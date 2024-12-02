@@ -15,8 +15,8 @@ MonoBehaviour:
   XAxisSpeed: 4
   YAxisDownSpeed: 5
   YAxisUpSpeed: 2
-  StopMovementRaycastRadius: 1.3
-  CollectLootRaycastRadius: 1
+  StopMovementRaycastRadius: 0.25
+  CollectLootRaycastRadius: 1.8
   CollectLootPieceInterval: 0.1
   XMovementLimits: {x: -3.1, y: 3.1}
   ViewPrefab: {fileID: 6435023142707515542, guid: 4d7c5494a46212041a040d26156fb0b4,
