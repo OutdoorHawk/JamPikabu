@@ -36,6 +36,12 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
                     continue;
                 }
                 
+                if (hook.isClosingClaws)
+                {
+                    hook.isBusy = true;
+                    continue;
+                }
+                
                 hook.isBusy = false;
             }
         }

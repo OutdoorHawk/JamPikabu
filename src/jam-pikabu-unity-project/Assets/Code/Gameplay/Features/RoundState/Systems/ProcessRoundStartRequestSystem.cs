@@ -22,6 +22,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
         {
             foreach (var entity in _entities.GetEntities(_buffer))
             {
+                entity.isRoundOver = false;
                 entity.isRoundInProcess = true;
                 entity.AddRoundTimeLeft(entity.RoundDuration);
             }
