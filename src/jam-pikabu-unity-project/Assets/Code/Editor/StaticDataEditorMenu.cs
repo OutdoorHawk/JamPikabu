@@ -18,11 +18,11 @@ namespace Code.Editor
         protected override OdinMenuTree BuildMenuTree()
         {
             var tree = new OdinMenuTree();
-            
-           // tree.
-            
-            tree.AddAllAssetsAtPath("Dev", "Assets/Resources/Configs/Dev", true);
-            tree.AddAllAssetsAtPath("Prod", "Assets/Resources/Configs/Prod", true);
+
+           // tree.AddAssetAtPath("Config", "Assets/Resources/Configs/BuildConfig");
+            tree.AddAllAssetsAtPath("", "Assets/Resources/Configs", true);
+            /*tree.AddAllAssetsAtPath("Dev", "Assets/Resources/Configs/Dev", true);
+            tree.AddAllAssetsAtPath("Prod", "Assets/Resources/Configs/Prod", true);*/
 
             SortMenuItemsRecursively(tree.MenuItems);
             return tree;
