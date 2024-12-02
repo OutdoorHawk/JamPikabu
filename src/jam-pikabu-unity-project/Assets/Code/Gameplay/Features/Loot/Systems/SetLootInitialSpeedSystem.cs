@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.Loot.Systems
 {
-    public class InitLootSpeedSystem : ReactiveSystem<GameEntity>
+    public class SetLootInitialSpeedSystem : ReactiveSystem<GameEntity>
     {
         private readonly ISceneContextProvider _sceneContextProvider;
 
-        public InitLootSpeedSystem(GameContext context, ISceneContextProvider sceneContextProvider) : base(context)
+        public SetLootInitialSpeedSystem(GameContext context, ISceneContextProvider sceneContextProvider) : base(context)
         {
             _sceneContextProvider = sceneContextProvider;
         }

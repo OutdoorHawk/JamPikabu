@@ -1,8 +1,9 @@
 using System;
+using System.Collections.Generic;
 using Sirenix.OdinInspector.Editor;
 using UnityEditor;
 
-namespace Project.Code.Editor
+namespace Code.Editor
 {
     public class StaticDataEditor : OdinMenuEditorWindow
     {
@@ -18,9 +19,26 @@ namespace Project.Code.Editor
         {
             var tree = new OdinMenuTree();
             
-            tree.AddAllAssetsAtPath("Configs", "Assets/Resources/Configs", true);
+           // tree.
+            
+            tree.AddAllAssetsAtPath("Dev", "Assets/Resources/Configs/Dev", true);
+            tree.AddAllAssetsAtPath("Prod", "Assets/Resources/Configs/Prod", true);
 
+            SortMenuItemsRecursively(tree.MenuItems);
             return tree;
+        }
+
+        private void SortMenuItemsRecursively(List<OdinMenuItem> items)
+        {
+            if (items == null || items.Count == 0)
+                return;
+            
+            items.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.Ordinal));
+            
+            foreach (var item in items)
+            {
+                SortMenuItemsRecursively(item.ChildMenuItems);
+            }
         }
     }
 }

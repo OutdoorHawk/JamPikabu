@@ -1,31 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
-using Code.Infrastructure.AssetManagement.AssetProvider;
+using Code.Common.Logger.Service;
 using UnityEngine;
 
 namespace Code.Gameplay.StaticData
 {
     public class StaticDataService : IStaticDataService
     {
-        private readonly IAssetProvider _assetProvider;
+        private readonly ILoggerService _loggerService;
 
         private readonly Dictionary<Type, IStaticData> _configs = new();
 
-        public StaticDataService(IAssetProvider assetProvider)
+        public StaticDataService(ILoggerService loggerService)
         {
-            _assetProvider = assetProvider;
+            _loggerService = loggerService;
         }
 
         public void Load()
         {
-            BaseStaticData[] configs = Resources.LoadAll<BaseStaticData>("Configs");
+            BuildConfigStaticData buildConfig = Resources.Load<BuildConfigStaticData>("Configs/BuildConfig");
+
+            BaseStaticData[] configs;
+            switch (buildConfig.ConfigType)
+            {
+                case BuildConfigType.Dev:
+                    configs = Resources.LoadAll<BaseStaticData>("Configs/Dev");
+                    break;
+                case BuildConfigType.Prod:
+                    configs = Resources.LoadAll<BaseStaticData>("Configs/Prod");
+                    break;
+                default:
+                {
+                    _loggerService.LogError($"Unknown build config type: {buildConfig.ConfigType}");
+                    throw new ArgumentOutOfRangeException();
+                }
+            }
 
             foreach (var config in configs)
             {
                 _configs[config.GetType()] = config;
                 config.OnConfigPreInit();
             }
-            
+
             foreach (var config in configs)
             {
                 config.OnConfigInit();
