@@ -50,8 +50,14 @@ public sealed partial class GameEntity : INamedEntity
                         return new StringBuilder($"Loot: ")
                             .With(s => s.Append($"Id:{Id} "), when: hasId)
                             .ToString();
+                    
                     case nameof(RoundStateController):
                         return new StringBuilder($"RoundStateController: ")
+                            .With(s => s.Append($"Id:{Id} "), when: hasId)
+                            .ToString();
+                    
+                    case nameof(LootEffectsApplier):
+                        return new StringBuilder($"LootEffectsApplier: ")
                             .With(s => s.Append($"Id:{Id} "), when: hasId)
                             .ToString();
              
