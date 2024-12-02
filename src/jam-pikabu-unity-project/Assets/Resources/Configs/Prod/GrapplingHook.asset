@@ -15,7 +15,7 @@ MonoBehaviour:
   XAxisSpeed: 4
   YAxisDownSpeed: 5
   YAxisUpSpeed: 2
-  StopMovementRaycastRadius: 0.3
+  StopMovementRaycastRadius: 0.315
   CollectLootRaycastRadius: 1.8
   CollectLootPieceInterval: 0.1
   XMovementLimits: {x: -3.1, y: 3.1}
