@@ -11,11 +11,14 @@ namespace Code.Gameplay.Features.RoundState
             
             Add(systems.Create<RequestRoundStartByInputSystem>());
             
+            Add(systems.Create<BlockRoundStartAvailableWhenRoundIsProcessingSystem>());
+            Add(systems.Create<BlockRoundStartAvailableWhenLootIsApplyingSystem>());
+            
             Add(systems.Create<ProcessRoundStartRequestSystem>());
             Add(systems.Create<ProcessRoundTimerSystem>());
             Add(systems.Create<ProcessRoundOverWhenTimerDoneSystem>());
-        
-            Add(systems.Create<SetCanStartRoundWhenAllLootIsProcessedSystem>());
+            
+            Add(systems.Create<ResetRoundStartAvailableSystem>());
         }
     }
 }

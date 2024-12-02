@@ -14,7 +14,7 @@ namespace Code.Gameplay.Features.RoundState.Behaviours
             if (_currentTime == (int)newTime)
                 return;
             
-            _currentTime = (int)newTime;
+            _currentTime = Mathf.RoundToInt(newTime);
             
             RoundTimerText.text = _currentTime.ToString();
         }

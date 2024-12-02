@@ -27,7 +27,6 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
                     continue;
                 
                 hook.isXAxisMovementAvailable = false;
-                hook.isYAxisMovementAvailable = false;
                 hook.isDescentAvailable = false;
             }
         }

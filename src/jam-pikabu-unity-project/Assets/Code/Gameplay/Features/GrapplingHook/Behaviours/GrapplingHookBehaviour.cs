@@ -57,8 +57,6 @@ namespace Code.Gameplay.Features.GrapplingHook.Behaviours
             if (Entity != null)
             {
                 Entity.isAscentRequested = true;
-                Entity.isDescentAvailable = false;
-                Entity.isDescending = false;
             }
         }
     }

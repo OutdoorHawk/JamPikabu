@@ -24,7 +24,6 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
             foreach (var hook in _hooks)
             {
                 hook.isXAxisMovementAvailable = false;
-                hook.isYAxisMovementAvailable = false;
                 hook.isDescentAvailable = false;
             }
         }

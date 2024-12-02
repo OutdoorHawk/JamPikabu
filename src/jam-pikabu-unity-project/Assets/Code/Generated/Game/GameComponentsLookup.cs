@@ -36,46 +36,52 @@ public static class GameComponentsLookup {
     public const int CurrencyStorage = 25;
     public const int CurrencyTypeId = 26;
     public const int Gold = 27;
-    public const int AscentAvailable = 28;
-    public const int AscentRequested = 29;
-    public const int CollectingLoot = 30;
-    public const int CollectLootPieceInterval = 31;
-    public const int CollectLootRaycastRadius = 32;
-    public const int CollectLootRequest = 33;
-    public const int Descending = 34;
-    public const int DescentAvailable = 35;
-    public const int DescentRequested = 36;
-    public const int GrapplingHook = 37;
-    public const int GrapplingHookBehaviour = 38;
-    public const int StopMovementRaycastRadius = 39;
-    public const int XAxisMoveDirection = 40;
-    public const int XAxisMovementAvailable = 41;
-    public const int XAxisSpeed = 42;
-    public const int XMovementLimits = 43;
-    public const int YAxisDownSpeed = 44;
-    public const int YAxisMovementAvailable = 45;
-    public const int YAxisUpSpeed = 46;
-    public const int Applied = 47;
-    public const int Collected = 48;
-    public const int GoldValue = 49;
-    public const int Loot = 50;
-    public const int LootItemUI = 51;
-    public const int LootPickupProcessing = 52;
-    public const int LootSpawner = 53;
-    public const int LootTypeId = 54;
-    public const int ReadyToApply = 55;
-    public const int RoundCost = 56;
-    public const int RoundDuration = 57;
-    public const int RoundInProcess = 58;
-    public const int RoundOver = 59;
-    public const int RoundStartAvailable = 60;
-    public const int RoundStartRequest = 61;
-    public const int RoundStateController = 62;
-    public const int RoundStateViewBehaviour = 63;
-    public const int RoundTimeLeft = 64;
-    public const int AudioSourceBehaviour = 65;
+    public const int Ascending = 28;
+    public const int AscentAvailable = 29;
+    public const int AscentRequested = 30;
+    public const int Busy = 31;
+    public const int CollectingLoot = 32;
+    public const int CollectLootPieceInterval = 33;
+    public const int CollectLootRaycastRadius = 34;
+    public const int CollectLootRequest = 35;
+    public const int Descending = 36;
+    public const int DescentAvailable = 37;
+    public const int DescentRequested = 38;
+    public const int GrapplingHook = 39;
+    public const int GrapplingHookBehaviour = 40;
+    public const int StopMovementRaycastRadius = 41;
+    public const int XAxisMoveDirection = 42;
+    public const int XAxisMovementAvailable = 43;
+    public const int XAxisSpeed = 44;
+    public const int XMovementLimits = 45;
+    public const int YAxisDownSpeed = 46;
+    public const int YAxisUpSpeed = 47;
+    public const int Applied = 48;
+    public const int ApplyingEffects = 49;
+    public const int ApplyingValues = 50;
+    public const int Collected = 51;
+    public const int GoldValue = 52;
+    public const int Loot = 53;
+    public const int LootEffectsApplier = 54;
+    public const int LootItemUI = 55;
+    public const int LootPickupProcessing = 56;
+    public const int LootSpawner = 57;
+    public const int LootTypeId = 58;
+    public const int ReadyToApply = 59;
+    public const int ReadyToApplyEffects = 60;
+    public const int ReadyToApplyValues = 61;
+    public const int RoundCost = 62;
+    public const int RoundDuration = 63;
+    public const int RoundInProcess = 64;
+    public const int RoundOver = 65;
+    public const int RoundStartAvailable = 66;
+    public const int RoundStartRequest = 67;
+    public const int RoundStateController = 68;
+    public const int RoundStateViewBehaviour = 69;
+    public const int RoundTimeLeft = 70;
+    public const int AudioSourceBehaviour = 71;
 
-    public const int TotalComponents = 66;
+    public const int TotalComponents = 72;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -106,8 +112,10 @@ public static class GameComponentsLookup {
         "CurrencyStorage",
         "CurrencyTypeId",
         "Gold",
+        "Ascending",
         "AscentAvailable",
         "AscentRequested",
+        "Busy",
         "CollectingLoot",
         "CollectLootPieceInterval",
         "CollectLootRaycastRadius",
@@ -123,17 +131,21 @@ public static class GameComponentsLookup {
         "XAxisSpeed",
         "XMovementLimits",
         "YAxisDownSpeed",
-        "YAxisMovementAvailable",
         "YAxisUpSpeed",
         "Applied",
+        "ApplyingEffects",
+        "ApplyingValues",
         "Collected",
         "GoldValue",
         "Loot",
+        "LootEffectsApplier",
         "LootItemUI",
         "LootPickupProcessing",
         "LootSpawner",
         "LootTypeId",
         "ReadyToApply",
+        "ReadyToApplyEffects",
+        "ReadyToApplyValues",
         "RoundCost",
         "RoundDuration",
         "RoundInProcess",
@@ -175,8 +187,10 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Currency.CurrencyStorage),
         typeof(Code.Gameplay.Features.Currency.CurrencyTypeIdComponent),
         typeof(Code.Gameplay.Features.Currency.Gold),
+        typeof(Code.Gameplay.Features.GrapplingHook.Ascending),
         typeof(Code.Gameplay.Features.GrapplingHook.AscentAvailable),
         typeof(Code.Gameplay.Features.GrapplingHook.AscentRequested),
+        typeof(Code.Gameplay.Features.GrapplingHook.Busy),
         typeof(Code.Gameplay.Features.GrapplingHook.CollectingLoot),
         typeof(Code.Gameplay.Features.GrapplingHook.CollectLootPieceInterval),
         typeof(Code.Gameplay.Features.GrapplingHook.CollectLootRaycastRadius),
@@ -192,17 +206,21 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.GrapplingHook.XAxisSpeed),
         typeof(Code.Gameplay.Features.GrapplingHook.XMovementLimits),
         typeof(Code.Gameplay.Features.GrapplingHook.YAxisDownSpeed),
-        typeof(Code.Gameplay.Features.GrapplingHook.YAxisMovementAvailable),
         typeof(Code.Gameplay.Features.GrapplingHook.YAxisUpSpeed),
         typeof(Code.Gameplay.Features.Loot.Applied),
+        typeof(Code.Gameplay.Features.Loot.ApplyingEffects),
+        typeof(Code.Gameplay.Features.Loot.ApplyingValues),
         typeof(Code.Gameplay.Features.Loot.Collected),
         typeof(Code.Gameplay.Features.Loot.GoldValue),
         typeof(Code.Gameplay.Features.Loot.Loot),
+        typeof(Code.Gameplay.Features.Loot.LootEffectsApplier),
         typeof(Code.Gameplay.Features.Loot.LootItemUIComponent),
         typeof(Code.Gameplay.Features.Loot.LootPickupProcessing),
         typeof(Code.Gameplay.Features.Loot.LootSpawner),
         typeof(Code.Gameplay.Features.Loot.LootTypeIdComponent),
         typeof(Code.Gameplay.Features.Loot.ReadyToApply),
+        typeof(Code.Gameplay.Features.Loot.ReadyToApplyEffects),
+        typeof(Code.Gameplay.Features.Loot.ReadyToApplyValues),
         typeof(Code.Gameplay.Features.RoundState.RoundCost),
         typeof(Code.Gameplay.Features.RoundState.RoundDuration),
         typeof(Code.Gameplay.Features.RoundState.RoundInProcess),

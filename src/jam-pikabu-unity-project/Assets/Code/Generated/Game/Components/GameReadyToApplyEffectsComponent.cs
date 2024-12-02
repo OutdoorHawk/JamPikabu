@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherYAxisMovementAvailable;
+    static Entitas.IMatcher<GameEntity> _matcherReadyToApplyEffects;
 
-    public static Entitas.IMatcher<GameEntity> YAxisMovementAvailable {
+    public static Entitas.IMatcher<GameEntity> ReadyToApplyEffects {
         get {
-            if (_matcherYAxisMovementAvailable == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.YAxisMovementAvailable);
+            if (_matcherReadyToApplyEffects == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.ReadyToApplyEffects);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherYAxisMovementAvailable = matcher;
+                _matcherReadyToApplyEffects = matcher;
             }
 
-            return _matcherYAxisMovementAvailable;
+            return _matcherReadyToApplyEffects;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.GrapplingHook.YAxisMovementAvailable yAxisMovementAvailableComponent = new Code.Gameplay.Features.GrapplingHook.YAxisMovementAvailable();
+    static readonly Code.Gameplay.Features.Loot.ReadyToApplyEffects readyToApplyEffectsComponent = new Code.Gameplay.Features.Loot.ReadyToApplyEffects();
 
-    public bool isYAxisMovementAvailable {
-        get { return HasComponent(GameComponentsLookup.YAxisMovementAvailable); }
+    public bool isReadyToApplyEffects {
+        get { return HasComponent(GameComponentsLookup.ReadyToApplyEffects); }
         set {
-            if (value != isYAxisMovementAvailable) {
-                var index = GameComponentsLookup.YAxisMovementAvailable;
+            if (value != isReadyToApplyEffects) {
+                var index = GameComponentsLookup.ReadyToApplyEffects;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : yAxisMovementAvailableComponent;
+                            : readyToApplyEffectsComponent;
 
                     AddComponent(index, component);
                 } else {

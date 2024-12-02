@@ -15,8 +15,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
                     GameMatcher.RoundStateController,
                     GameMatcher.RoundStartRequest,
                     GameMatcher.RoundStartAvailable
-                ).NoneOf(
-                    GameMatcher.RoundInProcess));
+                ));
         }
 
         public void Execute()
@@ -24,8 +23,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
             foreach (var entity in _entities.GetEntities(_buffer))
             {
                 entity.isRoundInProcess = true;
-                entity.isRoundStartAvailable = false;
-                entity.ReplaceRoundTimeLeft(entity.RoundDuration);
+                entity.AddRoundTimeLeft(entity.RoundDuration);
             }
         }
     }

@@ -3,11 +3,11 @@ using Entitas;
 
 namespace Code.Gameplay.Features.GrapplingHook.Systems
 {
-    public class SetHookDescentByInputSystem : ReactiveSystem<InputEntity>, ICleanupSystem
+    public class SetHookDescentRequestByInputSystem : ReactiveSystem<InputEntity>, ICleanupSystem
     {
         private readonly IGroup<GameEntity> _hooks;
 
-        public SetHookDescentByInputSystem(GameContext gameContext, InputContext context) : base(context)
+        public SetHookDescentRequestByInputSystem(GameContext gameContext, InputContext context) : base(context)
         {
             _hooks = gameContext.GetGroup(GameMatcher
                 .AllOf(GameMatcher.GrapplingHook

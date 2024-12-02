@@ -9,7 +9,7 @@ namespace Code.Infrastructure.Systems
     {
         protected readonly List<GameEntity> _buffer;
 
-        protected virtual int BufferCapacity => 8;
+        protected virtual int BufferCapacity => 2;
         
         protected BufferedExecuteSystem()
         {

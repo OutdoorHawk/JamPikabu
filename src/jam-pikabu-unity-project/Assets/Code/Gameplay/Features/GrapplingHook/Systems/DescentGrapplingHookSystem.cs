@@ -23,7 +23,6 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
             _hooks = gameContext.GetGroup(GameMatcher
                 .AllOf(GameMatcher.GrapplingHook,
                     GameMatcher.Descending,
-                    GameMatcher.DescentAvailable,
                     GameMatcher.Rigidbody2D,
                     GameMatcher.GrapplingHookBehaviour
                 ));
@@ -69,24 +68,28 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
 
             if (hitCount > 0)
             {
-                hook.isDescentRequested = false;
-                hook.GrapplingHookBehaviour.CloseClawsAndReturn();
+                CompleteDescending(hook);
                 return true;
             }
 
             return false;
         }
 
-        private static bool CheckReachedMinPosition(Vector2 newPosition, float minWorldY, GameEntity hook)
+        private bool CheckReachedMinPosition(Vector2 newPosition, float minWorldY, GameEntity hook)
         {
             if (newPosition.y <= minWorldY)
             {
-                hook.isDescentRequested = false;
-                hook.GrapplingHookBehaviour.CloseClawsAndReturn();
+                CompleteDescending(hook);
                 return true;
             }
 
             return false;
+        }
+
+        private static void CompleteDescending(GameEntity hook)
+        {
+            hook.isDescending = false;
+            hook.GrapplingHookBehaviour.CloseClawsAndReturn();
         }
     }
 }

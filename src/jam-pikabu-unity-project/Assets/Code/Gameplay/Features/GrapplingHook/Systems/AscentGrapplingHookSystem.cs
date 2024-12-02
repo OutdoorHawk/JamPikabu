@@ -16,8 +16,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
             _time = time;
             _hooks = gameContext.GetGroup(GameMatcher
                 .AllOf(GameMatcher.GrapplingHook,
-                    GameMatcher.AscentRequested,
-                    GameMatcher.AscentAvailable,
+                    GameMatcher.Ascending,
                     GameMatcher.Rigidbody2D,
                     GameMatcher.GrapplingHookBehaviour
                 ));
@@ -44,8 +43,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
 
                 if (newPosition.y >= maxWorldY)
                 {
-                    hook.isAscentAvailable = false;
-                    hook.isAscentRequested = false;
+                    hook.isAscending = false;
                     hook.isCollectLootRequest = true;
                 }
             }

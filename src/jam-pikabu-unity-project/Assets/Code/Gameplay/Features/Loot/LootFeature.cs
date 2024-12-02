@@ -12,6 +12,8 @@ namespace Code.Gameplay.Features.Loot
             
             Add(systems.Create<ProcessLootPickup>());
             
+            Add(systems.Create<CreateLootApplierOnRoundOverSystem>());
+            
             Add(systems.Create<ApplyLootValueSystem>());
             
             Add(systems.Create<DestroyAppliedLootSystem>());

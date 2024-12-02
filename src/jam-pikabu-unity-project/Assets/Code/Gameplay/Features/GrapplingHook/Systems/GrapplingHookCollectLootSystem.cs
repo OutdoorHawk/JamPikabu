@@ -52,7 +52,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
             int hitCount = _physics2DService.CircleCastNonAlloc
             (
                 hook.Rigidbody2D.position,
-                hook.StopMovementRaycastRadius,
+                hook.CollectLootRaycastRadius,
                 CollisionLayer.Loot.AsMask(),
                 _buffer
             );
