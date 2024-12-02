@@ -27,4 +27,5 @@ namespace Code.Gameplay.Features.GrapplingHook
     [Game] public sealed class CollectLootRequest : IComponent {}
     [Game] public sealed class CollectingLoot : IComponent {}
     [Game] public sealed class Busy : IComponent {}
+    [Game] public sealed class ClosingClaws : IComponent {}
 }

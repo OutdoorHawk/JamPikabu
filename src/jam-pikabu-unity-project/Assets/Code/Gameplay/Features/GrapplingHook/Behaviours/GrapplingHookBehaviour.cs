@@ -50,14 +50,17 @@ namespace Code.Gameplay.Features.GrapplingHook.Behaviours
 
         private async UniTaskVoid CloseAndAscentAsync()
         {
+            Entity.isClosingClaws = true;
+
             _animator.SetBool(AnimationParameter.Open.AsHash(), false);
 
             await DelaySeconds(_ascentDelay, destroyCancellationToken);
 
             if (Entity != null)
-            {
                 Entity.isAscentRequested = true;
-            }
+
+            if (Entity != null)
+                Entity.isClosingClaws = false;
         }
     }
 }

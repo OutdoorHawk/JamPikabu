@@ -44,15 +44,14 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
                 Transform parent = hookRigidbody2D.transform.parent;
                 float minWorldY = parent.TransformPoint(new Vector3(0, yLimit, 0)).y;
 
-                newPosition.y = Mathf.Max(newPosition.y, minWorldY);
-
-                hookRigidbody2D.MovePosition(newPosition);
-
                 if (CheckReachedMinPosition(newPosition, minWorldY, hook))
                     continue;
 
                 if (CheckCollidedWithLoot(hookRigidbody2D, hook))
                     continue;
+                
+                newPosition.y = Mathf.Max(newPosition.y, minWorldY);
+                hookRigidbody2D.MovePosition(newPosition);
             }
         }
 

@@ -40,48 +40,49 @@ public static class GameComponentsLookup {
     public const int AscentAvailable = 29;
     public const int AscentRequested = 30;
     public const int Busy = 31;
-    public const int CollectingLoot = 32;
-    public const int CollectLootPieceInterval = 33;
-    public const int CollectLootRaycastRadius = 34;
-    public const int CollectLootRequest = 35;
-    public const int Descending = 36;
-    public const int DescentAvailable = 37;
-    public const int DescentRequested = 38;
-    public const int GrapplingHook = 39;
-    public const int GrapplingHookBehaviour = 40;
-    public const int StopMovementRaycastRadius = 41;
-    public const int XAxisMoveDirection = 42;
-    public const int XAxisMovementAvailable = 43;
-    public const int XAxisSpeed = 44;
-    public const int XMovementLimits = 45;
-    public const int YAxisDownSpeed = 46;
-    public const int YAxisUpSpeed = 47;
-    public const int Applied = 48;
-    public const int ApplyingEffects = 49;
-    public const int ApplyingValues = 50;
-    public const int Collected = 51;
-    public const int GoldValue = 52;
-    public const int Loot = 53;
-    public const int LootEffectsApplier = 54;
-    public const int LootItemUI = 55;
-    public const int LootPickupProcessing = 56;
-    public const int LootSpawner = 57;
-    public const int LootTypeId = 58;
-    public const int ReadyToApply = 59;
-    public const int ReadyToApplyEffects = 60;
-    public const int ReadyToApplyValues = 61;
-    public const int RoundCost = 62;
-    public const int RoundDuration = 63;
-    public const int RoundInProcess = 64;
-    public const int RoundOver = 65;
-    public const int RoundStartAvailable = 66;
-    public const int RoundStartRequest = 67;
-    public const int RoundStateController = 68;
-    public const int RoundStateViewBehaviour = 69;
-    public const int RoundTimeLeft = 70;
-    public const int AudioSourceBehaviour = 71;
+    public const int ClosingClaws = 32;
+    public const int CollectingLoot = 33;
+    public const int CollectLootPieceInterval = 34;
+    public const int CollectLootRaycastRadius = 35;
+    public const int CollectLootRequest = 36;
+    public const int Descending = 37;
+    public const int DescentAvailable = 38;
+    public const int DescentRequested = 39;
+    public const int GrapplingHook = 40;
+    public const int GrapplingHookBehaviour = 41;
+    public const int StopMovementRaycastRadius = 42;
+    public const int XAxisMoveDirection = 43;
+    public const int XAxisMovementAvailable = 44;
+    public const int XAxisSpeed = 45;
+    public const int XMovementLimits = 46;
+    public const int YAxisDownSpeed = 47;
+    public const int YAxisUpSpeed = 48;
+    public const int Applied = 49;
+    public const int ApplyingEffects = 50;
+    public const int ApplyingValues = 51;
+    public const int Collected = 52;
+    public const int GoldValue = 53;
+    public const int Loot = 54;
+    public const int LootEffectsApplier = 55;
+    public const int LootItemUI = 56;
+    public const int LootPickupProcessing = 57;
+    public const int LootSpawner = 58;
+    public const int LootTypeId = 59;
+    public const int ReadyToApply = 60;
+    public const int ReadyToApplyEffects = 61;
+    public const int ReadyToApplyValues = 62;
+    public const int RoundCost = 63;
+    public const int RoundDuration = 64;
+    public const int RoundInProcess = 65;
+    public const int RoundOver = 66;
+    public const int RoundStartAvailable = 67;
+    public const int RoundStartRequest = 68;
+    public const int RoundStateController = 69;
+    public const int RoundStateViewBehaviour = 70;
+    public const int RoundTimeLeft = 71;
+    public const int AudioSourceBehaviour = 72;
 
-    public const int TotalComponents = 72;
+    public const int TotalComponents = 73;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -116,6 +117,7 @@ public static class GameComponentsLookup {
         "AscentAvailable",
         "AscentRequested",
         "Busy",
+        "ClosingClaws",
         "CollectingLoot",
         "CollectLootPieceInterval",
         "CollectLootRaycastRadius",
@@ -191,6 +193,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.GrapplingHook.AscentAvailable),
         typeof(Code.Gameplay.Features.GrapplingHook.AscentRequested),
         typeof(Code.Gameplay.Features.GrapplingHook.Busy),
+        typeof(Code.Gameplay.Features.GrapplingHook.ClosingClaws),
         typeof(Code.Gameplay.Features.GrapplingHook.CollectingLoot),
         typeof(Code.Gameplay.Features.GrapplingHook.CollectLootPieceInterval),
         typeof(Code.Gameplay.Features.GrapplingHook.CollectLootRaycastRadius),
