@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8361846826390414440}
   - component: {fileID: 5248717121470401650}
+  - component: {fileID: 5769472521484386817}
   m_Layer: 7
   m_Name: Dynamic Sprite
   m_TagString: Untagged
@@ -87,6 +88,82 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &5769472521484386817
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7575925358193765445}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.05, y: 2.79}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.0337498, y: 0.0535936}
+      - {x: 1.0337498, y: 0.3620311}
+      - {x: 0.94562477, y: 0.4648436}
+      - {x: 0.6812498, y: 0.5529686}
+      - {x: 0.2993748, y: 0.5823436}
+      - {x: 0.2993748, y: 0.87609357}
+      - {x: 0.2846873, y: 1.0523436}
+      - {x: 0.2553123, y: 1.2579685}
+      - {x: 0.1231248, y: 1.4048436}
+      - {x: -0.1118752, y: 1.4048436}
+      - {x: -0.2587502, y: 1.3167186}
+      - {x: -0.4496877, y: 1.1845311}
+      - {x: -0.9931252, y: 0.7292186}
+      - {x: -1.0225002, y: 0.6264061}
+      - {x: -1.0225002, y: 0.3914061}
+      - {x: -0.9343752, y: 0.038906097}
+      - {x: -0.7581252, y: -0.3723439}
+      - {x: -0.6846877, y: -0.5045314}
+      - {x: -0.5818752, y: -0.5485939}
+      - {x: -0.4350002, y: -0.5339064}
+      - {x: -0.2587502, y: -0.5045314}
+      - {x: -0.2587502, y: -1.0039064}
+      - {x: -0.2293752, y: -1.2535939}
+      - {x: -0.1118752, y: -1.3857814}
+      - {x: -0.0971877, y: -1.400469}
+      - {x: 0.1818748, y: -1.400469}
+      - {x: 0.3874998, y: -1.1948439}
+      - {x: 0.6078123, y: -0.8276564}
+      - {x: 0.9162498, y: -0.2548439}
+  m_UseDelaunayMesh: 0
 --- !u!1001 &5337107385446540738
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -150,7 +227,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: LootToy
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2327758279818976629, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1754016841967051177, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943,

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2621542041023797263}
   - component: {fileID: 6880751227706136762}
+  - component: {fileID: 6732245612370608978}
   m_Layer: 0
   m_Name: Dynamic Sprite
   m_TagString: Untagged
@@ -87,6 +88,63 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &6732245612370608978
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279334084746822993}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.83, y: 1.0301331}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.16917984, y: 0.5326843}
+      - {x: -0.36933613, y: 0.38971552}
+      - {x: -0.39792988, y: 0.2896374}
+      - {x: -0.39792988, y: 0.13237177}
+      - {x: -0.08339859, y: -0.46809703}
+      - {x: -0.04050796, y: -0.48239392}
+      - {x: 0.1024608, y: -0.48239392}
+      - {x: 0.43128896, y: 0.16096552}
+      - {x: 0.43128896, y: 0.38971552}
+      - {x: 0.17394519, y: 0.5326843}
+  m_UseDelaunayMesh: 0
 --- !u!1001 &4499961764767766558
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -150,7 +208,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: LootJunk
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2327758279818976629, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1754016841967051177, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943,
