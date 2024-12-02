@@ -6,7 +6,7 @@ namespace Code.Gameplay.StaticData
     {
     }
 
-    public abstract class BaseStaticData : ScriptableObject, IStaticData
+    public abstract partial class BaseStaticData : ScriptableObject, IStaticData
     {
         public virtual void OnConfigPreInit()
         {
