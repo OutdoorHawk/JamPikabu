@@ -71,18 +71,19 @@ public static class GameComponentsLookup {
     public const int ReadyToApply = 60;
     public const int ReadyToApplyEffects = 61;
     public const int ReadyToApplyValues = 62;
-    public const int RoundCost = 63;
-    public const int RoundDuration = 64;
-    public const int RoundInProcess = 65;
-    public const int RoundOver = 66;
-    public const int RoundStartAvailable = 67;
-    public const int RoundStartRequest = 68;
-    public const int RoundStateController = 69;
-    public const int RoundStateViewBehaviour = 70;
-    public const int RoundTimeLeft = 71;
-    public const int AudioSourceBehaviour = 72;
+    public const int Round = 63;
+    public const int RoundCost = 64;
+    public const int RoundDuration = 65;
+    public const int RoundInProcess = 66;
+    public const int RoundOver = 67;
+    public const int RoundStartAvailable = 68;
+    public const int RoundStartRequest = 69;
+    public const int RoundStateController = 70;
+    public const int RoundStateViewBehaviour = 71;
+    public const int RoundTimeLeft = 72;
+    public const int AudioSourceBehaviour = 73;
 
-    public const int TotalComponents = 73;
+    public const int TotalComponents = 74;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -148,6 +149,7 @@ public static class GameComponentsLookup {
         "ReadyToApply",
         "ReadyToApplyEffects",
         "ReadyToApplyValues",
+        "Round",
         "RoundCost",
         "RoundDuration",
         "RoundInProcess",
@@ -224,6 +226,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Loot.ReadyToApply),
         typeof(Code.Gameplay.Features.Loot.ReadyToApplyEffects),
         typeof(Code.Gameplay.Features.Loot.ReadyToApplyValues),
+        typeof(Code.Gameplay.Features.RoundState.Round),
         typeof(Code.Gameplay.Features.RoundState.RoundCost),
         typeof(Code.Gameplay.Features.RoundState.RoundDuration),
         typeof(Code.Gameplay.Features.RoundState.RoundInProcess),

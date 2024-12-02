@@ -13,10 +13,13 @@ namespace Code.Gameplay.Features.RoundState
             
             Add(systems.Create<BlockRoundStartAvailableWhenRoundIsProcessingSystem>());
             Add(systems.Create<BlockRoundStartAvailableWhenLootIsApplyingSystem>());
+            Add(systems.Create<BlockRoundStartAvailableWhenInsufficientFundsSystem>());
             
             Add(systems.Create<ProcessRoundStartRequestSystem>());
             Add(systems.Create<ProcessRoundTimerSystem>());
             Add(systems.Create<ProcessRoundOverWhenTimerDoneSystem>());
+            
+            Add(systems.Create<RefreshRoundCostSystem>());
             
             Add(systems.Create<ResetRoundStartAvailableSystem>());
         }

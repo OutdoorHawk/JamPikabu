@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: RoundState
   m_EditorClassIdentifier: 
   RoundDuration: 30
-  InitialRoundCost: 20
   StartGoldAmount: 0
+  RoundCosts: 1400000028000000

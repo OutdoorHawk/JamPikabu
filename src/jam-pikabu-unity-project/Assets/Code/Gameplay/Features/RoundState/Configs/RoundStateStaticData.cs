@@ -1,4 +1,5 @@
-﻿using Code.Gameplay.StaticData;
+﻿using System.Collections.Generic;
+using Code.Gameplay.StaticData;
 using UnityEngine;
 
 namespace Code.Gameplay.Features.RoundState.Configs
@@ -7,7 +8,8 @@ namespace Code.Gameplay.Features.RoundState.Configs
     public class RoundStateStaticData : BaseStaticData
     {
         public float RoundDuration = 30;
-        public int InitialRoundCost = 20;
         public int StartGoldAmount = 50;
+        
+        public List<int> RoundCosts = new();
     }
 }

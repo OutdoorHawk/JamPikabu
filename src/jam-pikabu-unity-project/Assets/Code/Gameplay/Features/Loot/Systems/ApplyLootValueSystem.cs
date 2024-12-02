@@ -81,7 +81,7 @@ namespace Code.Gameplay.Features.Loot.Systems
                 loot.isReadyToApply = false;
                 loot.isApplied = true;
 
-                await DelaySeconds(0.5f, _teardownCancellationTokenSource.Token);
+                await DelaySeconds(0.25f, _teardownCancellationTokenSource.Token);
             }
             
             await DelaySeconds(1, _teardownCancellationTokenSource.Token);

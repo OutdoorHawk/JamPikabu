@@ -1,4 +1,5 @@
-﻿using Code.Common.Entity;
+﻿using System.Collections.Generic;
+using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.RoundState.Configs;
 using Code.Gameplay.StaticData;
@@ -17,13 +18,15 @@ namespace Code.Gameplay.Features.RoundState.Factory
         public GameEntity CreateRoundStateController()
         {
             var staticData = _staticDataService.GetStaticData<RoundStateStaticData>();
+            List<int> roundCosts = staticData.RoundCosts;
             
             return CreateGameEntity
                 .Empty()
                 .With(x => x.isRoundStateController = true)
                 .With(x => x.isRoundStartAvailable = true)
                 .AddRoundDuration(staticData.RoundDuration)
-                .AddRoundCost(staticData.InitialRoundCost)
+                .AddRound(0)
+                .AddRoundCost(roundCosts[0])
                 ;
         }
     }

@@ -1,6 +1,6 @@
 ﻿using Entitas;
 
-namespace Code.Gameplay.Features.RoundState
+namespace Code.Gameplay.Features.RoundState.Systems
 {
     public class BlockRoundStartAvailableWhenRoundIsProcessingSystem : IExecuteSystem
     {
