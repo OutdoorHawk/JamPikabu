@@ -14,6 +14,8 @@ namespace Code.Gameplay.Features.Loot
             
             Add(systems.Create<CreateLootApplierOnRoundOverSystem>());
             
+            Add(systems.Create<ApplyLootEffectsSystem>());
+            
             Add(systems.Create<ApplyLootValueSystem>());
             
             Add(systems.Create<DestroyAppliedLootSystem>());
