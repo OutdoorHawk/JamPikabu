@@ -59,6 +59,7 @@ namespace Code.Gameplay.Features.Loot.Systems
         {
             _lootUIService.CreateNewCollectedLootItem(loot.LootTypeId);
             loot.isCollected = true;
+            loot.isBusy = true;
         }
 
         private static void DisableCollisions(GameEntity loot)

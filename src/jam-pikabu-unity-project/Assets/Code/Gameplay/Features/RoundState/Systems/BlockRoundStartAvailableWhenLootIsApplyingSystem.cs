@@ -5,7 +5,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
     public class BlockRoundStartAvailableWhenLootIsApplyingSystem : IExecuteSystem
     {
         private readonly IGroup<GameEntity> _roundController;
-        private readonly IGroup<GameEntity> _lootApplier;
+        private readonly IGroup<GameEntity> _loot;
 
         public BlockRoundStartAvailableWhenLootIsApplyingSystem(GameContext context)
         {
@@ -14,9 +14,10 @@ namespace Code.Gameplay.Features.RoundState.Systems
                     GameMatcher.RoundStateController
                 ));
 
-            _lootApplier = context.GetGroup(
+            _loot = context.GetGroup(
                 GameMatcher.AllOf(
-                    GameMatcher.LootEffectsApplier
+                    GameMatcher.Collected,
+                    GameMatcher.Loot
                 ));
         }
 
@@ -33,7 +34,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
 
         private bool LootIsApplying()
         {
-            return _lootApplier.GetEntities().Length > 0;
+            return _loot.GetEntities().Length > 0;
         }
     }
 }

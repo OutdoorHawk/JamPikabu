@@ -50,7 +50,7 @@ namespace Code.Gameplay.Features.Loot.Factory
                     .AddTargetParent(parent)
                     .AddLootTypeId(typeId)
                     .AddViewPrefab(lootSetup.ViewPrefab)
-                    .AddGoldValue(lootSetup.GoldForPicking)
+                    .AddGoldValue(lootSetup.Value.Amount)
                 ;
 
             return loot;
@@ -67,7 +67,8 @@ namespace Code.Gameplay.Features.Loot.Factory
         {
             LootSetup lootSetup = GetLootSetup(typeId);
 
-            loot.With(x => x.AddValueIncreaseEffect(lootSetup.ValueIncreaseEffect), when: loot.ValueIncreaseEffect > 0);
+            loot.With(x => x.AddEffectValue(lootSetup.EffectValue), when: lootSetup.EffectValue > 0);
+            loot.With(x => x.AddEffectTargetsLoot(lootSetup.EffectTargets), when: lootSetup.EffectTargets.Count > 0);
         }
     }
 }

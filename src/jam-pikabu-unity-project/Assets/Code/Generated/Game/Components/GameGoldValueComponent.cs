@@ -34,10 +34,10 @@ public sealed partial class GameMatcher {
 public partial class GameEntity {
 
     public Code.Gameplay.Features.Loot.GoldValue goldValue { get { return (Code.Gameplay.Features.Loot.GoldValue)GetComponent(GameComponentsLookup.GoldValue); } }
-    public Code.Gameplay.Features.Currency.Config.CostSetup GoldValue { get { return goldValue.Value; } }
+    public int GoldValue { get { return goldValue.Value; } }
     public bool hasGoldValue { get { return HasComponent(GameComponentsLookup.GoldValue); } }
 
-    public GameEntity AddGoldValue(Code.Gameplay.Features.Currency.Config.CostSetup newValue) {
+    public GameEntity AddGoldValue(int newValue) {
         var index = GameComponentsLookup.GoldValue;
         var component = (Code.Gameplay.Features.Loot.GoldValue)CreateComponent(index, typeof(Code.Gameplay.Features.Loot.GoldValue));
         component.Value = newValue;
@@ -45,7 +45,7 @@ public partial class GameEntity {
         return this;
     }
 
-    public GameEntity ReplaceGoldValue(Code.Gameplay.Features.Currency.Config.CostSetup newValue) {
+    public GameEntity ReplaceGoldValue(int newValue) {
         var index = GameComponentsLookup.GoldValue;
         var component = (Code.Gameplay.Features.Loot.GoldValue)CreateComponent(index, typeof(Code.Gameplay.Features.Loot.GoldValue));
         component.Value = newValue;

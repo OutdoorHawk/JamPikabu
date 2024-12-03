@@ -28,7 +28,6 @@ namespace Code.Gameplay.Features.Loot.Systems
             CreateGameEntity
                 .Empty()
                 .With(x => x.isLootEffectsApplier = true)
-                .With(x => x.isReadyToApplyValues = true)
                 ;
         }
     }
