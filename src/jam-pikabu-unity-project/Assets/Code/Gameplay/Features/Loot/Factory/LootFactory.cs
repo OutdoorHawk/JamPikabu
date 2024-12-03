@@ -15,21 +15,10 @@ namespace Code.Gameplay.Features.Loot.Factory
         {
             _staticDataService = staticDataService;
         }
-        
+
         public GameEntity CreateLootEntity(LootTypeId typeId, Transform parent, Vector2 at, Vector3 spawnRotation)
         {
-            var staticData = _staticDataService.GetStaticData<LootStaticData>();
-            var lootSetup = staticData.GetConfig(typeId);
-
-            GameEntity loot = CreateGameEntity.Empty()
-                    .With(x => x.isLoot = true)
-                    .AddStartWorldPosition(at)
-                    .AddStartRotation(spawnRotation)
-                    .AddTargetParent(parent)
-                    .AddLootTypeId(typeId)
-                    .AddViewPrefab(lootSetup.ViewPrefab)
-                    .AddGoldValue(lootSetup.GoldForPicking)
-                ;
+            GameEntity loot = CreateBaseLoot(typeId, parent, at, spawnRotation);
 
             switch (typeId)
             {
@@ -45,7 +34,40 @@ namespace Code.Gameplay.Features.Loot.Factory
                     throw new ArgumentOutOfRangeException(nameof(typeId), typeId, null);
             }
 
+            AddEffects(loot, typeId);
+
             return loot;
+        }
+
+        private GameEntity CreateBaseLoot(LootTypeId typeId, Transform parent, Vector2 at, Vector3 spawnRotation)
+        {
+            LootSetup lootSetup = GetLootSetup(typeId);
+
+            GameEntity loot = CreateGameEntity.Empty()
+                    .With(x => x.isLoot = true)
+                    .AddStartWorldPosition(at)
+                    .AddStartRotation(spawnRotation)
+                    .AddTargetParent(parent)
+                    .AddLootTypeId(typeId)
+                    .AddViewPrefab(lootSetup.ViewPrefab)
+                    .AddGoldValue(lootSetup.GoldForPicking)
+                ;
+
+            return loot;
+        }
+
+        private LootSetup GetLootSetup(LootTypeId typeId)
+        {
+            var staticData = _staticDataService.GetStaticData<LootStaticData>();
+            var lootSetup = staticData.GetConfig(typeId);
+            return lootSetup;
+        }
+
+        private void AddEffects(GameEntity loot, LootTypeId typeId)
+        {
+            LootSetup lootSetup = GetLootSetup(typeId);
+
+            loot.With(x => x.AddValueIncreaseEffect(lootSetup.ValueIncreaseEffect), when: loot.ValueIncreaseEffect > 0);
         }
     }
 }

@@ -13,5 +13,7 @@ namespace Code.Gameplay.Features.Loot.Configs
         public EntityView ViewPrefab;
         public Sprite Icon;
         public CostSetup GoldForPicking = new(CurrencyTypeId.Gold);
+        [Header("Effects")]
+        public int ValueIncreaseEffect;
     }
 }

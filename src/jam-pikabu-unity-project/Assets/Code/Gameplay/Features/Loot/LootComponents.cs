@@ -18,4 +18,5 @@ namespace Code.Gameplay.Features.Loot
     [Game] public sealed class ApplyingEffects : IComponent { }
     [Game] public sealed class ApplyingValues : IComponent { }
     [Game] public sealed class Applied : IComponent { }
+    [Game] public sealed class ValueIncreaseEffect : IComponent { public int Value; }
 }

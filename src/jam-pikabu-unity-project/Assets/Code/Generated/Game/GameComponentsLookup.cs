@@ -71,20 +71,21 @@ public static class GameComponentsLookup {
     public const int ReadyToApply = 60;
     public const int ReadyToApplyEffects = 61;
     public const int ReadyToApplyValues = 62;
-    public const int GameOver = 63;
-    public const int Round = 64;
-    public const int RoundCost = 65;
-    public const int RoundDuration = 66;
-    public const int RoundInProcess = 67;
-    public const int RoundOver = 68;
-    public const int RoundStartAvailable = 69;
-    public const int RoundStartRequest = 70;
-    public const int RoundStateController = 71;
-    public const int RoundStateViewBehaviour = 72;
-    public const int RoundTimeLeft = 73;
-    public const int AudioSourceBehaviour = 74;
+    public const int ValueIncreaseEffect = 63;
+    public const int GameOver = 64;
+    public const int Round = 65;
+    public const int RoundCost = 66;
+    public const int RoundDuration = 67;
+    public const int RoundInProcess = 68;
+    public const int RoundOver = 69;
+    public const int RoundStartAvailable = 70;
+    public const int RoundStartRequest = 71;
+    public const int RoundStateController = 72;
+    public const int RoundStateViewBehaviour = 73;
+    public const int RoundTimeLeft = 74;
+    public const int AudioSourceBehaviour = 75;
 
-    public const int TotalComponents = 75;
+    public const int TotalComponents = 76;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -150,6 +151,7 @@ public static class GameComponentsLookup {
         "ReadyToApply",
         "ReadyToApplyEffects",
         "ReadyToApplyValues",
+        "ValueIncreaseEffect",
         "GameOver",
         "Round",
         "RoundCost",
@@ -228,6 +230,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Loot.ReadyToApply),
         typeof(Code.Gameplay.Features.Loot.ReadyToApplyEffects),
         typeof(Code.Gameplay.Features.Loot.ReadyToApplyValues),
+        typeof(Code.Gameplay.Features.Loot.ValueIncreaseEffect),
         typeof(Code.Gameplay.Features.RoundState.GameOver),
         typeof(Code.Gameplay.Features.RoundState.Round),
         typeof(Code.Gameplay.Features.RoundState.RoundCost),

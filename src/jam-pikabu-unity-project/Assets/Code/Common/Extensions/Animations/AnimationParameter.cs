@@ -7,5 +7,7 @@
         Idle = 2,
         Open = 3,
         MovementBlend = 4,
+        EffectProducer = 5,
+        EffectTarget = 6,
     }
 }
