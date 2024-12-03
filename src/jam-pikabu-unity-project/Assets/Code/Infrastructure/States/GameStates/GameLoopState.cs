@@ -1,5 +1,4 @@
 using Code.Gameplay.Features;
-using Code.Gameplay.Initialize;
 using Code.Gameplay.Input;
 using Code.Gameplay.Windows.Factory;
 using Code.Infrastructure.SceneContext;
@@ -15,14 +14,13 @@ namespace Code.Infrastructure.States.GameStates
     {
         private readonly GameStateMachine _stateMachine;
         private readonly ISceneContextProvider _sceneContextProvider;
-        private readonly IInitializationService _initializationService;
         private readonly ISystemFactory _systemFactory;
         private readonly GameContext _gameContext;
         private readonly InputContext _inputContext;
         private readonly IGameStateHandlerService _gameStateHandlerService;
 
-        private BattleFeature _battleFeature;
-        private BattlePhysicsFeature _battlePhysicsFeature;
+        private GameLoopFeature _gameLoopFeature;
+        private GameLoopPhysicsFeature _gameLoopPhysicsFeature;
         private InputFeature _inputFeature;
 
         [Inject]
@@ -31,7 +29,6 @@ namespace Code.Infrastructure.States.GameStates
             IGameStateMachine gameStateMachine,
             IUIFactory uiFactory,
             ISceneContextProvider sceneContextProvider,
-            IInitializationService initializationService,
             ISystemFactory systemFactory,
             GameContext gameContext,
             InputContext inputContext,
@@ -42,7 +39,6 @@ namespace Code.Infrastructure.States.GameStates
             _inputContext = inputContext;
             _gameContext = gameContext;
             _systemFactory = systemFactory;
-            _initializationService = initializationService;
             _sceneContextProvider = sceneContextProvider;
         }
 
@@ -50,23 +46,21 @@ namespace Code.Infrastructure.States.GameStates
         {
             base.Enter();
 
-            _battleFeature = _systemFactory.Create<BattleFeature>();
-            _battlePhysicsFeature = _systemFactory.Create<BattlePhysicsFeature>();
+            _gameLoopFeature = _systemFactory.Create<GameLoopFeature>();
+            _gameLoopPhysicsFeature = _systemFactory.Create<GameLoopPhysicsFeature>();
             _inputFeature = _systemFactory.Create<InputFeature>();
 
             _inputFeature.Initialize();
-            _battleFeature.Initialize();
-            _battlePhysicsFeature.Initialize();
-
-            _initializationService.SetLevelPrepared();
+            _gameLoopFeature.Initialize();
+            _gameLoopPhysicsFeature.Initialize();
 
             _gameStateHandlerService.OnEnterGameLoop();
         }
 
         protected override void OnFixedUpdate()
         {
-            _battlePhysicsFeature.Execute();
-            _battlePhysicsFeature.Cleanup();
+            _gameLoopPhysicsFeature.Execute();
+            _gameLoopPhysicsFeature.Cleanup();
         }
 
         protected override void OnUpdate()
@@ -74,8 +68,8 @@ namespace Code.Infrastructure.States.GameStates
             _inputFeature.Execute();
             _inputFeature.Cleanup();
 
-            _battleFeature.Execute();
-            _battleFeature.Cleanup();
+            _gameLoopFeature.Execute();
+            _gameLoopFeature.Cleanup();
         }
 
         protected override void ExitOnEndOfFrame()
@@ -83,22 +77,21 @@ namespace Code.Infrastructure.States.GameStates
             base.ExitOnEndOfFrame();
             
             _sceneContextProvider.CleanUp();
-            _initializationService.SetLevelNotPrepared();
 
-            _battleFeature.DeactivateReactiveSystems();
-            _battlePhysicsFeature.DeactivateReactiveSystems();
+            _gameLoopFeature.DeactivateReactiveSystems();
+            _gameLoopPhysicsFeature.DeactivateReactiveSystems();
             _inputFeature.DeactivateReactiveSystems();
             _inputFeature.ClearReactiveSystems();
-            _battleFeature.ClearReactiveSystems();
-            _battlePhysicsFeature.ClearReactiveSystems();
+            _gameLoopFeature.ClearReactiveSystems();
+            _gameLoopPhysicsFeature.ClearReactiveSystems();
 
             _inputFeature.Cleanup();
-            _battleFeature.Cleanup();
-            _battlePhysicsFeature.Cleanup();
+            _gameLoopFeature.Cleanup();
+            _gameLoopPhysicsFeature.Cleanup();
 
-            _battleFeature = null;
+            _gameLoopFeature = null;
             _inputFeature = null;
-            _battlePhysicsFeature = null;
+            _gameLoopPhysicsFeature = null;
 
             _gameStateHandlerService.OnExitGameLoop();
         }

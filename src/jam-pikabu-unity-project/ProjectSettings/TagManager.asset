@@ -48,17 +48,26 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Back
+    uniqueID: 2941070991
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: HUD
+    uniqueID: 392414517
+    locked: 0
+  - name: Loot
+    uniqueID: 780278883
+    locked: 0
+  - name: Overlay
+    uniqueID: 2590657571
     locked: 0
   - name: Tutorial
     uniqueID: 4268362313
     locked: 0
   - name: TutorialHighlight
     uniqueID: 668880165
-    locked: 0
-  - name: Loot
-    uniqueID: 780278883
     locked: 0
   m_RenderingLayers:
   - Default

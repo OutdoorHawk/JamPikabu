@@ -1,5 +1,6 @@
 ﻿using Code.Gameplay.Features;
 using Code.Gameplay.Input;
+using Code.Gameplay.Windows;
 using Code.Gameplay.Windows.Service;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
@@ -15,8 +16,8 @@ namespace Code.Infrastructure.States.GameStates
         private readonly GameContext _gameContext;
         private readonly InputContext _inputContext;
         
-        private BattleFeature _battleFeature;
-        private BattlePhysicsFeature _battlePhysicsFeature;
+        private GameLoopFeature _gameLoopFeature;
+        private GameLoopPhysicsFeature _gameLoopPhysicsFeature;
         private InputFeature _inputFeature;
 
         public GameOverState
@@ -37,17 +38,17 @@ namespace Code.Infrastructure.States.GameStates
 
         public override void Enter()
         {
-            // _windowService.Open(WindowId.GameOverWindow);
+            _windowService.OpenWindow(WindowTypeId.GameLostWindow);
             
-            _battleFeature = _systemFactory.Create<BattleFeature>();
-            _battlePhysicsFeature = _systemFactory.Create<BattlePhysicsFeature>();
+            _gameLoopFeature = _systemFactory.Create<GameLoopFeature>();
+            _gameLoopPhysicsFeature = _systemFactory.Create<GameLoopPhysicsFeature>();
             _inputFeature = _systemFactory.Create<InputFeature>();
         }
 
         protected override void OnFixedUpdate()
         {
-            _battlePhysicsFeature.Execute();
-            _battlePhysicsFeature.Cleanup();
+            _gameLoopPhysicsFeature.Execute();
+            _gameLoopPhysicsFeature.Cleanup();
         }
 
         protected override void OnUpdate()
@@ -55,34 +56,34 @@ namespace Code.Infrastructure.States.GameStates
             _inputFeature.Execute();
             _inputFeature.Cleanup();
 
-            _battleFeature.Execute();
-            _battleFeature.Cleanup();
+            _gameLoopFeature.Execute();
+            _gameLoopFeature.Cleanup();
         }
 
         protected override void ExitOnEndOfFrame()
         {
             base.ExitOnEndOfFrame();
 
-            _battleFeature.DeactivateReactiveSystems();
-            _battlePhysicsFeature.DeactivateReactiveSystems();
+            _gameLoopFeature.DeactivateReactiveSystems();
+            _gameLoopPhysicsFeature.DeactivateReactiveSystems();
             _inputFeature.DeactivateReactiveSystems();
             _inputFeature.ClearReactiveSystems();
-            _battleFeature.ClearReactiveSystems();
-            _battlePhysicsFeature.ClearReactiveSystems();
+            _gameLoopFeature.ClearReactiveSystems();
+            _gameLoopPhysicsFeature.ClearReactiveSystems();
 
             foreach (GameEntity entity in _gameContext.GetEntities())
                 entity.isDestructed = true;
 
             _inputFeature.Cleanup();
-            _battleFeature.Cleanup();
-            _battlePhysicsFeature.Cleanup();
-            _battleFeature.TearDown();
-            _battlePhysicsFeature.TearDown();
+            _gameLoopFeature.Cleanup();
+            _gameLoopPhysicsFeature.Cleanup();
+            _gameLoopFeature.TearDown();
+            _gameLoopPhysicsFeature.TearDown();
             _inputFeature.TearDown();
             
-            _battleFeature = null;
+            _gameLoopFeature = null;
             _inputFeature = null;
-            _battlePhysicsFeature = null;
+            _gameLoopPhysicsFeature = null;
 
             foreach (GameEntity entity in _gameContext.GetEntities())
                 entity.Destroy();

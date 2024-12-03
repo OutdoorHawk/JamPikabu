@@ -8,6 +8,7 @@ using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Common.Time;
 using Code.Gameplay.Features.Currency.Factory;
 using Code.Gameplay.Features.Currency.Service;
+using Code.Gameplay.Features.GameOver.Service;
 using Code.Gameplay.Features.GrapplingHook.Factory;
 using Code.Gameplay.Features.Loot.Factory;
 using Code.Gameplay.Features.Loot.Service;
@@ -119,6 +120,7 @@ namespace Code.Infrastructure.DI.Installers
         {
             Container.BindInterfacesTo<SoundService>().FromInstance(_soundService).AsSingle();
             Container.BindInterfacesTo<GameplayCurrencyService>().AsSingle();
+            Container.BindInterfacesTo<GameOverService>().AsSingle();
             Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
             Container.Bind<IMousePositionService>().To<MousePositionService>().AsSingle();
             Container.Bind<ICameraProvider>().To<CameraProvider>().AsSingle();

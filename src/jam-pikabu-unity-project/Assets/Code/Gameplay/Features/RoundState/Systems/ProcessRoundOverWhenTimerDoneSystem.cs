@@ -32,8 +32,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
             {
                 if (CheckHookIsStillBusy())
                     continue;
-
-                Debug.LogError($"round over");
+                
                 entity.isCooldownUp = false;
                 entity.isRoundInProcess = false;
                 entity.isRoundOver = true;
