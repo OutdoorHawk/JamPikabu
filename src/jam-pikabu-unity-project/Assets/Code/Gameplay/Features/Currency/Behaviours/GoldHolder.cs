@@ -1,6 +1,4 @@
-﻿using System;
-using Code.Gameplay.Features.Currency.Config;
-using Code.Gameplay.Features.Currency.Service;
+﻿using Code.Gameplay.Features.Currency.Service;
 using Code.Meta.UI.Common;
 using UnityEngine;
 using Zenject;
@@ -11,7 +9,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours
     {
         public PriceInfo PlayerCurrentGold;
         public PriceInfo PlayerTurnCostGold;
-        
+
         private IGameplayCurrencyService _gameplayCurrencyService;
 
         [Inject]

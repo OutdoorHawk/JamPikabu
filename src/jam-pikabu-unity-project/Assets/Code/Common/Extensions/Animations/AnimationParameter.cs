@@ -9,5 +9,6 @@
         MovementBlend = 4,
         EffectProducer = 5,
         EffectTarget = 6,
+        Consume = 7,
     }
 }

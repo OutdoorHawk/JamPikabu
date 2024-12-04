@@ -20,9 +20,10 @@ namespace Code.Gameplay.Features.Loot
             Add(systems.Create<BlockLootEffectApplicationWhileLootIsBusy>());
             Add(systems.Create<BlockLootConsumeAvailableWhileLootIsBusy>());
             
-            Add(systems.Create<ApplyLootIncreaseValueEffectSystem>());
+            //Add(systems.Create<ApplyLootIncreaseValueEffectSystem>());
             
             Add(systems.Create<ConsumeLootValueSystem>());
+            Add(systems.Create<ConsumeLootVisualsSystem>());
             
             Add(systems.Create<DestroyConsumedLootSystem>());
         }

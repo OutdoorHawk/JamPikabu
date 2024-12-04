@@ -23,7 +23,7 @@ namespace Code.Gameplay.Features.Loot.Systems
 
         public void Cleanup()
         {
-            foreach (var loot in _loot)
+            /*foreach (var loot in _loot)
             {
                 //loot.isDestructed = true;
             }
@@ -34,7 +34,7 @@ namespace Code.Gameplay.Features.Loot.Systems
                 {
                     applier.isDestructed = true;
                 }
-            }
+            }*/
         }
     }
 }

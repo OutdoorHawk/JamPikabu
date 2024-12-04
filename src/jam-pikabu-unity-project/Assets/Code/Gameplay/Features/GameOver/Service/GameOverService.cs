@@ -1,4 +1,5 @@
-﻿using Code.Gameplay.Features.RoundState.Service;
+﻿using System.Threading;
+using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.Input.Service;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows;
@@ -10,6 +11,8 @@ using Code.Infrastructure.States.StateMachine;
 using Code.Progress.Data;
 using Code.Progress.Provider;
 using Code.Progress.SaveLoadService;
+using Cysharp.Threading.Tasks;
+using static Code.Common.Extensions.AsyncGameplayExtensions;
 
 namespace Code.Gameplay.Features.GameOver.Service
 {
@@ -68,11 +71,17 @@ namespace Code.Gameplay.Features.GameOver.Service
             if (_gameStateMachine.ActiveState is GameOverState)
                 return;
 
+            GameOverAsync().Forget();
+        }
+
+        private async UniTaskVoid GameOverAsync()
+        {
             BlockInput();
             _gameStateMachine.Enter<GameOverState>();
-            _windowService.OpenWindow(WindowTypeId.GameLostWindow);
             _saveLoadService.SaveProgress();
             _roundStateService.ResetCurrentRound();
+            await DelaySeconds(1, new CancellationToken());
+            _windowService.OpenWindow(WindowTypeId.GameLostWindow);
         }
 
         private void BlockInput()

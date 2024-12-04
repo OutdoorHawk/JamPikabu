@@ -10,11 +10,12 @@ namespace Code.Gameplay.Features.Currency.Service
         public event Action CurrencyChanged;
         
         private int _currentGold;
+        private int _currentGoldWithdraw;
         private int _currentTurnCostGold;
 
         public CurrencyTypeId GoldCurrencyType => CurrencyTypeId.Gold;
 
-        public int CurrentGoldCurrency => _currentGold;
+        public int CurrentGoldCurrency => _currentGold - _currentGoldWithdraw;
         public int CurrentTurnCostGold => _currentTurnCostGold;
 
         public GameplayCurrencyService(ISoundService soundService)
@@ -22,12 +23,13 @@ namespace Code.Gameplay.Features.Currency.Service
             _soundService = soundService;
         }
         
-        public void UpdateCurrentGoldAmount(int newAmount)
+        public void UpdateCurrentGoldAmount(int newAmount, int withdraw)
         {
-            if (Math.Abs(newAmount - _currentGold) > float.Epsilon)
+            if (_currentGold != newAmount || _currentGoldWithdraw != withdraw)
             {
                 PlaySoftCurrencySound(newAmount);
                 _currentGold = newAmount;
+                _currentGoldWithdraw = withdraw;
                 CurrencyChanged?.Invoke();
             }
         }

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Code.Common.Entity;
 using Code.Common.Extensions;
-using Cysharp.Threading.Tasks;
 using Entitas;
 
 namespace Code.Gameplay.Features.Loot.Systems
@@ -26,36 +25,22 @@ namespace Code.Gameplay.Features.Loot.Systems
                     GameMatcher.Collected,
                     GameMatcher.LootItemUI,
                     GameMatcher.GoldValue
-                ));
+                ).NoneOf(
+                    GameMatcher.Consumed));
         }
 
         public void Execute()
         {
             foreach (var _ in _lootApplier)
+            foreach (var loot in _readyLoot.GetEntities(_buffer))
             {
-                foreach (var loot in _readyLoot)
-                {
-                    loot.isConsumed = true;
-                    
-                    CreateGameEntity.Empty()
-                        .With(x => x.isAddGoldRequest = true)
-                        .AddGold(loot.GoldValue)
-                        ;
-                }
+                loot.isConsumed = true;
 
-                //GiveGoldAsync(_readyLoot).Forget();
-            }
-        }
-
-        private async UniTaskVoid GiveGoldAsync(IGroup<GameEntity> readyLoot)
-        {
-            foreach (var loot in readyLoot.GetEntities(_buffer))
-            {
-                loot.Retain(this);
-                await loot.LootItemUI.AnimateConsume();
-                
-                loot.isDestructed = true;
-                loot.Release(this);
+                CreateGameEntity.Empty()
+                    .With(x => x.isAddGoldRequest = true)
+                    .AddGold(loot.GoldValue)
+                    .AddWithdraw(loot.GoldValue)
+                    ;
             }
         }
     }

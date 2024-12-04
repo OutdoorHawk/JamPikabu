@@ -14,23 +14,6 @@ namespace Code.Gameplay.Features.Loot.Service
 
         public IReadOnlyList<LootTypeId> CollectedLootItems => _collectedLootItems;
 
-        public void CreateNewCollectedLootItem(LootTypeId lootType)
-        {
-            _collectedLootItems.Add(lootType);
-            NotifyLootItemAdded(lootType);
-            NotifyLootUpdated();
-        }
-
-        private void NotifyLootItemAdded(LootTypeId lootType)
-        {
-            OnLootItemAdded?.Invoke(lootType);
-        }
-
-        private void NotifyLootUpdated()
-        {
-            OnLootUpdate?.Invoke();
-        }
-
         #region IEnterGameLoopStateHandler
 
         public OrderType OrderType { get; }
@@ -43,5 +26,23 @@ namespace Code.Gameplay.Features.Loot.Service
         }
 
         #endregion
+
+        public void CreateNewCollectedLootItem(LootTypeId lootType)
+        {
+            _collectedLootItems.Add(lootType);
+            NotifyLootItemAdded(lootType);
+            NotifyLootUpdated();
+        }
+
+        private void NotifyLootItemAdded(LootTypeId lootType)
+        {
+            OnLootItemAdded?.Invoke(lootType);
+        }
+
+
+        private void NotifyLootUpdated()
+        {
+            OnLootUpdate?.Invoke();
+        }
     }
 }

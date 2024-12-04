@@ -36,61 +36,63 @@ public static class GameComponentsLookup {
     public const int CurrencyStorage = 25;
     public const int CurrencyTypeId = 26;
     public const int Gold = 27;
-    public const int Ascending = 28;
-    public const int AscentAvailable = 29;
-    public const int AscentRequested = 30;
-    public const int Busy = 31;
-    public const int ClosingClaws = 32;
-    public const int CollectingLoot = 33;
-    public const int CollectLootPieceInterval = 34;
-    public const int CollectLootRaycastRadius = 35;
-    public const int CollectLootRequest = 36;
-    public const int Descending = 37;
-    public const int DescentAvailable = 38;
-    public const int DescentRequested = 39;
-    public const int GrapplingHook = 40;
-    public const int GrapplingHookBehaviour = 41;
-    public const int StopMovementRaycastRadius = 42;
-    public const int XAxisMoveDirection = 43;
-    public const int XAxisMovementAvailable = 44;
-    public const int XAxisSpeed = 45;
-    public const int XMovementLimits = 46;
-    public const int YAxisDownSpeed = 47;
-    public const int YAxisUpSpeed = 48;
-    public const int Applied = 49;
-    public const int ApplyingEffects = 50;
-    public const int ApplyingValues = 51;
-    public const int Collected = 52;
-    public const int Consumed = 53;
-    public const int EffectApplicationAvailable = 54;
-    public const int EffectApplied = 55;
-    public const int EffectTargetsLoot = 56;
-    public const int EffectValue = 57;
-    public const int GoldValue = 58;
-    public const int Loot = 59;
-    public const int LootConsumeAvailable = 60;
-    public const int LootEffectsApplier = 61;
-    public const int LootItemUI = 62;
-    public const int LootPickupProcessing = 63;
-    public const int LootSpawner = 64;
-    public const int LootTypeId = 65;
-    public const int ReadyToApply = 66;
-    public const int ReadyToApplyEffects = 67;
-    public const int ReadyToApplyValues = 68;
-    public const int GameOver = 69;
-    public const int Round = 70;
-    public const int RoundCost = 71;
-    public const int RoundDuration = 72;
-    public const int RoundInProcess = 73;
-    public const int RoundOver = 74;
-    public const int RoundStartAvailable = 75;
-    public const int RoundStartRequest = 76;
-    public const int RoundStateController = 77;
-    public const int RoundStateViewBehaviour = 78;
-    public const int RoundTimeLeft = 79;
-    public const int AudioSourceBehaviour = 80;
+    public const int Withdraw = 28;
+    public const int Ascending = 29;
+    public const int AscentAvailable = 30;
+    public const int AscentRequested = 31;
+    public const int Busy = 32;
+    public const int ClosingClaws = 33;
+    public const int CollectingLoot = 34;
+    public const int CollectLootPieceInterval = 35;
+    public const int CollectLootRaycastRadius = 36;
+    public const int CollectLootRequest = 37;
+    public const int Descending = 38;
+    public const int DescentAvailable = 39;
+    public const int DescentRequested = 40;
+    public const int GrapplingHook = 41;
+    public const int GrapplingHookBehaviour = 42;
+    public const int StopMovementRaycastRadius = 43;
+    public const int XAxisMoveDirection = 44;
+    public const int XAxisMovementAvailable = 45;
+    public const int XAxisSpeed = 46;
+    public const int XMovementLimits = 47;
+    public const int YAxisDownSpeed = 48;
+    public const int YAxisUpSpeed = 49;
+    public const int Applied = 50;
+    public const int ApplyingEffects = 51;
+    public const int ApplyingValues = 52;
+    public const int Collected = 53;
+    public const int Consumed = 54;
+    public const int EffectApplicationAvailable = 55;
+    public const int EffectApplied = 56;
+    public const int EffectTargetsLoot = 57;
+    public const int EffectValue = 58;
+    public const int GoldValue = 59;
+    public const int IncreaseValueEffect = 60;
+    public const int Loot = 61;
+    public const int LootConsumeAvailable = 62;
+    public const int LootEffectsApplier = 63;
+    public const int LootItemUI = 64;
+    public const int LootPickupProcessing = 65;
+    public const int LootSpawner = 66;
+    public const int LootTypeId = 67;
+    public const int ReadyToApply = 68;
+    public const int ReadyToApplyEffects = 69;
+    public const int ReadyToApplyValues = 70;
+    public const int GameOver = 71;
+    public const int Round = 72;
+    public const int RoundCost = 73;
+    public const int RoundDuration = 74;
+    public const int RoundInProcess = 75;
+    public const int RoundOver = 76;
+    public const int RoundStartAvailable = 77;
+    public const int RoundStartRequest = 78;
+    public const int RoundStateController = 79;
+    public const int RoundStateViewBehaviour = 80;
+    public const int RoundTimeLeft = 81;
+    public const int AudioSourceBehaviour = 82;
 
-    public const int TotalComponents = 81;
+    public const int TotalComponents = 83;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -121,6 +123,7 @@ public static class GameComponentsLookup {
         "CurrencyStorage",
         "CurrencyTypeId",
         "Gold",
+        "Withdraw",
         "Ascending",
         "AscentAvailable",
         "AscentRequested",
@@ -152,6 +155,7 @@ public static class GameComponentsLookup {
         "EffectTargetsLoot",
         "EffectValue",
         "GoldValue",
+        "IncreaseValueEffect",
         "Loot",
         "LootConsumeAvailable",
         "LootEffectsApplier",
@@ -205,6 +209,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Currency.CurrencyStorage),
         typeof(Code.Gameplay.Features.Currency.CurrencyTypeIdComponent),
         typeof(Code.Gameplay.Features.Currency.Gold),
+        typeof(Code.Gameplay.Features.Currency.Withdraw),
         typeof(Code.Gameplay.Features.GrapplingHook.Ascending),
         typeof(Code.Gameplay.Features.GrapplingHook.AscentAvailable),
         typeof(Code.Gameplay.Features.GrapplingHook.AscentRequested),
@@ -236,6 +241,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Loot.EffectTargetsLoot),
         typeof(Code.Gameplay.Features.Loot.EffectValue),
         typeof(Code.Gameplay.Features.Loot.GoldValue),
+        typeof(Code.Gameplay.Features.Loot.IncreaseValueEffect),
         typeof(Code.Gameplay.Features.Loot.Loot),
         typeof(Code.Gameplay.Features.Loot.LootConsumeAvailable),
         typeof(Code.Gameplay.Features.Loot.LootEffectsApplier),

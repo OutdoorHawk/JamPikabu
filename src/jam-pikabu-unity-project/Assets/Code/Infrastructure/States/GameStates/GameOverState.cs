@@ -38,8 +38,6 @@ namespace Code.Infrastructure.States.GameStates
 
         public override void Enter()
         {
-            _windowService.OpenWindow(WindowTypeId.GameLostWindow);
-            
             _gameLoopFeature = _systemFactory.Create<GameLoopFeature>();
             _gameLoopPhysicsFeature = _systemFactory.Create<GameLoopPhysicsFeature>();
             _inputFeature = _systemFactory.Create<InputFeature>();

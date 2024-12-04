@@ -8,7 +8,7 @@ namespace Code.Gameplay.Features.Currency.Service
         CurrencyTypeId GoldCurrencyType { get; }
         int CurrentGoldCurrency { get; }
         int CurrentTurnCostGold { get; }
-        void UpdateCurrentGoldAmount(int newAmount);
+        void UpdateCurrentGoldAmount(int newAmount, int withdraw);
         void UpdateCurrentTurnCostAmount(int newAmount);
         void Cleanup();
     }

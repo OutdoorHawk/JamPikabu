@@ -30,6 +30,9 @@ namespace Code.Gameplay.Features.Currency.Systems
                 request.isDestructed = true;
 
                 storage.ReplaceGold(storage.Gold + request.Gold);
+
+                if (request.hasWithdraw) 
+                    storage.ReplaceWithdraw(storage.Withdraw + request.Withdraw);
             }
         }
     }

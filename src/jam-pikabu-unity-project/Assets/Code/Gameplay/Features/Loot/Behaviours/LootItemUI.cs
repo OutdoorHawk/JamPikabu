@@ -57,10 +57,11 @@ namespace Code.Gameplay.Features.Loot.Behaviours
             Entity.isBusy = false;
         }
 
-        public async UniTask AnimateConsume()
+        public async UniTask AnimateConsume(float delay = 0)
         {
             Entity.isBusy = true;
-            await DelaySeconds(0.5f, destroyCancellationToken);
+            await DelaySeconds(delay, destroyCancellationToken);
+            await LootAnimator.WaitForAnimationCompleteAsync(AnimationParameter.Consume.AsHash(), destroyCancellationToken);
             Entity.isBusy = false;
         }
 
