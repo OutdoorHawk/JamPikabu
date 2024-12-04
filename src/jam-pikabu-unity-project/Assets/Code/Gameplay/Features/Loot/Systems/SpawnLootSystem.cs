@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
+using Code.Common;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.Features.Loot.Factory;
 using Code.Gameplay.StaticData;
@@ -11,18 +12,20 @@ using static Code.Common.Extensions.AsyncGameplayExtensions;
 
 namespace Code.Gameplay.Features.Loot.Systems
 {
-    public class SpawnLootSystem : ReactiveSystem<GameEntity>
+    public class SpawnLootSystem : ReactiveSystem<GameEntity>, ITearDownSystem
     {
         private readonly ILootFactory _lootFactory;
         private readonly IStaticDataService _staticDataService;
         private readonly ISceneContextProvider _provider;
+        private readonly GameContext _context;
 
-        private CancellationTokenSource _exitGameSource;
+        private readonly CancellationTokenSource _exitGameSource = new();
         private int _spawnPointIndex;
 
         public SpawnLootSystem(GameContext context, ILootFactory lootFactory, IStaticDataService staticDataService, ISceneContextProvider provider) :
             base(context)
         {
+            _context = context;
             _provider = provider;
             _staticDataService = staticDataService;
             _lootFactory = lootFactory;
@@ -40,14 +43,15 @@ namespace Code.Gameplay.Features.Loot.Systems
 
         protected override void Execute(List<GameEntity> entities)
         {
-            SpawnLootAsync(entities).Forget();
+            foreach (var lootSpawner in entities)
+            {
+                SpawnLootAsync(lootSpawner).Forget();
+            }
         }
 
-        private async UniTaskVoid SpawnLootAsync(List<GameEntity> lootSpawners)
+        private async UniTaskVoid SpawnLootAsync(GameEntity lootSpawner)
         {
-            foreach (var spawner in lootSpawners)
-                spawner.Retain(this);
-
+            int lootSpawnerId = lootSpawner.Id;
             var staticData = _staticDataService.GetStaticData<LootStaticData>();
             List<LootSetup> configs = staticData.Configs;
 
@@ -64,12 +68,12 @@ namespace Code.Gameplay.Features.Loot.Systems
                 }
             }
 
-            foreach (var spawner in lootSpawners)
-            {
-                spawner.Release(this);
-                spawner.isDestructed = true;
-                ;
-            }
+            GameEntity spawner = _context.GetEntityWithId(lootSpawnerId);
+
+            if (spawner.IsNullOrDestructed())
+                return;
+            
+            spawner.isDestructed = true;
         }
 
         private Transform GetSpawnPoint(SceneContextComponent sceneContext)

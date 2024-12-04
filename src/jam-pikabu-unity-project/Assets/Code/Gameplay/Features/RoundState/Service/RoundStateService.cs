@@ -50,7 +50,7 @@ namespace Code.Gameplay.Features.RoundState.Service
         {
             foreach (RoundData data in _rounds)
             {
-                if (data.RoundId == currentRound)
+                if (data.RoundId >= currentRound)
                     return data;
             }
 

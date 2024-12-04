@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoundDuration: 6
   StartGoldAmount: 20
-  RoundCosts: 1400000028000000
+  Rounds:
+  - RoundId: 1
+    PlayCost: 20
+    SceneId: 2

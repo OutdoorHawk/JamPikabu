@@ -19,7 +19,7 @@ namespace Code.Gameplay.Features.RoundState
             Add(systems.Create<ProcessRoundTimerSystem>());
             Add(systems.Create<ProcessRoundOverWhenTimerDoneSystem>());
             
-            Add(systems.Create<MoveToNextRoundBoxSystem>());
+           // Add(systems.Create<MoveToNextRoundBoxSystem>());
             
             Add(systems.Create<RefreshRoundCostSystem>());
             
