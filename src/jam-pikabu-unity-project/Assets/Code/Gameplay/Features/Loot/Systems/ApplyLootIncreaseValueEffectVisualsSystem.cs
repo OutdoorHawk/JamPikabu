@@ -7,20 +7,15 @@ namespace Code.Gameplay.Features.Loot.Systems
 {
     public class ApplyLootIncreaseValueEffectVisualsSystem : ReactiveSystem<GameEntity>
     {
-        private readonly List<GameEntity> _producers = new(64);
         private readonly GameContext _context;
 
-        private readonly IGroup<GameEntity> _lootApplier;
         private readonly IGroup<GameEntity> _loot;
+
+        private readonly List<GameEntity> _buffer = new(64);
 
         public ApplyLootIncreaseValueEffectVisualsSystem(GameContext context) : base(context)
         {
             _context = context;
-
-            _lootApplier = context.GetGroup(
-                GameMatcher.AllOf(
-                    GameMatcher.LootEffectsApplier
-                ));
 
             _loot = context.GetGroup(
                 GameMatcher.AllOf(
@@ -45,26 +40,22 @@ namespace Code.Gameplay.Features.Loot.Systems
         protected override void Execute(List<GameEntity> entities)
         {
             foreach (var applier in entities)
+            {
                 applier.isAvailable = false;
-
-            _producers.Clear();
-            _loot.GetEntities(_producers);
-            ApplyAsync().Forget();
+                ApplyAsync(applier).Forget();
+            }
         }
 
-        private async UniTaskVoid ApplyAsync()
+        private async UniTaskVoid ApplyAsync(GameEntity applier)
         {
             await ProcessAnimation();
 
-            _producers.Clear();
-
-            foreach (var applier in _lootApplier)
-                applier.isAvailable = true;
+            applier.isAvailable = true;
         }
 
         private async UniTask ProcessAnimation()
         {
-            foreach (var producer in _producers)
+            foreach (var producer in _loot.GetEntities(_buffer))
             {
                 foreach (int targetId in producer.Targets)
                 {

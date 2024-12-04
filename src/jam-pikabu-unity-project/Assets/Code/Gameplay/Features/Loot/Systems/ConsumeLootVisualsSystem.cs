@@ -3,23 +3,16 @@ using Code.Common.Entity;
 using Code.Common.Extensions;
 using Cysharp.Threading.Tasks;
 using Entitas;
-using UnityEngine;
 
 namespace Code.Gameplay.Features.Loot.Systems
 {
     public class ConsumeLootVisualsSystem : ReactiveSystem<GameEntity>
     {
-        private readonly IGroup<GameEntity> _lootApplier;
         private readonly IGroup<GameEntity> _loot;
         private readonly List<GameEntity> _lootBuffer = new(64);
 
         public ConsumeLootVisualsSystem(GameContext context) : base(context)
         {
-            _lootApplier = context.GetGroup(
-                GameMatcher.AllOf(
-                    GameMatcher.LootEffectsApplier
-                ));
-
             _loot = context.GetGroup(
                 GameMatcher.AllOf(
                     GameMatcher.Loot,
@@ -37,36 +30,30 @@ namespace Code.Gameplay.Features.Loot.Systems
         protected override bool Filter(GameEntity entity)
         {
             return entity.isLootEffectsApplier && entity.isAvailable;
-            ;
         }
 
         protected override void Execute(List<GameEntity> entities)
         {
-            _lootBuffer.Clear();
-            _loot.GetEntities(_lootBuffer);
-            
-            foreach (var applier in _lootApplier)
+            foreach (var applier in entities)
+            {
                 applier.isAvailable = false;
-            
-            AnimateAsync().Forget();
+                AnimateAsync(applier).Forget();
+            }
         }
 
-        private async UniTaskVoid AnimateAsync()
+        private async UniTaskVoid AnimateAsync(GameEntity applier)
         {
             await ProcessAnimation();
 
             foreach (var loot in _lootBuffer)
                 loot.isDestructed = true;
 
-            _lootBuffer.Clear();
-
-            foreach (var applier in _lootApplier)
-                applier.isDestructed = true;
+            applier.isDestructed = true;
         }
 
         private async UniTask ProcessAnimation()
         {
-            foreach (var loot in _lootBuffer)
+            foreach (var loot in _loot.GetEntities(_lootBuffer))
             {
                 await loot.LootItemUI.AnimateConsume();
 

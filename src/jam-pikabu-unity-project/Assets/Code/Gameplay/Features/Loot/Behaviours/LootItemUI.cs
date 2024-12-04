@@ -52,8 +52,9 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         public async UniTask AnimateEffectTarget()
         {
             Entity.isBusy = true;
+            await DelaySeconds(0.25f, destroyCancellationToken);
             LootAnimator.WaitForAnimationCompleteAsync(AnimationParameter.EffectTarget.AsHash(), destroyCancellationToken).Forget();
-            await DelaySeconds(0.5f, destroyCancellationToken);
+            await DelaySeconds(0.25f, destroyCancellationToken);
             Entity.isBusy = false;
         }
 
