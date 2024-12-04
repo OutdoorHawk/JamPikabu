@@ -43,19 +43,15 @@ namespace Code.Gameplay.Features.Loot.Behaviours
 
         public async UniTask AnimateEffectProducer()
         {
-            Entity.isBusy = true;
             LootAnimator.SetTrigger(AnimationParameter.EffectProducer.AsHash());
             await DelaySeconds(1, destroyCancellationToken);
-            Entity.isBusy = false;
         }
 
         public async UniTask AnimateEffectTarget()
         {
-            Entity.isBusy = true;
             await DelaySeconds(0.25f, destroyCancellationToken);
             LootAnimator.WaitForAnimationCompleteAsync(AnimationParameter.EffectTarget.AsHash(), destroyCancellationToken).Forget();
             await DelaySeconds(0.25f, destroyCancellationToken);
-            Entity.isBusy = false;
         }
 
         public async UniTask AnimateConsume(float delay = 0)
@@ -92,8 +88,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
 
             if (Entity.IsNullOrDestructed())
                 return;
-
-            Entity.isReadyToApply = true;
+            
             Entity.isBusy = false;
         }
     }

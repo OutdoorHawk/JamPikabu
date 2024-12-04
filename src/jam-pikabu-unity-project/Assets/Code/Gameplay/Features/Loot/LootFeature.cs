@@ -15,9 +15,6 @@ namespace Code.Gameplay.Features.Loot
             
             Add(systems.Create<CreateLootApplierOnRoundOverSystem>());
             
-            Add(systems.Create<BlockLootEffectApplicationWhileLootIsBusy>());
-            Add(systems.Create<BlockLootConsumeAvailableWhileLootIsBusy>());
-            
             Add(systems.Create<ApplyLootIncreaseValueEffectSystem>());
             Add(systems.Create<ApplyLootIncreaseValueEffectVisualsSystem>());
             
