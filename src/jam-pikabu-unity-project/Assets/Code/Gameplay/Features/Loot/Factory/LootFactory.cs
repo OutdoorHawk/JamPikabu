@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Loot.Configs;
@@ -25,8 +26,11 @@ namespace Code.Gameplay.Features.Loot.Factory
 
         public GameEntity CreateLootEntity(LootTypeId typeId, Transform parent, Vector2 at, Vector3 spawnRotation)
         {
+            LootSetup lootSetup = GetLootSetup(typeId);
             GameEntity loot = CreateBaseLoot(typeId, parent, at, spawnRotation);
 
+            AddEffects(loot, typeId);
+            
             switch (typeId)
             {
                 case LootTypeId.Unknown:
@@ -34,14 +38,14 @@ namespace Code.Gameplay.Features.Loot.Factory
                 case LootTypeId.GoldCoin:
                     break;
                 case LootTypeId.Toy:
+                    loot.With(x => x.isIncreaseValueEffect = true, when: lootSetup.EffectValue > 0);
+                    loot.AddTargets(new List<int>(32));
                     break;
                 case LootTypeId.Trash:
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(typeId), typeId, null);
             }
-
-            AddEffects(loot, typeId);
 
             return loot;
         }
@@ -73,7 +77,7 @@ namespace Code.Gameplay.Features.Loot.Factory
         private void AddEffects(GameEntity loot, LootTypeId typeId)
         {
             LootSetup lootSetup = GetLootSetup(typeId);
-
+            
             loot.With(x => x.AddEffectValue(lootSetup.EffectValue), when: lootSetup.EffectValue > 0);
             loot.With(x => x.AddEffectTargetsLoot(lootSetup.EffectTargets), when: lootSetup.EffectTargets.Count > 0);
         }

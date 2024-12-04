@@ -1,4 +1,5 @@
-﻿using Code.Infrastructure.View;
+﻿using System.Collections.Generic;
+using Code.Infrastructure.View;
 using Entitas;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ namespace Code.Common
     [Game] public class ViewPrefabLoadProcessing : IComponent { }
     [Game] public class SelfDestructTimer : IComponent { public float Value; }
     [Game] public class Radius : IComponent { public float Value; }
+    [Game] public class Target : IComponent { public int Value; }
+    [Game] public class Targets : IComponent { public List<int> Value; }
     
     
 }

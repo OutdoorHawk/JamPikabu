@@ -17,44 +17,45 @@ namespace Code.Gameplay.Features.Loot.Systems
         {
             _lootApplier = context.GetGroup(
                 GameMatcher.AllOf(
-                    GameMatcher.LootEffectsApplier,
-                    GameMatcher.EffectApplicationAvailable
+                    GameMatcher.LootEffectsApplier
                 ));
-            
+
             _lootProducer = context.GetGroup(
                 GameMatcher.AllOf(
                     GameMatcher.Loot,
                     GameMatcher.Collected,
-                    GameMatcher.LootItemUI,
+                    GameMatcher.IncreaseValueEffect,
                     GameMatcher.EffectValue,
                     GameMatcher.EffectTargetsLoot
-                ));
-            
+                ).NoneOf(
+                    GameMatcher.Applied));
+
             _potentialTargets = context.GetGroup(
                 GameMatcher.AllOf(
                     GameMatcher.Loot,
                     GameMatcher.Collected,
-                    GameMatcher.LootItemUI,
                     GameMatcher.LootTypeId,
                     GameMatcher.GoldValue
-                ));
+                )
+            );
         }
 
         public void Execute()
         {
             foreach (var _ in _lootApplier)
+            foreach (var producer in _lootProducer.GetEntities(_lootBuffer))
             {
-                foreach (var producer in _lootProducer.GetEntities(_lootBuffer))
                 foreach (var target in _potentialTargets)
                 {
                     if (producer.EffectTargetsLoot.Contains(target.LootTypeId) == false)
                         continue;
-                    
-                    //target.LootItemUI.SetGoldValueWithdraw((int)producer.EffectValue);
+
                     target.ReplaceGold((int)(target.GoldValue + producer.EffectValue));
+                    target.LootItemUI.SetGoldValueWithdraw((int)producer.EffectValue);
+                    producer.Targets.Add(target.Id);
                 }
-                
-                //ApplyAsync().Forget();
+
+                producer.isApplied = true;
             }
         }
 
