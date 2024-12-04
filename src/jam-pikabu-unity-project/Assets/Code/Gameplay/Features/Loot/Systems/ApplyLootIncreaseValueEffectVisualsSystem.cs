@@ -9,47 +9,57 @@ namespace Code.Gameplay.Features.Loot.Systems
     {
         private readonly List<GameEntity> _producers = new(64);
         private readonly GameContext _context;
+
         private readonly IGroup<GameEntity> _lootApplier;
+        private readonly IGroup<GameEntity> _loot;
 
         public ApplyLootIncreaseValueEffectVisualsSystem(GameContext context) : base(context)
         {
             _context = context;
+
             _lootApplier = context.GetGroup(
                 GameMatcher.AllOf(
                     GameMatcher.LootEffectsApplier
                 ));
+
+            _loot = context.GetGroup(
+                GameMatcher.AllOf(
+                    GameMatcher.Loot,
+                    GameMatcher.IncreaseValueEffect,
+                    GameMatcher.Targets,
+                    GameMatcher.Applied));
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
             return context.CreateCollector(GameMatcher.AllOf(
-                GameMatcher.Loot,
-                GameMatcher.IncreaseValueEffect,
-                GameMatcher.Targets,
-                GameMatcher.Applied).Added());
+                GameMatcher.LootEffectsApplier,
+                GameMatcher.Available).Added());
         }
 
         protected override bool Filter(GameEntity entity)
         {
-            return entity.isLoot && entity.isIncreaseValueEffect && entity.hasTargets && entity.isApplied;
+            return entity.isLootEffectsApplier && entity.isAvailable;
         }
 
         protected override void Execute(List<GameEntity> entities)
         {
-            _producers.Clear();
-            _producers.AddRange(entities);
+            foreach (var applier in entities)
+                applier.isAvailable = false;
 
+            _producers.Clear();
+            _loot.GetEntities(_producers);
             ApplyAsync().Forget();
         }
 
         private async UniTaskVoid ApplyAsync()
         {
             await ProcessAnimation();
-            
+
             _producers.Clear();
 
             foreach (var applier in _lootApplier)
-                applier.isDestructed = true;
+                applier.isAvailable = true;
         }
 
         private async UniTask ProcessAnimation()
@@ -63,17 +73,18 @@ namespace Code.Gameplay.Features.Loot.Systems
                     if (target.IsNullOrDestructed())
                         continue;
 
-                    PlayEffect(target).Forget();
+                    PlayEffect(producer.EffectValue, target).Forget();
                 }
 
                 await producer.LootItemUI.AnimateEffectProducer();
+                producer.RemoveTargets();
             }
         }
 
-        private async UniTaskVoid PlayEffect(GameEntity target)
+        private async UniTaskVoid PlayEffect(float effectValue, GameEntity target)
         {
             await target.LootItemUI.AnimateEffectTarget();
-            target.LootItemUI.SetGoldValueWithdraw(0);
+            target.LootItemUI.AddGoldValueWithdraw((int)-effectValue);
         }
     }
 }

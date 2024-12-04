@@ -30,7 +30,7 @@ MonoBehaviour:
       CurrencyType: 1
       Amount: 2
     EffectValue: 2
-    EffectTargets: 02000000
+    EffectTargets: 01000000
   - Type: 3
     ViewPrefab: {fileID: 7632606086172137233, guid: d4904c11991e84a46901a2f9832e299c,
       type: 3}
@@ -41,7 +41,7 @@ MonoBehaviour:
     EffectValue: 0
     EffectTargets: 
   LootSpawnInterval: 0.01
-  LootSpawnAmount: 50
+  LootSpawnAmount: 20
   CollectFlyAnimationDuration: 0.5
   CollectFlyMinMaxJump: {x: -1, y: 2}
   LootItemUI: {fileID: 6122044623407222926, guid: 17a9554d4999c3b43a5c2052ad4cdf08,

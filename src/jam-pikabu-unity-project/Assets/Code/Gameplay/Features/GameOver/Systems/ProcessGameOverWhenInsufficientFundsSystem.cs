@@ -6,7 +6,7 @@ namespace Code.Gameplay.Features.GameOver.Systems
     public class ProcessGameOverWhenInsufficientFundsSystem : IExecuteSystem
     {
         private readonly IGroup<GameEntity> _roundController;
-        private readonly IGroup<GameEntity> _lootApplier;
+        private readonly IGroup<GameEntity> _loot;
         private readonly IGroup<GameEntity> _gold;
         private readonly IGameOverService _gameOverService;
 
@@ -19,9 +19,10 @@ namespace Code.Gameplay.Features.GameOver.Systems
                     GameMatcher.RoundOver
                 ));
 
-            _lootApplier = context.GetGroup(
+            _loot = context.GetGroup(
                 GameMatcher.AllOf(
-                    GameMatcher.LootEffectsApplier
+                    GameMatcher.Loot,
+                    GameMatcher.Collected
                 ));
 
             _gold = context.GetGroup(
@@ -50,7 +51,7 @@ namespace Code.Gameplay.Features.GameOver.Systems
 
         private bool LootIsApplying()
         {
-            return _lootApplier.GetEntities().Length > 0;
+            return _loot.GetEntities().Length > 0;
         }
     }
 }

@@ -3,13 +3,15 @@ using Code.Common.Entity;
 using Code.Common.Extensions;
 using Cysharp.Threading.Tasks;
 using Entitas;
+using UnityEngine;
 
 namespace Code.Gameplay.Features.Loot.Systems
 {
     public class ConsumeLootVisualsSystem : ReactiveSystem<GameEntity>
     {
         private readonly IGroup<GameEntity> _lootApplier;
-        private readonly List<GameEntity> _buffer = new(64);
+        private readonly IGroup<GameEntity> _loot;
+        private readonly List<GameEntity> _lootBuffer = new(64);
 
         public ConsumeLootVisualsSystem(GameContext context) : base(context)
         {
@@ -17,25 +19,35 @@ namespace Code.Gameplay.Features.Loot.Systems
                 GameMatcher.AllOf(
                     GameMatcher.LootEffectsApplier
                 ));
+
+            _loot = context.GetGroup(
+                GameMatcher.AllOf(
+                    GameMatcher.Loot,
+                    GameMatcher.Consumed
+                ));
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
             return context.CreateCollector(GameMatcher.AllOf(
-                GameMatcher.Loot,
-                GameMatcher.Consumed).Added());
+                GameMatcher.LootEffectsApplier,
+                GameMatcher.Available).Added());
         }
 
         protected override bool Filter(GameEntity entity)
         {
-            return entity.isLoot && entity.isConsumed && entity.hasLootItemUI;
+            return entity.isLootEffectsApplier && entity.isAvailable;
+            ;
         }
 
         protected override void Execute(List<GameEntity> entities)
         {
-            _buffer.Clear();
-            _buffer.AddRange(entities);
-
+            _lootBuffer.Clear();
+            _loot.GetEntities(_lootBuffer);
+            
+            foreach (var applier in _lootApplier)
+                applier.isAvailable = false;
+            
             AnimateAsync().Forget();
         }
 
@@ -43,10 +55,10 @@ namespace Code.Gameplay.Features.Loot.Systems
         {
             await ProcessAnimation();
 
-            foreach (var loot in _buffer)
+            foreach (var loot in _lootBuffer)
                 loot.isDestructed = true;
 
-            _buffer.Clear();
+            _lootBuffer.Clear();
 
             foreach (var applier in _lootApplier)
                 applier.isDestructed = true;
@@ -54,7 +66,7 @@ namespace Code.Gameplay.Features.Loot.Systems
 
         private async UniTask ProcessAnimation()
         {
-            foreach (var loot in _buffer)
+            foreach (var loot in _lootBuffer)
             {
                 await loot.LootItemUI.AnimateConsume();
 

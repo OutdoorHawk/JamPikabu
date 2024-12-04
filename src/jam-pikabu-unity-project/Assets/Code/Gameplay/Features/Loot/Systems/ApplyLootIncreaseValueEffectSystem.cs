@@ -26,6 +26,7 @@ namespace Code.Gameplay.Features.Loot.Systems
                     GameMatcher.Collected,
                     GameMatcher.IncreaseValueEffect,
                     GameMatcher.EffectValue,
+                    GameMatcher.LootItemUI,
                     GameMatcher.EffectTargetsLoot
                 ).NoneOf(
                     GameMatcher.Applied));
@@ -35,6 +36,7 @@ namespace Code.Gameplay.Features.Loot.Systems
                     GameMatcher.Loot,
                     GameMatcher.Collected,
                     GameMatcher.LootTypeId,
+                    GameMatcher.LootItemUI,
                     GameMatcher.GoldValue
                 )
             );
@@ -47,29 +49,18 @@ namespace Code.Gameplay.Features.Loot.Systems
             {
                 foreach (var target in _potentialTargets)
                 {
+                    if (producer.Id == target.Id)
+                        continue;
+
                     if (producer.EffectTargetsLoot.Contains(target.LootTypeId) == false)
                         continue;
 
-                    target.ReplaceGold((int)(target.GoldValue + producer.EffectValue));
-                    target.LootItemUI.SetGoldValueWithdraw((int)producer.EffectValue);
+                    target.ReplaceGoldValue((int)(target.GoldValue + producer.EffectValue));
+                    target.LootItemUI.AddGoldValueWithdraw((int)producer.EffectValue);
                     producer.Targets.Add(target.Id);
                 }
 
-                producer.isApplied = true;
-            }
-        }
-
-        private async UniTaskVoid ApplyAsync()
-        {
-            foreach (var producer in _lootProducer.GetEntities(_lootBuffer))
-            foreach (var target in _potentialTargets.GetEntities(_targetsBuffer))
-            {
-                if (producer.EffectTargetsLoot.Contains(target.LootTypeId) == false)
-                    continue;
-
-                producer.LootItemUI.AnimateEffectProducer().Forget();
-                await target.LootItemUI.AnimateEffectTarget();
-                target.LootItemUI.SetGoldValueWithdraw(0);
+                producer.isApplied = producer.Targets.Count > 0;
             }
         }
     }

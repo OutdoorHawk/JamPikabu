@@ -52,17 +52,14 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         public async UniTask AnimateEffectTarget()
         {
             Entity.isBusy = true;
-            await DelaySeconds(1, destroyCancellationToken);
-            LootAnimator.SetTrigger(AnimationParameter.EffectTarget.AsHash());
+            LootAnimator.WaitForAnimationCompleteAsync(AnimationParameter.EffectTarget.AsHash(), destroyCancellationToken).Forget();
+            await DelaySeconds(0.5f, destroyCancellationToken);
             Entity.isBusy = false;
         }
 
         public async UniTask AnimateConsume(float delay = 0)
         {
-            Entity.isBusy = true;
-            await DelaySeconds(delay, destroyCancellationToken);
             await LootAnimator.WaitForAnimationCompleteAsync(AnimationParameter.Consume.AsHash(), destroyCancellationToken);
-            Entity.isBusy = false;
         }
 
         public void Show()
@@ -76,15 +73,15 @@ namespace Code.Gameplay.Features.Loot.Behaviours
                 ;
         }
 
-        public void SetGoldValueWithdraw(int withdraw)
+        public void AddGoldValueWithdraw(int withdraw)
         {
-            _currentWithdrawValue = withdraw;
+            _currentWithdrawValue += withdraw;
             UpdateView();
         }
 
         private void UpdateView()
         {
-            Value.SetupPrice(_currentValue + _currentWithdrawValue, CurrencyTypeId.Gold);
+            Value.SetupPrice(_currentValue - _currentWithdrawValue, CurrencyTypeId.Gold);
         }
 
         private void SetReadyToApply()

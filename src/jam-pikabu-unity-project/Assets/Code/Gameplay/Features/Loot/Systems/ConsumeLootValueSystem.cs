@@ -15,8 +15,7 @@ namespace Code.Gameplay.Features.Loot.Systems
         {
             _lootApplier = context.GetGroup(
                 GameMatcher.AllOf(
-                    GameMatcher.LootEffectsApplier,
-                    GameMatcher.LootConsumeAvailable
+                    GameMatcher.LootEffectsApplier
                 ));
 
             _readyLoot = context.GetGroup(

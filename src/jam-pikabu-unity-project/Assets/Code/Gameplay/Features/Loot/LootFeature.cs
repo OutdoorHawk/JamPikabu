@@ -13,18 +13,18 @@ namespace Code.Gameplay.Features.Loot
             
             Add(systems.Create<ProcessLootPickup>());
             
-            Add(systems.Create<UpdateLootItemUIGoldValue>());
-            
             Add(systems.Create<CreateLootApplierOnRoundOverSystem>());
             
             Add(systems.Create<BlockLootEffectApplicationWhileLootIsBusy>());
             Add(systems.Create<BlockLootConsumeAvailableWhileLootIsBusy>());
             
-            /*Add(systems.Create<ApplyLootIncreaseValueEffectSystem>());
-            Add(systems.Create<ApplyLootIncreaseValueEffectVisualsSystem>());*/
+            Add(systems.Create<ApplyLootIncreaseValueEffectSystem>());
+            Add(systems.Create<ApplyLootIncreaseValueEffectVisualsSystem>());
             
             Add(systems.Create<ConsumeLootValueSystem>());
             Add(systems.Create<ConsumeLootVisualsSystem>());
+            
+            Add(systems.Create<UpdateLootItemUIGoldValue>());
             
             Add(systems.Create<DestroyConsumedLootSystem>());
         }
