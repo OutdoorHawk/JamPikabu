@@ -4,6 +4,7 @@
     {
         BootstrapScene = 0,
         MainMenu = 1,
-        GameplayScene = 2,
+        Level_1 = 2,
+        Level_2 = 3,
     }
 }

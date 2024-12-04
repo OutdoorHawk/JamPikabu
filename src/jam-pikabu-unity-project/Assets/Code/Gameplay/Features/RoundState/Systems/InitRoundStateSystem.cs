@@ -1,24 +1,20 @@
-﻿using Code.Gameplay.Features.RoundState.Factory;
+﻿using Code.Gameplay.Features.RoundState.Service;
 using Entitas;
 
 namespace Code.Gameplay.Features.RoundState.Systems
 {
     public class InitRoundStateSystem : IInitializeSystem
     {
-        private readonly IRoundStateFactory _roundStateFactory;
+        private readonly IRoundStateService _roundStateService;
 
-        public InitRoundStateSystem(GameContext context, IRoundStateFactory roundStateFactory)
+        public InitRoundStateSystem(IRoundStateService roundStateService)
         {
-            _roundStateFactory = roundStateFactory;
-            
-            context.GetGroup(GameMatcher
-                .AllOf(
-                    GameMatcher.RoundStateController));
+            _roundStateService = roundStateService;
         }
 
         public void Initialize()
         {
-            _roundStateFactory.CreateRoundStateController();
+            _roundStateService.CreateRoundStateController();
         }
     }
 }

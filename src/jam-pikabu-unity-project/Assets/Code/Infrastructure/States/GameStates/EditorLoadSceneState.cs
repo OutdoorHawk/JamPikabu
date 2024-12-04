@@ -36,10 +36,10 @@ namespace Code.Infrastructure.States.GameStates
         {
             if (SceneManager.GetActiveScene().name is nameof(SceneTypeId.MainMenu) or nameof(SceneTypeId.BootstrapScene))
                // _gameStateMachine.Enter<LoadMainMenuState>();
-                _gameStateMachine.Enter<LoadLevelState, LoadLevelPayloadParameters>(new LoadLevelPayloadParameters(levelName: nameof(SceneTypeId.GameplayScene)));
+                _gameStateMachine.Enter<LoadLevelState, LoadLevelPayloadParameters>(new LoadLevelPayloadParameters(levelName: nameof(SceneTypeId.Level_1)));
             else
             {
-                var parameters = new LoadLevelPayloadParameters(levelName: nameof(SceneTypeId.GameplayScene))
+                var parameters = new LoadLevelPayloadParameters(levelName: nameof(SceneTypeId.Level_1))
                 {
                     InstantLoad = true
                 };

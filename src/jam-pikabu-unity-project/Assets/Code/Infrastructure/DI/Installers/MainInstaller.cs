@@ -14,6 +14,7 @@ using Code.Gameplay.Features.Loot.Factory;
 using Code.Gameplay.Features.Loot.Service;
 using Code.Gameplay.Features.Loot.UIFactory;
 using Code.Gameplay.Features.RoundState.Factory;
+using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.Input.Service;
 using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
@@ -121,6 +122,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.BindInterfacesTo<SoundService>().FromInstance(_soundService).AsSingle();
             Container.BindInterfacesTo<GameplayCurrencyService>().AsSingle();
             Container.BindInterfacesTo<GameOverService>().AsSingle();
+            Container.BindInterfacesTo<RoundStateService>().AsSingle();
             Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
             Container.Bind<IMousePositionService>().To<MousePositionService>().AsSingle();
             Container.Bind<ICameraProvider>().To<CameraProvider>().AsSingle();

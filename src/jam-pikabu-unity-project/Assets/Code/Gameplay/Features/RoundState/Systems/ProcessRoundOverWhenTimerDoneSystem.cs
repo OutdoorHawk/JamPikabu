@@ -1,4 +1,5 @@
-﻿using Code.Infrastructure.Systems;
+﻿using Code.Gameplay.Features.RoundState.Service;
+using Code.Infrastructure.Systems;
 using Entitas;
 using UnityEngine;
 
@@ -6,14 +7,16 @@ namespace Code.Gameplay.Features.RoundState.Systems
 {
     public class ProcessRoundOverWhenTimerDoneSystem : BufferedExecuteSystem
     {
+        private readonly IRoundStateService _roundStateService;
         private readonly IGroup<GameEntity> _roundStateController;
         private readonly IGroup<GameEntity> _busyHook;
         private readonly IGroup<GameEntity> _lootAppliers;
 
         protected override int BufferCapacity => 2;
 
-        public ProcessRoundOverWhenTimerDoneSystem(GameContext context)
+        public ProcessRoundOverWhenTimerDoneSystem(GameContext context, IRoundStateService roundStateService)
         {
+            _roundStateService = roundStateService;
             _roundStateController = context.GetGroup(
                 GameMatcher.AllOf(
                     GameMatcher.RoundStateController,
@@ -36,6 +39,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
                 entity.isCooldownUp = false;
                 entity.isRoundInProcess = false;
                 entity.isRoundOver = true;
+                _roundStateService.RoundComplete();
             }
         }
 

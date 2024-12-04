@@ -16,6 +16,13 @@ namespace Code.Gameplay.Features.Loot.Factory
             _staticDataService = staticDataService;
         }
 
+        public GameEntity CreateLootSpawner()
+        {
+            GameEntity lootSpawner = CreateGameEntity.Empty()
+                .With(x => x.isLootSpawner = true);
+            return lootSpawner;
+        }
+
         public GameEntity CreateLootEntity(LootTypeId typeId, Transform parent, Vector2 at, Vector3 spawnRotation)
         {
             GameEntity loot = CreateBaseLoot(typeId, parent, at, spawnRotation);

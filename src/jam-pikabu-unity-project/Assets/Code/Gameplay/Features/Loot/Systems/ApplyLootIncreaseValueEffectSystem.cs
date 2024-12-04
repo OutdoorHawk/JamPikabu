@@ -49,15 +49,12 @@ namespace Code.Gameplay.Features.Loot.Systems
                 {
                     if (producer.EffectTargetsLoot.Contains(target.LootTypeId) == false)
                         continue;
-
-                    producer.isBusy = true;
-                    target.isBusy = true;
                     
-                    target.LootItemUI.SetGoldValueWithdraw((int)producer.EffectValue);
+                    //target.LootItemUI.SetGoldValueWithdraw((int)producer.EffectValue);
                     target.ReplaceGold((int)(target.GoldValue + producer.EffectValue));
                 }
                 
-                ApplyAsync().Forget();
+                //ApplyAsync().Forget();
             }
         }
 

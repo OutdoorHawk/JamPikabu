@@ -36,9 +36,14 @@ namespace Code.Gameplay.Features.Loot.Systems
                 foreach (var loot in _readyLoot)
                 {
                     loot.isConsumed = true;
+                    
+                    CreateGameEntity.Empty()
+                        .With(x => x.isAddGoldRequest = true)
+                        .AddGold(loot.GoldValue)
+                        ;
                 }
 
-                GiveGoldAsync(_readyLoot).Forget();
+                //GiveGoldAsync(_readyLoot).Forget();
             }
         }
 
@@ -48,12 +53,7 @@ namespace Code.Gameplay.Features.Loot.Systems
             {
                 loot.Retain(this);
                 await loot.LootItemUI.AnimateConsume();
-
-                CreateGameEntity.Empty()
-                    .With(x => x.isAddGoldRequest = true)
-                    .AddGold(loot.GoldValue)
-                    ;
-
+                
                 loot.isDestructed = true;
                 loot.Release(this);
             }

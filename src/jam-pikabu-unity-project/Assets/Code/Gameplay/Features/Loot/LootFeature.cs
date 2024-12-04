@@ -7,6 +7,7 @@ namespace Code.Gameplay.Features.Loot
     {
         public LootFeature(ISystemFactory systems)
         {
+            Add(systems.Create<InitLootSpawnSystem>());
             Add(systems.Create<SpawnLootSystem>());
             Add(systems.Create<SetLootInitialSpeedSystem>());
             

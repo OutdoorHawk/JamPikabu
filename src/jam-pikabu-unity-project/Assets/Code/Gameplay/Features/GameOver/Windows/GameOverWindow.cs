@@ -28,7 +28,7 @@ namespace Code.Gameplay.Features.GameOver.Windows
         private async UniTask RestartAfterDelay()
         {
             await DelaySeconds(3, destroyCancellationToken);
-            var loadLevelPayloadParameters = new LoadLevelPayloadParameters(SceneTypeId.GameplayScene.ToString());
+            var loadLevelPayloadParameters = new LoadLevelPayloadParameters(SceneTypeId.Level_1.ToString());
             _gameStateMachine.Enter<LoadLevelState, LoadLevelPayloadParameters>(loadLevelPayloadParameters);
         }
     }

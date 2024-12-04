@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
-using Code.Common.Entity;
-using Code.Common.Extensions;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.Features.Loot.Factory;
 using Code.Gameplay.StaticData;
@@ -13,38 +11,46 @@ using static Code.Common.Extensions.AsyncGameplayExtensions;
 
 namespace Code.Gameplay.Features.Loot.Systems
 {
-    public class SpawnLootSystem : IInitializeSystem, ITearDownSystem
+    public class SpawnLootSystem : ReactiveSystem<GameEntity>
     {
         private readonly ILootFactory _lootFactory;
         private readonly IStaticDataService _staticDataService;
         private readonly ISceneContextProvider _provider;
 
+        private CancellationTokenSource _exitGameSource;
         private int _spawnPointIndex;
 
-        private readonly CancellationTokenSource _exitGameSource = new();
-
-        public SpawnLootSystem(ILootFactory lootFactory, IStaticDataService staticDataService, ISceneContextProvider provider)
+        public SpawnLootSystem(GameContext context, ILootFactory lootFactory, IStaticDataService staticDataService, ISceneContextProvider provider) :
+            base(context)
         {
             _provider = provider;
             _staticDataService = staticDataService;
             _lootFactory = lootFactory;
         }
 
-        public void Initialize()
+        protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
-            SpawnLootAsync().Forget();
+            return context.CreateCollector(GameMatcher.LootSpawner.Added());
         }
 
-        private async UniTaskVoid SpawnLootAsync()
+        protected override bool Filter(GameEntity entity)
         {
-            GameEntity lootSpawner = CreateGameEntity.Empty()
-                .With(x => x.isLootSpawner = true);
+            return true;
+        }
 
-            lootSpawner.Retain(this);
+        protected override void Execute(List<GameEntity> entities)
+        {
+            SpawnLootAsync(entities).Forget();
+        }
+
+        private async UniTaskVoid SpawnLootAsync(List<GameEntity> lootSpawners)
+        {
+            foreach (var spawner in lootSpawners)
+                spawner.Retain(this);
 
             var staticData = _staticDataService.GetStaticData<LootStaticData>();
             List<LootSetup> configs = staticData.Configs;
-            
+
             SceneContextComponent sceneContext = _provider.Context;
 
             for (int i = 0; i < staticData.LootSpawnAmount / configs.Count; i++)
@@ -58,15 +64,19 @@ namespace Code.Gameplay.Features.Loot.Systems
                 }
             }
 
-            lootSpawner.Release(this);
-            lootSpawner.isDestructed = true;
+            foreach (var spawner in lootSpawners)
+            {
+                spawner.Release(this);
+                spawner.isDestructed = true;
+                ;
+            }
         }
 
         private Transform GetSpawnPoint(SceneContextComponent sceneContext)
         {
-            if (_spawnPointIndex >= sceneContext.LootSpawnPoints.Length) 
+            if (_spawnPointIndex >= sceneContext.LootSpawnPoints.Length)
                 _spawnPointIndex = 0;
-            
+
             var spawnPosition = sceneContext.LootSpawnPoints[_spawnPointIndex];
             _spawnPointIndex++;
             return spawnPosition;
