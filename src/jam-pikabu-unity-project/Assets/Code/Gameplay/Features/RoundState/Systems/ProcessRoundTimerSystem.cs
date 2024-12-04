@@ -42,6 +42,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
                 }
 
                 entity.isCooldownUp = true;
+                entity.isRoundInProcess = false;
                 entity.RemoveRoundTimeLeft();
                
                 view.RoundStateViewBehaviour.UpdateTimer(0);

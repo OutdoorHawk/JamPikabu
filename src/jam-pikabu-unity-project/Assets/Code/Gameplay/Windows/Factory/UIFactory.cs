@@ -28,6 +28,12 @@ namespace Code.Gameplay.Windows.Factory
 
         public Transform UIRoot => _uiRoot;
 
+        public void InitializeCamera()
+        {
+            var canvas = _uiRoot.GetComponent<Canvas>();
+            canvas.worldCamera = Camera.main;
+        }
+
         public void CreateUiRoot()
         {
             if (UIRoot != null)
@@ -37,8 +43,7 @@ namespace Code.Gameplay.Windows.Factory
             GameObject uiRoot = _instantiator.InstantiatePrefab(windows.UIRoot.gameObject);
             uiRoot.transform.SetParent(null);
             _uiRoot = uiRoot.transform;
-            var canvas = _uiRoot.GetComponent<Canvas>();
-            canvas.worldCamera = Camera.main;
+            
         }
 
         public UniTask<T> CreateWindow<T>(WindowTypeId type) where T : BaseWindow

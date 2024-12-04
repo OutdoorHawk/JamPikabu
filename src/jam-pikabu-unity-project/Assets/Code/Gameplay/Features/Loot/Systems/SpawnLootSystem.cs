@@ -56,6 +56,8 @@ namespace Code.Gameplay.Features.Loot.Systems
             List<LootSetup> configs = staticData.Configs;
 
             SceneContextComponent sceneContext = _provider.Context;
+            
+            await DelaySeconds(staticData.LootSpawnStartDelay, _exitGameSource.Token);
 
             for (int i = 0; i < staticData.LootSpawnAmount / configs.Count; i++)
             {

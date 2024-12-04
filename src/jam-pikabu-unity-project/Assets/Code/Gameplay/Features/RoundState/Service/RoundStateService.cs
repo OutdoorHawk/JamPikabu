@@ -1,7 +1,15 @@
 using System.Collections.Generic;
+using System.Threading;
+using Code.Gameplay.Features.GameOver.Service;
 using Code.Gameplay.Features.RoundState.Configs;
 using Code.Gameplay.Features.RoundState.Factory;
 using Code.Gameplay.StaticData;
+using Code.Infrastructure.States.GameStates;
+using Code.Infrastructure.States.StateInfrastructure;
+using Code.Infrastructure.States.StateMachine;
+using Cysharp.Threading.Tasks;
+using Zenject;
+using static Code.Common.Extensions.AsyncGameplayExtensions;
 
 namespace Code.Gameplay.Features.RoundState.Service
 {
@@ -9,14 +17,23 @@ namespace Code.Gameplay.Features.RoundState.Service
     {
         private readonly IRoundStateFactory _roundStateFactory;
         private readonly IStaticDataService _staticDataService;
-        
+        private readonly IGameStateMachine _gameStateMachine;
+        private readonly LazyInject<IGameOverService> _gameOverService;
+
         private List<RoundData> _rounds;
         private int _currentRound = 1;
 
-        public RoundStateService(IRoundStateFactory roundStateFactory, IStaticDataService staticDataService)
+        public int CurrentRound => _currentRound;
+
+        public RoundStateService(IRoundStateFactory roundStateFactory, 
+            IStaticDataService staticDataService, 
+            IGameStateMachine gameStateMachine,
+            LazyInject<IGameOverService> gameOverService)
         {
             _roundStateFactory = roundStateFactory;
             _staticDataService = staticDataService;
+            _gameStateMachine = gameStateMachine;
+            _gameOverService = gameOverService;
         }
 
         public void CreateRoundStateController()
@@ -43,7 +60,24 @@ namespace Code.Gameplay.Features.RoundState.Service
 
         public void TryLoadNextLevel()
         {
-            
+            LoadNextLevelAsync().Forget();
+        }
+
+        public void GameOver()
+        {
+            _gameOverService.Value.GameOver();
+        }
+
+        private async UniTask LoadNextLevelAsync()
+        {
+            _gameStateMachine.Enter<InventoryState>();
+
+            await DelaySeconds(1, new CancellationToken());
+
+            RoundData roundData = GetRoundData(_currentRound);
+
+            var loadLevelPayloadParameters = new LoadLevelPayloadParameters(roundData.SceneId.ToString());
+            _gameStateMachine.Enter<LoadLevelState, LoadLevelPayloadParameters>(loadLevelPayloadParameters);
         }
 
         private RoundData GetRoundData(int currentRound)

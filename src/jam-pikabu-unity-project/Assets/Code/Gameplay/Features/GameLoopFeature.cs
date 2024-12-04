@@ -23,7 +23,7 @@ namespace Code.Gameplay.Features
             
             Add(systems.Create<CurrencyFeature>());
             
-            Add(systems.Create<GameOverFeature>());
+            //Add(systems.Create<GameOverFeature>());
         }
     }
 

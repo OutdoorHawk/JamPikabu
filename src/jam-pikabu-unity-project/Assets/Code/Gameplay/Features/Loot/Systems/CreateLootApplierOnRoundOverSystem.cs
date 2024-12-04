@@ -10,7 +10,7 @@ namespace Code.Gameplay.Features.Loot.Systems
     public class CreateLootApplierOnRoundOverSystem : ReactiveSystem<GameEntity>, ITearDownSystem
     {
         private readonly IGroup<GameEntity> _busyLoot;
-        private CancellationTokenSource _tearDown = new();
+        private readonly CancellationTokenSource _tearDown = new();
 
         public CreateLootApplierOnRoundOverSystem(GameContext context) : base(context)
         {
@@ -35,6 +35,12 @@ namespace Code.Gameplay.Features.Loot.Systems
 
         protected override void Execute(List<GameEntity> entities)
         {
+            CreateGameEntity
+                .Empty()
+                .With(x => x.isLootEffectsApplier = true)
+                .With(x => x.isAvailable = true)
+                ;
+            
             CreateAsync().Forget();
         }
 
@@ -42,11 +48,7 @@ namespace Code.Gameplay.Features.Loot.Systems
         {
             await UniTask.WaitUntil(() => _busyLoot.GetEntities().Length == 0, cancellationToken: _tearDown.Token);
             
-            CreateGameEntity
-                .Empty()
-                .With(x => x.isLootEffectsApplier = true)
-                .With(x => x.isAvailable = true)
-                ;
+            
         }
 
         public void TearDown()

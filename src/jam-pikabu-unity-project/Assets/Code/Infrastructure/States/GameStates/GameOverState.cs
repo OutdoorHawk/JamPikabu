@@ -1,39 +1,30 @@
 ﻿using Code.Gameplay.Features;
 using Code.Gameplay.Input;
-using Code.Gameplay.Windows;
-using Code.Gameplay.Windows.Service;
 using Code.Infrastructure.States.StateInfrastructure;
-using Code.Infrastructure.States.StateMachine;
 using Code.Infrastructure.Systems;
 
 namespace Code.Infrastructure.States.GameStates
 {
     public class GameOverState : EndOfFrameExitState
     {
-        private readonly IWindowService _windowService;
-        private readonly IGameStateMachine _gameStateMachine;
         private readonly ISystemFactory _systemFactory;
         private readonly GameContext _gameContext;
         private readonly InputContext _inputContext;
-        
+
         private GameLoopFeature _gameLoopFeature;
         private GameLoopPhysicsFeature _gameLoopPhysicsFeature;
         private InputFeature _inputFeature;
 
         public GameOverState
         (
-            IWindowService windowService,
-            IGameStateMachine gameStateMachine,
             ISystemFactory systemFactory,
             GameContext gameContext,
             InputContext inputContext
         )
         {
-            _gameStateMachine = gameStateMachine;
             _systemFactory = systemFactory;
             _gameContext = gameContext;
             _inputContext = inputContext;
-            _windowService = windowService;
         }
 
         public override void Enter()
@@ -78,7 +69,7 @@ namespace Code.Infrastructure.States.GameStates
             _gameLoopFeature.TearDown();
             _gameLoopPhysicsFeature.TearDown();
             _inputFeature.TearDown();
-            
+
             _gameLoopFeature = null;
             _inputFeature = null;
             _gameLoopPhysicsFeature = null;

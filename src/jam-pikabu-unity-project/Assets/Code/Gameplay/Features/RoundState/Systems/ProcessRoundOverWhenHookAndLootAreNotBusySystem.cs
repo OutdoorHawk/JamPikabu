@@ -1,32 +1,35 @@
-﻿using Code.Gameplay.Features.RoundState.Service;
-using Code.Infrastructure.Systems;
+﻿using Code.Infrastructure.Systems;
 using Entitas;
-using UnityEngine;
 
 namespace Code.Gameplay.Features.RoundState.Systems
 {
-    public class ProcessRoundOverWhenTimerDoneSystem : BufferedExecuteSystem
+    public class ProcessRoundOverWhenHookAndLootAreNotBusySystem : BufferedExecuteSystem
     {
-        private readonly IRoundStateService _roundStateService;
         private readonly IGroup<GameEntity> _roundStateController;
         private readonly IGroup<GameEntity> _busyHook;
         private readonly IGroup<GameEntity> _lootAppliers;
+        private readonly IGroup<GameEntity> _busyLoot;
 
         protected override int BufferCapacity => 2;
 
-        public ProcessRoundOverWhenTimerDoneSystem(GameContext context, IRoundStateService roundStateService)
+        public ProcessRoundOverWhenHookAndLootAreNotBusySystem(GameContext context)
         {
-            _roundStateService = roundStateService;
+            _busyLoot = context.GetGroup(
+                GameMatcher.AllOf(
+                    GameMatcher.Loot,
+                    GameMatcher.Busy
+                ));
+
+            _busyHook = context.GetGroup(
+                GameMatcher.AllOf(
+                    GameMatcher.GrapplingHook,
+                    GameMatcher.Busy));
+
             _roundStateController = context.GetGroup(
                 GameMatcher.AllOf(
                     GameMatcher.RoundStateController,
                     GameMatcher.CooldownUp
                 ));
-
-            _busyHook = context.GetGroup(
-                GameMatcher.AllOf(
-                    GameMatcher.GrapplingHook, 
-                    GameMatcher.Busy));
         }
 
         public override void Execute()
@@ -35,17 +38,23 @@ namespace Code.Gameplay.Features.RoundState.Systems
             {
                 if (CheckHookIsStillBusy())
                     continue;
-                
+
+                if (CheckLootIsStillBusy())
+                    continue;
+
                 entity.isCooldownUp = false;
-                entity.isRoundInProcess = false;
                 entity.isRoundOver = true;
-                _roundStateService.RoundComplete();
             }
         }
 
         private bool CheckHookIsStillBusy()
         {
             return _busyHook.GetEntities().Length != 0;
+        }
+
+        private bool CheckLootIsStillBusy()
+        {
+            return _busyLoot.GetEntities().Length != 0;
         }
     }
 }

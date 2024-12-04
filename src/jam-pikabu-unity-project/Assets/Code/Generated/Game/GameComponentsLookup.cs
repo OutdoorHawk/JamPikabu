@@ -75,18 +75,19 @@ public static class GameComponentsLookup {
     public const int LootTypeId = 64;
     public const int GameOver = 65;
     public const int Round = 66;
-    public const int RoundCost = 67;
-    public const int RoundDuration = 68;
-    public const int RoundInProcess = 69;
-    public const int RoundOver = 70;
-    public const int RoundStartAvailable = 71;
-    public const int RoundStartRequest = 72;
-    public const int RoundStateController = 73;
-    public const int RoundStateViewBehaviour = 74;
-    public const int RoundTimeLeft = 75;
-    public const int AudioSourceBehaviour = 76;
+    public const int RoundComplete = 67;
+    public const int RoundCost = 68;
+    public const int RoundDuration = 69;
+    public const int RoundInProcess = 70;
+    public const int RoundOver = 71;
+    public const int RoundStartAvailable = 72;
+    public const int RoundStartRequest = 73;
+    public const int RoundStateController = 74;
+    public const int RoundStateViewBehaviour = 75;
+    public const int RoundTimeLeft = 76;
+    public const int AudioSourceBehaviour = 77;
 
-    public const int TotalComponents = 77;
+    public const int TotalComponents = 78;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -156,6 +157,7 @@ public static class GameComponentsLookup {
         "LootTypeId",
         "GameOver",
         "Round",
+        "RoundComplete",
         "RoundCost",
         "RoundDuration",
         "RoundInProcess",
@@ -236,6 +238,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Loot.LootTypeIdComponent),
         typeof(Code.Gameplay.Features.RoundState.GameOver),
         typeof(Code.Gameplay.Features.RoundState.Round),
+        typeof(Code.Gameplay.Features.RoundState.RoundComplete),
         typeof(Code.Gameplay.Features.RoundState.RoundCost),
         typeof(Code.Gameplay.Features.RoundState.RoundDuration),
         typeof(Code.Gameplay.Features.RoundState.RoundInProcess),

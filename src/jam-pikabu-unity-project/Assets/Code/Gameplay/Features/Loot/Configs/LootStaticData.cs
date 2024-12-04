@@ -8,6 +8,7 @@ namespace Code.Gameplay.Features.Loot.Configs
     public class LootStaticData : BaseStaticData<LootSetup>
     {
         public float LootSpawnInterval = 0.05f;
+        public float LootSpawnStartDelay = 0.5f;
         public float LootSpawnAmount = 100;
         public float CollectFlyAnimationDuration = 0.5f;
         public Vector2 CollectFlyMinMaxJump = new(-1, 2);

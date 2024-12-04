@@ -12,7 +12,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
             _hooks = gameContext.GetGroup(GameMatcher
                 .AllOf(GameMatcher.GrapplingHook
                 ));
-            
+
             _roundState = gameContext.GetGroup(GameMatcher
                 .AllOf(GameMatcher.RoundStateController,
                     GameMatcher.RoundInProcess
@@ -23,9 +23,9 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
         {
             foreach (var hook in _hooks)
             {
-                if (_roundState.GetEntities().Length != 0) 
+                if (_roundState.GetEntities().Length != 0)
                     continue;
-                
+
                 hook.isXAxisMovementAvailable = false;
                 hook.isDescentAvailable = false;
             }

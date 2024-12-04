@@ -1,4 +1,5 @@
 using Code.Gameplay.Windows;
+using Code.Gameplay.Windows.Factory;
 using Code.Gameplay.Windows.Service;
 using Code.Infrastructure.SceneLoading;
 using Code.Infrastructure.States.GameStateHandler;
@@ -15,6 +16,7 @@ namespace Code.Infrastructure.States.GameStates
         private readonly IWindowService _windowService;
         private readonly IGameStateMachine _gameStateMachine;
         private readonly IGameStateHandlerService _gameStateHandler;
+        private readonly IUIFactory _uiFactory;
 
         [Inject]
         public LoadLevelState
@@ -22,9 +24,11 @@ namespace Code.Infrastructure.States.GameStates
             IGameStateMachine gameStateMachine,
             ISceneLoader sceneLoader,
             IWindowService windowService,
-            IGameStateHandlerService gameStateHandlerService
+            IGameStateHandlerService gameStateHandlerService,
+            IUIFactory uiFactory
         )
         {
+            _uiFactory = uiFactory;
             _gameStateHandler = gameStateHandlerService;
             _gameStateMachine = gameStateMachine;
             _windowService = windowService;
@@ -61,6 +65,7 @@ namespace Code.Infrastructure.States.GameStates
 
         private async UniTask InitUIAsync()
         {
+            _uiFactory.InitializeCamera();
             _windowService.ClearUIRoot();
             _windowService.OpenWindow(WindowTypeId.PlayerHUD);
         }

@@ -12,12 +12,14 @@ namespace Code.Gameplay.Features.RoundState
             Add(systems.Create<RequestRoundStartByInputSystem>());
             
             Add(systems.Create<BlockRoundStartAvailableWhenRoundIsProcessingSystem>());
-            Add(systems.Create<BlockRoundStartAvailableWhenLootIsApplyingSystem>());
+            Add(systems.Create<BlockRoundStartAvailableWhenRoundNotCompleteSystem>());
             Add(systems.Create<BlockRoundStartAvailableWhenInsufficientFundsSystem>());
             
             Add(systems.Create<ProcessRoundStartRequestSystem>());
             Add(systems.Create<ProcessRoundTimerSystem>());
-            Add(systems.Create<ProcessRoundOverWhenTimerDoneSystem>());
+            Add(systems.Create<ProcessRoundOverWhenHookAndLootAreNotBusySystem>());
+            Add(systems.Create<ProcessRoundCompleteWhenLootConsumedSystem>());
+            Add(systems.Create<ProcessNextRoundOrGameOverSystem>());
             
            // Add(systems.Create<MoveToNextRoundBoxSystem>());
             

@@ -56,6 +56,30 @@ namespace Code.Infrastructure.SceneLoading
 
         private IEnumerator LoadingScreenStartRoutine(string sceneName, Action onLoaded)
         {
+            yield return LoadingScreenStartRoutine(sceneName);
+
+            onLoaded?.Invoke();
+
+            yield return new WaitForSeconds(0.25f);
+
+            _faderImage.blocksRaycasts = false;
+
+            _imageTween?.Kill();
+            _imageTween = _faderImage
+                    .DOFade(0, _fadeTime)
+                    .SetUpdate(true)
+                    .SetLink(gameObject)
+                    .OnComplete(_spinerAnimator.SetBehaviorDisabledSafe)
+                ;
+        }
+
+        private static bool IsNeedToLoadNewScene(string sceneName)
+        {
+            return SceneManager.GetActiveScene().name != sceneName;
+        }
+
+        private IEnumerator LoadingScreenStartRoutine(string sceneName)
+        {
             AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
 
             if (_loadTask != null)
@@ -69,19 +93,6 @@ namespace Code.Infrastructure.SceneLoading
                 yield return 0;
 
             _loadingRoutine = null;
-            onLoaded?.Invoke();
-
-            yield return new WaitForSeconds(0.5f);
-
-            _faderImage.blocksRaycasts = false;
-
-            _imageTween?.Kill();
-            _imageTween = _faderImage
-                    .DOFade(0, _fadeTime)
-                    .SetUpdate(true)
-                    .SetLink(gameObject)
-                    .OnComplete(_spinerAnimator.SetBehaviorDisabledSafe)
-                ;
         }
     }
 }

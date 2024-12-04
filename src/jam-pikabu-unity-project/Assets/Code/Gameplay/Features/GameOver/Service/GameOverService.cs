@@ -8,7 +8,6 @@ using Code.Infrastructure.States.GameStateHandler;
 using Code.Infrastructure.States.GameStateHandler.Handlers;
 using Code.Infrastructure.States.GameStates;
 using Code.Infrastructure.States.StateMachine;
-using Code.Progress.Data;
 using Code.Progress.Provider;
 using Code.Progress.SaveLoadService;
 using Cysharp.Threading.Tasks;
