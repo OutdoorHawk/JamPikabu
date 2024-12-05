@@ -48,7 +48,13 @@ namespace Code.Gameplay.Features.Loot.Systems
 
         private async UniTaskVoid ApplyAsync(GameEntity applier)
         {
+            foreach (var loot in _loot)
+                loot.Retain(this);
+            
             await ProcessAnimation();
+            
+            foreach (var loot in _loot)
+                loot.Release(this);
 
             applier.isAvailable = true;
         }

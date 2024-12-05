@@ -3,6 +3,7 @@ using Code.Common.Extensions;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Tutorial.Service;
 using Code.Infrastructure.Localization;
+using Code.Infrastructure.SceneLoading;
 using Code.Infrastructure.States.GameStateHandler;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
@@ -90,7 +91,7 @@ namespace Code.Infrastructure.States.GameStates
 #if UNITY_EDITOR
             _stateMachine.Enter<EditorLoadSceneState>();
 #else
-            _stateMachine.Enter<LoadMainMenuState>();
+            _stateMachine.Enter<LoadLevelState, LoadLevelPayloadParameters>(new LoadLevelPayloadParameters(levelName: nameof(SceneTypeId.Level_1)));
 #endif
         }
         

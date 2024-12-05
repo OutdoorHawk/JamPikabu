@@ -1,6 +1,7 @@
 ﻿using System;
 using Code.Gameplay.Sound;
 using Code.Gameplay.Sound.Service;
+using UnityEngine;
 
 namespace Code.Gameplay.Features.Currency.Service
 {
@@ -22,14 +23,20 @@ namespace Code.Gameplay.Features.Currency.Service
         {
             _soundService = soundService;
         }
-        
-        public void UpdateCurrentGoldAmount(int newAmount, int withdraw)
+
+        public void AddWithdraw(int amount)
         {
-            if (_currentGold != newAmount || _currentGoldWithdraw != withdraw)
+            _currentGoldWithdraw += amount;
+            CurrencyChanged?.Invoke();
+            Debug.LogError($"_currentGoldWithdraw {_currentGoldWithdraw} ");
+        }
+        
+        public void UpdateCurrentGoldAmount(int newAmount)
+        {
+            if (_currentGold != newAmount )
             {
                 PlaySoftCurrencySound(newAmount);
                 _currentGold = newAmount;
-                _currentGoldWithdraw = withdraw;
                 CurrencyChanged?.Invoke();
             }
         }

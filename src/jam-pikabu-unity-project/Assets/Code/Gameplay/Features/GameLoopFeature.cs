@@ -24,6 +24,8 @@ namespace Code.Gameplay.Features
             Add(systems.Create<CurrencyFeature>());
             
             //Add(systems.Create<GameOverFeature>());
+            
+            Add(systems.Create<ProcessDestructedFeature>());
         }
     }
 
@@ -36,7 +38,7 @@ namespace Code.Gameplay.Features
 
             Add(systems.Create<GrapplingHookPhysicsFeature>());
 
-            Add(systems.Create<ProcessDestructedFeature>());
+         
         }
     }
 }

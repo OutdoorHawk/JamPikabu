@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Entitas;
+using UnityEngine;
 
 namespace Code.Gameplay.Features.Loot.Systems
 {
@@ -10,7 +11,6 @@ namespace Code.Gameplay.Features.Loot.Systems
         private readonly IGroup<GameEntity> _potentialTargets;
 
         private readonly List<GameEntity> _lootBuffer = new(64);
-        private readonly List<GameEntity> _targetsBuffer = new(64);
         private readonly IGroup<GameEntity> _lootApplier;
 
         public ApplyLootIncreaseValueEffectSystem(GameContext context)
@@ -56,6 +56,7 @@ namespace Code.Gameplay.Features.Loot.Systems
                         continue;
 
                     target.ReplaceGoldValue((int)(target.GoldValue + producer.EffectValue));
+                    Debug.Log($"boost: {target.LootTypeId.ToString()} | effect: {producer.EffectValue} | result gold {target.GoldValue}");
                     target.LootItemUI.AddGoldValueWithdraw((int)producer.EffectValue);
                     producer.Targets.Add(target.Id);
                 }

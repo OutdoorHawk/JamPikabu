@@ -2,6 +2,7 @@
 using Code.Common.Entity;
 using Code.Common.Extensions;
 using Entitas;
+using UnityEngine;
 
 namespace Code.Gameplay.Features.Loot.Systems
 {
@@ -34,7 +35,8 @@ namespace Code.Gameplay.Features.Loot.Systems
             foreach (var loot in _readyLoot.GetEntities(_buffer))
             {
                 loot.isConsumed = true;
-
+                
+                Debug.Log($"Consume: {loot.LootTypeId.ToString()} | gold: {loot.GoldValue}");
                 CreateGameEntity.Empty()
                     .With(x => x.isAddGoldRequest = true)
                     .AddGold(loot.GoldValue)

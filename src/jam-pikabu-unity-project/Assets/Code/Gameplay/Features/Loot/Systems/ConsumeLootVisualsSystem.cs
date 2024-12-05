@@ -3,6 +3,7 @@ using Code.Common.Entity;
 using Code.Common.Extensions;
 using Cysharp.Threading.Tasks;
 using Entitas;
+using UnityEngine;
 
 namespace Code.Gameplay.Features.Loot.Systems
 {
@@ -43,9 +44,15 @@ namespace Code.Gameplay.Features.Loot.Systems
 
         private async UniTaskVoid AnimateAsync(GameEntity applier)
         {
+            foreach (var loot in _loot)
+                loot.Retain(this);
+            
             await ProcessAnimation();
+            
+            foreach (var loot in _loot)
+                loot.Release(this);
 
-            foreach (var loot in _lootBuffer)
+            foreach (var loot in _loot)
                 loot.isDestructed = true;
 
             applier.isDestructed = true;
@@ -56,6 +63,8 @@ namespace Code.Gameplay.Features.Loot.Systems
             foreach (var loot in _loot.GetEntities(_lootBuffer))
             {
                 await loot.LootItemUI.AnimateConsume();
+                
+                Debug.Log($"Create remove Withdraw request: {loot.LootTypeId.ToString()} | value: {-loot.GoldValue} ");
 
                 CreateGameEntity.Empty()
                     .With(x => x.isAddGoldRequest = true)
