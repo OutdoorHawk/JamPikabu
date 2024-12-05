@@ -19,7 +19,7 @@ MonoBehaviour:
     Icon: {fileID: -1737005464, guid: a5e645d0b2507ac42807ef8e886f7d45, type: 3}
     Value:
       CurrencyType: 1
-      Amount: 0
+      Amount: 1
     EffectValue: 0
     EffectTargets: 
   - Type: 2
@@ -28,19 +28,20 @@ MonoBehaviour:
     Icon: {fileID: -1245454884, guid: a5e645d0b2507ac42807ef8e886f7d45, type: 3}
     Value:
       CurrencyType: 1
-      Amount: 0
-    EffectValue: 0
-    EffectTargets: 
+      Amount: 2
+    EffectValue: 2
+    EffectTargets: 01000000
   - Type: 3
     ViewPrefab: {fileID: 7632606086172137233, guid: d4904c11991e84a46901a2f9832e299c,
       type: 3}
     Icon: {fileID: 21300004, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
     Value:
       CurrencyType: 1
-      Amount: 0
+      Amount: -3
     EffectValue: 0
     EffectTargets: 
   LootSpawnInterval: 0.01
+  LootSpawnStartDelay: 0.5
   LootSpawnAmount: 75
   CollectFlyAnimationDuration: 0.5
   CollectFlyMinMaxJump: {x: -1, y: 2}
