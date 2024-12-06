@@ -106,7 +106,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7371525667086593189, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 172810787847745673}
+      addedObject: {fileID: 3397926053197354432}
   m_SourcePrefab: {fileID: 100100000, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943, type: 3}
 --- !u!1 &3196954758023301479 stripped
 GameObject:
@@ -114,8 +114,8 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5337107385446540738}
   m_PrefabAsset: {fileID: 0}
---- !u!60 &172810787847745673
-PolygonCollider2D:
+--- !u!70 &3397926053197354432
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -148,27 +148,6 @@ PolygonCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.05, y: 2.79}
-    newSize: {x: 2.05, y: 2.79}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 1
-  m_Points:
-    m_Paths:
-    - - {x: 0.18790872, y: -1.3689576}
-      - {x: -0.20697635, y: -1.2017875}
-      - {x: -0.2796218, y: -0.49157032}
-      - {x: -0.71964973, y: -0.4869449}
-      - {x: -1.0548904, y: 0.49394193}
-      - {x: -0.050844006, y: 1.4176954}
-      - {x: 0.2881903, y: 0.5775324}
-      - {x: 1.0337498, y: 0.3620311}
-      - {x: 1.0337498, y: 0.3620311}
-      - {x: 1.0337498, y: 0.3620311}
-      - {x: 1.0337498, y: 0.3620311}
-  m_UseDelaunayMesh: 0
+  m_Offset: {x: 0.015378656, y: -0.038447466}
+  m_Size: {x: 1.6347696, y: 2.5593162}
+  m_Direction: 0

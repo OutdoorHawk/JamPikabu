@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3516684561250940951}
   - component: {fileID: 7919534535617553518}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Dynamic Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
