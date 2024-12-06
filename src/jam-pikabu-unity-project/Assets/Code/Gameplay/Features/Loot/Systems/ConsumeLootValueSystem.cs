@@ -2,7 +2,6 @@
 using Code.Common.Entity;
 using Code.Common.Extensions;
 using Entitas;
-using UnityEngine;
 
 namespace Code.Gameplay.Features.Loot.Systems
 {
@@ -34,13 +33,16 @@ namespace Code.Gameplay.Features.Loot.Systems
             foreach (var loot in _readyLoot.GetEntities(_buffer))
             {
                 loot.isConsumed = true;
-                
-                CreateGameEntity.Empty()
-                    .With(x => x.isAddCurrencyRequest = true, when: loot.hasPlus || loot.hasMinus)
-                    .With(x => x.AddPlus(loot.Plus), when: loot.hasPlus)
-                    .With(x => x.AddMinus(loot.Minus), when: loot.hasMinus)
-                    //.AddWithdraw(loot.GoldValue)
-                    ;
+
+                if (loot.hasPlus || loot.hasMinus)
+                {
+                    CreateGameEntity.Empty()
+                        .With(x => x.isAddCurrencyRequest = true)
+                        .With(x => x.AddPlus(loot.Plus), when: loot.hasPlus)
+                        .With(x => x.AddMinus(loot.Minus), when: loot.hasMinus)
+                        //.AddWithdraw(loot.GoldValue)
+                        ;
+                }
             }
         }
     }

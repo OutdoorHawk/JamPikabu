@@ -397,7 +397,7 @@ MonoBehaviour:
   _useAnimation: 1
   _canCloseByBack: 0
   _canvasGroup: {fileID: 5576156912134853107}
-  _orderIcon: {fileID: 0}
+  _orderIcon: {fileID: 1799150524144696294}
   _playButton: {fileID: 8436284633772145362}
   _skipButton: {fileID: 7994312149613129750}
   _goodIngredients: {fileID: 3643342236522753131}

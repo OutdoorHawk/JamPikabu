@@ -76,10 +76,10 @@ namespace Code.Gameplay.Features.Orders.Service
 
         public void GoToNextOrder()
         {
+            _currentOrderIndex++;
+            
             if (_currentOrderIndex >= _ordersBuffer.Count)
                 _currentOrderIndex = 0;
-
-            _currentOrderIndex++;
         }
 
         public void GameOver()

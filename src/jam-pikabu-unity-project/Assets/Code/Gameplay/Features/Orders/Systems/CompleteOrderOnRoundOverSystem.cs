@@ -1,19 +1,23 @@
 ﻿using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Orders.Config;
+using Code.Gameplay.Features.Orders.Service;
 using Entitas;
 
 namespace Code.Gameplay.Features.Orders.Systems
 {
     public class CompleteOrderOnRoundOverSystem : IExecuteSystem
     {
+        private readonly IOrdersService _ordersService;
         private readonly IGroup<GameEntity> _orders;
         private readonly IGroup<GameEntity> _roundStateControllers;
 
-        public CompleteOrderOnRoundOverSystem(GameContext context)
+        public CompleteOrderOnRoundOverSystem(GameContext context, IOrdersService ordersService)
         {
+            _ordersService = ordersService;
             _roundStateControllers = context.GetGroup(
-                GameMatcher.AllOf(GameMatcher.RoundStateController, 
+                GameMatcher.AllOf(
+                    GameMatcher.RoundStateController, 
                     GameMatcher.RoundComplete));
             
             _orders = context.GetGroup(GameMatcher
@@ -35,7 +39,9 @@ namespace Code.Gameplay.Features.Orders.Systems
                     .AddGold(orderDataSetup.Reward.Amount)
                     ;
                 
-                //entity.isCom
+                entity.isComplete = true;
+                
+                _ordersService.GoToNextOrder();
             }
         }
     }

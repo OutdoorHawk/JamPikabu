@@ -46,6 +46,8 @@ namespace Code.Gameplay.Features.Orders.Windows
         {
             _currentOrder = _ordersService.GetCurrentOrder();
 
+            _orderIcon.sprite = _currentOrder.Setup.OrderIcon;
+
             CreateItems(_currentOrder.Setup.GoodIngredients, _goodItems, _goodIngredients.transform);
             CreateItems(_currentOrder.Setup.BadIngredients, _badItems, _badIngredients.transform);
             

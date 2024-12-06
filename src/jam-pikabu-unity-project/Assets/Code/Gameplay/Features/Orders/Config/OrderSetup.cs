@@ -22,6 +22,6 @@ namespace Code.Gameplay.Features.Orders.Config
         public int MaxDayToUnlock;
         public List<IngredientData> GoodIngredients;
         public List<IngredientData> BadIngredients;
-        public int UniqueIngredientsForBonus;
+       // public int UniqueIngredientsForBonus;
     }
 }

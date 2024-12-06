@@ -27,6 +27,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
             {
                 entity.isRoundOver = false;
                 entity.isRoundInProcess = true;
+                entity.isRoundComplete = false;
                 entity.AddRoundTimeLeft(entity.RoundDuration);
 
                 /*CreateGameEntity.Empty()
