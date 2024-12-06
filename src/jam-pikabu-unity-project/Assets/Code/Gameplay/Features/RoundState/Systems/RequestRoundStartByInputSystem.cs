@@ -16,7 +16,9 @@ namespace Code.Gameplay.Features.RoundState.Systems
 
         protected override ICollector<InputEntity> GetTrigger(IContext<InputEntity> context)
         {
-            return context.CreateCollector(InputMatcher.Enter.Removed());
+            return context.CreateCollector(InputMatcher
+                .AnyOf(InputMatcher.Enter, 
+                InputMatcher.Jump).Removed());
         }
 
         protected override bool Filter(InputEntity entity)
