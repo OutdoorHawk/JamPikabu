@@ -19,6 +19,8 @@ namespace Code.Gameplay.Features.RoundState.Service
         private readonly IGameStateMachine _gameStateMachine;
 
         private List<DayData> _daysData;
+        private DayData _currentDayData;
+        
         private int _currentDay;
 
         public int CurrentDay => _currentDay;
@@ -41,10 +43,10 @@ namespace Code.Gameplay.Features.RoundState.Service
             _daysData = staticData.Days;
             _currentDay++;
             
-            DayData dayData = GetDayData(_currentDay);
+            _currentDayData = GetDayData(_currentDay);
 
             _roundStateFactory.CreateRoundStateController()
-                .AddDayCost(dayData.PlayCost)
+                .AddDayCost(_currentDayData.PlayCost)
                 .AddDay(_currentDay)
                 ;
         }
@@ -64,9 +66,26 @@ namespace Code.Gameplay.Features.RoundState.Service
             LoadNextLevelAsync().Forget();
         }
 
+        public DayData GetDayData()
+        {
+            return _currentDayData;
+        }
+
+        private DayData GetDayData(int currentDay)
+        {
+            foreach (DayData data in _daysData)
+            {
+                if (data.Day >= currentDay)
+                    return data;
+            }
+
+            return _daysData[^1];
+        }
+
         public void GameOver()
         {
             _currentDay = 0;
+            _currentDayData = null;
         }
 
         private async UniTask LoadNextLevelAsync()
@@ -79,17 +98,6 @@ namespace Code.Gameplay.Features.RoundState.Service
 
             var loadLevelPayloadParameters = new LoadLevelPayloadParameters(dayData.SceneId.ToString());
             _gameStateMachine.Enter<LoadLevelState, LoadLevelPayloadParameters>(loadLevelPayloadParameters);
-        }
-
-        private DayData GetDayData(int currentRound)
-        {
-            foreach (DayData data in _daysData)
-            {
-                if (data.Day >= currentRound)
-                    return data;
-            }
-
-            return _daysData[^1];
         }
     }
 }

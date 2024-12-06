@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Loot.Configs;
+using Code.Gameplay.Features.RoundState.Configs;
+using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.StaticData;
+using Code.Infrastructure.SceneLoading;
 using UnityEngine;
 
 namespace Code.Gameplay.Features.Loot.Factory
@@ -11,17 +14,27 @@ namespace Code.Gameplay.Features.Loot.Factory
     public class LootFactory : ILootFactory
     {
         private readonly IStaticDataService _staticDataService;
+        private readonly IRoundStateService _roundStateService;
 
-        public LootFactory(IStaticDataService staticDataService)
+        public LootFactory(IStaticDataService staticDataService, IRoundStateService roundStateService)
         {
             _staticDataService = staticDataService;
+            _roundStateService = roundStateService;
         }
 
         public GameEntity CreateLootSpawner()
         {
-            GameEntity lootSpawner = CreateGameEntity.Empty()
-                .With(x => x.isLootSpawner = true);
-            return lootSpawner;
+            DayData dayData = _roundStateService.GetDayData();
+            
+            switch (dayData.SceneId)
+            {
+                case SceneTypeId.Level_1:
+                   return CreateSingleSpawner();
+                case SceneTypeId.Level_2:
+                    return CreateConveyorSpawner();
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         public GameEntity CreateLootEntity(LootTypeId typeId, Transform parent, Vector2 at, Vector3 spawnRotation)
@@ -38,6 +51,22 @@ namespace Code.Gameplay.Features.Loot.Factory
             }
 
             return loot;
+        }
+
+        private static GameEntity CreateSingleSpawner()
+        {
+            return CreateGameEntity.Empty()
+                .With(x => x.isLootSpawner = true)
+                .With(x => x.isSingleSpawn = true)
+                ;
+        }
+
+        private GameEntity CreateConveyorSpawner()
+        {
+            return CreateGameEntity.Empty()
+                    .With(x => x.isLootSpawner = true)
+                    .With(x => x.isConveyorSpawner = true)
+                ;
         }
 
         private GameEntity CreateBaseLoot(LootTypeId typeId, Transform parent, Vector2 at, Vector3 spawnRotation)

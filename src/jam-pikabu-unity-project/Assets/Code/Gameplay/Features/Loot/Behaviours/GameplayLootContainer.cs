@@ -14,28 +14,28 @@ namespace Code.Gameplay.Features.Loot.Behaviours
 
         private readonly List<LootItemUI> _items = new();
 
-        private ILootUIService _lootUIService;
+        private ILootService _lootService;
         private ILootItemUIFactory _lootUIFactory;
 
         public List<LootItemUI> Items => _items;
 
         [Inject]
-        private void Construct(ILootUIService lootUIService, ILootItemUIFactory lootUIFactory)
+        private void Construct(ILootService lootService, ILootItemUIFactory lootUIFactory)
         {
             _lootUIFactory = lootUIFactory;
-            _lootUIService = lootUIService;
+            _lootService = lootService;
         }
 
         private void Start()
         {
-            _lootUIService.OnLootUpdate += Refresh;
-            _lootUIService.OnLootItemAdded += AddNewItem;
+            _lootService.OnLootUpdate += Refresh;
+            _lootService.OnLootItemAdded += AddNewItem;
         }
 
         private void OnDestroy()
         {
-            _lootUIService.OnLootUpdate -= Refresh;
-            _lootUIService.OnLootItemAdded -= AddNewItem;
+            _lootService.OnLootUpdate -= Refresh;
+            _lootService.OnLootItemAdded -= AddNewItem;
         }
 
         private void AddNewItem(LootTypeId type)

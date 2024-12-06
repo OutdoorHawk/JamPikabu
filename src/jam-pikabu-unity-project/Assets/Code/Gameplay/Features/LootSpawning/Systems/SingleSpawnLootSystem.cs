@@ -1,45 +1,46 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using Code.Common;
-using Code.Common.Extensions;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.Features.Loot.Factory;
-using Code.Gameplay.Features.RoundState.Service;
+using Code.Gameplay.Features.Loot.Service;
 using Code.Gameplay.StaticData;
 using Code.Infrastructure.SceneContext;
 using Cysharp.Threading.Tasks;
 using Entitas;
 using UnityEngine;
+using static Code.Common.Extensions.AsyncGameplayExtensions;
 
 namespace Code.Gameplay.Features.LootSpawning.Systems
 {
-    public class SpawnLootSystem : ReactiveSystem<GameEntity>, ITearDownSystem
+    public class SingleSpawnLootSystem : ReactiveSystem<GameEntity>, ITearDownSystem
     {
         private readonly ILootFactory _lootFactory;
         private readonly IStaticDataService _staticDataService;
         private readonly ISceneContextProvider _provider;
-        private readonly IRoundStateService _roundStateService;
+        private readonly ILootService _lootService;
         private readonly GameContext _context;
 
         private readonly CancellationTokenSource _exitGameSource = new();
-        private readonly List<LootSetup> _lootSetupsBuffer = new();
-        
+
         private int _spawnPointIndex;
 
-        public SpawnLootSystem(GameContext context, ILootFactory lootFactory, IStaticDataService staticDataService,
-            ISceneContextProvider provider, IRoundStateService roundStateService) :
+        public SingleSpawnLootSystem(GameContext context, ILootFactory lootFactory, IStaticDataService staticDataService,
+            ISceneContextProvider provider, ILootService lootService) :
             base(context)
         {
             _context = context;
             _provider = provider;
-            _roundStateService = roundStateService;
+            _lootService = lootService;
             _staticDataService = staticDataService;
             _lootFactory = lootFactory;
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
-            return context.CreateCollector(GameMatcher.LootSpawner.Added());
+            return context.CreateCollector(GameMatcher.AllOf(
+                GameMatcher.LootSpawner,
+                GameMatcher.SingleSpawn).Added());
         }
 
         protected override bool Filter(GameEntity entity)
@@ -59,14 +60,10 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
         {
             int lootSpawnerId = lootSpawner.Id;
             var staticData = _staticDataService.GetStaticData<LootStaticData>();
-            List<LootSetup> configs = staticData.Configs;
-            int currentDay = _roundStateService.CurrentDay;
-
-            InitLootBuffer(configs, currentDay);
 
             SceneContextComponent sceneContext = _provider.Context;
 
-            await AsyncGameplayExtensions.DelaySeconds(staticData.LootSpawnStartDelay, _exitGameSource.Token);
+            await DelaySeconds(staticData.LootSpawnStartDelay, _exitGameSource.Token);
 
             await ProcessLootSpawn(staticData, sceneContext);
 
@@ -78,31 +75,18 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
             spawner.isDestructed = true;
         }
 
-        private void InitLootBuffer(List<LootSetup> configs, int currentDay)
-        {
-            _lootSetupsBuffer.Clear();
-            foreach (var config in configs)
-            {
-                if (CheckMinDayToUnlock(config, currentDay))
-                    continue;
-
-                if (CheckMaxDayToUnlock(config, currentDay))
-                    continue;
-
-                _lootSetupsBuffer.Add(config);
-            }
-        }
-
         private async UniTask ProcessLootSpawn(LootStaticData staticData, SceneContextComponent sceneContext)
         {
-            for (int i = 0; i < staticData.LootSpawnAmount / _lootSetupsBuffer.Count; i++)
+            float lootSpawnAmount = staticData.LootSpawnAmount / _lootService.AvailableLoot.Count;
+
+            for (int i = 0; i < lootSpawnAmount; i++)
             {
                 Transform spawn = GetSpawnPoint(sceneContext);
 
-                foreach (var lootSetup in _lootSetupsBuffer)
+                foreach (var lootSetup in _lootService.AvailableLoot)
                 {
                     _lootFactory.CreateLootEntity(lootSetup.Type, sceneContext.LootParent, spawn.position, spawn.rotation.eulerAngles);
-                    await AsyncGameplayExtensions.DelaySeconds(staticData.LootSpawnInterval, _exitGameSource.Token);
+                    await DelaySeconds(staticData.LootSpawnInterval, _exitGameSource.Token);
                 }
             }
         }
@@ -120,16 +104,6 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
         public void TearDown()
         {
             _exitGameSource?.Cancel();
-        }
-
-        private static bool CheckMinDayToUnlock(LootSetup data, int currentDay)
-        {
-            return data.MinDayToUnlock > 0 && currentDay < data.MinDayToUnlock;
-        }
-
-        private static bool CheckMaxDayToUnlock(LootSetup data, int currentDay)
-        {
-            return data.MaxDayToUnlock > 0 && currentDay > data.MaxDayToUnlock;
         }
     }
 }

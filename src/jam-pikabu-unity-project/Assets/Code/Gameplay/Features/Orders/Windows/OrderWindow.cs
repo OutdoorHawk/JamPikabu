@@ -36,7 +36,7 @@ namespace Code.Gameplay.Features.Orders.Windows
         private ILootItemUIFactory _lootItemUIFactory;
         private IStaticDataService _staticDataService;
         private ICurrencyFactory _currencyFactory;
-        private ILootUIService _lootUIService;
+        private ILootService _lootService;
 
         private OrderData _currentOrder;
 
@@ -48,9 +48,9 @@ namespace Code.Gameplay.Features.Orders.Windows
 
         [Inject]
         private void Construct(IOrdersService ordersService, ILootItemUIFactory lootItemUIFactory,
-            ICurrencyFactory currencyFactory, IStaticDataService staticDataService, ILootUIService lootUIService)
+            ICurrencyFactory currencyFactory, IStaticDataService staticDataService, ILootService lootService)
         {
-            _lootUIService = lootUIService;
+            _lootService = lootService;
             _staticDataService = staticDataService;
             _currencyFactory = currencyFactory;
             _lootItemUIFactory = lootItemUIFactory;
@@ -115,7 +115,7 @@ namespace Code.Gameplay.Features.Orders.Windows
         private async UniTask PlayConsume(LootItemUI lootItem, PriceInfo price, CurrencyTypeId typeId)
         {
             IngredientData ingredientData = _ordersService.GetIngredientData(lootItem.Type);
-            IEnumerable<LootTypeId> collected = _lootUIService.CollectedLootItems.Where(item => item == ingredientData.TypeId);
+            IEnumerable<LootTypeId> collected = _lootService.CollectedLootItems.Where(item => item == ingredientData.TypeId);
             int count = ingredientData.Rating.Amount * collected.Count();
 
             var parameters = new CurrencyAnimationParameters

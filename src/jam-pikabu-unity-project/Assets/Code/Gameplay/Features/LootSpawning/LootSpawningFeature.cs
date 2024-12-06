@@ -1,5 +1,4 @@
-﻿using Code.Gameplay.Features.Loot.Systems;
-using Code.Gameplay.Features.LootSpawning.Systems;
+﻿using Code.Gameplay.Features.LootSpawning.Systems;
 using Code.Infrastructure.Systems;
 
 namespace Code.Gameplay.Features.LootSpawning
@@ -9,9 +8,10 @@ namespace Code.Gameplay.Features.LootSpawning
         public LootSpawningFeature(ISystemFactory systems)
         {
             Add(systems.Create<InitLootSpawnSystem>());
-            Add(systems.Create<SpawnLootSystem>());
+            Add(systems.Create<SingleSpawnLootSystem>());
+            Add(systems.Create<ContinuousSpawnLootSystem>());
             Add(systems.Create<SetLootInitialSpeedSystem>());
-            
+
             Add(systems.Create<EnterNextStateOnLootSpawningComplete>());
         }
     }

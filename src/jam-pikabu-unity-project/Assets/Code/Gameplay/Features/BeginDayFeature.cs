@@ -14,12 +14,12 @@ namespace Code.Gameplay.Features
         public BeginDayFeature(ISystemFactory systems)
         {
             Add(systems.Create<BindViewFeature>());
-            Add(systems.Create<LootSpawningFeature>());
 
             Add(systems.Create<InitRoundStateSystem>());
             Add(systems.Create<InitDayOrdersSystem>());
             Add(systems.Create<InitGrapplingHookSystem>());
             Add(systems.Create<InitGameplayCurrency>());
+            Add(systems.Create<LootSpawningFeature>());
             
             Add(systems.Create<ProcessDestructedFeature>());
         }

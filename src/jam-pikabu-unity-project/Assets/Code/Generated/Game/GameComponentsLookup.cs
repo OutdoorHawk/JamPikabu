@@ -67,38 +67,41 @@ public static class GameComponentsLookup {
     public const int Available = 56;
     public const int Collected = 57;
     public const int Consumed = 58;
-    public const int Effect = 59;
-    public const int EffectTargetsLoot = 60;
-    public const int EffectValue = 61;
-    public const int GoldValue = 62;
-    public const int IncreaseValueEffect = 63;
-    public const int Loot = 64;
-    public const int LootEffectsApplier = 65;
-    public const int LootItemUI = 66;
-    public const int LootSpawner = 67;
-    public const int LootTypeId = 68;
-    public const int Complete = 69;
-    public const int NextOrderRequest = 70;
-    public const int Order = 71;
-    public const int OrderData = 72;
-    public const int Rating = 73;
-    public const int Day = 74;
-    public const int DayCompleteRequest = 75;
-    public const int DayCost = 76;
-    public const int GameOver = 77;
-    public const int Round = 78;
-    public const int RoundComplete = 79;
-    public const int RoundDuration = 80;
-    public const int RoundInProcess = 81;
-    public const int RoundOver = 82;
-    public const int RoundStartAvailable = 83;
-    public const int RoundStartRequest = 84;
-    public const int RoundStateController = 85;
-    public const int RoundStateViewBehaviour = 86;
-    public const int RoundTimeLeft = 87;
-    public const int AudioSourceBehaviour = 88;
+    public const int ContinuousSpawn = 59;
+    public const int ConveyorSpawner = 60;
+    public const int Effect = 61;
+    public const int EffectTargetsLoot = 62;
+    public const int EffectValue = 63;
+    public const int GoldValue = 64;
+    public const int IncreaseValueEffect = 65;
+    public const int Loot = 66;
+    public const int LootEffectsApplier = 67;
+    public const int LootItemUI = 68;
+    public const int LootSpawner = 69;
+    public const int LootTypeId = 70;
+    public const int SingleSpawn = 71;
+    public const int Complete = 72;
+    public const int NextOrderRequest = 73;
+    public const int Order = 74;
+    public const int OrderData = 75;
+    public const int Rating = 76;
+    public const int Day = 77;
+    public const int DayCompleteRequest = 78;
+    public const int DayCost = 79;
+    public const int GameOver = 80;
+    public const int Round = 81;
+    public const int RoundComplete = 82;
+    public const int RoundDuration = 83;
+    public const int RoundInProcess = 84;
+    public const int RoundOver = 85;
+    public const int RoundStartAvailable = 86;
+    public const int RoundStartRequest = 87;
+    public const int RoundStateController = 88;
+    public const int RoundStateViewBehaviour = 89;
+    public const int RoundTimeLeft = 90;
+    public const int AudioSourceBehaviour = 91;
 
-    public const int TotalComponents = 89;
+    public const int TotalComponents = 92;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -160,6 +163,8 @@ public static class GameComponentsLookup {
         "Available",
         "Collected",
         "Consumed",
+        "ContinuousSpawn",
+        "ConveyorSpawner",
         "Effect",
         "EffectTargetsLoot",
         "EffectValue",
@@ -170,6 +175,7 @@ public static class GameComponentsLookup {
         "LootItemUI",
         "LootSpawner",
         "LootTypeId",
+        "SingleSpawn",
         "Complete",
         "NextOrderRequest",
         "Order",
@@ -252,6 +258,8 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Loot.Available),
         typeof(Code.Gameplay.Features.Loot.Collected),
         typeof(Code.Gameplay.Features.Loot.Consumed),
+        typeof(Code.Gameplay.Features.Loot.ContinuousSpawn),
+        typeof(Code.Gameplay.Features.Loot.ConveyorSpawner),
         typeof(Code.Gameplay.Features.Loot.Effect),
         typeof(Code.Gameplay.Features.Loot.EffectTargetsLoot),
         typeof(Code.Gameplay.Features.Loot.EffectValue),
@@ -262,6 +270,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Loot.LootItemUIComponent),
         typeof(Code.Gameplay.Features.Loot.LootSpawner),
         typeof(Code.Gameplay.Features.Loot.LootTypeIdComponent),
+        typeof(Code.Gameplay.Features.Loot.SingleSpawn),
         typeof(Code.Gameplay.Features.Orders.Complete),
         typeof(Code.Gameplay.Features.Orders.NextOrderRequest),
         typeof(Code.Gameplay.Features.Orders.Order),

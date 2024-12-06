@@ -12,11 +12,11 @@ namespace Code.Gameplay.Features.Loot.Systems
         private readonly IGroup<GameEntity> _lootApplier;
         private readonly List<GameEntity> _buffer = new(64);
 
-        private readonly ILootUIService _lootUIService;
+        private readonly ILootService _lootService;
         
-        public ConsumeLootValueSystem(GameContext context, ILootUIService lootUIService)
+        public ConsumeLootValueSystem(GameContext context, ILootService lootService)
         {
-            _lootUIService = lootUIService;
+            _lootService = lootService;
             _lootApplier = context.GetGroup(
                 GameMatcher.AllOf(
                     GameMatcher.LootEffectsApplier
@@ -48,7 +48,7 @@ namespace Code.Gameplay.Features.Loot.Systems
                         .With(x => x.AddWithdraw(loot.Minus), when: loot.hasMinus)
                         ;
                     
-                    _lootUIService.AddConsumedLoot(loot.LootTypeId);
+                    _lootService.AddConsumedLoot(loot.LootTypeId);
                 }
             }
         }

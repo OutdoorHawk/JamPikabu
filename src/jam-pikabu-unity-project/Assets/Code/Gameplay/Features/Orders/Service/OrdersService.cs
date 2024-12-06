@@ -14,7 +14,7 @@ namespace Code.Gameplay.Features.Orders.Service
         private readonly IStaticDataService _staticDataService;
         private readonly IRoundStateService _roundStateService;
         private readonly IOrdersFactory _ordersFactory;
-        private readonly ILootUIService _lootUIService;
+        private readonly ILootService _lootService;
 
         private OrdersStaticData _ordersData;
         private int _currentOrderIndex;
@@ -24,12 +24,12 @@ namespace Code.Gameplay.Features.Orders.Service
         private readonly Dictionary<LootTypeId, IngredientData> _orderIngredientCostDict = new();
 
         public OrdersService(IStaticDataService staticDataService,
-            IRoundStateService roundStateService, IOrdersFactory ordersFactory, ILootUIService lootUIService)
+            IRoundStateService roundStateService, IOrdersFactory ordersFactory, ILootService lootService)
         {
             _staticDataService = staticDataService;
             _roundStateService = roundStateService;
             _ordersFactory = ordersFactory;
-            _lootUIService = lootUIService;
+            _lootService = lootService;
         }
 
         public void InitDay(int currentDay)
@@ -89,7 +89,7 @@ namespace Code.Gameplay.Features.Orders.Service
         
         public void GoToNextOrder()
         {
-            _lootUIService.ClearCollectedLoot();
+            _lootService.ClearCollectedLoot();
             _ordersCompleted++;
             
             _currentOrderIndex++;
