@@ -7,8 +7,6 @@ namespace Code.Gameplay.Features.GrapplingHook
     {
         public GrapplingHookPhysicsFeature(ISystemFactory systems)
         {
-            Add(systems.Create<InitGrapplingHookSystem>());
-            
             Add(systems.Create<SetHookXMovementDirectionByInputSystem>());
             Add(systems.Create<SetHookDescentRequestByInputSystem>());
             

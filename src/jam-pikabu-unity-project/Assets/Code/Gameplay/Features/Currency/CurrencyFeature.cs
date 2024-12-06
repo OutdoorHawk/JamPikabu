@@ -7,8 +7,6 @@ namespace Code.Gameplay.Features.Currency
     {
         public CurrencyFeature(ISystemFactory systems)
         {
-            Add(systems.Create<InitGameplayCurrency>());
-            
             Add(systems.Create<ProcessAddGoldRequestSystem>());
             Add(systems.Create<ProcessAddRatingRequestSystem>());
             

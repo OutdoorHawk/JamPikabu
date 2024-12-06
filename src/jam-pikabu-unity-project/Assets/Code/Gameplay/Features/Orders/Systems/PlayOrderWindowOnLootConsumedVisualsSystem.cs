@@ -3,34 +3,35 @@ using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Orders.Service;
 using Code.Gameplay.Features.Orders.Windows;
+using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.Windows;
 using Code.Gameplay.Windows.Factory;
 using Code.Gameplay.Windows.Service;
 using Cysharp.Threading.Tasks;
 using Entitas;
-using UnityEngine;
 
 namespace Code.Gameplay.Features.Orders.Systems
 {
-    public class PlayOrderWindowVisualsSystem : ReactiveSystem<GameEntity>
+    public class PlayOrderWindowOnLootConsumedVisualsSystem : ReactiveSystem<GameEntity>
     {
         private readonly IWindowService _windowService;
         private readonly IOrdersService _ordersService;
         private readonly IUIFactory _uiFactory;
+        private readonly IRoundStateService _roundStateService;
 
-        public PlayOrderWindowVisualsSystem(GameContext context, IWindowService windowService, 
-            IOrdersService ordersService, IUIFactory uiFactory) : base(context)
+        public PlayOrderWindowOnLootConsumedVisualsSystem(GameContext context, IWindowService windowService,
+            IOrdersService ordersService, IUIFactory uiFactory, IRoundStateService roundStateService) : base(context)
         {
             _windowService = windowService;
             _ordersService = ordersService;
             _uiFactory = uiFactory;
+            _roundStateService = roundStateService;
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
             return context.CreateCollector(GameMatcher
-                .AllOf(GameMatcher.RoundStateController,
-                    GameMatcher.RoundComplete).Added());
+                .AllOf(GameMatcher.LootEffectsApplier).Removed());
         }
 
         protected override bool Filter(GameEntity entity)
@@ -51,7 +52,7 @@ namespace Code.Gameplay.Features.Orders.Systems
             var orderWindow = await _windowService.OpenWindow<OrderWindow>(WindowTypeId.OrderWindow);
 
             await orderWindow.PlayOrderComplete();
-            
+
             _uiFactory.SetRaycastAvailable(true);
 
             await orderWindow.ExitButton.OnClickAsync(); // TODO: ВСЕ СПОСОБЫ ВЫХОДА
@@ -64,10 +65,9 @@ namespace Code.Gameplay.Features.Orders.Systems
                 .AddGold(0)
                 .AddWithdraw(-order.Setup.Reward.Amount)
                 ;
-            
-            Debug.LogError($"remove withdraw {order.Setup.Reward.Amount}");
-            
+
             _ordersService.GoToNextOrder();
+            _roundStateService.PrepareToNextRound();
         }
     }
 }

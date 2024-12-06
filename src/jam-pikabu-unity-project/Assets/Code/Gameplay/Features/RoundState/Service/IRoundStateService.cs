@@ -6,6 +6,7 @@ namespace Code.Gameplay.Features.RoundState.Service
         int CurrentDay { get; }
         void CreateRoundStateController();
         void RoundComplete();
+        void PrepareToNextRound();
         void DayComplete();
         void TryLoadNextLevel();
         void GameOver();

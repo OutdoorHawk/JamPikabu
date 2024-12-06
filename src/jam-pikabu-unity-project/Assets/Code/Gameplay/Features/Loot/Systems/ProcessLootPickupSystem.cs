@@ -15,7 +15,7 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.Loot.Systems
 {
-    public class ProcessLootPickup : IExecuteSystem, ICleanupSystem
+    public class ProcessLootPickupSystem : IExecuteSystem, ICleanupSystem
     {
         private readonly GameContext _context;
         private readonly IGroup<GameEntity> _loot;
@@ -26,7 +26,7 @@ namespace Code.Gameplay.Features.Loot.Systems
         private readonly IStaticDataService _staticData;
         private readonly Camera _camera;
 
-        public ProcessLootPickup(GameContext context, ILootUIService lootUIService, 
+        public ProcessLootPickupSystem(GameContext context, ILootUIService lootUIService, 
             IWindowService windowService, IStaticDataService staticData)
         {
             _context = context;

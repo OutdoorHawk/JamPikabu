@@ -32,6 +32,7 @@ using Code.Infrastructure.SceneLoading;
 using Code.Infrastructure.States.Factory;
 using Code.Infrastructure.States.GameStateHandler;
 using Code.Infrastructure.States.GameStates;
+using Code.Infrastructure.States.GameStates.Game;
 using Code.Infrastructure.States.StateMachine;
 using Code.Infrastructure.Systems;
 using Code.Infrastructure.View.Factory;
@@ -94,11 +95,13 @@ namespace Code.Infrastructure.DI.Installers
             Container.BindInterfacesAndSelfTo<LoadMainMenuState>().AsSingle();
             Container.BindInterfacesAndSelfTo<MainMenuState>().AsSingle();
             Container.BindInterfacesAndSelfTo<LoadLevelState>().AsSingle();
-            Container.BindInterfacesAndSelfTo<BattleEnterState>().AsSingle();
-            Container.BindInterfacesAndSelfTo<GameLoopState>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameEnterState>().AsSingle();
+            Container.BindInterfacesAndSelfTo<BeginDayLoopState>().AsSingle();
+            Container.BindInterfacesAndSelfTo<RoundPreparationLoopState>().AsSingle();
+            Container.BindInterfacesAndSelfTo<CoreGameLoopState>().AsSingle();
+            Container.BindInterfacesAndSelfTo<RoundCompletionLoopState>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameOverState>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameWinState>().AsSingle();
-            Container.BindInterfacesAndSelfTo<InventoryState>().AsSingle();
         }
 
         private void BindContexts()

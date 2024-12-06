@@ -28,8 +28,6 @@ namespace Code.Gameplay.Features.Currency.Factory
 
         public void CreateCurrencyStorages()
         {
-            var roundStateStaticData = _staticDataService.GetStaticData<RoundStateStaticData>();
-
             CreateGameEntity
                 .Empty()
                 .With(x => x.isCurrencyStorage = true)

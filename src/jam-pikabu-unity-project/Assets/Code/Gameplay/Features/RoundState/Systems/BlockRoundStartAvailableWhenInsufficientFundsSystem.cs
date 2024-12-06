@@ -1,18 +1,14 @@
-﻿using Code.Gameplay.StaticData;
-using Entitas;
+﻿using Entitas;
 
 namespace Code.Gameplay.Features.RoundState.Systems
 {
     public class BlockRoundStartAvailableWhenInsufficientFundsSystem : IExecuteSystem
     {
         private readonly IGroup<GameEntity> _roundController;
-        private readonly IStaticDataService _staticDataService;
         private readonly IGroup<GameEntity> _gold;
 
-        public BlockRoundStartAvailableWhenInsufficientFundsSystem(GameContext context, IStaticDataService staticDataService)
+        public BlockRoundStartAvailableWhenInsufficientFundsSystem(GameContext context)
         {
-            _staticDataService = staticDataService;
-                
             _roundController = context.GetGroup(
                 GameMatcher.AllOf(
                     GameMatcher.RoundStateController,

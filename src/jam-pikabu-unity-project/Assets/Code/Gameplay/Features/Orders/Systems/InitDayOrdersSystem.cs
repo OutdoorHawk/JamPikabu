@@ -3,11 +3,11 @@ using Entitas;
 
 namespace Code.Gameplay.Features.Orders.Systems
 {
-    public class InitOrdersDaySystem : IInitializeSystem
+    public class InitDayOrdersSystem : IInitializeSystem
     {
         private readonly IOrdersService _ordersService;
 
-        public InitOrdersDaySystem(GameContext context, IOrdersService ordersService)
+        public InitDayOrdersSystem(IOrdersService ordersService)
         {
             _ordersService = ordersService;
         }

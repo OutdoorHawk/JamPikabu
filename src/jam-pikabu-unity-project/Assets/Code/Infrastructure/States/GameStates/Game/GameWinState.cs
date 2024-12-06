@@ -4,7 +4,7 @@ using Code.Infrastructure.States.StateMachine;
 using Code.Progress.Provider;
 using Code.Progress.SaveLoadService;
 
-namespace Code.Infrastructure.States.GameStates
+namespace Code.Infrastructure.States.GameStates.Game
 {
     public class GameWinState : SimpleState
     {

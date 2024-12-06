@@ -8,6 +8,7 @@ using Code.Gameplay.Windows.Service;
 using Code.Infrastructure.States.GameStateHandler;
 using Code.Infrastructure.States.GameStateHandler.Handlers;
 using Code.Infrastructure.States.GameStates;
+using Code.Infrastructure.States.GameStates.Game;
 using Code.Infrastructure.States.StateMachine;
 using Code.Progress.Provider;
 using Code.Progress.SaveLoadService;

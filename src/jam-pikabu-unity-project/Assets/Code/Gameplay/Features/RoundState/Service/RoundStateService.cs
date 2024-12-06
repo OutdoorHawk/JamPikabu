@@ -5,6 +5,7 @@ using Code.Gameplay.Features.RoundState.Configs;
 using Code.Gameplay.Features.RoundState.Factory;
 using Code.Gameplay.StaticData;
 using Code.Infrastructure.States.GameStates;
+using Code.Infrastructure.States.GameStates.Game;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
 using Cysharp.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace Code.Gameplay.Features.RoundState.Service
         private readonly IGameStateMachine _gameStateMachine;
         private readonly LazyInject<IGameOverService> _gameOverService;
 
-        private List<DayData> _rounds;
+        private List<DayData> _daysData;
         private int _currentRound = 1;
         private int _currentDay = 1;
 
@@ -45,7 +46,7 @@ namespace Code.Gameplay.Features.RoundState.Service
         public void CreateRoundStateController()
         {
             var staticData = _staticDataService.GetStaticData<RoundStateStaticData>();
-            _rounds = staticData.Days;
+            _daysData = staticData.Days;
 
             DayData dayData = GetDayData(_currentRound);
 
@@ -59,6 +60,12 @@ namespace Code.Gameplay.Features.RoundState.Service
         public void RoundComplete()
         {
             _currentRound++;
+            _gameStateMachine.Enter<RoundCompletionLoopState>();
+        }
+
+        public void PrepareToNextRound()
+        {
+            _gameStateMachine.Enter<RoundPreparationLoopState>();
         }
 
         public void DayComplete()
@@ -80,8 +87,6 @@ namespace Code.Gameplay.Features.RoundState.Service
 
         private async UniTask LoadNextLevelAsync()
         {
-            _gameStateMachine.Enter<InventoryState>();
-
             await DelaySeconds(1, new CancellationToken());
 
             DayData dayData = GetDayData(_currentRound);
@@ -92,13 +97,13 @@ namespace Code.Gameplay.Features.RoundState.Service
 
         private DayData GetDayData(int currentRound)
         {
-            foreach (DayData data in _rounds)
+            foreach (DayData data in _daysData)
             {
                 if (data.RoundId >= currentRound)
                     return data;
             }
 
-            return _rounds[^1];
+            return _daysData[^1];
         }
     }
 }

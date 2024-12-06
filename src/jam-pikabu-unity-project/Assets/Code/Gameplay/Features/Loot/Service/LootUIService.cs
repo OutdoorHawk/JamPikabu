@@ -5,7 +5,7 @@ using Code.Infrastructure.States.GameStateHandler.Handlers;
 
 namespace Code.Gameplay.Features.Loot.Service
 {
-    public class LootUIService : ILootUIService, IEnterGameLoopStateHandler
+    public class LootUIService : ILootUIService
     {
         public event Action OnLootUpdate;
         public event Action<LootTypeId> OnLootItemAdded;
@@ -14,19 +14,6 @@ namespace Code.Gameplay.Features.Loot.Service
         private readonly List<LootTypeId> _consumedLoot = new();
 
         public IReadOnlyList<LootTypeId> CollectedLootItems => _collectedLootItems;
-
-        #region IEnterGameLoopStateHandler
-
-        public OrderType OrderType { get; }
-
-
-        public void OnEnterGameLoop()
-        {
-            //todo clear on start every turn
-            _collectedLootItems?.Clear();
-        }
-
-        #endregion
 
         public void CreateNewCollectedLootItem(LootTypeId lootType)
         {

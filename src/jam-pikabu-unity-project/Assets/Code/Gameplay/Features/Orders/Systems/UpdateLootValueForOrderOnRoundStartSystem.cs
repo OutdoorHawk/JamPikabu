@@ -5,12 +5,12 @@ using Entitas;
 
 namespace Code.Gameplay.Features.Orders.Systems
 {
-    public class InitLootValueForOrderOnRoundStartSystem : ReactiveSystem<GameEntity>
+    public class UpdateLootValueForOrderOnRoundStartSystem : ReactiveSystem<GameEntity>
     {
         private readonly IOrdersService _ordersService;
         private readonly IGroup<GameEntity> _loot;
 
-        public InitLootValueForOrderOnRoundStartSystem(GameContext context, IOrdersService ordersService) : base(context)
+        public UpdateLootValueForOrderOnRoundStartSystem(GameContext context, IOrdersService ordersService) : base(context)
         {
             _ordersService = ordersService;
 

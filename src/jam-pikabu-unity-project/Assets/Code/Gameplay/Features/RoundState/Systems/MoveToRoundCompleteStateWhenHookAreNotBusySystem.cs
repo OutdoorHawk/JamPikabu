@@ -1,19 +1,21 @@
-﻿using Code.Infrastructure.Systems;
+﻿using Code.Gameplay.Features.RoundState.Service;
+using Code.Infrastructure.Systems;
 using Entitas;
 
 namespace Code.Gameplay.Features.RoundState.Systems
 {
-    public class ProcessRoundOverWhenHookAndLootAreNotBusySystem : BufferedExecuteSystem
+    public class MoveToRoundCompleteStateWhenHookAreNotBusySystem : BufferedExecuteSystem
     {
+        private readonly IRoundStateService _roundStateService;
         private readonly IGroup<GameEntity> _roundStateController;
         private readonly IGroup<GameEntity> _busyHook;
-        private readonly IGroup<GameEntity> _lootAppliers;
         private readonly IGroup<GameEntity> _busyLoot;
 
         protected override int BufferCapacity => 2;
 
-        public ProcessRoundOverWhenHookAndLootAreNotBusySystem(GameContext context)
+        public MoveToRoundCompleteStateWhenHookAreNotBusySystem(GameContext context, IRoundStateService roundStateService)
         {
+            _roundStateService = roundStateService;
             _busyLoot = context.GetGroup(
                 GameMatcher.AllOf(
                     GameMatcher.Loot,
@@ -44,6 +46,8 @@ namespace Code.Gameplay.Features.RoundState.Systems
 
                 entity.isCooldownUp = false;
                 entity.isRoundOver = true;
+                entity.isRoundComplete = true;
+                _roundStateService.RoundComplete();
             }
         }
 

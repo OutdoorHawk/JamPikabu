@@ -41,15 +41,6 @@ namespace Code.Gameplay.Features.Loot.Behaviours
             Value.EnableElement();
         }
 
-        public void UpdateValue(int newValue)
-        {
-            if (_currentValue == newValue)
-                return;
-
-            _currentValue = newValue;
-            UpdateView();
-        }
-
         public async UniTask AnimateEffectProducer()
         {
             LootAnimator.SetTrigger(AnimationParameter.EffectProducer.AsHash());

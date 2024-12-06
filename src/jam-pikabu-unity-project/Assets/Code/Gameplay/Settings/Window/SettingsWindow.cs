@@ -1,6 +1,7 @@
 ﻿using Code.Gameplay.Windows;
 using Code.Gameplay.Windows.Common;
 using Code.Infrastructure.States.GameStates;
+using Code.Infrastructure.States.GameStates.Game;
 using Code.Infrastructure.States.StateMachine;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -21,23 +22,11 @@ namespace Code.Gameplay.Settings.Window
         protected override void Initialize()
         {
             base.Initialize();
-
-            if (_gameStateMachine.ActiveState is GameLoopState)
-            {
-                Time.timeScale = 0;
-                return;
-            }
         }
 
         protected override void Cleanup()
         {
             base.Cleanup();
-
-            if (_gameStateMachine.ActiveState is GameLoopState)
-            {
-                Time.timeScale = 1;
-                return;
-            }
         }
 
         protected override void SubscribeUpdates()

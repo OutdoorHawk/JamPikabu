@@ -3,6 +3,7 @@ using Code.Gameplay.Windows.Factory;
 using Code.Gameplay.Windows.Service;
 using Code.Infrastructure.SceneLoading;
 using Code.Infrastructure.States.GameStateHandler;
+using Code.Infrastructure.States.GameStates.Game;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
 using Cysharp.Threading.Tasks;
@@ -60,7 +61,7 @@ namespace Code.Infrastructure.States.GameStates
             await InitUIAsync();
             
             _gameStateHandler.OnExitLoadLevel();
-            _gameStateMachine.Enter<BattleEnterState>();
+            _gameStateMachine.Enter<GameEnterState>();
         }
 
         private async UniTask InitUIAsync()
