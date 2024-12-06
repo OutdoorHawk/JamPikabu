@@ -2,8 +2,6 @@
 using Code.Gameplay.Features.Currency.Config;
 using Code.Gameplay.StaticData;
 using DG.Tweening;
-using DG.Tweening.Core;
-using DG.Tweening.Plugins.Options;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -57,7 +55,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
                 _rects[i].EnableElement();
             }
 
-            _text.text = parameters.Count.ToString();
+            _text.text = $"x{parameters.Count.ToString()}";
             _text.alpha = 1;
         }
 
@@ -68,13 +66,20 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
             Vector3 endPosition = parameters.EndPosition; // конечная точка (в глобальных координатах)
             float flightDuration = _flyDuration; // длительность полета к финальной позиции
             float scatterDuration = _scatterDuration; // длительность разлета
+            float textFadeDuration = 0.5f; // длительность разлета
             float spreadRange = 10f; // радиус разлета
 
             Sequence animationSequence = DOTween.Sequence();
             
-            foreach (var rect in _rects)
-                rect.position = startPosition;
+            /*foreach (var rect in _rects)
+                rect.position = startPosition;*/
             
+            transform.position = startPosition;
+            
+            _text.alpha = 1;
+            _text.DOFade(1, textFadeDuration)
+                .OnComplete(() => _text.DOFade(0, textFadeDuration * 2));
+
             foreach (var rect in _rects)
             {
                 Vector3 randomOffset = new Vector3(
@@ -85,25 +90,22 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
                 Vector3 targetPosition = startPosition + randomOffset;
                 animationSequence.Join(rect.DOMove(targetPosition, scatterDuration).SetEase(Ease.OutQuad));
             }
-            
+
             for (int i = 0; i < _rects.Length; i++)
             {
                 RectTransform rect = _rects[i];
                 Tween moveTween = rect
-                    .DOMove(endPosition, flightDuration)
-                    .SetEase(Ease.InOutSine)
-                    .OnComplete(() => CompleteMovement(rect, animationParameters))
+                        .DOMove(endPosition, flightDuration)
+                        .SetEase(Ease.InOutSine)
+                        .OnComplete(() => CompleteMovement(rect, animationParameters))
                     ;
-                animationSequence.Insert(i * 0.1f,moveTween
-                    ); // Задержка между иконками
+                animationSequence.Insert(i * 0.1f, moveTween
+                ); // Задержка между иконками
             }
 
-            animationSequence.OnComplete(() =>
-            {
-                Destroy(gameObject);
-            });
+            animationSequence.OnComplete(() => { Destroy(gameObject); });
 
-            if (parameters.LinkObject != null) 
+            if (parameters.LinkObject != null)
                 animationSequence.SetLink(parameters.LinkObject);
             animationSequence.SetLink(gameObject);
             animationSequence.Play();
@@ -116,9 +118,8 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
                 parameters.StartReplenishCallback?.Invoke();
                 _firstObject = false;
             }
-            
+
             rect.DisableSafe();
         }
-        
     }
 }

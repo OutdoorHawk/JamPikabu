@@ -1,4 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Code.Common.Entity;
+using Code.Common.Extensions;
 using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Behaviours;
 using Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation;
@@ -103,26 +106,48 @@ namespace Code.Gameplay.Features.Orders.Windows
                     Type = CurrencyTypeId.Plus,
                     Count = 5,
                     StartPosition = lootItem.transform.position,
-                    EndPosition = _currencyHolder.PlayerPluses.CurrencyIcon.transform.position
+                    EndPosition = _currencyHolder.PlayerPluses.CurrencyIcon.transform.position,
+                    StartReplenishCallback = () =>
+                    {
+                        /*CreateGameEntity.Empty()
+                            .With(x => x.isAddCurrencyRequest = true)
+                            .With(x => x.AddPlus(loot.Plus), when: loot.hasPlus)
+                            .With(x => x.AddMinus(loot.Minus), when: loot.hasMinus)
+                            .With(x => x.AddWithdraw(loot.Plus), when: loot.hasPlus)
+                            .With(x => x.AddWithdraw(loot.Minus), when: loot.hasMinus)
+                            ;*/
+                    }
                 };
 
                 _currencyFactory.PlayCurrencyAnimation(parameters);
             }
 
+            /*
+            foreach (var lootItem in _goodItems)
+            {
+                await PlayConsume(lootItem, _currencyHolder.PlayerMinuses, CurrencyTypeId.Plus);
+            }
+            */
+            
             foreach (var lootItem in _badItems)
             {
-                await lootItem.AnimateConsume();
-
-                var parameters = new CurrencyAnimationParameters()
-                {
-                    Type = CurrencyTypeId.Minus,
-                    Count = 5,
-                    StartPosition = lootItem.transform.position,
-                    EndPosition = _currencyHolder.PlayerMinuses.CurrencyIcon.transform.position
-                };
-
-                _currencyFactory.PlayCurrencyAnimation(parameters);
+                await PlayConsume(lootItem, _currencyHolder.PlayerMinuses, CurrencyTypeId.Minus);
             }
+        }
+
+        private async UniTask PlayConsume(LootItemUI lootItem, PriceInfo price, CurrencyTypeId typeId)
+        {
+            await lootItem.AnimateConsume();
+
+            var parameters = new CurrencyAnimationParameters()
+            {
+                Type = typeId,
+                Count = 5,
+                StartPosition = lootItem.transform.position,
+                EndPosition = price.CurrencyIcon.transform.position
+            };
+
+            _currencyFactory.PlayCurrencyAnimation(parameters);
         }
     }
 }

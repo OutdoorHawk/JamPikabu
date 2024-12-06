@@ -40,7 +40,8 @@ namespace Code.Gameplay.Features.Loot.Systems
                         .With(x => x.isAddCurrencyRequest = true)
                         .With(x => x.AddPlus(loot.Plus), when: loot.hasPlus)
                         .With(x => x.AddMinus(loot.Minus), when: loot.hasMinus)
-                        //.AddWithdraw(loot.GoldValue)
+                        .With(x => x.AddWithdraw(loot.Plus), when: loot.hasPlus)
+                        .With(x => x.AddWithdraw(loot.Minus), when: loot.hasMinus)
                         ;
                 }
             }
