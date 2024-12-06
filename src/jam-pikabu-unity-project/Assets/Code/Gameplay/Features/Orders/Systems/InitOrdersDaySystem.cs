@@ -1,7 +1,7 @@
 ﻿using Code.Gameplay.Features.Orders.Service;
 using Entitas;
 
-namespace Code.Gameplay.Features.Orders
+namespace Code.Gameplay.Features.Orders.Systems
 {
     public class InitOrdersDaySystem : IInitializeSystem
     {

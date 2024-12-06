@@ -17,7 +17,7 @@ namespace Code.Gameplay.Features.Orders.Config
     public class OrderSetup
     {
         public Sprite OrderIcon;
-        public CostSetup DefaultCost = new(CurrencyTypeId.Gold);
+        public CostSetup Reward = new(CurrencyTypeId.Gold);
         public int MinDayToUnlock;
         public int MaxDayToUnlock;
         public List<IngredientData> GoodIngredients;

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Code.Gameplay.Features.Orders.Config;
+using Code.Gameplay.Features.Orders.Factory;
 using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.StaticData;
 using RoyalGold.Sources.Scripts.Game.MVC.Utils;
@@ -10,16 +11,18 @@ namespace Code.Gameplay.Features.Orders.Service
     {
         private readonly IStaticDataService _staticDataService;
         private readonly IRoundStateService _roundStateService;
+        private readonly IOrdersFactory _ordersFactory;
 
         private OrdersStaticData _ordersData;
         private int _currentOrderIndex;
 
         private readonly List<OrderData> _ordersBuffer = new();
 
-        public OrdersService(IStaticDataService staticDataService, IRoundStateService roundStateService)
+        public OrdersService(IStaticDataService staticDataService, IRoundStateService roundStateService, IOrdersFactory ordersFactory)
         {
             _staticDataService = staticDataService;
             _roundStateService = roundStateService;
+            _ordersFactory = ordersFactory;
         }
 
         public void InitDay()
@@ -50,6 +53,17 @@ namespace Code.Gameplay.Features.Orders.Service
             _ordersBuffer.ShuffleList();
         }
 
+        public GameEntity CreateOrder()
+        {
+            var order = GetCurrentOrder();
+           return _ordersFactory.CreateOrder(order);
+        }
+
+        public OrderData GetCurrentOrder()
+        {
+            return _ordersBuffer[_currentOrderIndex];
+        }
+
         private static bool CheckMinDayToUnlock(OrderData data, int currentDay)
         {
             return data.Setup.MinDayToUnlock > 0 && currentDay < data.Setup.MinDayToUnlock;
@@ -58,11 +72,6 @@ namespace Code.Gameplay.Features.Orders.Service
         private static bool CheckMaxDayToUnlock(OrderData data, int currentDay)
         {
             return data.Setup.MaxDayToUnlock > 0 && currentDay > data.Setup.MaxDayToUnlock;
-        }
-
-        public OrderData GetCurrentOrder()
-        {
-            return _ordersBuffer[_currentOrderIndex];
         }
 
         public void GoToNextOrder()

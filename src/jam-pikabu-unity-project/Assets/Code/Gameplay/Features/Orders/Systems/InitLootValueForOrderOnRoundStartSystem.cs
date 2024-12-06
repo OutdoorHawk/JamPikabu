@@ -32,7 +32,8 @@ namespace Code.Gameplay.Features.Orders.Systems
 
         protected override void Execute(List<GameEntity> entities)
         {
-            OrderData order = _ordersService.GetCurrentOrder();
+            GameEntity order = _ordersService.CreateOrder();
+            OrderSetup orderSetup = order.OrderData.Setup;
 
             foreach (var loot in _loot)
             {
@@ -44,14 +45,14 @@ namespace Code.Gameplay.Features.Orders.Systems
             }
 
             foreach (GameEntity loot in _loot)
-            foreach (var ingredientData in order.Setup.GoodIngredients)
+            foreach (var ingredientData in orderSetup.GoodIngredients)
             {
                 if (ingredientData.TypeId == loot.LootTypeId)
                     loot.ReplacePlus(ingredientData.Rating.Amount);
             }
 
             foreach (GameEntity loot in _loot)
-            foreach (var ingredientData in order.Setup.BadIngredients)
+            foreach (var ingredientData in orderSetup.BadIngredients)
             {
                 if (ingredientData.TypeId == loot.LootTypeId)
                     loot.ReplaceMinus(ingredientData.Rating.Amount);

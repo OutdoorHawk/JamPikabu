@@ -4,7 +4,7 @@ using Code.Gameplay.Features.Loot.UIFactory;
 using Code.Gameplay.Features.Orders.Config;
 using Code.Gameplay.Features.Orders.Service;
 using Code.Gameplay.Windows;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
+using Code.Meta.UI.Common;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -18,12 +18,13 @@ namespace Code.Gameplay.Features.Orders.Windows
         [SerializeField] private Button _skipButton;
         [SerializeField] private HorizontalLayoutGroup _goodIngredients;
         [SerializeField] private HorizontalLayoutGroup _badIngredients;
-        
+        [SerializeField] private PriceInfo _orderReward;
+
         private IOrdersService _ordersService;
         private ILootItemUIFactory _lootItemUIFactory;
-        
+
         private OrderData _currentOrder;
-        
+
         private readonly List<LootItemUI> _goodItems = new();
         private readonly List<LootItemUI> _badItems = new();
         private readonly List<LootItemUI> _allItems = new();
@@ -47,7 +48,8 @@ namespace Code.Gameplay.Features.Orders.Windows
 
             CreateItems(_currentOrder.Setup.GoodIngredients, _goodItems, _goodIngredients.transform);
             CreateItems(_currentOrder.Setup.BadIngredients, _badItems, _badIngredients.transform);
-
+            
+            _orderReward.SetupPrice(_currentOrder.Setup.Reward);
         }
 
         private void CreateItems(List<IngredientData> ingredients, List<LootItemUI> items, Transform parent)
@@ -63,7 +65,7 @@ namespace Code.Gameplay.Features.Orders.Windows
         {
             LootItemUI item = _lootItemUIFactory.CreateLootItem(parent, ingredientData.TypeId);
             item.InitPrice(ingredientData.Rating);
-            
+
             _allItems.Add(item);
             return item;
         }

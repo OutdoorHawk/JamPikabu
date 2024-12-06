@@ -38,6 +38,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
             {
                 if (entity.RoundCost > gold.Gold)
                 {
+                    entity.isRoundComplete = false;
                     _roundStateService.GameOver();
                 }
                 else
