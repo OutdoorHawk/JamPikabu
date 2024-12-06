@@ -24,7 +24,7 @@ namespace Code.Gameplay.Features.Cooldowns.Systems
         {
             foreach (GameEntity cooldownable in _cooldownables.GetEntities(_buffer))
             {
-                cooldownable.ReplaceCooldownLeft(cooldownable.CooldownLeft - _time.FixedDeltaTime);
+                cooldownable.ReplaceCooldownLeft(cooldownable.CooldownLeft - _time.DeltaTime);
 
                 if (cooldownable.CooldownLeft <= 0)
                 {

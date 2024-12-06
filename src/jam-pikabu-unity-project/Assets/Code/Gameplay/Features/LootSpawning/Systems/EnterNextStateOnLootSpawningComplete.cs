@@ -16,7 +16,10 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
-            return context.CreateCollector(GameMatcher.LootSpawner.Removed());
+            return context.CreateCollector(GameMatcher
+                .AllOf(
+                GameMatcher.LootSpawner, 
+                GameMatcher.Complete).Added());
         }
 
         protected override bool Filter(GameEntity entity)

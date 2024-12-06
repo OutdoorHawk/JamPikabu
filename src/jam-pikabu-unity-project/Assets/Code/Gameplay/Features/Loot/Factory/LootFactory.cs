@@ -66,6 +66,8 @@ namespace Code.Gameplay.Features.Loot.Factory
             return CreateGameEntity.Empty()
                     .With(x => x.isLootSpawner = true)
                     .With(x => x.isConveyorSpawner = true)
+                    .With(x => x.isCooldownUp = true)
+                    .With(x => x.isComplete = true)
                 ;
         }
 

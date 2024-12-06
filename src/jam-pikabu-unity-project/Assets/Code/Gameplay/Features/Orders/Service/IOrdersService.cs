@@ -9,6 +9,7 @@ namespace Code.Gameplay.Features.Orders.Service
         GameEntity CreateOrder();
         void AddIngredientTypedData(LootTypeId lootLootTypeId, IngredientData ingredientData);
         IngredientData GetIngredientData(LootTypeId lootTypeId);
+        bool TryGetIngredientData(LootTypeId lootTypeId, out IngredientData ingredientData);
         OrderData GetCurrentOrder();
         bool OrdersCompleted();
         void GoToNextOrder();

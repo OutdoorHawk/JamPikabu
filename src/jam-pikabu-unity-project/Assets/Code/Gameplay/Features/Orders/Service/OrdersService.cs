@@ -77,6 +77,11 @@ namespace Code.Gameplay.Features.Orders.Service
             return _orderIngredientCostDict.GetValueOrDefault(lootTypeId);
         }
 
+        public bool TryGetIngredientData(LootTypeId lootTypeId, out IngredientData ingredientData)
+        {
+            return _orderIngredientCostDict.TryGetValue(lootTypeId, out ingredientData);
+        }
+
         public OrderData GetCurrentOrder()
         {
             return _ordersBuffer[_currentOrderIndex];

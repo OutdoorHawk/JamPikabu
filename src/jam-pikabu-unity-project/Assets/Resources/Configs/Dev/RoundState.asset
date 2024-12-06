@@ -17,7 +17,7 @@ MonoBehaviour:
   Days:
   - Day: 1
     PlayCost: 5
-    SceneId: 2
+    SceneId: 3
   - Day: 2
     PlayCost: 20
     SceneId: 3

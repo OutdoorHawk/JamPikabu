@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using Code.Common.Entity;
 using Code.Common.Extensions;
+using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Loot.Service;
+using Code.Gameplay.Features.Orders.Config;
+using Code.Gameplay.Features.Orders.Service;
 using Entitas;
 
 namespace Code.Gameplay.Features.Loot.Systems
@@ -13,10 +16,12 @@ namespace Code.Gameplay.Features.Loot.Systems
         private readonly List<GameEntity> _buffer = new(64);
 
         private readonly ILootService _lootService;
-        
-        public ConsumeLootValueSystem(GameContext context, ILootService lootService)
+        private readonly IOrdersService _ordersService;
+
+        public ConsumeLootValueSystem(GameContext context, ILootService lootService, IOrdersService ordersService)
         {
             _lootService = lootService;
+            _ordersService = ordersService;
             _lootApplier = context.GetGroup(
                 GameMatcher.AllOf(
                     GameMatcher.LootEffectsApplier
@@ -38,18 +43,17 @@ namespace Code.Gameplay.Features.Loot.Systems
             {
                 loot.isConsumed = true;
 
-                if (loot.hasPlus || loot.hasMinus)
+                if (_ordersService.TryGetIngredientData(loot.LootTypeId, out IngredientData data))
                 {
                     CreateGameEntity.Empty()
                         .With(x => x.isAddCurrencyRequest = true)
-                        .With(x => x.AddPlus(loot.Plus), when: loot.hasPlus)
-                        .With(x => x.AddMinus(loot.Minus), when: loot.hasMinus)
-                        .With(x => x.AddWithdraw(loot.Plus), when: loot.hasPlus)
-                        .With(x => x.AddWithdraw(loot.Minus), when: loot.hasMinus)
+                        .With(x => x.AddPlus(data.Rating.Amount), when: data.Rating.CurrencyType == CurrencyTypeId.Plus)
+                        .With(x => x.AddMinus(data.Rating.Amount), when: data.Rating.CurrencyType == CurrencyTypeId.Minus)
+                        .With(x => x.AddWithdraw(data.Rating.Amount), when: data.Rating.Amount > 0)
                         ;
-                    
-                    _lootService.AddConsumedLoot(loot.LootTypeId);
                 }
+                
+                _lootService.AddConsumedLoot(loot.LootTypeId);
             }
         }
     }

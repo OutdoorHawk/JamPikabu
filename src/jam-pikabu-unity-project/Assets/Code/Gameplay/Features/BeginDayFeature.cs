@@ -1,4 +1,5 @@
 ﻿using Code.Common.Destruct;
+using Code.Gameplay.Features.Cooldowns.Systems;
 using Code.Gameplay.Features.Currency.Systems;
 using Code.Gameplay.Features.GrapplingHook.Systems;
 using Code.Gameplay.Features.LootSpawning;
@@ -20,6 +21,8 @@ namespace Code.Gameplay.Features
             Add(systems.Create<InitGrapplingHookSystem>());
             Add(systems.Create<InitGameplayCurrency>());
             Add(systems.Create<LootSpawningFeature>());
+            
+            Add(systems.Create<CooldownSystem>());
             
             Add(systems.Create<ProcessDestructedFeature>());
         }

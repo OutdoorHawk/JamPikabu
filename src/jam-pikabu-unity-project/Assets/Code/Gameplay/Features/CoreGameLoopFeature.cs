@@ -3,6 +3,7 @@ using Code.Gameplay.Features.Cooldowns.Systems;
 using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.GrapplingHook;
 using Code.Gameplay.Features.Loot.Systems;
+using Code.Gameplay.Features.LootSpawning.Systems;
 using Code.Gameplay.Features.RoundState;
 using Code.Infrastructure.Systems;
 using Code.Infrastructure.View;
@@ -14,10 +15,12 @@ namespace Code.Gameplay.Features
         public CoreGameLoopFeature(ISystemFactory systems)
         {
             Add(systems.Create<BindViewFeature>());
+            Add(systems.Create<CooldownSystem>());
 
             Add(systems.Create<ActiveRoundProcessingFeature>());
 
             Add(systems.Create<ProcessLootPickupSystem>());
+            Add(systems.Create<ContinuousSpawnLootSystem>());
 
             Add(systems.Create<CurrencyFeature>());
 
@@ -29,7 +32,6 @@ namespace Code.Gameplay.Features
     {
         public CoreGameLoopPhysicsFeature(ISystemFactory systems)
         {
-            Add(systems.Create<CooldownSystem>());
 
             Add(systems.Create<GrapplingHookPhysicsFeature>());
         }

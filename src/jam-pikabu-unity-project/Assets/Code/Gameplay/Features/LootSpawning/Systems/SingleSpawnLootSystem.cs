@@ -72,12 +72,13 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
             if (spawner.IsNullOrDestructed())
                 return;
 
+            spawner.isComplete = true;
             spawner.isDestructed = true;
         }
 
         private async UniTask ProcessLootSpawn(LootStaticData staticData, SceneContextComponent sceneContext)
         {
-            float lootSpawnAmount = staticData.LootSpawnAmount / _lootService.AvailableLoot.Count;
+            float lootSpawnAmount = staticData.MaxLootAmount / _lootService.AvailableLoot.Count;
 
             for (int i = 0; i < lootSpawnAmount; i++)
             {
