@@ -17,32 +17,23 @@ MonoBehaviour:
     ViewPrefab: {fileID: 5581889664544084029, guid: c983db6717be2db4fa1dd83198dc28f5,
       type: 3}
     Icon: {fileID: -1737005464, guid: a5e645d0b2507ac42807ef8e886f7d45, type: 3}
-    Value:
-      CurrencyType: 1
-      Amount: 1
-    EffectValue: 0
-    EffectTargets: 
+    MinDayToUnlock: 0
+    MaxDayToUnlock: 0
   - Type: 2
     ViewPrefab: {fileID: 2129731251533474509, guid: 60b0fb4eb71fef848858ea8da0e4f1eb,
       type: 3}
     Icon: {fileID: -1245454884, guid: a5e645d0b2507ac42807ef8e886f7d45, type: 3}
-    Value:
-      CurrencyType: 1
-      Amount: 2
-    EffectValue: 2
-    EffectTargets: 01000000
+    MinDayToUnlock: 0
+    MaxDayToUnlock: 0
   - Type: 3
     ViewPrefab: {fileID: 7632606086172137233, guid: d4904c11991e84a46901a2f9832e299c,
       type: 3}
     Icon: {fileID: 21300004, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
-    Value:
-      CurrencyType: 1
-      Amount: -3
-    EffectValue: 0
-    EffectTargets: 
+    MinDayToUnlock: 2
+    MaxDayToUnlock: 0
   LootSpawnInterval: 0.01
   LootSpawnStartDelay: 0.5
-  LootSpawnAmount: 10
+  LootSpawnAmount: 45
   CollectFlyAnimationDuration: 0.5
   CollectFlyMinMaxJump: {x: -1, y: 2}
   LootItemUI: {fileID: 6122044623407222926, guid: 17a9554d4999c3b43a5c2052ad4cdf08,

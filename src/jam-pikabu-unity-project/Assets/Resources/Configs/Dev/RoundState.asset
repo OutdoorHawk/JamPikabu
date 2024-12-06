@@ -15,6 +15,9 @@ MonoBehaviour:
   RoundDuration: 3
   StartGoldAmount: 20
   Days:
-  - RoundId: 1
+  - Day: 1
     PlayCost: 5
+    SceneId: 2
+  - Day: 2
+    PlayCost: 20
     SceneId: 2
