@@ -14,8 +14,6 @@ namespace Code.Gameplay.Features.Loot.Configs
         public LootTypeId Type;
         public EntityView ViewPrefab;
         public Sprite Icon;
-        [HideLabel] public CostSetup Value = new(CurrencyTypeId.Gold);
-        [Header("Effects")] public float EffectValue;
-        public List<LootTypeId> EffectTargets;
+    
     }
 }

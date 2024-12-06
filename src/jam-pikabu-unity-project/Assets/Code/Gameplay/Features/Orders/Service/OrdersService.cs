@@ -50,13 +50,17 @@ namespace Code.Gameplay.Features.Orders.Service
             _ordersBuffer.ShuffleList();
         }
 
-        public OrderData GetNextOrder()
+        public OrderData GetCurrentOrder()
+        {
+            return _ordersBuffer[_currentOrderIndex];
+        }
+
+        public void GoToNextOrder()
         {
             if (_currentOrderIndex >= _ordersBuffer.Count)
                 _currentOrderIndex = 0;
 
             _currentOrderIndex++;
-            return _ordersBuffer[_currentOrderIndex];
         }
     }
 }

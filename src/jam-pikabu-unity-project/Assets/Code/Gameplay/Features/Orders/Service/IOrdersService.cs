@@ -5,6 +5,7 @@ namespace Code.Gameplay.Features.Orders.Service
     public interface IOrdersService
     {
         void InitDay();
-        OrderData GetNextOrder();
+        OrderData GetCurrentOrder();
+        void GoToNextOrder();
     }
 }

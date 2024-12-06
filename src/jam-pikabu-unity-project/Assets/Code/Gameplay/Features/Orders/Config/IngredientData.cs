@@ -1,4 +1,5 @@
 ﻿using System;
+using Code.Gameplay.Features.Currency.Config;
 using Code.Gameplay.Features.Loot;
 
 namespace Code.Gameplay.Features.Orders.Config
@@ -7,7 +8,7 @@ namespace Code.Gameplay.Features.Orders.Config
     public struct IngredientData
     {
         public LootTypeId TypeId;
-        public int RatingForAdd;
+        public CostSetup Rating;
         //public int NeedCount;
     }
 }

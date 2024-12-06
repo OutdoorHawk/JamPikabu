@@ -75,21 +75,23 @@ public static class GameComponentsLookup {
     public const int LootItemUI = 64;
     public const int LootSpawner = 65;
     public const int LootTypeId = 66;
-    public const int GameOver = 67;
-    public const int Round = 68;
-    public const int RoundComplete = 69;
-    public const int RoundCost = 70;
-    public const int RoundDuration = 71;
-    public const int RoundInProcess = 72;
-    public const int RoundOver = 73;
-    public const int RoundStartAvailable = 74;
-    public const int RoundStartRequest = 75;
-    public const int RoundStateController = 76;
-    public const int RoundStateViewBehaviour = 77;
-    public const int RoundTimeLeft = 78;
-    public const int AudioSourceBehaviour = 79;
+    public const int OrderData = 67;
+    public const int Rating = 68;
+    public const int GameOver = 69;
+    public const int Round = 70;
+    public const int RoundComplete = 71;
+    public const int RoundCost = 72;
+    public const int RoundDuration = 73;
+    public const int RoundInProcess = 74;
+    public const int RoundOver = 75;
+    public const int RoundStartAvailable = 76;
+    public const int RoundStartRequest = 77;
+    public const int RoundStateController = 78;
+    public const int RoundStateViewBehaviour = 79;
+    public const int RoundTimeLeft = 80;
+    public const int AudioSourceBehaviour = 81;
 
-    public const int TotalComponents = 80;
+    public const int TotalComponents = 82;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -159,6 +161,8 @@ public static class GameComponentsLookup {
         "LootItemUI",
         "LootSpawner",
         "LootTypeId",
+        "OrderData",
+        "Rating",
         "GameOver",
         "Round",
         "RoundComplete",
@@ -242,6 +246,8 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Loot.LootItemUIComponent),
         typeof(Code.Gameplay.Features.Loot.LootSpawner),
         typeof(Code.Gameplay.Features.Loot.LootTypeIdComponent),
+        typeof(Code.Gameplay.Features.Orders.OrderDataComponent),
+        typeof(Code.Gameplay.Features.Orders.RatingComponent),
         typeof(Code.Gameplay.Features.RoundState.GameOver),
         typeof(Code.Gameplay.Features.RoundState.Round),
         typeof(Code.Gameplay.Features.RoundState.RoundComplete),

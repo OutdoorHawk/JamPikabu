@@ -13,6 +13,7 @@ using Code.Gameplay.Features.GrapplingHook.Factory;
 using Code.Gameplay.Features.Loot.Factory;
 using Code.Gameplay.Features.Loot.Service;
 using Code.Gameplay.Features.Loot.UIFactory;
+using Code.Gameplay.Features.Orders.Factory;
 using Code.Gameplay.Features.Orders.Service;
 using Code.Gameplay.Features.RoundState.Factory;
 using Code.Gameplay.Features.RoundState.Service;
@@ -174,6 +175,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.Bind<ILootFactory>().To<LootFactory>().AsSingle();
             Container.BindInterfacesTo<LootItemUIFactory>().AsSingle();
             Container.BindInterfacesTo<RoundStateFactory>().AsSingle();
+            Container.BindInterfacesTo<OrdersFactory>().AsSingle();
         }
 
         private void BindGameplayFactories()

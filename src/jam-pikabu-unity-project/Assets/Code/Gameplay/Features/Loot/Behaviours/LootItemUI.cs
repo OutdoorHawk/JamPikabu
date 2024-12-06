@@ -27,9 +27,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         public void Init(LootSetup setup)
         {
             Icon.sprite = setup.Icon;
-            Value.SetupPrice(setup.Value);
             CanvasGroup.alpha = 0;
-            _currentValue = setup.Value.Amount;
         }
 
         public void UpdateValue(int newValue)

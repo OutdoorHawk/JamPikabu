@@ -223,7 +223,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5838191860483401861}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -286,13 +286,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1136330797, guid: a5e645d0b2507ac42807ef8e886f7d45, type: 3}
+  m_Sprite: {fileID: -158120734, guid: a5e645d0b2507ac42807ef8e886f7d45, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -380,6 +380,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: PriceInfo
       objectReference: {fileID: 0}
+    - target: {fileID: 6232662516648152457, guid: 0c8a84101e55b2b42b3801768e63b582,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 885244805, guid: 156ec492e516ccb4099add479601d65e,
+        type: 3}
     - target: {fileID: 6449241814194860393, guid: 0c8a84101e55b2b42b3801768e63b582,
         type: 3}
       propertyPath: m_SizeDelta.x

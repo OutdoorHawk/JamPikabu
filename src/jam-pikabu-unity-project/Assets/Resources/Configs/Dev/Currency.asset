@@ -16,3 +16,9 @@ MonoBehaviour:
   - CurrencyTypeId: 1
     Data:
       Icon: {fileID: 194516358, guid: a5e645d0b2507ac42807ef8e886f7d45, type: 3}
+  - CurrencyTypeId: 2
+    Data:
+      Icon: {fileID: 885244805, guid: 156ec492e516ccb4099add479601d65e, type: 3}
+  - CurrencyTypeId: 3
+    Data:
+      Icon: {fileID: 856639315, guid: 156ec492e516ccb4099add479601d65e, type: 3}
