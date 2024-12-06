@@ -6,8 +6,8 @@ namespace Code.Gameplay.Features.RoundState.Configs
     [Serializable]
     public class DayData
     {
-        public int RoundId;
+        public int Day;
         public int PlayCost;
-        public SceneTypeId SceneId;
+        public SceneTypeId SceneId = SceneTypeId.Level_1;
     }
 }

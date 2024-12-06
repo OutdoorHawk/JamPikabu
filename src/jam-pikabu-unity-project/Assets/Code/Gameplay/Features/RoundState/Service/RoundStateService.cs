@@ -22,10 +22,7 @@ namespace Code.Gameplay.Features.RoundState.Service
         private readonly LazyInject<IGameOverService> _gameOverService;
 
         private List<DayData> _daysData;
-        private int _currentRound = 1;
         private int _currentDay = 1;
-
-        public int CurrentRound => _currentRound;
 
         public int CurrentDay => _currentDay;
 
@@ -48,18 +45,16 @@ namespace Code.Gameplay.Features.RoundState.Service
             var staticData = _staticDataService.GetStaticData<RoundStateStaticData>();
             _daysData = staticData.Days;
 
-            DayData dayData = GetDayData(_currentRound);
+            DayData dayData = GetDayData(_currentDay);
 
             _roundStateFactory.CreateRoundStateController()
-                .AddRound(_currentRound)
                 .AddDayCost(dayData.PlayCost)
                 .AddDay(_currentDay)
                 ;
         }
 
-        public void RoundComplete()
+        public void RoundEnd()
         {
-            _currentRound++;
             _gameStateMachine.Enter<RoundCompletionLoopState>();
         }
 
@@ -71,25 +66,22 @@ namespace Code.Gameplay.Features.RoundState.Service
         public void DayComplete()
         {
             _currentDay++;
-        }
-
-        public void TryLoadNextLevel()
-        {
             LoadNextLevelAsync().Forget();
         }
 
         public void GameOver()
         {
-            _currentRound = 0;
             _currentDay = 0;
             _gameOverService.Value.GameOver();
         }
 
         private async UniTask LoadNextLevelAsync()
         {
+            _gameStateMachine.Enter<GameOverState>();
+            
             await DelaySeconds(1, new CancellationToken());
 
-            DayData dayData = GetDayData(_currentRound);
+            DayData dayData = GetDayData(_currentDay);
 
             var loadLevelPayloadParameters = new LoadLevelPayloadParameters(dayData.SceneId.ToString());
             _gameStateMachine.Enter<LoadLevelState, LoadLevelPayloadParameters>(loadLevelPayloadParameters);
@@ -99,7 +91,7 @@ namespace Code.Gameplay.Features.RoundState.Service
         {
             foreach (DayData data in _daysData)
             {
-                if (data.RoundId >= currentRound)
+                if (data.Day >= currentRound)
                     return data;
             }
 

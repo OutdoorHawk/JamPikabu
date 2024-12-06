@@ -47,7 +47,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
                 entity.isCooldownUp = false;
                 entity.isRoundOver = true;
                 entity.isRoundComplete = true;
-                _roundStateService.RoundComplete();
+                _roundStateService.RoundEnd();
             }
         }
 

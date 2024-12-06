@@ -67,7 +67,6 @@ namespace Code.Gameplay.Features.Orders.Systems
                 ;
 
             _ordersService.GoToNextOrder();
-            _roundStateService.PrepareToNextRound();
         }
     }
 }

@@ -18,11 +18,12 @@ namespace Code.Gameplay.Features.Orders.Service
 
         private OrdersStaticData _ordersData;
         private int _currentOrderIndex;
+        private int _ordersCompleted;
 
         private readonly List<OrderData> _ordersBuffer = new();
         private readonly Dictionary<LootTypeId, IngredientData> _orderIngredientCostDict = new();
 
-        public OrdersService(IStaticDataService staticDataService, 
+        public OrdersService(IStaticDataService staticDataService,
             IRoundStateService roundStateService, IOrdersFactory ordersFactory, ILootUIService lootUIService)
         {
             _staticDataService = staticDataService;
@@ -35,6 +36,7 @@ namespace Code.Gameplay.Features.Orders.Service
         {
             _ordersData = _staticDataService.GetStaticData<OrdersStaticData>();
             _currentOrderIndex = 0;
+            _ordersCompleted = 0;
             _ordersBuffer.Clear();
 
             InitCurrentDayOrders();
@@ -84,11 +86,20 @@ namespace Code.Gameplay.Features.Orders.Service
         public void GoToNextOrder()
         {
             _lootUIService.ClearCollectedLoot();
-            
+            _ordersCompleted++;
+
+            if (_ordersCompleted >= _ordersData.OrdersAmountInDay)
+            {
+                _roundStateService.DayComplete();
+                return;
+            }
+
             _currentOrderIndex++;
 
             if (_currentOrderIndex >= _ordersBuffer.Count)
                 _currentOrderIndex = 0;
+
+            _roundStateService.PrepareToNextRound();
         }
 
         public void GameOver()
@@ -100,9 +111,9 @@ namespace Code.Gameplay.Features.Orders.Service
         private void InitIngredientsDic(OrderData order)
         {
             _orderIngredientCostDict.Clear();
-            foreach (IngredientData ingredientData in order.Setup.GoodIngredients) 
+            foreach (IngredientData ingredientData in order.Setup.GoodIngredients)
                 _orderIngredientCostDict.Add(ingredientData.TypeId, ingredientData);
-            foreach (IngredientData ingredientData in order.Setup.BadIngredients) 
+            foreach (IngredientData ingredientData in order.Setup.BadIngredients)
                 _orderIngredientCostDict.Add(ingredientData.TypeId, ingredientData);
         }
 

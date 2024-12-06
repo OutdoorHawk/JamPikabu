@@ -134,7 +134,9 @@ namespace Code.Gameplay.Features.Orders.Windows
 
         private static void RemoveWithdraw(PriceInfo price, IngredientData ingredientData, int count)
         {
-            price.PlayReplenish();
+            if (price != null) 
+                price.PlayReplenish();
+            
             CreateGameEntity.Empty()
                 .With(x => x.isAddCurrencyRequest = true)
                 .With(x => x.AddPlus(0), when: ingredientData.Rating.CurrencyType == CurrencyTypeId.Plus)
