@@ -124,7 +124,7 @@ namespace Code.Gameplay.Features.Orders.Windows
                 Count = count,
                 StartPosition = lootItem.transform.position,
                 EndPosition = price.CurrencyIcon.transform.position,
-                StartReplenishCallback = () => RemoveWithdraw(ingredientData, count)
+                StartReplenishCallback = () => RemoveWithdraw(price,ingredientData, count)
             };
             
             await lootItem.AnimateConsume();
@@ -132,8 +132,9 @@ namespace Code.Gameplay.Features.Orders.Windows
             _currencyFactory.PlayCurrencyAnimation(parameters);
         }
 
-        private static void RemoveWithdraw(IngredientData ingredientData, int count)
+        private static void RemoveWithdraw(PriceInfo price, IngredientData ingredientData, int count)
         {
+            price.PlayReplenish();
             CreateGameEntity.Empty()
                 .With(x => x.isAddCurrencyRequest = true)
                 .With(x => x.AddPlus(0), when: ingredientData.Rating.CurrencyType == CurrencyTypeId.Plus)

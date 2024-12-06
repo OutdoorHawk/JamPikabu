@@ -10,5 +10,6 @@
         EffectProducer = 5,
         EffectTarget = 6,
         Consume = 7,
+        Replenish = 8,
     }
 }

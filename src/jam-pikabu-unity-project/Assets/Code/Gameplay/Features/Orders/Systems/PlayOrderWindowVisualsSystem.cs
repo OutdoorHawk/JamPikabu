@@ -8,6 +8,7 @@ using Code.Gameplay.Windows.Factory;
 using Code.Gameplay.Windows.Service;
 using Cysharp.Threading.Tasks;
 using Entitas;
+using UnityEngine;
 
 namespace Code.Gameplay.Features.Orders.Systems
 {
@@ -63,6 +64,8 @@ namespace Code.Gameplay.Features.Orders.Systems
                 .AddGold(0)
                 .AddWithdraw(-order.Setup.Reward.Amount)
                 ;
+            
+            Debug.LogError($"remove withdraw {order.Setup.Reward.Amount}");
             
             _ordersService.GoToNextOrder();
         }

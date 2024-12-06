@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using Code.Common.Extensions;
+using Code.Common.Extensions.Animations;
 using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Config;
 using Code.Gameplay.StaticData;
@@ -16,6 +17,7 @@ namespace Code.Meta.UI.Common
     {
         [SerializeField] private TMP_Text _amountText;
         [SerializeField] private Image _currencyIcon;
+        [SerializeField] private Animator _iconAnimator;
         [SerializeField] private float _textAnimationDuration = 0.25f;
 
         private IStaticDataService _staticDataService;
@@ -38,6 +40,11 @@ namespace Code.Meta.UI.Common
         public void SetupPrice(CostSetup costSetup, bool withAnimation = false)
         {
             SetupPriceInternal(costSetup.Amount, costSetup.CurrencyType, withAnimation);
+        }
+
+        public void PlayReplenish()
+        {
+            _iconAnimator.SetTrigger(AnimationParameter.Replenish.AsHash());
         }
 
         private void SetupPriceInternal(int amount, CurrencyTypeId typeId, bool withAnimation)

@@ -27,12 +27,20 @@ namespace Code.Gameplay.Features.Currency.Behaviours
 
         private void Start()
         {
-            Refresh();
+            RefreshStatic();
         }
 
         private void OnDestroy()
         {
             _gameplayCurrencyService.CurrencyChanged -= Refresh;
+        }
+
+        private void RefreshStatic()
+        {
+            PlayerCurrentGold.SetupPrice(_gameplayCurrencyService.GetCurrencyOfType(CurrencyTypeId.Gold), CurrencyTypeId.Gold);
+            PlayerTurnCostGold.SetupPrice(_gameplayCurrencyService.CurrentTurnCostGold, CurrencyTypeId.Gold);
+            PlayerPluses.SetupPrice(_gameplayCurrencyService.GetCurrencyOfType(CurrencyTypeId.Plus), CurrencyTypeId.Plus);
+            PlayerMinuses.SetupPrice(_gameplayCurrencyService.GetCurrencyOfType(CurrencyTypeId.Minus), CurrencyTypeId.Minus);
         }
 
         private void Refresh()
