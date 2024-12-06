@@ -32,7 +32,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
 
                 /*CreateGameEntity.Empty()
                     .With(x => x.isAddGoldRequest = true)
-                    .AddGold(-entity.RoundCost);*/
+                    .AddGold(-entity.DayCost);*/
             }
         }
     }

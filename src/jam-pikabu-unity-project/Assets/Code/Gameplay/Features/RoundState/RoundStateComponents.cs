@@ -12,7 +12,8 @@ namespace Code.Gameplay.Features.RoundState
     [Game] public sealed class GameOver : IComponent { }
     [Game] public sealed class RoundTimeLeft : IComponent { public float Value;  }
     [Game] public sealed class RoundDuration : IComponent { public float Value; }
-    [Game] public sealed class RoundCost : IComponent { public int Value; }
+    [Game] public sealed class DayCost : IComponent { public int Value; }
+    [Game] public sealed class Day : IComponent { public int Value; }
     [Game] public sealed class Round : IComponent { public int Value; }
     [Game] public sealed class RoundStateViewBehaviourComponent : IComponent { public RoundStateViewBehaviour Value; }
 }

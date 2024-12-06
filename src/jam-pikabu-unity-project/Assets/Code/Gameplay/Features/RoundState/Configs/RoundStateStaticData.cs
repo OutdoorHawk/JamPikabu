@@ -10,6 +10,6 @@ namespace Code.Gameplay.Features.RoundState.Configs
         public float RoundDuration = 30;
         public int StartGoldAmount = 50;
         
-        public List<RoundData> Rounds;
+        public List<DayData> Days;
     }
 }

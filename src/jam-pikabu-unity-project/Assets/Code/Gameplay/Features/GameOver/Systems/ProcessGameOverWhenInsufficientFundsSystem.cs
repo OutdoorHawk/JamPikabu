@@ -40,7 +40,7 @@ namespace Code.Gameplay.Features.GameOver.Systems
                 if (LootIsApplying())
                     continue;
 
-                if (gold.Gold >= controller.RoundCost)
+                if (gold.Gold >= controller.DayCost)
                     continue;
 
                 controller.isGameOver = true;

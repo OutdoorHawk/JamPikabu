@@ -9,7 +9,7 @@ using Code.Gameplay.StaticData;
 
 namespace Code.Gameplay.Features.Currency.Service
 {
-    public class GameplayCurrencyService : IGameplayCurrencyService, IOnConfigsInitInitHandler
+    public class GameplayCurrencyService : IGameplayCurrencyService, IConfigsInitHandler
     {
         private readonly ISoundService _soundService;
         private readonly IStaticDataService _staticDataService;

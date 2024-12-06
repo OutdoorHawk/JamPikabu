@@ -17,7 +17,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
                 GameMatcher.AllOf(
                     GameMatcher.RoundStateController,
                     GameMatcher.RoundOver,
-                    GameMatcher.RoundCost
+                    GameMatcher.DayCost
                 ));
             
             _gold = context.GetGroup(
@@ -32,7 +32,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
             foreach (var round in _roundController)
             foreach (var gold in _gold)
             {
-                if (gold.Gold < round.RoundCost) 
+                if (gold.Gold < round.DayCost) 
                     round.isRoundStartAvailable = false;
             }
         }

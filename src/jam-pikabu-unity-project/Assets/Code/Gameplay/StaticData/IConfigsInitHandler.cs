@@ -1,6 +1,6 @@
 ﻿namespace Code.Gameplay.StaticData
 {
-    public interface IOnConfigsInitInitHandler
+    public interface IConfigsInitHandler
     {
         void OnConfigsInitInitComplete();
     }

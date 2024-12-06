@@ -4,7 +4,7 @@ using Code.Infrastructure.SceneLoading;
 namespace Code.Gameplay.Features.RoundState.Configs
 {
     [Serializable]
-    public class RoundData
+    public class DayData
     {
         public int RoundId;
         public int PlayCost;

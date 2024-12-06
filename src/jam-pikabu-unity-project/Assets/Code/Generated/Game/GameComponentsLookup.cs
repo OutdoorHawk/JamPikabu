@@ -81,21 +81,22 @@ public static class GameComponentsLookup {
     public const int Order = 70;
     public const int OrderData = 71;
     public const int Rating = 72;
-    public const int GameOver = 73;
-    public const int Round = 74;
-    public const int RoundComplete = 75;
-    public const int RoundCost = 76;
-    public const int RoundDuration = 77;
-    public const int RoundInProcess = 78;
-    public const int RoundOver = 79;
-    public const int RoundStartAvailable = 80;
-    public const int RoundStartRequest = 81;
-    public const int RoundStateController = 82;
-    public const int RoundStateViewBehaviour = 83;
-    public const int RoundTimeLeft = 84;
-    public const int AudioSourceBehaviour = 85;
+    public const int Day = 73;
+    public const int DayCost = 74;
+    public const int GameOver = 75;
+    public const int Round = 76;
+    public const int RoundComplete = 77;
+    public const int RoundDuration = 78;
+    public const int RoundInProcess = 79;
+    public const int RoundOver = 80;
+    public const int RoundStartAvailable = 81;
+    public const int RoundStartRequest = 82;
+    public const int RoundStateController = 83;
+    public const int RoundStateViewBehaviour = 84;
+    public const int RoundTimeLeft = 85;
+    public const int AudioSourceBehaviour = 86;
 
-    public const int TotalComponents = 86;
+    public const int TotalComponents = 87;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -171,10 +172,11 @@ public static class GameComponentsLookup {
         "Order",
         "OrderData",
         "Rating",
+        "Day",
+        "DayCost",
         "GameOver",
         "Round",
         "RoundComplete",
-        "RoundCost",
         "RoundDuration",
         "RoundInProcess",
         "RoundOver",
@@ -260,10 +262,11 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Orders.Order),
         typeof(Code.Gameplay.Features.Orders.OrderDataComponent),
         typeof(Code.Gameplay.Features.Orders.RatingComponent),
+        typeof(Code.Gameplay.Features.RoundState.Day),
+        typeof(Code.Gameplay.Features.RoundState.DayCost),
         typeof(Code.Gameplay.Features.RoundState.GameOver),
         typeof(Code.Gameplay.Features.RoundState.Round),
         typeof(Code.Gameplay.Features.RoundState.RoundComplete),
-        typeof(Code.Gameplay.Features.RoundState.RoundCost),
         typeof(Code.Gameplay.Features.RoundState.RoundDuration),
         typeof(Code.Gameplay.Features.RoundState.RoundInProcess),
         typeof(Code.Gameplay.Features.RoundState.RoundOver),

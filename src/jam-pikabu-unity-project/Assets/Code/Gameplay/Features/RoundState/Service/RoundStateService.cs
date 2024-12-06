@@ -20,7 +20,7 @@ namespace Code.Gameplay.Features.RoundState.Service
         private readonly IGameStateMachine _gameStateMachine;
         private readonly LazyInject<IGameOverService> _gameOverService;
 
-        private List<RoundData> _rounds;
+        private List<DayData> _rounds;
         private int _currentRound = 1;
         private int _currentDay = 1;
 
@@ -45,13 +45,15 @@ namespace Code.Gameplay.Features.RoundState.Service
         public void CreateRoundStateController()
         {
             var staticData = _staticDataService.GetStaticData<RoundStateStaticData>();
-            _rounds = staticData.Rounds;
+            _rounds = staticData.Days;
 
-            RoundData roundData = GetRoundData(_currentRound);
+            DayData dayData = GetDayData(_currentRound);
 
             _roundStateFactory.CreateRoundStateController()
                 .AddRound(_currentRound)
-                .AddRoundCost(roundData.PlayCost);
+                .AddDayCost(dayData.PlayCost)
+                .AddDay(_currentDay)
+                ;
         }
 
         public void RoundComplete()
@@ -82,15 +84,15 @@ namespace Code.Gameplay.Features.RoundState.Service
 
             await DelaySeconds(1, new CancellationToken());
 
-            RoundData roundData = GetRoundData(_currentRound);
+            DayData dayData = GetDayData(_currentRound);
 
-            var loadLevelPayloadParameters = new LoadLevelPayloadParameters(roundData.SceneId.ToString());
+            var loadLevelPayloadParameters = new LoadLevelPayloadParameters(dayData.SceneId.ToString());
             _gameStateMachine.Enter<LoadLevelState, LoadLevelPayloadParameters>(loadLevelPayloadParameters);
         }
 
-        private RoundData GetRoundData(int currentRound)
+        private DayData GetDayData(int currentRound)
         {
-            foreach (RoundData data in _rounds)
+            foreach (DayData data in _rounds)
             {
                 if (data.RoundId >= currentRound)
                     return data;

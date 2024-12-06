@@ -9,12 +9,12 @@ namespace Code.Gameplay.StaticData
     public class StaticDataService : IStaticDataService
     {
         private readonly ILoggerService _loggerService;
-        private readonly LazyInject<List<IOnConfigsInitInitHandler>> _handlers;
+        private readonly LazyInject<List<IConfigsInitHandler>> _handlers;
 
         private readonly Dictionary<Type, BaseStaticData> _configs = new();
 
         public StaticDataService(ILoggerService loggerService,
-            LazyInject<List<IOnConfigsInitInitHandler>> handlers)
+            LazyInject<List<IConfigsInitHandler>> handlers)
         {
             _loggerService = loggerService;
             _handlers = handlers;

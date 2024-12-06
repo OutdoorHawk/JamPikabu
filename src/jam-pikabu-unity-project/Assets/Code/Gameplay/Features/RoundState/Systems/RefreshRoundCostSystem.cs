@@ -14,7 +14,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
             _storages = context.GetGroup(GameMatcher
                 .AllOf(
                     GameMatcher.RoundStateController,
-                    GameMatcher.RoundCost
+                    GameMatcher.DayCost
                 ));
         }
 
@@ -22,7 +22,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
         {
             foreach (var entity in _storages)
             {
-                _gameplayCurrencyService.UpdateCurrentTurnCostAmount(entity.RoundCost);
+                _gameplayCurrencyService.UpdateCurrentTurnCostAmount(entity.DayCost);
             }
         }
     }
