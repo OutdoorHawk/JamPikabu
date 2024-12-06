@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using Code.Gameplay.Features.Currency;
-using Code.Gameplay.Features.Currency.Config;
 using Code.Infrastructure.View;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Code.Gameplay.Features.Loot.Configs
@@ -14,6 +10,7 @@ namespace Code.Gameplay.Features.Loot.Configs
         public LootTypeId Type;
         public EntityView ViewPrefab;
         public Sprite Icon;
-    
+        public int MinDayToUnlock;
+        public int MaxDayToUnlock;
     }
 }
