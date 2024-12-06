@@ -295,7 +295,8 @@ namespace Code.Common.Extensions
                 float progress = elapsedTime / clampedDuration;
                 float t = curve?.Evaluate(progress) ?? progress;
 
-                text.text = Lerp(startValue, endValue, t).ToString("#");
+                double lerp = Lerp(startValue, endValue, t);
+                text.text = lerp.ToString("#");
                 await UniTask.Yield(token);
             }
 
@@ -314,7 +315,8 @@ namespace Code.Common.Extensions
                 float progress = elapsedTime / clampedDuration;
                 float t = curve?.Evaluate(progress) ?? progress;
 
-                text.text = Lerp(startValue, endValue, t).ToString(format);
+                double lerp = Lerp(startValue, endValue, t);
+                text.text = lerp.ToString(format);
                 await UniTask.Yield(token);
             }
 

@@ -1,11 +1,14 @@
-﻿using Code.Common.Extensions;
+﻿using System.Threading;
+using Code.Common.Extensions;
 using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Config;
 using Code.Gameplay.StaticData;
+using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using static System.Threading.CancellationTokenSource;
 
 namespace Code.Meta.UI.Common
 {
@@ -13,8 +16,11 @@ namespace Code.Meta.UI.Common
     {
         [SerializeField] private TMP_Text _amountText;
         [SerializeField] private Image _currencyIcon;
+        [SerializeField] private float _textAnimationDuration = 0.25f;
 
         private IStaticDataService _staticDataService;
+        private CancellationTokenSource _animationToken = new();
+        private int _currentAmount;
 
         public Image CurrencyIcon => _currencyIcon;
 
@@ -24,20 +30,19 @@ namespace Code.Meta.UI.Common
             _staticDataService = staticDataService;
         }
 
-        public void SetupPrice(int amount, CurrencyTypeId typeId)
+        public void SetupPrice(int amount, CurrencyTypeId typeId, bool withAnimation = false)
         {
-            SetupPriceInternal(amount, typeId);
+            SetupPriceInternal(amount, typeId, withAnimation);
         }
 
-        public void SetupPrice(CostSetup costSetup)
+        public void SetupPrice(CostSetup costSetup, bool withAnimation = false)
         {
-            SetupPriceInternal(costSetup.Amount, costSetup.CurrencyType);
+            SetupPriceInternal(costSetup.Amount, costSetup.CurrencyType, withAnimation);
         }
 
-        private void SetupPriceInternal(int amount, CurrencyTypeId typeId)
+        private void SetupPriceInternal(int amount, CurrencyTypeId typeId, bool withAnimation)
         {
             var staticData = _staticDataService.GetStaticData<CurrencyStaticData>();
-            
             CurrencyConfig currency = staticData.GetCurrencyConfig(typeId);
 
             if (currency == null)
@@ -46,8 +51,29 @@ namespace Code.Meta.UI.Common
                 return;
             }
 
-            _currencyIcon.sprite = currency.Data.Icon;
-            _amountText.text = amount.ToString();
+            if (_currencyIcon.sprite != currency.Data.Icon)
+                _currencyIcon.sprite = currency.Data.Icon;
+
+            if (withAnimation == false)
+            {
+                _amountText.text = amount.ToString();
+            }
+            else
+            {
+                _animationToken?.Cancel();
+                _animationToken = CreateLinkedTokenSource(destroyCancellationToken);
+                
+                _amountText.ToTextValue
+                (
+                    _currentAmount,
+                    amount,
+                    _textAnimationDuration,
+                    _animationToken.Token,
+                    format: "0"
+                ).Forget();
+            }
+
+            _currentAmount = amount;
         }
 
         public void Show()

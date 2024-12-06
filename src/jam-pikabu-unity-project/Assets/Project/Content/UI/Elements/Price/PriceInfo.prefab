@@ -148,6 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _amountText: {fileID: 788746499505026813}
   _currencyIcon: {fileID: 6232662516648152457}
+  _textAnimationDuration: 0.3
 --- !u!1 &5846876812894255290
 GameObject:
   m_ObjectHideFlags: 0
