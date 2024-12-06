@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Code.Common.Entity;
+using Code.Common.Extensions;
 using Cysharp.Threading.Tasks;
 using Entitas;
 using UnityEngine;
@@ -55,10 +57,20 @@ namespace Code.Gameplay.Features.Loot.Systems
                     if (producer.EffectTargetsLoot.Contains(target.LootTypeId) == false)
                         continue;
 
+                    CreateGameEntity
+                        .Empty()
+                        .With(x => x.isEffect = true)
+                        .With(x => x.isIncreaseValueEffect = true)
+                        .AddProducer(producer.Id)
+                        .AddEffectValue(producer.EffectValue)
+                        .AddTargets(new List<int>(producer.Targets))
+                        ;
+
                     target.ReplaceGoldValue((int)(target.GoldValue + producer.EffectValue));
-                    Debug.Log($"boost: {target.LootTypeId.ToString()} | effect: {producer.EffectValue} | result gold {target.GoldValue}");
                     target.LootItemUI.AddGoldValueWithdraw((int)producer.EffectValue);
                     producer.Targets.Add(target.Id);
+                    
+                    Debug.Log($"boost: {target.LootTypeId.ToString()} | effect: {producer.EffectValue} | result gold {target.GoldValue}");
                 }
 
                 producer.isApplied = producer.Targets.Count > 0;

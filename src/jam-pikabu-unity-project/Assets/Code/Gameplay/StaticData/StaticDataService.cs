@@ -9,7 +9,7 @@ namespace Code.Gameplay.StaticData
     {
         private readonly ILoggerService _loggerService;
 
-        private readonly Dictionary<Type, IStaticData> _configs = new();
+        private readonly Dictionary<Type, BaseStaticData> _configs = new();
 
         public StaticDataService(ILoggerService loggerService)
         {
@@ -48,7 +48,7 @@ namespace Code.Gameplay.StaticData
             }
         }
 
-        public T GetStaticData<T>() where T : class, IStaticData
+        public T GetStaticData<T>() where T : class
         {
             return _configs[typeof(T)] as T;
         }

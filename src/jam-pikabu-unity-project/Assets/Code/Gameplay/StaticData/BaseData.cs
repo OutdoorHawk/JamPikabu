@@ -1,0 +1,4 @@
+﻿namespace Code.Gameplay.StaticData
+{
+  
+}

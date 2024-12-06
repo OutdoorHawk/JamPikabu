@@ -15,6 +15,7 @@ namespace Code.Common
     [Game] public class SelfDestructTimer : IComponent { public float Value; }
     [Game] public class Radius : IComponent { public float Value; }
     [Game] public class Target : IComponent { public int Value; }
+    [Game] public class Producer : IComponent { public int Value; }
     [Game] public class Targets : IComponent { public List<int> Value; }
     
     

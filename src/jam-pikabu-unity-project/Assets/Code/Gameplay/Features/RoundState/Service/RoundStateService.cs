@@ -22,13 +22,19 @@ namespace Code.Gameplay.Features.RoundState.Service
 
         private List<RoundData> _rounds;
         private int _currentRound = 1;
+        private int _currentDay = 1;
 
         public int CurrentRound => _currentRound;
 
-        public RoundStateService(IRoundStateFactory roundStateFactory, 
-            IStaticDataService staticDataService, 
+        public int CurrentDay => _currentDay;
+
+        public RoundStateService
+        (
+            IRoundStateFactory roundStateFactory,
+            IStaticDataService staticDataService,
             IGameStateMachine gameStateMachine,
-            LazyInject<IGameOverService> gameOverService)
+            LazyInject<IGameOverService> gameOverService
+        )
         {
             _roundStateFactory = roundStateFactory;
             _staticDataService = staticDataService;
@@ -53,9 +59,9 @@ namespace Code.Gameplay.Features.RoundState.Service
             _currentRound++;
         }
 
-        public void ResetCurrentRound()
+        public void DayComplete()
         {
-            _currentRound = 0;
+            _currentDay++;
         }
 
         public void TryLoadNextLevel()
@@ -65,6 +71,8 @@ namespace Code.Gameplay.Features.RoundState.Service
 
         public void GameOver()
         {
+            _currentRound = 0;
+            _currentDay = 0;
             _gameOverService.Value.GameOver();
         }
 

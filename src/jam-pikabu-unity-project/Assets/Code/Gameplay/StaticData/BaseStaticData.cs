@@ -5,9 +5,14 @@ using UnityEngine;
 
 namespace Code.Gameplay.StaticData
 {
+    public abstract class BaseData
+    {
+        [ReadOnly] public int Id;
+    }
+    
     public abstract class BaseStaticData<T> : BaseStaticData where T : class
     {
-        [PropertyOrder(99)] public List<T> Configs;
+        [PropertyOrder(99), ListDrawerSettings(CustomAddFunction = nameof(OnAddNewConfig))] public List<T> Configs;
         
         private readonly Dictionary<int, T> _data = new();
 
@@ -30,5 +35,16 @@ namespace Code.Gameplay.StaticData
             _data.TryGetValue(key, out var value);
             return value;
         }
+
+        private T OnAddNewConfig()
+        {
+            var onAddNewConfig = Activator.CreateInstance<T>();
+            
+            if (onAddNewConfig is BaseData baseData) 
+                baseData.Id = Configs.Count;
+            
+            return onAddNewConfig;
+        }
+        
     }
 }

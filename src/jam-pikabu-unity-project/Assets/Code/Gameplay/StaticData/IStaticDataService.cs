@@ -3,6 +3,6 @@
     public interface IStaticDataService
     {
         public void Load();
-        T GetStaticData<T>() where T : class, IStaticData;
+        T GetStaticData<T>() where T : class;
     }
 }
