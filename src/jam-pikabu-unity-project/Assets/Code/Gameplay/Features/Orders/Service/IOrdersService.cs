@@ -7,5 +7,6 @@ namespace Code.Gameplay.Features.Orders.Service
         void InitDay();
         OrderData GetCurrentOrder();
         void GoToNextOrder();
+        void GameOver();
     }
 }

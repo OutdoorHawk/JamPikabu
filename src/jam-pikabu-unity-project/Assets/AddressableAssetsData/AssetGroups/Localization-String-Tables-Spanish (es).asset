@@ -30,7 +30,7 @@ MonoBehaviour:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2c1de7a568b2b8e49a02bbc0fb3193e6
-    m_Address: FIREARMS_es
+    m_Address: GAMEPLAY_es
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-es

@@ -40,6 +40,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         private void AddNewItem(LootTypeId type)
         {
             LootItemUI lootItemUI = _lootUIFactory.CreateLootItem(LootGrid.transform, type);
+            lootItemUI.CanvasGroup.alpha = 0;
             _items.Add(lootItemUI);
         }
 

@@ -33,27 +33,3 @@ MonoBehaviour:
           CurrencyType: 3
           Amount: 3
       UniqueIngredientsForBonus: 0
-  - Id: 1
-    Setup:
-      OrderIcon: {fileID: 0}
-      MinDayToUnlock: 0
-      MaxDayToUnlock: 0
-      GoodIngredients: []
-      BadIngredients: []
-      UniqueIngredientsForBonus: 0
-  - Id: 2
-    Setup:
-      OrderIcon: {fileID: 0}
-      MinDayToUnlock: 0
-      MaxDayToUnlock: 0
-      GoodIngredients: []
-      BadIngredients: []
-      UniqueIngredientsForBonus: 0
-  - Id: 3
-    Setup:
-      OrderIcon: {fileID: 0}
-      MinDayToUnlock: 0
-      MaxDayToUnlock: 0
-      GoodIngredients: []
-      BadIngredients: []
-      UniqueIngredientsForBonus: 0

@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using Code.Gameplay.Features.Orders.Service;
 using Code.Gameplay.Input.Service;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows;
@@ -22,6 +23,7 @@ namespace Code.Gameplay.Features.GameOver.Service
         private readonly IInputService _inputService;
         private readonly IWindowService _windowService;
         private readonly IStaticDataService _staticData;
+        private readonly IOrdersService _ordersService;
 
         public bool IsGameWin { get; private set; }
 
@@ -32,11 +34,13 @@ namespace Code.Gameplay.Features.GameOver.Service
             IProgressProvider progressProvider,
             IInputService inputService,
             IWindowService windowService,
-            IStaticDataService staticData
+            IStaticDataService staticData,
+            IOrdersService ordersService
         )
         {
             _windowService = windowService;
             _staticData = staticData;
+            _ordersService = ordersService;
             _inputService = inputService;
             _gameStateMachine = gameStateMachine;
             _saveLoadService = saveLoadService;
@@ -74,6 +78,7 @@ namespace Code.Gameplay.Features.GameOver.Service
             BlockInput();
             _gameStateMachine.Enter<GameOverState>();
             _saveLoadService.SaveProgress();
+            _ordersService.GameOver();
             await DelaySeconds(1, new CancellationToken());
             _windowService.OpenWindow(WindowTypeId.GameLostWindow);
         }

@@ -44,23 +44,23 @@ namespace Code.Gameplay.Features.Orders.Windows
         {
             _currentOrder = _ordersService.GetCurrentOrder();
 
-            CreateItems(_currentOrder.Setup.GoodIngredients, _goodItems);
-            CreateItems(_currentOrder.Setup.BadIngredients, _badItems);
+            CreateItems(_currentOrder.Setup.GoodIngredients, _goodItems, _goodIngredients.transform);
+            CreateItems(_currentOrder.Setup.BadIngredients, _badItems, _badIngredients.transform);
 
         }
 
-        private void CreateItems(List<IngredientData> ingredients, List<LootItemUI> items)
+        private void CreateItems(List<IngredientData> ingredients, List<LootItemUI> items, Transform parent)
         {
             foreach (IngredientData ingredientData in ingredients)
             {
-                LootItemUI item = CreateLootItem(ingredientData);
+                LootItemUI item = CreateLootItem(ingredientData, parent);
                 items.Add(item);
             }
         }
 
-        private LootItemUI CreateLootItem(in IngredientData ingredientData)
+        private LootItemUI CreateLootItem(in IngredientData ingredientData, Transform parent)
         {
-            LootItemUI item = _lootItemUIFactory.CreateLootItem(_goodIngredients.transform, ingredientData.TypeId);
+            LootItemUI item = _lootItemUIFactory.CreateLootItem(parent, ingredientData.TypeId);
             item.Value.SetupPrice(ingredientData.Rating);
             _allItems.Add(item);
             return item;

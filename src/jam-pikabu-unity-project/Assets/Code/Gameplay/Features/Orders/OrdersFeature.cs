@@ -1,4 +1,5 @@
-﻿using Code.Infrastructure.Systems;
+﻿using Code.Gameplay.Features.Orders.Systems;
+using Code.Infrastructure.Systems;
 
 namespace Code.Gameplay.Features.Orders
 {
@@ -6,6 +7,8 @@ namespace Code.Gameplay.Features.Orders
     {
         public OrdersFeature(ISystemFactory systems)
         {
+            Add(systems.Create<InitOrdersDaySystem>());
+            Add(systems.Create<InitCurrentOrderOnRoundStartSystem>());
         }
     }
 }

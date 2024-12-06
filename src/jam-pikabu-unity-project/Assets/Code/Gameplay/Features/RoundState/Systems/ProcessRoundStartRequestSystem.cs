@@ -29,9 +29,9 @@ namespace Code.Gameplay.Features.RoundState.Systems
                 entity.isRoundInProcess = true;
                 entity.AddRoundTimeLeft(entity.RoundDuration);
 
-                CreateGameEntity.Empty()
+                /*CreateGameEntity.Empty()
                     .With(x => x.isAddGoldRequest = true)
-                    .AddGold(-entity.RoundCost);
+                    .AddGold(-entity.RoundCost);*/
             }
         }
     }

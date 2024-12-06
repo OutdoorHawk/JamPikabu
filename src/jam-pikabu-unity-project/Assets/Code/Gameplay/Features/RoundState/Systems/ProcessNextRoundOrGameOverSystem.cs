@@ -42,7 +42,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
                 }
                 else
                 {
-                    _roundStateService.TryLoadNextLevel();
+                  //  _roundStateService.TryLoadNextLevel();
                 }
             }
         }

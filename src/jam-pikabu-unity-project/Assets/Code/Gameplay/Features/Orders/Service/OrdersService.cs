@@ -38,16 +38,26 @@ namespace Code.Gameplay.Features.Orders.Service
 
             foreach (var data in ordersData)
             {
-                if (currentDay < data.Setup.MinDayToUnlock)
+                if (CheckMinDayToUnlock(data, currentDay))
                     continue;
 
-                if (currentDay > data.Setup.MaxDayToUnlock)
+                if (CheckMaxDayToUnlock(data, currentDay))
                     continue;
 
                 _ordersBuffer.Add(data);
             }
 
             _ordersBuffer.ShuffleList();
+        }
+
+        private static bool CheckMinDayToUnlock(OrderData data, int currentDay)
+        {
+            return data.Setup.MinDayToUnlock > 0 && currentDay < data.Setup.MinDayToUnlock;
+        }
+
+        private static bool CheckMaxDayToUnlock(OrderData data, int currentDay)
+        {
+            return data.Setup.MaxDayToUnlock > 0 && currentDay > data.Setup.MaxDayToUnlock;
         }
 
         public OrderData GetCurrentOrder()
@@ -61,6 +71,12 @@ namespace Code.Gameplay.Features.Orders.Service
                 _currentOrderIndex = 0;
 
             _currentOrderIndex++;
+        }
+
+        public void GameOver()
+        {
+            _currentOrderIndex = 0;
+            _ordersBuffer.Clear();
         }
     }
 }
