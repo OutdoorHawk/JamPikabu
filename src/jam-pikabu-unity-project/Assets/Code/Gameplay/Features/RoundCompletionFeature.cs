@@ -11,7 +11,6 @@ namespace Code.Gameplay.Features
     {
         public RoundCompletionFeature(ISystemFactory systems)
         {
-            //Add(systems.Create<ProcessNextRoundOrGameOverSystem>());
             Add(systems.Create<BindViewFeature>());
 
             Add(systems.Create<LootConsumeFeature>());

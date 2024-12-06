@@ -3,7 +3,7 @@ using Code.Infrastructure.SceneContext;
 using Entitas;
 using UnityEngine;
 
-namespace Code.Gameplay.Features.Loot.Systems
+namespace Code.Gameplay.Features.LootSpawning.Systems
 {
     public class SetLootInitialSpeedSystem : ReactiveSystem<GameEntity>
     {

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using Code.Common;
+using Code.Common.Extensions;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.Features.Loot.Factory;
 using Code.Gameplay.Features.RoundState.Service;
@@ -9,9 +10,8 @@ using Code.Infrastructure.SceneContext;
 using Cysharp.Threading.Tasks;
 using Entitas;
 using UnityEngine;
-using static Code.Common.Extensions.AsyncGameplayExtensions;
 
-namespace Code.Gameplay.Features.Loot.Systems
+namespace Code.Gameplay.Features.LootSpawning.Systems
 {
     public class SpawnLootSystem : ReactiveSystem<GameEntity>, ITearDownSystem
     {
@@ -66,7 +66,7 @@ namespace Code.Gameplay.Features.Loot.Systems
 
             SceneContextComponent sceneContext = _provider.Context;
 
-            await DelaySeconds(staticData.LootSpawnStartDelay, _exitGameSource.Token);
+            await AsyncGameplayExtensions.DelaySeconds(staticData.LootSpawnStartDelay, _exitGameSource.Token);
 
             await ProcessLootSpawn(staticData, sceneContext);
 
@@ -102,7 +102,7 @@ namespace Code.Gameplay.Features.Loot.Systems
                 foreach (var lootSetup in _lootSetupsBuffer)
                 {
                     _lootFactory.CreateLootEntity(lootSetup.Type, sceneContext.LootParent, spawn.position, spawn.rotation.eulerAngles);
-                    await DelaySeconds(staticData.LootSpawnInterval, _exitGameSource.Token);
+                    await AsyncGameplayExtensions.DelaySeconds(staticData.LootSpawnInterval, _exitGameSource.Token);
                 }
             }
         }

@@ -1,7 +1,7 @@
 using Code.Gameplay.Features.Loot.Factory;
 using Entitas;
 
-namespace Code.Gameplay.Features.Loot.Systems
+namespace Code.Gameplay.Features.LootSpawning.Systems
 {
     public class InitLootSpawnSystem : IInitializeSystem
     {
