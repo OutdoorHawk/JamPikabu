@@ -22,7 +22,7 @@ namespace Code.Gameplay.Features.RoundState.Service
         private readonly LazyInject<IGameOverService> _gameOverService;
 
         private List<DayData> _daysData;
-        private int _currentDay = 1;
+        private int _currentDay;
 
         public int CurrentDay => _currentDay;
 
@@ -40,11 +40,12 @@ namespace Code.Gameplay.Features.RoundState.Service
             _gameOverService = gameOverService;
         }
 
-        public void CreateRoundStateController()
+        public void BeginDay()
         {
             var staticData = _staticDataService.GetStaticData<RoundStateStaticData>();
             _daysData = staticData.Days;
-
+            _currentDay++;
+            
             DayData dayData = GetDayData(_currentDay);
 
             _roundStateFactory.CreateRoundStateController()
@@ -65,7 +66,6 @@ namespace Code.Gameplay.Features.RoundState.Service
 
         public void DayComplete()
         {
-            _currentDay++;
             LoadNextLevelAsync().Forget();
         }
 
@@ -81,7 +81,7 @@ namespace Code.Gameplay.Features.RoundState.Service
             
             await DelaySeconds(1, new CancellationToken());
 
-            DayData dayData = GetDayData(_currentDay);
+            DayData dayData = GetDayData(_currentDay + 1);
 
             var loadLevelPayloadParameters = new LoadLevelPayloadParameters(dayData.SceneId.ToString());
             _gameStateMachine.Enter<LoadLevelState, LoadLevelPayloadParameters>(loadLevelPayloadParameters);

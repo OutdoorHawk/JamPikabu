@@ -3,7 +3,6 @@ using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Orders.Service;
 using Code.Gameplay.Features.Orders.Windows;
-using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.Windows;
 using Code.Gameplay.Windows.Factory;
 using Code.Gameplay.Windows.Service;
@@ -17,15 +16,13 @@ namespace Code.Gameplay.Features.Orders.Systems
         private readonly IWindowService _windowService;
         private readonly IOrdersService _ordersService;
         private readonly IUIFactory _uiFactory;
-        private readonly IRoundStateService _roundStateService;
 
         public PlayOrderWindowOnLootConsumedVisualsSystem(GameContext context, IWindowService windowService,
-            IOrdersService ordersService, IUIFactory uiFactory, IRoundStateService roundStateService) : base(context)
+            IOrdersService ordersService, IUIFactory uiFactory) : base(context)
         {
             _windowService = windowService;
             _ordersService = ordersService;
             _uiFactory = uiFactory;
-            _roundStateService = roundStateService;
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
@@ -65,8 +62,11 @@ namespace Code.Gameplay.Features.Orders.Systems
                 .AddGold(0)
                 .AddWithdraw(-order.Setup.Reward.Amount)
                 ;
-
-            _ordersService.GoToNextOrder();
+            
+            CreateGameEntity
+                .Empty()
+                .With(x => x.isNextOrderRequest = true)
+                ;
         }
     }
 }

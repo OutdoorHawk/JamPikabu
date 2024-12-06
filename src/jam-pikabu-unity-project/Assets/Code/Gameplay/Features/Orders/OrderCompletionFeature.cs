@@ -1,4 +1,5 @@
 ﻿using Code.Gameplay.Features.Orders.Systems;
+using Code.Gameplay.Features.RoundState.Systems;
 using Code.Infrastructure.Systems;
 
 namespace Code.Gameplay.Features.Orders
@@ -8,9 +9,10 @@ namespace Code.Gameplay.Features.Orders
         public OrderCompletionFeature(ISystemFactory systems)
         {
             Add(systems.Create<CompleteOrderOnRoundOverSystem>());
-            
+
             Add(systems.Create<PlayOrderWindowOnLootConsumedVisualsSystem>());
-            
+            Add(systems.Create<ProcessNextOrderRequest>());
+
             Add(systems.Create<ClearCompletedOrdersSystem>());
         }
     }

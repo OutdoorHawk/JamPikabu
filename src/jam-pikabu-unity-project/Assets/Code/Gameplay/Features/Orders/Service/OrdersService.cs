@@ -32,19 +32,18 @@ namespace Code.Gameplay.Features.Orders.Service
             _lootUIService = lootUIService;
         }
 
-        public void InitDay()
+        public void InitDay(int currentDay)
         {
             _ordersData = _staticDataService.GetStaticData<OrdersStaticData>();
             _currentOrderIndex = 0;
             _ordersCompleted = 0;
             _ordersBuffer.Clear();
 
-            InitCurrentDayOrders();
+            InitCurrentDayOrders(currentDay);
         }
 
-        private void InitCurrentDayOrders()
+        private void InitCurrentDayOrders(int currentDay)
         {
-            int currentDay = _roundStateService.CurrentDay;
             List<OrderData> ordersData = _ordersData.Configs;
 
             foreach (var data in ordersData)
@@ -83,17 +82,16 @@ namespace Code.Gameplay.Features.Orders.Service
             return _ordersBuffer[_currentOrderIndex];
         }
 
+        public bool OrdersCompleted()
+        {
+            return _ordersCompleted >= _ordersData.OrdersAmountInDay;
+        }
+        
         public void GoToNextOrder()
         {
             _lootUIService.ClearCollectedLoot();
             _ordersCompleted++;
-
-            if (_ordersCompleted >= _ordersData.OrdersAmountInDay)
-            {
-                _roundStateService.DayComplete();
-                return;
-            }
-
+            
             _currentOrderIndex++;
 
             if (_currentOrderIndex >= _ordersBuffer.Count)

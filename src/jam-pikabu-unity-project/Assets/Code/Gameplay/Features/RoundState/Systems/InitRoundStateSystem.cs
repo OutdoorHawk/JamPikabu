@@ -14,7 +14,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
 
         public void Initialize()
         {
-            _roundStateService.CreateRoundStateController();
+            _roundStateService.BeginDay();
         }
     }
 }

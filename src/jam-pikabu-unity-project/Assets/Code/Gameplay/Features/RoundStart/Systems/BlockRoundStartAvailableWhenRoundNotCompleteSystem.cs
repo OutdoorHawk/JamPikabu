@@ -19,10 +19,10 @@ namespace Code.Gameplay.Features.RoundState.Systems
         {
             foreach (var controller in _roundController)
             {
-                if (controller.isRoundComplete == false)
+                /*if (controller.isRoundComplete == false)
                 {
                     controller.isRoundStartAvailable = false;
-                }
+                }*/
             }
         }
     }

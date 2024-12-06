@@ -6,15 +6,21 @@ namespace Code.Gameplay.Features.Orders.Systems
     public class InitDayOrdersSystem : IInitializeSystem
     {
         private readonly IOrdersService _ordersService;
+        private readonly IGroup<GameEntity> _roundState;
 
-        public InitDayOrdersSystem(IOrdersService ordersService)
+        public InitDayOrdersSystem(GameContext gameContext, IOrdersService ordersService)
         {
             _ordersService = ordersService;
+
+            _roundState = gameContext.GetGroup(GameMatcher.RoundStateController);
         }
 
         public void Initialize()
         {
-            _ordersService.InitDay();
+            foreach (GameEntity gameEntity in _roundState)
+            {
+                _ordersService.InitDay(gameEntity.Day);
+            }
         }
     }
 }

@@ -78,25 +78,27 @@ public static class GameComponentsLookup {
     public const int LootSpawner = 67;
     public const int LootTypeId = 68;
     public const int Complete = 69;
-    public const int Order = 70;
-    public const int OrderData = 71;
-    public const int Rating = 72;
-    public const int Day = 73;
-    public const int DayCost = 74;
-    public const int GameOver = 75;
-    public const int Round = 76;
-    public const int RoundComplete = 77;
-    public const int RoundDuration = 78;
-    public const int RoundInProcess = 79;
-    public const int RoundOver = 80;
-    public const int RoundStartAvailable = 81;
-    public const int RoundStartRequest = 82;
-    public const int RoundStateController = 83;
-    public const int RoundStateViewBehaviour = 84;
-    public const int RoundTimeLeft = 85;
-    public const int AudioSourceBehaviour = 86;
+    public const int NextOrderRequest = 70;
+    public const int Order = 71;
+    public const int OrderData = 72;
+    public const int Rating = 73;
+    public const int Day = 74;
+    public const int DayCompleteRequest = 75;
+    public const int DayCost = 76;
+    public const int GameOver = 77;
+    public const int Round = 78;
+    public const int RoundComplete = 79;
+    public const int RoundDuration = 80;
+    public const int RoundInProcess = 81;
+    public const int RoundOver = 82;
+    public const int RoundStartAvailable = 83;
+    public const int RoundStartRequest = 84;
+    public const int RoundStateController = 85;
+    public const int RoundStateViewBehaviour = 86;
+    public const int RoundTimeLeft = 87;
+    public const int AudioSourceBehaviour = 88;
 
-    public const int TotalComponents = 87;
+    public const int TotalComponents = 89;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -169,10 +171,12 @@ public static class GameComponentsLookup {
         "LootSpawner",
         "LootTypeId",
         "Complete",
+        "NextOrderRequest",
         "Order",
         "OrderData",
         "Rating",
         "Day",
+        "DayCompleteRequest",
         "DayCost",
         "GameOver",
         "Round",
@@ -259,10 +263,12 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Loot.LootSpawner),
         typeof(Code.Gameplay.Features.Loot.LootTypeIdComponent),
         typeof(Code.Gameplay.Features.Orders.Complete),
+        typeof(Code.Gameplay.Features.Orders.NextOrderRequest),
         typeof(Code.Gameplay.Features.Orders.Order),
         typeof(Code.Gameplay.Features.Orders.OrderDataComponent),
         typeof(Code.Gameplay.Features.Orders.RatingComponent),
         typeof(Code.Gameplay.Features.RoundState.Day),
+        typeof(Code.Gameplay.Features.RoundState.DayCompleteRequest),
         typeof(Code.Gameplay.Features.RoundState.DayCost),
         typeof(Code.Gameplay.Features.RoundState.GameOver),
         typeof(Code.Gameplay.Features.RoundState.Round),
