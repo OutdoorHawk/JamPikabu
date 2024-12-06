@@ -38,8 +38,8 @@ namespace Code.Gameplay.Features.RoundState.Systems
             {
                 if (entity.DayCost > gold.Gold)
                 {
-                    entity.isRoundComplete = false;
-                    _roundStateService.GameOver();
+                    /*entity.isRoundComplete = false;
+                    _roundStateService.GameOver();*/
                 }
                 else
                 {

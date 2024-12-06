@@ -3,6 +3,7 @@ using Code.Gameplay.Windows.Configs;
 using Code.Infrastructure.AssetManagement.AssetProvider;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 using Object = UnityEngine.Object;
 
@@ -15,6 +16,7 @@ namespace Code.Gameplay.Windows.Factory
         private readonly IAssetProvider _assetProvider;
 
         private Transform _uiRoot;
+        private GraphicRaycaster _graphicRaycaster;
 
         private const string PATH = "Windows/";
 
@@ -31,6 +33,7 @@ namespace Code.Gameplay.Windows.Factory
         public void InitializeCamera()
         {
             var canvas = _uiRoot.GetComponent<Canvas>();
+            _graphicRaycaster = canvas.GetComponent<GraphicRaycaster>();
             canvas.worldCamera = Camera.main;
         }
 
@@ -44,6 +47,11 @@ namespace Code.Gameplay.Windows.Factory
             uiRoot.transform.SetParent(null);
             _uiRoot = uiRoot.transform;
             
+        }
+
+        public void SetRaycastAvailable(bool available)
+        {
+            _graphicRaycaster.enabled = available;
         }
 
         public UniTask<T> CreateWindow<T>(WindowTypeId type) where T : BaseWindow

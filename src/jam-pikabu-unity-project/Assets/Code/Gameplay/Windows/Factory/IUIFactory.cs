@@ -8,6 +8,7 @@ namespace Code.Gameplay.Windows.Factory
         void InitializeCamera();
         Transform UIRoot { get; }
         void CreateUiRoot();
+        void SetRaycastAvailable(bool available);
         UniTask<T> CreateWindow<T>(WindowTypeId type) where T : BaseWindow;
     }
 }

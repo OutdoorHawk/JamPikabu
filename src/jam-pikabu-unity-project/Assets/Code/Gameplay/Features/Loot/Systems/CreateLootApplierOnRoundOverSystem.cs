@@ -47,8 +47,6 @@ namespace Code.Gameplay.Features.Loot.Systems
         private async UniTask CreateAsync()
         {
             await UniTask.WaitUntil(() => _busyLoot.GetEntities().Length == 0, cancellationToken: _tearDown.Token);
-            
-            
         }
 
         public void TearDown()

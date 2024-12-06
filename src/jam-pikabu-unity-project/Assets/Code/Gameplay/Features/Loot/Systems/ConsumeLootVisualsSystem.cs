@@ -1,16 +1,25 @@
 ﻿using System.Collections.Generic;
+using Code.Gameplay.Features.HUD;
+using Code.Gameplay.Features.Loot.Behaviours;
+using Code.Gameplay.Features.Orders.Windows;
+using Code.Gameplay.Windows;
+using Code.Gameplay.Windows.Service;
 using Cysharp.Threading.Tasks;
 using Entitas;
+using static Code.Common.Extensions.AsyncGameplayExtensions;
 
 namespace Code.Gameplay.Features.Loot.Systems
 {
     public class ConsumeLootVisualsSystem : ReactiveSystem<GameEntity>
     {
+        private readonly IWindowService _windowService;
         private readonly IGroup<GameEntity> _loot;
         private readonly List<GameEntity> _lootBuffer = new(64);
+        private readonly List<UniTask> _tasksBuffer = new(64);
 
-        public ConsumeLootVisualsSystem(GameContext context) : base(context)
+        public ConsumeLootVisualsSystem(GameContext context, IWindowService windowService) : base(context)
         {
+            _windowService = windowService;
             _loot = context.GetGroup(
                 GameMatcher.AllOf(
                     GameMatcher.Loot,
@@ -44,7 +53,10 @@ namespace Code.Gameplay.Features.Loot.Systems
             foreach (var loot in _loot)
                 loot.Retain(this);
 
-            await ProcessAnimation();
+            _windowService.TryGetWindow<PlayerHUDWindow>(out var window);
+            var lootContainer = window.GetComponentInChildren<GameplayLootContainer>();
+
+            await ProcessAnimation(lootContainer);
 
             foreach (var loot in _loot)
                 loot.Release(this);
@@ -55,11 +67,17 @@ namespace Code.Gameplay.Features.Loot.Systems
             applier.isDestructed = true;
         }
 
-        private async UniTask ProcessAnimation()
+        private async UniTask ProcessAnimation(GameplayLootContainer lootContainer)
         {
+            const float interval = 0.15f;
+            _tasksBuffer.Clear();
+
             foreach (var loot in _loot.GetEntities(_lootBuffer))
             {
-                await loot.LootItemUI.AnimateConsume();
+                await DelaySeconds(interval, loot.LootItemUI.destroyCancellationToken);
+
+                UniTask task = loot.LootItemUI.AnimateFlyToVat(lootContainer.VatIcon.transform);
+                _tasksBuffer.Add(task);
 
                 /*CreateGameEntity.Empty()
                     .With(x => x.isAddCurrencyRequest = true)
@@ -67,6 +85,8 @@ namespace Code.Gameplay.Features.Loot.Systems
                     .With(x => x.AddWithdraw(-loot.Plus), when: loot.hasMinus)
                     ;*/
             }
+
+            await UniTask.WhenAll(_tasksBuffer);
         }
     }
 }

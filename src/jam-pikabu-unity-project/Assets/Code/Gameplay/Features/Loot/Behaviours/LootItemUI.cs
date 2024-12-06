@@ -20,9 +20,10 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         public Image Icon;
         public CanvasGroup CanvasGroup;
         public Animator LootAnimator;
+        public float FlyToVatDuration = 1f;
 
         private Tweener _lootItemTween;
-        
+
         private int _currentValue;
         private int _currentWithdrawValue;
 
@@ -41,7 +42,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         {
             if (_currentValue == newValue)
                 return;
-            
+
             _currentValue = newValue;
             UpdateView();
         }
@@ -59,7 +60,16 @@ namespace Code.Gameplay.Features.Loot.Behaviours
             await DelaySeconds(0.25f, destroyCancellationToken);
         }
 
-        public async UniTask AnimateConsume(float delay = 0)
+        public async UniTask AnimateFlyToVat(Transform flyEndPoint)
+        {
+            await transform
+                    .DOJump(flyEndPoint.position, Random.Range(1, 4), 1, FlyToVatDuration)
+                    .SetLink(gameObject)
+                    .AsyncWaitForCompletion()
+                ;
+        }
+
+        public async UniTask AnimateConsume()
         {
             await LootAnimator.WaitForAnimationCompleteAsync(AnimationParameter.Consume.AsHash(), destroyCancellationToken);
         }
@@ -93,7 +103,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
 
             if (Entity.IsNullOrDestructed())
                 return;
-            
+
             Entity.isBusy = false;
         }
     }

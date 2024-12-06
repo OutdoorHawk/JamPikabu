@@ -13,6 +13,8 @@ namespace Code.Gameplay.Features.Orders
             
             Add(systems.Create<CompleteOrderOnRoundOverSystem>());
             
+            Add(systems.Create<PlayOrderWindowVisualsSystem>());
+            
             Add(systems.Create<ClearCompletedOrdersSystem>());
         }
     }

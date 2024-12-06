@@ -1,24 +1,28 @@
 ﻿using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Orders.Config;
-using Code.Gameplay.Features.Orders.Service;
+using Code.Gameplay.Windows;
+using Code.Gameplay.Windows.Factory;
+using Code.Gameplay.Windows.Service;
 using Entitas;
 
 namespace Code.Gameplay.Features.Orders.Systems
 {
     public class CompleteOrderOnRoundOverSystem : IExecuteSystem
     {
-        private readonly IOrdersService _ordersService;
+        private readonly IWindowService _windowService;
+        private readonly IUIFactory _uiFactory;
         private readonly IGroup<GameEntity> _orders;
         private readonly IGroup<GameEntity> _roundStateControllers;
 
-        public CompleteOrderOnRoundOverSystem(GameContext context, IOrdersService ordersService)
+        public CompleteOrderOnRoundOverSystem(GameContext context, IWindowService windowService, IUIFactory uiFactory)
         {
-            _ordersService = ordersService;
+            _windowService = windowService;
+            _uiFactory = uiFactory;
             _roundStateControllers = context.GetGroup(
                 GameMatcher.AllOf(
                     GameMatcher.RoundStateController, 
-                    GameMatcher.RoundComplete));
+                    GameMatcher.RoundOver));
             
             _orders = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.Order,
@@ -37,11 +41,13 @@ namespace Code.Gameplay.Features.Orders.Systems
                     .Empty()
                     .With(x => x.isAddCurrencyRequest = true)
                     .AddGold(orderDataSetup.Reward.Amount)
+                    .AddWithdraw(orderDataSetup.Reward.Amount)
                     ;
                 
                 entity.isComplete = true;
                 
-                _ordersService.GoToNextOrder();
+                _windowService.Close(WindowTypeId.OrderWindow);
+                _uiFactory.SetRaycastAvailable(false);
             }
         }
     }

@@ -189,6 +189,7 @@ MonoBehaviour:
   Icon: {fileID: 6295771697361863592}
   CanvasGroup: {fileID: 3978017335923599215}
   LootAnimator: {fileID: 7652474956070945473}
+  FlyToVatDuration: 1
 --- !u!114 &6122044623407222926
 MonoBehaviour:
   m_ObjectHideFlags: 0

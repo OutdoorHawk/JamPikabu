@@ -10,6 +10,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
     public class GameplayLootContainer : MonoBehaviour
     {
         public GridLayoutGroup LootGrid;
+        public Image VatIcon;
 
         private readonly List<LootItemUI> _items = new();
 

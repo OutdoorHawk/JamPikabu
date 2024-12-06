@@ -1,24 +1,26 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Code.Gameplay.Features.Loot.Behaviours;
 using Code.Gameplay.Features.Loot.UIFactory;
 using Code.Gameplay.Features.Orders.Config;
 using Code.Gameplay.Features.Orders.Service;
 using Code.Gameplay.Windows;
 using Code.Meta.UI.Common;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using static Code.Common.Extensions.AsyncGameplayExtensions;
 
 namespace Code.Gameplay.Features.Orders.Windows
 {
     public class OrderWindow : BaseWindow
     {
         [SerializeField] private Image _orderIcon;
-        [SerializeField] private Button _playButton;
-        [SerializeField] private Button _skipButton;
         [SerializeField] private HorizontalLayoutGroup _goodIngredients;
         [SerializeField] private HorizontalLayoutGroup _badIngredients;
         [SerializeField] private PriceInfo _orderReward;
+        [SerializeField] private float _startCompleteAnimationDelay = 0.6f;
 
         private IOrdersService _ordersService;
         private ILootItemUIFactory _lootItemUIFactory;
@@ -28,6 +30,8 @@ namespace Code.Gameplay.Features.Orders.Windows
         private readonly List<LootItemUI> _goodItems = new();
         private readonly List<LootItemUI> _badItems = new();
         private readonly List<LootItemUI> _allItems = new();
+
+        public Button ExitButton => CloseButton;
 
         [Inject]
         private void Construct(IOrdersService ordersService, ILootItemUIFactory lootItemUIFactory)
@@ -42,6 +46,12 @@ namespace Code.Gameplay.Features.Orders.Windows
             InitOrder();
         }
 
+        public async UniTask PlayOrderComplete()
+        {
+            await DelaySeconds(_startCompleteAnimationDelay,destroyCancellationToken);
+            await PlayOrderCompleteInternal();
+        }
+
         private void InitOrder()
         {
             _currentOrder = _ordersService.GetCurrentOrder();
@@ -50,7 +60,7 @@ namespace Code.Gameplay.Features.Orders.Windows
 
             CreateItems(_currentOrder.Setup.GoodIngredients, _goodItems, _goodIngredients.transform);
             CreateItems(_currentOrder.Setup.BadIngredients, _badItems, _badIngredients.transform);
-            
+
             _orderReward.SetupPrice(_currentOrder.Setup.Reward);
         }
 
@@ -70,6 +80,14 @@ namespace Code.Gameplay.Features.Orders.Windows
 
             _allItems.Add(item);
             return item;
+        }
+
+        private async UniTask PlayOrderCompleteInternal()
+        {
+            foreach (var lootItem in _allItems)
+            {
+                await lootItem.AnimateConsume();
+            }
         }
     }
 }
