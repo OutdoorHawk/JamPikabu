@@ -23,8 +23,7 @@ namespace Code.Gameplay.Features.Loot.Systems
                 GameMatcher.AllOf(
                     GameMatcher.Loot,
                     GameMatcher.Collected,
-                    GameMatcher.LootItemUI,
-                    GameMatcher.GoldValue
+                    GameMatcher.LootItemUI
                 ).NoneOf(
                     GameMatcher.Consumed));
         }
@@ -36,11 +35,11 @@ namespace Code.Gameplay.Features.Loot.Systems
             {
                 loot.isConsumed = true;
                 
-                Debug.Log($"Consume: {loot.LootTypeId.ToString()} | gold: {loot.GoldValue}");
                 CreateGameEntity.Empty()
-                    .With(x => x.isAddCurrencyRequest = true)
-                    .AddGold(loot.GoldValue)
-                    .AddWithdraw(loot.GoldValue)
+                    .With(x => x.isAddCurrencyRequest = true, when: loot.hasPlus || loot.hasMinus)
+                    .With(x => x.AddPlus(loot.Plus), when: loot.hasPlus)
+                    .With(x => x.AddMinus(loot.Minus), when: loot.hasMinus)
+                    //.AddWithdraw(loot.GoldValue)
                     ;
             }
         }

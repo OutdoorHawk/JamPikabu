@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
-using Code.Common.Entity;
-using Code.Common.Extensions;
 using Cysharp.Threading.Tasks;
 using Entitas;
-using UnityEngine;
 
 namespace Code.Gameplay.Features.Loot.Systems
 {
@@ -46,9 +43,9 @@ namespace Code.Gameplay.Features.Loot.Systems
         {
             foreach (var loot in _loot)
                 loot.Retain(this);
-            
+
             await ProcessAnimation();
-            
+
             foreach (var loot in _loot)
                 loot.Release(this);
 
@@ -63,14 +60,12 @@ namespace Code.Gameplay.Features.Loot.Systems
             foreach (var loot in _loot.GetEntities(_lootBuffer))
             {
                 await loot.LootItemUI.AnimateConsume();
-                
-                Debug.Log($"Create remove Withdraw request: {loot.LootTypeId.ToString()} | value: {-loot.GoldValue} ");
 
-                CreateGameEntity.Empty()
+                /*CreateGameEntity.Empty()
                     .With(x => x.isAddCurrencyRequest = true)
-                    .AddGold(0)
-                    .AddWithdraw(-loot.GoldValue)
-                    ;
+                    .With(x => x.AddWithdraw(-loot.Plus), when: loot.hasPlus)
+                    .With(x => x.AddWithdraw(-loot.Plus), when: loot.hasMinus)
+                    ;*/
             }
         }
     }

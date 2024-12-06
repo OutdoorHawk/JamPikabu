@@ -8,7 +8,7 @@ namespace Code.Gameplay.Features.Orders
         public OrdersFeature(ISystemFactory systems)
         {
             Add(systems.Create<InitOrdersDaySystem>());
-            Add(systems.Create<InitCurrentOrderOnRoundStartSystem>());
+            Add(systems.Create<InitLootValueForOrderOnRoundStartSystem>());
         }
     }
 }
