@@ -7,5 +7,6 @@ namespace Code.Gameplay.Features.RoundState.Service
         void RoundEnd();
         void PrepareToNextRound();
         void DayComplete();
+        void GameOver();
     }
 }

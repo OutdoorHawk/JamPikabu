@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Threading;
-using Code.Gameplay.Features.GameOver.Service;
 using Code.Gameplay.Features.RoundState.Configs;
 using Code.Gameplay.Features.RoundState.Factory;
 using Code.Gameplay.StaticData;
@@ -9,7 +8,6 @@ using Code.Infrastructure.States.GameStates.Game;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
 using Cysharp.Threading.Tasks;
-using Zenject;
 using static Code.Common.Extensions.AsyncGameplayExtensions;
 
 namespace Code.Gameplay.Features.RoundState.Service
@@ -19,7 +17,6 @@ namespace Code.Gameplay.Features.RoundState.Service
         private readonly IRoundStateFactory _roundStateFactory;
         private readonly IStaticDataService _staticDataService;
         private readonly IGameStateMachine _gameStateMachine;
-        private readonly LazyInject<IGameOverService> _gameOverService;
 
         private List<DayData> _daysData;
         private int _currentDay;
@@ -30,14 +27,12 @@ namespace Code.Gameplay.Features.RoundState.Service
         (
             IRoundStateFactory roundStateFactory,
             IStaticDataService staticDataService,
-            IGameStateMachine gameStateMachine,
-            LazyInject<IGameOverService> gameOverService
+            IGameStateMachine gameStateMachine
         )
         {
             _roundStateFactory = roundStateFactory;
             _staticDataService = staticDataService;
             _gameStateMachine = gameStateMachine;
-            _gameOverService = gameOverService;
         }
 
         public void BeginDay()
@@ -72,7 +67,6 @@ namespace Code.Gameplay.Features.RoundState.Service
         public void GameOver()
         {
             _currentDay = 0;
-            _gameOverService.Value.GameOver();
         }
 
         private async UniTask LoadNextLevelAsync()
