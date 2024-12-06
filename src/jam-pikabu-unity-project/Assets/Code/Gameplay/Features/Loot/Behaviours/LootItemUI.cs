@@ -27,9 +27,12 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         private int _currentValue;
         private int _currentWithdrawValue;
 
+        public LootTypeId Type { get; private set; }
+
         public void Init(LootSetup setup)
         {
             Icon.sprite = setup.Icon;
+            Type = setup.Type;
         }
 
         public void InitPrice(CostSetup rating)

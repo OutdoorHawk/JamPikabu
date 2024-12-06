@@ -22,3 +22,5 @@ MonoBehaviour:
   - CurrencyTypeId: 3
     Data:
       Icon: {fileID: 856639315, guid: 156ec492e516ccb4099add479601d65e, type: 3}
+  _currencyAnimationPrefab: {fileID: 9005244342350799300, guid: ad3023e097a02a146a3d1a9f9a568fe3,
+    type: 3}

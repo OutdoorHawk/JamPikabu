@@ -16,6 +16,8 @@ namespace Code.Meta.UI.Common
 
         private IStaticDataService _staticDataService;
 
+        public Image CurrencyIcon => _currencyIcon;
+
         [Inject]
         private void Construct(IStaticDataService staticDataService)
         {

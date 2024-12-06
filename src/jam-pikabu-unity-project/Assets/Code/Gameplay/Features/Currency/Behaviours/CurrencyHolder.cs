@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Code.Gameplay.Features.Currency.Behaviours
 {
-    public class GoldHolder : MonoBehaviour
+    public class CurrencyHolder : MonoBehaviour
     {
         public PriceInfo PlayerCurrentGold;
         public PriceInfo PlayerTurnCostGold;

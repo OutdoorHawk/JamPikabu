@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation;
 using Code.Gameplay.StaticData;
 using UnityEngine;
 
@@ -8,8 +9,11 @@ namespace Code.Gameplay.Features.Currency.Config
     public class CurrencyStaticData : BaseStaticData
     {
         [SerializeField] private List<CurrencyConfig> _configs;
+        [SerializeField] private CurrencyAnimation _currencyAnimationPrefab;
 
         public List<CurrencyConfig> Configs => _configs;
+
+        public CurrencyAnimation CurrencyAnimationPrefab => _currencyAnimationPrefab;
 
         private readonly Dictionary<CurrencyTypeId, CurrencyConfig> _currencyConfigs = new();
 

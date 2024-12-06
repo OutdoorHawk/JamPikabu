@@ -1,9 +1,13 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+using Code.Gameplay.Features.Currency;
+using Code.Gameplay.Features.Currency.Behaviours;
+using Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation;
+using Code.Gameplay.Features.Currency.Factory;
 using Code.Gameplay.Features.Loot.Behaviours;
 using Code.Gameplay.Features.Loot.UIFactory;
 using Code.Gameplay.Features.Orders.Config;
 using Code.Gameplay.Features.Orders.Service;
+using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows;
 using Code.Meta.UI.Common;
 using Cysharp.Threading.Tasks;
@@ -20,10 +24,13 @@ namespace Code.Gameplay.Features.Orders.Windows
         [SerializeField] private HorizontalLayoutGroup _goodIngredients;
         [SerializeField] private HorizontalLayoutGroup _badIngredients;
         [SerializeField] private PriceInfo _orderReward;
+        [SerializeField] private CurrencyHolder _currencyHolder;
         [SerializeField] private float _startCompleteAnimationDelay = 0.6f;
 
         private IOrdersService _ordersService;
         private ILootItemUIFactory _lootItemUIFactory;
+        private IStaticDataService _staticDataService;
+        private ICurrencyFactory _currencyFactory;
 
         private OrderData _currentOrder;
 
@@ -34,8 +41,11 @@ namespace Code.Gameplay.Features.Orders.Windows
         public Button ExitButton => CloseButton;
 
         [Inject]
-        private void Construct(IOrdersService ordersService, ILootItemUIFactory lootItemUIFactory)
+        private void Construct(IOrdersService ordersService, ILootItemUIFactory lootItemUIFactory,
+            ICurrencyFactory currencyFactory, IStaticDataService staticDataService)
         {
+            _staticDataService = staticDataService;
+            _currencyFactory = currencyFactory;
             _lootItemUIFactory = lootItemUIFactory;
             _ordersService = ordersService;
         }
@@ -48,7 +58,7 @@ namespace Code.Gameplay.Features.Orders.Windows
 
         public async UniTask PlayOrderComplete()
         {
-            await DelaySeconds(_startCompleteAnimationDelay,destroyCancellationToken);
+            await DelaySeconds(_startCompleteAnimationDelay, destroyCancellationToken);
             await PlayOrderCompleteInternal();
         }
 
@@ -84,9 +94,34 @@ namespace Code.Gameplay.Features.Orders.Windows
 
         private async UniTask PlayOrderCompleteInternal()
         {
-            foreach (var lootItem in _allItems)
+            foreach (var lootItem in _goodItems)
             {
                 await lootItem.AnimateConsume();
+
+                var parameters = new CurrencyAnimationParameters()
+                {
+                    Type = CurrencyTypeId.Plus,
+                    Count = 5,
+                    StartPosition = lootItem.transform.position,
+                    EndPosition = _currencyHolder.PlayerPluses.CurrencyIcon.transform.position
+                };
+
+                _currencyFactory.PlayCurrencyAnimation(parameters);
+            }
+
+            foreach (var lootItem in _badItems)
+            {
+                await lootItem.AnimateConsume();
+
+                var parameters = new CurrencyAnimationParameters()
+                {
+                    Type = CurrencyTypeId.Minus,
+                    Count = 5,
+                    StartPosition = lootItem.transform.position,
+                    EndPosition = _currencyHolder.PlayerMinuses.CurrencyIcon.transform.position
+                };
+
+                _currencyFactory.PlayCurrencyAnimation(parameters);
             }
         }
     }
