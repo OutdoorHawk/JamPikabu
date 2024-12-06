@@ -14,7 +14,7 @@ namespace Code.Gameplay.Features.Currency.Systems
 
         public void Initialize()
         {
-            _currencyFactory.CreateGoldCurrencyForCurrentLevel();
+            _currencyFactory.CreateCurrencyStorages();
         }
     }
 }

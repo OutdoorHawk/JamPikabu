@@ -10,8 +10,10 @@ namespace Code.Gameplay.Features.Currency
             Add(systems.Create<InitGameplayCurrency>());
             
             Add(systems.Create<ProcessAddGoldRequestSystem>());
+            Add(systems.Create<ProcessAddRatingRequestSystem>());
             
             Add(systems.Create<RefreshGoldSystem>());
+            Add(systems.Create<RefreshRatingSystem>());
         }
     }
 }

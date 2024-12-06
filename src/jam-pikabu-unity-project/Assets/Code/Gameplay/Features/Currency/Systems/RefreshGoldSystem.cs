@@ -11,10 +11,10 @@ namespace Code.Gameplay.Features.Currency.Systems
         public RefreshGoldSystem(GameContext context, IGameplayCurrencyService gameplayCurrencyService)
         {
             _gameplayCurrencyService = gameplayCurrencyService;
+
             _storages = context.GetGroup(GameMatcher
                 .AllOf(
                     GameMatcher.Gold,
-                    GameMatcher.Withdraw,
                     GameMatcher.CurrencyStorage
                 ));
         }
@@ -23,7 +23,7 @@ namespace Code.Gameplay.Features.Currency.Systems
         {
             foreach (var entity in _storages)
             {
-                _gameplayCurrencyService.UpdateCurrentGoldAmount(entity.Gold);
+                _gameplayCurrencyService.UpdateCurrencyAmount(entity.Gold, CurrencyTypeId.Gold);
             }
         }
     }

@@ -2,18 +2,22 @@
 using System.Collections.Generic;
 using Code.Common.Logger.Service;
 using UnityEngine;
+using Zenject;
 
 namespace Code.Gameplay.StaticData
 {
     public class StaticDataService : IStaticDataService
     {
         private readonly ILoggerService _loggerService;
+        private readonly LazyInject<List<IOnConfigsInitInitHandler>> _handlers;
 
         private readonly Dictionary<Type, BaseStaticData> _configs = new();
 
-        public StaticDataService(ILoggerService loggerService)
+        public StaticDataService(ILoggerService loggerService,
+            LazyInject<List<IOnConfigsInitInitHandler>> handlers)
         {
             _loggerService = loggerService;
+            _handlers = handlers;
         }
 
         public void Load()
@@ -46,11 +50,21 @@ namespace Code.Gameplay.StaticData
             {
                 config.OnConfigInit();
             }
+
+            NotifyHandlers();
         }
 
         public T GetStaticData<T>() where T : class
         {
             return _configs[typeof(T)] as T;
+        }
+
+        private void NotifyHandlers()
+        {
+            foreach (var handler in _handlers.Value)
+            {
+                handler.OnConfigsInitInitComplete();
+            }
         }
     }
 }

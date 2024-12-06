@@ -4,6 +4,7 @@ using Code.Gameplay.Features.Loot.UIFactory;
 using Code.Gameplay.Features.Orders.Config;
 using Code.Gameplay.Features.Orders.Service;
 using Code.Gameplay.Windows;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -61,7 +62,8 @@ namespace Code.Gameplay.Features.Orders.Windows
         private LootItemUI CreateLootItem(in IngredientData ingredientData, Transform parent)
         {
             LootItemUI item = _lootItemUIFactory.CreateLootItem(parent, ingredientData.TypeId);
-            item.Value.SetupPrice(ingredientData.Rating);
+            item.InitPrice(ingredientData.Rating);
+            
             _allItems.Add(item);
             return item;
         }

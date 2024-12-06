@@ -1071,7 +1071,7 @@ PrefabInstance:
     - target: {fileID: 4677996465403964894, guid: 61345da0bbc394342b33f0dbd5b59bbc,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 565.0759
+      value: 990
       objectReference: {fileID: 0}
     - target: {fileID: 4677996465403964894, guid: 61345da0bbc394342b33f0dbd5b59bbc,
         type: 3}
@@ -1201,7 +1201,7 @@ PrefabInstance:
     - target: {fileID: 7814050019853690783, guid: 61345da0bbc394342b33f0dbd5b59bbc,
         type: 3}
       propertyPath: m_Name
-      value: GoldHolder
+      value: CurrencyHolder
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

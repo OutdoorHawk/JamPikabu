@@ -67,7 +67,7 @@ namespace Code.Gameplay.Features.Loot.Systems
                 Debug.Log($"Create remove Withdraw request: {loot.LootTypeId.ToString()} | value: {-loot.GoldValue} ");
 
                 CreateGameEntity.Empty()
-                    .With(x => x.isAddGoldRequest = true)
+                    .With(x => x.isAddCurrencyRequest = true)
                     .AddGold(0)
                     .AddWithdraw(-loot.GoldValue)
                     ;

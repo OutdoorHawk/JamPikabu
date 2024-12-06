@@ -5,11 +5,10 @@ namespace Code.Gameplay.Features.Currency.Service
     public interface IGameplayCurrencyService
     {
         event Action CurrencyChanged;
-        CurrencyTypeId GoldCurrencyType { get; }
-        int CurrentGoldCurrency { get; }
         int CurrentTurnCostGold { get; }
-        void AddWithdraw(int amount);
-        void UpdateCurrentGoldAmount(int newAmount);
+        int GetCurrencyOfType(CurrencyTypeId typeId);
+        void UpdateCurrencyAmount(int newAmount, CurrencyTypeId typeId);
+        void AddWithdraw(int amount, CurrencyTypeId typeId);
         void UpdateCurrentTurnCostAmount(int newAmount);
         void Cleanup();
     }

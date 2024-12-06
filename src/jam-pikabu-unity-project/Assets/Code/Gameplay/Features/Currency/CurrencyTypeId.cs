@@ -6,5 +6,7 @@
         Gold = 1,
         Plus = 2,
         Minus = 3,
+        
+        Count
     }
 }

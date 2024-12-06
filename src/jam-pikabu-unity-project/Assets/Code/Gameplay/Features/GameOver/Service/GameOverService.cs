@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using Code.Gameplay.Features.Currency.Service;
 using Code.Gameplay.Features.Orders.Service;
 using Code.Gameplay.Input.Service;
 using Code.Gameplay.StaticData;
@@ -24,6 +25,7 @@ namespace Code.Gameplay.Features.GameOver.Service
         private readonly IWindowService _windowService;
         private readonly IStaticDataService _staticData;
         private readonly IOrdersService _ordersService;
+        private readonly IGameplayCurrencyService _gameplayCurrencyService;
 
         public bool IsGameWin { get; private set; }
 
@@ -35,12 +37,14 @@ namespace Code.Gameplay.Features.GameOver.Service
             IInputService inputService,
             IWindowService windowService,
             IStaticDataService staticData,
-            IOrdersService ordersService
+            IOrdersService ordersService,
+            IGameplayCurrencyService gameplayCurrencyService
         )
         {
             _windowService = windowService;
             _staticData = staticData;
             _ordersService = ordersService;
+            _gameplayCurrencyService = gameplayCurrencyService;
             _inputService = inputService;
             _gameStateMachine = gameStateMachine;
             _saveLoadService = saveLoadService;
@@ -79,6 +83,7 @@ namespace Code.Gameplay.Features.GameOver.Service
             _gameStateMachine.Enter<GameOverState>();
             _saveLoadService.SaveProgress();
             _ordersService.GameOver();
+            _gameplayCurrencyService.Cleanup();
             await DelaySeconds(1, new CancellationToken());
             _windowService.OpenWindow(WindowTypeId.GameLostWindow);
         }

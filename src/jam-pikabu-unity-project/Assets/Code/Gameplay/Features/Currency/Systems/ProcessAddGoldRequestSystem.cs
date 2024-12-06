@@ -15,7 +15,7 @@ namespace Code.Gameplay.Features.Currency.Systems
             _requests = context.GetGroup(GameMatcher
                 .AllOf(
                     GameMatcher.Gold,
-                    GameMatcher.AddGoldRequest
+                    GameMatcher.AddCurrencyRequest
                 ));
 
             _storages = context.GetGroup(GameMatcher
@@ -35,7 +35,7 @@ namespace Code.Gameplay.Features.Currency.Systems
                 storage.ReplaceGold(storage.Gold + request.Gold);
 
                 if (request.hasWithdraw)
-                    _gameplayCurrencyService.AddWithdraw(request.Withdraw);
+                    _gameplayCurrencyService.AddWithdraw(request.Withdraw, CurrencyTypeId.Gold);
             }
         }
     }

@@ -2,6 +2,6 @@
 {
     public interface ICurrencyFactory
     {
-        GameEntity CreateGoldCurrencyForCurrentLevel();
+        void CreateCurrencyStorages();
     }
 }

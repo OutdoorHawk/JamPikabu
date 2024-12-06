@@ -1,46 +1,72 @@
 ﻿using System;
+using System.Collections.Generic;
+using Code.Gameplay.Features.Currency.Config;
+using Code.Gameplay.Features.Currency.Factory;
 using Code.Gameplay.Sound;
 using Code.Gameplay.Sound.Service;
-using UnityEngine;
+using Code.Gameplay.StaticData;
 
 namespace Code.Gameplay.Features.Currency.Service
 {
-    public class GameplayCurrencyService : IGameplayCurrencyService
+    public class GameplayCurrencyService : IGameplayCurrencyService, IOnConfigsInitInitHandler
     {
         private readonly ISoundService _soundService;
-        public event Action CurrencyChanged;
+        private readonly IStaticDataService _staticDataService;
+        private readonly ICurrencyFactory _currencyFactory;
         
-        private int _currentGold;
-        private int _currentGoldWithdraw;
+        public event Action CurrencyChanged;
+
         private int _currentTurnCostGold;
 
-        public CurrencyTypeId GoldCurrencyType => CurrencyTypeId.Gold;
+        private readonly Dictionary<CurrencyTypeId, CurrencyCount> _currencies = new();
 
-        public int CurrentGoldCurrency => _currentGold - _currentGoldWithdraw;
         public int CurrentTurnCostGold => _currentTurnCostGold;
 
-        public GameplayCurrencyService(ISoundService soundService)
+        public GameplayCurrencyService
+        (
+            ISoundService soundService,
+            IStaticDataService staticDataService
+        )
         {
             _soundService = soundService;
+            _staticDataService = staticDataService;
         }
 
-        public void AddWithdraw(int amount)
+        public void OnConfigsInitInitComplete()
         {
-            _currentGoldWithdraw += amount;
-            CurrencyChanged?.Invoke();
-            Debug.LogError($"_currentGoldWithdraw {_currentGoldWithdraw} ");
+            var currencyConfig = _staticDataService.GetStaticData<CurrencyStaticData>();
+
+            foreach (CurrencyConfig config in currencyConfig.Configs)
+                _currencies.Add(config.CurrencyTypeId, new CurrencyCount());
         }
-        
-        public void UpdateCurrentGoldAmount(int newAmount)
+
+        public int GetCurrencyOfType(CurrencyTypeId typeId)
         {
-            if (_currentGold != newAmount )
+            CurrencyCount currency = GetCurrencyOfTypeInternal(typeId);
+            if (currency == null)
+                return 0;
+            return currency.Amount - currency.Withdraw;
+        }
+
+        public void UpdateCurrencyAmount(int newAmount, CurrencyTypeId typeId)
+        {
+            CurrencyCount currency = GetCurrencyOfTypeInternal(typeId);
+
+            if (currency.Amount != newAmount)
             {
-                PlaySoftCurrencySound(newAmount);
-                _currentGold = newAmount;
+                PlaySoftCurrencySound(newAmount, currency);
+                currency.Amount = newAmount;
                 CurrencyChanged?.Invoke();
             }
         }
-        
+
+        public void AddWithdraw(int amount, CurrencyTypeId typeId)
+        {
+            CurrencyCount currency = GetCurrencyOfTypeInternal(typeId);
+            currency.Withdraw += amount;
+            CurrencyChanged?.Invoke();
+        }
+
         public void UpdateCurrentTurnCostAmount(int newAmount)
         {
             if (Math.Abs(newAmount - _currentTurnCostGold) > float.Epsilon)
@@ -50,18 +76,27 @@ namespace Code.Gameplay.Features.Currency.Service
             }
         }
 
-        private void PlaySoftCurrencySound(int newAmount)
+        private void PlaySoftCurrencySound(int newAmount, CurrencyCount currency)
         {
-            if (_currentGold == 0)
+            if (currency.Amount == 0)
                 return;
-            
-            if (newAmount > _currentGold) 
+
+            if (newAmount > currency.Amount)
                 _soundService.PlaySound(SoundTypeId.Soft_Currency_Collect);
+        }
+
+        private CurrencyCount GetCurrencyOfTypeInternal(CurrencyTypeId typeId)
+        {
+            return _currencies[typeId];
         }
 
         public void Cleanup()
         {
-            _currentGold = 0;
+            for (CurrencyTypeId i = 0; i < CurrencyTypeId.Count; i++)
+            {
+                _currencies[i] = default;
+            }
+
             CurrencyChanged = null;
         }
     }

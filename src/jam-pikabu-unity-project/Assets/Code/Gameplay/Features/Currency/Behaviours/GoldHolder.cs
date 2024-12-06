@@ -9,6 +9,8 @@ namespace Code.Gameplay.Features.Currency.Behaviours
     {
         public PriceInfo PlayerCurrentGold;
         public PriceInfo PlayerTurnCostGold;
+        public PriceInfo PlayerPluses;
+        public PriceInfo PlayerMinuses;
 
         private IGameplayCurrencyService _gameplayCurrencyService;
 
@@ -35,8 +37,10 @@ namespace Code.Gameplay.Features.Currency.Behaviours
 
         private void Refresh()
         {
-            PlayerCurrentGold.SetupPrice(_gameplayCurrencyService.CurrentGoldCurrency, _gameplayCurrencyService.GoldCurrencyType);
-            PlayerTurnCostGold.SetupPrice(_gameplayCurrencyService.CurrentTurnCostGold, _gameplayCurrencyService.GoldCurrencyType);
+            PlayerCurrentGold.SetupPrice(_gameplayCurrencyService.GetCurrencyOfType(CurrencyTypeId.Gold), CurrencyTypeId.Gold);
+            PlayerTurnCostGold.SetupPrice(_gameplayCurrencyService.CurrentTurnCostGold, CurrencyTypeId.Gold);
+            PlayerPluses.SetupPrice(_gameplayCurrencyService.GetCurrencyOfType(CurrencyTypeId.Plus), CurrencyTypeId.Plus);
+            PlayerMinuses.SetupPrice(_gameplayCurrencyService.GetCurrencyOfType(CurrencyTypeId.Minus), CurrencyTypeId.Minus);
         }
     }
 }

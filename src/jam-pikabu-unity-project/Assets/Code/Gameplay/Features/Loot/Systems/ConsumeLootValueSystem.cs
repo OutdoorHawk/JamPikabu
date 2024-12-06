@@ -38,7 +38,7 @@ namespace Code.Gameplay.Features.Loot.Systems
                 
                 Debug.Log($"Consume: {loot.LootTypeId.ToString()} | gold: {loot.GoldValue}");
                 CreateGameEntity.Empty()
-                    .With(x => x.isAddGoldRequest = true)
+                    .With(x => x.isAddCurrencyRequest = true)
                     .AddGold(loot.GoldValue)
                     .AddWithdraw(loot.GoldValue)
                     ;

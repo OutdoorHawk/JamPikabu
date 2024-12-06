@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherAddGoldRequest;
+    static Entitas.IMatcher<GameEntity> _matcherAddCurrencyRequest;
 
-    public static Entitas.IMatcher<GameEntity> AddGoldRequest {
+    public static Entitas.IMatcher<GameEntity> AddCurrencyRequest {
         get {
-            if (_matcherAddGoldRequest == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.AddGoldRequest);
+            if (_matcherAddCurrencyRequest == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.AddCurrencyRequest);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherAddGoldRequest = matcher;
+                _matcherAddCurrencyRequest = matcher;
             }
 
-            return _matcherAddGoldRequest;
+            return _matcherAddCurrencyRequest;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Currency.AddGoldRequest addGoldRequestComponent = new Code.Gameplay.Features.Currency.AddGoldRequest();
+    static readonly Code.Gameplay.Features.Currency.AddCurrencyRequest addCurrencyRequestComponent = new Code.Gameplay.Features.Currency.AddCurrencyRequest();
 
-    public bool isAddGoldRequest {
-        get { return HasComponent(GameComponentsLookup.AddGoldRequest); }
+    public bool isAddCurrencyRequest {
+        get { return HasComponent(GameComponentsLookup.AddCurrencyRequest); }
         set {
-            if (value != isAddGoldRequest) {
-                var index = GameComponentsLookup.AddGoldRequest;
+            if (value != isAddCurrencyRequest) {
+                var index = GameComponentsLookup.AddCurrencyRequest;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : addGoldRequestComponent;
+                            : addCurrencyRequestComponent;
 
                     AddComponent(index, component);
                 } else {

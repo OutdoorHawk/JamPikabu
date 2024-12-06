@@ -1,6 +1,8 @@
 ﻿using Code.Common;
+using Code.Common.Extensions;
 using Code.Common.Extensions.Animations;
 using Code.Gameplay.Features.Currency;
+using Code.Gameplay.Features.Currency.Config;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Infrastructure.View;
 using Code.Meta.UI.Common;
@@ -27,6 +29,12 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         public void Init(LootSetup setup)
         {
             Icon.sprite = setup.Icon;
+        }
+
+        public void InitPrice(CostSetup rating)
+        {
+            Value.SetupPrice(rating);
+            Value.EnableElement();
         }
 
         public void UpdateValue(int newValue)
