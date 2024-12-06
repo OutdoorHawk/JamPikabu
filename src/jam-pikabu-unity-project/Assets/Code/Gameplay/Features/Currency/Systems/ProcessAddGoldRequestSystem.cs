@@ -34,8 +34,8 @@ namespace Code.Gameplay.Features.Currency.Systems
 
                 storage.ReplaceGold(storage.Gold + request.Gold);
 
-                if (request.hasWithdraw)
-                    _gameplayCurrencyService.AddWithdraw(request.Withdraw, CurrencyTypeId.Gold);
+                if (request.hasWithdraw) 
+                    storage.ReplaceWithdraw(storage.Withdraw + request.Withdraw);
             }
         }
     }

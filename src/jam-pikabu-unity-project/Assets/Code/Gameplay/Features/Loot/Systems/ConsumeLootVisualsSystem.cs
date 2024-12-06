@@ -78,12 +78,6 @@ namespace Code.Gameplay.Features.Loot.Systems
 
                 UniTask task = loot.LootItemUI.AnimateFlyToVat(lootContainer.VatIcon.transform);
                 _tasksBuffer.Add(task);
-
-                /*CreateGameEntity.Empty()
-                    .With(x => x.isAddCurrencyRequest = true)
-                    .With(x => x.AddWithdraw(-loot.Plus), when: loot.hasPlus)
-                    .With(x => x.AddWithdraw(-loot.Plus), when: loot.hasMinus)
-                    ;*/
             }
 
             await UniTask.WhenAll(_tasksBuffer);

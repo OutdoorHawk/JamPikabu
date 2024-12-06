@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Code.Common.Entity;
 using Code.Common.Extensions;
+using Code.Gameplay.Features.Loot.Service;
 using Entitas;
 
 namespace Code.Gameplay.Features.Loot.Systems
@@ -11,8 +12,11 @@ namespace Code.Gameplay.Features.Loot.Systems
         private readonly IGroup<GameEntity> _lootApplier;
         private readonly List<GameEntity> _buffer = new(64);
 
-        public ConsumeLootValueSystem(GameContext context)
+        private readonly ILootUIService _lootUIService;
+        
+        public ConsumeLootValueSystem(GameContext context, ILootUIService lootUIService)
         {
+            _lootUIService = lootUIService;
             _lootApplier = context.GetGroup(
                 GameMatcher.AllOf(
                     GameMatcher.LootEffectsApplier
@@ -43,6 +47,8 @@ namespace Code.Gameplay.Features.Loot.Systems
                         .With(x => x.AddWithdraw(loot.Plus), when: loot.hasPlus)
                         .With(x => x.AddWithdraw(loot.Minus), when: loot.hasMinus)
                         ;
+                    
+                    _lootUIService.AddConsumedLoot(loot.LootTypeId);
                 }
             }
         }

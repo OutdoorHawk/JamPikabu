@@ -48,7 +48,9 @@ namespace Code.Gameplay.Features.Orders.Systems
             foreach (var ingredientData in orderSetup.GoodIngredients)
             {
                 if (ingredientData.TypeId == loot.LootTypeId)
+                {
                     loot.ReplacePlus(ingredientData.Rating.Amount);
+                }
             }
 
             foreach (GameEntity loot in _loot)

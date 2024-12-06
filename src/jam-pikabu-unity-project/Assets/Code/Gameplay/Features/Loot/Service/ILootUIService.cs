@@ -9,5 +9,7 @@ namespace Code.Gameplay.Features.Loot.Service
         event Action<LootTypeId> OnLootItemAdded;
         IReadOnlyList<LootTypeId> CollectedLootItems { get; }
         void CreateNewCollectedLootItem(LootTypeId lootType);
+        void AddConsumedLoot(LootTypeId lootType);
+        void ClearCollectedLoot();
     }
 }

@@ -14,13 +14,13 @@ namespace Code.Gameplay.Features.Currency.Systems
         public ProcessAddRatingRequestSystem(GameContext context, IGameplayCurrencyService gameplayCurrencyService)
         {
             _gameplayCurrencyService = gameplayCurrencyService;
-            
+
             _plusRequests = context.GetGroup(GameMatcher
                 .AllOf(
                     GameMatcher.Plus,
                     GameMatcher.AddCurrencyRequest
                 ));
-            
+
             _minusRequests = context.GetGroup(GameMatcher
                 .AllOf(
                     GameMatcher.Minus,
@@ -32,7 +32,7 @@ namespace Code.Gameplay.Features.Currency.Systems
                     GameMatcher.Plus,
                     GameMatcher.CurrencyStorage
                 ));
-            
+
             _minusStorages = context.GetGroup(GameMatcher
                 .AllOf(
                     GameMatcher.Minus,
@@ -48,20 +48,20 @@ namespace Code.Gameplay.Features.Currency.Systems
                 request.isDestructed = true;
 
                 storage.ReplacePlus(storage.Plus + request.Plus);
-
-                if (request.hasWithdraw)
-                    _gameplayCurrencyService.AddWithdraw(request.Withdraw, CurrencyTypeId.Plus);
+                
+                if (request.hasWithdraw) 
+                    storage.ReplaceWithdraw(storage.Withdraw + request.Withdraw);
             }
-            
+
             foreach (var request in _minusRequests)
             foreach (var storage in _minusStorages)
             {
                 request.isDestructed = true;
 
                 storage.ReplaceMinus(storage.Minus + request.Minus);
-
-                if (request.hasWithdraw)
-                    _gameplayCurrencyService.AddWithdraw(request.Withdraw, CurrencyTypeId.Minus);
+                
+                if (request.hasWithdraw) 
+                    storage.ReplaceWithdraw(storage.Withdraw + request.Withdraw);
             }
         }
     }

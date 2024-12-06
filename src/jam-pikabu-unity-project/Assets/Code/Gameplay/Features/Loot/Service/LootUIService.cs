@@ -11,6 +11,7 @@ namespace Code.Gameplay.Features.Loot.Service
         public event Action<LootTypeId> OnLootItemAdded;
 
         private readonly List<LootTypeId> _collectedLootItems = new();
+        private readonly List<LootTypeId> _consumedLoot = new();
 
         public IReadOnlyList<LootTypeId> CollectedLootItems => _collectedLootItems;
 
@@ -31,6 +32,17 @@ namespace Code.Gameplay.Features.Loot.Service
         {
             _collectedLootItems.Add(lootType);
             NotifyLootItemAdded(lootType);
+            NotifyLootUpdated();
+        }
+
+        public void AddConsumedLoot(LootTypeId lootType)
+        {
+            _consumedLoot.Add(lootType);
+        }
+
+        public void ClearCollectedLoot()
+        {
+            _collectedLootItems.Clear();
             NotifyLootUpdated();
         }
 

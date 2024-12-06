@@ -23,7 +23,7 @@ namespace Code.Gameplay.Features.Currency.Systems
         {
             foreach (var entity in _storages)
             {
-                _gameplayCurrencyService.UpdateCurrencyAmount(entity.Gold, CurrencyTypeId.Gold);
+                _gameplayCurrencyService.UpdateCurrencyAmount(entity.Gold, entity.Withdraw, CurrencyTypeId.Gold);
             }
         }
     }

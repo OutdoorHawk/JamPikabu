@@ -30,12 +30,12 @@ namespace Code.Gameplay.Features.Currency.Systems
         {
             foreach (var entity in _plusStorages)
             {
-                _gameplayCurrencyService.UpdateCurrencyAmount(entity.Plus, CurrencyTypeId.Plus);
+                _gameplayCurrencyService.UpdateCurrencyAmount(entity.Plus, entity.Withdraw, CurrencyTypeId.Plus);
             }
 
             foreach (var entity in _minusStorages)
             {
-                _gameplayCurrencyService.UpdateCurrencyAmount(entity.Minus, CurrencyTypeId.Minus);
+                _gameplayCurrencyService.UpdateCurrencyAmount(entity.Minus, entity.Withdraw, CurrencyTypeId.Minus);
             }
         }
     }

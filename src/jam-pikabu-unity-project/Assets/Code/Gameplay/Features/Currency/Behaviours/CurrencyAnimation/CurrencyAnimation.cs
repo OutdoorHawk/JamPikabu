@@ -71,9 +71,6 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
 
             Sequence animationSequence = DOTween.Sequence();
             
-            /*foreach (var rect in _rects)
-                rect.position = startPosition;*/
-            
             transform.position = startPosition;
             
             _text.alpha = 1;

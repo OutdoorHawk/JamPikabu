@@ -7,8 +7,7 @@ namespace Code.Gameplay.Features.Currency.Service
         event Action CurrencyChanged;
         int CurrentTurnCostGold { get; }
         int GetCurrencyOfType(CurrencyTypeId typeId);
-        void UpdateCurrencyAmount(int newAmount, CurrencyTypeId typeId);
-        void AddWithdraw(int amount, CurrencyTypeId typeId);
+        void UpdateCurrencyAmount(int newAmount, int withdraw, CurrencyTypeId typeId);
         void UpdateCurrentTurnCostAmount(int newAmount);
         void Cleanup();
     }

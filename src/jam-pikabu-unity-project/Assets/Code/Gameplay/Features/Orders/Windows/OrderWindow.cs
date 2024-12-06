@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.Linq;
 using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Behaviours;
 using Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation;
 using Code.Gameplay.Features.Currency.Factory;
+using Code.Gameplay.Features.Loot;
 using Code.Gameplay.Features.Loot.Behaviours;
+using Code.Gameplay.Features.Loot.Service;
 using Code.Gameplay.Features.Loot.UIFactory;
 using Code.Gameplay.Features.Orders.Config;
 using Code.Gameplay.Features.Orders.Service;
@@ -34,6 +36,7 @@ namespace Code.Gameplay.Features.Orders.Windows
         private ILootItemUIFactory _lootItemUIFactory;
         private IStaticDataService _staticDataService;
         private ICurrencyFactory _currencyFactory;
+        private ILootUIService _lootUIService;
 
         private OrderData _currentOrder;
 
@@ -45,8 +48,9 @@ namespace Code.Gameplay.Features.Orders.Windows
 
         [Inject]
         private void Construct(IOrdersService ordersService, ILootItemUIFactory lootItemUIFactory,
-            ICurrencyFactory currencyFactory, IStaticDataService staticDataService)
+            ICurrencyFactory currencyFactory, IStaticDataService staticDataService, ILootUIService lootUIService)
         {
+            _lootUIService = lootUIService;
             _staticDataService = staticDataService;
             _currencyFactory = currencyFactory;
             _lootItemUIFactory = lootItemUIFactory;
@@ -99,36 +103,9 @@ namespace Code.Gameplay.Features.Orders.Windows
         {
             foreach (var lootItem in _goodItems)
             {
-                await lootItem.AnimateConsume();
-
-                var parameters = new CurrencyAnimationParameters()
-                {
-                    Type = CurrencyTypeId.Plus,
-                    Count = 5,
-                    StartPosition = lootItem.transform.position,
-                    EndPosition = _currencyHolder.PlayerPluses.CurrencyIcon.transform.position,
-                    StartReplenishCallback = () =>
-                    {
-                        /*CreateGameEntity.Empty()
-                            .With(x => x.isAddCurrencyRequest = true)
-                            .With(x => x.AddPlus(loot.Plus), when: loot.hasPlus)
-                            .With(x => x.AddMinus(loot.Minus), when: loot.hasMinus)
-                            .With(x => x.AddWithdraw(loot.Plus), when: loot.hasPlus)
-                            .With(x => x.AddWithdraw(loot.Minus), when: loot.hasMinus)
-                            ;*/
-                    }
-                };
-
-                _currencyFactory.PlayCurrencyAnimation(parameters);
+                await PlayConsume(lootItem, _currencyHolder.PlayerPluses, CurrencyTypeId.Plus);
             }
 
-            /*
-            foreach (var lootItem in _goodItems)
-            {
-                await PlayConsume(lootItem, _currencyHolder.PlayerMinuses, CurrencyTypeId.Plus);
-            }
-            */
-            
             foreach (var lootItem in _badItems)
             {
                 await PlayConsume(lootItem, _currencyHolder.PlayerMinuses, CurrencyTypeId.Minus);
@@ -137,17 +114,32 @@ namespace Code.Gameplay.Features.Orders.Windows
 
         private async UniTask PlayConsume(LootItemUI lootItem, PriceInfo price, CurrencyTypeId typeId)
         {
-            await lootItem.AnimateConsume();
+            IngredientData ingredientData = _ordersService.GetIngredientData(lootItem.Type);
+            IEnumerable<LootTypeId> collected = _lootUIService.CollectedLootItems.Where(item => item == ingredientData.TypeId);
+            int count = ingredientData.Rating.Amount * collected.Count();
 
-            var parameters = new CurrencyAnimationParameters()
+            var parameters = new CurrencyAnimationParameters
             {
                 Type = typeId,
-                Count = 5,
+                Count = count,
                 StartPosition = lootItem.transform.position,
-                EndPosition = price.CurrencyIcon.transform.position
+                EndPosition = price.CurrencyIcon.transform.position,
+                StartReplenishCallback = () => RemoveWithdraw(ingredientData, count)
             };
-
+            
+            await lootItem.AnimateConsume();
+            
             _currencyFactory.PlayCurrencyAnimation(parameters);
+        }
+
+        private static void RemoveWithdraw(IngredientData ingredientData, int count)
+        {
+            CreateGameEntity.Empty()
+                .With(x => x.isAddCurrencyRequest = true)
+                .With(x => x.AddPlus(0), when: ingredientData.Rating.CurrencyType == CurrencyTypeId.Plus)
+                .With(x => x.AddMinus(0), when: ingredientData.Rating.CurrencyType == CurrencyTypeId.Minus)
+                .With(x => x.AddWithdraw(-count))
+                ;
         }
     }
 }

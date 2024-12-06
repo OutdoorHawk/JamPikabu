@@ -14,7 +14,7 @@ namespace Code.Gameplay.Features.Currency.Service
         private readonly ISoundService _soundService;
         private readonly IStaticDataService _staticDataService;
         private readonly ICurrencyFactory _currencyFactory;
-        
+
         public event Action CurrencyChanged;
 
         private int _currentTurnCostGold;
@@ -52,23 +52,26 @@ namespace Code.Gameplay.Features.Currency.Service
             return currency.Amount - currency.Withdraw;
         }
 
-        public void UpdateCurrencyAmount(int newAmount, CurrencyTypeId typeId)
+        public void UpdateCurrencyAmount(int newAmount, int withdraw, CurrencyTypeId typeId)
         {
             CurrencyCount currency = GetCurrencyOfTypeInternal(typeId);
+            bool changed = false;
+
+            if (currency.Withdraw != withdraw)
+            {
+                currency.Withdraw = withdraw;
+                changed = true;
+            }
 
             if (currency.Amount != newAmount)
             {
                 PlaySoftCurrencySound(newAmount, currency);
                 currency.Amount = newAmount;
-                CurrencyChanged?.Invoke();
+                changed = true;
             }
-        }
 
-        public void AddWithdraw(int amount, CurrencyTypeId typeId)
-        {
-            CurrencyCount currency = GetCurrencyOfTypeInternal(typeId);
-            currency.Withdraw += amount;
-            CurrencyChanged?.Invoke();
+            if (changed) 
+                CurrencyChanged?.Invoke();
         }
 
         public void UpdateCurrentTurnCostAmount(int newAmount)
@@ -96,7 +99,7 @@ namespace Code.Gameplay.Features.Currency.Service
 
         public void Cleanup()
         {
-            for (CurrencyTypeId i = 0; i < CurrencyTypeId.Count; i++) 
+            for (CurrencyTypeId i = 0; i < CurrencyTypeId.Count; i++)
                 _currencies[i] = new CurrencyCount();
 
             CurrencyChanged = null;
