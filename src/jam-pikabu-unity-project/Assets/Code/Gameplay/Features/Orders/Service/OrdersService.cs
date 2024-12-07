@@ -30,6 +30,7 @@ namespace Code.Gameplay.Features.Orders.Service
         private OrdersStaticData _ordersData;
         private int _currentOrderIndex;
         private int _ordersCompleted;
+        private bool _orderWindowSeen;
 
         private (List<IngredientData> good, List<IngredientData> bad) _orderIngredients;
         private readonly List<OrderData> _ordersBuffer = new();
@@ -37,6 +38,7 @@ namespace Code.Gameplay.Features.Orders.Service
 
         public int OrdersCompleted => _ordersCompleted;
         public int MaxOrders => _ordersData.OrdersAmountInDay;
+        public bool OrderWindowSeen => _orderWindowSeen;
 
         public (List<IngredientData> good, List<IngredientData> bad) OrderIngredients => _orderIngredients;
 
@@ -81,17 +83,18 @@ namespace Code.Gameplay.Features.Orders.Service
 
         public GameEntity CreateOrder()
         {
+            _orderWindowSeen = false;
             var order = GetCurrentOrder();
             InitIngredientsDic(order);
             OnOrderUpdated?.Invoke();
             return _ordersFactory.CreateOrder(order);
         }
 
-        public void AddIngredientTypedData(LootTypeId lootLootTypeId, IngredientData ingredientData)
+        public void SetOrderWindowSeen()
         {
-            _orderIngredientCostDict.Add(lootLootTypeId, ingredientData);
+            _orderWindowSeen = true;
         }
-
+        
         public IngredientData GetIngredientData(LootTypeId lootTypeId)
         {
             return _orderIngredientCostDict.GetValueOrDefault(lootTypeId);

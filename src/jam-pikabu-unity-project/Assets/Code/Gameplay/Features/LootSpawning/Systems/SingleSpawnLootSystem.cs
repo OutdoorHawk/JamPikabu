@@ -66,6 +66,8 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
             await DelaySeconds(staticData.LootSpawnStartDelay, _exitGameSource.Token);
 
             await ProcessLootSpawn(staticData, sceneContext);
+            
+            await DelaySeconds(staticData.DelayAfterLootSpawn, _exitGameSource.Token);
 
             GameEntity spawner = _context.GetEntityWithId(lootSpawnerId);
 

@@ -1754,7 +1754,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u041F\u0440\u043E\u0434\u0443\u043A\u0442\u044B:"
+  m_text: "\u0426\u0435\u043D\u0430 \u043F\u0440\u043E\u0434\u0443\u043A\u0442\u043E\u0432:"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5283ed63678ad8549843916fe92f918b, type: 2}
   m_sharedMaterial: {fileID: -5343447789192355002, guid: 5283ed63678ad8549843916fe92f918b,
@@ -1782,7 +1782,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48.6
+  m_fontSize: 43.95
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2290,6 +2290,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1680494252946942637}
     m_Modifications:
+    - target: {fileID: 10092932980665194, guid: 0c8a84101e55b2b42b3801768e63b582,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c7b77c23d4622a441b174f9ec6eb6a5c,
+        type: 3}
     - target: {fileID: 33124281193885626, guid: 0c8a84101e55b2b42b3801768e63b582,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2328,7 +2334,7 @@ PrefabInstance:
     - target: {fileID: 788746499505026813, guid: 0c8a84101e55b2b42b3801768e63b582,
         type: 3}
       propertyPath: m_fontSize
-      value: 48.6
+      value: 43.95
       objectReference: {fileID: 0}
     - target: {fileID: 788746499505026813, guid: 0c8a84101e55b2b42b3801768e63b582,
         type: 3}
@@ -2443,7 +2449,7 @@ PrefabInstance:
     - target: {fileID: 8073352417879274364, guid: 0c8a84101e55b2b42b3801768e63b582,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 407.0409
+      value: 493.4586
       objectReference: {fileID: 0}
     - target: {fileID: 8073352417879274364, guid: 0c8a84101e55b2b42b3801768e63b582,
         type: 3}

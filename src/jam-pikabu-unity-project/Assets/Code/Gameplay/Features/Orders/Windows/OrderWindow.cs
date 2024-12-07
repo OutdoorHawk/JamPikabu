@@ -2,6 +2,7 @@
 using System.Linq;
 using Code.Common.Entity;
 using Code.Common.Extensions;
+using Code.Common.Extensions.Animations;
 using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Behaviours;
 using Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation;
@@ -30,6 +31,7 @@ namespace Code.Gameplay.Features.Orders.Windows
         [SerializeField] private RectTransform _badIngredients;
         [SerializeField] private PriceInfo _orderReward;
         [SerializeField] private CurrencyHolder _currencyHolder;
+        [SerializeField] private Animator _closeAnimator;
         [SerializeField] private float _startCompleteAnimationDelay = 0.6f;
 
         private IOrdersService _ordersService;
@@ -63,6 +65,12 @@ namespace Code.Gameplay.Features.Orders.Windows
             InitOrder();
         }
 
+        protected override void CloseWindowInternal()
+        {
+            base.CloseWindowInternal();
+            _closeAnimator.SetTrigger(AnimationParameter.Hide.AsHash());
+        }
+
         public async UniTask PlayOrderComplete()
         {
             await DelaySeconds(_startCompleteAnimationDelay, destroyCancellationToken);
@@ -80,6 +88,8 @@ namespace Code.Gameplay.Features.Orders.Windows
             CreateItems(_ordersService.OrderIngredients.bad, _badItems, _badIngredients.transform);
 
             _orderReward.SetupPrice(_currentOrder.Setup.Reward);
+
+            _ordersService.SetOrderWindowSeen();
         }
 
         private void CreateItems(List<IngredientData> ingredients, List<LootItemUI> items, Transform parent)

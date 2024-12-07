@@ -15,9 +15,8 @@ namespace Code.Gameplay.Windows
         [SerializeField] private bool _useAnimation;
         [SerializeField] private bool _canCloseByBack;
         [SerializeField] private CanvasGroup _canvasGroup;
-
-        private const float FADE_ANIMATION_DURATION = 0.15f;
-
+        [SerializeField] private float _animationDuration = 0.15f;
+        
         private Tweener _animationTweener;
         private bool _isClosing;
         
@@ -137,7 +136,7 @@ namespace Code.Gameplay.Windows
             _canvasGroup.alpha = 0;
             _animationTweener?.Kill();
             _animationTweener = _canvasGroup
-                .DOFade(1, FADE_ANIMATION_DURATION)
+                .DOFade(1, _animationDuration)
                 .SetUpdate(true)
                 .SetLink(gameObject);
         }
@@ -154,7 +153,7 @@ namespace Code.Gameplay.Windows
         {
             _animationTweener?.Kill();
             _animationTweener = _canvasGroup
-                .DOFade(0, FADE_ANIMATION_DURATION)
+                .DOFade(0, _animationDuration)
                 .SetLink(gameObject)
                 .SetUpdate(true)
                 .OnComplete(() => Destroy(gameObject));

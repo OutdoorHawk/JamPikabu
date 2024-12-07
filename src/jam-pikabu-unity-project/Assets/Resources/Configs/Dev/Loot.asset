@@ -36,6 +36,7 @@ MonoBehaviour:
   LootSpawnInterval: 0.02
   LootSpawnConveyorInterval: 0.5
   LootSpawnStartDelay: 0.15
+  DelayAfterLootSpawn: 0.4
   MaxLootAmount: 40
   CollectFlyAnimationDuration: 0.5
   CollectFlyMinMaxJump: {x: -1, y: 2}

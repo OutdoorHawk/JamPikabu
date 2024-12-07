@@ -247,6 +247,7 @@ MonoBehaviour:
   _customerImage: {fileID: 5824048751722038799}
   _animator: {fileID: 4791498738415165510}
   _hideOnAwake: 0
+  _openOrderWindowDelay: 0.2
 --- !u!1 &7236422816328775633
 GameObject:
   m_ObjectHideFlags: 0

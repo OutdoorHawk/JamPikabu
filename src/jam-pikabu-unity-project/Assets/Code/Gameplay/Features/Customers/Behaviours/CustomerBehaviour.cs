@@ -10,6 +10,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using static Code.Common.Extensions.AsyncGameplayExtensions;
 
 namespace Code.Gameplay.Features.Customers.Behaviours
 {
@@ -18,6 +19,7 @@ namespace Code.Gameplay.Features.Customers.Behaviours
         [SerializeField] private Image _customerImage;
         [SerializeField] private Animator _animator;
         [SerializeField] private bool _hideOnAwake;
+        [SerializeField] private float _openOrderWindowDelay = 0.2f;
 
         private IRoundStateService _roundStateService;
         private ICustomersService _customersService;
@@ -73,6 +75,7 @@ namespace Code.Gameplay.Features.Customers.Behaviours
             _hided = false;
             UpdateSprite();
             await _animator.WaitForAnimationCompleteAsync(AnimationParameter.Show.AsHash(), destroyCancellationToken);
+            await DelaySeconds(_openOrderWindowDelay, destroyCancellationToken);
             _windowService.OpenWindow(WindowTypeId.OrderWindow);
         }
 
