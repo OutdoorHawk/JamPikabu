@@ -75,6 +75,13 @@ namespace Code.Gameplay.Features.RoundState.Systems
 
         private async UniTaskVoid TryPayQuota(GameEntity storage, GameEntity state)
         {
+            if (_roundStateService.CheckAllDaysComplete())
+            {
+                _roundStateService.DayComplete();
+                _gameOverService.GameWin();
+                return;
+            }
+
             bool gameOver = storage.Gold < state.DayCost;
 
             CreateGameEntity
@@ -114,7 +121,10 @@ namespace Code.Gameplay.Features.RoundState.Systems
             if (gameOver)
                 _gameOverService.GameOver();
             else
+            {
                 _roundStateService.DayComplete();
+                _roundStateService.LoadNextDay();
+            }
         }
 
         public void TearDown()

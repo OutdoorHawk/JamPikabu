@@ -68,10 +68,7 @@ namespace Code.Gameplay.Features.GameOver.Service
             if (_gameStateMachine.ActiveState is GameOverState)
                 return;
 
-            IsGameWin = true;
-            SaveLevelPassedProgress();
-            BlockInput();
-            _gameStateMachine.Enter<GameOverState>();
+            GameWinAsync().Forget();
         }
 
         public void GameOver()
@@ -82,14 +79,23 @@ namespace Code.Gameplay.Features.GameOver.Service
             GameOverAsync().Forget();
         }
 
+        private async UniTaskVoid GameWinAsync()
+        {
+            IsGameWin = true;
+            Cleanup();
+            BlockInput();
+            _gameStateMachine.Enter<GameOverState>();
+            await DelaySeconds(1, new CancellationToken());
+            _windowService.Close(WindowTypeId.OrderWindow);
+            _windowService.OpenWindow(WindowTypeId.GameWinWindow);
+        }
+
         private async UniTaskVoid GameOverAsync()
         {
             BlockInput();
-            _gameStateMachine.Enter<GameOverState>();
+            Cleanup();
             _saveLoadService.SaveProgress();
-            _ordersService.GameOver();
-            _gameplayCurrencyService.Cleanup();
-            _roundStateService.GameOver();
+            _gameStateMachine.Enter<GameOverState>();
             await DelaySeconds(1, new CancellationToken());
             _windowService.Close(WindowTypeId.OrderWindow);
             _windowService.OpenWindow(WindowTypeId.GameLostWindow);
@@ -100,8 +106,11 @@ namespace Code.Gameplay.Features.GameOver.Service
             _inputService.DisableAllInput();
         }
 
-        private void SaveLevelPassedProgress()
+        private void Cleanup()
         {
+            _ordersService.GameOver();
+            _gameplayCurrencyService.Cleanup();
+            _roundStateService.GameOver();
         }
     }
 }

@@ -72,8 +72,17 @@ namespace Code.Gameplay.Features.RoundState.Service
 
         public void DayComplete()
         {
-            LoadNextLevelAsync().Forget();
             OnDayComplete?.Invoke();
+        }
+
+        public void LoadNextDay()
+        {
+            LoadNextLevelAsync().Forget();
+        }
+
+        public bool CheckAllDaysComplete()
+        {
+            return _currentDay >= MaxDays;
         }
 
         public DayData GetDayData()
