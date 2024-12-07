@@ -31,6 +31,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
         private readonly IGroup<GameEntity> _entities;
         private readonly IGroup<GameEntity> _roundStateController;
         private readonly IGroup<GameEntity> _storages;
+        private readonly IGroup<GameEntity> _storagesAll;
 
         private readonly CancellationTokenSource _tearDownSource = new();
 
@@ -56,6 +57,11 @@ namespace Code.Gameplay.Features.RoundState.Systems
                 .AllOf(GameMatcher.CurrencyStorage,
                     GameMatcher.Gold
                 ));
+            
+            _storagesAll = context.GetGroup(GameMatcher
+                .AllOf(GameMatcher.CurrencyStorage
+                ));
+
         }
 
         public void Execute()
@@ -84,6 +90,8 @@ namespace Code.Gameplay.Features.RoundState.Systems
             {
                 _roundStateService.DayComplete();
                 _gameOverService.GameWin();
+                DestroyCurrency();
+                state.ReplaceDayCost(0);
                 return;
             }
 
@@ -125,11 +133,23 @@ namespace Code.Gameplay.Features.RoundState.Systems
             await DelaySeconds(0.75f, _tearDownSource.Token);
 
             if (gameOver)
+            {
                 _gameOverService.GameOver();
+                DestroyCurrency();
+                state.ReplaceDayCost(0);
+            }
             else
             {
                 _roundStateService.DayComplete();
                 _roundStateService.LoadNextDay();
+            }
+        }
+
+        private void DestroyCurrency()
+        {
+            foreach (var storage in _storagesAll)
+            {
+                storage.isDestructed = true;
             }
         }
 

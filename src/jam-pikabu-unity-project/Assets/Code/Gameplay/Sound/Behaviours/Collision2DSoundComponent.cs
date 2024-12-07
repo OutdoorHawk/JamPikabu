@@ -22,7 +22,6 @@ namespace Code.Gameplay.Sound.Behaviours
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            Debug.LogError(_rb.linearVelocity.magnitude);
             if (_rb.linearVelocity.magnitude < _minSpeed)
                 return;
             

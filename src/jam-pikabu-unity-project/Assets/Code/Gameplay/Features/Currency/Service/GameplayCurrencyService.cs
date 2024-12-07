@@ -35,13 +35,7 @@ namespace Code.Gameplay.Features.Currency.Service
 
         public void OnConfigsInitInitComplete()
         {
-            var currencyConfig = _staticDataService.GetStaticData<CurrencyStaticData>();
-            var roundState = _staticDataService.GetStaticData<RoundStateStaticData>();
-
-            foreach (CurrencyConfig config in currencyConfig.Configs)
-                _currencies.Add(config.CurrencyTypeId, new CurrencyCount());
-
-            _currencies[CurrencyTypeId.Gold].Amount = roundState.StartGoldAmount;
+            InitCurrency();
         }
 
         public int GetCurrencyOfType(CurrencyTypeId typeId)
@@ -99,10 +93,20 @@ namespace Code.Gameplay.Features.Currency.Service
 
         public void Cleanup()
         {
-            for (CurrencyTypeId i = 0; i < CurrencyTypeId.Count; i++)
-                _currencies[i] = new CurrencyCount();
-
+            _currencies.Clear();
             CurrencyChanged = null;
+            InitCurrency();
+        }
+
+        private void InitCurrency()
+        {
+            var currencyConfig = _staticDataService.GetStaticData<CurrencyStaticData>();
+            var roundState = _staticDataService.GetStaticData<RoundStateStaticData>();
+
+            foreach (CurrencyConfig config in currencyConfig.Configs)
+                _currencies.Add(config.CurrencyTypeId, new CurrencyCount());
+
+            _currencies[CurrencyTypeId.Gold].Amount = roundState.StartGoldAmount;
         }
     }
 }
