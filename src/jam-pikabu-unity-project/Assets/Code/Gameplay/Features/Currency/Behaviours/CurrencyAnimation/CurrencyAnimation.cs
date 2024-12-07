@@ -55,7 +55,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
                 _rects[i].EnableElement();
             }
 
-            _text.text = $"x{parameters.Count.ToString()}";
+            _text.text = $"{parameters.Count.ToString()}";
             _text.alpha = 1;
         }
 
@@ -68,42 +68,51 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
             float scatterDuration = _scatterDuration; // длительность разлета
             float textFadeDuration = 0.5f; // длительность разлета
             float spreadRange = 10f; // радиус разлета
-
+            
             Sequence animationSequence = DOTween.Sequence();
-            
+
             transform.position = startPosition;
-            
+
+            // Настройка текста
             _text.alpha = 1;
             _text.DOFade(1, textFadeDuration)
                 .OnComplete(() => _text.DOFade(0, textFadeDuration * 2));
 
             foreach (var rect in _rects)
             {
+                // Случайный оффсет для разлёта
                 Vector3 randomOffset = new Vector3(
                     Random.Range(-spreadRange, spreadRange),
                     Random.Range(-spreadRange, spreadRange),
                     0f);
 
                 Vector3 targetPosition = startPosition + randomOffset;
+
+                // Случайный угол поворота
+                Vector3 randomRotation = new Vector3(0f, 0f, Random.Range(-180f, 180f));
+
+                // Добавляем движение и поворот в последовательность
                 animationSequence.Join(rect.DOMove(targetPosition, scatterDuration).SetEase(Ease.OutQuad));
+                animationSequence.Join(rect.DORotate(randomRotation, scatterDuration, RotateMode.FastBeyond360).SetEase(Ease.OutQuad));
             }
 
             for (int i = 0; i < _rects.Length; i++)
             {
                 RectTransform rect = _rects[i];
                 Tween moveTween = rect
-                        .DOMove(endPosition, flightDuration)
-                        .SetEase(Ease.InOutSine)
-                        .OnComplete(() => CompleteMovement(rect, animationParameters))
-                    ;
-                animationSequence.Insert(i * 0.1f, moveTween
-                ); // Задержка между иконками
+                    .DOMove(endPosition, flightDuration)
+                    .SetEase(Ease.InOutSine)
+                    .OnComplete(() => CompleteMovement(rect, animationParameters));
+
+                // Задержка между движениями иконок
+                animationSequence.Insert(i * 0.1f, moveTween);
             }
 
             animationSequence.OnComplete(() => { Destroy(gameObject); });
 
             if (parameters.LinkObject != null)
                 animationSequence.SetLink(parameters.LinkObject);
+
             animationSequence.SetLink(gameObject);
             animationSequence.Play();
         }

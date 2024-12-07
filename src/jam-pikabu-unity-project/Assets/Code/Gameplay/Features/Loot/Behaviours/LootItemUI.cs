@@ -16,7 +16,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
 {
     public class LootItemUI : EntityDependant
     {
-        public PriceInfo Value;
+        public IconablePrice Price;
         public Image Icon;
         public CanvasGroup CanvasGroup;
         public Animator LootAnimator;
@@ -37,8 +37,8 @@ namespace Code.Gameplay.Features.Loot.Behaviours
 
         public void InitPrice(CostSetup rating)
         {
-            Value.SetupPrice(rating);
-            Value.EnableElement();
+            Price.SetupPrice(rating);
+            Price.EnableElement();
         }
 
         public async UniTask AnimateEffectProducer()
@@ -82,12 +82,6 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         public void AddGoldValueWithdraw(int withdraw)
         {
             _currentWithdrawValue += withdraw;
-            UpdateView();
-        }
-
-        private void UpdateView()
-        {
-            Value.SetupPrice(_currentValue - _currentWithdrawValue, CurrencyTypeId.Gold);
         }
 
         private void SetReadyToApply()

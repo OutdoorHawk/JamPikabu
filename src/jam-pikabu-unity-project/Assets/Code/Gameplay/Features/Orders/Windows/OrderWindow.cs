@@ -26,8 +26,8 @@ namespace Code.Gameplay.Features.Orders.Windows
     public class OrderWindow : BaseWindow
     {
         [SerializeField] private Image _orderIcon;
-        [SerializeField] private HorizontalLayoutGroup _goodIngredients;
-        [SerializeField] private HorizontalLayoutGroup _badIngredients;
+        [SerializeField] private RectTransform _goodIngredients;
+        [SerializeField] private RectTransform _badIngredients;
         [SerializeField] private PriceInfo _orderReward;
         [SerializeField] private CurrencyHolder _currencyHolder;
         [SerializeField] private float _startCompleteAnimationDelay = 0.6f;
