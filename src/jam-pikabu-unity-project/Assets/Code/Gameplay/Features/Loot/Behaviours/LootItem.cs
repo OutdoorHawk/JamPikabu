@@ -23,6 +23,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
             base.Awake();
             var capsuleCollider2D = _sprite.gameObject.AddComponent<CapsuleCollider2D>();
             capsuleCollider2D.size = _sprite.transform.localScale;
+            capsuleCollider2D.sharedMaterial= capsuleCollider2D.attachedRigidbody.sharedMaterial;
         }
 
         private void Start()

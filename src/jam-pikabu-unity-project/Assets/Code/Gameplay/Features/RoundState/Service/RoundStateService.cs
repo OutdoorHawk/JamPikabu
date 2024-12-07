@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using Code.Gameplay.Features.RoundState.Configs;
@@ -14,6 +15,8 @@ namespace Code.Gameplay.Features.RoundState.Service
 {
     public class RoundStateService : IRoundStateService
     {
+        public event Action OnEnterRoundPreparation;
+        
         private readonly IRoundStateFactory _roundStateFactory;
         private readonly IStaticDataService _staticDataService;
         private readonly IGameStateMachine _gameStateMachine;
@@ -59,6 +62,7 @@ namespace Code.Gameplay.Features.RoundState.Service
         public void PrepareToNextRound()
         {
             _gameStateMachine.Enter<RoundPreparationLoopState>();
+            OnEnterRoundPreparation?.Invoke();
         }
 
         public void DayComplete()

@@ -1,9 +1,11 @@
+using System;
 using Code.Gameplay.Features.RoundState.Configs;
 
 namespace Code.Gameplay.Features.RoundState.Service
 {
     public interface IRoundStateService
     {
+        event Action OnEnterRoundPreparation;
         int CurrentDay { get; }
         void BeginDay();
         void RoundEnd();

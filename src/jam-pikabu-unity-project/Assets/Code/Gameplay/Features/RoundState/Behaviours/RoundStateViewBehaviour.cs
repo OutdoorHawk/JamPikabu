@@ -1,4 +1,5 @@
 ﻿using Code.Gameplay.Features.RoundState.Configs;
+using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.StaticData;
 using TMPro;
 using UnityEngine;
@@ -12,14 +13,31 @@ namespace Code.Gameplay.Features.RoundState.Behaviours
 
         private int _currentTime;
         private IStaticDataService _staticDataService;
+        private IRoundStateService _roundStateService;
 
         [Inject]
-        private void Construct(IStaticDataService staticDataService)
+        private void Construct(IStaticDataService staticDataService, IRoundStateService roundStateService)
         {
+            _roundStateService = roundStateService;
             _staticDataService = staticDataService;
         }
 
+        private void Awake()
+        {
+            _roundStateService.OnEnterRoundPreparation += ResetTimer;
+        }
+
+        private void OnDestroy()
+        {
+            _roundStateService.OnEnterRoundPreparation -= ResetTimer;
+        }
+
         private void Start()
+        {
+            ResetTimer();
+        }
+
+        private void ResetTimer()
         {
             float roundDuration = _staticDataService.GetStaticData<RoundStateStaticData>().RoundDuration;
             _currentTime = Mathf.RoundToInt(roundDuration);
