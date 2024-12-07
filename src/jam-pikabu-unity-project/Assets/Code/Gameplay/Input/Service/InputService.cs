@@ -34,6 +34,9 @@ namespace Code.Gameplay.Input.Service
         {
             _inputEntity = inputEntity;
 
+            if (_inputBindingsDict.Count != 0)
+                return;
+
             FillBindingsDictionary();
             SubscribeActionEmit();
         }

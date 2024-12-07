@@ -2,7 +2,7 @@
 
 namespace Code.Gameplay.Features.GrapplingHook.Systems
 {
-    public class GrapplingHookVisualsSystem : IExecuteSystem
+    public class GrapplingHookVisualsSystem : IExecuteSystem, ITearDownSystem
     {
         private readonly IGroup<GameEntity> _hooks;
 
@@ -24,6 +24,14 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
                     hook.GrapplingHookBehaviour.SetupXMovement(hook.XAxisMoveDirection);
                 else
                     hook.GrapplingHookBehaviour.SetupXMovement(0);
+            }
+        }
+
+        public void TearDown()
+        {
+            foreach (var hook in _hooks)
+            {
+                hook.GrapplingHookBehaviour.SetupXMovement(0);
             }
         }
     }

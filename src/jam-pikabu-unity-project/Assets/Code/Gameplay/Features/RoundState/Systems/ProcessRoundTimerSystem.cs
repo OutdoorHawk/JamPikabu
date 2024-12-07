@@ -14,14 +14,14 @@ namespace Code.Gameplay.Features.RoundState.Systems
         public ProcessRoundTimerSystem(GameContext context, ITimeService time)
         {
             _time = time;
-            
+
             _entities = context.GetGroup(
                 GameMatcher.AllOf(
                     GameMatcher.RoundStateController,
                     GameMatcher.RoundInProcess,
                     GameMatcher.RoundTimeLeft
                 ));
-            
+
             _roundStateView = context.GetGroup(
                 GameMatcher.AllOf(
                     GameMatcher.RoundStateViewBehaviour
@@ -30,22 +30,29 @@ namespace Code.Gameplay.Features.RoundState.Systems
 
         public void Execute()
         {
-            foreach (var entity in _entities.GetEntities(_buffer))
-            foreach (var view in _roundStateView)
+            foreach (var controllers in _entities.GetEntities(_buffer))
             {
-                if (entity.RoundTimeLeft > 0)
+                if (controllers.RoundTimeLeft > 0)
                 {
-                    float newTime = entity.RoundTimeLeft - _time.DeltaTime;
-                    entity.ReplaceRoundTimeLeft(newTime);
-                    view.RoundStateViewBehaviour.UpdateTimer(newTime);
+                    float newTime = controllers.RoundTimeLeft - _time.DeltaTime;
+                    controllers.ReplaceRoundTimeLeft(newTime);
+                    UpdateTimer((int)newTime);
                     continue;
                 }
 
-                entity.isCooldownUp = true;
-                entity.isRoundInProcess = false;
-                entity.RemoveRoundTimeLeft();
-               
-                view.RoundStateViewBehaviour.UpdateTimer(0);
+                controllers.isCooldownUp = true;
+                controllers.isRoundInProcess = false;
+                controllers.RemoveRoundTimeLeft();
+
+                UpdateTimer(0);
+            }
+        }
+
+        private void UpdateTimer(int time)
+        {
+            foreach (var view in _roundStateView)
+            {
+                view.RoundStateViewBehaviour.UpdateTimer(time);
             }
         }
     }

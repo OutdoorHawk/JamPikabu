@@ -32,7 +32,6 @@ namespace Code.Gameplay.Features
     {
         public CoreGameLoopPhysicsFeature(ISystemFactory systems)
         {
-
             Add(systems.Create<GrapplingHookPhysicsFeature>());
         }
     }
