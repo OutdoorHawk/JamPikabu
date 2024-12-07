@@ -9,6 +9,7 @@ namespace Code.Gameplay.Features.RoundState.Configs
         public int Day;
         public int PlayCost;
         public int OrdersAmount;
+        public float RoundDuration= 30;
         public SceneTypeId SceneId = SceneTypeId.Level_1;
     }
 }

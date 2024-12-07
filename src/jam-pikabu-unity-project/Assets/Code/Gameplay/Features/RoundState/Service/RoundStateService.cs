@@ -54,6 +54,7 @@ namespace Code.Gameplay.Features.RoundState.Service
             _roundStateFactory.CreateRoundStateController()
                 .AddDayCost(_currentDayData.PlayCost)
                 .AddDay(_currentDay)
+                .AddRoundDuration(_currentDayData.RoundDuration)
                 ;
             
             OnDayBegin?.Invoke();

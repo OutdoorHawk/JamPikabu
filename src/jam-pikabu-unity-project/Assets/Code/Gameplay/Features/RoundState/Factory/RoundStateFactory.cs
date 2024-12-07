@@ -22,7 +22,6 @@ namespace Code.Gameplay.Features.RoundState.Factory
                     .Empty()
                     .With(x => x.isRoundStateController = true)
                     .With(x => x.isRoundStartAvailable = true)
-                    .AddRoundDuration(staticData.RoundDuration)
                     
                 ;
         }
