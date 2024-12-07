@@ -21,7 +21,8 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         protected override void Awake()
         {
             base.Awake();
-            _sprite.gameObject.AddComponent<CapsuleCollider2D>();
+            var capsuleCollider2D = _sprite.gameObject.AddComponent<CapsuleCollider2D>();
+            capsuleCollider2D.size = _sprite.transform.localScale;
         }
 
         private void Start()
