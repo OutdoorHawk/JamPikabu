@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   XAxisSpeed: 4
   YAxisDownSpeed: 15
-  YAxisUpSpeed: 2
-  StopMovementRaycastRadius: 0.315
+  YAxisUpSpeed: 4.25
+  StopMovementRaycastRadius: 0.175
   CollectLootRaycastRadius: 1.8
   CollectLootPieceInterval: 0.1
-  XMovementLimits: {x: -3.1, y: 3.1}
+  XMovementLimits: {x: -5.4, y: 4.25}
   ViewPrefab: {fileID: 6435023142707515542, guid: 4d7c5494a46212041a040d26156fb0b4,
     type: 3}

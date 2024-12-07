@@ -37,7 +37,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
                 Vector2 newPosition = currentPosition;
 
                 const float moveDownDirection = -1;
-                const float yLimit = -5.6f;
+                const float yLimit = -6.5f;
 
                 newPosition.y += moveDownDirection * hook.YAxisDownSpeed * _time.FixedDeltaTime;
 
