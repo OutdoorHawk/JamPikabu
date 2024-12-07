@@ -150,6 +150,7 @@ MonoBehaviour:
   _currencyIcon: {fileID: 6232662516648152457}
   _iconAnimator: {fileID: 4703498007241356941}
   _textAnimationDuration: 0.3
+  _format: 0
 --- !u!1 &5846876812894255290
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,7 +424,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4289590014
   m_fontColor: {r: 0.9960785, g: 0.9490197, b: 0.6784314, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3

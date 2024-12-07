@@ -19,6 +19,7 @@ namespace Code.Meta.UI.Common
         [SerializeField] private Image _currencyIcon;
         [SerializeField] private Animator _iconAnimator;
         [SerializeField] private float _textAnimationDuration = 0.25f;
+        [SerializeField] private string _format;
 
         private IStaticDataService _staticDataService;
         private CancellationTokenSource _animationToken = new();
@@ -63,20 +64,20 @@ namespace Code.Meta.UI.Common
 
             if (withAnimation == false)
             {
-                _amountText.text = amount.ToString();
+                _amountText.text = amount.ToString(_format);
             }
             else
             {
                 _animationToken?.Cancel();
                 _animationToken = CreateLinkedTokenSource(destroyCancellationToken);
-                
+
                 _amountText.ToTextValue
                 (
                     _currentAmount,
                     amount,
                     _textAnimationDuration,
                     _animationToken.Token,
-                    format: "0"
+                    format: $"{_format}"
                 ).Forget();
             }
 

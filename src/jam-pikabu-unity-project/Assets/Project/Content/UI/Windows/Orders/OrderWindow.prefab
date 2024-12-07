@@ -499,6 +499,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OrderReward
       objectReference: {fileID: 0}
+    - target: {fileID: 5475631430975127571, guid: 0c8a84101e55b2b42b3801768e63b582,
+        type: 3}
+      propertyPath: _format
+      value: +#
+      objectReference: {fileID: 0}
     - target: {fileID: 5846876812894255290, guid: 0c8a84101e55b2b42b3801768e63b582,
         type: 3}
       propertyPath: m_IsActive
