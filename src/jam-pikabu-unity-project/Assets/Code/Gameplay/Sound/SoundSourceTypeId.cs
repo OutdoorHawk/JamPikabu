@@ -51,5 +51,7 @@
         DestroyConstruction = 36,
         HookDescend = 37,
         CustomerSwap = 38,
+        PlusesAdded = 39,
+        LootImpact = 40,
     }
 }

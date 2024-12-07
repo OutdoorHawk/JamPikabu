@@ -220,6 +220,7 @@ GameObject:
   - component: {fileID: 396917086171664017}
   - component: {fileID: 8937970170320943433}
   - component: {fileID: 809552390096106596}
+  - component: {fileID: 6762136350681023716}
   m_Layer: 5
   m_Name: RightButton
   m_TagString: Untagged
@@ -343,6 +344,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6762136350681023716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506580335540913922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d050be8295d4b3d8ca7a0c00eec8637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundType: 30
+  _overrideSound: 29
 --- !u!1 &876373554806540921
 GameObject:
   m_ObjectHideFlags: 0
@@ -982,6 +997,7 @@ GameObject:
   - component: {fileID: 7055758038832860708}
   - component: {fileID: 1320465098494050011}
   - component: {fileID: 3680369612170481906}
+  - component: {fileID: 1442042768539843599}
   m_Layer: 5
   m_Name: DownButton
   m_TagString: Untagged
@@ -1105,6 +1121,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1442042768539843599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2226807384164521967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d050be8295d4b3d8ca7a0c00eec8637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundType: 30
+  _overrideSound: 29
 --- !u!1 &2630392251604905966
 GameObject:
   m_ObjectHideFlags: 0
@@ -1118,6 +1148,7 @@ GameObject:
   - component: {fileID: 934446730581485710}
   - component: {fileID: 3169300434535273061}
   - component: {fileID: 8122952532936032423}
+  - component: {fileID: 816808861611866835}
   m_Layer: 5
   m_Name: LeftButton (1)
   m_TagString: Untagged
@@ -1241,6 +1272,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &816808861611866835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2630392251604905966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d050be8295d4b3d8ca7a0c00eec8637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundType: 30
+  _overrideSound: 29
 --- !u!1 &3359197519960932426
 GameObject:
   m_ObjectHideFlags: 0
@@ -1614,6 +1659,7 @@ MonoBehaviour:
   _useAnimation: 0
   _canCloseByBack: 0
   _canvasGroup: {fileID: 0}
+  _animationDuration: 0.15
 --- !u!1 &4935694880944245296
 GameObject:
   m_ObjectHideFlags: 0

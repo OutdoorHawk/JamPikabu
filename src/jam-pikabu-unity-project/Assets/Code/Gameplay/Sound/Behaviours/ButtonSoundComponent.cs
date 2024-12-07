@@ -9,6 +9,7 @@ namespace Code.Gameplay.Sound.Behaviours
     public class ButtonSoundComponent : MonoBehaviour
     {
         [SerializeField] private SoundTypeId _soundType = SoundTypeId.UI_Click;
+        [SerializeField] private SoundTypeId _overrideSound = SoundTypeId.Unknown;
 
         private ISoundService _soundService;
 
@@ -37,7 +38,14 @@ namespace Code.Gameplay.Sound.Behaviours
 
         private void PlaySound()
         {
-            _soundService.PlaySound(_soundType);
+            if (_overrideSound is not SoundTypeId.Unknown)
+            {
+                _soundService.PlaySound(_overrideSound);
+            }
+            else
+            {
+                _soundService.PlaySound(_soundType);
+            }
         }
     }
 }

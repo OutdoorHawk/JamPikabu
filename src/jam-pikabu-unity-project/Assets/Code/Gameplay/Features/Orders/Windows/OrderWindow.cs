@@ -118,16 +118,16 @@ namespace Code.Gameplay.Features.Orders.Windows
         {
             foreach (var lootItem in _goodItems)
             {
-                await PlayConsume(lootItem, _currencyHolder.PlayerPluses, CurrencyTypeId.Plus);
+                await PlayConsume(lootItem, _currencyHolder.PlayerPluses, CurrencyTypeId.Plus, isGood: true);
             }
 
             foreach (var lootItem in _badItems)
             {
-                await PlayConsume(lootItem, _currencyHolder.PlayerMinuses, CurrencyTypeId.Minus);
+                await PlayConsume(lootItem, _currencyHolder.PlayerMinuses, CurrencyTypeId.Minus, false);
             }
         }
 
-        private async UniTask PlayConsume(LootItemUI lootItem, PriceInfo price, CurrencyTypeId typeId)
+        private async UniTask PlayConsume(LootItemUI lootItem, PriceInfo price, CurrencyTypeId typeId, bool isGood)
         {
             IngredientData ingredientData = _ordersService.GetIngredientData(lootItem.Type);
             IEnumerable<LootTypeId> collected = _lootService.CollectedLootItems.Where(item => item == ingredientData.TypeId);
@@ -146,6 +146,7 @@ namespace Code.Gameplay.Features.Orders.Windows
                 StartReplenishCallback = () => RemoveWithdraw(price, ingredientData, count)
             };
 
+            _soundService.PlayOneShotSound(SoundTypeId.PlusesAdded);
             await lootItem.AnimateConsume();
 
             _currencyFactory.PlayCurrencyAnimation(parameters);
