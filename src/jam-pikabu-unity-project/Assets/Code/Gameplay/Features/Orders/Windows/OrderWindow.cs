@@ -13,6 +13,8 @@ using Code.Gameplay.Features.Loot.Service;
 using Code.Gameplay.Features.Loot.UIFactory;
 using Code.Gameplay.Features.Orders.Config;
 using Code.Gameplay.Features.Orders.Service;
+using Code.Gameplay.Sound;
+using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows;
 using Code.Meta.UI.Common;
@@ -38,6 +40,7 @@ namespace Code.Gameplay.Features.Orders.Windows
         private ILootItemUIFactory _lootItemUIFactory;
         private IStaticDataService _staticDataService;
         private ICurrencyFactory _currencyFactory;
+        private ISoundService _soundService;
         private ILootService _lootService;
 
         private OrderData _currentOrder;
@@ -50,8 +53,9 @@ namespace Code.Gameplay.Features.Orders.Windows
 
         [Inject]
         private void Construct(IOrdersService ordersService, ILootItemUIFactory lootItemUIFactory,
-            ICurrencyFactory currencyFactory, IStaticDataService staticDataService, ILootService lootService)
+            ICurrencyFactory currencyFactory, IStaticDataService staticDataService, ILootService lootService, ISoundService soundService)
         {
+            _soundService = soundService;
             _lootService = lootService;
             _staticDataService = staticDataService;
             _currencyFactory = currencyFactory;
@@ -167,11 +171,13 @@ namespace Code.Gameplay.Features.Orders.Windows
             {
                 Type = _currentOrder.Setup.Reward.CurrencyType,
                 Count = _currentOrder.Setup.Reward.Amount,
+                StartReplenishSound = SoundTypeId.Gold_Currency_Collect,
                 StartPosition = _orderReward.CurrencyIcon.transform.position,
                 EndPosition = _currencyHolder.PlayerCurrentGold.CurrencyIcon.transform.position,
                 StartReplenishCallback = () => RemoveWithdraw(_currentOrder.Setup.Reward.Amount)
             };
-            
+
+            _soundService.PlaySound(SoundTypeId.Order_Completed);
             _currencyFactory.PlayCurrencyAnimation(parameters);
         }
 

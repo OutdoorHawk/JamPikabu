@@ -1,5 +1,7 @@
 ﻿using Code.Common.Extensions;
 using Code.Gameplay.Features.Currency.Config;
+using Code.Gameplay.Sound;
+using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
@@ -20,11 +22,13 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
         [SerializeField] private float _scatterDuration = 1f;
 
         private IStaticDataService _staticData;
+        private ISoundService _soundService;
         private bool _firstObject = true;
 
         [Inject]
-        private void Construct(IStaticDataService staticDataService)
+        private void Construct(IStaticDataService staticDataService, ISoundService soundService)
         {
+            _soundService = soundService;
             _staticData = staticDataService;
         }
 
@@ -32,6 +36,9 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
         {
             InitIcons(parameters);
             PlayAnimation(parameters);
+            
+            if (parameters.BeginAnimationSound is not SoundTypeId.Unknown) 
+                _soundService.PlaySound(parameters.BeginAnimationSound);
         }
 
         private void InitIcons(in CurrencyAnimationParameters parameters)
@@ -127,6 +134,9 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
         {
             if (_firstObject)
             {
+                if (parameters.StartReplenishSound is not SoundTypeId.Unknown) 
+                    _soundService.PlaySound(parameters.StartReplenishSound);
+             
                 parameters.StartReplenishCallback?.Invoke();
                 _firstObject = false;
             }

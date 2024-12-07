@@ -4,12 +4,15 @@ using Code.Common.Extensions.Animations;
 using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Config;
 using Code.Gameplay.Features.Loot.Configs;
+using Code.Gameplay.Sound;
+using Code.Gameplay.Sound.Service;
 using Code.Infrastructure.View;
 using Code.Meta.UI.Common;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 using static Code.Common.Extensions.AsyncGameplayExtensions;
 
 namespace Code.Gameplay.Features.Loot.Behaviours
@@ -26,8 +29,16 @@ namespace Code.Gameplay.Features.Loot.Behaviours
 
         private int _currentValue;
         private int _currentWithdrawValue;
+        
+        private ISoundService _soundService;
 
         public LootTypeId Type { get; private set; }
+
+        [Inject]
+        private void Construct(ISoundService soundService)
+        {
+            _soundService = soundService;
+        }
 
         public void Init(LootSetup setup)
         {
@@ -56,6 +67,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
 
         public async UniTask AnimateFlyToVat(Transform flyEndPoint)
         {
+            _soundService.PlaySound(SoundTypeId.Construction_Fly);
             await transform
                     .DOJump(flyEndPoint.position, Random.Range(1, 4), 1, FlyToVatDuration)
                     .SetLink(gameObject)
@@ -77,6 +89,8 @@ namespace Code.Gameplay.Features.Loot.Behaviours
                     .SetLink(gameObject)
                     .OnComplete(SetReadyToApply)
                 ;
+            
+            _soundService.PlaySound(SoundTypeId.Construction_Place);
         }
 
         public void AddGoldValueWithdraw(int withdraw)

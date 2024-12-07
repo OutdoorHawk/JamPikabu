@@ -65,7 +65,7 @@ namespace Code.Gameplay.Features.Currency.Service
 
             if (currency.Amount != newAmount)
             {
-                PlaySoftCurrencySound(newAmount, currency);
+                //PlaySoftCurrencySound(newAmount, currency);
                 currency.Amount = newAmount;
                 changed = true;
             }

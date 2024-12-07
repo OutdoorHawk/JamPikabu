@@ -48,13 +48,13 @@ namespace Code.Meta.UI.HardCurrencyHolder.Service
             _canPlaySoundForce = false;
             if (newAmount > _currentHard)
             {
-                _soundService.PlaySound(SoundTypeId.Hard_Currency_Collect);
+                _soundService.PlaySound(SoundTypeId.Gold_Currency_Collect);
                 return;
             }
 
             if (newAmount < _currentHard)
             {
-                _soundService.PlaySound(SoundTypeId.Hard_Currency_Spend);
+                _soundService.PlaySound(SoundTypeId.Order_Completed);
                 return;
             }
         }

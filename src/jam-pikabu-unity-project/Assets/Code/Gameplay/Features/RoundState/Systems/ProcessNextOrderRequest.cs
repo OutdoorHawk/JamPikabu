@@ -11,6 +11,7 @@ using Code.Gameplay.Features.HUD;
 using Code.Gameplay.Features.Loot.Service;
 using Code.Gameplay.Features.Orders.Service;
 using Code.Gameplay.Features.RoundState.Service;
+using Code.Gameplay.Sound;
 using Code.Gameplay.Windows.Service;
 using Cysharp.Threading.Tasks;
 using Entitas;
@@ -104,6 +105,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
                     Type = CurrencyTypeId.Gold,
                     TextPrefix = "-",
                     Count = state.DayCost,
+                    BeginAnimationSound = SoundTypeId.PurchasedQuota,
                     StartPosition = currencyHolder.PlayerCurrentGold.CurrencyIcon.transform.position,
                     EndPosition = currencyHolder.PlayerTurnCostGold.CurrencyIcon.transform.position,
                     StartReplenishCallback = () =>
