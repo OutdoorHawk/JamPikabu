@@ -246,7 +246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _customerImage: {fileID: 5824048751722038799}
   _animator: {fileID: 4791498738415165510}
-  _playOnAwake: 0
+  _hideOnAwake: 0
 --- !u!1 &7236422816328775633
 GameObject:
   m_ObjectHideFlags: 0

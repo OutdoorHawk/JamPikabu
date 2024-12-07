@@ -76,8 +76,8 @@ namespace Code.Gameplay.Features.Orders.Windows
 
             _orderIcon.sprite = _currentOrder.Setup.OrderIcon;
 
-            CreateItems(_currentOrder.Setup.GoodIngredients, _goodItems, _goodIngredients.transform);
-            CreateItems(_currentOrder.Setup.BadIngredients, _badItems, _badIngredients.transform);
+            CreateItems(_ordersService.OrderIngredients.good, _goodItems, _goodIngredients.transform);
+            CreateItems(_ordersService.OrderIngredients.bad, _badItems, _badIngredients.transform);
 
             _orderReward.SetupPrice(_currentOrder.Setup.Reward);
         }

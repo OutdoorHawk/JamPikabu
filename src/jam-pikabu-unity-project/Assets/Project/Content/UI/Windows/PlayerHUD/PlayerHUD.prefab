@@ -2992,6 +2992,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 246928465727400162, guid: e3283ac2bdc6a2641ae711c557e584bc,
         type: 3}
+      propertyPath: _hideOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 246928465727400162, guid: e3283ac2bdc6a2641ae711c557e584bc,
+        type: 3}
       propertyPath: _playOnAwake
       value: 1
       objectReference: {fileID: 0}
@@ -2999,6 +3004,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Customer
+      objectReference: {fileID: 0}
+    - target: {fileID: 2895035328863029698, guid: e3283ac2bdc6a2641ae711c557e584bc,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 509
       objectReference: {fileID: 0}
     - target: {fileID: 3542397881275806502, guid: e3283ac2bdc6a2641ae711c557e584bc,
         type: 3}

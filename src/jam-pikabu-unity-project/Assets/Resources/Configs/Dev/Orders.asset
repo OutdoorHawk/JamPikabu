@@ -35,6 +35,11 @@ MonoBehaviour:
         Rating:
           CurrencyType: 3
           Amount: 3
+      RandomSetupEnabled: 0
+      MinMaxGoodIngredients: {x: 0, y: 0}
+      MinMaxGoodIngredientsReward: {x: 0, y: 0}
+      MinMaxBadIngredients: {x: 0, y: 0}
+      MinMaxBadIngredientsReward: {x: 0, y: 0}
   - Id: 0
     Setup:
       OrderIcon: {fileID: 1743829112, guid: a5e645d0b2507ac42807ef8e886f7d45, type: 3}
@@ -43,14 +48,11 @@ MonoBehaviour:
         Amount: 10
       MinDayToUnlock: 0
       MaxDayToUnlock: 0
-      GoodIngredients:
-      - TypeId: 5
-        Rating:
-          CurrencyType: 2
-          Amount: 2
-      BadIngredients:
-      - TypeId: 3
-        Rating:
-          CurrencyType: 3
-          Amount: 3
+      GoodIngredients: []
+      BadIngredients: []
+      RandomSetupEnabled: 1
+      MinMaxGoodIngredients: {x: 1, y: 3}
+      MinMaxGoodIngredientsReward: {x: 1, y: 2}
+      MinMaxBadIngredients: {x: 0, y: 2}
+      MinMaxBadIngredientsReward: {x: 1, y: 2}
   OrdersAmountInDay: 3

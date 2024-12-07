@@ -13,5 +13,6 @@
         Replenish = 8,
         Swap = 9,
         Hide = 10,
+        Show = 11,
     }
 }

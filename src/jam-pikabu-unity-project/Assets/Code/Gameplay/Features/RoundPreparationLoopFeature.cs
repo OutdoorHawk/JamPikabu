@@ -17,8 +17,8 @@ namespace Code.Gameplay.Features
             Add(systems.Create<BindViewFeature>());
             Add(systems.Create<CooldownSystem>());
             Add(systems.Create<RoundStartFeature>());
-
-            Add(systems.Create<CreateOrderOnRoundStartSystem>());
+            Add(systems.Create<InitOrderSystem>());
+            
             Add(systems.Create<ContinuousSpawnLootSystem>());
 
             Add(systems.Create<CurrencyFeature>());

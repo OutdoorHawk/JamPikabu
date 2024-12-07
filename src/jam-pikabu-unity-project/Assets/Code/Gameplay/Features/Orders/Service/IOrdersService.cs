@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Code.Gameplay.Features.Loot;
 using Code.Gameplay.Features.Orders.Config;
 
@@ -9,6 +10,7 @@ namespace Code.Gameplay.Features.Orders.Service
         event Action OnOrderUpdated;
         int OrdersCompleted { get; }
         int MaxOrders { get; }
+        (List<IngredientData> good, List<IngredientData> bad) OrderIngredients { get; }
         void InitDay(int currentDay);
         GameEntity CreateOrder();
         void AddIngredientTypedData(LootTypeId lootLootTypeId, IngredientData ingredientData);

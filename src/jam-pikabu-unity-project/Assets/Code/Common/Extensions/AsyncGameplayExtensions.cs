@@ -63,7 +63,7 @@ namespace Code.Common.Extensions
             await DelaySeconds(animTime, token);
         }
 
-        public static async UniTask WaitForAnimationCompleteAsync(Animator animator, CancellationToken token)
+        public static async UniTask WaitForAnimationCompleteAsync(this Animator animator, CancellationToken token)
         {
             await UniTask.NextFrame(token);
             float animTime = GetCurrentAnimationLength(animator);
