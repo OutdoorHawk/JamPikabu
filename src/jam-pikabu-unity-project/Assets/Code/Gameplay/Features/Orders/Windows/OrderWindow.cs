@@ -119,6 +119,9 @@ namespace Code.Gameplay.Features.Orders.Windows
             IEnumerable<LootTypeId> collected = _lootService.CollectedLootItems.Where(item => item == ingredientData.TypeId);
             int count = ingredientData.Rating.Amount * collected.Count();
 
+            if (count == 0)
+                return;
+
             var parameters = new CurrencyAnimationParameters
             {
                 Type = typeId,
