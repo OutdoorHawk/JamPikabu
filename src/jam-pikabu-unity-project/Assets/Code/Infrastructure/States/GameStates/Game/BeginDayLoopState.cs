@@ -1,5 +1,6 @@
 ﻿using Code.Gameplay.Features;
 using Code.Gameplay.Input;
+using Code.Gameplay.Input.Systems;
 using Code.Infrastructure.States.GameStateHandler;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
@@ -34,7 +35,9 @@ namespace Code.Infrastructure.States.GameStates.Game
 
             _gameLoopFeature = _systemFactory.Create<BeginDayFeature>();
             _inputFeature = _systemFactory.Create<InputFeature>();
+            var initInput = _systemFactory.Create<InitializeInputSystem>();
 
+            initInput.Initialize();
             _inputFeature.Initialize();
             _gameLoopFeature.Initialize();
         }

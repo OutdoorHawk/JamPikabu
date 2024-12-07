@@ -3,11 +3,11 @@ using Entitas;
 
 namespace Code.Gameplay.Features.RoundStart.Systems
 {
-    public class RequestRoundStartByInputSystem : ReactiveSystem<InputEntity>, ICleanupSystem
+    public class RequestRoundStartByAxisInputSystem : ReactiveSystem<InputEntity>
     {
         private readonly IGroup<GameEntity> _roundControllers;
 
-        public RequestRoundStartByInputSystem(InputContext context, GameContext gameContext) : base(context)
+        public RequestRoundStartByAxisInputSystem(InputContext context, GameContext gameContext) : base(context)
         {
             _roundControllers = gameContext
                 .GetGroup(GameMatcher
@@ -18,8 +18,7 @@ namespace Code.Gameplay.Features.RoundStart.Systems
         {
             return context.CreateCollector(InputMatcher
                 .AnyOf(
-                    InputMatcher.Enter, 
-                InputMatcher.Jump).Removed());
+                    InputMatcher.MovementAxis).Added());
         }
 
         protected override bool Filter(InputEntity entity)
@@ -32,14 +31,6 @@ namespace Code.Gameplay.Features.RoundStart.Systems
             foreach (var controller in _roundControllers)
             {
                 controller.isRoundStartRequest = true;
-            }
-        }
-
-        public void Cleanup()
-        {
-            foreach (var controller in _roundControllers)
-            {
-                controller.isRoundStartRequest = false;
             }
         }
     }

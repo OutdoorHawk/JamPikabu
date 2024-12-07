@@ -1,4 +1,5 @@
-﻿using Code.Gameplay.Features.RoundState.Systems;
+﻿using Code.Gameplay.Features.RoundStart.Systems;
+using Code.Gameplay.Features.RoundState.Systems;
 using Code.Infrastructure.Systems;
 
 namespace Code.Gameplay.Features.RoundStart
@@ -8,6 +9,7 @@ namespace Code.Gameplay.Features.RoundStart
         public RoundStartFeature(ISystemFactory systems)
         {
             Add(systems.Create<RequestRoundStartByInputSystem>());
+            Add(systems.Create<RequestRoundStartByAxisInputSystem>());
             Add(systems.Create<BlockRoundStartAvailableWhenRoundIsProcessingSystem>());
             Add(systems.Create<BlockRoundStartAvailableWhenRoundNotCompleteSystem>());
             Add(systems.Create<BlockRoundStartAvailableWhenInsufficientFundsSystem>());

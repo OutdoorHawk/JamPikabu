@@ -9,10 +9,12 @@ namespace Code.Gameplay.Input.Systems
     public class InitializeInputSystem : IInitializeSystem, ITearDownSystem
     {
         private readonly IGroup<InputEntity> _entities;
+        private readonly InputContext _context;
         private readonly IInputService _inputService;
 
         public InitializeInputSystem(InputContext context, IInputService inputService)
         {
+            _context = context;
             _inputService = inputService;
         }
 
