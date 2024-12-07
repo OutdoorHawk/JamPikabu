@@ -37,7 +37,7 @@ namespace Code.Gameplay.Features.Orders.Service
         private readonly Dictionary<LootTypeId, IngredientData> _orderIngredientCostDict = new();
 
         public int OrdersCompleted => _ordersCompleted;
-        public int MaxOrders => _ordersData.OrdersAmountInDay;
+        public int MaxOrders => _roundStateService.GetDayData().OrdersAmount;
         public bool OrderWindowSeen => _orderWindowSeen;
 
         public (List<IngredientData> good, List<IngredientData> bad) OrderIngredients => _orderIngredients;
@@ -112,7 +112,7 @@ namespace Code.Gameplay.Features.Orders.Service
 
         public bool CheckOrdersCompleted()
         {
-            return _ordersCompleted + 1 >= _ordersData.OrdersAmountInDay;
+            return _ordersCompleted + 1 >=_roundStateService.GetDayData().OrdersAmount;
         }
 
         public void GoToNextOrder()

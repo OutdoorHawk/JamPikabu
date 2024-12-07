@@ -55,4 +55,4 @@ MonoBehaviour:
       MinMaxGoodIngredientsReward: {x: 1, y: 2}
       MinMaxBadIngredients: {x: 0, y: 2}
       MinMaxBadIngredientsReward: {x: 1, y: 2}
-  OrdersAmountInDay: 1
+  OrdersAmountInDay: 2
