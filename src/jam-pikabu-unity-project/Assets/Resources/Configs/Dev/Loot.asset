@@ -13,28 +13,33 @@ MonoBehaviour:
   m_Name: Loot
   m_EditorClassIdentifier: 
   Configs:
-  - Type: 1
-    ViewPrefab: {fileID: 5581889664544084029, guid: c983db6717be2db4fa1dd83198dc28f5,
-      type: 3}
-    Icon: {fileID: -1737005464, guid: a5e645d0b2507ac42807ef8e886f7d45, type: 3}
-    MinDayToUnlock: 0
-    MaxDayToUnlock: 0
   - Type: 2
-    ViewPrefab: {fileID: 2129731251533474509, guid: 60b0fb4eb71fef848858ea8da0e4f1eb,
-      type: 3}
-    Icon: {fileID: -1245454884, guid: a5e645d0b2507ac42807ef8e886f7d45, type: 3}
+    ViewPrefab: {fileID: 0}
+    Icon: {fileID: 21300000, guid: 4ca83e380d4f07a438aeefb9a11c35dd, type: 3}
     MinDayToUnlock: 0
     MaxDayToUnlock: 0
   - Type: 3
-    ViewPrefab: {fileID: 7632606086172137233, guid: d4904c11991e84a46901a2f9832e299c,
-      type: 3}
-    Icon: {fileID: 21300004, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
+    ViewPrefab: {fileID: 0}
+    Icon: {fileID: 21300000, guid: 93da7e8dd1c735d4fb082bad708cb4fd, type: 3}
+    MinDayToUnlock: 0
+    MaxDayToUnlock: 0
+  - Type: 4
+    ViewPrefab: {fileID: 0}
+    Icon: {fileID: 21300000, guid: 7f814b5022d82b443b02a8ff6457d0ae, type: 3}
+    MinDayToUnlock: 0
+    MaxDayToUnlock: 0
+  - Type: 5
+    ViewPrefab: {fileID: 0}
+    Icon: {fileID: 21300000, guid: 6b58b8816eb56764a8d0d98be583d8a6, type: 3}
     MinDayToUnlock: 2
     MaxDayToUnlock: 0
-  LootSpawnInterval: 0.01
+  LootSpawnInterval: 0.02
+  LootSpawnConveyorInterval: 0.3
   LootSpawnStartDelay: 0.5
-  LootSpawnAmount: 45
+  MaxLootAmount: 40
   CollectFlyAnimationDuration: 0.5
   CollectFlyMinMaxJump: {x: -1, y: 2}
   LootItemUI: {fileID: 6122044623407222926, guid: 17a9554d4999c3b43a5c2052ad4cdf08,
+    type: 3}
+  LootItem: {fileID: 6313876982729068303, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943,
     type: 3}

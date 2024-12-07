@@ -6,6 +6,7 @@ using Code.Gameplay.Features.Orders.Factory;
 using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.StaticData;
 using RoyalGold.Sources.Scripts.Game.MVC.Utils;
+using UnityEngine;
 
 namespace Code.Gameplay.Features.Orders.Service
 {
@@ -114,10 +115,17 @@ namespace Code.Gameplay.Features.Orders.Service
         private void InitIngredientsDic(OrderData order)
         {
             _orderIngredientCostDict.Clear();
-            foreach (IngredientData ingredientData in order.Setup.GoodIngredients)
-                _orderIngredientCostDict.Add(ingredientData.TypeId, ingredientData);
-            foreach (IngredientData ingredientData in order.Setup.BadIngredients)
-                _orderIngredientCostDict.Add(ingredientData.TypeId, ingredientData);
+            FillIngredients(order.Setup.GoodIngredients);
+            FillIngredients(order.Setup.BadIngredients);
+        }
+
+        private void FillIngredients(List<IngredientData> ingredients)
+        {
+            foreach (IngredientData ingredientData in ingredients)
+            {
+                if (_orderIngredientCostDict.TryAdd(ingredientData.TypeId, ingredientData) == false) 
+                    Debug.LogError($"Config error! Order cannot have same ingredient in bad and good ingredient list: {ingredientData}.");
+            }
         }
 
         private static bool CheckMinDayToUnlock(OrderData data, int currentDay)

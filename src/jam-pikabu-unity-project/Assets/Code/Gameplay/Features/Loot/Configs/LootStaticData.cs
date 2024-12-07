@@ -14,6 +14,7 @@ namespace Code.Gameplay.Features.Loot.Configs
         public float CollectFlyAnimationDuration = 0.5f;
         public Vector2 CollectFlyMinMaxJump = new(-1, 2);
         public EntityView LootItemUI;
+        public EntityView LootItem;
         
         public override void OnConfigInit()
         {

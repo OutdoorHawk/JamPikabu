@@ -33,7 +33,7 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
             foreach (var entity in entities)
             {
                 Vector2 direction = entity.Rigidbody2D.transform.right;
-                const float power = 0.9f;
+                const float power = 1.4f;
                 entity.Rigidbody2D.AddForce(direction * power, ForceMode2D.Impulse);
             }
         }

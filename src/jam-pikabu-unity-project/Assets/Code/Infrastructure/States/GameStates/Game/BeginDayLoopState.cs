@@ -35,9 +35,9 @@ namespace Code.Infrastructure.States.GameStates.Game
 
             _gameLoopFeature = _systemFactory.Create<BeginDayFeature>();
             _inputFeature = _systemFactory.Create<InputFeature>();
-            var initInput = _systemFactory.Create<InitializeInputSystem>();
+            /*var initInput = _systemFactory.Create<InitializeInputSystem>();
 
-            initInput.Initialize();
+            initInput.Initialize();*/
             _inputFeature.Initialize();
             _gameLoopFeature.Initialize();
         }

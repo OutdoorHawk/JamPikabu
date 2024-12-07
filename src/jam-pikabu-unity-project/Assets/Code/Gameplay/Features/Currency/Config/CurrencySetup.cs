@@ -1,4 +1,5 @@
 ﻿using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Code.Gameplay.Features.Currency.Config
@@ -6,6 +7,6 @@ namespace Code.Gameplay.Features.Currency.Config
     [Serializable]
     public class CurrencySetup
     {
-        public Sprite Icon;
+       [PreviewField] public Sprite Icon;
     }
 }

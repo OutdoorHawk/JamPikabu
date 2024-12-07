@@ -7,6 +7,7 @@ namespace Code.Gameplay.Input
     {
         public InputFeature(ISystemFactory systemFactory)
         {
+            Add(systemFactory.Create<InitializeInputSystem>());
             Add(systemFactory.Create<EmitInputSystem>());
             
             Add(systemFactory.Create<PauseInputStateReactiveSystem>());

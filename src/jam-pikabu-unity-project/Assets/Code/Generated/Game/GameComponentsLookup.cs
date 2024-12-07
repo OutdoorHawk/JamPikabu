@@ -76,32 +76,33 @@ public static class GameComponentsLookup {
     public const int IncreaseValueEffect = 65;
     public const int Loot = 66;
     public const int LootEffectsApplier = 67;
-    public const int LootItemUI = 68;
-    public const int LootSpawner = 69;
-    public const int LootTypeId = 70;
-    public const int SingleSpawn = 71;
-    public const int Complete = 72;
-    public const int NextOrderRequest = 73;
-    public const int Order = 74;
-    public const int OrderData = 75;
-    public const int Rating = 76;
-    public const int Day = 77;
-    public const int DayCompleteRequest = 78;
-    public const int DayCost = 79;
-    public const int GameOver = 80;
-    public const int Round = 81;
-    public const int RoundComplete = 82;
-    public const int RoundDuration = 83;
-    public const int RoundInProcess = 84;
-    public const int RoundOver = 85;
-    public const int RoundStartAvailable = 86;
-    public const int RoundStartRequest = 87;
-    public const int RoundStateController = 88;
-    public const int RoundStateViewBehaviour = 89;
-    public const int RoundTimeLeft = 90;
-    public const int AudioSourceBehaviour = 91;
+    public const int LootItem = 68;
+    public const int LootItemUI = 69;
+    public const int LootSpawner = 70;
+    public const int LootTypeId = 71;
+    public const int SingleSpawn = 72;
+    public const int Complete = 73;
+    public const int NextOrderRequest = 74;
+    public const int Order = 75;
+    public const int OrderData = 76;
+    public const int Rating = 77;
+    public const int Day = 78;
+    public const int DayCompleteRequest = 79;
+    public const int DayCost = 80;
+    public const int GameOver = 81;
+    public const int Round = 82;
+    public const int RoundComplete = 83;
+    public const int RoundDuration = 84;
+    public const int RoundInProcess = 85;
+    public const int RoundOver = 86;
+    public const int RoundStartAvailable = 87;
+    public const int RoundStartRequest = 88;
+    public const int RoundStateController = 89;
+    public const int RoundStateViewBehaviour = 90;
+    public const int RoundTimeLeft = 91;
+    public const int AudioSourceBehaviour = 92;
 
-    public const int TotalComponents = 92;
+    public const int TotalComponents = 93;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -172,6 +173,7 @@ public static class GameComponentsLookup {
         "IncreaseValueEffect",
         "Loot",
         "LootEffectsApplier",
+        "LootItem",
         "LootItemUI",
         "LootSpawner",
         "LootTypeId",
@@ -267,6 +269,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Loot.IncreaseValueEffect),
         typeof(Code.Gameplay.Features.Loot.Loot),
         typeof(Code.Gameplay.Features.Loot.LootEffectsApplier),
+        typeof(Code.Gameplay.Features.Loot.LootItemComponent),
         typeof(Code.Gameplay.Features.Loot.LootItemUIComponent),
         typeof(Code.Gameplay.Features.Loot.LootSpawner),
         typeof(Code.Gameplay.Features.Loot.LootTypeIdComponent),

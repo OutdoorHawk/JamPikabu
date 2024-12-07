@@ -74,6 +74,7 @@ namespace Code.Gameplay.Features.Loot.Factory
         private GameEntity CreateBaseLoot(LootTypeId typeId, Transform parent, Vector2 at, Vector3 spawnRotation)
         {
             LootSetup lootSetup = GetLootSetup(typeId);
+            var staticData = _staticDataService.GetStaticData<LootStaticData>();
 
             GameEntity loot = CreateGameEntity.Empty()
                     .With(x => x.isLoot = true)
@@ -81,7 +82,8 @@ namespace Code.Gameplay.Features.Loot.Factory
                     .AddStartRotation(spawnRotation)
                     .AddTargetParent(parent)
                     .AddLootTypeId(typeId)
-                    .AddViewPrefab(lootSetup.ViewPrefab)
+                    .With(x => x.AddViewPrefab(staticData.LootItem), when: lootSetup.ViewPrefab == null)
+                    .With(x => x.AddViewPrefab(lootSetup.ViewPrefab), when: lootSetup.ViewPrefab != null)
                 ;
 
             return loot;

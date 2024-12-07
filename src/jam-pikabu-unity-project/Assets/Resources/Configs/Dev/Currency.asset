@@ -15,7 +15,7 @@ MonoBehaviour:
   _configs:
   - CurrencyTypeId: 1
     Data:
-      Icon: {fileID: 194516358, guid: a5e645d0b2507ac42807ef8e886f7d45, type: 3}
+      Icon: {fileID: 21300000, guid: 960d9ea6b81ffd44c97fd99ad1de401a, type: 3}
   - CurrencyTypeId: 2
     Data:
       Icon: {fileID: 21300000, guid: 5b074747f25f41e41be0535484e4fdad, type: 3}

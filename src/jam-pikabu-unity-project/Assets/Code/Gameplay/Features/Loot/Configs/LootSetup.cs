@@ -1,5 +1,6 @@
 ﻿using System;
 using Code.Infrastructure.View;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Code.Gameplay.Features.Loot.Configs
@@ -8,8 +9,8 @@ namespace Code.Gameplay.Features.Loot.Configs
     public class LootSetup
     {
         public LootTypeId Type;
-        public EntityView ViewPrefab;
-        public Sprite Icon;
+        [HideInInspector] public EntityView ViewPrefab;
+        [PreviewField] public Sprite Icon;
         public int MinDayToUnlock;
         public int MaxDayToUnlock;
     }
