@@ -62,6 +62,15 @@ namespace Code.Common.Extensions
             float animTime = GetCurrentAnimationLength(animator);
             await DelaySeconds(animTime, token);
         }
+        
+        public static async UniTask WaitForAnimationCompleteAsync(this Animator animator, int hash)
+        {
+            animator.ResetTrigger(hash);
+            animator.SetTrigger(hash);
+            await UniTask.NextFrame(animator.gameObject.GetCancellationTokenOnDestroy());
+            float animTime = GetCurrentAnimationLength(animator);
+            await DelaySeconds(animTime, animator.gameObject.GetCancellationTokenOnDestroy());
+        }
 
         public static async UniTask WaitForAnimationCompleteAsync(this Animator animator, CancellationToken token)
         {

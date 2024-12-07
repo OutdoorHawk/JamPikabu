@@ -9,6 +9,8 @@ using Code.Gameplay.Features.Orders.Config;
 using Code.Gameplay.Features.Orders.Factory;
 using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.StaticData;
+using Code.Gameplay.Windows;
+using Code.Gameplay.Windows.Service;
 using RoyalGold.Sources.Scripts.Game.MVC.Utils;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -23,6 +25,7 @@ namespace Code.Gameplay.Features.Orders.Service
         private readonly IRoundStateService _roundStateService;
         private readonly IOrdersFactory _ordersFactory;
         private readonly ILootService _lootService;
+        private readonly IWindowService _windowService;
 
         private OrdersStaticData _ordersData;
         private int _currentOrderIndex;
@@ -38,12 +41,14 @@ namespace Code.Gameplay.Features.Orders.Service
         public (List<IngredientData> good, List<IngredientData> bad) OrderIngredients => _orderIngredients;
 
         public OrdersService(IStaticDataService staticDataService,
-            IRoundStateService roundStateService, IOrdersFactory ordersFactory, ILootService lootService)
+            IRoundStateService roundStateService, IOrdersFactory ordersFactory, 
+            ILootService lootService, IWindowService windowService)
         {
             _staticDataService = staticDataService;
             _roundStateService = roundStateService;
             _ordersFactory = ordersFactory;
             _lootService = lootService;
+            _windowService = windowService;
         }
 
         public void InitDay(int currentDay)

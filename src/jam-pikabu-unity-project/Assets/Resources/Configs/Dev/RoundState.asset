@@ -16,7 +16,7 @@ MonoBehaviour:
   StartGoldAmount: 20
   Days:
   - Day: 1
-    PlayCost: 30
+    PlayCost: 5
     SceneId: 2
   - Day: 2
     PlayCost: 20

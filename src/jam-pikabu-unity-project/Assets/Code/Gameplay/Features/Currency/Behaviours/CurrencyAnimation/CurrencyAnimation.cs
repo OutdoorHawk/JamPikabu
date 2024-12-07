@@ -57,7 +57,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
                 _rects[i].EnableElement();
             }
 
-            _text.text = $"{parameters.Count.ToString()}";
+            _text.text = $"{parameters.TextPrefix}{parameters.Count.ToString()}";
             _text.alpha = 1;
         }
 

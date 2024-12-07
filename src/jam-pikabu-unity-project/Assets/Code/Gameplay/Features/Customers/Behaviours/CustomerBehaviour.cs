@@ -4,6 +4,8 @@ using Code.Gameplay.Features.Customers.Config;
 using Code.Gameplay.Features.Customers.Service;
 using Code.Gameplay.Features.Orders.Service;
 using Code.Gameplay.Features.RoundState.Service;
+using Code.Gameplay.Windows;
+using Code.Gameplay.Windows.Service;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,12 +22,17 @@ namespace Code.Gameplay.Features.Customers.Behaviours
         private IRoundStateService _roundStateService;
         private ICustomersService _customersService;
         private IOrdersService _ordersService;
+        private IWindowService _windowService;
 
         private bool _hided;
 
         [Inject]
-        private void Construct(IRoundStateService roundStateService, ICustomersService customersService, IOrdersService ordersService)
+        private void Construct(IRoundStateService roundStateService,
+            ICustomersService customersService,
+            IOrdersService ordersService,
+            IWindowService windowService)
         {
+            _windowService = windowService;
             _ordersService = ordersService;
             _customersService = customersService;
             _roundStateService = roundStateService;
@@ -38,7 +45,7 @@ namespace Code.Gameplay.Features.Customers.Behaviours
 
             UpdateSprite();
 
-            if (_hideOnAwake) 
+            if (_hideOnAwake)
                 _hided = true;
         }
 
@@ -60,12 +67,13 @@ namespace Code.Gameplay.Features.Customers.Behaviours
 
         private async UniTaskVoid UpdateAsync()
         {
-            if (_hided == false) 
+            if (_hided == false)
                 await _animator.WaitForAnimationCompleteAsync(AnimationParameter.Hide.AsHash(), destroyCancellationToken);
-            
-            UpdateSprite();
-            _animator.SetTrigger(AnimationParameter.Show.AsHash());
+
             _hided = false;
+            UpdateSprite();
+            await _animator.WaitForAnimationCompleteAsync(AnimationParameter.Show.AsHash(), destroyCancellationToken);
+            _windowService.OpenWindow(WindowTypeId.OrderWindow);
         }
 
         private void UpdateSprite()
