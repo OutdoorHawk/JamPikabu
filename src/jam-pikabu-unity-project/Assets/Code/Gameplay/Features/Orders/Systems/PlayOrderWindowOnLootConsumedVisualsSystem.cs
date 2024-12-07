@@ -17,6 +17,8 @@ namespace Code.Gameplay.Features.Orders.Systems
         private readonly IOrdersService _ordersService;
         private readonly IUIFactory _uiFactory;
 
+        private readonly List<UniTask> _tasksBuffer = new();
+
         public PlayOrderWindowOnLootConsumedVisualsSystem(GameContext context, IWindowService windowService,
             IOrdersService ordersService, IUIFactory uiFactory) : base(context)
         {
@@ -51,8 +53,15 @@ namespace Code.Gameplay.Features.Orders.Systems
             await orderWindow.PlayOrderComplete();
 
             _uiFactory.SetRaycastAvailable(true);
+            
+            foreach (var button in orderWindow.CloseButtons) 
+                _tasksBuffer.Add(button.OnClickAsync());
+            
+            _tasksBuffer.Add(orderWindow.ExitButton.OnClickAsync());
 
-            await orderWindow.ExitButton.OnClickAsync(); // TODO: ВСЕ СПОСОБЫ ВЫХОДА
+            await UniTask.WhenAny(_tasksBuffer);
+            
+            _tasksBuffer.Clear();
 
             var order = _ordersService.GetCurrentOrder();
 

@@ -8,9 +8,9 @@ namespace Code.Gameplay.Features.Currency.Behaviours
     public class CurrencyHolder : MonoBehaviour
     {
         public PriceInfo PlayerCurrentGold;
-        public PriceInfo PlayerTurnCostGold;
         public PriceInfo PlayerPluses;
         public PriceInfo PlayerMinuses;
+        public PriceInfo PlayerTurnCostGold;
 
         private IGameplayCurrencyService _gameplayCurrencyService;
 
@@ -38,17 +38,19 @@ namespace Code.Gameplay.Features.Currency.Behaviours
         private void RefreshStatic()
         {
             PlayerCurrentGold.SetupPrice(_gameplayCurrencyService.GetCurrencyOfType(CurrencyTypeId.Gold), CurrencyTypeId.Gold);
-            PlayerTurnCostGold.SetupPrice(_gameplayCurrencyService.CurrentTurnCostGold, CurrencyTypeId.Gold);
             PlayerPluses.SetupPrice(_gameplayCurrencyService.GetCurrencyOfType(CurrencyTypeId.Plus), CurrencyTypeId.Plus);
             PlayerMinuses.SetupPrice(_gameplayCurrencyService.GetCurrencyOfType(CurrencyTypeId.Minus), CurrencyTypeId.Minus);
+            if (PlayerTurnCostGold != null)
+                PlayerTurnCostGold.SetupPrice(_gameplayCurrencyService.CurrentTurnCostGold, CurrencyTypeId.Gold);
         }
 
         private void Refresh()
         {
             PlayerCurrentGold.SetupPrice(_gameplayCurrencyService.GetCurrencyOfType(CurrencyTypeId.Gold), CurrencyTypeId.Gold, true);
-            PlayerTurnCostGold.SetupPrice(_gameplayCurrencyService.CurrentTurnCostGold, CurrencyTypeId.Gold);
             PlayerPluses.SetupPrice(_gameplayCurrencyService.GetCurrencyOfType(CurrencyTypeId.Plus), CurrencyTypeId.Plus, true);
             PlayerMinuses.SetupPrice(_gameplayCurrencyService.GetCurrencyOfType(CurrencyTypeId.Minus), CurrencyTypeId.Minus, true);
+            if (PlayerTurnCostGold != null)
+                PlayerTurnCostGold.SetupPrice(_gameplayCurrencyService.CurrentTurnCostGold, CurrencyTypeId.Gold);
         }
     }
 }
