@@ -31,8 +31,8 @@ namespace Code.Gameplay.Features.GrapplingHook.Factory
                     .AddCollectLootRaycastRadius(config.CollectLootRaycastRadius)
                     .AddCollectLootPieceInterval(config.CollectLootPieceInterval)
                     .AddXMovementLimits(config.XMovementLimits)
-                    .AddViewPrefab(config.ViewPrefab)
-                    .AddTargetParent(parent)
+                  //  .AddViewPrefab(config.ViewPrefab)
+                  
                 ;
         }
     }

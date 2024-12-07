@@ -1,5 +1,6 @@
 ﻿using Code.Gameplay.Features.GrapplingHook.Factory;
 using Code.Infrastructure.SceneContext;
+using Code.Infrastructure.View;
 using Entitas;
 
 namespace Code.Gameplay.Features.GrapplingHook.Systems
@@ -16,8 +17,10 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
         }
 
         public void Initialize()
-        { 
-            _grapplingHookFactory.CreateGrapplingHook(_provider.Context.HookSpawnPoint);
+        {
+            GameEntity hook = _grapplingHookFactory.CreateGrapplingHook(_provider.Context.HookSpawnPoint);
+            var view = _provider.Context.HookSpawnPoint.GetComponentInChildren<EntityView>();
+            view.SetEntity(hook);
         }
     }
 }
