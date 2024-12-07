@@ -1,9 +1,6 @@
-﻿using Code.Gameplay.Features.RoundState.Configs;
-using Code.Gameplay.Features.RoundState.Service;
+﻿using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.StaticData;
-using Cysharp.Threading.Tasks;
 using TMPro;
-using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 using Zenject;
 
@@ -35,7 +32,7 @@ namespace Code.Gameplay.Features.RoundState.Behaviours
             _roundStateService.OnEnterRoundPreparation -= ResetTimer;
             _roundStateService.OnDayBegin -= ResetTimer;
         }
-        
+
         private void ResetTimer()
         {
             float roundDuration = _roundStateService.GetDayData().RoundDuration;
