@@ -1,36 +1,34 @@
-﻿using System.Collections.Generic;
-using Entitas;
+﻿using Entitas;
 
 namespace Code.Gameplay.Features.RoundStart.Systems
 {
-    public class RequestRoundStartByAxisInputSystem : ReactiveSystem<InputEntity>
+    public class RequestRoundStartByAxisInputSystem : IExecuteSystem
     {
+        private readonly IGroup<InputEntity> _entities;
         private readonly IGroup<GameEntity> _roundControllers;
 
-        public RequestRoundStartByAxisInputSystem(InputContext context, GameContext gameContext) : base(context)
+        public RequestRoundStartByAxisInputSystem(InputContext context, GameContext gameContext)
         {
+            _entities = context.GetGroup(InputMatcher
+                .AllOf(InputMatcher.MovementAxis
+                ));
+            
             _roundControllers = gameContext
                 .GetGroup(GameMatcher
                     .AllOf(GameMatcher.RoundStateController));
         }
 
-        protected override ICollector<InputEntity> GetTrigger(IContext<InputEntity> context)
+        public void Execute()
         {
-            return context.CreateCollector(InputMatcher
-                .AnyOf(
-                    InputMatcher.MovementAxis).Added());
-        }
-
-        protected override bool Filter(InputEntity entity)
-        {
-            return true;
-        }
-
-        protected override void Execute(List<InputEntity> entities)
-        {
-            foreach (var controller in _roundControllers)
+            foreach (var entity in _entities)
             {
-                controller.isRoundStartRequest = true;
+                if (entity.MovementAxis.x > 0)
+                {
+                    foreach (var controller in _roundControllers)
+                    {
+                        controller.isRoundStartRequest = true;
+                    }
+                }
             }
         }
     }

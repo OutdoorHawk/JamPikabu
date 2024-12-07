@@ -34,8 +34,8 @@ MonoBehaviour:
     MinDayToUnlock: 2
     MaxDayToUnlock: 0
   LootSpawnInterval: 0.02
-  LootSpawnConveyorInterval: 0.3
-  LootSpawnStartDelay: 0.5
+  LootSpawnConveyorInterval: 0.5
+  LootSpawnStartDelay: 0.15
   MaxLootAmount: 40
   CollectFlyAnimationDuration: 0.5
   CollectFlyMinMaxJump: {x: -1, y: 2}
