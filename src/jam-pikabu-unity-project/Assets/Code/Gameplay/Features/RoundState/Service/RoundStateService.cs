@@ -16,6 +16,7 @@ namespace Code.Gameplay.Features.RoundState.Service
     public class RoundStateService : IRoundStateService
     {
         public event Action OnEnterRoundPreparation;
+        public event Action OnDayComplete;
         
         private readonly IRoundStateFactory _roundStateFactory;
         private readonly IStaticDataService _staticDataService;
@@ -68,6 +69,7 @@ namespace Code.Gameplay.Features.RoundState.Service
         public void DayComplete()
         {
             LoadNextLevelAsync().Forget();
+            OnDayComplete?.Invoke();
         }
 
         public DayData GetDayData()

@@ -11,5 +11,7 @@
         EffectTarget = 6,
         Consume = 7,
         Replenish = 8,
+        Swap = 9,
+        Hide = 10,
     }
 }
