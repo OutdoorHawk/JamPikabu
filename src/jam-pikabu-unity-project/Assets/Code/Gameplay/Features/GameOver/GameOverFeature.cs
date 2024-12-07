@@ -1,5 +1,4 @@
-﻿using Code.Gameplay.Features.GameOver.Systems;
-using Code.Infrastructure.Systems;
+﻿using Code.Infrastructure.Systems;
 
 namespace Code.Gameplay.Features.GameOver
 {
@@ -7,7 +6,8 @@ namespace Code.Gameplay.Features.GameOver
     {
         public GameOverFeature(ISystemFactory systems)
         {
-            Add(systems.Create<ProcessGameOverWhenInsufficientFundsSystem>());
+            //Add(systems.Create<ProcessGameOverWhenInsufficientFundsSystem>());
+         
         }
     }
 }

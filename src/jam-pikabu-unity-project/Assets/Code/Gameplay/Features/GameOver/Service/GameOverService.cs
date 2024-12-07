@@ -82,9 +82,9 @@ namespace Code.Gameplay.Features.GameOver.Service
         private async UniTaskVoid GameWinAsync()
         {
             IsGameWin = true;
-            Cleanup();
-            BlockInput();
             _gameStateMachine.Enter<GameOverState>();
+            BlockInput();
+            Cleanup();
             await DelaySeconds(1, new CancellationToken());
             _windowService.Close(WindowTypeId.OrderWindow);
             _windowService.OpenWindow(WindowTypeId.GameWinWindow);
@@ -93,9 +93,9 @@ namespace Code.Gameplay.Features.GameOver.Service
         private async UniTaskVoid GameOverAsync()
         {
             BlockInput();
-            Cleanup();
             _saveLoadService.SaveProgress();
             _gameStateMachine.Enter<GameOverState>();
+            Cleanup();
             await DelaySeconds(1, new CancellationToken());
             _windowService.Close(WindowTypeId.OrderWindow);
             _windowService.OpenWindow(WindowTypeId.GameLostWindow);
@@ -109,7 +109,6 @@ namespace Code.Gameplay.Features.GameOver.Service
         private void Cleanup()
         {
             _ordersService.GameOver();
-            _gameplayCurrencyService.Cleanup();
             _roundStateService.GameOver();
         }
     }

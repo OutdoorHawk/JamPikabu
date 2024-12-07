@@ -6,6 +6,9 @@ using Code.Gameplay.Features.RoundState.Configs;
 using Code.Gameplay.Sound;
 using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
+using Code.Infrastructure.States.GameStates.Game;
+using Code.Infrastructure.States.StateMachine;
+using UnityEngine;
 
 namespace Code.Gameplay.Features.Currency.Service
 {
@@ -13,6 +16,7 @@ namespace Code.Gameplay.Features.Currency.Service
     {
         private readonly ISoundService _soundService;
         private readonly IStaticDataService _staticDataService;
+        private readonly IGameStateMachine _gameStateMachine;
         private readonly ICurrencyFactory _currencyFactory;
 
         public event Action CurrencyChanged;
@@ -26,11 +30,13 @@ namespace Code.Gameplay.Features.Currency.Service
         public GameplayCurrencyService
         (
             ISoundService soundService,
-            IStaticDataService staticDataService
+            IStaticDataService staticDataService,
+            IGameStateMachine gameStateMachine
         )
         {
             _soundService = soundService;
             _staticDataService = staticDataService;
+            _gameStateMachine = gameStateMachine;
         }
 
         public void OnConfigsInitInitComplete()
@@ -41,6 +47,7 @@ namespace Code.Gameplay.Features.Currency.Service
         public int GetCurrencyOfType(CurrencyTypeId typeId)
         {
             CurrencyCount currency = GetCurrencyOfTypeInternal(typeId);
+            
             if (currency == null)
                 return 0;
             return currency.Amount - currency.Withdraw;
@@ -48,7 +55,12 @@ namespace Code.Gameplay.Features.Currency.Service
 
         public void UpdateCurrencyAmount(int newAmount, int withdraw, CurrencyTypeId typeId)
         {
+            if (_gameStateMachine.ActiveState is GameOverState)
+                return;
+
             CurrencyCount currency = GetCurrencyOfTypeInternal(typeId);
+            if (currency == null)
+                return;
             bool changed = false;
 
             if (currency.Withdraw != withdraw)
@@ -77,28 +89,18 @@ namespace Code.Gameplay.Features.Currency.Service
             }
         }
 
-        private void PlaySoftCurrencySound(int newAmount, CurrencyCount currency)
-        {
-            if (currency.Amount == 0)
-                return;
-
-            if (newAmount > currency.Amount)
-                _soundService.PlaySound(SoundTypeId.Soft_Currency_Collect);
-        }
-
         private CurrencyCount GetCurrencyOfTypeInternal(CurrencyTypeId typeId)
         {
-            return _currencies[typeId];
+            return _currencies.GetValueOrDefault(typeId);
         }
 
         public void Cleanup()
         {
             _currencies.Clear();
             CurrencyChanged = null;
-            InitCurrency();
         }
 
-        private void InitCurrency()
+        public void InitCurrency()
         {
             var currencyConfig = _staticDataService.GetStaticData<CurrencyStaticData>();
             var roundState = _staticDataService.GetStaticData<RoundStateStaticData>();

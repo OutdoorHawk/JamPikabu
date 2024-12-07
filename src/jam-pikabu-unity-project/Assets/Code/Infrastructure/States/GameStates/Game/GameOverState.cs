@@ -1,4 +1,5 @@
 ﻿using Code.Gameplay.Features;
+using Code.Gameplay.Features.Currency.Service;
 using Code.Gameplay.Input;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.Systems;
@@ -10,6 +11,7 @@ namespace Code.Infrastructure.States.GameStates.Game
         private readonly ISystemFactory _systemFactory;
         private readonly GameContext _gameContext;
         private readonly InputContext _inputContext;
+        private readonly IGameplayCurrencyService _gameplayCurrencyService;
 
         private RoundPreparationLoopFeature _gameLoopFeature;
         private InputFeature _inputFeature;
@@ -18,12 +20,14 @@ namespace Code.Infrastructure.States.GameStates.Game
         (
             ISystemFactory systemFactory,
             GameContext gameContext,
-            InputContext inputContext
+            InputContext inputContext,
+            IGameplayCurrencyService gameplayCurrencyService
         )
         {
             _systemFactory = systemFactory;
             _gameContext = gameContext;
             _inputContext = inputContext;
+            _gameplayCurrencyService = gameplayCurrencyService;
         }
 
         public override void Enter()

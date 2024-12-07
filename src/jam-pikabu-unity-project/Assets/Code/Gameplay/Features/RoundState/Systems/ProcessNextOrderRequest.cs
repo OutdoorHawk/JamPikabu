@@ -6,6 +6,7 @@ using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Behaviours;
 using Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation;
 using Code.Gameplay.Features.Currency.Factory;
+using Code.Gameplay.Features.Currency.Service;
 using Code.Gameplay.Features.GameOver.Service;
 using Code.Gameplay.Features.HUD;
 using Code.Gameplay.Features.Loot.Service;
@@ -19,7 +20,7 @@ using static Code.Common.Extensions.AsyncGameplayExtensions;
 
 namespace Code.Gameplay.Features.RoundState.Systems
 {
-    public class ProcessNextOrderRequest : IExecuteSystem, ITearDownSystem
+    public class ProcessNextOrderRequest : IExecuteSystem, ITearDownSystem,ICleanupSystem 
     {
         private readonly IRoundStateService _roundStateService;
         private readonly IOrdersService _ordersService;
@@ -27,6 +28,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
         private readonly ICurrencyFactory _currencyFactory;
         private readonly IWindowService _windowService;
         private readonly ILootService _lootService;
+        private readonly IGameplayCurrencyService _service;
 
         private readonly IGroup<GameEntity> _entities;
         private readonly IGroup<GameEntity> _roundStateController;
@@ -36,7 +38,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
         private readonly CancellationTokenSource _tearDownSource = new();
 
         public ProcessNextOrderRequest(GameContext context, IRoundStateService roundStateService, IOrdersService ordersService,
-            IGameOverService gameOverService, ICurrencyFactory currencyFactory, IWindowService windowService, ILootService lootService)
+            IGameOverService gameOverService, ICurrencyFactory currencyFactory, IWindowService windowService, ILootService lootService, IGameplayCurrencyService service)
         {
             _roundStateService = roundStateService;
             _ordersService = ordersService;
@@ -44,6 +46,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
             _currencyFactory = currencyFactory;
             _windowService = windowService;
             _lootService = lootService;
+            _service = service;
 
             _entities = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.NextOrderRequest
@@ -90,8 +93,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
             {
                 _roundStateService.DayComplete();
                 _gameOverService.GameWin();
-                DestroyCurrency();
-                state.ReplaceDayCost(0);
+                state.isGameOver = true;
                 return;
             }
 
@@ -134,8 +136,8 @@ namespace Code.Gameplay.Features.RoundState.Systems
 
             if (gameOver)
             {
+                state.isGameOver = true;
                 _gameOverService.GameOver();
-                DestroyCurrency();
                 state.ReplaceDayCost(0);
             }
             else
@@ -156,6 +158,19 @@ namespace Code.Gameplay.Features.RoundState.Systems
         public void TearDown()
         {
             _tearDownSource.Cancel();
+        }
+
+        public void Cleanup()
+        {
+            foreach (GameEntity gameEntity in _roundStateController)
+            {
+                if (gameEntity.isGameOver)
+                {
+                    DestroyCurrency();
+                    _service.Cleanup();
+                    _service.InitCurrency();
+                }
+            }
         }
     }
 }

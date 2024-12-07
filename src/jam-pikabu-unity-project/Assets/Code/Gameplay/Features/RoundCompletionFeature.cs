@@ -1,5 +1,6 @@
 ﻿using Code.Common.Destruct;
 using Code.Gameplay.Features.Currency;
+using Code.Gameplay.Features.GameOver;
 using Code.Gameplay.Features.GrapplingHook.Systems;
 using Code.Gameplay.Features.Loot;
 using Code.Gameplay.Features.Orders;
@@ -16,7 +17,8 @@ namespace Code.Gameplay.Features
 
             Add(systems.Create<LootConsumeFeature>());
             Add(systems.Create<OrderCompletionFeature>());
-
+            Add(systems.Create<GameOverFeature>());
+            
             Add(systems.Create<CurrencyFeature>());
 
             Add(systems.Create<ProcessDestructedFeature>());
