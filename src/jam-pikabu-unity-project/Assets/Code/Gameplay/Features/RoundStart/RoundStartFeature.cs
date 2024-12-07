@@ -12,6 +12,7 @@ namespace Code.Gameplay.Features.RoundStart
             Add(systems.Create<RequestRoundStartByAxisInputSystem>());
             Add(systems.Create<BlockRoundStartAvailableWhenRoundIsProcessingSystem>());
             Add(systems.Create<BlockRoundStartAvailableWhenRoundNotCompleteSystem>());
+            Add(systems.Create<BlockRoundStartWhenAnyOtherWindowOpenSystem>());
 
             Add(systems.Create<ProcessRoundStartRequestSystem>());
             Add(systems.Create<RefreshRoundCostSystem>());

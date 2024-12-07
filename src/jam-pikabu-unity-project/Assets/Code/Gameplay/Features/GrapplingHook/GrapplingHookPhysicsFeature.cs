@@ -15,6 +15,7 @@ namespace Code.Gameplay.Features.GrapplingHook
             Add(systems.Create<BlockGrapplingHookXMovementWhenClosingClawsSystem>());
             Add(systems.Create<BlockGrapplingHookMovementWhenAscendingSystem>());
             Add(systems.Create<BlockGrapplingHookMovementWhenCollectingLootSystem>());
+            Add(systems.Create<BlockGrapplingHookMovementWhenAnyOtherWindowOpenSystem>());
             
             Add(systems.Create<MoveGrapplingHookByXAxisSystem>());
             
