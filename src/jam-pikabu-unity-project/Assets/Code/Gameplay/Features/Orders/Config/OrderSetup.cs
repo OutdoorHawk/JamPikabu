@@ -20,8 +20,13 @@ namespace Code.Gameplay.Features.Orders.Config
         public CostSetup Reward = new(CurrencyTypeId.Gold);
         public int MinDayToUnlock;
         public int MaxDayToUnlock;
+        [Header("ManualDish")]
         public List<IngredientData> GoodIngredients;
         public List<IngredientData> BadIngredients;
+        /*[Header("RandomDish")]
+        public bool RandomIngredients;
+        public int MinGoodIngredients;
+        public int MaxGoodIngredients;*/
        // public int UniqueIngredientsForBonus;
     }
 }
