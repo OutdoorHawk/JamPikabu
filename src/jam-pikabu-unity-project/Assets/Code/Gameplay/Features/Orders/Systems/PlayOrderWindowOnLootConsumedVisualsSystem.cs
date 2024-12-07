@@ -64,13 +64,6 @@ namespace Code.Gameplay.Features.Orders.Systems
             _tasksBuffer.Clear();
 
             var order = _ordersService.GetCurrentOrder();
-
-            CreateGameEntity
-                .Empty()
-                .With(x => x.isAddCurrencyRequest = true)
-                .AddGold(0)
-                .AddWithdraw(-order.Setup.Reward.Amount)
-                ;
             
             CreateGameEntity
                 .Empty()

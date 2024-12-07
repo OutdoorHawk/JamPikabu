@@ -1,11 +1,13 @@
 ﻿using Code.Common.Extensions;
 using Code.Gameplay.Features.Currency.Config;
 using Code.Gameplay.StaticData;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using static Code.Common.Extensions.AsyncGameplayExtensions;
 
 namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
 {
@@ -66,17 +68,14 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
             Vector3 endPosition = parameters.EndPosition; // конечная точка (в глобальных координатах)
             float flightDuration = _flyDuration; // длительность полета к финальной позиции
             float scatterDuration = _scatterDuration; // длительность разлета
-            float textFadeDuration = 0.5f; // длительность разлета
+            float textFadeDuration = 0.65f; // длительность разлета
             float spreadRange = 10f; // радиус разлета
             
             Sequence animationSequence = DOTween.Sequence();
 
             transform.position = startPosition;
-
-            // Настройка текста
-            _text.alpha = 1;
-            _text.DOFade(1, textFadeDuration)
-                .OnComplete(() => _text.DOFade(0, textFadeDuration * 2));
+            
+            TextAnimation(textFadeDuration).Forget();
 
             foreach (var rect in _rects)
             {
@@ -115,6 +114,13 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
 
             animationSequence.SetLink(gameObject);
             animationSequence.Play();
+        }
+
+        private async UniTaskVoid TextAnimation(float textFadeDuration)
+        {
+            _text.alpha = 1;
+            await DelaySeconds(textFadeDuration, _text.destroyCancellationToken);
+            _text.DOFade(0, textFadeDuration);
         }
 
         private void CompleteMovement(RectTransform rect, CurrencyAnimationParameters parameters)

@@ -67,6 +67,7 @@ namespace Code.Gameplay.Features.Orders.Windows
         {
             await DelaySeconds(_startCompleteAnimationDelay, destroyCancellationToken);
             await PlayOrderCompleteInternal();
+            await PlayGoldAnimation();
         }
 
         private void InitOrder()
@@ -124,24 +125,50 @@ namespace Code.Gameplay.Features.Orders.Windows
                 Count = count,
                 StartPosition = lootItem.transform.position,
                 EndPosition = price.CurrencyIcon.transform.position,
-                StartReplenishCallback = () => RemoveWithdraw(price,ingredientData, count)
+                StartReplenishCallback = () => RemoveWithdraw(price, ingredientData, count)
             };
-            
+
             await lootItem.AnimateConsume();
-            
+
             _currencyFactory.PlayCurrencyAnimation(parameters);
         }
 
         private static void RemoveWithdraw(PriceInfo price, IngredientData ingredientData, int count)
         {
-            if (price != null) 
+            if (price != null)
                 price.PlayReplenish();
-            
+
             CreateGameEntity.Empty()
                 .With(x => x.isAddCurrencyRequest = true)
                 .With(x => x.AddPlus(0), when: ingredientData.Rating.CurrencyType == CurrencyTypeId.Plus)
                 .With(x => x.AddMinus(0), when: ingredientData.Rating.CurrencyType == CurrencyTypeId.Minus)
                 .With(x => x.AddWithdraw(-count))
+                ;
+        }
+
+        private async UniTask PlayGoldAnimation()
+        {
+            await DelaySeconds(1f, destroyCancellationToken);
+            
+            var parameters = new CurrencyAnimationParameters
+            {
+                Type = _currentOrder.Setup.Reward.CurrencyType,
+                Count = _currentOrder.Setup.Reward.Amount,
+                StartPosition = _orderReward.CurrencyIcon.transform.position,
+                EndPosition = _currencyHolder.PlayerCurrentGold.CurrencyIcon.transform.position,
+                StartReplenishCallback = () => RemoveWithdraw(_currentOrder.Setup.Reward.Amount)
+            };
+            
+            _currencyFactory.PlayCurrencyAnimation(parameters);
+        }
+
+        private void RemoveWithdraw(int rewardAmount)
+        {
+            CreateGameEntity
+                .Empty()
+                .With(x => x.isAddCurrencyRequest = true)
+                .AddGold(0)
+                .AddWithdraw(-rewardAmount)
                 ;
         }
     }
