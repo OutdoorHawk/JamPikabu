@@ -50,7 +50,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
             {
                 entity.isDestructed = true;
                 
-                if (_ordersService.OrdersCompleted())
+                if (_ordersService.CheckOrdersCompleted())
                 {
                     TryPayQuota(storage, state).Forget();
                 }

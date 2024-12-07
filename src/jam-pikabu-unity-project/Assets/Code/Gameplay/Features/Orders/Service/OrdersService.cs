@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Code.Gameplay.Features.Loot;
 using Code.Gameplay.Features.Loot.Service;
 using Code.Gameplay.Features.Orders.Config;
@@ -12,6 +13,8 @@ namespace Code.Gameplay.Features.Orders.Service
 {
     public class OrdersService : IOrdersService
     {
+        public event Action OnOrderUpdated;
+        
         private readonly IStaticDataService _staticDataService;
         private readonly IRoundStateService _roundStateService;
         private readonly IOrdersFactory _ordersFactory;
@@ -23,6 +26,9 @@ namespace Code.Gameplay.Features.Orders.Service
 
         private readonly List<OrderData> _ordersBuffer = new();
         private readonly Dictionary<LootTypeId, IngredientData> _orderIngredientCostDict = new();
+
+        public int OrdersCompleted => _ordersCompleted;
+        public int MaxOrders => _ordersData.OrdersAmountInDay;
 
         public OrdersService(IStaticDataService staticDataService,
             IRoundStateService roundStateService, IOrdersFactory ordersFactory, ILootService lootService)
@@ -88,7 +94,7 @@ namespace Code.Gameplay.Features.Orders.Service
             return _ordersBuffer[_currentOrderIndex];
         }
 
-        public bool OrdersCompleted()
+        public bool CheckOrdersCompleted()
         {
             return _ordersCompleted + 1 >= _ordersData.OrdersAmountInDay;
         }
@@ -104,6 +110,7 @@ namespace Code.Gameplay.Features.Orders.Service
                 _currentOrderIndex = 0;
 
             _roundStateService.PrepareToNextRound();
+            OnOrderUpdated?.Invoke();
         }
 
         public void GameOver()

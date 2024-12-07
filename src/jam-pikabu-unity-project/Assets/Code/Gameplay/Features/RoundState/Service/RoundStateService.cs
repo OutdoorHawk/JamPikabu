@@ -16,6 +16,7 @@ namespace Code.Gameplay.Features.RoundState.Service
     public class RoundStateService : IRoundStateService
     {
         public event Action OnEnterRoundPreparation;
+        public event Action OnDayBegin;
         public event Action OnDayComplete;
         
         private readonly IRoundStateFactory _roundStateFactory;
@@ -28,6 +29,7 @@ namespace Code.Gameplay.Features.RoundState.Service
         private int _currentDay;
 
         public int CurrentDay => _currentDay;
+        public int MaxDays => _staticDataService.GetStaticData<RoundStateStaticData>().Days.Count;
 
         public RoundStateService
         (
@@ -53,6 +55,8 @@ namespace Code.Gameplay.Features.RoundState.Service
                 .AddDayCost(_currentDayData.PlayCost)
                 .AddDay(_currentDay)
                 ;
+            
+            OnDayBegin?.Invoke();
         }
 
         public void RoundEnd()

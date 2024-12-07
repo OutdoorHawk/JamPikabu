@@ -18,7 +18,7 @@ namespace Code.Gameplay.Features
             Add(systems.Create<CooldownSystem>());
             Add(systems.Create<RoundStartFeature>());
 
-            Add(systems.Create<UpdateLootValueForOrderOnRoundStartSystem>());
+            Add(systems.Create<CreateOrderOnRoundStartSystem>());
             Add(systems.Create<ContinuousSpawnLootSystem>());
 
             Add(systems.Create<CurrencyFeature>());

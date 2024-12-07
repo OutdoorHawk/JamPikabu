@@ -117,7 +117,7 @@ namespace Code.Gameplay.Features.Orders.Windows
         {
             IngredientData ingredientData = _ordersService.GetIngredientData(lootItem.Type);
             IEnumerable<LootTypeId> collected = _lootService.CollectedLootItems.Where(item => item == ingredientData.TypeId);
-            int count = ingredientData.Rating.Amount * collected.Count();
+            int count = collected.Count();
 
             if (count == 0)
                 return;
