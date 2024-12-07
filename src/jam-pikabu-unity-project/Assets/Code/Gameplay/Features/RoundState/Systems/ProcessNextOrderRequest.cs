@@ -8,6 +8,7 @@ using Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation;
 using Code.Gameplay.Features.Currency.Factory;
 using Code.Gameplay.Features.GameOver.Service;
 using Code.Gameplay.Features.HUD;
+using Code.Gameplay.Features.Loot.Service;
 using Code.Gameplay.Features.Orders.Service;
 using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.Windows.Service;
@@ -24,6 +25,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
         private readonly IGameOverService _gameOverService;
         private readonly ICurrencyFactory _currencyFactory;
         private readonly IWindowService _windowService;
+        private readonly ILootService _lootService;
 
         private readonly IGroup<GameEntity> _entities;
         private readonly IGroup<GameEntity> _roundStateController;
@@ -32,13 +34,14 @@ namespace Code.Gameplay.Features.RoundState.Systems
         private readonly CancellationTokenSource _tearDownSource = new();
 
         public ProcessNextOrderRequest(GameContext context, IRoundStateService roundStateService, IOrdersService ordersService,
-            IGameOverService gameOverService, ICurrencyFactory currencyFactory, IWindowService windowService)
+            IGameOverService gameOverService, ICurrencyFactory currencyFactory, IWindowService windowService, ILootService lootService)
         {
             _roundStateService = roundStateService;
             _ordersService = ordersService;
             _gameOverService = gameOverService;
             _currencyFactory = currencyFactory;
             _windowService = windowService;
+            _lootService = lootService;
 
             _entities = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.NextOrderRequest
@@ -61,6 +64,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
             foreach (var storage in _storages)
             {
                 entity.isDestructed = true;
+                _lootService.ClearCollectedLoot();
 
                 if (_ordersService.CheckOrdersCompleted())
                 {

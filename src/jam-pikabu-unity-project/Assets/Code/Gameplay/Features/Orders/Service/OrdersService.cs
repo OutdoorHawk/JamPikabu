@@ -117,7 +117,6 @@ namespace Code.Gameplay.Features.Orders.Service
 
         public void GoToNextOrder()
         {
-            _lootService.ClearCollectedLoot();
             _ordersCompleted++;
 
             _currentOrderIndex++;

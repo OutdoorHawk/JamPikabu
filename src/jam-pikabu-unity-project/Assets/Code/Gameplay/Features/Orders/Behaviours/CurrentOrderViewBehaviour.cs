@@ -30,7 +30,7 @@ namespace Code.Gameplay.Features.Orders.Behaviours
 
         private void UpdateText()
         {
-            _orderText.text = $"{_ordersService.OrdersCompleted}/{_ordersService.MaxOrders}";
+            _orderText.text = $"{_ordersService.OrdersCompleted+1}/{_ordersService.MaxOrders}";
         }
     }
 }
