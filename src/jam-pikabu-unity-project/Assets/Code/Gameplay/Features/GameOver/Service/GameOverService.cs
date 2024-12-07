@@ -91,6 +91,7 @@ namespace Code.Gameplay.Features.GameOver.Service
             _gameplayCurrencyService.Cleanup();
             _roundStateService.GameOver();
             await DelaySeconds(1, new CancellationToken());
+            _windowService.Close(WindowTypeId.OrderWindow);
             _windowService.OpenWindow(WindowTypeId.GameLostWindow);
         }
 

@@ -1,11 +1,16 @@
-﻿using Code.Gameplay.Features.GameOver.Service;
+﻿using System.Threading;
+using Code.Common.Entity;
+using Code.Common.Extensions;
+using Code.Gameplay.Features.GameOver.Service;
 using Code.Gameplay.Features.Orders.Service;
 using Code.Gameplay.Features.RoundState.Service;
+using Cysharp.Threading.Tasks;
 using Entitas;
+using static Code.Common.Extensions.AsyncGameplayExtensions;
 
 namespace Code.Gameplay.Features.RoundState.Systems
 {
-    public class ProcessNextOrderRequest : IExecuteSystem
+    public class ProcessNextOrderRequest : IExecuteSystem, ITearDownSystem
     {
         private readonly IRoundStateService _roundStateService;
         private readonly IOrdersService _ordersService;
@@ -14,7 +19,10 @@ namespace Code.Gameplay.Features.RoundState.Systems
         private readonly IGroup<GameEntity> _roundStateController;
         private readonly IGroup<GameEntity> _storages;
 
-        public ProcessNextOrderRequest(GameContext context, IRoundStateService roundStateService, IOrdersService ordersService, IGameOverService gameOverService)
+        private CancellationTokenSource _tearDownSource = new();
+
+        public ProcessNextOrderRequest(GameContext context, IRoundStateService roundStateService, IOrdersService ordersService,
+            IGameOverService gameOverService)
         {
             _roundStateService = roundStateService;
             _ordersService = ordersService;
@@ -27,9 +35,9 @@ namespace Code.Gameplay.Features.RoundState.Systems
             _roundStateController = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.RoundStateController
                 ));
-            
-            _storages =  context.GetGroup(GameMatcher
-                .AllOf(GameMatcher.CurrencyStorage, 
+
+            _storages = context.GetGroup(GameMatcher
+                .AllOf(GameMatcher.CurrencyStorage,
                     GameMatcher.Gold
                 ));
         }
@@ -41,17 +49,39 @@ namespace Code.Gameplay.Features.RoundState.Systems
             foreach (var storage in _storages)
             {
                 entity.isDestructed = true;
-
-                _ordersService.GoToNextOrder();
-
-                if (_ordersService.OrdersCompleted() == false)
-                    continue;
-
-                if (storage.Gold < state.DayCost) 
-                    _gameOverService.GameOver();
+                
+                if (_ordersService.OrdersCompleted())
+                {
+                    TryPayQuota(storage, state).Forget();
+                }
                 else
-                    _roundStateService.DayComplete();
+                {
+                    _ordersService.GoToNextOrder();
+                }
             }
+        }
+
+        private async UniTaskVoid TryPayQuota(GameEntity storage, GameEntity state)
+        {
+            bool gameOver = storage.Gold < state.DayCost;
+
+            CreateGameEntity
+                .Empty()
+                .With(x => x.isAddCurrencyRequest = true)
+                .AddGold(-state.DayCost)
+                ;
+
+            await DelaySeconds(1, _tearDownSource.Token);
+
+            if (gameOver)
+                _gameOverService.GameOver();
+            else
+                _roundStateService.DayComplete();
+        }
+
+        public void TearDown()
+        {
+            _tearDownSource.Cancel();
         }
     }
 }

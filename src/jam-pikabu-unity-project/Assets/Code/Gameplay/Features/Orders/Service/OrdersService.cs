@@ -90,7 +90,7 @@ namespace Code.Gameplay.Features.Orders.Service
 
         public bool OrdersCompleted()
         {
-            return _ordersCompleted >= _ordersData.OrdersAmountInDay;
+            return _ordersCompleted + 1 >= _ordersData.OrdersAmountInDay;
         }
         
         public void GoToNextOrder()

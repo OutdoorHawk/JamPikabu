@@ -53,4 +53,4 @@ MonoBehaviour:
         Rating:
           CurrencyType: 3
           Amount: 3
-  OrdersAmountInDay: 2
+  OrdersAmountInDay: 1
