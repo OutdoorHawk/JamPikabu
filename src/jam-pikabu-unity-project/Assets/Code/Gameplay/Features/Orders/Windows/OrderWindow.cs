@@ -142,6 +142,7 @@ namespace Code.Gameplay.Features.Orders.Windows
                 Count = count,
                 StartPosition = lootItem.transform.position,
                 EndPosition = price.CurrencyIcon.transform.position,
+                StartReplenishSound = SoundTypeId.Soft_Currency_Collect,
                 StartReplenishCallback = () => RemoveWithdraw(price, ingredientData, count)
             };
 

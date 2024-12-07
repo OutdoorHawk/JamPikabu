@@ -126,7 +126,16 @@ MonoBehaviour:
       Clips:
       - {fileID: 8300000, guid: 03b3b5da4d1c10e4c8d92c6099a402a7, type: 3}
       SourceType: 4
-      Volume: 1
+      Volume: 0.6
       RandomizePitch: 1
       PitchMin: 2
       PitchMax: 2.5
+  - SoundType: 38
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: 03b3b5da4d1c10e4c8d92c6099a402a7, type: 3}
+      SourceType: 4
+      Volume: 0.35
+      RandomizePitch: 1
+      PitchMin: 3.5
+      PitchMax: 4

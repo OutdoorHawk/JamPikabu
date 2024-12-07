@@ -50,5 +50,6 @@
         Main_Menu_Music = 35,
         DestroyConstruction = 36,
         HookDescend = 37,
+        CustomerSwap = 38,
     }
 }

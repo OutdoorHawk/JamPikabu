@@ -4,6 +4,8 @@ using Code.Gameplay.Features.Customers.Config;
 using Code.Gameplay.Features.Customers.Service;
 using Code.Gameplay.Features.Orders.Service;
 using Code.Gameplay.Features.RoundState.Service;
+using Code.Gameplay.Sound;
+using Code.Gameplay.Sound.Service;
 using Code.Gameplay.Windows;
 using Code.Gameplay.Windows.Service;
 using Cysharp.Threading.Tasks;
@@ -25,6 +27,7 @@ namespace Code.Gameplay.Features.Customers.Behaviours
         private ICustomersService _customersService;
         private IOrdersService _ordersService;
         private IWindowService _windowService;
+        private ISoundService _soundService;
 
         private bool _hided;
 
@@ -32,8 +35,10 @@ namespace Code.Gameplay.Features.Customers.Behaviours
         private void Construct(IRoundStateService roundStateService,
             ICustomersService customersService,
             IOrdersService ordersService,
-            IWindowService windowService)
+            IWindowService windowService,
+            ISoundService soundService)
         {
+            _soundService = soundService;
             _windowService = windowService;
             _ordersService = ordersService;
             _customersService = customersService;
@@ -70,10 +75,14 @@ namespace Code.Gameplay.Features.Customers.Behaviours
         private async UniTaskVoid UpdateAsync()
         {
             if (_hided == false)
+            {
                 await _animator.WaitForAnimationCompleteAsync(AnimationParameter.Hide.AsHash(), destroyCancellationToken);
-
+                _soundService.PlayOneShotSound(SoundTypeId.CustomerSwap);
+            }
+            
             _hided = false;
             UpdateSprite();
+            _soundService.PlayOneShotSound(SoundTypeId.CustomerSwap);
             await _animator.WaitForAnimationCompleteAsync(AnimationParameter.Show.AsHash(), destroyCancellationToken);
             await DelaySeconds(_openOrderWindowDelay, destroyCancellationToken);
             _windowService.OpenWindow(WindowTypeId.OrderWindow);
