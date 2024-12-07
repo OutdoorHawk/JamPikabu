@@ -22,7 +22,7 @@ namespace Code.Gameplay.Features.RoundStart.Systems
         {
             foreach (var entity in _entities)
             {
-                if (entity.MovementAxis.x > 0)
+                if (entity.MovementAxis.x != 0)
                 {
                     foreach (var controller in _roundControllers)
                     {
