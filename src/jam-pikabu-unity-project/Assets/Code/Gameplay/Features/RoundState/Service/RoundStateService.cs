@@ -43,12 +43,12 @@ namespace Code.Gameplay.Features.RoundState.Service
             _gameStateMachine = gameStateMachine;
         }
 
-        public void BeginDay()
+        public void BeginDay(int day)
         {
             var staticData = _staticDataService.GetStaticData<RoundStateStaticData>();
             
+            _currentDay = day;
             _daysData = staticData.Days;
-            _currentDay++;
             
             _currentDayData = GetDayData(_currentDay);
 

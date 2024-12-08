@@ -1,5 +1,6 @@
 using Code.Common.Entity;
 using Code.Common.Extensions;
+using Code.Gameplay.Features.RoundState.Configs;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Tutorial.Service;
 using Code.Infrastructure.Localization;
@@ -68,6 +69,17 @@ namespace Code.Infrastructure.States.GameStates
                 _saveLoadService.LoadProgress();
             else
                 CreateNewProgress();
+            
+            int startGoldAmount = _staticData.GetStaticData<RoundStateStaticData>().StartGoldAmount;
+
+            CreateMetaEntity
+                .Empty()
+                .With(x => x.isStorage = true)
+                .With(x => x.AddGold(startGoldAmount));
+
+            CreateMetaEntity
+                .Empty()
+                .AddDay(0);
         }
 
         private void CreateNewProgress()

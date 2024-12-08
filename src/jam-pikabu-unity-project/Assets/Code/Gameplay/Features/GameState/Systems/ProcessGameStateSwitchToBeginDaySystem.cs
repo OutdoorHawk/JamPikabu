@@ -18,10 +18,12 @@ namespace Code.Gameplay.Features.GameState.Systems
         private readonly ILootFactory _lootFactory;
         private readonly IGroup<GameEntity> _requests;
         private readonly List<GameEntity> _buffer = new();
+        private readonly IGroup<MetaEntity> _daysMeta;
 
         public ProcessGameStateSwitchToBeginDaySystem
         (
             GameContext context,
+            MetaContext meta,
             IGameStateService gameStateService,
             IRoundStateService roundStateService,
             IOrdersService ordersService,
@@ -43,12 +45,17 @@ namespace Code.Gameplay.Features.GameState.Systems
             _entities = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.GameState
                 ));
+            
+            _daysMeta = meta.GetGroup(MetaMatcher
+                .AllOf(MetaMatcher.Day
+                ));
         }
 
         public void Execute()
         {
             foreach (var request in _requests)
             foreach (var entity in _entities.GetEntities(_buffer))
+            foreach (var day in _daysMeta)
             {
                 request.isDestructed = true;
 
@@ -56,15 +63,16 @@ namespace Code.Gameplay.Features.GameState.Systems
                 entity.isBeginDay = true;
                 entity.ReplaceGameStateTypeId(GameStateTypeId.BeginDay);
 
-                ProcessService();
+                ProcessService(day);
                 _gameStateService.CompleteStateSwitch(GameStateTypeId.BeginDay);
                 entity.isStateProcessingAvailable = true;
             }
         }
 
-        private void ProcessService()
+        private void ProcessService(MetaEntity day)
         {
-            _roundStateService.BeginDay();
+            day.ReplaceDay(day.Day + 1);
+            _roundStateService.BeginDay(day.Day);
             _ordersService.InitDay(_roundStateService.CurrentDay);
             _lootFactory.CreateLootSpawner();
             _lootService.InitLootBuffer();

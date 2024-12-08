@@ -10,11 +10,13 @@ namespace Code.Gameplay.Features.GameState.Systems
         private readonly IGameStateService _gameStateService;
         private readonly IGroup<GameEntity> _requests;
         private readonly List<GameEntity> _buffer = new();
+        private readonly IGroup<MetaEntity> _daysMeta;
 
         public ProcessGameStateSwitchToEndDaySystem
         (
             GameContext context,
-            IGameStateService gameStateService
+            IGameStateService gameStateService,
+            MetaContext meta
         )
         {
             _gameStateService = gameStateService;
@@ -28,12 +30,17 @@ namespace Code.Gameplay.Features.GameState.Systems
                 .AllOf(GameMatcher.GameState,
                     GameMatcher.RoundCompletion
                 ));
+
+            _daysMeta = meta.GetGroup(MetaMatcher
+                .AllOf(MetaMatcher.Day
+                ));
         }
 
         public void Execute()
         {
             foreach (var request in _requests)
             foreach (var gameState in _entities.GetEntities(_buffer))
+            foreach (var day in _daysMeta)
             {
                 request.isDestructed = true;
 
