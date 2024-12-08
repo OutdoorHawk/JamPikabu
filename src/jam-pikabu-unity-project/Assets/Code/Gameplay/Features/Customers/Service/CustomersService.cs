@@ -46,12 +46,14 @@ namespace Code.Gameplay.Features.Customers.Service
             }
             if (dayData.IsBoss)
                 return new CustomerSetup() {Sprite =  CustomerData.BossSprite};
+
+            if (_currentCustomerId >= _configs.Count)
+                return _configs[^1];
             return _configs[_currentCustomerId];
         }
 
         private void SetNewCustomer()
         {
-           
             if (_currentCustomerId >= _configs.Count)
                 _currentCustomerId = 0;
 

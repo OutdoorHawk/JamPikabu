@@ -35,7 +35,7 @@ namespace Code.Gameplay.Features.Loot.Configs
         {
             foreach (LootSetup lootSetup in Configs)
             {
-                lootSetup.ColliderSize = 0.85f;
+                lootSetup.ColliderSize = 0.8f;
             }
         }
     }
