@@ -220,6 +220,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spinner
       objectReference: {fileID: 0}
+    - target: {fileID: 3570839058494970503, guid: cdcc462f4f444174fb9159d5126cd943,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3807928698428601669, guid: cdcc462f4f444174fb9159d5126cd943,
         type: 3}
       propertyPath: m_Pivot.x
@@ -314,6 +319,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8569115069623697489, guid: cdcc462f4f444174fb9159d5126cd943,
+        type: 3}
+      propertyPath: m_text
+      value: "\u0417\u0410\u0413\u0420\u0423\u0417\u041A\u0410"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

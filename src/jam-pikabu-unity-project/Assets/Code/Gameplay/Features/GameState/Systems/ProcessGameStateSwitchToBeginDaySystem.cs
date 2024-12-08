@@ -5,6 +5,7 @@ using Code.Gameplay.Features.Loot.Service;
 using Code.Gameplay.Features.Orders.Service;
 using Code.Gameplay.Features.RoundState.Service;
 using Entitas;
+using UnityEngine;
 
 namespace Code.Gameplay.Features.GameState.Systems
 {
@@ -71,7 +72,6 @@ namespace Code.Gameplay.Features.GameState.Systems
 
         private void ProcessService(MetaEntity day)
         {
-            day.ReplaceDay(day.Day + 1);
             _roundStateService.BeginDay(day.Day);
             _ordersService.InitDay(_roundStateService.CurrentDay);
             _lootFactory.CreateLootSpawner();

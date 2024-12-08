@@ -1,12 +1,13 @@
 ﻿using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.StaticData;
+using Code.Infrastructure.View;
 using TMPro;
 using UnityEngine;
 using Zenject;
 
 namespace Code.Gameplay.Features.RoundState.Behaviours
 {
-    public class RoundStateViewBehaviour : MonoBehaviour
+    public class RoundStateViewBehaviour : EntityDependant
     {
         public TMP_Text RoundTimerText;
 

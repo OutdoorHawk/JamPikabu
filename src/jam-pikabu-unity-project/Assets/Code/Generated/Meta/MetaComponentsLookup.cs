@@ -12,21 +12,25 @@ public static class MetaComponentsLookup {
     public const int Id = 1;
     public const int Day = 2;
     public const int Gold = 3;
-    public const int AddCurrencyToStorageRequest = 4;
-    public const int Hard = 5;
-    public const int Storage = 6;
-    public const int ForAd = 7;
-    public const int BuyRequest = 8;
-    public const int Purchased = 9;
-    public const int ShopItemId = 10;
+    public const int Minus = 4;
+    public const int Plus = 5;
+    public const int AddCurrencyToStorageRequest = 6;
+    public const int Hard = 7;
+    public const int Storage = 8;
+    public const int ForAd = 9;
+    public const int BuyRequest = 10;
+    public const int Purchased = 11;
+    public const int ShopItemId = 12;
 
-    public const int TotalComponents = 11;
+    public const int TotalComponents = 13;
 
     public static readonly string[] componentNames = {
         "Destructed",
         "Id",
         "Day",
         "Gold",
+        "Minus",
+        "Plus",
         "AddCurrencyToStorageRequest",
         "Hard",
         "Storage",
@@ -41,6 +45,8 @@ public static class MetaComponentsLookup {
         typeof(Code.Gameplay.Common.Id),
         typeof(Code.Meta.Features.GameState.Day),
         typeof(Code.Meta.Features.GameState.Gold),
+        typeof(Code.Meta.Features.GameState.Minus),
+        typeof(Code.Meta.Features.GameState.Plus),
         typeof(Code.Meta.Features.Storage.AddCurrencyToStorageRequest),
         typeof(Code.Meta.Features.Storage.Hard),
         typeof(Code.Meta.Features.Storage.Storage),

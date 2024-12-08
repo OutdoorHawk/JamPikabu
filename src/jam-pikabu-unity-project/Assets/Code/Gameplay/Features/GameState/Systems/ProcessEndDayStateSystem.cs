@@ -16,8 +16,13 @@ using Code.Gameplay.Features.RoundState.Configs;
 using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.Sound;
 using Code.Gameplay.Windows.Service;
+using Code.Infrastructure.States.GameStates;
+using Code.Infrastructure.States.GameStates.Game;
+using Code.Infrastructure.States.StateInfrastructure;
+using Code.Infrastructure.States.StateMachine;
 using Cysharp.Threading.Tasks;
 using Entitas;
+using UnityEngine;
 using static Code.Common.Extensions.AsyncGameplayExtensions;
 
 namespace Code.Gameplay.Features.GameState.Systems
@@ -31,12 +36,14 @@ namespace Code.Gameplay.Features.GameState.Systems
         private readonly IGameOverService _gameOverService;
         private readonly IWindowService _windowService;
         private readonly ICurrencyFactory _currencyFactory;
+        private readonly IGameStateMachine _stateMachine;
 
         private readonly IGroup<GameEntity> _entities;
         private readonly IGroup<GameEntity> _goldStorage;
         private readonly List<GameEntity> _buffer = new();
         private readonly CancellationTokenSource _tearDownSource = new();
         private readonly IGroup<GameEntity> _roundState;
+        private readonly IGroup<MetaEntity> _days;
 
         public ProcessEndDayStateSystem
         (
@@ -47,7 +54,9 @@ namespace Code.Gameplay.Features.GameState.Systems
             ILootService lootService,
             IGameOverService gameOverService,
             IWindowService windowService,
-            ICurrencyFactory currencyFactory
+            ICurrencyFactory currencyFactory,
+            IGameStateMachine stateMachine,
+            MetaContext metaContext
         )
         {
             _gameStateService = gameStateService;
@@ -57,6 +66,7 @@ namespace Code.Gameplay.Features.GameState.Systems
             _gameOverService = gameOverService;
             _windowService = windowService;
             _currencyFactory = currencyFactory;
+            _stateMachine = stateMachine;
 
             _entities = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.GameState,
@@ -71,6 +81,10 @@ namespace Code.Gameplay.Features.GameState.Systems
             
             _roundState = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.RoundStateController
+                ));
+            
+            _days = metaContext.GetGroup(MetaMatcher
+                .AllOf(MetaMatcher.Day
                 ));
         }
 
@@ -118,8 +132,16 @@ namespace Code.Gameplay.Features.GameState.Systems
                 return;
             }
 
-            _roundService.LoadNextDay();
-            _gameStateService.AskToSwitchState(GameStateTypeId.BeginDay);
+            foreach (var day in _days)
+            {
+                int newValue = Mathf.Min(_roundService.MaxDays, day.Day + 1);
+                day.ReplaceDay(newValue);
+            }
+            
+            _stateMachine.Enter<GameOverState>();
+            await UniTask.Yield();
+            await UniTask.Yield();
+            _stateMachine.Enter<LoadLevelSimpleState, LoadLevelPayloadParameters>(new LoadLevelPayloadParameters());
         }
 
         private async UniTask PayForProductsAnimation(GameEntity storage, GameEntity roundState)

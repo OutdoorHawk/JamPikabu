@@ -76,11 +76,6 @@ namespace Code.Gameplay.Features.RoundState.Service
             OnDayComplete?.Invoke();
         }
 
-        public void LoadNextDay()
-        {
-            LoadNextLevelAsync().Forget();
-        }
-
         public bool CheckAllDaysComplete()
         {
             return _currentDay >= MaxDays;
@@ -91,7 +86,7 @@ namespace Code.Gameplay.Features.RoundState.Service
             return _currentDayData;
         }
 
-        private DayData GetDayData(int currentDay)
+        public DayData GetDayData(int currentDay)
         {
             foreach (DayData data in _daysData)
             {
@@ -106,18 +101,6 @@ namespace Code.Gameplay.Features.RoundState.Service
         {
             _currentDay = 0;
             _currentDayData = null;
-        }
-
-        private async UniTask LoadNextLevelAsync()
-        {
-            _gameStateMachine.Enter<GameOverState>();
-            
-            await DelaySeconds(1, new CancellationToken());
-
-            DayData dayData = GetDayData(_currentDay + 1);
-
-            var loadLevelPayloadParameters = new LoadLevelPayloadParameters(dayData.SceneId.ToString());
-            _gameStateMachine.Enter<LoadLevelState, LoadLevelPayloadParameters>(loadLevelPayloadParameters);
         }
     }
 }

@@ -6,6 +6,7 @@ using Code.Gameplay.Tutorial.Service;
 using Code.Infrastructure.Localization;
 using Code.Infrastructure.SceneLoading;
 using Code.Infrastructure.States.GameStateHandler;
+using Code.Infrastructure.States.GameStates.Game;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
 using Code.Infrastructure.Systems;
@@ -76,10 +77,18 @@ namespace Code.Infrastructure.States.GameStates
                 .Empty()
                 .With(x => x.isStorage = true)
                 .With(x => x.AddGold(startGoldAmount));
+            CreateMetaEntity
+                .Empty()
+                .With(x => x.isStorage = true)
+                .With(x => x.AddPlus(0));
+            CreateMetaEntity
+                .Empty()
+                .With(x => x.isStorage = true)
+                .With(x => x.AddMinus(0));
 
             CreateMetaEntity
                 .Empty()
-                .AddDay(0);
+                .AddDay(1);
         }
 
         private void CreateNewProgress()
@@ -100,11 +109,12 @@ namespace Code.Infrastructure.States.GameStates
         private void LoadNextState()
         {
             _gameStateHandlerService.OnExitLoadProgressState();
-#if UNITY_EDITOR
-            _stateMachine.Enter<EditorLoadSceneState>();
+            //_stateMachine.Enter<LoadLevelState, LoadLevelPayloadParameters>(new LoadLevelPayloadParameters(levelName: nameof(SceneTypeId.Level_1)));
+            _stateMachine.Enter<LoadLevelSimpleState,  LoadLevelPayloadParameters>(new LoadLevelPayloadParameters());
+/*#if UNITY_EDITOR
 #else
-            _stateMachine.Enter<LoadLevelState, LoadLevelPayloadParameters>(new LoadLevelPayloadParameters(levelName: nameof(SceneTypeId.Level_1)));
 #endif
+            _stateMachine.Enter<EditorLoadSceneState>();*/
         }
         
     }

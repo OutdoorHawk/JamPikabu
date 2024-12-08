@@ -14,9 +14,9 @@ namespace Code.Gameplay.Features.RoundState.Service
         void RoundEnd();
         void EnterRoundPreparation();
         void DayComplete();
-        void LoadNextDay();
         bool CheckAllDaysComplete();
         DayData GetDayData();
+        DayData GetDayData(int currentDay);
         void GameOver();
     }
 }

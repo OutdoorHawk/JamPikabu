@@ -13,7 +13,8 @@ namespace Code.Infrastructure.States.GameStates.Game
         private readonly InputContext _inputContext;
         private readonly IGameplayCurrencyService _gameplayCurrencyService;
 
-        private RoundPreparationLoopFeature _gameLoopFeature;
+        private GameLoopFeature _gameLoopFeature; 
+        private GameLoopPhysicsFeature _physicsLoopFeature;
         private InputFeature _inputFeature;
 
         public GameOverState
@@ -32,7 +33,8 @@ namespace Code.Infrastructure.States.GameStates.Game
 
         public override void Enter()
         {
-            _gameLoopFeature = _systemFactory.Create<RoundPreparationLoopFeature>();
+            _gameLoopFeature = _systemFactory.Create<GameLoopFeature>();
+            _physicsLoopFeature = _systemFactory.Create<GameLoopPhysicsFeature>();
             _inputFeature = _systemFactory.Create<InputFeature>();
         }
 
@@ -50,19 +52,24 @@ namespace Code.Infrastructure.States.GameStates.Game
             base.ExitOnEndOfFrame();
 
             _gameLoopFeature.DeactivateReactiveSystems();
+            _physicsLoopFeature.DeactivateReactiveSystems();
             _inputFeature.DeactivateReactiveSystems();
             _inputFeature.ClearReactiveSystems();
             _gameLoopFeature.ClearReactiveSystems();
+            _physicsLoopFeature.ClearReactiveSystems();
 
             foreach (GameEntity entity in _gameContext.GetEntities())
                 entity.isDestructed = true;
 
             _inputFeature.Cleanup();
             _gameLoopFeature.Cleanup();
+            _physicsLoopFeature.Cleanup();
             _gameLoopFeature.TearDown();
+            _physicsLoopFeature.TearDown();
             _inputFeature.TearDown();
 
             _gameLoopFeature = null;
+            _physicsLoopFeature = null;
             _inputFeature = null;
 
             foreach (GameEntity entity in _gameContext.GetEntities())

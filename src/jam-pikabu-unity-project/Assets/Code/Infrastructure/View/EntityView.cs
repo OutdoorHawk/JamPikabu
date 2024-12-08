@@ -1,4 +1,5 @@
-﻿using Code.Gameplay.Common.Collisions;
+﻿using System;
+using Code.Gameplay.Common.Collisions;
 using Code.Infrastructure.View.Registrars;
 using Entitas.VisualDebugging.Unity;
 using Sirenix.OdinInspector;
@@ -60,6 +61,9 @@ namespace Code.Infrastructure.View
 
         private void UnregisterCollisions()
         {
+            if (this == null)
+                return;
+            
             foreach (var coll in GetComponentsInChildren<Collider2D>())
                 _collisionRegistry.Unregister(coll.GetInstanceID());
         }

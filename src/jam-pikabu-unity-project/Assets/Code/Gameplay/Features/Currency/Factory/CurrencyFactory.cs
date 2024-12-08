@@ -26,13 +26,13 @@ namespace Code.Gameplay.Features.Currency.Factory
             _instantiator = instantiator;
         }
 
-        public void CreateCurrencyStorages()
+        public void CreateCurrencyStorages(int goldGold,  int plusPlus, int minusMinus)
         {
             CreateGameEntity
                 .Empty()
                 .With(x => x.isCurrencyStorage = true)
                 .AddCurrencyTypeId(CurrencyTypeId.Gold)
-                .AddGold(_gameplayCurrencyService.GetCurrencyOfType(CurrencyTypeId.Gold))
+                .AddGold(goldGold)
                 .AddWithdraw(0)
                 ;
 
@@ -40,7 +40,7 @@ namespace Code.Gameplay.Features.Currency.Factory
                 .Empty()
                 .With(x => x.isCurrencyStorage = true)
                 .AddCurrencyTypeId(CurrencyTypeId.Plus)
-                .AddPlus(_gameplayCurrencyService.GetCurrencyOfType(CurrencyTypeId.Plus))
+                .AddPlus(plusPlus)
                 .AddWithdraw(0)
                 ;
 
@@ -48,7 +48,7 @@ namespace Code.Gameplay.Features.Currency.Factory
                 .Empty()
                 .With(x => x.isCurrencyStorage = true)
                 .AddCurrencyTypeId(CurrencyTypeId.Plus)
-                .AddMinus(_gameplayCurrencyService.GetCurrencyOfType(CurrencyTypeId.Minus))
+                .AddMinus(minusMinus)
                 .AddWithdraw(0)
                 ;
         }

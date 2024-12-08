@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using Code.Gameplay.Features.Currency.Service;
 using Code.Gameplay.Features.Orders.Service;
+using Code.Gameplay.Features.RoundState.Configs;
 using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.Input.Service;
 using Code.Gameplay.StaticData;
@@ -88,6 +89,7 @@ namespace Code.Gameplay.Features.GameOver.Service
             await DelaySeconds(1, new CancellationToken());
             _windowService.Close(WindowTypeId.OrderWindow);
             _windowService.OpenWindow(WindowTypeId.GameWinWindow);
+            ResetMeta();
         }
 
         private async UniTaskVoid GameOverAsync()
@@ -99,6 +101,16 @@ namespace Code.Gameplay.Features.GameOver.Service
             await DelaySeconds(1, new CancellationToken());
             _windowService.Close(WindowTypeId.OrderWindow);
             _windowService.OpenWindow(WindowTypeId.GameLostWindow);
+
+            ResetMeta();
+        }
+
+        private void ResetMeta()
+        {
+            foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Day)) 
+                day.ReplaceDay(0);
+            foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Gold)) 
+                day.ReplaceGold(_staticData.GetStaticData<RoundStateStaticData>().StartGoldAmount);
         }
 
         private void BlockInput()

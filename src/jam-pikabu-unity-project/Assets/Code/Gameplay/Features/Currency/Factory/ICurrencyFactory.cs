@@ -4,7 +4,7 @@ namespace Code.Gameplay.Features.Currency.Factory
 {
     public interface ICurrencyFactory
     {
-        void CreateCurrencyStorages();
+        void CreateCurrencyStorages(int goldGold, int plusPlus, int minusMinus);
         void PlayCurrencyAnimation(in CurrencyAnimationParameters parameters);
     }
 }
