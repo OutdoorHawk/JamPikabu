@@ -19,7 +19,7 @@ MonoBehaviour:
     OrdersAmount: 1
     RoundDuration: 1
     IsBoss: 0
-    SceneId: 2
+    SceneId: 3
   - Day: 1
     PlayCost: 5
     OrdersAmount: 1

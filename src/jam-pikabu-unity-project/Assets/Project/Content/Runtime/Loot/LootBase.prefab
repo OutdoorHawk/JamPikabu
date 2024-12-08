@@ -370,7 +370,7 @@ MonoBehaviour:
   _soundType: 40
   _overrideSound: 0
   _audioSource: {fileID: 74886839470192886}
-  _minSpeed: 3
+  _minSpeed: 4
   _rb: {fileID: 175255480592907087}
 --- !u!50 &175255480592907087
 Rigidbody2D:

@@ -153,7 +153,7 @@ MonoBehaviour:
       Clips:
       - {fileID: 8300000, guid: 93723ff0b7790d54ba7c18e0b6127ffb, type: 3}
       SourceType: 4
-      Volume: 0.198
+      Volume: 0.16
       RandomizePitch: 1
       PitchMin: 0.8
       PitchMax: 1.2
