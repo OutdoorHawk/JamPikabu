@@ -50,7 +50,10 @@ namespace Code.Gameplay.Features.Currency.Behaviours
             PlayerPluses.SetupPrice(_gameplayCurrencyService.GetCurrencyOfType(CurrencyTypeId.Plus), CurrencyTypeId.Plus, true);
             PlayerMinuses.SetupPrice(_gameplayCurrencyService.GetCurrencyOfType(CurrencyTypeId.Minus), CurrencyTypeId.Minus, true);
             if (PlayerTurnCostGold != null)
+            {
+                PlayerTurnCostGold.gameObject.SetActive(_gameplayCurrencyService.CurrentTurnCostGold != 0);
                 PlayerTurnCostGold.SetupPrice(_gameplayCurrencyService.CurrentTurnCostGold, CurrencyTypeId.Gold);
+            }
         }
     }
 }

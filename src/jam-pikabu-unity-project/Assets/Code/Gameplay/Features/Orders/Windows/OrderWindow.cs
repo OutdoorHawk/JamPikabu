@@ -92,6 +92,10 @@ namespace Code.Gameplay.Features.Orders.Windows
                 _bossContent.SetActive(true);
                 _atLeastGoodText.text += $" {_currentOrder.Setup.GoodMinimum}";
             }
+            else
+            {
+                _bossContent.SetActive(false);
+            }
         }
 
         protected override void CloseWindowInternal()

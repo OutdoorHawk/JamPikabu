@@ -19,5 +19,6 @@
         Wood = 14,
         Sock = 15,
         Pepper = 16,
+        Spoon = 17,
     }
 }

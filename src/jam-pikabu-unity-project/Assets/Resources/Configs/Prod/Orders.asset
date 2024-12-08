@@ -132,10 +132,10 @@ MonoBehaviour:
       Reward:
         CurrencyType: 1
         Amount: 10
-      MinDayToUnlock: 1
+      MinDayToUnlock: 3
       MaxDayToUnlock: 5
       IsBoss: 0
-      GoodMinimum: 1
+      GoodMinimum: 2
       GoodIngredients: []
       BadIngredients: []
       RandomSetupEnabled: 1
@@ -149,10 +149,10 @@ MonoBehaviour:
       Reward:
         CurrencyType: 1
         Amount: 15
-      MinDayToUnlock: 2
+      MinDayToUnlock: 3
       MaxDayToUnlock: 5
       IsBoss: 0
-      GoodMinimum: 1
+      GoodMinimum: 2
       GoodIngredients: []
       BadIngredients: []
       RandomSetupEnabled: 1
