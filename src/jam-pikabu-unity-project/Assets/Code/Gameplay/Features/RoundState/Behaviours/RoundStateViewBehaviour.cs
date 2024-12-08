@@ -7,7 +7,7 @@ using Zenject;
 
 namespace Code.Gameplay.Features.RoundState.Behaviours
 {
-    public class RoundStateViewBehaviour : EntityDependant
+    public class RoundStateViewBehaviour : MonoBehaviour
     {
         public TMP_Text RoundTimerText;
 

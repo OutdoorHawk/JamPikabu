@@ -69,7 +69,7 @@ namespace Code.Gameplay.Features.GameOver.Windows
         {
             if (_gameOverService.IsGameWin)
             {
-                _soundService.PlayOneShotSound(SoundTypeId.Level_Win);
+              
             }
             else
             {

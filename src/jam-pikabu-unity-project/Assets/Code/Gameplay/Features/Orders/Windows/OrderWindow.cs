@@ -186,7 +186,7 @@ namespace Code.Gameplay.Features.Orders.Windows
                 StartPosition = lootItem.transform.position,
                 EndPosition = price.CurrencyIcon.transform.position,
                 StartReplenishSound = SoundTypeId.Soft_Currency_Collect,
-                StartReplenishCallback = () => RemoveWithdraw(price, ingredientData, count)
+                StartReplenishCallback = () => RemoveWithdraw(price, ingredientData, count * ingredientData.Rating.Amount)
             };
 
             _soundService.PlayOneShotSound(SoundTypeId.PlusesAdded);
@@ -210,6 +210,7 @@ namespace Code.Gameplay.Features.Orders.Windows
 
         private async UniTask PlayBossDoneAnimation()
         {
+            _soundService.PlayOneShotSound(SoundTypeId.Level_Win);
             await _bossIconAnimator.WaitForAnimationCompleteAsync(AnimationParameter.Win.AsHash());
             _gameOverService.GameWin();
         }

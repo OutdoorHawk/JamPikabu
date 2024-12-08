@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Service;
 using Code.Gameplay.Features.Orders.Service;
 using Code.Gameplay.Features.RoundState.Configs;
@@ -88,7 +89,8 @@ namespace Code.Gameplay.Features.GameOver.Service
             Cleanup();
             await DelaySeconds(0, new CancellationToken());
             _windowService.OpenWindow(WindowTypeId.GameWinWindow);
-            ResetMeta();
+            
+            ResetMetaAndStash();
         }
 
         private async UniTaskVoid GameOverAsync()
@@ -104,16 +106,26 @@ namespace Code.Gameplay.Features.GameOver.Service
             ResetMeta();
         }
 
-        private void ResetMeta()
+        private void ResetMetaAndStash()
         {
-            /*foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Day)) 
-                day.ReplaceDay(0);*/
+            foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Day)) 
+                day.ReplaceDay(0);
             foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Gold)) 
                 day.ReplaceGold(_staticData.GetStaticData<RoundStateStaticData>().StartGoldAmount);
             foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Plus)) 
                 day.ReplacePlus(0);
             foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Minus)) 
                 day.ReplaceMinus(0);
+        }
+
+        private void ResetMeta()
+        {
+            foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Gold)) 
+                day.ReplaceGold(GameplayCurrencyService.CurrencyCache[CurrencyTypeId.Gold]);
+            foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Plus)) 
+                day.ReplacePlus(GameplayCurrencyService.CurrencyCache[CurrencyTypeId.Plus]);
+            foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Minus)) 
+                day.ReplaceMinus(GameplayCurrencyService.CurrencyCache[CurrencyTypeId.Minus]);
         }
 
         private void BlockInput()

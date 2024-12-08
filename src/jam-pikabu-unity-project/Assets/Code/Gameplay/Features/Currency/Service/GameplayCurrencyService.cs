@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using Code.Gameplay.Features.Currency.Config;
 using Code.Gameplay.Features.Currency.Factory;
 using Code.Gameplay.Features.RoundState.Configs;
-using Code.Gameplay.Sound;
 using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
 using Code.Infrastructure.States.GameStates.Game;
 using Code.Infrastructure.States.StateMachine;
-using UnityEngine;
 
 namespace Code.Gameplay.Features.Currency.Service
 {
@@ -18,6 +16,8 @@ namespace Code.Gameplay.Features.Currency.Service
         private readonly IStaticDataService _staticDataService;
         private readonly IGameStateMachine _gameStateMachine;
         private readonly ICurrencyFactory _currencyFactory;
+
+        public static readonly Dictionary<CurrencyTypeId, int> CurrencyCache = new();
 
         public event Action CurrencyChanged;
 
@@ -47,7 +47,7 @@ namespace Code.Gameplay.Features.Currency.Service
         public int GetCurrencyOfType(CurrencyTypeId typeId)
         {
             CurrencyCount currency = GetCurrencyOfTypeInternal(typeId);
-            
+
             if (currency == null)
                 return 0;
             return currency.Amount - currency.Withdraw;
@@ -76,7 +76,7 @@ namespace Code.Gameplay.Features.Currency.Service
                 changed = true;
             }
 
-            if (changed) 
+            if (changed)
                 CurrencyChanged?.Invoke();
         }
 

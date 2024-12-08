@@ -15,9 +15,9 @@ MonoBehaviour:
   StartGoldAmount: 20
   Days:
   - Day: 1
-    PlayCost: 21
+    PlayCost: 1
     OrdersAmount: 1
-    RoundDuration: 1
+    RoundDuration: 6
     IsBoss: 0
     SceneId: 3
   - Day: 1

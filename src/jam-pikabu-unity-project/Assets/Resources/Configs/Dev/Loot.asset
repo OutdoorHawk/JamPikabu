@@ -15,7 +15,7 @@ MonoBehaviour:
   Configs:
   - Type: 2
     ViewPrefab: {fileID: 0}
-    Icon: {fileID: 21300000, guid: 4ca83e380d4f07a438aeefb9a11c35dd, type: 3}
+    Icon: {fileID: 21300000, guid: d5484a6d66e6c6d4985b79523eb5e8af, type: 3}
     MinDayToUnlock: 0
     MaxDayToUnlock: 0
     Size: 1

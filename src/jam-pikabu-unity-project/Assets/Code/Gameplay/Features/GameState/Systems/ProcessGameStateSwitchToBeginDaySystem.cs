@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Code.Gameplay.Features.Currency;
+using Code.Gameplay.Features.Currency.Service;
 using Code.Gameplay.Features.GameState.Service;
 using Code.Gameplay.Features.Loot.Factory;
 using Code.Gameplay.Features.Loot.Service;
@@ -72,10 +74,21 @@ namespace Code.Gameplay.Features.GameState.Systems
 
         private void ProcessService(MetaEntity day)
         {
+            SaveStash();
             _roundStateService.BeginDay(day.Day);
             _ordersService.InitDay(_roundStateService.CurrentDay);
             _lootFactory.CreateLootSpawner();
             _lootService.InitLootBuffer();
+        }
+        
+        private void SaveStash()
+        {
+            foreach (var storage in Contexts.sharedInstance.game.GetGroup(GameMatcher.AllOf(GameMatcher.CurrencyStorage, GameMatcher.Gold)))
+                GameplayCurrencyService.CurrencyCache[CurrencyTypeId.Gold] = storage.Gold;
+            foreach (var storage in Contexts.sharedInstance.game.GetGroup(GameMatcher.AllOf(GameMatcher.CurrencyStorage, GameMatcher.Plus)))
+                GameplayCurrencyService.CurrencyCache[CurrencyTypeId.Plus] = storage.Plus;
+            foreach (var storage in Contexts.sharedInstance.game.GetGroup(GameMatcher.AllOf(GameMatcher.CurrencyStorage, GameMatcher.Minus)))
+                GameplayCurrencyService.CurrencyCache[CurrencyTypeId.Minus] = storage.Minus;
         }
     }
 }

@@ -43,7 +43,7 @@ MonoBehaviour:
       MinDayToUnlock: 2
       MaxDayToUnlock: 0
       IsBoss: 1
-      GoodMinimum: 3
+      GoodMinimum: 1
       GoodIngredients:
       - TypeId: 14
         Rating:

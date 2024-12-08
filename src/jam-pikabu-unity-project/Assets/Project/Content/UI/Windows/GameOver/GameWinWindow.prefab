@@ -471,6 +471,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6367982538035838363, guid: c39423f0ca0c17942a7be1e07e4ad793,
+        type: 3}
+      propertyPath: m_text
+      value: "\u041D\u0430\u0447\u0430\u0442\u044C \u0441\u043D\u0430\u0447\u0430\u043B\u0430"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6367982538035838363, guid: c39423f0ca0c17942a7be1e07e4ad793,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 38.95
+      objectReference: {fileID: 0}
     - target: {fileID: 7289764879743210141, guid: c39423f0ca0c17942a7be1e07e4ad793,
         type: 3}
       propertyPath: m_fontAsset

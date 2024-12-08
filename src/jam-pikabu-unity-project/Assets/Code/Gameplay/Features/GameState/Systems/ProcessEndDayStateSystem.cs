@@ -7,6 +7,7 @@ using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Behaviours;
 using Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation;
 using Code.Gameplay.Features.Currency.Factory;
+using Code.Gameplay.Features.Currency.Service;
 using Code.Gameplay.Features.GameOver.Service;
 using Code.Gameplay.Features.GameState.Service;
 using Code.Gameplay.Features.HUD;
@@ -95,7 +96,7 @@ namespace Code.Gameplay.Features.GameState.Systems
             foreach (var roundState in _roundState)
             {
                 gameState.isStateProcessingAvailable = false;
-
+                
                 CheckGameWinOrLoseConditions(storage, gameState, roundState);
                 _lootService.ClearCollectedLoot();
             }
