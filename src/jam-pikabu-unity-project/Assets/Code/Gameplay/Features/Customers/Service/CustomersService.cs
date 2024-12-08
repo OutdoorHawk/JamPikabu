@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Code.Gameplay.Features.Customers.Config;
+using Code.Gameplay.Features.Orders.Service;
 using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.StaticData;
 using RoyalGold.Sources.Scripts.Game.MVC.Utils;
@@ -11,6 +12,7 @@ namespace Code.Gameplay.Features.Customers.Service
     {
         private readonly IStaticDataService _staticDataService;
         private readonly IRoundStateService _roundStateService;
+        private readonly IOrdersService _ordersService;
 
         private readonly List<CustomerSetup> _configs = new();
         private int _currentCustomerId;
@@ -18,9 +20,10 @@ namespace Code.Gameplay.Features.Customers.Service
         private CustomerStaticData CustomerData => _staticDataService.GetStaticData<CustomerStaticData>();
 
         [Inject]
-        private CustomersService(IStaticDataService staticDataService, IRoundStateService roundStateService)
+        private CustomersService(IStaticDataService staticDataService, IRoundStateService roundStateService, IOrdersService ordersService)
         {
             _roundStateService = roundStateService;
+            _ordersService = ordersService;
             _staticDataService = staticDataService;
         }
 
@@ -30,7 +33,7 @@ namespace Code.Gameplay.Features.Customers.Service
                 _configs.Add(setup);
 
             _configs.ShuffleList();
-            _roundStateService.OnEnterRoundPreparation += SetNewCustomer;
+            _ordersService.OnOrderUpdated += SetNewCustomer;
         }
 
         public CustomerSetup GetCustomerSetup()
