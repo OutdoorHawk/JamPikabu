@@ -17,19 +17,19 @@ MonoBehaviour:
   - Day: 1
     PlayCost: 5
     OrdersAmount: 2
-    RoundDuration: 20
+    RoundDuration: 1
     IsBoss: 0
     SceneId: 2
   - Day: 2
     PlayCost: 10
     OrdersAmount: 3
-    RoundDuration: 20
+    RoundDuration: 1
     IsBoss: 0
     SceneId: 2
   - Day: 3
     PlayCost: 20
     OrdersAmount: 3
-    RoundDuration: 20
+    RoundDuration: 1
     IsBoss: 0
     SceneId: 2
   - Day: 4

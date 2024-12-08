@@ -22,7 +22,7 @@ MonoBehaviour:
       MinDayToUnlock: 4
       MaxDayToUnlock: 0
       IsBoss: 1
-      GoodMinimum: 1
+      GoodMinimum: 4
       GoodIngredients:
       - TypeId: 4
         Rating:
@@ -53,10 +53,10 @@ MonoBehaviour:
         Rating:
           CurrencyType: 3
           Amount: 2
-      RandomSetupEnabled: 0
-      MinMaxGoodIngredients: {x: 1, y: 3}
+      RandomSetupEnabled: 1
+      MinMaxGoodIngredients: {x: 8, y: 8}
       MinMaxGoodIngredientsReward: {x: 1, y: 2}
-      MinMaxBadIngredients: {x: 0, y: 2}
+      MinMaxBadIngredients: {x: 4, y: 5}
       MinMaxBadIngredientsReward: {x: 1, y: 2}
   - Id: 1
     Setup:
