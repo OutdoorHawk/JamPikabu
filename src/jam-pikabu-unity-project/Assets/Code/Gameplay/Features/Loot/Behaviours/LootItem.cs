@@ -29,6 +29,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         {
             LootSetup lootSetup = _staticData.GetStaticData<LootStaticData>().GetConfig(Entity.LootTypeId);
             _sprite.sprite = lootSetup.Icon;
+            transform.localScale = Vector3.one * lootSetup.Size;
             _capsuleCollider2D.size = Vector3.one * lootSetup.Size;
             _capsuleCollider2D.sharedMaterial = _capsuleCollider2D.attachedRigidbody.sharedMaterial;
         }
