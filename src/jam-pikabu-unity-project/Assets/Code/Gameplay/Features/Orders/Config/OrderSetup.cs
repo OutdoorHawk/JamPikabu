@@ -21,6 +21,8 @@ namespace Code.Gameplay.Features.Orders.Config
         public CostSetup Reward = new(CurrencyTypeId.Gold);
         public int MinDayToUnlock;
         public int MaxDayToUnlock;
+        public bool IsBoss;
+        public int GoodMinimumForBoss;
 
         [Header("ManualSetup")] 
         public List<IngredientData> GoodIngredients;
