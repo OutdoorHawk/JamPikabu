@@ -86,8 +86,7 @@ namespace Code.Gameplay.Features.GameOver.Service
             _gameStateMachine.Enter<GameOverState>();
             BlockInput();
             Cleanup();
-            await DelaySeconds(1, new CancellationToken());
-            _windowService.Close(WindowTypeId.OrderWindow);
+            await DelaySeconds(0, new CancellationToken());
             _windowService.OpenWindow(WindowTypeId.GameWinWindow);
             ResetMeta();
         }

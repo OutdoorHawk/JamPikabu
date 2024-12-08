@@ -7,6 +7,7 @@ using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Behaviours;
 using Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation;
 using Code.Gameplay.Features.Currency.Factory;
+using Code.Gameplay.Features.GameOver.Service;
 using Code.Gameplay.Features.Loot;
 using Code.Gameplay.Features.Loot.Behaviours;
 using Code.Gameplay.Features.Loot.Service;
@@ -56,6 +57,7 @@ namespace Code.Gameplay.Features.Orders.Windows
         private readonly List<LootItemUI> _goodItems = new();
         private readonly List<LootItemUI> _badItems = new();
         private readonly List<LootItemUI> _allItems = new();
+        private IGameOverService _gameOverService;
 
         public Button ExitButton => CloseButton;
 
@@ -63,8 +65,9 @@ namespace Code.Gameplay.Features.Orders.Windows
         private void WConstruct(IOrdersService ordersService, ILootItemUIFactory lootItemUIFactory,
             ICurrencyFactory currencyFactory, IStaticDataService staticDataService, ILootService lootService, ISoundService soundService,
             IRoundStateService roundStateService,
-            IWindowService windowService)
+            IWindowService windowService, IGameOverService gameOverService)
         {
+            _gameOverService = gameOverService;
             _roundStateService = roundStateService;
             _windowService = windowService;
             _soundService = soundService;
@@ -208,6 +211,7 @@ namespace Code.Gameplay.Features.Orders.Windows
         private async UniTask PlayBossDoneAnimation()
         {
             await _bossIconAnimator.WaitForAnimationCompleteAsync(AnimationParameter.Win.AsHash());
+            _gameOverService.GameWin();
         }
 
         private async UniTask PlayGoldAnimation()
