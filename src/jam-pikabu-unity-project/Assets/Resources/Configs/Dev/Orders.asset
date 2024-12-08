@@ -99,15 +99,15 @@ MonoBehaviour:
       RandomSetupEnabled: 1
       MinMaxGoodIngredients: {x: 1, y: 3}
       MinMaxGoodIngredientsReward: {x: 1, y: 2}
-      MinMaxBadIngredients: {x: 0, y: 2}
-      MinMaxBadIngredientsReward: {x: 0, y: 2}
+      MinMaxBadIngredients: {x: 0, y: 0}
+      MinMaxBadIngredientsReward: {x: 0, y: 0}
   - Id: 5
     Setup:
       OrderIcon: {fileID: 21300000, guid: 8c35e71d69b91334790ff78b71516bc4, type: 3}
       Reward:
         CurrencyType: 1
         Amount: 10
-      MinDayToUnlock: 1
+      MinDayToUnlock: 2
       MaxDayToUnlock: 5
       IsBoss: 0
       GoodMinimum: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
       Reward:
         CurrencyType: 1
         Amount: 10
-      MinDayToUnlock: 1
+      MinDayToUnlock: 2
       MaxDayToUnlock: 5
       IsBoss: 0
       GoodMinimum: 1
