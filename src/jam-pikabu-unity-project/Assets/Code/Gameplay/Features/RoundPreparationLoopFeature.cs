@@ -1,6 +1,7 @@
 ﻿using Code.Common.Destruct;
 using Code.Gameplay.Features.Cooldowns.Systems;
 using Code.Gameplay.Features.Currency;
+using Code.Gameplay.Features.GameState;
 using Code.Gameplay.Features.LootSpawning.Systems;
 using Code.Gameplay.Features.Orders.Systems;
 using Code.Gameplay.Features.RoundStart;
@@ -16,15 +17,16 @@ namespace Code.Gameplay.Features
         {
             Add(systems.Create<BindViewFeature>());
             Add(systems.Create<CooldownSystem>());
-            Add(systems.Create<RoundStartFeature>());
-            Add(systems.Create<InitOrderSystem>());
             
+            Add(systems.Create<RoundStartFeature>());
+     
             Add(systems.Create<ContinuousSpawnLootSystem>());
 
             Add(systems.Create<CurrencyFeature>());
+            Add(systems.Create<GameStateFeature>());
 
             Add(systems.Create<ProcessDestructedFeature>());
-            Add(systems.Create<ResetRoundStartAvailableSystem>());
+           
         }
     }
 }

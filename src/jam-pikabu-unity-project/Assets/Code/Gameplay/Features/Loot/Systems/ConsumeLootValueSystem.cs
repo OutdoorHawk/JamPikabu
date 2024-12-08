@@ -52,8 +52,6 @@ namespace Code.Gameplay.Features.Loot.Systems
                         .With(x => x.AddWithdraw(data.Rating.Amount), when: data.Rating.Amount > 0)
                         ;
                 }
-                
-                _lootService.AddConsumedLoot(loot.LootTypeId);
             }
         }
     }

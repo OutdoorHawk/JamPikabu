@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Code.Infrastructure.States.GameStates.Game;
 using Code.Infrastructure.States.StateMachine;
 using Entitas;
 
@@ -18,8 +17,8 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
         {
             return context.CreateCollector(GameMatcher
                 .AllOf(
-                GameMatcher.LootSpawner, 
-                GameMatcher.Complete).Added());
+                    GameMatcher.LootSpawner,
+                    GameMatcher.Complete).Added());
         }
 
         protected override bool Filter(GameEntity entity)
@@ -29,7 +28,6 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
 
         protected override void Execute(List<GameEntity> entities)
         {
-            _gameStateMachine.Enter<RoundPreparationLoopState>();
         }
     }
 }

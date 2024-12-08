@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Config;
 using Code.Gameplay.Features.Loot;
@@ -9,7 +10,6 @@ using Code.Gameplay.Features.Orders.Config;
 using Code.Gameplay.Features.Orders.Factory;
 using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.StaticData;
-using Code.Gameplay.Windows;
 using Code.Gameplay.Windows.Service;
 using RoyalGold.Sources.Scripts.Game.MVC.Utils;
 using UnityEngine;
@@ -33,8 +33,8 @@ namespace Code.Gameplay.Features.Orders.Service
         private bool _orderWindowSeen;
 
         private (List<IngredientData> good, List<IngredientData> bad) _orderIngredients;
-        private readonly List<OrderData> _ordersBuffer = new();
         private readonly Dictionary<LootTypeId, IngredientData> _orderIngredientCostDict = new();
+        private readonly List<OrderData> _ordersBuffer = new();
 
         public int OrdersCompleted => _ordersCompleted;
         public int MaxOrders => _roundStateService.GetDayData().OrdersAmount;
@@ -43,7 +43,7 @@ namespace Code.Gameplay.Features.Orders.Service
         public (List<IngredientData> good, List<IngredientData> bad) OrderIngredients => _orderIngredients;
 
         public OrdersService(IStaticDataService staticDataService,
-            IRoundStateService roundStateService, IOrdersFactory ordersFactory, 
+            IRoundStateService roundStateService, IOrdersFactory ordersFactory,
             ILootService lootService, IWindowService windowService)
         {
             _staticDataService = staticDataService;
@@ -94,7 +94,7 @@ namespace Code.Gameplay.Features.Orders.Service
         {
             _orderWindowSeen = true;
         }
-        
+
         public IngredientData GetIngredientData(LootTypeId lootTypeId)
         {
             return _orderIngredientCostDict.GetValueOrDefault(lootTypeId);
@@ -110,9 +110,9 @@ namespace Code.Gameplay.Features.Orders.Service
             return _ordersBuffer[_currentOrderIndex];
         }
 
-        public bool CheckOrdersCompleted()
+        public bool CheckAllOrdersCompleted()
         {
-            return _ordersCompleted + 1 >=_roundStateService.GetDayData().OrdersAmount;
+            return _ordersCompleted + 1 >= _roundStateService.GetDayData().OrdersAmount;
         }
 
         public void GoToNextOrder()
@@ -123,15 +123,30 @@ namespace Code.Gameplay.Features.Orders.Service
 
             if (_currentOrderIndex >= _ordersBuffer.Count)
                 _currentOrderIndex = 0;
-
-            _roundStateService.PrepareToNextRound();
-            OnOrderUpdated?.Invoke();
+            
         }
 
         public void GameOver()
         {
             _currentOrderIndex = 0;
             _ordersBuffer.Clear();
+        }
+
+        public bool OrderPassesConditions()
+        {
+            OrderData order = GetCurrentOrder();
+            int count = 0;
+
+            if (order.Setup.GoodMinimum <= 0)
+                return true;
+
+            foreach (var ingredient in _orderIngredients.good)
+            {
+                IEnumerable<LootTypeId> collectedOfType = _lootService.CollectedLootItems.Where(item => item == ingredient.TypeId);
+                count += collectedOfType.Count();
+            }
+
+            return count > order.Setup.GoodMinimum;
         }
 
         private void InitIngredientsDic(OrderData order)

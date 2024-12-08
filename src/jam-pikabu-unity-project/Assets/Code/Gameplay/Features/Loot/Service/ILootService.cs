@@ -12,7 +12,6 @@ namespace Code.Gameplay.Features.Loot.Service
         IReadOnlyList<LootSetup> AvailableLoot { get; }
         void InitLootBuffer();
         void CreateNewCollectedLootItem(LootTypeId lootType);
-        void AddConsumedLoot(LootTypeId lootType);
         void ClearCollectedLoot();
     }
 }

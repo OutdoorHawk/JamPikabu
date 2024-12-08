@@ -17,8 +17,10 @@ using Code.Gameplay.Sound;
 using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows;
+using Code.Gameplay.Windows.Service;
 using Code.Meta.UI.Common;
 using Cysharp.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -35,6 +37,9 @@ namespace Code.Gameplay.Features.Orders.Windows
         [SerializeField] private CurrencyHolder _currencyHolder;
         [SerializeField] private Animator _closeAnimator;
         [SerializeField] private float _startCompleteAnimationDelay = 0.6f;
+        [SerializeField] private GameObject _bossContent;
+        [SerializeField] private Animator _bossIconAnimator;
+        [SerializeField] private TMP_Text _atLeastGoodText;
 
         private IOrdersService _ordersService;
         private ILootItemUIFactory _lootItemUIFactory;
@@ -42,6 +47,7 @@ namespace Code.Gameplay.Features.Orders.Windows
         private ICurrencyFactory _currencyFactory;
         private ISoundService _soundService;
         private ILootService _lootService;
+        private IWindowService _windowService;
 
         private OrderData _currentOrder;
 
@@ -52,9 +58,11 @@ namespace Code.Gameplay.Features.Orders.Windows
         public Button ExitButton => CloseButton;
 
         [Inject]
-        private void Construct(IOrdersService ordersService, ILootItemUIFactory lootItemUIFactory,
-            ICurrencyFactory currencyFactory, IStaticDataService staticDataService, ILootService lootService, ISoundService soundService)
+        private void WConstruct(IOrdersService ordersService, ILootItemUIFactory lootItemUIFactory,
+            ICurrencyFactory currencyFactory, IStaticDataService staticDataService, ILootService lootService, ISoundService soundService,
+            IWindowService windowService)
         {
+            _windowService = windowService;
             _soundService = soundService;
             _lootService = lootService;
             _staticDataService = staticDataService;
@@ -67,6 +75,16 @@ namespace Code.Gameplay.Features.Orders.Windows
         {
             base.Initialize();
             InitOrder();
+            InitBoss();
+        }
+
+        private void InitBoss()
+        {
+            if (_currentOrder.Setup.IsBoss)
+            {
+                _bossContent.SetActive(true);
+                _atLeastGoodText.text += $" {_currentOrder.Setup.GoodMinimum}";
+            }
         }
 
         protected override void CloseWindowInternal()
@@ -75,11 +93,23 @@ namespace Code.Gameplay.Features.Orders.Windows
             _closeAnimator.SetTrigger(AnimationParameter.Hide.AsHash());
         }
 
-        public async UniTask PlayOrderComplete()
+        public async UniTask PlayOrderComplete(UniTaskCompletionSource completion, bool orderSusscesful)
         {
             await DelaySeconds(_startCompleteAnimationDelay, destroyCancellationToken);
-            await PlayOrderCompleteInternal();
-            await PlayGoldAnimation();
+
+            await PlayLootAnimationInternal();
+            
+            if (orderSusscesful)
+            {
+                if (_currentOrder.Setup.IsBoss == false)
+                    await PlayGoldAnimation();
+                else
+                    await PlayBossDoneAnimation();
+
+                return;
+            }
+
+            await PlayBossDefeatAnimation(completion);
         }
 
         private void InitOrder()
@@ -114,7 +144,7 @@ namespace Code.Gameplay.Features.Orders.Windows
             return item;
         }
 
-        private async UniTask PlayOrderCompleteInternal()
+        private async UniTask PlayLootAnimationInternal()
         {
             foreach (var lootItem in _goodItems)
             {
@@ -125,6 +155,12 @@ namespace Code.Gameplay.Features.Orders.Windows
             {
                 await PlayConsume(lootItem, _currencyHolder.PlayerMinuses, CurrencyTypeId.Minus, false);
             }
+        }
+
+        private async UniTask PlayBossDefeatAnimation(UniTaskCompletionSource completion)
+        {
+            Close();
+            completion.TrySetResult();
         }
 
         private async UniTask PlayConsume(LootItemUI lootItem, PriceInfo price, CurrencyTypeId typeId, bool isGood)
@@ -165,10 +201,18 @@ namespace Code.Gameplay.Features.Orders.Windows
                 ;
         }
 
+        private async UniTask PlayBossDoneAnimation()
+        {
+            if (_goodItems.Count > _currentOrder.Setup.GoodMinimum)
+            {
+                await _bossIconAnimator.WaitForAnimationCompleteAsync(AnimationParameter.Win.AsHash());
+            }
+        }
+
         private async UniTask PlayGoldAnimation()
         {
             await DelaySeconds(1f, destroyCancellationToken);
-            
+
             var parameters = new CurrencyAnimationParameters
             {
                 Type = _currentOrder.Setup.Reward.CurrencyType,

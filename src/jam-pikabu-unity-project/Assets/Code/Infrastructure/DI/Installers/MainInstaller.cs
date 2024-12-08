@@ -10,6 +10,8 @@ using Code.Gameplay.Features.Currency.Factory;
 using Code.Gameplay.Features.Currency.Service;
 using Code.Gameplay.Features.Customers.Service;
 using Code.Gameplay.Features.GameOver.Service;
+using Code.Gameplay.Features.GameState.Factory;
+using Code.Gameplay.Features.GameState.Service;
 using Code.Gameplay.Features.GrapplingHook.Factory;
 using Code.Gameplay.Features.Loot.Factory;
 using Code.Gameplay.Features.Loot.Service;
@@ -97,10 +99,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.BindInterfacesAndSelfTo<MainMenuState>().AsSingle();
             Container.BindInterfacesAndSelfTo<LoadLevelState>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameEnterState>().AsSingle();
-            Container.BindInterfacesAndSelfTo<BeginDayLoopState>().AsSingle();
-            Container.BindInterfacesAndSelfTo<RoundPreparationLoopState>().AsSingle();
-            Container.BindInterfacesAndSelfTo<CoreGameLoopState>().AsSingle();
-            Container.BindInterfacesAndSelfTo<RoundCompletionLoopState>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameLoopState>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameOverState>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameWinState>().AsSingle();
         }
@@ -132,6 +131,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.BindInterfacesTo<RoundStateService>().AsSingle();
             Container.BindInterfacesTo<OrdersService>().AsSingle();
             Container.BindInterfacesTo<CustomersService>().AsSingle();
+            Container.BindInterfacesTo<GameStateService>().AsSingle();
             Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
             Container.Bind<IMousePositionService>().To<MousePositionService>().AsSingle();
             Container.Bind<ICameraProvider>().To<CameraProvider>().AsSingle();
@@ -181,6 +181,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.BindInterfacesTo<LootItemUIFactory>().AsSingle();
             Container.BindInterfacesTo<RoundStateFactory>().AsSingle();
             Container.BindInterfacesTo<OrdersFactory>().AsSingle();
+            Container.BindInterfacesTo<GameStateFactory>().AsSingle();
         }
 
         private void BindGameplayFactories()

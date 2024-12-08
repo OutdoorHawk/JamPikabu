@@ -22,7 +22,7 @@ namespace Code.Gameplay.Features.Orders.Config
         public int MinDayToUnlock;
         public int MaxDayToUnlock;
         public bool IsBoss;
-        public int GoodMinimumForBoss;
+        public int GoodMinimum;
 
         [Header("ManualSetup")] 
         public List<IngredientData> GoodIngredients;

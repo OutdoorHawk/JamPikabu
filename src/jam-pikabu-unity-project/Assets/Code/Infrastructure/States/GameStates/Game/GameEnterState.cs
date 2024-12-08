@@ -30,7 +30,7 @@ namespace Code.Infrastructure.States.GameStates.Game
         {
             _mousePositionService.Initialize();
             _gameStateHandlerService.OnEnterGameLoop();
-            _stateMachine.Enter<BeginDayLoopState>();
+            _stateMachine.Enter<GameLoopState>();
         }
     }
 }

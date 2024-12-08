@@ -9,9 +9,6 @@ namespace Code.Gameplay.Features.Loot
         {
             Add(systems.Create<InitLootApplierSystem>());
             
-            Add(systems.Create<ApplyLootIncreaseValueEffectSystem>());
-            Add(systems.Create<ApplyLootIncreaseValueEffectVisualsSystem>());
-            
             Add(systems.Create<ConsumeLootValueSystem>());
             Add(systems.Create<ConsumeLootVisualsSystem>());
             

@@ -19,7 +19,6 @@ namespace Code.Gameplay.Features.Orders.Behaviours
 
         private void Start()
         {
-            UpdateText();
             _ordersService.OnOrderUpdated += UpdateText;
         }
 

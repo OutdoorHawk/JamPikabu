@@ -22,11 +22,7 @@ namespace Code.Gameplay.Features.Loot.Systems
 
         public void Initialize()
         {
-            CreateGameEntity
-                .Empty()
-                .With(x => x.isLootEffectsApplier = true)
-                .With(x => x.isAvailable = true)
-                ;
+            
 
             CreateAsync().Forget();
         }

@@ -12,7 +12,7 @@ namespace Code.Gameplay.Features.RoundState.Service
         int MaxDays { get; }
         void BeginDay();
         void RoundEnd();
-        void PrepareToNextRound();
+        void EnterRoundPreparation();
         void DayComplete();
         void LoadNextDay();
         bool CheckAllDaysComplete();

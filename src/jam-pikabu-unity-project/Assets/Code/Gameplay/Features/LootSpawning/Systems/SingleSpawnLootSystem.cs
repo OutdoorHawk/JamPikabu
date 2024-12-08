@@ -13,13 +13,15 @@ using static Code.Common.Extensions.AsyncGameplayExtensions;
 
 namespace Code.Gameplay.Features.LootSpawning.Systems
 {
-    public class SingleSpawnLootSystem : ReactiveSystem<GameEntity>, ITearDownSystem
+    public class SingleSpawnLootSystem : ReactiveSystem<GameEntity>, ITearDownSystem, ICleanupSystem
     {
         private readonly ILootFactory _lootFactory;
         private readonly IStaticDataService _staticDataService;
         private readonly ISceneContextProvider _provider;
         private readonly ILootService _lootService;
         private readonly GameContext _context;
+        
+        private readonly IGroup<GameEntity> _completedSpawners;
 
         private readonly CancellationTokenSource _exitGameSource = new();
 
@@ -34,6 +36,10 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
             _lootService = lootService;
             _staticDataService = staticDataService;
             _lootFactory = lootFactory;
+
+            _completedSpawners = context.GetGroup(GameMatcher.AllOf(
+                GameMatcher.LootSpawner,
+                GameMatcher.SingleSpawn,GameMatcher.Complete));
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
@@ -56,6 +62,19 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
             }
         }
 
+        public void TearDown()
+        {
+            _exitGameSource?.Cancel();
+        }
+
+        public void Cleanup()
+        {
+            foreach (GameEntity completedSpawner in _completedSpawners)
+            {
+                completedSpawner.isDestructed = true;
+            }
+        }
+
         private async UniTaskVoid SpawnLootAsync(GameEntity lootSpawner)
         {
             int lootSpawnerId = lootSpawner.Id;
@@ -75,7 +94,6 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
                 return;
 
             spawner.isComplete = true;
-            spawner.isDestructed = true;
         }
 
         private async UniTask ProcessLootSpawn(LootStaticData staticData, SceneContextComponent sceneContext)
@@ -102,11 +120,6 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
             var spawnPosition = sceneContext.LootSpawnPoints[_spawnPointIndex];
             _spawnPointIndex++;
             return spawnPosition;
-        }
-
-        public void TearDown()
-        {
-            _exitGameSource?.Cancel();
         }
     }
 }

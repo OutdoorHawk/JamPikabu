@@ -14,9 +14,11 @@ namespace Code.Gameplay.Features.RoundStart
             Add(systems.Create<BlockRoundStartAvailableWhenRoundNotCompleteSystem>());
             Add(systems.Create<BlockRoundStartWhenAnyOtherWindowOpenSystem>());
             Add(systems.Create<BlockRoundStartWhenOrderWindowNotSeenOpenSystem>());
+            Add(systems.Create<BlockRoundStartAvailableWhenNotInRoundPreparationSystem>());
 
             Add(systems.Create<ProcessRoundStartRequestSystem>());
             Add(systems.Create<RefreshRoundCostSystem>());
+            Add(systems.Create<ResetRoundStartAvailableSystem>());
         }
     }
 }

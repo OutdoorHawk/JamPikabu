@@ -7,7 +7,6 @@ namespace Code.Gameplay.Features.LootSpawning
     {
         public LootSpawningFeature(ISystemFactory systems)
         {
-            Add(systems.Create<InitLootSpawnSystem>());
             Add(systems.Create<SingleSpawnLootSystem>());
             Add(systems.Create<ContinuousSpawnLootSystem>());
             Add(systems.Create<SetLootInitialSpeedSystem>());

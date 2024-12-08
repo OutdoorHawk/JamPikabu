@@ -10,6 +10,7 @@ namespace Code.Gameplay.Features.RoundState.Configs
         public int PlayCost;
         public int OrdersAmount;
         public float RoundDuration= 30;
+        public bool IsBoss;
         public SceneTypeId SceneId = SceneTypeId.Level_1;
     }
 }

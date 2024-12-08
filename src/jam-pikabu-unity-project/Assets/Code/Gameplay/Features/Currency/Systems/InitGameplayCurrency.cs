@@ -20,11 +20,6 @@ namespace Code.Gameplay.Features.Currency.Systems
 
         public void Initialize()
         {
-            foreach (var storage in _storages)
-            {
-                storage.isDestructed = true;
-            }
-            
             _currencyFactory.CreateCurrencyStorages();
         }
     }

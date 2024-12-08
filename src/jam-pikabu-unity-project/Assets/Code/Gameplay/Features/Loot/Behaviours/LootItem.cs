@@ -11,6 +11,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         [SerializeField] private SpriteRenderer _sprite;
 
         private IStaticDataService _staticData;
+        private CapsuleCollider2D _capsuleCollider2D;
 
         [Inject]
         private void Construct(IStaticDataService staticData)
@@ -21,17 +22,15 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         protected override void Awake()
         {
             base.Awake();
-            
-            LootSetup lootSetup = _staticData.GetStaticData<LootStaticData>().GetConfig(Entity.LootTypeId);
-            _sprite.sprite = lootSetup.Icon;
-            var capsuleCollider2D = _sprite.gameObject.AddComponent<CapsuleCollider2D>();
-            capsuleCollider2D.size = Vector3.one * lootSetup.Size;
-            capsuleCollider2D.sharedMaterial = capsuleCollider2D.attachedRigidbody.sharedMaterial;
+            _capsuleCollider2D = _sprite.gameObject.AddComponent<CapsuleCollider2D>();
         }
 
         private void Start()
         {
-           
+            LootSetup lootSetup = _staticData.GetStaticData<LootStaticData>().GetConfig(Entity.LootTypeId);
+            _sprite.sprite = lootSetup.Icon;
+            _capsuleCollider2D.size = Vector3.one * lootSetup.Size;
+            _capsuleCollider2D.sharedMaterial = _capsuleCollider2D.attachedRigidbody.sharedMaterial;
         }
     }
 }

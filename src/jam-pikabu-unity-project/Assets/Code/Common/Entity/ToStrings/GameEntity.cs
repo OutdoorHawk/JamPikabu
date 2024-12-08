@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using Code.Common.Entity.ToStrings;
 using Code.Common.Extensions;
+using Code.Gameplay.Features.GameState;
 using Code.Gameplay.Features.GrapplingHook;
 using Code.Gameplay.Features.Loot;
 using Code.Gameplay.Features.RoundState;
@@ -57,6 +58,11 @@ public sealed partial class GameEntity : INamedEntity
                     
                     case nameof(LootEffectsApplier):
                         return new StringBuilder($"LootEffectsApplier: ")
+                            .With(s => s.Append($"Id:{Id} "), when: hasId)
+                            .ToString();
+                    
+                    case nameof(GameState):
+                        return new StringBuilder($"GameState: ")
                             .With(s => s.Append($"Id:{Id} "), when: hasId)
                             .ToString();
              

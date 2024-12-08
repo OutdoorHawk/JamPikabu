@@ -32,8 +32,6 @@ namespace Code.Gameplay.Features.RoundState.Systems
                 entity.isRoundInProcess = true;
                 entity.isRoundComplete = false;
                 entity.AddRoundTimeLeft(entity.RoundDuration);
-                
-                _gameStateMachine.Enter<CoreGameLoopState>();
             }
         }
     }

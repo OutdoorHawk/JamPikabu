@@ -46,6 +46,7 @@ namespace Code.Gameplay.Features.RoundState.Service
         public void BeginDay()
         {
             var staticData = _staticDataService.GetStaticData<RoundStateStaticData>();
+            
             _daysData = staticData.Days;
             _currentDay++;
             
@@ -62,12 +63,11 @@ namespace Code.Gameplay.Features.RoundState.Service
 
         public void RoundEnd()
         {
-            _gameStateMachine.Enter<RoundCompletionLoopState>();
+           
         }
 
-        public void PrepareToNextRound()
+        public void EnterRoundPreparation()
         {
-            _gameStateMachine.Enter<RoundPreparationLoopState>();
             OnEnterRoundPreparation?.Invoke();
         }
 

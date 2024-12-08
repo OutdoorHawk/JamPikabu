@@ -2,7 +2,6 @@
 using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Loot.Service;
-using Code.Gameplay.Features.Orders.Service;
 using Code.Gameplay.Features.Orders.Windows;
 using Code.Gameplay.Windows;
 using Code.Gameplay.Windows.Factory;
@@ -15,17 +14,14 @@ namespace Code.Gameplay.Features.Orders.Systems
     public class PlayOrderWindowOnLootConsumedVisualsSystem : ReactiveSystem<GameEntity>
     {
         private readonly IWindowService _windowService;
-        private readonly IOrdersService _ordersService;
         private readonly IUIFactory _uiFactory;
         private readonly ILootService _lootService;
 
         private readonly List<UniTask> _tasksBuffer = new();
 
-        public PlayOrderWindowOnLootConsumedVisualsSystem(GameContext context, IWindowService windowService,
-            IOrdersService ordersService, IUIFactory uiFactory, ILootService lootService) : base(context)
+        public PlayOrderWindowOnLootConsumedVisualsSystem(GameContext context, IWindowService windowService, IUIFactory uiFactory, ILootService lootService) : base(context)
         {
             _windowService = windowService;
-            _ordersService = ordersService;
             _uiFactory = uiFactory;
             _lootService = lootService;
         }
@@ -33,7 +29,9 @@ namespace Code.Gameplay.Features.Orders.Systems
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
             return context.CreateCollector(GameMatcher
-                .AllOf(GameMatcher.LootEffectsApplier).Removed());
+                .AllOf(GameMatcher.Order)
+                .AnyOf(GameMatcher.Complete)
+                .Added());
         }
 
         protected override bool Filter(GameEntity entity)
@@ -43,19 +41,21 @@ namespace Code.Gameplay.Features.Orders.Systems
 
         protected override void Execute(List<GameEntity> entities)
         {
-            foreach (var _ in entities)
+            foreach (var order in entities)
             {
-                PlayOrderCompleteAnimation().Forget();
+                PlayOrderCompleteAnimation(order).Forget();
             }
         }
 
-        private async UniTask PlayOrderCompleteAnimation()
+        private async UniTask PlayOrderCompleteAnimation(GameEntity order)
         {
+            _uiFactory.SetRaycastAvailable(false);
             if (_lootService.CollectedLootItems.Count != 0)
             {
+                UniTaskCompletionSource completion = new();
                 var orderWindow = await _windowService.OpenWindow<OrderWindow>(WindowTypeId.OrderWindow);
 
-                await orderWindow.PlayOrderComplete();
+                await orderWindow.PlayOrderComplete(completion, orderSusscesful: order.isReject == false);
 
                 _uiFactory.SetRaycastAvailable(true);
 
@@ -63,6 +63,7 @@ namespace Code.Gameplay.Features.Orders.Systems
                     _tasksBuffer.Add(button.OnClickAsync());
 
                 _tasksBuffer.Add(orderWindow.ExitButton.OnClickAsync());
+                _tasksBuffer.Add(completion.Task);
 
                 await UniTask.WhenAny(_tasksBuffer);
 
@@ -70,11 +71,8 @@ namespace Code.Gameplay.Features.Orders.Systems
             }
             
             _uiFactory.SetRaycastAvailable(true);
-            
-            CreateGameEntity
-                .Empty()
-                .With(x => x.isNextOrderRequest = true)
-                ;
+
+            order.isResultProcessed = true;
         }
     }
 }

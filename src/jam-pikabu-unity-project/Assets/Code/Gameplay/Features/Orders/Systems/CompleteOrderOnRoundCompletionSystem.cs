@@ -1,0 +1,75 @@
+﻿using System.Collections.Generic;
+using Code.Common.Entity;
+using Code.Common.Extensions;
+using Code.Gameplay.Features.Currency;
+using Code.Gameplay.Features.Orders.Config;
+using Code.Gameplay.Features.Orders.Service;
+using Code.Gameplay.Windows;
+using Code.Gameplay.Windows.Service;
+using Entitas;
+
+namespace Code.Gameplay.Features.Orders.Systems
+{
+    public class CompleteOrderOnRoundCompletionSystem : IExecuteSystem
+    {
+        private readonly IWindowService _windowService;
+        private readonly IOrdersService _ordersService;
+        private readonly IGroup<GameEntity> _orders;
+        private readonly IGroup<GameEntity> _busyLoot;
+        private readonly List<GameEntity> _buffer = new(1);
+        private readonly IGroup<GameEntity> _gameState;
+
+        public CompleteOrderOnRoundCompletionSystem(GameContext context, IWindowService windowService
+            , IOrdersService ordersService)
+        {
+            _windowService = windowService;
+            _ordersService = ordersService;
+
+            _gameState = context.GetGroup(
+                GameMatcher.AllOf(
+                    GameMatcher.GameState,
+                    GameMatcher.RoundCompletion));
+
+            _orders = context.GetGroup(GameMatcher
+                .AllOf(GameMatcher.Order,
+                    GameMatcher.OrderData
+                ).NoneOf(
+                    GameMatcher.Complete));
+        }
+
+        public void Execute()
+        {
+            foreach (var game in _gameState)
+            foreach (var entity in _orders.GetEntities(_buffer))
+            {
+                OrderSetup orderDataSetup = entity.OrderData.Setup;
+                entity.isComplete = true;
+
+                if (_ordersService.OrderPassesConditions())
+                {
+                    entity.isReject = false;
+                    GiveRewardForOrder(orderDataSetup);
+                }
+                else
+                {
+                    entity.isReject = true;
+                }
+
+                _windowService.Close(WindowTypeId.OrderWindow);
+            }
+        }
+
+        private static void GiveRewardForOrder(OrderSetup orderDataSetup)
+        {
+            if (orderDataSetup.Reward.CurrencyType is CurrencyTypeId.Gold)
+            {
+                CreateGameEntity
+                    .Empty()
+                    .With(x => x.isAddCurrencyRequest = true)
+                    .AddGold(orderDataSetup.Reward.Amount)
+                    .AddWithdraw(orderDataSetup.Reward.Amount)
+                    ;
+            }
+        }
+    }
+}
