@@ -15,35 +15,6 @@ MonoBehaviour:
   Configs:
   - Id: 0
     Setup:
-      OrderIcon: {fileID: 21300000, guid: 5484bd6498e426442a095e6ab6625b8e, type: 3}
-      Reward:
-        CurrencyType: 1
-        Amount: 5
-      MinDayToUnlock: 0
-      MaxDayToUnlock: 0
-      IsBoss: 0
-      GoodMinimum: 1
-      GoodIngredients:
-      - TypeId: 2
-        Rating:
-          CurrencyType: 2
-          Amount: 2
-      - TypeId: 3
-        Rating:
-          CurrencyType: 2
-          Amount: 1
-      BadIngredients:
-      - TypeId: 4
-        Rating:
-          CurrencyType: 3
-          Amount: 3
-      RandomSetupEnabled: 0
-      MinMaxGoodIngredients: {x: 0, y: 0}
-      MinMaxGoodIngredientsReward: {x: 0, y: 0}
-      MinMaxBadIngredients: {x: 0, y: 0}
-      MinMaxBadIngredientsReward: {x: 0, y: 0}
-  - Id: 0
-    Setup:
       OrderIcon: {fileID: 1743829112, guid: a5e645d0b2507ac42807ef8e886f7d45, type: 3}
       Reward:
         CurrencyType: 1
@@ -52,16 +23,20 @@ MonoBehaviour:
       MaxDayToUnlock: 0
       IsBoss: 0
       GoodMinimum: 0
-      GoodIngredients: []
+      GoodIngredients:
+      - TypeId: 6
+        Rating:
+          CurrencyType: 2
+          Amount: 2
       BadIngredients: []
-      RandomSetupEnabled: 1
+      RandomSetupEnabled: 0
       MinMaxGoodIngredients: {x: 1, y: 3}
       MinMaxGoodIngredientsReward: {x: 1, y: 2}
       MinMaxBadIngredients: {x: 0, y: 2}
       MinMaxBadIngredientsReward: {x: 1, y: 2}
   - Id: 0
     Setup:
-      OrderIcon: {fileID: 21300000, guid: 0fddfe8cd930a9b429f0b93b877bd579, type: 3}
+      OrderIcon: {fileID: 21300000, guid: 3451bf123b94ad14089220c2800c8be3, type: 3}
       Reward:
         CurrencyType: 4
         Amount: 1
@@ -70,19 +45,15 @@ MonoBehaviour:
       IsBoss: 1
       GoodMinimum: 3
       GoodIngredients:
-      - TypeId: 4
+      - TypeId: 14
         Rating:
           CurrencyType: 2
           Amount: 1
       BadIngredients:
-      - TypeId: 2
+      - TypeId: 9
         Rating:
           CurrencyType: 3
           Amount: 1
-      - TypeId: 3
-        Rating:
-          CurrencyType: 3
-          Amount: 2
       RandomSetupEnabled: 0
       MinMaxGoodIngredients: {x: 1, y: 3}
       MinMaxGoodIngredientsReward: {x: 1, y: 2}

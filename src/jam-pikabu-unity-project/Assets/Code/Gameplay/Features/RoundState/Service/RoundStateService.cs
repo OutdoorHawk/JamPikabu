@@ -96,11 +96,5 @@ namespace Code.Gameplay.Features.RoundState.Service
 
             return _daysData[^1];
         }
-
-        public void GameOver()
-        {
-            _currentDay = 0;
-            _currentDayData = null;
-        }
     }
 }

@@ -125,7 +125,6 @@ namespace Code.Gameplay.Features.GameOver.Service
         private void Cleanup()
         {
             _ordersService.GameOver();
-            _roundStateService.GameOver();
         }
     }
 }

@@ -17,6 +17,5 @@ namespace Code.Gameplay.Features.RoundState.Service
         bool CheckAllDaysComplete();
         DayData GetDayData();
         DayData GetDayData(int currentDay);
-        void GameOver();
     }
 }

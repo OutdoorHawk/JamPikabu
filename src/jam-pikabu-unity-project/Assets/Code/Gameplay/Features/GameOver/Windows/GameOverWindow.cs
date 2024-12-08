@@ -1,14 +1,15 @@
-﻿using Code.Gameplay.Features.GameOver.Service;
+﻿using Code.Common.Extensions;
+using Code.Gameplay.Features.GameOver.Service;
+using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.Sound;
 using Code.Gameplay.Sound.Service;
 using Code.Gameplay.Windows;
-using Code.Infrastructure.SceneLoading;
 using Code.Infrastructure.States.GameStates;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
-using Cysharp.Threading.Tasks;
+using TMPro;
+using UnityEngine;
 using Zenject;
-using static Code.Common.Extensions.AsyncGameplayExtensions;
 
 namespace Code.Gameplay.Features.GameOver.Windows
 {
@@ -17,10 +18,16 @@ namespace Code.Gameplay.Features.GameOver.Windows
         private IGameStateMachine _gameStateMachine;
         private ISoundService _soundService;
         private IGameOverService _gameOverService;
+        
+        [SerializeField] private TMP_Text _gameOverText;
+        [SerializeField] private TMP_Text _gameOverBossText;
+        private IRoundStateService _roundStateService;
 
         [Inject]
-        private void Construct(IGameStateMachine gameStateMachine, ISoundService soundService, IGameOverService gameOverService)
+        private void Construct(IGameStateMachine gameStateMachine, ISoundService soundService, IGameOverService gameOverService, IRoundStateService roundStateService
+        )
         {
+            _roundStateService = roundStateService;
             _gameOverService = gameOverService;
             _soundService = soundService;
             _gameStateMachine = gameStateMachine;
@@ -30,14 +37,32 @@ namespace Code.Gameplay.Features.GameOver.Windows
         {
             base.Initialize();
             PlaySound();
-            RestartAfterDelay().Forget();
+            CloseButton?.onClick.AddListener(Restart);
+
+            if (_gameOverService.IsGameWin)
+                return;
+
+            if (_roundStateService.GetDayData().IsBoss)
+            {
+                _gameOverText.DisableElement();
+                _gameOverBossText.EnableElement();
+            }
+            else
+            {
+                _gameOverText.EnableElement();
+                _gameOverBossText.DisableElement();
+            }
         }
 
-        private async UniTask RestartAfterDelay()
+        protected override void Unsubscribe()
         {
-            await DelaySeconds(3, destroyCancellationToken);
-            var loadLevelPayloadParameters = new LoadLevelPayloadParameters(SceneTypeId.Level_1.ToString());
-            _gameStateMachine.Enter<LoadLevelState, LoadLevelPayloadParameters>(loadLevelPayloadParameters);
+            base.Unsubscribe();
+            CloseButton?.onClick.RemoveListener(Restart);
+        }
+
+        private void Restart()
+        {
+            _gameStateMachine.Enter<LoadLevelSimpleState, LoadLevelPayloadParameters>(new LoadLevelPayloadParameters());
         }
 
         private void PlaySound()

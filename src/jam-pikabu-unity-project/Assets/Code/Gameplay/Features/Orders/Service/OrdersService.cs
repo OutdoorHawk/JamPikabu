@@ -140,6 +140,9 @@ namespace Code.Gameplay.Features.Orders.Service
             OrderData order = GetCurrentOrder();
             int count = 0;
 
+            if (_lootService.CollectedLootItems.Count == 0)
+                return false;
+
             if (order.Setup.GoodMinimum <= 0)
                 return true;
 
@@ -149,7 +152,7 @@ namespace Code.Gameplay.Features.Orders.Service
                 count += collectedOfType.Count();
             }
 
-            return count > order.Setup.GoodMinimum;
+            return count >= order.Setup.GoodMinimum;
         }
 
         private void InitIngredientsDic(OrderData order)

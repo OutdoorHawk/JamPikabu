@@ -163,8 +163,8 @@ namespace Code.Gameplay.Features.GameState.Systems
                     {
                         source.TrySetResult();
 
-                        float costSetup = MathF.Max(roundState.DayCost - storage.Gold, 0);
-                        currencyHolder.PlayerTurnCostGold.SetupPrice((int)costSetup, CurrencyTypeId.Gold, true);
+                        
+                        currencyHolder.PlayerTurnCostGold.SetupPrice(0, CurrencyTypeId.Gold, true);
                     }
                 };
 

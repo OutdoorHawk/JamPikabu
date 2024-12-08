@@ -1,4 +1,5 @@
-﻿using Code.Common.Extensions;
+﻿using System;
+using Code.Common.Extensions;
 using Code.Common.Extensions.Animations;
 using Code.Gameplay.Features.Customers.Config;
 using Code.Gameplay.Features.Customers.Service;
@@ -54,6 +55,11 @@ namespace Code.Gameplay.Features.Customers.Behaviours
 
             if (_hideOnAwake)
                 _hided = true;
+        }
+
+        private void Start()
+        {
+            UpdateSprite();
         }
 
         private void OnDestroy()

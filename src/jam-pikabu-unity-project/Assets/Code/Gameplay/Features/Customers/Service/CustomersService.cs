@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Code.Gameplay.Features.Customers.Config;
 using Code.Gameplay.Features.Orders.Service;
+using Code.Gameplay.Features.RoundState.Configs;
 using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.StaticData;
 using RoyalGold.Sources.Scripts.Game.MVC.Utils;
@@ -38,7 +39,12 @@ namespace Code.Gameplay.Features.Customers.Service
 
         public CustomerSetup GetCustomerSetup()
         {
-            if (_roundStateService.GetDayData().IsBoss)
+            DayData dayData = _roundStateService.GetDayData();
+            if (dayData == null)
+            {
+                return _configs[_currentCustomerId];
+            }
+            if (dayData.IsBoss)
                 return new CustomerSetup() {Sprite =  CustomerData.BossSprite};
             return _configs[_currentCustomerId];
         }
