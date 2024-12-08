@@ -13,5 +13,6 @@ namespace Code.Gameplay.Features.Loot.Configs
         [PreviewField] public Sprite Icon;
         public int MinDayToUnlock;
         public int MaxDayToUnlock;
+        public float Size = 1;
     }
 }
