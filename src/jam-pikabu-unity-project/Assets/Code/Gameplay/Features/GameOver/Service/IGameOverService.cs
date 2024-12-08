@@ -5,5 +5,6 @@
         void GameWin();
         void GameOver();
         bool IsGameWin { get; }
+        void ResetMetaAndStash();
     }
 }

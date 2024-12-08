@@ -106,7 +106,7 @@ namespace Code.Gameplay.Features.GameOver.Service
             ResetMeta();
         }
 
-        private void ResetMetaAndStash()
+        public void ResetMetaAndStash()
         {
             foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Day)) 
                 day.ReplaceDay(0);

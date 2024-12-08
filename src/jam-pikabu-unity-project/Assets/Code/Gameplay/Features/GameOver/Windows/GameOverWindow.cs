@@ -1,4 +1,6 @@
 ﻿using Code.Common.Extensions;
+using Code.Gameplay.Features.Currency;
+using Code.Gameplay.Features.Currency.Service;
 using Code.Gameplay.Features.GameOver.Service;
 using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.Sound;
@@ -21,12 +23,17 @@ namespace Code.Gameplay.Features.GameOver.Windows
         
         [SerializeField] private TMP_Text _gameOverText;
         [SerializeField] private TMP_Text _gameOverBossText;
+        [SerializeField] private TMP_Text _ratingText;
+        
         private IRoundStateService _roundStateService;
+        private IGameplayCurrencyService _gameplayCurrencyService;
 
         [Inject]
-        private void Construct(IGameStateMachine gameStateMachine, ISoundService soundService, IGameOverService gameOverService, IRoundStateService roundStateService
+        private void Construct(IGameStateMachine gameStateMachine, ISoundService soundService, 
+            IGameOverService gameOverService, IRoundStateService roundStateService, IGameplayCurrencyService gameplayCurrencyService
         )
         {
+            _gameplayCurrencyService = gameplayCurrencyService;
             _roundStateService = roundStateService;
             _gameOverService = gameOverService;
             _soundService = soundService;
@@ -40,12 +47,16 @@ namespace Code.Gameplay.Features.GameOver.Windows
             CloseButton?.onClick.AddListener(Restart);
 
             if (_gameOverService.IsGameWin)
+            {
+                InitRating();
                 return;
+            }
 
             if (_roundStateService.GetDayData().IsBoss)
             {
                 _gameOverText.DisableElement();
                 _gameOverBossText.EnableElement();
+              
             }
             else
             {
@@ -75,6 +86,13 @@ namespace Code.Gameplay.Features.GameOver.Windows
             {
                 _soundService.PlayOneShotSound(SoundTypeId.Level_Lost);
             }
+        }
+
+        private void InitRating()
+        {
+            _ratingText.EnableElement();
+            _ratingText.text = $"Ваши блюда набрали <color=green>{_gameplayCurrencyService.GetCurrencyOfType(CurrencyTypeId.Plus)}</color> плюсов и " +
+                               $"<color=red>{_gameplayCurrencyService.GetCurrencyOfType(CurrencyTypeId.Minus)}</color> минусов";
         }
     }
 }
