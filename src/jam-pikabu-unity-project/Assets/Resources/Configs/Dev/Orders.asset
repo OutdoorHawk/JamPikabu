@@ -22,7 +22,7 @@ MonoBehaviour:
       MinDayToUnlock: 0
       MaxDayToUnlock: 0
       IsBoss: 0
-      GoodMinimum: 0
+      GoodMinimum: 1
       GoodIngredients:
       - TypeId: 2
         Rating:

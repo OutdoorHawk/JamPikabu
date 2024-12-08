@@ -18,21 +18,31 @@ MonoBehaviour:
     Icon: {fileID: 21300000, guid: 4ca83e380d4f07a438aeefb9a11c35dd, type: 3}
     MinDayToUnlock: 0
     MaxDayToUnlock: 0
-  - Type: 3
+    Size: 1
+  - Type: 6
     ViewPrefab: {fileID: 0}
-    Icon: {fileID: 21300000, guid: 93da7e8dd1c735d4fb082bad708cb4fd, type: 3}
+    Icon: {fileID: 21300000, guid: a642067d57e6ffb41a26fd53e0e68dba, type: 3}
     MinDayToUnlock: 0
     MaxDayToUnlock: 0
-  - Type: 4
+    Size: 1
+  - Type: 9
     ViewPrefab: {fileID: 0}
-    Icon: {fileID: 21300000, guid: 7f814b5022d82b443b02a8ff6457d0ae, type: 3}
+    Icon: {fileID: 21300000, guid: bae58bcecadd88b4ebdf1b3541aec620, type: 3}
     MinDayToUnlock: 0
     MaxDayToUnlock: 0
-  - Type: 5
+    Size: 1
+  - Type: 14
     ViewPrefab: {fileID: 0}
-    Icon: {fileID: 21300000, guid: 6b58b8816eb56764a8d0d98be583d8a6, type: 3}
+    Icon: {fileID: 21300000, guid: 7bc5706c486253a48a6c062bac70d4e5, type: 3}
     MinDayToUnlock: 2
     MaxDayToUnlock: 0
+    Size: 1
+  - Type: 13
+    ViewPrefab: {fileID: 0}
+    Icon: {fileID: 21300000, guid: ec4f6a8de083b284c9954c4ac10c8a13, type: 3}
+    MinDayToUnlock: 0
+    MaxDayToUnlock: 0
+    Size: 1
   LootSpawnInterval: 0.02
   LootSpawnConveyorInterval: 0.5
   LootSpawnStartDelay: 0.15

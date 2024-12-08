@@ -38,11 +38,14 @@ namespace Code.Gameplay.Features.Customers.Service
 
         public CustomerSetup GetCustomerSetup()
         {
+            if (_roundStateService.GetDayData().IsBoss)
+                return new CustomerSetup() {Sprite =  CustomerData.BossSprite};
             return _configs[_currentCustomerId];
         }
 
         private void SetNewCustomer()
         {
+           
             if (_currentCustomerId >= _configs.Count)
                 _currentCustomerId = 0;
 
