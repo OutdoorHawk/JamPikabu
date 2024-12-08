@@ -50,7 +50,7 @@ namespace Code.Gameplay.Features.Customers.Behaviours
             _ordersService.OnOrderUpdated += UpdateCustomer;
             _roundStateService.OnDayComplete += Hide;
 
-            UpdateSprite();
+            //UpdateSprite();
 
             if (_hideOnAwake)
                 _hided = true;
