@@ -124,7 +124,6 @@ namespace Code.Gameplay.Features.GameState.Systems
 
         private async UniTask PayForProductsAnimation(GameEntity storage, GameEntity roundState)
         {
-           
             if (_windowService.TryGetWindow(out PlayerHUDWindow hudWindow))
             {
                 var source = new UniTaskCompletionSource();

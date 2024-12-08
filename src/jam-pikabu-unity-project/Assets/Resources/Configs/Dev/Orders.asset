@@ -21,6 +21,8 @@ MonoBehaviour:
         Amount: 5
       MinDayToUnlock: 0
       MaxDayToUnlock: 0
+      IsBoss: 0
+      GoodMinimum: 0
       GoodIngredients:
       - TypeId: 2
         Rating:
@@ -48,6 +50,8 @@ MonoBehaviour:
         Amount: 10
       MinDayToUnlock: 0
       MaxDayToUnlock: 0
+      IsBoss: 0
+      GoodMinimum: 0
       GoodIngredients: []
       BadIngredients: []
       RandomSetupEnabled: 1
@@ -61,8 +65,10 @@ MonoBehaviour:
       Reward:
         CurrencyType: 4
         Amount: 1
-      MinDayToUnlock: 0
+      MinDayToUnlock: 2
       MaxDayToUnlock: 0
+      IsBoss: 0
+      GoodMinimum: 0
       GoodIngredients:
       - TypeId: 4
         Rating:

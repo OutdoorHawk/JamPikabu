@@ -18,6 +18,7 @@ namespace Code.Gameplay.Features.Orders.Systems
         private readonly IGroup<GameEntity> _busyLoot;
         private readonly List<GameEntity> _buffer = new(1);
         private readonly IGroup<GameEntity> _gameState;
+        private readonly IGroup<GameEntity> _collectedLoot;
 
         public CompleteOrderOnRoundCompletionSystem(GameContext context, IWindowService windowService
             , IOrdersService ordersService)
@@ -29,6 +30,12 @@ namespace Code.Gameplay.Features.Orders.Systems
                 GameMatcher.AllOf(
                     GameMatcher.GameState,
                     GameMatcher.RoundCompletion));
+            
+            _collectedLoot = context.GetGroup(
+                GameMatcher.AllOf(
+                    GameMatcher.Loot,
+                    GameMatcher.Collected,
+                    GameMatcher.LootItemUI));
 
             _orders = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.Order,
@@ -42,6 +49,9 @@ namespace Code.Gameplay.Features.Orders.Systems
             foreach (var game in _gameState)
             foreach (var entity in _orders.GetEntities(_buffer))
             {
+                if (_collectedLoot.count != 0)
+                    continue;
+                
                 OrderSetup orderDataSetup = entity.OrderData.Setup;
                 entity.isComplete = true;
 

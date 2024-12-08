@@ -15,6 +15,7 @@ namespace Code.Gameplay.Features.GameState.Systems
         private readonly IGroup<GameEntity> _busyLoot;
         private readonly IGroup<GameEntity> _busyHook;
         private readonly IGameStateMachine _gameStateMachine;
+        private readonly IGroup<GameEntity> _collectedLoot;
 
         public ProcessRoundLoopStateSystem(GameContext context, IGameStateService gameStateService, IGameStateMachine gameStateMachine)
         {

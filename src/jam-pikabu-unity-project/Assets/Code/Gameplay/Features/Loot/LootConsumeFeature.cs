@@ -7,8 +7,6 @@ namespace Code.Gameplay.Features.Loot
     {
         public LootConsumeFeature(ISystemFactory systems)
         {
-            Add(systems.Create<InitLootApplierSystem>());
-            
             Add(systems.Create<ConsumeLootValueSystem>());
             Add(systems.Create<ConsumeLootVisualsSystem>());
             
