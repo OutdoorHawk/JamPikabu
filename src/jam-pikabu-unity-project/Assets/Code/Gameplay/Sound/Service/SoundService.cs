@@ -360,7 +360,7 @@ namespace Code.Gameplay.Sound.Service
 
         private async UniTask FadeToClip(AudioSource soundSource, AudioClip newClip)
         {
-            const float fadeDuration = 0.5f;
+            const float fadeDuration = 0.2f;
             const string channelType = nameof(SoundVolumeTypeId.MusicAndAmbientVolume);
       
             _fadeTween?.Kill();

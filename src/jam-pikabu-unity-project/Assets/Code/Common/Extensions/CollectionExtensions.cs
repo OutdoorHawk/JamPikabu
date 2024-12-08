@@ -20,7 +20,13 @@ namespace RoyalGold.Sources.Scripts.Game.MVC.Utils
         public static List<T> ShuffleList<T>(this List<T> list)
         {
             Random rng = new Random();
-            list.Sort((_, _) => rng.Next(-1, 2));
+            int n = list.Count;
+
+            for (int i = n - 1; i > 0; i--)
+            {
+                int j = rng.Next(i + 1); // случайный индекс от 0 до i
+                (list[i], list[j]) = (list[j], list[i]); // обмен значений
+            }
             return list;
         }
     }

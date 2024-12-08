@@ -28,7 +28,7 @@ MonoBehaviour:
     SceneId: 2
   - Day: 3
     PlayCost: 50
-    OrdersAmount: 3
+    OrdersAmount: 4
     RoundDuration: 20
     IsBoss: 0
     SceneId: 2
