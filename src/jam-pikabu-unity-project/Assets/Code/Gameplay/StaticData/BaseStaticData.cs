@@ -7,7 +7,7 @@ namespace Code.Gameplay.StaticData
 {
     public abstract class BaseData
     {
-        [ReadOnly] public int Id;
+         public int Id;
     }
     
     public abstract class BaseStaticData<T> : BaseStaticData where T : class

@@ -29,8 +29,8 @@ namespace Code.Gameplay.Features.Orders.Config
         public List<IngredientData> BadIngredients;
         [Header("Random Setup")] 
         public bool RandomSetupEnabled;
-        public Vector2Int MinMaxGoodIngredients;
-        public Vector2Int MinMaxGoodIngredientsReward;
+        public Vector2Int MinMaxGoodIngredients = Vector2Int.one;
+        public Vector2Int MinMaxGoodIngredientsReward = Vector2Int.one;
         public Vector2Int MinMaxBadIngredients;
         public Vector2Int MinMaxBadIngredientsReward;
 

@@ -12,15 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 941126b668c946d5a10db97695651308, type: 3}
   m_Name: RoundState
   m_EditorClassIdentifier: 
-  StartGoldAmount: 100
+  StartGoldAmount: 20
   Days:
   - Day: 1
     PlayCost: 5
     OrdersAmount: 2
-    RoundDuration: 2
+    RoundDuration: 30
+    IsBoss: 0
     SceneId: 2
   - Day: 2
+    PlayCost: 10
+    OrdersAmount: 3
+    RoundDuration: 30
+    IsBoss: 0
+    SceneId: 2
+  - Day: 3
     PlayCost: 20
+    OrdersAmount: 3
+    RoundDuration: 15
+    IsBoss: 0
+    SceneId: 2
+  - Day: 4
+    PlayCost: 30
     OrdersAmount: 1
     RoundDuration: 30
+    IsBoss: 1
     SceneId: 3
