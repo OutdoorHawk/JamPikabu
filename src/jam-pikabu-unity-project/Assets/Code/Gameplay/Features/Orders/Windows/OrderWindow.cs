@@ -13,6 +13,7 @@ using Code.Gameplay.Features.Loot.Service;
 using Code.Gameplay.Features.Loot.UIFactory;
 using Code.Gameplay.Features.Orders.Config;
 using Code.Gameplay.Features.Orders.Service;
+using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.Sound;
 using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
@@ -48,6 +49,7 @@ namespace Code.Gameplay.Features.Orders.Windows
         private ISoundService _soundService;
         private ILootService _lootService;
         private IWindowService _windowService;
+        private IRoundStateService _roundStateService;
 
         private OrderData _currentOrder;
 
@@ -60,8 +62,10 @@ namespace Code.Gameplay.Features.Orders.Windows
         [Inject]
         private void WConstruct(IOrdersService ordersService, ILootItemUIFactory lootItemUIFactory,
             ICurrencyFactory currencyFactory, IStaticDataService staticDataService, ILootService lootService, ISoundService soundService,
+            IRoundStateService roundStateService,
             IWindowService windowService)
         {
+            _roundStateService = roundStateService;
             _windowService = windowService;
             _soundService = soundService;
             _lootService = lootService;
@@ -80,7 +84,7 @@ namespace Code.Gameplay.Features.Orders.Windows
 
         private void InitBoss()
         {
-            if (_currentOrder.Setup.IsBoss)
+            if (_currentOrder.Setup.GoodMinimum > 0)
             {
                 _bossContent.SetActive(true);
                 _atLeastGoodText.text += $" {_currentOrder.Setup.GoodMinimum}";
@@ -101,7 +105,7 @@ namespace Code.Gameplay.Features.Orders.Windows
             
             if (orderSusscesful)
             {
-                if (_currentOrder.Setup.IsBoss == false)
+                if (_roundStateService.GetDayData().IsBoss == false)
                     await PlayGoldAnimation();
                 else
                     await PlayBossDoneAnimation();
@@ -203,10 +207,7 @@ namespace Code.Gameplay.Features.Orders.Windows
 
         private async UniTask PlayBossDoneAnimation()
         {
-            if (_goodItems.Count > _currentOrder.Setup.GoodMinimum)
-            {
-                await _bossIconAnimator.WaitForAnimationCompleteAsync(AnimationParameter.Win.AsHash());
-            }
+            await _bossIconAnimator.WaitForAnimationCompleteAsync(AnimationParameter.Win.AsHash());
         }
 
         private async UniTask PlayGoldAnimation()

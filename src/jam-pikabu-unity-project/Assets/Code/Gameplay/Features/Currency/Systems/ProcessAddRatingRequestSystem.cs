@@ -51,6 +51,9 @@ namespace Code.Gameplay.Features.Currency.Systems
                 
                 if (request.hasWithdraw) 
                     storage.ReplaceWithdraw(storage.Withdraw + request.Withdraw);
+                
+                foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Plus)) 
+                    day.ReplacePlus(storage.Plus);
             }
 
             foreach (var request in _minusRequests)
@@ -62,6 +65,9 @@ namespace Code.Gameplay.Features.Currency.Systems
                 
                 if (request.hasWithdraw) 
                     storage.ReplaceWithdraw(storage.Withdraw + request.Withdraw);
+                
+                foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Minus)) 
+                    day.ReplaceMinus(storage.Minus);
             }
         }
     }

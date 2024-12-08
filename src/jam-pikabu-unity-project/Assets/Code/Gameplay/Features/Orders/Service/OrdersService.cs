@@ -108,9 +108,8 @@ namespace Code.Gameplay.Features.Orders.Service
         public OrderData GetCurrentOrder()
         {
             if (_roundStateService.GetDayData().IsBoss)
-            {
                 return _ordersBuffer.Find(data => data.Setup.IsBoss);
-            }
+            
             return _ordersBuffer[_currentOrderIndex];
         }
 

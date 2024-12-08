@@ -107,10 +107,14 @@ namespace Code.Gameplay.Features.GameOver.Service
 
         private void ResetMeta()
         {
-            foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Day)) 
-                day.ReplaceDay(0);
+            /*foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Day)) 
+                day.ReplaceDay(0);*/
             foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Gold)) 
                 day.ReplaceGold(_staticData.GetStaticData<RoundStateStaticData>().StartGoldAmount);
+            foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Plus)) 
+                day.ReplacePlus(0);
+            foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Minus)) 
+                day.ReplaceMinus(0);
         }
 
         private void BlockInput()
