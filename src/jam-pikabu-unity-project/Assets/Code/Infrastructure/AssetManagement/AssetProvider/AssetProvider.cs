@@ -1,6 +1,8 @@
 using Code.Common.Logger.Service;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+
 
 namespace Code.Infrastructure.AssetManagement.AssetProvider
 {
@@ -19,6 +21,11 @@ namespace Code.Infrastructure.AssetManagement.AssetProvider
         public UniTask Initialize()
         {
             return UniTask.CompletedTask;
+        }
+        
+        public async UniTask<GameObject> LoadAsset(string path)
+        {
+            return await Addressables.LoadAssetAsync<GameObject>(path).ToUniTask();
         }
 
         public T LoadAssetFromResources<T>(string path) where T : Component
