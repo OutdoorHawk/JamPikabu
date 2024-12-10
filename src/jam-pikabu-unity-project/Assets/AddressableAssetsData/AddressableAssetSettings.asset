@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 55c0cd711e904aa429b1960e3228158c
   m_currentHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: 1eceadaf8bbd1bc20aca346cb0562437
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_CatalogRequestsTimeout: 0
@@ -53,7 +53,7 @@ MonoBehaviour:
     m_Id: 
   m_RemoteCatalogLoadPath:
     m_Id: 
-  m_ContentStateBuildPathProfileVariableName: 
+  m_ContentStateBuildPathProfileVariableName: <default settings path>
   m_CustomContentStateBuildPath: 
   m_ContentStateBuildPath: 
   m_BuildAddressablesWithPlayerBuild: 0
@@ -74,6 +74,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 98f95b06f318dfe47a3cc6d7da15a05c, type: 2}
   - {fileID: 11400000, guid: 9bbeb3509aebc2e4083afc55df2c7449, type: 2}
   - {fileID: 11400000, guid: a095727de90469e4f9eb0bb6a11ccd39, type: 2}
+  - {fileID: 11400000, guid: 7d429b0bdb1313c47a6e3253aa3bc09c, type: 2}
   - {fileID: 11400000, guid: 2dce5b662f169244aac4815f892ab515, type: 2}
   m_BuildSettings:
     m_LogResourceManagerExceptions: 1
@@ -92,6 +93,20 @@ MonoBehaviour:
         m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
       - m_Id: d17f6be481a637142b642333b98c34a3
         m_Value: 'http://[PrivateIpAddress]:[HostingServicePort]'
+      - m_Id: d4bb77fb6ca61df4c947b85fada0b691
+        m_Value: 'ServerData/[BuildTarget]'
+    - m_InheritedParent: 
+      m_Id: 8cb3d060dabeae44688db0c96f83f5c3
+      m_ProfileName: GamePushCDN
+      m_Values:
+      - m_Id: 6f5a9ad19c3cefa458df3ee53fbd6d3f
+        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
+      - m_Id: 8a0a0d7f38ea87243bd8d8a261795bc5
+        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
+      - m_Id: b52c730b69c6cf14aae05a4f83903add
+        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
+      - m_Id: d17f6be481a637142b642333b98c34a3
+        m_Value: https://s3.eponesh.com/games/files/18994/
       - m_Id: d4bb77fb6ca61df4c947b85fada0b691
         m_Value: 'ServerData/[BuildTarget]'
     m_ProfileEntryNames:
@@ -131,4 +146,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3beec5915f958434cb57c92aff90a67f, type: 2}
   - {fileID: 11400000, guid: 9052f43f8ce740a44a6b62499f80af25, type: 2}
   - {fileID: 11400000, guid: af3a603c9edeebd44b61fa5e6b08b7a0, type: 2}
-  m_ActiveProfileId: 577bda2389b68ba4b976942567f97889
+  m_ActiveProfileId: 8cb3d060dabeae44688db0c96f83f5c3
