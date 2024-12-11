@@ -18,7 +18,7 @@ namespace Code.Editor
         protected override OdinMenuTree BuildMenuTree()
         {
             var tree = new OdinMenuTree();
-            tree.AddAllAssetsAtPath("", "Assets/Resources/Configs", true);
+            tree.AddAllAssetsAtPath("", "Assets/Project/StaticData", true);
 
             SortMenuItemsRecursively(tree.MenuItems);
             return tree;

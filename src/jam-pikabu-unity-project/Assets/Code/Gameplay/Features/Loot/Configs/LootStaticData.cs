@@ -30,14 +30,5 @@ namespace Code.Gameplay.Features.Loot.Configs
         {
             return GetByKey((int)typeId);
         }
-
-        [Button]
-        private void Do()
-        {
-            foreach (LootSetup lootSetup in Configs)
-            {
-                lootSetup.ColliderSize = 0.8f;
-            }
-        }
     }
 }
