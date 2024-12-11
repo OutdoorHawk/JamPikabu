@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Code.Common.Logger.Service;
+using Code.Infrastructure.AssetManagement.AssetProvider;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -10,43 +12,57 @@ namespace Code.Gameplay.StaticData
     {
         private readonly ILoggerService _loggerService;
         private readonly LazyInject<List<IConfigsInitHandler>> _handlers;
+        private readonly IAssetProvider _assetProvider;
 
         private readonly Dictionary<Type, BaseStaticData> _configs = new();
 
-        public StaticDataService(ILoggerService loggerService,
-            LazyInject<List<IConfigsInitHandler>> handlers)
+        private const string BUILD_CONFIG = "BuildConfig";
+
+        public StaticDataService
+        (
+            ILoggerService loggerService,
+            LazyInject<List<IConfigsInitHandler>> handlers,
+            IAssetProvider assetProvider
+        )
         {
             _loggerService = loggerService;
             _handlers = handlers;
+            _assetProvider = assetProvider;
         }
 
-        public void Load()
+        public async UniTaskVoid Load()
         {
-            BuildConfigStaticData buildConfig = Resources.Load<BuildConfigStaticData>("Configs/BuildConfig");
+            BuildConfigStaticData buildConfig = await _assetProvider.LoadAssetAsync<BuildConfigStaticData>(BUILD_CONFIG);
 
-            BaseStaticData[] configs;
+            string label;
             switch (buildConfig.ConfigType)
             {
                 case BuildConfigType.Dev:
-                    configs = Resources.LoadAll<BaseStaticData>("Configs/Dev");
+                    label = "DevStaticData"; // Уникальный label для dev-конфигурации
                     break;
                 case BuildConfigType.Prod:
-                    configs = Resources.LoadAll<BaseStaticData>("Configs/Prod");
+                    label = "ProdStaticData"; // Уникальный label для prod-конфигурации
                     break;
                 default:
-                {
                     _loggerService.LogError($"Unknown build config type: {buildConfig.ConfigType}");
-                    throw new ArgumentOutOfRangeException();
-                }
+                    throw new System.ArgumentOutOfRangeException();
+            }
+            
+            IList<BaseStaticData> result = await _assetProvider.LoadAssetsAsync<BaseStaticData>(label);
+
+            if (result == null)
+            {
+                _loggerService.LogError($"Error loading data by label: {label}");
+                return;
             }
 
-            foreach (var config in configs)
+            foreach (var config in result)
             {
                 _configs[config.GetType()] = config;
                 config.OnConfigPreInit();
             }
 
-            foreach (var config in configs)
+            foreach (var config in result)
             {
                 config.OnConfigInit();
             }

@@ -1,15 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
-using UnityEngine;
 
-namespace Code.Gameplay.StaticData
+namespace Code.Gameplay.StaticData.Data
 {
-    public abstract class BaseData
-    {
-         public int Id;
-    }
-    
     public abstract class BaseStaticData<T> : BaseStaticData where T : class
     {
         [PropertyOrder(99), ListDrawerSettings(CustomAddFunction = nameof(OnAddNewConfig))] public List<T> Configs;

@@ -1,5 +1,6 @@
 ﻿using System;
 using Code.Gameplay.StaticData;
+using Code.Gameplay.StaticData.Data;
 using UnityEngine;
 
 namespace Code.Gameplay.Features.Customers.Config

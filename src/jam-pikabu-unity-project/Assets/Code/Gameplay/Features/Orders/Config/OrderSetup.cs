@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Config;
 using Code.Gameplay.StaticData;
+using Code.Gameplay.StaticData.Data;
 using Sirenix.OdinInspector;
 using UnityEngine;
 

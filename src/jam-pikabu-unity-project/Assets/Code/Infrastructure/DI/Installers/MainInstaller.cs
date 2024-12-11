@@ -146,11 +146,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.Bind<ISaveLoadService>().To<SaveLoadService>().AsSingle();
             Container.Bind<IProgressProvider>().To<ProgressProvider>().AsSingle();
 
-#if CRAZY_GAMES
-            Container.Bind<IProgressReadWrite>().To<CrazyGamesProgressReadWrite>().AsSingle();
-#else
             Container.Bind<IProgressReadWrite>().To<DefaultFileProgressReadWrite>().AsSingle();
-#endif
         }
 
         private void BindCommonServices()
@@ -162,12 +158,7 @@ namespace Code.Infrastructure.DI.Installers
 
             Container.BindInterfacesTo<DefaultLogger>().AsSingle();
 
-#if CRAZY_GAMES
-            Container.BindInterfacesTo<Code.Infrastructure.Ads.Service.CrazyGamesAdsService>().AsSingle();
-            Container.BindInterfacesTo<Code.Infrastructure.Analytics.CrazyAnalyticsService>().AsSingle();
-#else
-            Container.BindInterfacesTo<Code.Infrastructure.Ads.Service.FakeAdsService>().AsSingle();
-#endif
+            Container.BindInterfacesTo<Ads.Service.FakeAdsService>().AsSingle();
         }
 
         private void BindInputService()

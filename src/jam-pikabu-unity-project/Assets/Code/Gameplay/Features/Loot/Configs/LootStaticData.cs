@@ -1,4 +1,5 @@
 ﻿using Code.Gameplay.StaticData;
+using Code.Gameplay.StaticData.Data;
 using Code.Infrastructure.View;
 using Sirenix.OdinInspector;
 using UnityEngine;
