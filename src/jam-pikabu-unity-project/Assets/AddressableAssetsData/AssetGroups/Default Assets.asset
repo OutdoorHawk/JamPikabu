@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: Default Assets
   m_GUID: 55c0cd711e904aa429b1960e3228158c
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: fc784ead82121f142a38939eb21b77b7
+    m_Address: BuildConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8c977aa4f64b21b42892fe1ca41dafc7, type: 2}
   m_SchemaSet:

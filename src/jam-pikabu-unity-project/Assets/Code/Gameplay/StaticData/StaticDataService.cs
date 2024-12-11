@@ -30,7 +30,7 @@ namespace Code.Gameplay.StaticData
             _assetProvider = assetProvider;
         }
 
-        public async UniTaskVoid Load()
+        public async UniTask Load()
         {
             BuildConfigStaticData buildConfig = await _assetProvider.LoadAssetAsync<BuildConfigStaticData>(BUILD_CONFIG);
 

@@ -56,7 +56,7 @@ namespace Code.Infrastructure.States.GameStates
             _loggerService.Log("<b>[Bootstrap]</b> Init assetProvider");
             await _assetProvider.Initialize();
             _loggerService.Log("<b>[Bootstrap]</b> Init staticData");
-            _staticDataService.Load();
+            await _staticDataService.Load();
             _loggerService.Log("<b>[Bootstrap]</b> CreateUiRoot");
             _uiFactory.CreateUiRoot();
             _loggerService.Log("<b>[Bootstrap]</b> Init localization");
