@@ -361,6 +361,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerGold
       objectReference: {fileID: 0}
+    - target: {fileID: 6232662516648152457, guid: 0c8a84101e55b2b42b3801768e63b582,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6449241814194860393, guid: 0c8a84101e55b2b42b3801768e63b582,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -591,8 +596,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: f983f0ae85d3d514da31e92451ff0cbf,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 6449241814194860393, guid: 0c8a84101e55b2b42b3801768e63b582,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -823,8 +827,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 5b074747f25f41e41be0535484e4fdad,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 6449241814194860393, guid: 0c8a84101e55b2b42b3801768e63b582,
         type: 3}
       propertyPath: m_SizeDelta.x
