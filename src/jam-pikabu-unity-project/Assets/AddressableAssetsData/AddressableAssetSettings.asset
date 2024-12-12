@@ -15,11 +15,12 @@ MonoBehaviour:
   m_DefaultGroup: 55c0cd711e904aa429b1960e3228158c
   m_currentHash:
     serializedVersion: 2
-    Hash: 94bf72245983028b620993ecfd941a38
+    Hash: e9592e496071442c1e191fc0c7e52dee
   m_OptimizeCatalogSize: 0
-  m_BuildRemoteCatalog: 0
+  m_BuildRemoteCatalog: 1
+  m_BundleLocalCatalog: 0
   m_CatalogRequestsTimeout: 0
-  m_DisableCatalogUpdateOnStart: 0
+  m_DisableCatalogUpdateOnStart: 1
   m_InternalIdNamingMode: 0
   m_InternalBundleIdMode: 1
   m_AssetLoadMode: 0
@@ -31,7 +32,7 @@ MonoBehaviour:
     m_ClassName: UnityEngine.ResourceManagement.ResourceProviders.AssetBundleProvider
   m_IgnoreUnsupportedFilesInBuild: 0
   m_UniqueBundleIds: 0
-  m_EnableJsonCatalog: 0
+  m_EnableJsonCatalog: 1
   m_NonRecursiveBuilding: 1
   m_CCDEnabled: 0
   m_maxConcurrentWebRequests: 3
@@ -50,9 +51,9 @@ MonoBehaviour:
   m_CheckForContentUpdateRestrictionsOption: 0
   m_MonoScriptBundleCustomNaming: 
   m_RemoteCatalogBuildPath:
-    m_Id: 
+    m_Id: d4bb77fb6ca61df4c947b85fada0b691
   m_RemoteCatalogLoadPath:
-    m_Id: 
+    m_Id: d17f6be481a637142b642333b98c34a3
   m_ContentStateBuildPathProfileVariableName: <default settings path>
   m_CustomContentStateBuildPath: 
   m_ContentStateBuildPath: 
@@ -67,13 +68,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ebf08c9ead48dee4bb9f42b1c2410735, type: 2}
   - {fileID: 11400000, guid: 07e281687a39a4e47a29f46e973190a6, type: 2}
   - {fileID: 11400000, guid: a947e4a00b96b834290ef69c74f4b380, type: 2}
-  - {fileID: 11400000, guid: ac134559445f9094b87173034424da60, type: 2}
   - {fileID: 11400000, guid: 4c12cdd0ab8ce5d41a5149cfa1cfffc3, type: 2}
-  - {fileID: 11400000, guid: bb3380075bd7b894386d964001c1c257, type: 2}
   - {fileID: 11400000, guid: 92ae00517d5b4c542b1e918c5da6ff7a, type: 2}
-  - {fileID: 11400000, guid: 98f95b06f318dfe47a3cc6d7da15a05c, type: 2}
   - {fileID: 11400000, guid: 9bbeb3509aebc2e4083afc55df2c7449, type: 2}
-  - {fileID: 11400000, guid: a095727de90469e4f9eb0bb6a11ccd39, type: 2}
   - {fileID: 11400000, guid: 7d429b0bdb1313c47a6e3253aa3bc09c, type: 2}
   - {fileID: 11400000, guid: 2dce5b662f169244aac4815f892ab515, type: 2}
   m_BuildSettings:
