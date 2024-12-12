@@ -317,6 +317,7 @@ namespace Code.Gameplay.Sound.Service
                 return;
             
             await FadeToClip(_mainSoundContainer.MusicSource, currentClip);
+            PlayGameplayMusic().Forget();
             OnSongUpdated?.Invoke();
         }
 
