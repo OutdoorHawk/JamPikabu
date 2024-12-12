@@ -26,11 +26,11 @@ using Code.Gameplay.StaticData;
 using Code.Gameplay.Tutorial.Service;
 using Code.Gameplay.Windows.Factory;
 using Code.Gameplay.Windows.Service;
-using Code.Infrastructure.AssetManagement;
 using Code.Infrastructure.AssetManagement.AssetDownload;
 using Code.Infrastructure.AssetManagement.AssetProvider;
 using Code.Infrastructure.Common.CoroutineRunner;
 using Code.Infrastructure.Common.GameIdentifier;
+using Code.Infrastructure.Integrations.GamePush;
 using Code.Infrastructure.Localization;
 using Code.Infrastructure.SceneContext;
 using Code.Infrastructure.SceneLoading;
@@ -78,6 +78,7 @@ namespace Code.Infrastructure.DI.Installers
             BindEntityIndices();
             BindUIServices();
             BindUIFactories();
+            BindIntegrations();
 #if UNITY_EDITOR || CHEAT
             Container.BindInterfacesAndSelfTo<CheatsService>().AsSingle().NonLazy();
 #endif
@@ -124,7 +125,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.Bind<IGameStateHandlerService>().To<GameStateHandlerService>().AsSingle();
             Container.BindInterfacesTo<LocalizationService>().AsSingle();
             Container.BindInterfacesTo<TutorialService>().AsSingle();
-           // Container.BindInterfacesTo<AssetDownloadService>().AsSingle();
+            // Container.BindInterfacesTo<AssetDownloadService>().AsSingle();
             Container.BindInterfacesTo<LabeledAssetDownloadService>().AsSingle();
             Container.BindInterfacesTo<AssetDownloadReporter>().AsSingle();
         }
@@ -202,6 +203,13 @@ namespace Code.Infrastructure.DI.Installers
         private void BindUIFactories()
         {
             Container.Bind<IUIFactory>().To<UIFactory>().AsSingle();
+        }
+
+        private void BindIntegrations()
+        {
+#if GAME_PUSH
+            Container.BindInterfacesTo<GamePushIntegration>().AsSingle();
+#endif
         }
     }
 }

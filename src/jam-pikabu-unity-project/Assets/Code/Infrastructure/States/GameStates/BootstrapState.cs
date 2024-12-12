@@ -1,7 +1,11 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Code.Common.Logger.Service;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows.Factory;
 using Code.Infrastructure.AssetManagement.AssetProvider;
+using Code.Infrastructure.Integrations;
 using Code.Infrastructure.Localization;
 using Code.Infrastructure.States.GameStateHandler;
 using Code.Infrastructure.States.StateInfrastructure;
@@ -21,6 +25,7 @@ namespace Code.Infrastructure.States.GameStates
         private readonly IGameStateHandlerService _gameStateHandlerService;
         private readonly ILoggerService _loggerService;
         private readonly ILocalizationService _localizationService;
+        private readonly List<IIntegration> _integrations;
 
         [Inject]
         public BootstrapState
@@ -31,9 +36,11 @@ namespace Code.Infrastructure.States.GameStates
             IAssetProvider assetProvider,
             ILocalizationService localizationService,
             IGameStateHandlerService gameStateHandlerService,
-            ILoggerService loggerService
-        )
+            ILoggerService loggerService,
+            List<IIntegration> integrations
+            )
         {
+            _integrations = integrations;
             _localizationService = localizationService;
             _loggerService = loggerService;
             _gameStateHandlerService = gameStateHandlerService;
@@ -47,6 +54,7 @@ namespace Code.Infrastructure.States.GameStates
         {
             base.Enter();
             await LoadServiceData();
+            await LoadIntegrations();
             _gameStateHandlerService.OnEnterBootstrapState();
             OnLoaded();
         }
@@ -64,6 +72,22 @@ namespace Code.Infrastructure.States.GameStates
             _loggerService.Log("<b>[Bootstrap]</b> SetTweensCapacity");
             DOTween.SetTweensCapacity(300, 250);
             _loggerService.Log("<b>[Bootstrap]</b> Bootstrap complete");
+        }
+
+        private async UniTask LoadIntegrations()
+        {
+            try
+            {
+                foreach (IIntegration integration in _integrations)
+                {
+                    _loggerService.Log($"<b>[Bootstrap]</b> LoadIntegration: {integration.GetType().Name}");
+                    await integration.Initialize();
+                }
+            }
+            catch (Exception e)
+            {
+                _loggerService.LogError($"<b>[Bootstrap]</b> Error loading integrations: {e}");
+            }
         }
 
         private void OnLoaded()
