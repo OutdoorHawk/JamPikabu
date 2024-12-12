@@ -26,7 +26,8 @@ using Code.Gameplay.StaticData;
 using Code.Gameplay.Tutorial.Service;
 using Code.Gameplay.Windows.Factory;
 using Code.Gameplay.Windows.Service;
-using Code.Infrastructure.AssetManagement.AssetManagement;
+using Code.Infrastructure.AssetManagement;
+using Code.Infrastructure.AssetManagement.AssetDownload;
 using Code.Infrastructure.AssetManagement.AssetProvider;
 using Code.Infrastructure.Common.CoroutineRunner;
 using Code.Infrastructure.Common.GameIdentifier;
@@ -123,7 +124,8 @@ namespace Code.Infrastructure.DI.Installers
             Container.Bind<IGameStateHandlerService>().To<GameStateHandlerService>().AsSingle();
             Container.BindInterfacesTo<LocalizationService>().AsSingle();
             Container.BindInterfacesTo<TutorialService>().AsSingle();
-            Container.BindInterfacesTo<AssetDownloadService>().AsSingle();
+           // Container.BindInterfacesTo<AssetDownloadService>().AsSingle();
+            Container.BindInterfacesTo<LabeledAssetDownloadService>().AsSingle();
             Container.BindInterfacesTo<AssetDownloadReporter>().AsSingle();
         }
 

@@ -1,18 +1,25 @@
 ﻿using Code.Common.Extensions;
-using Code.Infrastructure.AssetManagement.AssetManagement;
+using Code.Infrastructure.AssetManagement.AssetDownload;
+using Cysharp.Threading.Tasks;
+using DG.Tweening;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
 using UnityEngine;
 using Zenject;
+using static Code.Common.Extensions.AsyncGameplayExtensions;
 
 namespace Code.Infrastructure.AssetManagement.Behaviours
 {
     public class ContentLoaderBehaviour : MonoBehaviour
     {
         [SerializeField] private RectTransform _fillBarRect;
+        [SerializeField] private float _fillDuration = 0.15f;
 
         private float _maxSizeX;
         private float _minSizeX;
 
         private IAssetDownloadReporter _downloadReporter;
+        private Tweener _tweener;
 
         [Inject]
         private void Construct(IAssetDownloadReporter downloadReporter)
@@ -28,7 +35,7 @@ namespace Code.Infrastructure.AssetManagement.Behaviours
 
         private void Start()
         {
-            _downloadReporter.ProgressUpdated -= UpdateProgress;
+            _downloadReporter.ProgressUpdated += UpdateProgress;
         }
 
         private void OnDestroy()
@@ -44,13 +51,36 @@ namespace Code.Infrastructure.AssetManagement.Behaviours
 
         public void Hide()
         {
+            if (_tweener != null)
+            {
+                HideAsync().Forget();
+                return;
+            }
+
+            gameObject.DisableElement();
+        }
+
+        private async UniTaskVoid HideAsync()
+        {
+            await DelaySeconds(_fillDuration, destroyCancellationToken);
             gameObject.DisableElement();
         }
 
         private void UpdateProgress()
         {
-            float x = Mathf.Lerp(_minSizeX, _maxSizeX, _downloadReporter.Progress);
-            _fillBarRect.sizeDelta = _fillBarRect.sizeDelta.SetX(x);
+            float progress = _downloadReporter.Progress;
+            float x = Mathf.Lerp(_minSizeX, _maxSizeX, progress);
+            
+            _tweener?.Kill();
+            _tweener = _fillBarRect
+                    .DOSizeDelta(_fillBarRect.sizeDelta.SetX(x), _fillDuration)
+                    .SetLink(gameObject)
+                    .OnComplete(() =>
+                    {
+                        _tweener?.Kill();
+                        _tweener = null;
+                    })
+                ;
         }
     }
 }

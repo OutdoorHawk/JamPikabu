@@ -142,7 +142,7 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 0.1.0
+  bundleVersion: 0.1.1
   preloadedAssets:
   - {fileID: 11400000, guid: e8d4ba2f5a270ae449d29bdd0554a3d0, type: 2}
   - {fileID: -944628639613478452, guid: 642611d2a20d8ef48acb1d5b6775e0d8, type: 3}
@@ -836,24 +836,25 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   scriptingDefineSymbols:
-    Android: ODIN_INSPECTOR_EDITOR_ONLY;ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;ODIN_INSPECTOR_3_2;ODIN_INSPECTOR_3_3
-    EmbeddedLinux: 
+    Android: ENABLE_JSON_CATALOG;ODIN_INSPECTOR_EDITOR_ONLY;ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;ODIN_INSPECTOR_3_2;ODIN_INSPECTOR_3_3
+    EmbeddedLinux: ENABLE_JSON_CATALOG
     GameCoreScarlett: 
     GameCoreXboxOne: 
-    LinuxHeadlessSimulation: 
-    Nintendo Switch: 
-    PS4: 
+    LinuxHeadlessSimulation: ENABLE_JSON_CATALOG
+    Nintendo Switch: ENABLE_JSON_CATALOG
+    PS4: ENABLE_JSON_CATALOG
     PS5: 
-    QNX: 
+    QNX: ENABLE_JSON_CATALOG
     ReservedCFE: 
+    Server: ENABLE_JSON_CATALOG
     Stadia: 
-    Standalone: ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;ODIN_INSPECTOR_EDITOR_ONLY;ODIN_INSPECTOR_3_2;ODIN_INSPECTOR_3_3
+    Standalone: ENABLE_JSON_CATALOG;ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;ODIN_INSPECTOR_EDITOR_ONLY;ODIN_INSPECTOR_3_2;ODIN_INSPECTOR_3_3
     VisionOS: 
-    WebGL: ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;ODIN_INSPECTOR_EDITOR_ONLY;ODIN_INSPECTOR_3_2;ODIN_INSPECTOR_3_3;CHEAT;GAME_PUSH
-    Windows Store Apps: 
-    XboxOne: 
-    iPhone: 
-    tvOS: 
+    WebGL: ENABLE_JSON_CATALOG;ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;ODIN_INSPECTOR_EDITOR_ONLY;ODIN_INSPECTOR_3_2;ODIN_INSPECTOR_3_3;CHEAT;GAME_PUSH
+    Windows Store Apps: ENABLE_JSON_CATALOG
+    XboxOne: ENABLE_JSON_CATALOG
+    iPhone: ENABLE_JSON_CATALOG
+    tvOS: ENABLE_JSON_CATALOG
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

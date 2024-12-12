@@ -1,5 +1,6 @@
 using Code.Common.Logger.Service;
 using Code.Infrastructure.AssetManagement;
+using Code.Infrastructure.AssetManagement.AssetDownload;
 using Code.Infrastructure.AssetManagement.Behaviours;
 using Code.Infrastructure.States.GameStates;
 using Code.Infrastructure.States.StateMachine;
