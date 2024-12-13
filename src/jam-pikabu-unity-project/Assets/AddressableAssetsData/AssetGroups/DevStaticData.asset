@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: DevStaticData
+  m_EditorClassIdentifier: 
+  m_GroupName: DevStaticData
+  m_GUID: 82872aebf74ccda47b132d22f070ce4c
+  m_SerializeEntries:
+  - m_GUID: 351865138db05fb498d1329729e6c1ad
+    m_Address: Shop
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DevStaticData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 390b93c379d6cc64c8a91226fcb97304
+    m_Address: Windows
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DevStaticData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4b5fb69db4cc8b54fbed34cea530fd40
+    m_Address: Tutorial
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DevStaticData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8004a710a7ce1db489ec6e039b3c5399
+    m_Address: Currency
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DevStaticData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 83563980ba52d584694b769af5ca99ef
+    m_Address: Loot
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DevStaticData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9d8af480cdb254b46a27827e90a31137
+    m_Address: RoundState
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DevStaticData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ba0fad7ac1448ca408a32e1763a03458
+    m_Address: Customer
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DevStaticData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: caa7f92156136a041a5d55b00f6857ca
+    m_Address: Orders
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DevStaticData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d47a996ee3fcb7a43b70c03d0bc3058c
+    m_Address: GrapplingHook
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DevStaticData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f9bd6f459a5d3d940aa9bcaf74666160
+    m_Address: Sounds
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DevStaticData
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 8c977aa4f64b21b42892fe1ca41dafc7, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 2fc4024e82a74df4690e5279a1efcb20, type: 2}
+    - {fileID: 11400000, guid: 8a21f5c868dfa4742a921082a94b9ea9, type: 2}

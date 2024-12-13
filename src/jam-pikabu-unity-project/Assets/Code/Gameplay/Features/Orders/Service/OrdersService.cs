@@ -10,7 +10,6 @@ using Code.Gameplay.Features.Orders.Config;
 using Code.Gameplay.Features.Orders.Factory;
 using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.StaticData;
-using Code.Gameplay.Windows.Service;
 using RoyalGold.Sources.Scripts.Game.MVC.Utils;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -25,7 +24,6 @@ namespace Code.Gameplay.Features.Orders.Service
         private readonly IRoundStateService _roundStateService;
         private readonly IOrdersFactory _ordersFactory;
         private readonly ILootService _lootService;
-        private readonly IWindowService _windowService;
 
         private OrdersStaticData _ordersData;
         private int _currentOrderIndex;
@@ -42,15 +40,18 @@ namespace Code.Gameplay.Features.Orders.Service
 
         public (List<IngredientData> good, List<IngredientData> bad) OrderIngredients => _orderIngredients;
 
-        public OrdersService(IStaticDataService staticDataService,
-            IRoundStateService roundStateService, IOrdersFactory ordersFactory,
-            ILootService lootService, IWindowService windowService)
+        public OrdersService
+        (
+            IStaticDataService staticDataService,
+            IRoundStateService roundStateService,
+            IOrdersFactory ordersFactory,
+            ILootService lootService
+        )
         {
             _staticDataService = staticDataService;
             _roundStateService = roundStateService;
             _ordersFactory = ordersFactory;
             _lootService = lootService;
-            _windowService = windowService;
         }
 
         public void InitDay(int currentDay)
@@ -109,7 +110,7 @@ namespace Code.Gameplay.Features.Orders.Service
         {
             if (_roundStateService.GetDayData().IsBoss)
                 return _ordersBuffer.Find(data => data.Setup.IsBoss);
-            
+
             return _ordersBuffer[_currentOrderIndex];
         }
 
@@ -126,7 +127,6 @@ namespace Code.Gameplay.Features.Orders.Service
 
             if (_currentOrderIndex >= _ordersBuffer.Count)
                 _currentOrderIndex = 0;
-            
         }
 
         public void GameOver()
@@ -138,21 +138,17 @@ namespace Code.Gameplay.Features.Orders.Service
         public bool OrderPassesConditions()
         {
             OrderData order = GetCurrentOrder();
-            int count = 0;
 
             if (_lootService.CollectedLootItems.Count == 0)
                 return false;
 
-            if (order.Setup.GoodMinimum <= 0)
-                return true;
+            if (CheckGoodMinimum(order) == false)
+                return false;
 
-            foreach (var ingredient in _orderIngredients.good)
-            {
-                IEnumerable<LootTypeId> collectedOfType = _lootService.CollectedLootItems.Where(item => item == ingredient.TypeId);
-                count += collectedOfType.Count();
-            }
+            if (CheckBadMaximum(order) == false)
+                return false;
 
-            return count >= order.Setup.GoodMinimum;
+            return true;
         }
 
         private void InitIngredientsDic(OrderData order)
@@ -165,13 +161,6 @@ namespace Code.Gameplay.Features.Orders.Service
 
         private void GetIngredientsFromOrder(OrderData order)
         {
-            if (order.Setup.RandomSetupEnabled == false)
-            {
-                _orderIngredients.good = new List<IngredientData>(order.Setup.GoodIngredients);
-                _orderIngredients.bad = new List<IngredientData>(order.Setup.BadIngredients);
-                return;
-            }
-
             _orderIngredients.good = new List<IngredientData>();
             _orderIngredients.bad = new List<IngredientData>();
             List<LootSetup> availableLoot = new List<LootSetup>(_lootService.AvailableLoot);
@@ -220,14 +209,50 @@ namespace Code.Gameplay.Features.Orders.Service
             }
         }
 
+        private bool CheckGoodMinimum(OrderData order)
+        {
+            int setupCount = order.Setup.GoodMinimum;
+            bool checkEnabled = setupCount > 0;
+
+            if (checkEnabled == false)
+                return true;
+
+            int count = 0;
+            foreach (var ingredient in _orderIngredients.good)
+            {
+                IEnumerable<LootTypeId> collectedOfType = _lootService.CollectedLootItems.Where(item => item == ingredient.TypeId);
+                count += collectedOfType.Count();
+            }
+
+            return count >= setupCount;
+        }
+
+        private bool CheckBadMaximum(OrderData order)
+        {
+            int setupCount = order.Setup.BadMaximum;
+            bool checkEnabled = setupCount > 0;
+
+            if (checkEnabled == false)
+                return true;
+
+            int count = 0;
+            foreach (var ingredient in _orderIngredients.bad)
+            {
+                IEnumerable<LootTypeId> collectedOfType = _lootService.CollectedLootItems.Where(item => item == ingredient.TypeId);
+                count += collectedOfType.Count();
+            }
+
+            return count < setupCount;
+        }
+
         private static bool CheckMinDayToUnlock(OrderData data, int currentDay)
         {
-            return data.Setup.MinDayToUnlock > 0 && currentDay < data.Setup.MinDayToUnlock;
+            return data.Setup.MinMaxDayToUnlock.x > 0 && currentDay < data.Setup.MinMaxDayToUnlock.x;
         }
 
         private static bool CheckMaxDayToUnlock(OrderData data, int currentDay)
         {
-            return data.Setup.MaxDayToUnlock > 0 && currentDay > data.Setup.MaxDayToUnlock;
+            return data.Setup.MinMaxDayToUnlock.y > 0 && currentDay > data.Setup.MinMaxDayToUnlock.y;
         }
     }
 }
