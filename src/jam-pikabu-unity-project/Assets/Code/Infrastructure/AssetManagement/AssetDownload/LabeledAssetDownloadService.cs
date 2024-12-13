@@ -17,6 +17,8 @@ namespace Code.Infrastructure.AssetManagement.AssetDownload
         private const string RemoteCatalogPath = "https://s3.eponesh.com/games/files/18994/catalog_0.1.1.json";
         private const string RemoteHashPath = "https://s3.eponesh.com/games/files/18994/catalog_0.1.1.hash";
         private const string LocalCatalogPath = "https://html-classic.itch.zone/html/12240601/Pikabu/StreamingAssets/aa/catalog.json";
+        
+        private const bool EnableLocalCatalogOverride = true;
 
         private readonly IAssetDownloadReporter _downloadReporter;
         private readonly ILoggerService _loggerService;
@@ -120,6 +122,9 @@ namespace Code.Infrastructure.AssetManagement.AssetDownload
         private string EditWebUrl(IResourceLocation location)
         {
             _loggerService.Log($"Requesting: {location.InternalId} remoteCatalogAvailable: {_remoteCatalogAvailable}");
+
+            if (EnableLocalCatalogOverride == false)
+                return location.InternalId;
             
             if (_remoteCatalogAvailable == false)
                 return location.InternalId;
@@ -144,6 +149,7 @@ namespace Code.Infrastructure.AssetManagement.AssetDownload
             await ClearDependencyCache(RemoteLabel);
 
             _loggerService.Log($"Local catalog path: {LocalCatalogPath}");
+            _loggerService.Log($"Application.persistentDataPath: {Application.persistentDataPath}");
             _loggerService.Log($"Remote catalog path: {RemoteCatalogPath}");
 
             List<string> catalogsToUpdate = await Addressables.CheckForCatalogUpdates().ToUniTask();
