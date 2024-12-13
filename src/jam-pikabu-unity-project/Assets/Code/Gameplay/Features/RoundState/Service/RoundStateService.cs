@@ -1,15 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using Code.Gameplay.Features.RoundState.Configs;
 using Code.Gameplay.Features.RoundState.Factory;
 using Code.Gameplay.StaticData;
-using Code.Infrastructure.States.GameStates;
-using Code.Infrastructure.States.GameStates.Game;
-using Code.Infrastructure.States.StateInfrastructure;
-using Code.Infrastructure.States.StateMachine;
-using Cysharp.Threading.Tasks;
-using static Code.Common.Extensions.AsyncGameplayExtensions;
 
 namespace Code.Gameplay.Features.RoundState.Service
 {
@@ -18,14 +11,13 @@ namespace Code.Gameplay.Features.RoundState.Service
         public event Action OnEnterRoundPreparation;
         public event Action OnDayBegin;
         public event Action OnDayComplete;
-        
+
         private readonly IRoundStateFactory _roundStateFactory;
         private readonly IStaticDataService _staticDataService;
-        private readonly IGameStateMachine _gameStateMachine;
 
         private List<DayData> _daysData;
         private DayData _currentDayData;
-        
+
         private int _currentDay;
 
         public int CurrentDay => _currentDay;
@@ -34,22 +26,23 @@ namespace Code.Gameplay.Features.RoundState.Service
         public RoundStateService
         (
             IRoundStateFactory roundStateFactory,
-            IStaticDataService staticDataService,
-            IGameStateMachine gameStateMachine
+            IStaticDataService staticDataService
         )
         {
             _roundStateFactory = roundStateFactory;
             _staticDataService = staticDataService;
-            _gameStateMachine = gameStateMachine;
         }
 
-        public void BeginDay(int day)
+        public void SetCurrentDay(int day)
+        {
+            _currentDay = day;
+        }
+
+        public void BeginDay()
         {
             var staticData = _staticDataService.GetStaticData<RoundStateStaticData>();
-            
-            _currentDay = day;
             _daysData = staticData.Days;
-            
+
             _currentDayData = GetDayData(_currentDay);
 
             _roundStateFactory.CreateRoundStateController()
@@ -57,13 +50,12 @@ namespace Code.Gameplay.Features.RoundState.Service
                 .AddDay(_currentDay)
                 .AddRoundDuration(_currentDayData.RoundDuration)
                 ;
-            
+
             OnDayBegin?.Invoke();
         }
 
         public void RoundEnd()
         {
-           
         }
 
         public void EnterRoundPreparation()

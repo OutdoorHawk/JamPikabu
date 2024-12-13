@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using Code.Common.Entity;
-using Code.Common.Extensions;
 using Code.Gameplay.Features.GameState.Service;
 using Entitas;
 
@@ -38,25 +36,14 @@ namespace Code.Gameplay.Features.GameState.Systems
             foreach (var gameState in _entities.GetEntities(_buffer))
             {
                 request.isDestructed = true;
-
+                gameState.isStateProcessingAvailable = true;
                 gameState.ResetGameStates();
+
                 gameState.isRoundCompletion = true;
                 gameState.ReplaceGameStateTypeId(GameStateTypeId.RoundCompletion);
 
-                ProcessServices();
-
                 _gameStateService.CompleteStateSwitch(GameStateTypeId.RoundCompletion);
-                gameState.isStateProcessingAvailable = true;
             }
-        }
-
-        private void ProcessServices()
-        {
-            CreateGameEntity
-                .Empty()
-                .With(x => x.isLootEffectsApplier = true)
-                .With(x => x.isAvailable = true)
-                ;
         }
     }
 }

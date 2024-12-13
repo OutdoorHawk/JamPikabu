@@ -12,7 +12,7 @@ namespace Code.Gameplay.Features.Orders.Service
         int MaxOrders { get; }
         bool OrderWindowSeen { get; }
         (List<IngredientData> good, List<IngredientData> bad) OrderIngredients { get; }
-        void InitDay(int currentDay);
+        void InitDayBegin();
         GameEntity CreateOrder();
         void SetOrderWindowSeen();
         IngredientData GetIngredientData(LootTypeId lootTypeId);

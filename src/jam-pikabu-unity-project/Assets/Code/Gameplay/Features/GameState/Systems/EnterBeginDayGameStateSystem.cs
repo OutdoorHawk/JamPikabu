@@ -57,38 +57,18 @@ namespace Code.Gameplay.Features.GameState.Systems
         public void Execute()
         {
             foreach (var request in _requests)
-            foreach (var entity in _entities.GetEntities(_buffer))
+            foreach (var gameState in _entities.GetEntities(_buffer))
             foreach (var day in _daysMeta)
             {
                 request.isDestructed = true;
-
-                entity.ResetGameStates();
-                entity.isBeginDay = true;
-                entity.ReplaceGameStateTypeId(GameStateTypeId.BeginDay);
-
-                ProcessService(day);
+                gameState.isStateProcessingAvailable = true;
+                gameState.ResetGameStates();
+                
+                gameState.isBeginDay = true;
+                gameState.ReplaceGameStateTypeId(GameStateTypeId.BeginDay);
+                
                 _gameStateService.CompleteStateSwitch(GameStateTypeId.BeginDay);
-                entity.isStateProcessingAvailable = true;
             }
-        }
-
-        private void ProcessService(MetaEntity day)
-        {
-            SaveStash();
-            _roundStateService.BeginDay(day.Day);
-            _ordersService.InitDay(_roundStateService.CurrentDay);
-            _lootFactory.CreateLootSpawner();
-            _lootService.InitLootBuffer();
-        }
-        
-        private void SaveStash()
-        {
-            foreach (var storage in Contexts.sharedInstance.game.GetGroup(GameMatcher.AllOf(GameMatcher.CurrencyStorage, GameMatcher.Gold)))
-                GameplayCurrencyService.CurrencyCache[CurrencyTypeId.Gold] = storage.Gold;
-            foreach (var storage in Contexts.sharedInstance.game.GetGroup(GameMatcher.AllOf(GameMatcher.CurrencyStorage, GameMatcher.Plus)))
-                GameplayCurrencyService.CurrencyCache[CurrencyTypeId.Plus] = storage.Plus;
-            foreach (var storage in Contexts.sharedInstance.game.GetGroup(GameMatcher.AllOf(GameMatcher.CurrencyStorage, GameMatcher.Minus)))
-                GameplayCurrencyService.CurrencyCache[CurrencyTypeId.Minus] = storage.Minus;
         }
     }
 }

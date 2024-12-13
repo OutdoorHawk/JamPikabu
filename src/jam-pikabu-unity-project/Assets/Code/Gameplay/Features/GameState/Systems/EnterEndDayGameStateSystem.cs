@@ -43,13 +43,13 @@ namespace Code.Gameplay.Features.GameState.Systems
             foreach (var day in _daysMeta)
             {
                 request.isDestructed = true;
-
+                gameState.isStateProcessingAvailable = true;
                 gameState.ResetGameStates();
+                
                 gameState.isEndDay = true;
                 gameState.ReplaceGameStateTypeId(GameStateTypeId.EndDay);
 
                 _gameStateService.CompleteStateSwitch(GameStateTypeId.EndDay);
-                gameState.isStateProcessingAvailable = true;
             }
         }
     }

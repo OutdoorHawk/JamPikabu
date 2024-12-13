@@ -19,8 +19,8 @@ namespace Code.Common.Destruct.Systems
             foreach (GameEntity entity in _entities)
             {
                 IEntityView entityView = entity.View;
-                if (entityView is not MonoBehaviour monoBehaviour || monoBehaviour == null)
-                    continue;
+                /*if (entityView is not MonoBehaviour monoBehaviour || monoBehaviour == null)
+                    continue;*/
                 entityView.ReleaseEntity();
                 Object.Destroy(entityView.gameObject);
             }

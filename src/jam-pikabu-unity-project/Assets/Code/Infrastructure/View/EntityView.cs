@@ -61,9 +61,6 @@ namespace Code.Infrastructure.View
 
         private void UnregisterCollisions()
         {
-            if (this == null)
-                return;
-            
             foreach (var coll in GetComponentsInChildren<Collider2D>())
                 _collisionRegistry.Unregister(coll.GetInstanceID());
         }

@@ -34,7 +34,8 @@ namespace Code.Gameplay.StaticData
         {
             BuildConfigStaticData buildConfig = await _assetProvider.LoadAssetAsync<BuildConfigStaticData>(BUILD_CONFIG);
 
-            string label;
+            string label = "ProdStaticData";
+#if UNITY_EDITOR
             switch (buildConfig.ConfigType)
             {
                 case BuildConfigType.Dev:
@@ -45,8 +46,9 @@ namespace Code.Gameplay.StaticData
                     break;
                 default:
                     _loggerService.LogError($"Unknown build config type: {buildConfig.ConfigType}");
-                    throw new System.ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException();
             }
+#endif
             
             IList<BaseStaticData> result = await _assetProvider.LoadAssetsAsync<BaseStaticData>(label);
 

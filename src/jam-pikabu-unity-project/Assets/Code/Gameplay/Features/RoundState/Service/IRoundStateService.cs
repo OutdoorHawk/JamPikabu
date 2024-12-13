@@ -10,7 +10,8 @@ namespace Code.Gameplay.Features.RoundState.Service
         event Action OnDayComplete;
         int CurrentDay { get; }
         int MaxDays { get; }
-        void BeginDay(int day);
+        void SetCurrentDay(int day);
+        void BeginDay();
         void RoundEnd();
         void EnterRoundPreparation();
         void DayComplete();

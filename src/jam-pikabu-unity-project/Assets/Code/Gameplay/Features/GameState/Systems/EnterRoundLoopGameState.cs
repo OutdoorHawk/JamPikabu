@@ -29,16 +29,16 @@ namespace Code.Gameplay.Features.GameState.Systems
         public void Execute()
         {
             foreach (var request in _requests)
-            foreach (var entity in _entities.GetEntities(_buffer))
+            foreach (var gameState in _entities.GetEntities(_buffer))
             {
                 request.isDestructed = true;
-
-                entity.ResetGameStates();
-                entity.isRoundLoop = true;
-                entity.ReplaceGameStateTypeId(GameStateTypeId.RoundLoop);
+                gameState.isStateProcessingAvailable = true;
+                gameState.ResetGameStates();
+                
+                gameState.isRoundLoop = true;
+                gameState.ReplaceGameStateTypeId(GameStateTypeId.RoundLoop);
 
                 _gameStateService.CompleteStateSwitch(GameStateTypeId.RoundLoop);
-                entity.isStateProcessingAvailable = true;
             }
         }
     }

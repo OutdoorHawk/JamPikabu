@@ -11,10 +11,6 @@ namespace Code.Gameplay.Features.GameState.Systems
     {
         private readonly IGroup<GameEntity> _entities;
         private readonly IGameStateService _gameStateService;
-        private readonly IOrdersService _ordersService;
-        private readonly ILootService _lootService;
-        private readonly IRoundStateService _roundStateService;
-        
         private readonly IGroup<GameEntity> _requests;
         private readonly List<GameEntity> _buffer = new();
 
@@ -28,10 +24,7 @@ namespace Code.Gameplay.Features.GameState.Systems
         )
         {
             _gameStateService = gameStateService;
-            _ordersService = ordersService;
-            _lootService = lootService;
-            _roundStateService = roundStateService;
-
+            
             _requests = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.SwitchGameStateRequest,
                     GameMatcher.RoundPreparation
@@ -45,27 +38,17 @@ namespace Code.Gameplay.Features.GameState.Systems
         public void Execute()
         {
             foreach (var request in _requests)
-            foreach (var entity in _entities.GetEntities(_buffer))
+            foreach (var gameState in _entities.GetEntities(_buffer))
             {
                 request.isDestructed = true;
-
-                entity.ResetGameStates();
-                entity.isRoundPreparation = true;
-
-                entity.ReplaceGameStateTypeId(GameStateTypeId.RoundPreparation);
-
-                ProcessServices();
+                gameState.isStateProcessingAvailable = true;
+                gameState.ResetGameStates();
+                
+                gameState.isRoundPreparation = true;
+                gameState.ReplaceGameStateTypeId(GameStateTypeId.RoundPreparation);
 
                 _gameStateService.CompleteStateSwitch(GameStateTypeId.RoundPreparation);
-                entity.isStateProcessingAvailable = true;
             }
-        }
-
-        private void ProcessServices()
-        {
-            _ordersService.CreateOrder();
-            _roundStateService.EnterRoundPreparation();
-            _lootService.ClearCollectedLoot();
         }
     }
 }

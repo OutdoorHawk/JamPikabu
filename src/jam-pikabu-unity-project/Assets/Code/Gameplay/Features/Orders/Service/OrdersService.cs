@@ -54,14 +54,14 @@ namespace Code.Gameplay.Features.Orders.Service
             _lootService = lootService;
         }
 
-        public void InitDay(int currentDay)
+        public void InitDayBegin()
         {
             _ordersData = _staticDataService.GetStaticData<OrdersStaticData>();
             _currentOrderIndex = 0;
             _ordersCompleted = 0;
             _ordersBuffer.Clear();
 
-            InitCurrentDayOrders(currentDay);
+            InitCurrentDayOrders(_roundStateService.CurrentDay);
         }
 
         private void InitCurrentDayOrders(int currentDay)
