@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Code.Common.Extensions;
 using Code.Common.Logger.Service;
 using Cysharp.Threading.Tasks;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Networking;
@@ -14,16 +16,15 @@ namespace Code.Infrastructure.AssetManagement.AssetDownload
     public class LabeledAssetDownloadService : IAssetDownloadService
     {
         private const string RemoteLabel = "ProdStaticData";
-        private const string RemoteCatalogPath = "https://s3.eponesh.com/games/files/18994/catalog_0.1.1.json";
-        private const string RemoteHashPath = "https://s3.eponesh.com/games/files/18994/catalog_0.1.1.hash";
-        private const string LocalCatalogPath = "https://html-classic.itch.zone/html/12240601/Pikabu/StreamingAssets/aa/catalog.json";
-        
-        private const bool EnableLocalCatalogOverride = true;
-
+       
         private readonly IAssetDownloadReporter _downloadReporter;
         private readonly ILoggerService _loggerService;
         private long _downloadSize;
-        private bool _remoteCatalogAvailable = true;
+        private bool _remoteCatalogAvailable;
+
+        private static string LocalCatalogPath => $"{Addressables.RuntimePath}/catalog.json";
+        private static string RemoteCatalogPath => $"https://s3.eponesh.com/games/files/18994/catalog_{Application.version}.json";
+        private static string RemoteHashPath => $"https://s3.eponesh.com/games/files/18994/catalog_{Application.version}.hash";
 
         public LabeledAssetDownloadService(IAssetDownloadReporter downloadReporter, ILoggerService loggerService)
         {
@@ -78,12 +79,12 @@ namespace Code.Infrastructure.AssetManagement.AssetDownload
                 Debug.LogError(e);
             }
         }
-        
+
         private async UniTask CheckRemoteCatalogAvailability()
         {
             try
             {
-                UnityWebRequest request = UnityWebRequest.Head(RemoteCatalogPath);
+                UnityWebRequest request = UnityWebRequest.Get(RemoteCatalogPath);
                 await request.SendWebRequest();
 
                 if (request.result == UnityWebRequest.Result.Success)
@@ -103,7 +104,7 @@ namespace Code.Infrastructure.AssetManagement.AssetDownload
                 _loggerService.Log($"Error checking remote catalog availability: {e.Message}");
             }
         }
-
+        
         private void EditWebRequestUrl(UnityWebRequest request)
         {
             if
@@ -122,13 +123,10 @@ namespace Code.Infrastructure.AssetManagement.AssetDownload
         private string EditWebUrl(IResourceLocation location)
         {
             _loggerService.Log($"Requesting: {location.InternalId} remoteCatalogAvailable: {_remoteCatalogAvailable}");
-
-            if (EnableLocalCatalogOverride == false)
-                return location.InternalId;
             
             if (_remoteCatalogAvailable == false)
                 return location.InternalId;
-            
+
             if (location.InternalId.Contains("catalog.json"))
             {
                 _loggerService.Log($"Requesting: {location.InternalId} | Edit to {RemoteCatalogPath}");
@@ -140,7 +138,7 @@ namespace Code.Infrastructure.AssetManagement.AssetDownload
                 _loggerService.Log($"Requesting: {location.InternalId} | Edit to {RemoteHashPath}");
                 return RemoteHashPath;
             }
-            
+
             return location.InternalId;
         }
 
@@ -149,7 +147,7 @@ namespace Code.Infrastructure.AssetManagement.AssetDownload
             await ClearDependencyCache(RemoteLabel);
 
             _loggerService.Log($"Local catalog path: {LocalCatalogPath}");
-            _loggerService.Log($"Application.persistentDataPath: {Application.persistentDataPath}");
+            _loggerService.Log($"Application.absoluteURL: {Application.absoluteURL}");
             _loggerService.Log($"Remote catalog path: {RemoteCatalogPath}");
 
             List<string> catalogsToUpdate = await Addressables.CheckForCatalogUpdates().ToUniTask();
