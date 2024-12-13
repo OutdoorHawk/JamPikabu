@@ -28,12 +28,8 @@
     <type fullname="Code.Gameplay.Features.RoundState.Behaviours.CurrentDayViewBehaviour" preserve="all" />
     <type fullname="Code.Gameplay.Features.RoundState.Configs.RoundStateStaticData" preserve="all" />
     <type fullname="Code.Gameplay.Input.Behaviours.ButtonCommand" preserve="all" />
-    <type fullname="Code.Gameplay.Settings.Window.LocalizationButton" preserve="all" />
-    <type fullname="Code.Gameplay.Settings.Window.SettingsWindow" preserve="all" />
-    <type fullname="Code.Gameplay.Settings.Window.VolumeSlider" preserve="all" />
     <type fullname="Code.Gameplay.Sound.Behaviours.ButtonSoundComponent" preserve="all" />
     <type fullname="Code.Gameplay.Sound.Behaviours.Collision2DSoundComponent" preserve="all" />
-    <type fullname="Code.Gameplay.Sound.Behaviours.MusicWidgetBehaviour" preserve="all" />
     <type fullname="Code.Gameplay.Sound.Config.SoundsStaticData" preserve="all" />
     <type fullname="Code.Gameplay.StaticData.BuildConfigStaticData" preserve="all" />
     <type fullname="Code.Gameplay.Tutorial.Behaviours.TutorialConditionComponent" preserve="all" />
@@ -66,7 +62,6 @@
     <type fullname="Code.Gameplay.Windows.Configs.WindowConfig" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-    <type fullname="Coffee.UIExtensions.UIFlip" preserve="all" />
     <type fullname="Coffee.UIExtensions.UIGradient" preserve="all" />
   </assembly>
   <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
@@ -150,7 +145,6 @@
     <type fullname="UnityEngine.SpriteRenderer" preserve="all" />
     <type fullname="UnityEngine.Texture2D" preserve="all" />
     <type fullname="UnityEngine.Transform" preserve="all" />
-    <type fullname="UnityEngine.U2D.SpriteAtlas" preserve="all" />
     <type fullname="UnityEngine.Events.PersistentCallGroup" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.RectOffset" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.Events.ArgumentCache" preserve="nothing" serialized="true" />
@@ -178,16 +172,14 @@
     <type fullname="UnityEngine.UI.Mask" preserve="all" />
     <type fullname="UnityEngine.UI.RectMask2D" preserve="all" />
     <type fullname="UnityEngine.UI.ScrollRect" preserve="all" />
-    <type fullname="UnityEngine.UI.Slider" preserve="all" />
     <type fullname="UnityEngine.UI.VerticalLayoutGroup" preserve="all" />
     <type fullname="UnityEngine.UI.MaskableGraphic/CullStateChangedEvent" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.UI.AnimationTriggers" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.UI.Button/ButtonClickedEvent" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.UI.ColorBlock" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.UI.Navigation" preserve="nothing" serialized="true" />
-    <type fullname="UnityEngine.UI.SpriteState" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.UI.ScrollRect/ScrollRectEvent" preserve="nothing" serialized="true" />
-    <type fullname="UnityEngine.UI.Slider/SliderEvent" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.SpriteState" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.Canvas" preserve="all" />

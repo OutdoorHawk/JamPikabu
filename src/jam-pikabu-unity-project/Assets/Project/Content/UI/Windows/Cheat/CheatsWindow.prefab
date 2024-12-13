@@ -159,9 +159,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CloseButton: {fileID: 2439642096605419135}
+  CloseButtons: []
   _useAnimation: 0
   _canCloseByBack: 1
   _canvasGroup: {fileID: 0}
+  _animationDuration: 0.15
   _cheatsLayout: {fileID: 7078390769542827291}
   _baseCheatButton: {fileID: 3559730212893924685, guid: 770db9f5fcdf29546bba510ae100f14f,
     type: 3}
@@ -206,7 +208,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 1048567
+    m_Bits: 247
 --- !u!1 &2149470059048245491
 GameObject:
   m_ObjectHideFlags: 0
