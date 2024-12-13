@@ -4,14 +4,14 @@ using Entitas;
 
 namespace Code.Gameplay.Features.GameState.Systems
 {
-    public class ProcessGameStateSwitchToRoundLoopSystem : IExecuteSystem
+    public class EnterRoundLoopGameState : IExecuteSystem
     {
         private readonly IGroup<GameEntity> _entities;
         private readonly IGameStateService _gameStateService;
         private readonly IGroup<GameEntity> _requests;
         private readonly List<GameEntity> _buffer = new();
 
-        public ProcessGameStateSwitchToRoundLoopSystem(GameContext context, IGameStateService gameStateService)
+        public EnterRoundLoopGameState(GameContext context, IGameStateService gameStateService)
         {
             _gameStateService = gameStateService;
 

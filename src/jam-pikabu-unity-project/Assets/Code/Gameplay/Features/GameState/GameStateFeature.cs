@@ -15,11 +15,11 @@ namespace Code.Gameplay.Features.GameState
             Add(systems.Create<ProcessRoundCompletionStateSystem>());
             Add(systems.Create<ProcessEndDayStateSystem>());
             
-            Add(systems.Create<ProcessGameStateSwitchToRoundPreparationSystem>());
-            Add(systems.Create<ProcessGameStateSwitchToRoundLoopSystem>());
-            Add(systems.Create<ProcessGameStateSwitchToRoundCompletionSystem>());
-            Add(systems.Create<ProcessGameStateSwitchToEndDaySystem>());
-            Add(systems.Create<ProcessGameStateSwitchToBeginDaySystem>());
+            Add(systems.Create<EnterRoundPreparationGameStateSystem>());
+            Add(systems.Create<EnterRoundLoopGameState>());
+            Add(systems.Create<EnterRoundCompleteGameStateSystem>());
+            Add(systems.Create<EnterEndDayGameStateSystem>());
+            Add(systems.Create<EnterBeginDayGameStateSystem>());
         }
     }
 }

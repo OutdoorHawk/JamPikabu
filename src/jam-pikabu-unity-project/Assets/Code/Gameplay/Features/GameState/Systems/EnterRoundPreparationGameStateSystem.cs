@@ -7,7 +7,7 @@ using Entitas;
 
 namespace Code.Gameplay.Features.GameState.Systems
 {
-    public class ProcessGameStateSwitchToRoundPreparationSystem : IExecuteSystem
+    public class EnterRoundPreparationGameStateSystem : IExecuteSystem
     {
         private readonly IGroup<GameEntity> _entities;
         private readonly IGameStateService _gameStateService;
@@ -18,7 +18,7 @@ namespace Code.Gameplay.Features.GameState.Systems
         private readonly IGroup<GameEntity> _requests;
         private readonly List<GameEntity> _buffer = new();
 
-        public ProcessGameStateSwitchToRoundPreparationSystem
+        public EnterRoundPreparationGameStateSystem
         (
             GameContext context,
             IGameStateService gameStateService,

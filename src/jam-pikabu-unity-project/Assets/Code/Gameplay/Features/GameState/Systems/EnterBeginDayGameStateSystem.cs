@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.GameState.Systems
 {
-    public class ProcessGameStateSwitchToBeginDaySystem : IExecuteSystem
+    public class EnterBeginDayGameStateSystem : IExecuteSystem
     {
         private readonly IGroup<GameEntity> _entities;
         private readonly IGameStateService _gameStateService;
@@ -23,7 +23,7 @@ namespace Code.Gameplay.Features.GameState.Systems
         private readonly List<GameEntity> _buffer = new();
         private readonly IGroup<MetaEntity> _daysMeta;
 
-        public ProcessGameStateSwitchToBeginDaySystem
+        public EnterBeginDayGameStateSystem
         (
             GameContext context,
             MetaContext meta,

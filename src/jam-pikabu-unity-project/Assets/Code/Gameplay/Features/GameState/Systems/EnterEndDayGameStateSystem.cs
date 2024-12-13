@@ -1,34 +1,38 @@
 ﻿using System.Collections.Generic;
-using Code.Common.Entity;
-using Code.Common.Extensions;
 using Code.Gameplay.Features.GameState.Service;
 using Entitas;
 
 namespace Code.Gameplay.Features.GameState.Systems
 {
-    public class ProcessGameStateSwitchToRoundCompletionSystem : IExecuteSystem
+    public class EnterEndDayGameStateSystem : IExecuteSystem
     {
         private readonly IGroup<GameEntity> _entities;
         private readonly IGameStateService _gameStateService;
         private readonly IGroup<GameEntity> _requests;
         private readonly List<GameEntity> _buffer = new();
+        private readonly IGroup<MetaEntity> _daysMeta;
 
-        public ProcessGameStateSwitchToRoundCompletionSystem
+        public EnterEndDayGameStateSystem
         (
             GameContext context,
-            IGameStateService gameStateService
+            IGameStateService gameStateService,
+            MetaContext meta
         )
         {
             _gameStateService = gameStateService;
 
             _requests = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.SwitchGameStateRequest,
-                    GameMatcher.RoundCompletion
+                    GameMatcher.EndDay
                 ));
 
             _entities = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.GameState,
-                    GameMatcher.RoundLoop
+                    GameMatcher.RoundCompletion
+                ));
+
+            _daysMeta = meta.GetGroup(MetaMatcher
+                .AllOf(MetaMatcher.Day
                 ));
         }
 
@@ -36,27 +40,17 @@ namespace Code.Gameplay.Features.GameState.Systems
         {
             foreach (var request in _requests)
             foreach (var gameState in _entities.GetEntities(_buffer))
+            foreach (var day in _daysMeta)
             {
                 request.isDestructed = true;
 
                 gameState.ResetGameStates();
-                gameState.isRoundCompletion = true;
-                gameState.ReplaceGameStateTypeId(GameStateTypeId.RoundCompletion);
+                gameState.isEndDay = true;
+                gameState.ReplaceGameStateTypeId(GameStateTypeId.EndDay);
 
-                ProcessServices();
-
-                _gameStateService.CompleteStateSwitch(GameStateTypeId.RoundCompletion);
+                _gameStateService.CompleteStateSwitch(GameStateTypeId.EndDay);
                 gameState.isStateProcessingAvailable = true;
             }
-        }
-
-        private void ProcessServices()
-        {
-            CreateGameEntity
-                .Empty()
-                .With(x => x.isLootEffectsApplier = true)
-                .With(x => x.isAvailable = true)
-                ;
         }
     }
 }

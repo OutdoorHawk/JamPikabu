@@ -22,6 +22,8 @@ namespace Code.Infrastructure.AssetManagement.AssetDownload
         private long _downloadSize;
         private bool _remoteCatalogAvailable;
 
+        private const bool EnableRemoteCatalogOverride = true;
+
         private static string LocalCatalogPath => $"{Addressables.RuntimePath}/catalog.json";
         private static string RemoteCatalogPath => $"https://s3.eponesh.com/games/files/18994/catalog_{Application.version}.json";
         private static string RemoteHashPath => $"https://s3.eponesh.com/games/files/18994/catalog_{Application.version}.hash";
@@ -123,6 +125,9 @@ namespace Code.Infrastructure.AssetManagement.AssetDownload
         private string EditWebUrl(IResourceLocation location)
         {
             _loggerService.Log($"Requesting: {location.InternalId} remoteCatalogAvailable: {_remoteCatalogAvailable}");
+
+            if (EnableRemoteCatalogOverride == false)
+                return location.InternalId;
             
             if (_remoteCatalogAvailable == false)
                 return location.InternalId;
