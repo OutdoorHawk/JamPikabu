@@ -51,10 +51,17 @@ namespace Code.Infrastructure.States.GameStates
             base.Enter(payload);
 
             _gameStateHandler.OnEnterLoadLevel();
+                
+            if (payload.InstantLoad)
+            {
+                OnLoaded(payload);
+                return;
+            }
 
             foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Day))
             {
                 DayData dayData = GetDayData(day.Day);
+            
                 _sceneLoader.LoadScene(dayData.SceneId, onLoaded: () => OnLoaded(payload));
             }
         }

@@ -3,9 +3,9 @@ using Code.Infrastructure.Systems;
 
 namespace Code.Gameplay.Features.Orders
 {
-    public sealed class OrderCompletionFeature : Feature
+    public sealed class OrdersFeature : Feature
     {
-        public OrderCompletionFeature(ISystemFactory systems)
+        public OrdersFeature(ISystemFactory systems)
         {
             Add(systems.Create<CompleteOrderOnRoundCompletionSystem>());
 

@@ -1,4 +1,5 @@
-﻿using Code.Common.Entity;
+﻿using System;
+using Code.Common.Entity;
 
 namespace Code.Infrastructure.View
 {

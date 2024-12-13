@@ -109,12 +109,11 @@ namespace Code.Infrastructure.States.GameStates
         private void LoadNextState()
         {
             _gameStateHandlerService.OnExitLoadProgressState();
-            //_stateMachine.Enter<LoadLevelState, LoadLevelPayloadParameters>(new LoadLevelPayloadParameters(levelName: nameof(SceneTypeId.Level_1)));
-            _stateMachine.Enter<LoadLevelSimpleState,  LoadLevelPayloadParameters>(new LoadLevelPayloadParameters());
-/*#if UNITY_EDITOR
-#else
+#if UNITY_EDITOR
+            _stateMachine.Enter<EditorLoadSceneState>();
+            return;
 #endif
-            _stateMachine.Enter<EditorLoadSceneState>();*/
+            _stateMachine.Enter<LoadLevelSimpleState,  LoadLevelPayloadParameters>(new LoadLevelPayloadParameters());
         }
         
     }

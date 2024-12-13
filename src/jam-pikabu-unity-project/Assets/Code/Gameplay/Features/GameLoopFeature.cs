@@ -37,7 +37,7 @@ namespace Code.Gameplay.Features
             Add(systems.Create<LootPickupSystem>());
             Add(systems.Create<LootConsumeFeature>());
             
-            Add(systems.Create<OrderCompletionFeature>());
+            Add(systems.Create<OrdersFeature>());
 
             Add(systems.Create<CurrencyFeature>());
 

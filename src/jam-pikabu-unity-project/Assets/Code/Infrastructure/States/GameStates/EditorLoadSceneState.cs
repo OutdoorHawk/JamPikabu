@@ -35,15 +35,14 @@ namespace Code.Infrastructure.States.GameStates
         private void InitCurrentScene()
         {
             if (SceneManager.GetActiveScene().name is nameof(SceneTypeId.MainMenu) or nameof(SceneTypeId.BootstrapScene))
-               // _gameStateMachine.Enter<LoadMainMenuState>();
-                _gameStateMachine.Enter<LoadLevelState, LoadLevelPayloadParameters>(new LoadLevelPayloadParameters(levelName: nameof(SceneTypeId.Level_1)));
+                _gameStateMachine.Enter<LoadLevelSimpleState,  LoadLevelPayloadParameters>(new LoadLevelPayloadParameters());
             else
             {
-                var parameters = new LoadLevelPayloadParameters(levelName: nameof(SceneTypeId.Level_1))
+                var parameters = new LoadLevelPayloadParameters()
                 {
                     InstantLoad = true
                 };
-                _gameStateMachine.Enter<LoadLevelState, LoadLevelPayloadParameters>(parameters);
+                _gameStateMachine.Enter<LoadLevelSimpleState, LoadLevelPayloadParameters>(parameters);
             }
         }
     }

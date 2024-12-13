@@ -25,8 +25,7 @@ namespace Code.Gameplay.Features.GameState.Systems
                 ));
 
             _entities = context.GetGroup(GameMatcher
-                .AllOf(GameMatcher.GameState,
-                    GameMatcher.RoundLoop
+                .AllOf(GameMatcher.GameState
                 ));
         }
 
