@@ -4,7 +4,7 @@ using Sirenix.OdinInspector;
 
 namespace Code.Gameplay.StaticData.Data
 {
-    public abstract class BaseStaticData<T> : BaseStaticData where T : class
+    public abstract class BaseStaticData<T> : BaseStaticData where T : BaseData
     {
         [PropertyOrder(99), ListDrawerSettings(CustomAddFunction = nameof(OnAddNewConfig))] public List<T> Configs;
         
@@ -39,6 +39,11 @@ namespace Code.Gameplay.StaticData.Data
             
             return onAddNewConfig;
         }
-        
+
+        private void OnValidate()
+        {
+            for (int i = 1; i < Configs.Count; i++) 
+                Configs[i - 1].Id = i;
+        }
     }
 }

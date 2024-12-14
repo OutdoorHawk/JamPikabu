@@ -25,7 +25,7 @@ namespace Code.Gameplay.Features.Currency.Factory
             _instantiator = instantiator;
         }
 
-        public void CreateCurrencyStorages(int goldGold,  int plusPlus, int minusMinus)
+        public void CreateCurrencyStorages(int goldGold)
         {
             CreateGameEntity
                 .Empty()
@@ -39,7 +39,7 @@ namespace Code.Gameplay.Features.Currency.Factory
                 .Empty()
                 .With(x => x.isCurrencyStorage = true)
                 .AddCurrencyTypeId(CurrencyTypeId.Plus)
-                .AddPlus(plusPlus)
+                .AddPlus(0)
                 .AddWithdraw(0)
                 ;
 
@@ -47,7 +47,7 @@ namespace Code.Gameplay.Features.Currency.Factory
                 .Empty()
                 .With(x => x.isCurrencyStorage = true)
                 .AddCurrencyTypeId(CurrencyTypeId.Plus)
-                .AddMinus(minusMinus)
+                .AddMinus(0)
                 .AddWithdraw(0)
                 ;
         }
@@ -55,10 +55,33 @@ namespace Code.Gameplay.Features.Currency.Factory
         public void PlayCurrencyAnimation(in CurrencyAnimationParameters parameters)
         {
             var currencyConfig = _staticDataService.GetStaticData<CurrencyStaticData>();
-            CurrencyAnimation instance = _instantiator
-                .InstantiatePrefabForComponent<CurrencyAnimation>(currencyConfig.CurrencyAnimationPrefab, _uiFactory.UIRoot);
-            
+
+            var instance = _instantiator.InstantiatePrefabForComponent<CurrencyAnimation>(currencyConfig.CurrencyAnimationPrefab, _uiFactory.UIRoot);
+
             instance.Initialize(parameters);
+        }
+
+        public void CreateAddCurrencyRequest(CurrencyTypeId type, int amount, int withdraw = 0)
+        {
+            GameEntity request = CreateGameEntity.Empty()
+                    .With(x => x.isCurrencyStorage = true)
+                    .With(x => x.AddWithdraw(withdraw), when: withdraw > 0)
+                ;
+
+            switch (type)
+            {
+                case CurrencyTypeId.Unknown:
+                    break;
+                case CurrencyTypeId.Gold:
+                    request.With(x => x.AddGold(amount));
+                    break;
+                case CurrencyTypeId.Plus:
+                    request.With(x => x.AddPlus(amount));
+                    break;
+                case CurrencyTypeId.Minus:
+                    request.With(x => x.AddMinus(amount));
+                    break;
+            }
         }
     }
 }

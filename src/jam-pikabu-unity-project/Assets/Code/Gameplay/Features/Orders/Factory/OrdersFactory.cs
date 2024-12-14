@@ -11,7 +11,7 @@ namespace Code.Gameplay.Features.Orders.Factory
             return CreateGameEntity
                     .Empty()
                     .With(x => x.isOrder = true)
-                    .With(x => x.isBossOrder = true, when: order.Setup.IsBoss)
+                  //  .With(x => x.isBossOrder = true, when: order.Setup.IsBoss)
                     .AddOrderData(order)
                 ;
         }

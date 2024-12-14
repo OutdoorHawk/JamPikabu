@@ -16,5 +16,6 @@
         Show = 11,
         Win = 12,
         Lose = 13,
+        Complete = 14,
     }
 }

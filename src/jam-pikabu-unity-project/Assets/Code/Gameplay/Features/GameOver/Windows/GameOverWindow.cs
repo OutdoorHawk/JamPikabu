@@ -52,7 +52,7 @@ namespace Code.Gameplay.Features.GameOver.Windows
                 return;
             }
 
-            if (_daysService.GetDayData().IsBoss)
+            if (_daysService.GetDayData().IsBossDay)
             {
                 _gameOverText.DisableElement();
                 _gameOverBossText.EnableElement();

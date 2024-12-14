@@ -14,16 +14,14 @@ public static class MetaComponentsLookup {
     public const int StarsAmount = 3;
     public const int AddCurrencyToStorageRequest = 4;
     public const int Gold = 5;
-    public const int Minus = 6;
-    public const int Plus = 7;
-    public const int Storage = 8;
-    public const int Withdraw = 9;
-    public const int ForAd = 10;
-    public const int BuyRequest = 11;
-    public const int Purchased = 12;
-    public const int ShopItemId = 13;
+    public const int Storage = 6;
+    public const int Withdraw = 7;
+    public const int ForAd = 8;
+    public const int BuyRequest = 9;
+    public const int Purchased = 10;
+    public const int ShopItemId = 11;
 
-    public const int TotalComponents = 14;
+    public const int TotalComponents = 12;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -32,8 +30,6 @@ public static class MetaComponentsLookup {
         "StarsAmount",
         "AddCurrencyToStorageRequest",
         "Gold",
-        "Minus",
-        "Plus",
         "Storage",
         "Withdraw",
         "ForAd",
@@ -49,8 +45,6 @@ public static class MetaComponentsLookup {
         typeof(Code.Meta.Features.Days.StarsAmount),
         typeof(Code.Meta.Features.Storage.AddCurrencyToStorageRequest),
         typeof(Code.Meta.Features.Storage.Gold),
-        typeof(Code.Meta.Features.Storage.Minus),
-        typeof(Code.Meta.Features.Storage.Plus),
         typeof(Code.Meta.Features.Storage.Storage),
         typeof(Code.Meta.Features.Storage.Withdraw),
         typeof(Code.Meta.UI.Common.ForAd),

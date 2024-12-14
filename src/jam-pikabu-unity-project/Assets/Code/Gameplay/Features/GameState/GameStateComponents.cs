@@ -10,7 +10,5 @@ namespace Code.Gameplay.Features.GameState
     [Game] public sealed class EndDay : IComponent { }
     [Game] public sealed class SwitchGameStateRequest : IComponent { }
     [Game] public sealed class GameState : IComponent { }
-    [Game] public sealed class NoMoneyToPayPlayCost : IComponent { }
-    [Game] public sealed class PassesPlayCost : IComponent { }
     [Game] public sealed class StateProcessingAvailable : IComponent { }
 }

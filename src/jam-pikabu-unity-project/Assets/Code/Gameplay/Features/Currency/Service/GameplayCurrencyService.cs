@@ -21,8 +21,6 @@ namespace Code.Gameplay.Features.Currency.Service
 
         private readonly Dictionary<CurrencyTypeId, CurrencyCount> _currencies = new();
 
-        public int CurrentTurnCostGold => _currentTurnCostGold;
-
         public GameplayCurrencyService
         (
             IStaticDataService staticDataService,
@@ -73,15 +71,6 @@ namespace Code.Gameplay.Features.Currency.Service
 
             if (changed)
                 CurrencyChanged?.Invoke();
-        }
-
-        public void UpdateCurrentTurnCostAmount(int newAmount)
-        {
-            if (Math.Abs(newAmount - _currentTurnCostGold) > float.Epsilon)
-            {
-                _currentTurnCostGold = newAmount;
-                CurrencyChanged?.Invoke();
-            }
         }
 
         private CurrencyCount GetCurrencyOfTypeInternal(CurrencyTypeId typeId)

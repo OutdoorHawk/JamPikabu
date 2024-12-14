@@ -6,7 +6,6 @@
         Gold = 1,
         Plus = 2,
         Minus = 3,
-        GoldenPlus = 4,
         
         Count
     }

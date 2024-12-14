@@ -89,8 +89,6 @@ namespace Code.Gameplay.Features.GameOver.Service
             Cleanup();
             await DelaySeconds(0, new CancellationToken());
             _windowService.OpenWindow(WindowTypeId.GameWinWindow);
-            
-            ResetMetaAndStash();
         }
 
         private async UniTaskVoid GameOverAsync()
@@ -102,17 +100,6 @@ namespace Code.Gameplay.Features.GameOver.Service
             await DelaySeconds(1, new CancellationToken());
             _windowService.Close(WindowTypeId.OrderWindow);
             _windowService.OpenWindow(WindowTypeId.GameLostWindow);
-
-            ResetMetaAndStash();
-        }
-
-        private void ResetMetaAndStash()
-        {
-            foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Plus)) 
-                day.ReplacePlus(0);
-            
-            foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Minus)) 
-                day.ReplaceMinus(0);
         }
 
         private void BlockInput()

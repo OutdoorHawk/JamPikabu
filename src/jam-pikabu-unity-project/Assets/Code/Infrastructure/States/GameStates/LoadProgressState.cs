@@ -104,16 +104,6 @@ namespace Code.Infrastructure.States.GameStates
             CreateMetaEntity
                 .Empty()
                 .With(x => x.isStorage = true)
-                .With(x => x.AddPlus(0));
-
-            CreateMetaEntity
-                .Empty()
-                .With(x => x.isStorage = true)
-                .With(x => x.AddMinus(0));
-
-            CreateMetaEntity
-                .Empty()
-                .With(x => x.isStorage = true)
                 .AddDay(1);
         }
 

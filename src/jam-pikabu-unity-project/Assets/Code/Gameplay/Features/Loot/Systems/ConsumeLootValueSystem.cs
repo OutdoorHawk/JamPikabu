@@ -45,12 +45,14 @@ namespace Code.Gameplay.Features.Loot.Systems
 
                 if (_ordersService.TryGetIngredientData(loot.LootTypeId, out IngredientData data))
                 {
-                    CreateGameEntity.Empty()
+                    //TODO CALCULATE RATING WITH ORDER FACTOR
+                    
+                    /*CreateGameEntity.Empty()
                         .With(x => x.isAddCurrencyRequest = true)
                         .With(x => x.AddPlus(data.Rating.Amount), when: data.Rating.CurrencyType == CurrencyTypeId.Plus)
                         .With(x => x.AddMinus(data.Rating.Amount), when: data.Rating.CurrencyType == CurrencyTypeId.Minus)
                         .With(x => x.AddWithdraw(data.Rating.Amount), when: data.Rating.Amount > 0)
-                        ;
+                        ;*/
                 }
             }
         }

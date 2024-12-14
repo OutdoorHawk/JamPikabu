@@ -1,4 +1,5 @@
 ﻿using System;
+using Code.Gameplay.StaticData.Data;
 using Code.Infrastructure.View;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine;
 namespace Code.Gameplay.Features.Loot.Configs
 {
     [Serializable]
-    public class LootSetup
+    public class LootSetup : BaseData
     {
         public LootTypeId Type;
         [HideInInspector] public EntityView ViewPrefab;

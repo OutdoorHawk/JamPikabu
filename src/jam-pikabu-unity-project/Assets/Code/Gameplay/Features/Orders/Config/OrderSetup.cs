@@ -17,22 +17,16 @@ namespace Code.Gameplay.Features.Orders.Config
     public class OrderSetup
     {
         [PreviewField] public Sprite OrderIcon;
+        
         public CostSetup Reward = new(CurrencyTypeId.Gold);
         public Vector2Int MinMaxDayToUnlock;
-        public bool IsBoss;
 
         public int GoodMinimum;
         public int BadMaximum;
-
-        public bool RandomSetupEnabled = true;
+        public Vector2Int MinMaxAmount = Vector2Int.one;
+        
         public Vector2Int MinMaxGoodIngredients = Vector2Int.one;
-        public Vector2Int MinMaxGoodIngredientsReward = Vector2Int.one;
         public Vector2Int MinMaxBadIngredients;
-        public Vector2Int MinMaxBadIngredientsReward;
-
-        /*[Header("ManualSetup")]
-        public List<IngredientData> GoodIngredients;
-        public List<IngredientData> BadIngredients;*/
-        // public int UniqueIngredientsForBonus;
+        public Vector2Int MinMaxIngredientsRatingFactor;
     }
 }

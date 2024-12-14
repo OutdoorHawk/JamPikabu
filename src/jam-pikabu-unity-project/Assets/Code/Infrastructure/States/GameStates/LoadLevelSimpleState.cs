@@ -71,7 +71,7 @@ namespace Code.Infrastructure.States.GameStates
             List<DayData> dayDatas = _staticDataService.GetStaticData<DaysStaticData>().Days;
             foreach (DayData data in dayDatas)
             {
-                if (data.Day >= currentDay)
+                if (data.Id >= currentDay)
                     return data;
             }
 

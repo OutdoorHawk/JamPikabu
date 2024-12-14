@@ -1,20 +1,16 @@
-﻿using Code.Gameplay.Features.Currency.Service;
-using Entitas;
+﻿using Entitas;
 
 namespace Code.Gameplay.Features.Currency.Systems
 {
     public class ProcessAddRatingRequestSystem : IExecuteSystem
     {
-        private readonly IGameplayCurrencyService _gameplayCurrencyService;
         private readonly IGroup<GameEntity> _plusStorages;
         private readonly IGroup<GameEntity> _plusRequests;
         private readonly IGroup<GameEntity> _minusRequests;
         private readonly IGroup<GameEntity> _minusStorages;
 
-        public ProcessAddRatingRequestSystem(GameContext context, IGameplayCurrencyService gameplayCurrencyService)
+        public ProcessAddRatingRequestSystem(GameContext context)
         {
-            _gameplayCurrencyService = gameplayCurrencyService;
-
             _plusRequests = context.GetGroup(GameMatcher
                 .AllOf(
                     GameMatcher.Plus,
@@ -51,9 +47,6 @@ namespace Code.Gameplay.Features.Currency.Systems
                 
                 if (request.hasWithdraw) 
                     storage.ReplaceWithdraw(storage.Withdraw + request.Withdraw);
-                
-                foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Plus)) 
-                    day.ReplacePlus(storage.Plus);
             }
 
             foreach (var request in _minusRequests)
@@ -65,9 +58,6 @@ namespace Code.Gameplay.Features.Currency.Systems
                 
                 if (request.hasWithdraw) 
                     storage.ReplaceWithdraw(storage.Withdraw + request.Withdraw);
-                
-                foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Minus)) 
-                    day.ReplaceMinus(storage.Minus);
             }
         }
     }

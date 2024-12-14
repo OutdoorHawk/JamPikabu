@@ -1,19 +1,20 @@
 ﻿using Code.Common;
 using Code.Common.Extensions;
 using Code.Common.Extensions.Animations;
-using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Config;
 using Code.Gameplay.Features.Loot.Configs;
+using Code.Gameplay.Features.Orders;
+using Code.Gameplay.Features.Orders.Config;
 using Code.Gameplay.Sound;
 using Code.Gameplay.Sound.Service;
 using Code.Infrastructure.View;
 using Code.Meta.UI.Common;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
-using static Code.Common.Extensions.AsyncGameplayExtensions;
 
 namespace Code.Gameplay.Features.Loot.Behaviours
 {
@@ -21,17 +22,18 @@ namespace Code.Gameplay.Features.Loot.Behaviours
     {
         public IconablePrice Price;
         public Image Icon;
+        public Image IconBackground;
         public CanvasGroup CanvasGroup;
         public Animator LootAnimator;
+        public TMP_Text AmountNeedText;
+        public Color GoodBackColor;
+        public Color BadBackColor;
         public float FlyToVatDuration = 1f;
 
+        private ISoundService _soundService;
         private Tweener _lootItemTween;
 
-        private int _currentValue;
-        private int _currentWithdrawValue;
-        
-        private ISoundService _soundService;
-
+        public int AmountNeed { get; private set; }
         public LootTypeId Type { get; private set; }
 
         [Inject]
@@ -40,29 +42,27 @@ namespace Code.Gameplay.Features.Loot.Behaviours
             _soundService = soundService;
         }
 
-        public void Init(LootSetup setup)
+        public void InitType(LootSetup setup)
         {
             Icon.sprite = setup.Icon;
             Type = setup.Type;
         }
 
-        public void InitPrice(CostSetup rating)
+        public void InitItem(in IngredientData ingredientData)
+        {
+            AmountNeed = ingredientData.Amount;
+            UpdateNeedAmount();
+            
+            if (ingredientData.IngredientType is IngredientTypeId.Good)
+                IconBackground.color = GoodBackColor;
+            if (ingredientData.IngredientType is IngredientTypeId.Bad) 
+                IconBackground.color = BadBackColor;
+        }
+
+        public void InitRatingFactor(CostSetup rating)
         {
             Price.SetupPrice(rating);
             Price.EnableElement();
-        }
-
-        public async UniTask AnimateEffectProducer()
-        {
-            LootAnimator.SetTrigger(AnimationParameter.EffectProducer.AsHash());
-            await DelaySeconds(1, destroyCancellationToken);
-        }
-
-        public async UniTask AnimateEffectTarget()
-        {
-            await DelaySeconds(0.25f, destroyCancellationToken);
-            LootAnimator.WaitForAnimationCompleteAsync(AnimationParameter.EffectTarget.AsHash(), destroyCancellationToken).Forget();
-            await DelaySeconds(0.25f, destroyCancellationToken);
         }
 
         public async UniTask AnimateFlyToVat(Transform flyEndPoint)
@@ -73,6 +73,18 @@ namespace Code.Gameplay.Features.Loot.Behaviours
                     .SetLink(gameObject)
                     .AsyncWaitForCompletion()
                 ;
+        }
+
+        public void AnimateCollected()
+        {
+            AmountNeed--;
+            UpdateNeedAmount();
+        }
+
+        public void AnimateComplete()
+        {
+            AmountNeed--;
+            LootAnimator.SetTrigger(AnimationParameter.Complete.AsHash());
         }
 
         public async UniTask AnimateConsume()
@@ -89,13 +101,13 @@ namespace Code.Gameplay.Features.Loot.Behaviours
                     .SetLink(gameObject)
                     .OnComplete(SetReadyToApply)
                 ;
-            
+
             _soundService.PlaySound(SoundTypeId.Construction_Place);
         }
 
-        public void AddGoldValueWithdraw(int withdraw)
+        private void UpdateNeedAmount()
         {
-            _currentWithdrawValue += withdraw;
+            AmountNeedText.text = $"x{AmountNeed}";
         }
 
         private void SetReadyToApply()

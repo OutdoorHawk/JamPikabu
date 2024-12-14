@@ -46,7 +46,6 @@ namespace Code.Meta.Features.Days.Service
             _currentDayData = GetDayData(_currentDay);
 
             _roundStateFactory.CreateRoundStateController()
-                .AddDayCost(_currentDayData.PlayCost)
                 .AddRoundDuration(_currentDayData.RoundDuration)
                 ;
 
@@ -81,7 +80,7 @@ namespace Code.Meta.Features.Days.Service
         {
             foreach (DayData data in _daysData)
             {
-                if (data.Day >= currentDay)
+                if (data.Id >= currentDay)
                     return data;
             }
 

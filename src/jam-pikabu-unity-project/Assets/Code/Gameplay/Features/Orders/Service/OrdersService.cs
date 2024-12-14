@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Code.Gameplay.Features.Currency;
-using Code.Gameplay.Features.Currency.Config;
 using Code.Gameplay.Features.Loot;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.Features.Loot.Service;
@@ -31,6 +29,7 @@ namespace Code.Gameplay.Features.Orders.Service
         private bool _orderWindowSeen;
 
         private (List<IngredientData> good, List<IngredientData> bad) _orderIngredients;
+
         private readonly Dictionary<LootTypeId, IngredientData> _orderIngredientCostDict = new();
         private readonly List<OrderData> _ordersBuffer = new();
 
@@ -108,9 +107,6 @@ namespace Code.Gameplay.Features.Orders.Service
 
         public OrderData GetCurrentOrder()
         {
-            if (_daysService.GetDayData().IsBoss)
-                return _ordersBuffer.Find(data => data.Setup.IsBoss);
-
             return _ordersBuffer[_currentOrderIndex];
         }
 
@@ -167,36 +163,71 @@ namespace Code.Gameplay.Features.Orders.Service
 
             availableLoot.ShuffleList();
 
-            Vector2Int minMaxGoodIngredients = order.Setup.MinMaxGoodIngredients;
-            Vector2Int minMaxGoodReward = order.Setup.MinMaxGoodIngredientsReward;
-            int goodCount = Random.Range(minMaxGoodIngredients.x, minMaxGoodIngredients.y + 1);
+            OrderSetup orderSetup = order.Setup;
+            Vector2Int minMaxGoodIngredients = orderSetup.MinMaxGoodIngredients;
+            Vector2Int minMaxBadIngredients = orderSetup.MinMaxBadIngredients;
+            Vector2Int minMaxFactor = orderSetup.MinMaxIngredientsRatingFactor;
 
-            Vector2Int minMaxBadIngredients = order.Setup.MinMaxBadIngredients;
-            Vector2Int minMaxBadReward = order.Setup.MinMaxBadIngredientsReward;
+            int goodCount = Random.Range(minMaxGoodIngredients.x, minMaxGoodIngredients.y + 1);
             int badCount = Random.Range(minMaxBadIngredients.x, minMaxBadIngredients.y + 1);
 
-            FillIngredientsRandom(availableLoot, goodCount, _orderIngredients.good, minMaxGoodReward, CurrencyTypeId.Plus);
-            FillIngredientsRandom(availableLoot, badCount, _orderIngredients.bad, minMaxBadReward, CurrencyTypeId.Minus, _orderIngredients.good);
+            FillIngredientsRandom
+            (
+                availableLoot,
+                goodCount,
+                _orderIngredients.good,
+                minMaxFactor,
+                orderSetup.MinMaxAmount,
+                IngredientTypeId.Good
+            );
+
+            FillIngredientsRandom
+            (
+                availableLoot,
+                badCount,
+                _orderIngredients.bad,
+                minMaxFactor,
+                orderSetup.MinMaxAmount,
+                IngredientTypeId.Bad, 
+                _orderIngredients.good
+            );
         }
 
-        private static void FillIngredientsRandom(List<LootSetup> availableLoot, int goodCount, List<IngredientData> list, Vector2Int reward,
-            CurrencyTypeId typeId, List<IngredientData> excludeList = null)
+        private static void FillIngredientsRandom
+        (
+            List<LootSetup> availableLoot,
+            int countToCreate,
+            List<IngredientData> listToFill,
+            Vector2Int minMaxRatingFactor,
+            Vector2Int needAmountMinMax,
+            IngredientTypeId ingredientType,
+            List<IngredientData> excludeList = null
+        )
         {
             foreach (var lootSetup in availableLoot)
             {
-                if (goodCount <= 0)
+                if (countToCreate <= 0)
                     break;
 
-                if (list.Exists(data => data.TypeId == lootSetup.Type))
+                if (listToFill.Exists(data => data.TypeId == lootSetup.Type))
                     continue;
 
                 if (excludeList != null && excludeList.Exists(data => data.TypeId == lootSetup.Type))
                     continue;
 
-                int rewardAmount = Random.Range(reward.x, reward.y + 1);
-                var rewardMinMax = new CostSetup(typeId) { Amount = rewardAmount };
-                list.Add(new IngredientData { TypeId = lootSetup.Type, Rating = rewardMinMax });
-                goodCount--;
+                int ratingFactor = Random.Range(minMaxRatingFactor.x, minMaxRatingFactor.y + 1);
+                int amount = Random.Range(needAmountMinMax.x, needAmountMinMax.y + 1);
+
+                var data = new IngredientData
+                (
+                    typeId: lootSetup.Type,
+                    ingredientType: ingredientType,
+                    ratingFactor: ratingFactor,
+                    amount
+                );
+                
+                listToFill.Add(data);
+                countToCreate--;
             }
         }
 

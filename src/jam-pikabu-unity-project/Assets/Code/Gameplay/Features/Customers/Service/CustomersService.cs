@@ -44,7 +44,7 @@ namespace Code.Gameplay.Features.Customers.Service
             {
                 return _configs[_currentCustomerId];
             }
-            if (dayData.IsBoss)
+            if (dayData.IsBossDay)
                 return new CustomerSetup() {Sprite =  CustomerData.BossSprite};
 
             if (_currentCustomerId >= _configs.Count)

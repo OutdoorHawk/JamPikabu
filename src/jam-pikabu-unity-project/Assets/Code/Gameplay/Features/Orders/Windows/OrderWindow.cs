@@ -57,6 +57,7 @@ namespace Code.Gameplay.Features.Orders.Windows
         private readonly List<LootItemUI> _goodItems = new();
         private readonly List<LootItemUI> _badItems = new();
         private readonly List<LootItemUI> _allItems = new();
+        
         private IGameOverService _gameOverService;
 
         public Button ExitButton => CloseButton;
@@ -82,20 +83,6 @@ namespace Code.Gameplay.Features.Orders.Windows
         {
             base.Initialize();
             InitOrder();
-            InitBoss();
-        }
-
-        private void InitBoss()
-        {
-            if (_currentOrder.Setup.GoodMinimum > 0)
-            {
-                _bossContent.SetActive(true);
-                _atLeastGoodText.text += $" {_currentOrder.Setup.GoodMinimum}";
-            }
-            else
-            {
-                _bossContent.SetActive(false);
-            }
         }
 
         protected override void CloseWindowInternal()
@@ -112,7 +99,7 @@ namespace Code.Gameplay.Features.Orders.Windows
             
             if (orderSusscesful)
             {
-                if (_daysService.GetDayData().IsBoss == false)
+                if (_daysService.GetDayData().IsBossDay == false)
                     await PlayGoldAnimation();
                 else
                     await PlayBossDoneAnimation();
@@ -141,18 +128,8 @@ namespace Code.Gameplay.Features.Orders.Windows
         {
             foreach (IngredientData ingredientData in ingredients)
             {
-                LootItemUI item = CreateLootItem(ingredientData, parent);
-                items.Add(item);
+       
             }
-        }
-
-        private LootItemUI CreateLootItem(in IngredientData ingredientData, Transform parent)
-        {
-            LootItemUI item = _lootItemUIFactory.CreateLootItem(parent, ingredientData.TypeId);
-            item.InitPrice(ingredientData.Rating);
-
-            _allItems.Add(item);
-            return item;
         }
 
         private async UniTask PlayLootAnimationInternal()
@@ -176,7 +153,7 @@ namespace Code.Gameplay.Features.Orders.Windows
 
         private async UniTask PlayConsume(LootItemUI lootItem, PriceInfo price, CurrencyTypeId typeId, bool isGood)
         {
-            IngredientData ingredientData = _ordersService.GetIngredientData(lootItem.Type);
+            /*IngredientData ingredientData = _ordersService.GetIngredientData(lootItem.Type);
             IEnumerable<LootTypeId> collected = _lootService.CollectedLootItems.Where(item => item == ingredientData.TypeId);
             int count = collected.Count();
 
@@ -196,12 +173,12 @@ namespace Code.Gameplay.Features.Orders.Windows
             _soundService.PlayOneShotSound(SoundTypeId.PlusesAdded);
             await lootItem.AnimateConsume();
 
-            _currencyFactory.PlayCurrencyAnimation(parameters);
+            _currencyFactory.PlayCurrencyAnimation(parameters);*/
         }
 
         private static void RemoveWithdraw(PriceInfo price, IngredientData ingredientData, int count)
         {
-            if (price != null)
+            /*if (price != null)
                 price.PlayReplenish();
 
             CreateGameEntity.Empty()
@@ -209,7 +186,7 @@ namespace Code.Gameplay.Features.Orders.Windows
                 .With(x => x.AddPlus(0), when: ingredientData.Rating.CurrencyType == CurrencyTypeId.Plus)
                 .With(x => x.AddMinus(0), when: ingredientData.Rating.CurrencyType == CurrencyTypeId.Minus)
                 .With(x => x.AddWithdraw(-count))
-                ;
+                ;*/
         }
 
         private async UniTask PlayBossDoneAnimation()
