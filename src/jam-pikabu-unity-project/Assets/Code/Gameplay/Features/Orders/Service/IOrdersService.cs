@@ -10,11 +10,9 @@ namespace Code.Gameplay.Features.Orders.Service
         event Action OnOrderUpdated;
         int OrdersCompleted { get; }
         int MaxOrders { get; }
-        bool OrderWindowSeen { get; }
         (List<IngredientData> good, List<IngredientData> bad) OrderIngredients { get; }
         void InitDayBegin();
         GameEntity CreateOrder();
-        void SetOrderWindowSeen();
         IngredientData GetIngredientData(LootTypeId lootTypeId);
         bool TryGetIngredientData(LootTypeId lootTypeId, out IngredientData ingredientData);
         OrderData GetCurrentOrder();

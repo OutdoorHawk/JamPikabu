@@ -77,19 +77,32 @@ namespace Code.Gameplay.Features.Loot.Behaviours
 
         public void AnimateCollected()
         {
+            if (AmountNeed == 1)
+            {
+                AnimateComplete();
+                return;
+            }
+
+            if (AmountNeed == 0)
+            {
+                LootAnimator.SetTrigger(AnimationParameter.Replenish.AsHash());
+                return;
+            }
+            
             AmountNeed--;
             UpdateNeedAmount();
-        }
-
-        public void AnimateComplete()
-        {
-            AmountNeed--;
-            LootAnimator.SetTrigger(AnimationParameter.Complete.AsHash());
+            LootAnimator.SetTrigger(AnimationParameter.Replenish.AsHash());
         }
 
         public async UniTask AnimateConsume()
         {
             await LootAnimator.WaitForAnimationCompleteAsync(AnimationParameter.Consume.AsHash(), destroyCancellationToken);
+        }
+
+        private void AnimateComplete()
+        {
+            AmountNeed = 0;
+            LootAnimator.SetTrigger(AnimationParameter.Complete.AsHash());
         }
 
         public void Show()

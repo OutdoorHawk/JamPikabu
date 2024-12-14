@@ -120,8 +120,6 @@ namespace Code.Gameplay.Features.Orders.Windows
             CreateItems(_ordersService.OrderIngredients.bad, _badItems, _badIngredients.transform);
 
             _orderReward.SetupPrice(_currentOrder.Setup.Reward);
-
-            _ordersService.SetOrderWindowSeen();
         }
 
         private void CreateItems(List<IngredientData> ingredients, List<LootItemUI> items, Transform parent)

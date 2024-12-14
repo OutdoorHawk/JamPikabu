@@ -18,16 +18,6 @@ namespace Code.Gameplay.Features.Loot.UIFactory
             _instantiator = instantiator;
         }
 
-        public LootItemUI CreateLootItem(Transform parent, LootTypeId type)
-        {
-            var lootStaticData = _staticData.GetStaticData<LootStaticData>();
-            var prefab = lootStaticData.LootItemUI;
-            var lootItemUI = _instantiator.InstantiatePrefabForComponent<LootItemUI>(prefab, parent);
-            var lootSetup = lootStaticData.GetConfig(type);
-            lootItemUI.InitType(lootSetup);
-            return lootItemUI;
-        }
-
         public LootItemUI CreateLootItem(Transform parent, in IngredientData ingredientData)
         {
             var lootStaticData = _staticData.GetStaticData<LootStaticData>();

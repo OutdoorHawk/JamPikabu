@@ -15,12 +15,12 @@ namespace Code.Gameplay.Features.Loot.Service
         private readonly IDaysService _daysService;
         private readonly ILootFactory _lootFactory;
         public event Action OnLootUpdate;
-        public event Action<LootTypeId> OnLootItemAdded;
 
         private readonly List<LootTypeId> _collectedLootItems = new();
 
         private readonly List<LootSetup> _availableLoot = new();
 
+        public bool LootIsBusy { get; private set; }
         public IReadOnlyList<LootTypeId> CollectedLootItems => _collectedLootItems;
         public IReadOnlyList<LootSetup> AvailableLoot => _availableLoot;
 
@@ -38,11 +38,15 @@ namespace Code.Gameplay.Features.Loot.Service
             _lootFactory.CreateLootSpawner();
         }
 
-        public void CreateNewCollectedLootItem(LootTypeId lootType)
+        public void AddCollectedLoot(LootTypeId lootType)
         {
             _collectedLootItems.Add(lootType);
-            NotifyLootItemAdded(lootType);
             NotifyLootUpdated();
+        }
+
+        public void SetLootIsConsumingState(bool state)
+        {
+            LootIsBusy = state;
         }
 
         public void ClearCollectedLoot()
@@ -87,12 +91,6 @@ namespace Code.Gameplay.Features.Loot.Service
         {
             return data.MaxDayToUnlock > 0 && currentDay > data.MaxDayToUnlock;
         }
-
-        private void NotifyLootItemAdded(LootTypeId lootType)
-        {
-            OnLootItemAdded?.Invoke(lootType);
-        }
-
 
         private void NotifyLootUpdated()
         {

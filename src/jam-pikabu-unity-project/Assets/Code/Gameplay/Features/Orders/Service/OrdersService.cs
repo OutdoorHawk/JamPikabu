@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Loot;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.Features.Loot.Service;
@@ -26,7 +27,6 @@ namespace Code.Gameplay.Features.Orders.Service
         private OrdersStaticData _ordersData;
         private int _currentOrderIndex;
         private int _ordersCompleted;
-        private bool _orderWindowSeen;
 
         private (List<IngredientData> good, List<IngredientData> bad) _orderIngredients;
 
@@ -35,7 +35,6 @@ namespace Code.Gameplay.Features.Orders.Service
 
         public int OrdersCompleted => _ordersCompleted;
         public int MaxOrders => _daysService.GetDayData().OrdersAmount;
-        public bool OrderWindowSeen => _orderWindowSeen;
 
         public (List<IngredientData> good, List<IngredientData> bad) OrderIngredients => _orderIngredients;
 
@@ -83,16 +82,10 @@ namespace Code.Gameplay.Features.Orders.Service
 
         public GameEntity CreateOrder()
         {
-            _orderWindowSeen = false;
             var order = GetCurrentOrder();
             InitIngredientsDic(order);
             OnOrderUpdated?.Invoke();
             return _ordersFactory.CreateOrder(order);
-        }
-
-        public void SetOrderWindowSeen()
-        {
-            _orderWindowSeen = true;
         }
 
         public IngredientData GetIngredientData(LootTypeId lootTypeId)
@@ -138,11 +131,11 @@ namespace Code.Gameplay.Features.Orders.Service
             if (_lootService.CollectedLootItems.Count == 0)
                 return false;
 
-            if (CheckGoodMinimum(order) == false)
+            /*if (CheckGoodMinimum(order) == false)
                 return false;
 
             if (CheckBadMaximum(order) == false)
-                return false;
+                return false;*/
 
             return true;
         }
@@ -239,43 +232,8 @@ namespace Code.Gameplay.Features.Orders.Service
                     Debug.LogError($"Config error! Order cannot have same ingredient in bad and good ingredient list: {ingredientData}.");
             }
         }
-
-        private bool CheckGoodMinimum(OrderData order)
-        {
-            int setupCount = order.Setup.GoodMinimum;
-            bool checkEnabled = setupCount > 0;
-
-            if (checkEnabled == false)
-                return true;
-
-            int count = 0;
-            foreach (var ingredient in _orderIngredients.good)
-            {
-                IEnumerable<LootTypeId> collectedOfType = _lootService.CollectedLootItems.Where(item => item == ingredient.TypeId);
-                count += collectedOfType.Count();
-            }
-
-            return count >= setupCount;
-        }
-
-        private bool CheckBadMaximum(OrderData order)
-        {
-            int setupCount = order.Setup.BadMaximum;
-            bool checkEnabled = setupCount > 0;
-
-            if (checkEnabled == false)
-                return true;
-
-            int count = 0;
-            foreach (var ingredient in _orderIngredients.bad)
-            {
-                IEnumerable<LootTypeId> collectedOfType = _lootService.CollectedLootItems.Where(item => item == ingredient.TypeId);
-                count += collectedOfType.Count();
-            }
-
-            return count < setupCount;
-        }
-
+        
+        
         private static bool CheckMinDayToUnlock(OrderData data, int currentDay)
         {
             return data.Setup.MinMaxDayToUnlock.x > 0 && currentDay < data.Setup.MinMaxDayToUnlock.x;

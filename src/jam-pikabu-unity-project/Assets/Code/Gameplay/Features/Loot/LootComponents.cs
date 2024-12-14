@@ -11,7 +11,8 @@ namespace Code.Gameplay.Features.Loot
     [Game] public sealed class ConveyorSpawner : IComponent { }
     [Game] public sealed class LootEffectsApplier : IComponent { }
     [Game] public sealed class LootTypeIdComponent : IComponent { public LootTypeId Value; }
-    [Game] public sealed class GoldValue : IComponent { public int Value; }
+    [Game] public sealed class BaseRating : IComponent { public int Value; }
+    [Game] public sealed class Rating : IComponent { public int Value; }
     [Game] public sealed class LootItemUIComponent : IComponent { public LootItemUI Value; }
     [Game] public sealed class LootItemComponent : IComponent { public LootItem Value; }
     [Game] public sealed class Collected : IComponent { }
@@ -22,6 +23,5 @@ namespace Code.Gameplay.Features.Loot
     [Game] public sealed class EffectValue : IComponent { public float Value; }
     [Game] public sealed class IncreaseValueEffect : IComponent { }
     [Game] public sealed class Available : IComponent { }
-    
     [Game] public sealed class Effect : IComponent { }
 }

@@ -75,14 +75,14 @@ public static class GameComponentsLookup {
     public const int YAxisUpSpeed = 64;
     public const int Applied = 65;
     public const int Available = 66;
-    public const int Collected = 67;
-    public const int Consumed = 68;
-    public const int ContinuousSpawn = 69;
-    public const int ConveyorSpawner = 70;
-    public const int Effect = 71;
-    public const int EffectTargetsLoot = 72;
-    public const int EffectValue = 73;
-    public const int GoldValue = 74;
+    public const int BaseRating = 67;
+    public const int Collected = 68;
+    public const int Consumed = 69;
+    public const int ContinuousSpawn = 70;
+    public const int ConveyorSpawner = 71;
+    public const int Effect = 72;
+    public const int EffectTargetsLoot = 73;
+    public const int EffectValue = 74;
     public const int IncreaseValueEffect = 75;
     public const int Loot = 76;
     public const int LootEffectsApplier = 77;
@@ -90,13 +90,13 @@ public static class GameComponentsLookup {
     public const int LootItemUI = 79;
     public const int LootSpawner = 80;
     public const int LootTypeId = 81;
-    public const int SingleSpawn = 82;
-    public const int BossOrder = 83;
-    public const int Complete = 84;
-    public const int NextOrderRequest = 85;
-    public const int Order = 86;
-    public const int OrderData = 87;
-    public const int Rating = 88;
+    public const int Rating = 82;
+    public const int SingleSpawn = 83;
+    public const int BossOrder = 84;
+    public const int Complete = 85;
+    public const int NextOrderRequest = 86;
+    public const int Order = 87;
+    public const int OrderData = 88;
     public const int Reject = 89;
     public const int ResultProcessed = 90;
     public const int DayCompleteRequest = 91;
@@ -183,6 +183,7 @@ public static class GameComponentsLookup {
         "YAxisUpSpeed",
         "Applied",
         "Available",
+        "BaseRating",
         "Collected",
         "Consumed",
         "ContinuousSpawn",
@@ -190,7 +191,6 @@ public static class GameComponentsLookup {
         "Effect",
         "EffectTargetsLoot",
         "EffectValue",
-        "GoldValue",
         "IncreaseValueEffect",
         "Loot",
         "LootEffectsApplier",
@@ -198,13 +198,13 @@ public static class GameComponentsLookup {
         "LootItemUI",
         "LootSpawner",
         "LootTypeId",
+        "Rating",
         "SingleSpawn",
         "BossOrder",
         "Complete",
         "NextOrderRequest",
         "Order",
         "OrderData",
-        "Rating",
         "Reject",
         "ResultProcessed",
         "DayCompleteRequest",
@@ -290,6 +290,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.GrapplingHook.YAxisUpSpeed),
         typeof(Code.Gameplay.Features.Loot.Applied),
         typeof(Code.Gameplay.Features.Loot.Available),
+        typeof(Code.Gameplay.Features.Loot.BaseRating),
         typeof(Code.Gameplay.Features.Loot.Collected),
         typeof(Code.Gameplay.Features.Loot.Consumed),
         typeof(Code.Gameplay.Features.Loot.ContinuousSpawn),
@@ -297,7 +298,6 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Loot.Effect),
         typeof(Code.Gameplay.Features.Loot.EffectTargetsLoot),
         typeof(Code.Gameplay.Features.Loot.EffectValue),
-        typeof(Code.Gameplay.Features.Loot.GoldValue),
         typeof(Code.Gameplay.Features.Loot.IncreaseValueEffect),
         typeof(Code.Gameplay.Features.Loot.Loot),
         typeof(Code.Gameplay.Features.Loot.LootEffectsApplier),
@@ -305,13 +305,13 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Loot.LootItemUIComponent),
         typeof(Code.Gameplay.Features.Loot.LootSpawner),
         typeof(Code.Gameplay.Features.Loot.LootTypeIdComponent),
+        typeof(Code.Gameplay.Features.Loot.Rating),
         typeof(Code.Gameplay.Features.Loot.SingleSpawn),
         typeof(Code.Gameplay.Features.Orders.BossOrder),
         typeof(Code.Gameplay.Features.Orders.Complete),
         typeof(Code.Gameplay.Features.Orders.NextOrderRequest),
         typeof(Code.Gameplay.Features.Orders.Order),
         typeof(Code.Gameplay.Features.Orders.OrderDataComponent),
-        typeof(Code.Gameplay.Features.Orders.RatingComponent),
         typeof(Code.Gameplay.Features.Orders.Reject),
         typeof(Code.Gameplay.Features.Orders.ResultProcessed),
         typeof(Code.Gameplay.Features.RoundState.DayCompleteRequest),

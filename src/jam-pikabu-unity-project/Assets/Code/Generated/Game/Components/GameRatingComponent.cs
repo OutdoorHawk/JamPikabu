@@ -33,21 +33,21 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.Orders.RatingComponent rating { get { return (Code.Gameplay.Features.Orders.RatingComponent)GetComponent(GameComponentsLookup.Rating); } }
-    public Code.Gameplay.Features.Currency.Config.CostSetup Rating { get { return rating.Value; } }
+    public Code.Gameplay.Features.Loot.Rating rating { get { return (Code.Gameplay.Features.Loot.Rating)GetComponent(GameComponentsLookup.Rating); } }
+    public int Rating { get { return rating.Value; } }
     public bool hasRating { get { return HasComponent(GameComponentsLookup.Rating); } }
 
-    public GameEntity AddRating(Code.Gameplay.Features.Currency.Config.CostSetup newValue) {
+    public GameEntity AddRating(int newValue) {
         var index = GameComponentsLookup.Rating;
-        var component = (Code.Gameplay.Features.Orders.RatingComponent)CreateComponent(index, typeof(Code.Gameplay.Features.Orders.RatingComponent));
+        var component = (Code.Gameplay.Features.Loot.Rating)CreateComponent(index, typeof(Code.Gameplay.Features.Loot.Rating));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
     }
 
-    public GameEntity ReplaceRating(Code.Gameplay.Features.Currency.Config.CostSetup newValue) {
+    public GameEntity ReplaceRating(int newValue) {
         var index = GameComponentsLookup.Rating;
-        var component = (Code.Gameplay.Features.Orders.RatingComponent)CreateComponent(index, typeof(Code.Gameplay.Features.Orders.RatingComponent));
+        var component = (Code.Gameplay.Features.Loot.Rating)CreateComponent(index, typeof(Code.Gameplay.Features.Loot.Rating));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

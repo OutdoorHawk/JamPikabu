@@ -13,150 +13,80 @@ MonoBehaviour:
   m_Name: Orders
   m_EditorClassIdentifier: 
   Configs:
-  - Id: 0
+  - Id: 1
     Setup:
       OrderIcon: {fileID: 21300000, guid: 3451bf123b94ad14089220c2800c8be3, type: 3}
       Reward:
         CurrencyType: 4
         Amount: 1
-      MinDayToUnlock: 4
-      MaxDayToUnlock: 0
-      IsBoss: 1
-      GoodMinimum: 4
-      GoodIngredients:
-      - TypeId: 4
-        Rating:
-          CurrencyType: 2
-          Amount: 1
-      - TypeId: 6
-        Rating:
-          CurrencyType: 2
-          Amount: 2
-      - TypeId: 5
-        Rating:
-          CurrencyType: 2
-          Amount: 1
-      - TypeId: 2
-        Rating:
-          CurrencyType: 2
-          Amount: 2
-      - TypeId: 12
-        Rating:
-          CurrencyType: 2
-          Amount: 1
-      BadIngredients:
-      - TypeId: 14
-        Rating:
-          CurrencyType: 3
-          Amount: 1
-      - TypeId: 16
-        Rating:
-          CurrencyType: 3
-          Amount: 2
-      RandomSetupEnabled: 1
+      MinMaxDayToUnlock: {x: 0, y: 0}
+      MinMaxAmount: {x: 1, y: 1}
       MinMaxGoodIngredients: {x: 8, y: 8}
-      MinMaxGoodIngredientsReward: {x: 1, y: 2}
       MinMaxBadIngredients: {x: 4, y: 5}
-      MinMaxBadIngredientsReward: {x: 1, y: 2}
-  - Id: 1
+      MinMaxIngredientsRatingFactor: {x: 1, y: 1}
+  - Id: 2
     Setup:
       OrderIcon: {fileID: 21300000, guid: 736f6e346141df74aac8c062c95aea9c, type: 3}
       Reward:
         CurrencyType: 1
         Amount: 4
-      MinDayToUnlock: 0
-      MaxDayToUnlock: 1
-      IsBoss: 0
-      GoodMinimum: 0
-      GoodIngredients: []
-      BadIngredients: []
-      RandomSetupEnabled: 1
+      MinMaxDayToUnlock: {x: 0, y: 0}
+      MinMaxAmount: {x: 1, y: 5}
       MinMaxGoodIngredients: {x: 1, y: 2}
-      MinMaxGoodIngredientsReward: {x: 1, y: 2}
       MinMaxBadIngredients: {x: 0, y: 0}
-      MinMaxBadIngredientsReward: {x: 0, y: 0}
-  - Id: 2
+      MinMaxIngredientsRatingFactor: {x: 1, y: 1}
+  - Id: 3
     Setup:
       OrderIcon: {fileID: 21300000, guid: 42649b7fefde0a24bafffcf23896fb80, type: 3}
       Reward:
         CurrencyType: 1
         Amount: 6
-      MinDayToUnlock: 0
-      MaxDayToUnlock: 1
-      IsBoss: 0
-      GoodMinimum: 0
-      GoodIngredients: []
-      BadIngredients: []
-      RandomSetupEnabled: 1
+      MinMaxDayToUnlock: {x: 0, y: 0}
+      MinMaxAmount: {x: 1, y: 5}
       MinMaxGoodIngredients: {x: 1, y: 2}
-      MinMaxGoodIngredientsReward: {x: 1, y: 2}
       MinMaxBadIngredients: {x: 0, y: 0}
-      MinMaxBadIngredientsReward: {x: 0, y: 0}
-  - Id: 3
+      MinMaxIngredientsRatingFactor: {x: 1, y: 1}
+  - Id: 4
     Setup:
       OrderIcon: {fileID: 21300000, guid: 4cfd027a06c4146449416e7dc55ccf6d, type: 3}
       Reward:
         CurrencyType: 1
         Amount: 8
-      MinDayToUnlock: 1
-      MaxDayToUnlock: 5
-      IsBoss: 0
-      GoodMinimum: 0
-      GoodIngredients: []
-      BadIngredients: []
-      RandomSetupEnabled: 1
+      MinMaxDayToUnlock: {x: 0, y: 0}
+      MinMaxAmount: {x: 1, y: 5}
       MinMaxGoodIngredients: {x: 2, y: 4}
-      MinMaxGoodIngredientsReward: {x: 1, y: 2}
       MinMaxBadIngredients: {x: 1, y: 3}
-      MinMaxBadIngredientsReward: {x: 1, y: 2}
+      MinMaxIngredientsRatingFactor: {x: 1, y: 1}
   - Id: 5
     Setup:
       OrderIcon: {fileID: 21300000, guid: 8c35e71d69b91334790ff78b71516bc4, type: 3}
       Reward:
         CurrencyType: 1
         Amount: 10
-      MinDayToUnlock: 1
-      MaxDayToUnlock: 5
-      IsBoss: 0
-      GoodMinimum: 0
-      GoodIngredients: []
-      BadIngredients: []
-      RandomSetupEnabled: 1
+      MinMaxDayToUnlock: {x: 0, y: 0}
+      MinMaxAmount: {x: 1, y: 1}
       MinMaxGoodIngredients: {x: 2, y: 5}
-      MinMaxGoodIngredientsReward: {x: 1, y: 2}
       MinMaxBadIngredients: {x: 0, y: 3}
-      MinMaxBadIngredientsReward: {x: 1, y: 2}
+      MinMaxIngredientsRatingFactor: {x: 1, y: 1}
   - Id: 6
     Setup:
       OrderIcon: {fileID: 21300000, guid: def3b3bfc0b969c4896fa4901b7c7692, type: 3}
       Reward:
         CurrencyType: 1
         Amount: 10
-      MinDayToUnlock: 3
-      MaxDayToUnlock: 5
-      IsBoss: 0
-      GoodMinimum: 2
-      GoodIngredients: []
-      BadIngredients: []
-      RandomSetupEnabled: 1
+      MinMaxDayToUnlock: {x: 0, y: 0}
+      MinMaxAmount: {x: 1, y: 5}
       MinMaxGoodIngredients: {x: 2, y: 6}
-      MinMaxGoodIngredientsReward: {x: 1, y: 2}
       MinMaxBadIngredients: {x: 0, y: 3}
-      MinMaxBadIngredientsReward: {x: 1, y: 2}
+      MinMaxIngredientsRatingFactor: {x: 1, y: 1}
   - Id: 7
     Setup:
       OrderIcon: {fileID: 21300000, guid: df7171ad2ac32604991f46bf9d08aecb, type: 3}
       Reward:
         CurrencyType: 1
         Amount: 15
-      MinDayToUnlock: 3
-      MaxDayToUnlock: 5
-      IsBoss: 0
-      GoodMinimum: 2
-      GoodIngredients: []
-      BadIngredients: []
-      RandomSetupEnabled: 1
+      MinMaxDayToUnlock: {x: 0, y: 0}
+      MinMaxAmount: {x: 1, y: 5}
       MinMaxGoodIngredients: {x: 3, y: 5}
-      MinMaxGoodIngredientsReward: {x: 1, y: 2}
       MinMaxBadIngredients: {x: 0, y: 3}
-      MinMaxBadIngredientsReward: {x: 1, y: 2}
+      MinMaxIngredientsRatingFactor: {x: 1, y: 1}

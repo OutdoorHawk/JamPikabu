@@ -6,7 +6,6 @@ namespace Code.Gameplay.Features.Loot.UIFactory
 {
     public interface ILootItemUIFactory
     {
-        LootItemUI CreateLootItem(Transform parent, LootTypeId type);
         LootItemUI CreateLootItem(Transform parent, in IngredientData ingredientData);
     }
 }

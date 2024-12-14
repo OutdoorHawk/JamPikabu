@@ -45,25 +45,12 @@ namespace Code.Gameplay.Features.Loot.Behaviours
 
         private void Start()
         {
-            _lootService.OnLootItemAdded += OnItemCollected;
             _ordersService.OnOrderUpdated += RefreshCurrentOrder;
         }
 
         private void OnDestroy()
         {
-            _lootService.OnLootItemAdded -= OnItemCollected;
             _ordersService.OnOrderUpdated -= RefreshCurrentOrder;
-        }
-
-        private void OnItemCollected(LootTypeId type)
-        {
-            foreach (LootItemUI item in _items.Where(item => item.Type == type))
-            {
-                if (item.AmountNeed == 1) 
-                    item.AnimateComplete();
-                else
-                    item.AnimateCollected();
-            }
         }
 
         private void RefreshCurrentOrder()
@@ -79,7 +66,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
                 CreateLootItem(data, LootGrid.transform);
         }
 
-        private LootItemUI CreateLootItem(in IngredientData ingredientData, Transform parent)
+        private void CreateLootItem(in IngredientData ingredientData, Transform parent)
         {
             LootItemUI item = _lootItemUIFactory.CreateLootItem(parent, ingredientData);
 
@@ -94,7 +81,6 @@ namespace Code.Gameplay.Features.Loot.Behaviours
             }
             
             ItemsByLootType.Add(ingredientData.TypeId, item);
-            return item;
         }
 
         private void CreateGoodIngredient(in IngredientData ingredientData, LootItemUI item)

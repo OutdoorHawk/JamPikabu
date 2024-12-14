@@ -20,9 +20,7 @@ namespace Code.Gameplay.Features.Orders.Config
         
         public CostSetup Reward = new(CurrencyTypeId.Gold);
         public Vector2Int MinMaxDayToUnlock;
-
-        public int GoodMinimum;
-        public int BadMaximum;
+        
         public Vector2Int MinMaxAmount = Vector2Int.one;
         
         public Vector2Int MinMaxGoodIngredients = Vector2Int.one;

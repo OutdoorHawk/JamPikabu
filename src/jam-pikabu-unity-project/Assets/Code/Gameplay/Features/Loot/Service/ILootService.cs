@@ -7,11 +7,12 @@ namespace Code.Gameplay.Features.Loot.Service
     public interface ILootService
     {
         event Action OnLootUpdate;
-        event Action<LootTypeId> OnLootItemAdded;
+        bool LootIsBusy { get; }
         IReadOnlyList<LootTypeId> CollectedLootItems { get; }
         IReadOnlyList<LootSetup> AvailableLoot { get; }
         void CreateLootSpawner();
-        void CreateNewCollectedLootItem(LootTypeId lootType);
+        void AddCollectedLoot(LootTypeId lootType);
+        void SetLootIsConsumingState(bool state);
         void ClearCollectedLoot();
         void CreateLootConsumer();
     }

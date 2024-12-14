@@ -57,7 +57,7 @@ namespace Code.Gameplay.Features.Loot.Systems
 
         private void SetLootCollected(GameEntity loot)
         {
-            _lootService.CreateNewCollectedLootItem(loot.LootTypeId);
+            _lootService.AddCollectedLoot(loot.LootTypeId);
             loot.isCollected = true;
             loot.isBusy = true;
         }
@@ -74,9 +74,15 @@ namespace Code.Gameplay.Features.Loot.Systems
                 return;
 
             var lootContainer = playerHud.GetComponentInChildren<GameplayLootContainer>();
-            LootItemUI lootItemUI = lootContainer.Items[^1];
-                
-            PlayMoveAnimationAsync(lootItemUI, loot.Id).Forget();
+            
+            if (lootContainer.ItemsByLootType.TryGetValue(loot.LootTypeId, out LootItemUI lootItemUI))
+            {
+                PlayMoveAnimationAsync(lootItemUI, loot.Id).Forget();
+            }
+            else
+            {
+                RemoveLootView(loot);
+            }
         }
 
         private async UniTaskVoid PlayMoveAnimationAsync(LootItemUI lootItemUI, int lootId)
@@ -102,7 +108,12 @@ namespace Code.Gameplay.Features.Loot.Systems
             loot.Transform
                 .DOJump(worldPosition, jumpPower, 1, flyAnimationDuration)
                 .SetLink(loot.Transform.gameObject)
-                .OnComplete(() => SwapWorldViewToUIView(loot, lootItemUI))
+                .OnComplete(() =>
+                {
+                    loot.Release(this);
+                    RemoveLootView(loot);
+                    lootItemUI.AnimateCollected();
+                })
                 ;
 
             loot.Transform
@@ -111,15 +122,13 @@ namespace Code.Gameplay.Features.Loot.Systems
                 ;
         }
 
-        private void SwapWorldViewToUIView(GameEntity loot, LootItemUI lootItemUI)
+        private void RemoveLootView(GameEntity loot)
         {
-            loot.Release(this);
             IEntityView lootWorldView = loot.View;
             lootWorldView.ReleaseEntity();
             Object.Destroy(lootWorldView.gameObject);
             loot.RemoveView();
-            lootItemUI.EntityView.SetEntity(loot);
-            lootItemUI.Show();
+            loot.RemoveViewPrefab();
         }
 
         public void Cleanup()

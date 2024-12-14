@@ -41,8 +41,6 @@ namespace Code.Gameplay.Features.Loot.Factory
         {
             LootSetup lootSetup = GetLootSetup(typeId);
             GameEntity loot = CreateBaseLoot(typeId, parent, at, spawnRotation);
-
-            AddEffects(loot, typeId);
             
             switch (typeId)
             {
@@ -82,6 +80,8 @@ namespace Code.Gameplay.Features.Loot.Factory
                     .AddStartRotation(spawnRotation)
                     .AddTargetParent(parent)
                     .AddLootTypeId(typeId)
+                    .AddBaseRating(lootSetup.BaseRatingValue)
+                    .AddRating(lootSetup.BaseRatingValue)
                     .With(x => x.AddViewPrefab(staticData.LootItem), when: lootSetup.ViewPrefab == null)
                     .With(x => x.AddViewPrefab(lootSetup.ViewPrefab), when: lootSetup.ViewPrefab != null)
                 ;
@@ -94,11 +94,6 @@ namespace Code.Gameplay.Features.Loot.Factory
             var staticData = _staticDataService.GetStaticData<LootStaticData>();
             var lootSetup = staticData.GetConfig(typeId);
             return lootSetup;
-        }
-
-        private void AddEffects(GameEntity loot, LootTypeId typeId)
-        {
-            LootSetup lootSetup = GetLootSetup(typeId);
         }
     }
 }
