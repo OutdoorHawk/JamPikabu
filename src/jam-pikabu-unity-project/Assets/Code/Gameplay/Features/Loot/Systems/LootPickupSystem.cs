@@ -81,6 +81,7 @@ namespace Code.Gameplay.Features.Loot.Systems
             }
             else
             {
+                //TODO BAD VISUALS
                 RemoveLootView(loot);
             }
         }
