@@ -10,6 +10,7 @@ using Code.Infrastructure.States.GameStates.Game;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
 using Code.Infrastructure.Systems;
+using Code.Meta.Features;
 using Code.Progress.Provider;
 using Code.Progress.SaveLoadService;
 using Zenject;
@@ -61,6 +62,7 @@ namespace Code.Infrastructure.States.GameStates
             InitializeProgress();
             _localizationService.InitLanguageSettings();
             _tutorialService.Value.Initialize();
+            ActualizeProgress();
             LoadNextState();
         }
 
@@ -90,6 +92,19 @@ namespace Code.Infrastructure.States.GameStates
                 .Empty()
                 .AddDay(1);
         }
+        
+        private void ActualizeProgress()
+        {
+            ActualizeProgressFeature loadProgressFeature = _systemFactory.Create<ActualizeProgressFeature>();
+            loadProgressFeature.Initialize();
+            loadProgressFeature.Execute();
+
+            loadProgressFeature.DeactivateReactiveSystems();
+            loadProgressFeature.ClearReactiveSystems();
+
+            loadProgressFeature.Cleanup();
+            loadProgressFeature.TearDown();
+        }
 
         private void CreateNewProgress()
         {
@@ -109,6 +124,7 @@ namespace Code.Infrastructure.States.GameStates
         private void LoadNextState()
         {
             _gameStateHandlerService.OnExitLoadProgressState();
+            
 #if UNITY_EDITOR
             _stateMachine.Enter<EditorLoadSceneState>();
             return;

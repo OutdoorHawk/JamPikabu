@@ -11,7 +11,7 @@ using Code.Progress.SaveLoadService;
 
 namespace Code.Infrastructure.States.GameStates
 {
-    public class MainMenuState : EndOfFrameExitState
+    public class MapMenuState : EndOfFrameExitState
     {
         private readonly IWindowService _windowService;
         private readonly IStorageUIService _storageUIService;
@@ -20,9 +20,9 @@ namespace Code.Infrastructure.States.GameStates
         private readonly IGameStateMachine _gameStateMachine;
         private readonly IGameStateHandlerService _gameStateHandlerService;
 
-        private MainMenuFeature _mainMenuFeature;
+        private MapMenuFeature _mapMenuFeature;
 
-        public MainMenuState
+        public MapMenuState
         (
             IGameStateMachine gameStateMachine,
             IWindowService windowService,
@@ -42,9 +42,9 @@ namespace Code.Infrastructure.States.GameStates
 
         public override void Enter()
         {
-            _mainMenuFeature = _systemFactory.Create<MainMenuFeature>();
+            _mapMenuFeature = _systemFactory.Create<MapMenuFeature>();
 
-            _mainMenuFeature.Initialize();
+            _mapMenuFeature.Initialize();
             _saveLoadService.SaveProgress();
             
             _gameStateHandlerService.OnEnterMainMenu();
@@ -52,8 +52,8 @@ namespace Code.Infrastructure.States.GameStates
 
         protected override void OnUpdate()
         {
-            _mainMenuFeature.Execute();
-            _mainMenuFeature.Cleanup();
+            _mapMenuFeature.Execute();
+            _mapMenuFeature.Cleanup();
         }
 
         protected override void ExitOnEndOfFrame()
@@ -61,11 +61,11 @@ namespace Code.Infrastructure.States.GameStates
             _storageUIService.Cleanup();
             _windowService.ClearUIRoot();
 
-            _mainMenuFeature.DeactivateReactiveSystems();
-            _mainMenuFeature.ClearReactiveSystems();
+            _mapMenuFeature.DeactivateReactiveSystems();
+            _mapMenuFeature.ClearReactiveSystems();
 
-            _mainMenuFeature.Cleanup();
-            _mainMenuFeature.TearDown();
+            _mapMenuFeature.Cleanup();
+            _mapMenuFeature.TearDown();
         }
     }
 }

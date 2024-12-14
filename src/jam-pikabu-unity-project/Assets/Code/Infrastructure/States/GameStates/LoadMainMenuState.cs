@@ -31,7 +31,7 @@ namespace Code.Infrastructure.States.GameStates
         {
             base.Enter();
             Cursor.lockState = CursorLockMode.None;
-            _sceneLoader.LoadScene(SceneTypeId.MainMenu, onLoaded: OnLoaded);
+            _sceneLoader.LoadScene(SceneTypeId.MapMenu, onLoaded: OnLoaded);
         }
 
         private void OnLoaded()
@@ -39,7 +39,7 @@ namespace Code.Infrastructure.States.GameStates
             _windowService.ClearUIRoot();
             _windowService.OpenWindow(WindowTypeId.MainMenu);
 
-            _gameStateMachine.Enter<MainMenuState>();
+            _gameStateMachine.Enter<MapMenuState>();
         }
     }
 }

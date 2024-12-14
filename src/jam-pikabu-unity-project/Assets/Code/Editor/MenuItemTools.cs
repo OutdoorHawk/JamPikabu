@@ -17,7 +17,7 @@ namespace Code.Editor
         [MenuItem("Tools/Scenes/Open Menu Scene", false, 2)]
         public static void OpenMenuScene()
         {
-            EditorSceneManager.OpenScene($"Assets/Project/Scenes/{SceneTypeId.MainMenu}.unity", OpenSceneMode.Single);
+            EditorSceneManager.OpenScene($"Assets/Project/Scenes/{SceneTypeId.MapMenu}.unity", OpenSceneMode.Single);
         }
         
         [MenuItem("Tools/Scenes/Open Gameplay Scene", false, 2)]

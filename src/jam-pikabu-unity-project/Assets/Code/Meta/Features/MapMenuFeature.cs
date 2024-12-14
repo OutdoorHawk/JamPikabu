@@ -3,9 +3,9 @@ using Code.Infrastructure.Systems;
 
 namespace Code.Meta.Features
 {
-    public sealed class MainMenuFeature : Feature
+    public sealed class MapMenuFeature : Feature
     {
-        public MainMenuFeature(ISystemFactory systems)
+        public MapMenuFeature(ISystemFactory systems)
         {
             Add(systems.Create<ProcessDestructedFeature>());
         }
