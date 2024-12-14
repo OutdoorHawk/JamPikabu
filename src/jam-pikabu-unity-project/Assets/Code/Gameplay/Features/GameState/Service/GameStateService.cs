@@ -44,26 +44,41 @@ namespace Code.Gameplay.Features.GameState.Service
                 case GameStateTypeId.Unknown:
                     break;
                 case GameStateTypeId.BeginDay:
-                    _roundStateService.BeginDay();
-                    _ordersService.InitDayBegin();
-                    _lootService.CreateLootSpawner();
-                    SaveStash();
+                    EnterBeginDay();
                     break;
                 case GameStateTypeId.RoundPreparation:
-                    _ordersService.CreateOrder();
-                    _roundStateService.EnterRoundPreparation();
-                    _lootService.ClearCollectedLoot();
+                    EnterRoundPreparation();
                     break;
                 case GameStateTypeId.RoundLoop:
                     break;
                 case GameStateTypeId.RoundCompletion:
-                    _lootService.CreateLootConsumer();
+                    EnterRoundCompletion();
                     break;
                 case GameStateTypeId.EndDay:
                     break;
             }
         }
-        
+
+        private void EnterBeginDay()
+        {
+            _roundStateService.BeginDay();
+            _ordersService.InitDayBegin();
+            _lootService.CreateLootSpawner();
+            SaveStash();
+        }
+
+        private void EnterRoundPreparation()
+        {
+            _ordersService.CreateOrder();
+            _roundStateService.EnterRoundPreparation();
+            _lootService.ClearCollectedLoot();
+        }
+
+        private void EnterRoundCompletion()
+        {
+            _lootService.CreateLootConsumer();
+        }
+
         private void SaveStash()
         {
             foreach (var storage in Contexts.sharedInstance.game.GetGroup(GameMatcher.AllOf(GameMatcher.CurrencyStorage, GameMatcher.Gold)))

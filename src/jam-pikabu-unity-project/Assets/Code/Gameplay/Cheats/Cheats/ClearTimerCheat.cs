@@ -8,7 +8,7 @@ namespace Code.Gameplay.Cheats.Cheats
     [Injectable(typeof(ICheatAction))]
     public class ClearTimerCheat : BaseCheat, ICheatActionBasic
     {
-        public string CheatLabel => "Обнулить таймер";
+        public string CheatLabel => "Обнулить таймер раунда";
         public OrderType Order => OrderType.Second;
 
         public void Execute()
