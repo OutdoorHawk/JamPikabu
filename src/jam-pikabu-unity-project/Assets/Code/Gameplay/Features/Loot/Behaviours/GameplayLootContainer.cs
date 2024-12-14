@@ -27,6 +27,8 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         private IOrdersService _ordersService;
 
         public List<LootItemUI> Items => _items;
+        
+        public Dictionary<LootTypeId, LootItemUI> ItemsByLootType = new();
 
         [Inject]
         private void Construct
@@ -66,6 +68,8 @@ namespace Code.Gameplay.Features.Loot.Behaviours
 
         private void RefreshCurrentOrder()
         {
+            ItemsByLootType.Clear();
+            
             (List<IngredientData> good, List<IngredientData> bad) = _ordersService.OrderIngredients;
 
             foreach (IngredientData data in good) 
@@ -88,7 +92,8 @@ namespace Code.Gameplay.Features.Loot.Behaviours
                     CreateBadIngredient(ingredientData, item);
                     break;
             }
-
+            
+            ItemsByLootType.Add(ingredientData.TypeId, item);
             return item;
         }
 

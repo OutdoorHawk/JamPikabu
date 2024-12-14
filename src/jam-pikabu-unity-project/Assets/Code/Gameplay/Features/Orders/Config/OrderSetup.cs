@@ -27,6 +27,6 @@ namespace Code.Gameplay.Features.Orders.Config
         
         public Vector2Int MinMaxGoodIngredients = Vector2Int.one;
         public Vector2Int MinMaxBadIngredients;
-        public Vector2Int MinMaxIngredientsRatingFactor;
+        public Vector2Int MinMaxIngredientsRatingFactor  = Vector2Int.one;
     }
 }

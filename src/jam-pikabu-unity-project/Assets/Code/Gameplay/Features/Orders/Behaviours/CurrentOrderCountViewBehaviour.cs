@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Code.Gameplay.Features.Orders.Behaviours
 {
-    public class CurrentOrderViewBehaviour : MonoBehaviour
+    public class CurrentOrderCountViewBehaviour : MonoBehaviour
     {
         [SerializeField] private TMP_Text _orderText;
 
