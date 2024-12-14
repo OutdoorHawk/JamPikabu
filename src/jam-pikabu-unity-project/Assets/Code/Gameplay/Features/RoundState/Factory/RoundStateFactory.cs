@@ -1,7 +1,7 @@
 ﻿using Code.Common.Entity;
 using Code.Common.Extensions;
-using Code.Gameplay.Features.RoundState.Configs;
 using Code.Gameplay.StaticData;
+using Code.Meta.Features.Days.Configs;
 
 namespace Code.Gameplay.Features.RoundState.Factory
 {
@@ -16,7 +16,7 @@ namespace Code.Gameplay.Features.RoundState.Factory
 
         public GameEntity CreateRoundStateController()
         {
-            var staticData = _staticDataService.GetStaticData<RoundStateStaticData>();
+            var staticData = _staticDataService.GetStaticData<DaysStaticData>();
 
             return CreateGameEntity
                     .Empty()

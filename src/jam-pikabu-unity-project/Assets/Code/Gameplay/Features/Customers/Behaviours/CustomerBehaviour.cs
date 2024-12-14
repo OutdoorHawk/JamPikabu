@@ -4,11 +4,11 @@ using Code.Common.Extensions.Animations;
 using Code.Gameplay.Features.Customers.Config;
 using Code.Gameplay.Features.Customers.Service;
 using Code.Gameplay.Features.Orders.Service;
-using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.Sound;
 using Code.Gameplay.Sound.Service;
 using Code.Gameplay.Windows;
 using Code.Gameplay.Windows.Service;
+using Code.Meta.Features.Days.Service;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,7 +24,7 @@ namespace Code.Gameplay.Features.Customers.Behaviours
         [SerializeField] private bool _hideOnAwake;
         [SerializeField] private float _openOrderWindowDelay = 0.2f;
 
-        private IRoundStateService _roundStateService;
+        private IDaysService _daysService;
         private ICustomersService _customersService;
         private IOrdersService _ordersService;
         private IWindowService _windowService;
@@ -33,7 +33,7 @@ namespace Code.Gameplay.Features.Customers.Behaviours
         private bool _hided;
 
         [Inject]
-        private void Construct(IRoundStateService roundStateService,
+        private void Construct(IDaysService daysService,
             ICustomersService customersService,
             IOrdersService ordersService,
             IWindowService windowService,
@@ -43,13 +43,13 @@ namespace Code.Gameplay.Features.Customers.Behaviours
             _windowService = windowService;
             _ordersService = ordersService;
             _customersService = customersService;
-            _roundStateService = roundStateService;
+            _daysService = daysService;
         }
 
         private void Awake()
         {
             _ordersService.OnOrderUpdated += UpdateCustomer;
-            _roundStateService.OnDayComplete += Hide;
+            _daysService.OnDayComplete += Hide;
 
             //UpdateSprite();
 
@@ -65,7 +65,7 @@ namespace Code.Gameplay.Features.Customers.Behaviours
         private void OnDestroy()
         {
             _ordersService.OnOrderUpdated -= UpdateCustomer;
-            _roundStateService.OnDayComplete -= Hide;
+            _daysService.OnDayComplete -= Hide;
         }
 
         private void UpdateCustomer()

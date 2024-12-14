@@ -1,6 +1,6 @@
-﻿using Code.Gameplay.Features.RoundState.Service;
-using Code.Gameplay.StaticData;
+﻿using Code.Gameplay.StaticData;
 using Code.Infrastructure.View;
+using Code.Meta.Features.Days.Service;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -13,30 +13,30 @@ namespace Code.Gameplay.Features.RoundState.Behaviours
 
         private int _currentTime;
         private IStaticDataService _staticDataService;
-        private IRoundStateService _roundStateService;
+        private IDaysService _daysService;
 
         [Inject]
-        private void Construct(IStaticDataService staticDataService, IRoundStateService roundStateService)
+        private void Construct(IStaticDataService staticDataService, IDaysService daysService)
         {
-            _roundStateService = roundStateService;
+            _daysService = daysService;
             _staticDataService = staticDataService;
         }
 
         private void Awake()
         {
-            _roundStateService.OnEnterRoundPreparation += ResetTimer;
-            _roundStateService.OnDayBegin += ResetTimer;
+            _daysService.OnEnterRoundPreparation += ResetTimer;
+            _daysService.OnDayBegin += ResetTimer;
         }
 
         private void OnDestroy()
         {
-            _roundStateService.OnEnterRoundPreparation -= ResetTimer;
-            _roundStateService.OnDayBegin -= ResetTimer;
+            _daysService.OnEnterRoundPreparation -= ResetTimer;
+            _daysService.OnDayBegin -= ResetTimer;
         }
 
         private void ResetTimer()
         {
-            float roundDuration = _roundStateService.GetDayData().RoundDuration;
+            float roundDuration = _daysService.GetDayData().RoundDuration;
             _currentTime = Mathf.RoundToInt(roundDuration);
             RoundTimerText.text = _currentTime.ToString();
         }

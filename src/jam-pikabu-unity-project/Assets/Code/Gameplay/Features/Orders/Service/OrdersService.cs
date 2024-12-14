@@ -8,8 +8,8 @@ using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.Features.Loot.Service;
 using Code.Gameplay.Features.Orders.Config;
 using Code.Gameplay.Features.Orders.Factory;
-using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.StaticData;
+using Code.Meta.Features.Days.Service;
 using RoyalGold.Sources.Scripts.Game.MVC.Utils;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -21,7 +21,7 @@ namespace Code.Gameplay.Features.Orders.Service
         public event Action OnOrderUpdated;
 
         private readonly IStaticDataService _staticDataService;
-        private readonly IRoundStateService _roundStateService;
+        private readonly IDaysService _daysService;
         private readonly IOrdersFactory _ordersFactory;
         private readonly ILootService _lootService;
 
@@ -35,7 +35,7 @@ namespace Code.Gameplay.Features.Orders.Service
         private readonly List<OrderData> _ordersBuffer = new();
 
         public int OrdersCompleted => _ordersCompleted;
-        public int MaxOrders => _roundStateService.GetDayData().OrdersAmount;
+        public int MaxOrders => _daysService.GetDayData().OrdersAmount;
         public bool OrderWindowSeen => _orderWindowSeen;
 
         public (List<IngredientData> good, List<IngredientData> bad) OrderIngredients => _orderIngredients;
@@ -43,13 +43,13 @@ namespace Code.Gameplay.Features.Orders.Service
         public OrdersService
         (
             IStaticDataService staticDataService,
-            IRoundStateService roundStateService,
+            IDaysService daysService,
             IOrdersFactory ordersFactory,
             ILootService lootService
         )
         {
             _staticDataService = staticDataService;
-            _roundStateService = roundStateService;
+            _daysService = daysService;
             _ordersFactory = ordersFactory;
             _lootService = lootService;
         }
@@ -61,7 +61,7 @@ namespace Code.Gameplay.Features.Orders.Service
             _ordersCompleted = 0;
             _ordersBuffer.Clear();
 
-            InitCurrentDayOrders(_roundStateService.CurrentDay);
+            InitCurrentDayOrders(_daysService.CurrentDay);
         }
 
         private void InitCurrentDayOrders(int currentDay)
@@ -108,7 +108,7 @@ namespace Code.Gameplay.Features.Orders.Service
 
         public OrderData GetCurrentOrder()
         {
-            if (_roundStateService.GetDayData().IsBoss)
+            if (_daysService.GetDayData().IsBoss)
                 return _ordersBuffer.Find(data => data.Setup.IsBoss);
 
             return _ordersBuffer[_currentOrderIndex];
@@ -116,7 +116,7 @@ namespace Code.Gameplay.Features.Orders.Service
 
         public bool CheckAllOrdersCompleted()
         {
-            return _ordersCompleted + 1 >= _roundStateService.GetDayData().OrdersAmount;
+            return _ordersCompleted + 1 >= _daysService.GetDayData().OrdersAmount;
         }
 
         public void GoToNextOrder()

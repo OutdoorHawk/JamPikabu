@@ -11,29 +11,31 @@ public static class MetaComponentsLookup {
     public const int Destructed = 0;
     public const int Id = 1;
     public const int Day = 2;
-    public const int Gold = 3;
-    public const int Minus = 4;
-    public const int Plus = 5;
-    public const int AddCurrencyToStorageRequest = 6;
-    public const int Hard = 7;
+    public const int StarsAmount = 3;
+    public const int AddCurrencyToStorageRequest = 4;
+    public const int Gold = 5;
+    public const int Minus = 6;
+    public const int Plus = 7;
     public const int Storage = 8;
-    public const int ForAd = 9;
-    public const int BuyRequest = 10;
-    public const int Purchased = 11;
-    public const int ShopItemId = 12;
+    public const int Withdraw = 9;
+    public const int ForAd = 10;
+    public const int BuyRequest = 11;
+    public const int Purchased = 12;
+    public const int ShopItemId = 13;
 
-    public const int TotalComponents = 13;
+    public const int TotalComponents = 14;
 
     public static readonly string[] componentNames = {
         "Destructed",
         "Id",
         "Day",
+        "StarsAmount",
+        "AddCurrencyToStorageRequest",
         "Gold",
         "Minus",
         "Plus",
-        "AddCurrencyToStorageRequest",
-        "Hard",
         "Storage",
+        "Withdraw",
         "ForAd",
         "BuyRequest",
         "Purchased",
@@ -43,13 +45,14 @@ public static class MetaComponentsLookup {
     public static readonly System.Type[] componentTypes = {
         typeof(Code.Common.Destructed),
         typeof(Code.Gameplay.Common.Id),
-        typeof(Code.Meta.Features.GameState.Day),
-        typeof(Code.Meta.Features.GameState.Gold),
-        typeof(Code.Meta.Features.GameState.Minus),
-        typeof(Code.Meta.Features.GameState.Plus),
+        typeof(Code.Meta.Features.Days.Day),
+        typeof(Code.Meta.Features.Days.StarsAmount),
         typeof(Code.Meta.Features.Storage.AddCurrencyToStorageRequest),
-        typeof(Code.Meta.Features.Storage.Hard),
+        typeof(Code.Meta.Features.Storage.Gold),
+        typeof(Code.Meta.Features.Storage.Minus),
+        typeof(Code.Meta.Features.Storage.Plus),
         typeof(Code.Meta.Features.Storage.Storage),
+        typeof(Code.Meta.Features.Storage.Withdraw),
         typeof(Code.Meta.UI.Common.ForAd),
         typeof(Code.Meta.UI.Shop.BuyRequestComponent),
         typeof(Code.Meta.UI.Shop.Purchased),

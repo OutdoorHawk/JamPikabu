@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
-using Code.Gameplay.Features.RoundState.Configs;
 using Code.Gameplay.Features.RoundState.Factory;
 using Code.Gameplay.StaticData;
+using Code.Meta.Features.Days.Configs;
 
-namespace Code.Gameplay.Features.RoundState.Service
+namespace Code.Meta.Features.Days.Service
 {
-    public class RoundStateService : IRoundStateService
+    public class DaysService : IDaysService
     {
         public event Action OnEnterRoundPreparation;
         public event Action OnDayBegin;
@@ -21,9 +21,9 @@ namespace Code.Gameplay.Features.RoundState.Service
         private int _currentDay;
 
         public int CurrentDay => _currentDay;
-        public int MaxDays => _staticDataService.GetStaticData<RoundStateStaticData>().Days.Count;
+        public int MaxDays => _staticDataService.GetStaticData<DaysStaticData>().Days.Count;
 
-        public RoundStateService
+        public DaysService
         (
             IRoundStateFactory roundStateFactory,
             IStaticDataService staticDataService
@@ -40,14 +40,13 @@ namespace Code.Gameplay.Features.RoundState.Service
 
         public void BeginDay()
         {
-            var staticData = _staticDataService.GetStaticData<RoundStateStaticData>();
+            var staticData = _staticDataService.GetStaticData<DaysStaticData>();
             _daysData = staticData.Days;
 
             _currentDayData = GetDayData(_currentDay);
 
             _roundStateFactory.CreateRoundStateController()
                 .AddDayCost(_currentDayData.PlayCost)
-                .AddDay(_currentDay)
                 .AddRoundDuration(_currentDayData.RoundDuration)
                 ;
 

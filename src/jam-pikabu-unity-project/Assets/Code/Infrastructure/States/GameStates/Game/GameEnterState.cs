@@ -1,7 +1,6 @@
 using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Gameplay.Common.MousePosition;
-using Code.Gameplay.Features.RoundState.Configs;
 using Code.Gameplay.StaticData;
 using Code.Infrastructure.States.GameStateHandler;
 using Code.Infrastructure.States.StateInfrastructure;

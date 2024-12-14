@@ -26,7 +26,6 @@ namespace Code.Gameplay.Features
             Add(systems.Create<BindViewFeature>());
             Add(systems.Create<CooldownSystem>());
             
-            Add(systems.Create<InitCurrentDaySystem>());
             Add(systems.Create<InitGrapplingHookSystem>());
             Add(systems.Create<InitGameplayCurrency>());
 

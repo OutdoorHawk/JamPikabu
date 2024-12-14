@@ -1,9 +1,9 @@
 using System;
-using Code.Gameplay.Features.RoundState.Configs;
+using Code.Meta.Features.Days.Configs;
 
-namespace Code.Gameplay.Features.RoundState.Service
+namespace Code.Meta.Features.Days.Service
 {
-    public interface IRoundStateService
+    public interface IDaysService
     {
         event Action OnEnterRoundPreparation;
         event Action OnDayBegin;

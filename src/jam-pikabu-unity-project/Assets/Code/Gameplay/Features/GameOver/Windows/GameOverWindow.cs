@@ -2,13 +2,13 @@
 using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Service;
 using Code.Gameplay.Features.GameOver.Service;
-using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.Sound;
 using Code.Gameplay.Sound.Service;
 using Code.Gameplay.Windows;
 using Code.Infrastructure.States.GameStates;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
+using Code.Meta.Features.Days.Service;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -25,16 +25,16 @@ namespace Code.Gameplay.Features.GameOver.Windows
         [SerializeField] private TMP_Text _gameOverBossText;
         [SerializeField] private TMP_Text _ratingText;
         
-        private IRoundStateService _roundStateService;
+        private IDaysService _daysService;
         private IGameplayCurrencyService _gameplayCurrencyService;
 
         [Inject]
         private void Construct(IGameStateMachine gameStateMachine, ISoundService soundService, 
-            IGameOverService gameOverService, IRoundStateService roundStateService, IGameplayCurrencyService gameplayCurrencyService
+            IGameOverService gameOverService, IDaysService daysService, IGameplayCurrencyService gameplayCurrencyService
         )
         {
             _gameplayCurrencyService = gameplayCurrencyService;
-            _roundStateService = roundStateService;
+            _daysService = daysService;
             _gameOverService = gameOverService;
             _soundService = soundService;
             _gameStateMachine = gameStateMachine;
@@ -52,7 +52,7 @@ namespace Code.Gameplay.Features.GameOver.Windows
                 return;
             }
 
-            if (_roundStateService.GetDayData().IsBoss)
+            if (_daysService.GetDayData().IsBoss)
             {
                 _gameOverText.DisableElement();
                 _gameOverBossText.EnableElement();

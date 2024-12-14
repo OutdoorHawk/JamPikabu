@@ -2,8 +2,6 @@
 using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Service;
 using Code.Gameplay.Features.Orders.Service;
-using Code.Gameplay.Features.RoundState.Configs;
-using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.Input.Service;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows;
@@ -13,6 +11,8 @@ using Code.Infrastructure.States.GameStateHandler.Handlers;
 using Code.Infrastructure.States.GameStates;
 using Code.Infrastructure.States.GameStates.Game;
 using Code.Infrastructure.States.StateMachine;
+using Code.Meta.Features.Days.Configs;
+using Code.Meta.Features.Days.Service;
 using Code.Progress.Provider;
 using Code.Progress.SaveLoadService;
 using Cysharp.Threading.Tasks;
@@ -30,7 +30,7 @@ namespace Code.Gameplay.Features.GameOver.Service
         private readonly IStaticDataService _staticData;
         private readonly IOrdersService _ordersService;
         private readonly IGameplayCurrencyService _gameplayCurrencyService;
-        private readonly IRoundStateService _roundStateService;
+        private readonly IDaysService _daysService;
 
         public bool IsGameWin { get; private set; }
 
@@ -44,14 +44,14 @@ namespace Code.Gameplay.Features.GameOver.Service
             IStaticDataService staticData,
             IOrdersService ordersService,
             IGameplayCurrencyService gameplayCurrencyService,
-            IRoundStateService roundStateService
+            IDaysService daysService
         )
         {
             _windowService = windowService;
             _staticData = staticData;
             _ordersService = ordersService;
             _gameplayCurrencyService = gameplayCurrencyService;
-            _roundStateService = roundStateService;
+            _daysService = daysService;
             _inputService = inputService;
             _gameStateMachine = gameStateMachine;
             _saveLoadService = saveLoadService;
@@ -103,29 +103,16 @@ namespace Code.Gameplay.Features.GameOver.Service
             _windowService.Close(WindowTypeId.OrderWindow);
             _windowService.OpenWindow(WindowTypeId.GameLostWindow);
 
-            ResetMeta();
+            ResetMetaAndStash();
         }
 
-        public void ResetMetaAndStash()
+        private void ResetMetaAndStash()
         {
-            foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Day)) 
-                day.ReplaceDay(0);
-            foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Gold)) 
-                day.ReplaceGold(_staticData.GetStaticData<RoundStateStaticData>().StartGoldAmount);
             foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Plus)) 
                 day.ReplacePlus(0);
+            
             foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Minus)) 
                 day.ReplaceMinus(0);
-        }
-
-        private void ResetMeta()
-        {
-            foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Gold)) 
-                day.ReplaceGold(GameplayCurrencyService.CurrencyCache[CurrencyTypeId.Gold]);
-            foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Plus)) 
-                day.ReplacePlus(GameplayCurrencyService.CurrencyCache[CurrencyTypeId.Plus]);
-            foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Minus)) 
-                day.ReplaceMinus(GameplayCurrencyService.CurrencyCache[CurrencyTypeId.Minus]);
         }
 
         private void BlockInput()

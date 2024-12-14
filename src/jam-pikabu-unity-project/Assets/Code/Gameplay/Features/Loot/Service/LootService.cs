@@ -4,15 +4,15 @@ using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.Features.Loot.Factory;
-using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.StaticData;
+using Code.Meta.Features.Days.Service;
 
 namespace Code.Gameplay.Features.Loot.Service
 {
     public class LootService : ILootService
     {
         private readonly IStaticDataService _staticDataService;
-        private readonly IRoundStateService _roundStateService;
+        private readonly IDaysService _daysService;
         private readonly ILootFactory _lootFactory;
         public event Action OnLootUpdate;
         public event Action<LootTypeId> OnLootItemAdded;
@@ -24,11 +24,11 @@ namespace Code.Gameplay.Features.Loot.Service
         public IReadOnlyList<LootTypeId> CollectedLootItems => _collectedLootItems;
         public IReadOnlyList<LootSetup> AvailableLoot => _availableLoot;
 
-        public LootService(IStaticDataService staticDataService, IRoundStateService roundStateService,
+        public LootService(IStaticDataService staticDataService, IDaysService daysService,
             ILootFactory lootFactory)
         {
             _staticDataService = staticDataService;
-            _roundStateService = roundStateService;
+            _daysService = daysService;
             _lootFactory = lootFactory;
         }
 
@@ -63,7 +63,7 @@ namespace Code.Gameplay.Features.Loot.Service
         private void InitLootBufferInternal()
         {
             List<LootSetup> configs = _staticDataService.GetStaticData<LootStaticData>().Configs;
-            int currentDay = _roundStateService.CurrentDay;
+            int currentDay = _daysService.CurrentDay;
 
             _availableLoot.Clear();
             foreach (var config in configs)

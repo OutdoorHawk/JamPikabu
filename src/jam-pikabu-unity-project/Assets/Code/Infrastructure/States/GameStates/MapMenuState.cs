@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using Code.Gameplay.Windows.Service;
 using Code.Infrastructure.States.GameStateHandler;
-using Code.Infrastructure.States.GameStateHandler.Handlers;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
 using Code.Infrastructure.Systems;
@@ -46,7 +44,7 @@ namespace Code.Infrastructure.States.GameStates
 
             _mapMenuFeature.Initialize();
             _saveLoadService.SaveProgress();
-            
+
             _gameStateHandlerService.OnEnterMainMenu();
         }
 

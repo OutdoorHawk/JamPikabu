@@ -2,7 +2,7 @@
 using Code.Gameplay.Features.GameState.Service;
 using Code.Gameplay.Features.Loot.Service;
 using Code.Gameplay.Features.Orders.Service;
-using Code.Gameplay.Features.RoundState.Service;
+using Code.Meta.Features.Days.Service;
 using Entitas;
 
 namespace Code.Gameplay.Features.GameState.Systems
@@ -20,7 +20,7 @@ namespace Code.Gameplay.Features.GameState.Systems
             IGameStateService gameStateService,
             IOrdersService ordersService,
             ILootService lootService,
-            IRoundStateService roundStateService
+            IDaysService daysService
         )
         {
             _gameStateService = gameStateService;

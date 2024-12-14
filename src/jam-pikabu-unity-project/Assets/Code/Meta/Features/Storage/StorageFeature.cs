@@ -7,9 +7,9 @@ namespace Code.Meta.Features.Storage
     {
         public StorageFeature(ISystemFactory systems)
         {
-            Add(systems.Create<ProcessAddHardRequestSystem>());
+            Add(systems.Create<ProcessAddGoldRequestSystem>());
             
-            Add(systems.Create<RefreshHardSystem>());
+            Add(systems.Create<RefreshGoldSystem>());
         }
     }
 }

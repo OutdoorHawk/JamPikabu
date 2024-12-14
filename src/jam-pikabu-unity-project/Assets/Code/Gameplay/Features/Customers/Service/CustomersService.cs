@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Code.Gameplay.Features.Customers.Config;
 using Code.Gameplay.Features.Orders.Service;
-using Code.Gameplay.Features.RoundState.Configs;
-using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.StaticData;
+using Code.Meta.Features.Days.Configs;
+using Code.Meta.Features.Days.Service;
 using RoyalGold.Sources.Scripts.Game.MVC.Utils;
 using Zenject;
 
@@ -12,7 +12,7 @@ namespace Code.Gameplay.Features.Customers.Service
     public class CustomersService : ICustomersService, IConfigsInitHandler
     {
         private readonly IStaticDataService _staticDataService;
-        private readonly IRoundStateService _roundStateService;
+        private readonly IDaysService _daysService;
         private readonly IOrdersService _ordersService;
 
         private readonly List<CustomerSetup> _configs = new();
@@ -21,9 +21,9 @@ namespace Code.Gameplay.Features.Customers.Service
         private CustomerStaticData CustomerData => _staticDataService.GetStaticData<CustomerStaticData>();
 
         [Inject]
-        private CustomersService(IStaticDataService staticDataService, IRoundStateService roundStateService, IOrdersService ordersService)
+        private CustomersService(IStaticDataService staticDataService, IDaysService daysService, IOrdersService ordersService)
         {
-            _roundStateService = roundStateService;
+            _daysService = daysService;
             _ordersService = ordersService;
             _staticDataService = staticDataService;
         }
@@ -39,7 +39,7 @@ namespace Code.Gameplay.Features.Customers.Service
 
         public CustomerSetup GetCustomerSetup()
         {
-            DayData dayData = _roundStateService.GetDayData();
+            DayData dayData = _daysService.GetDayData();
             if (dayData == null)
             {
                 return _configs[_currentCustomerId];

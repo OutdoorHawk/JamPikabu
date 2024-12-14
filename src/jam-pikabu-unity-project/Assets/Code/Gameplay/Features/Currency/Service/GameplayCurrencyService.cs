@@ -2,22 +2,18 @@
 using System.Collections.Generic;
 using Code.Gameplay.Features.Currency.Config;
 using Code.Gameplay.Features.Currency.Factory;
-using Code.Gameplay.Features.RoundState.Configs;
-using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
 using Code.Infrastructure.States.GameStates.Game;
 using Code.Infrastructure.States.StateMachine;
+using Code.Meta.Features.Days.Configs;
 
 namespace Code.Gameplay.Features.Currency.Service
 {
     public class GameplayCurrencyService : IGameplayCurrencyService, IConfigsInitHandler
     {
-        private readonly ISoundService _soundService;
         private readonly IStaticDataService _staticDataService;
         private readonly IGameStateMachine _gameStateMachine;
         private readonly ICurrencyFactory _currencyFactory;
-
-        public static readonly Dictionary<CurrencyTypeId, int> CurrencyCache = new();
 
         public event Action CurrencyChanged;
 
@@ -29,12 +25,10 @@ namespace Code.Gameplay.Features.Currency.Service
 
         public GameplayCurrencyService
         (
-            ISoundService soundService,
             IStaticDataService staticDataService,
             IGameStateMachine gameStateMachine
         )
         {
-            _soundService = soundService;
             _staticDataService = staticDataService;
             _gameStateMachine = gameStateMachine;
         }
@@ -59,8 +53,10 @@ namespace Code.Gameplay.Features.Currency.Service
                 return;
 
             CurrencyCount currency = GetCurrencyOfTypeInternal(typeId);
+            
             if (currency == null)
                 return;
+            
             bool changed = false;
 
             if (currency.Withdraw != withdraw)
@@ -71,7 +67,6 @@ namespace Code.Gameplay.Features.Currency.Service
 
             if (currency.Amount != newAmount)
             {
-                //PlaySoftCurrencySound(newAmount, currency);
                 currency.Amount = newAmount;
                 changed = true;
             }
@@ -103,7 +98,7 @@ namespace Code.Gameplay.Features.Currency.Service
         public void InitCurrency()
         {
             var currencyConfig = _staticDataService.GetStaticData<CurrencyStaticData>();
-            var roundState = _staticDataService.GetStaticData<RoundStateStaticData>();
+            var roundState = _staticDataService.GetStaticData<DaysStaticData>();
 
             foreach (CurrencyConfig config in currencyConfig.Configs)
                 _currencies.Add(config.CurrencyTypeId, new CurrencyCount());

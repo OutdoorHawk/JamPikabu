@@ -1,7 +1,7 @@
 using System;
 using Code.Infrastructure.SceneLoading;
 
-namespace Code.Gameplay.Features.RoundState.Configs
+namespace Code.Meta.Features.Days.Configs
 {
     [Serializable]
     public class DayData

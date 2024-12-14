@@ -101,23 +101,22 @@ public static class GameComponentsLookup {
     public const int Rating = 90;
     public const int Reject = 91;
     public const int ResultProcessed = 92;
-    public const int Day = 93;
-    public const int DayCompleteRequest = 94;
-    public const int DayCost = 95;
-    public const int GameOver = 96;
-    public const int Round = 97;
-    public const int RoundComplete = 98;
-    public const int RoundDuration = 99;
-    public const int RoundInProcess = 100;
-    public const int RoundOver = 101;
-    public const int RoundStartAvailable = 102;
-    public const int RoundStartRequest = 103;
-    public const int RoundStateController = 104;
-    public const int RoundStateViewBehaviour = 105;
-    public const int RoundTimeLeft = 106;
-    public const int AudioSourceBehaviour = 107;
+    public const int DayCompleteRequest = 93;
+    public const int DayCost = 94;
+    public const int GameOver = 95;
+    public const int Round = 96;
+    public const int RoundComplete = 97;
+    public const int RoundDuration = 98;
+    public const int RoundInProcess = 99;
+    public const int RoundOver = 100;
+    public const int RoundStartAvailable = 101;
+    public const int RoundStartRequest = 102;
+    public const int RoundStateController = 103;
+    public const int RoundStateViewBehaviour = 104;
+    public const int RoundTimeLeft = 105;
+    public const int AudioSourceBehaviour = 106;
 
-    public const int TotalComponents = 108;
+    public const int TotalComponents = 107;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -213,7 +212,6 @@ public static class GameComponentsLookup {
         "Rating",
         "Reject",
         "ResultProcessed",
-        "Day",
         "DayCompleteRequest",
         "DayCost",
         "GameOver",
@@ -324,7 +322,6 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Orders.RatingComponent),
         typeof(Code.Gameplay.Features.Orders.Reject),
         typeof(Code.Gameplay.Features.Orders.ResultProcessed),
-        typeof(Code.Gameplay.Features.RoundState.Day),
         typeof(Code.Gameplay.Features.RoundState.DayCompleteRequest),
         typeof(Code.Gameplay.Features.RoundState.DayCost),
         typeof(Code.Gameplay.Features.RoundState.GameOver),

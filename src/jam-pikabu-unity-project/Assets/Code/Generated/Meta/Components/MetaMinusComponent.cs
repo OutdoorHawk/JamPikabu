@@ -33,13 +33,13 @@ public sealed partial class MetaMatcher {
 //------------------------------------------------------------------------------
 public partial class MetaEntity {
 
-    public Code.Meta.Features.GameState.Minus minus { get { return (Code.Meta.Features.GameState.Minus)GetComponent(MetaComponentsLookup.Minus); } }
+    public Code.Meta.Features.Storage.Minus minus { get { return (Code.Meta.Features.Storage.Minus)GetComponent(MetaComponentsLookup.Minus); } }
     public int Minus { get { return minus.Value; } }
     public bool hasMinus { get { return HasComponent(MetaComponentsLookup.Minus); } }
 
     public MetaEntity AddMinus(int newValue) {
         var index = MetaComponentsLookup.Minus;
-        var component = (Code.Meta.Features.GameState.Minus)CreateComponent(index, typeof(Code.Meta.Features.GameState.Minus));
+        var component = (Code.Meta.Features.Storage.Minus)CreateComponent(index, typeof(Code.Meta.Features.Storage.Minus));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +47,7 @@ public partial class MetaEntity {
 
     public MetaEntity ReplaceMinus(int newValue) {
         var index = MetaComponentsLookup.Minus;
-        var component = (Code.Meta.Features.GameState.Minus)CreateComponent(index, typeof(Code.Meta.Features.GameState.Minus));
+        var component = (Code.Meta.Features.Storage.Minus)CreateComponent(index, typeof(Code.Meta.Features.Storage.Minus));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

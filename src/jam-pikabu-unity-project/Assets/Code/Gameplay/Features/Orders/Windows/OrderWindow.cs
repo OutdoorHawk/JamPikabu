@@ -14,12 +14,12 @@ using Code.Gameplay.Features.Loot.Service;
 using Code.Gameplay.Features.Loot.UIFactory;
 using Code.Gameplay.Features.Orders.Config;
 using Code.Gameplay.Features.Orders.Service;
-using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.Sound;
 using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows;
 using Code.Gameplay.Windows.Service;
+using Code.Meta.Features.Days.Service;
 using Code.Meta.UI.Common;
 using Cysharp.Threading.Tasks;
 using TMPro;
@@ -50,7 +50,7 @@ namespace Code.Gameplay.Features.Orders.Windows
         private ISoundService _soundService;
         private ILootService _lootService;
         private IWindowService _windowService;
-        private IRoundStateService _roundStateService;
+        private IDaysService _daysService;
 
         private OrderData _currentOrder;
 
@@ -64,11 +64,11 @@ namespace Code.Gameplay.Features.Orders.Windows
         [Inject]
         private void WConstruct(IOrdersService ordersService, ILootItemUIFactory lootItemUIFactory,
             ICurrencyFactory currencyFactory, IStaticDataService staticDataService, ILootService lootService, ISoundService soundService,
-            IRoundStateService roundStateService,
+            IDaysService daysService,
             IWindowService windowService, IGameOverService gameOverService)
         {
             _gameOverService = gameOverService;
-            _roundStateService = roundStateService;
+            _daysService = daysService;
             _windowService = windowService;
             _soundService = soundService;
             _lootService = lootService;
@@ -112,7 +112,7 @@ namespace Code.Gameplay.Features.Orders.Windows
             
             if (orderSusscesful)
             {
-                if (_roundStateService.GetDayData().IsBoss == false)
+                if (_daysService.GetDayData().IsBoss == false)
                     await PlayGoldAnimation();
                 else
                     await PlayBossDoneAnimation();

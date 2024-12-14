@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class MetaMatcher {
 
-    static Entitas.IMatcher<MetaEntity> _matcherHard;
+    static Entitas.IMatcher<MetaEntity> _matcherWithdraw;
 
-    public static Entitas.IMatcher<MetaEntity> Hard {
+    public static Entitas.IMatcher<MetaEntity> Withdraw {
         get {
-            if (_matcherHard == null) {
-                var matcher = (Entitas.Matcher<MetaEntity>)Entitas.Matcher<MetaEntity>.AllOf(MetaComponentsLookup.Hard);
+            if (_matcherWithdraw == null) {
+                var matcher = (Entitas.Matcher<MetaEntity>)Entitas.Matcher<MetaEntity>.AllOf(MetaComponentsLookup.Withdraw);
                 matcher.componentNames = MetaComponentsLookup.componentNames;
-                _matcherHard = matcher;
+                _matcherWithdraw = matcher;
             }
 
-            return _matcherHard;
+            return _matcherWithdraw;
         }
     }
 }
@@ -33,28 +33,28 @@ public sealed partial class MetaMatcher {
 //------------------------------------------------------------------------------
 public partial class MetaEntity {
 
-    public Code.Meta.Features.Storage.Hard hard { get { return (Code.Meta.Features.Storage.Hard)GetComponent(MetaComponentsLookup.Hard); } }
-    public int Hard { get { return hard.Value; } }
-    public bool hasHard { get { return HasComponent(MetaComponentsLookup.Hard); } }
+    public Code.Meta.Features.Storage.Withdraw withdraw { get { return (Code.Meta.Features.Storage.Withdraw)GetComponent(MetaComponentsLookup.Withdraw); } }
+    public int Withdraw { get { return withdraw.Value; } }
+    public bool hasWithdraw { get { return HasComponent(MetaComponentsLookup.Withdraw); } }
 
-    public MetaEntity AddHard(int newValue) {
-        var index = MetaComponentsLookup.Hard;
-        var component = (Code.Meta.Features.Storage.Hard)CreateComponent(index, typeof(Code.Meta.Features.Storage.Hard));
+    public MetaEntity AddWithdraw(int newValue) {
+        var index = MetaComponentsLookup.Withdraw;
+        var component = (Code.Meta.Features.Storage.Withdraw)CreateComponent(index, typeof(Code.Meta.Features.Storage.Withdraw));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
     }
 
-    public MetaEntity ReplaceHard(int newValue) {
-        var index = MetaComponentsLookup.Hard;
-        var component = (Code.Meta.Features.Storage.Hard)CreateComponent(index, typeof(Code.Meta.Features.Storage.Hard));
+    public MetaEntity ReplaceWithdraw(int newValue) {
+        var index = MetaComponentsLookup.Withdraw;
+        var component = (Code.Meta.Features.Storage.Withdraw)CreateComponent(index, typeof(Code.Meta.Features.Storage.Withdraw));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;
     }
 
-    public MetaEntity RemoveHard() {
-        RemoveComponent(MetaComponentsLookup.Hard);
+    public MetaEntity RemoveWithdraw() {
+        RemoveComponent(MetaComponentsLookup.Withdraw);
         return this;
     }
 }

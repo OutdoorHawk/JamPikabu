@@ -3,7 +3,6 @@ using Code.Common.Extensions;
 using Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation;
 using Code.Gameplay.Features.Currency.Config;
 using Code.Gameplay.Features.Currency.Service;
-using Code.Gameplay.Features.RoundState.Configs;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows.Factory;
 using Zenject;

@@ -33,13 +33,13 @@ public sealed partial class MetaMatcher {
 //------------------------------------------------------------------------------
 public partial class MetaEntity {
 
-    public Code.Meta.Features.GameState.Day day { get { return (Code.Meta.Features.GameState.Day)GetComponent(MetaComponentsLookup.Day); } }
+    public Code.Meta.Features.Days.Day day { get { return (Code.Meta.Features.Days.Day)GetComponent(MetaComponentsLookup.Day); } }
     public int Day { get { return day.Value; } }
     public bool hasDay { get { return HasComponent(MetaComponentsLookup.Day); } }
 
     public MetaEntity AddDay(int newValue) {
         var index = MetaComponentsLookup.Day;
-        var component = (Code.Meta.Features.GameState.Day)CreateComponent(index, typeof(Code.Meta.Features.GameState.Day));
+        var component = (Code.Meta.Features.Days.Day)CreateComponent(index, typeof(Code.Meta.Features.Days.Day));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +47,7 @@ public partial class MetaEntity {
 
     public MetaEntity ReplaceDay(int newValue) {
         var index = MetaComponentsLookup.Day;
-        var component = (Code.Meta.Features.GameState.Day)CreateComponent(index, typeof(Code.Meta.Features.GameState.Day));
+        var component = (Code.Meta.Features.Days.Day)CreateComponent(index, typeof(Code.Meta.Features.Days.Day));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

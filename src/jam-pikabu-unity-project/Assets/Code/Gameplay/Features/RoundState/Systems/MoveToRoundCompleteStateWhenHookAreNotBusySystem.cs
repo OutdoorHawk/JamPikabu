@@ -1,19 +1,19 @@
-﻿using Code.Gameplay.Features.RoundState.Service;
-using Code.Infrastructure.Systems;
+﻿using Code.Infrastructure.Systems;
+using Code.Meta.Features.Days.Service;
 using Entitas;
 
 namespace Code.Gameplay.Features.RoundState.Systems
 {
     public class MoveToRoundCompleteStateWhenHookAreNotBusySystem : BufferedExecuteSystem
     {
-        private readonly IRoundStateService _roundStateService;
+        private readonly IDaysService _daysService;
         private readonly IGroup<GameEntity> _roundStateController;
 
         protected override int BufferCapacity => 2;
 
-        public MoveToRoundCompleteStateWhenHookAreNotBusySystem(GameContext context, IRoundStateService roundStateService)
+        public MoveToRoundCompleteStateWhenHookAreNotBusySystem(GameContext context, IDaysService daysService)
         {
-            _roundStateService = roundStateService;
+            _daysService = daysService;
 
             _roundStateController = context.GetGroup(
                 GameMatcher.AllOf(
@@ -29,7 +29,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
                 entity.isCooldownUp = false;
                 entity.isRoundOver = true;
                 entity.isRoundComplete = true;
-                _roundStateService.RoundEnd();
+                _daysService.RoundEnd();
             }
         }
     }

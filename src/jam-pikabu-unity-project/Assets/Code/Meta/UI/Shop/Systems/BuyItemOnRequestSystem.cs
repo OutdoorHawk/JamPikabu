@@ -24,7 +24,7 @@ namespace Code.Meta.UI.Shop.Systems
             _storages = meta.GetGroup(MetaMatcher
                 .AllOf(
                     MetaMatcher.Storage,
-                    MetaMatcher.Hard));
+                    MetaMatcher.Gold));
 
             _shopItemPurchaseRequests = meta.GetGroup(MetaMatcher
                 .AllOf(

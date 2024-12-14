@@ -1,10 +1,8 @@
-﻿using Code.Gameplay.Features.Currency;
-using Code.Gameplay.Features.Currency.Service;
-using Code.Gameplay.Features.GameState.Factory;
+﻿using Code.Gameplay.Features.GameState.Factory;
 using Code.Gameplay.Features.Loot.Service;
 using Code.Gameplay.Features.Orders.Service;
-using Code.Gameplay.Features.RoundState.Service;
 using Code.Infrastructure.States.StateMachine;
+using Code.Meta.Features.Days.Service;
 
 namespace Code.Gameplay.Features.GameState.Service
 {
@@ -14,7 +12,7 @@ namespace Code.Gameplay.Features.GameState.Service
         private readonly IGameStateMachine _gameStateMachine;
         private readonly IOrdersService _ordersService;
         private readonly ILootService _lootService;
-        private readonly IRoundStateService _roundStateService;
+        private readonly IDaysService _daysService;
 
         public GameStateService
         (
@@ -22,14 +20,14 @@ namespace Code.Gameplay.Features.GameState.Service
             IGameStateMachine gameStateMachine,
             IOrdersService ordersService,
             ILootService lootService,
-            IRoundStateService roundStateService
+            IDaysService daysService
         )
         {
             _gameStateFactory = gameStateFactory;
             _gameStateMachine = gameStateMachine;
             _ordersService = ordersService;
             _lootService = lootService;
-            _roundStateService = roundStateService;
+            _daysService = daysService;
         }
 
         public void AskToSwitchState(GameStateTypeId newState)
@@ -61,32 +59,21 @@ namespace Code.Gameplay.Features.GameState.Service
 
         private void EnterBeginDay()
         {
-            _roundStateService.BeginDay();
+            _daysService.BeginDay();
             _ordersService.InitDayBegin();
             _lootService.CreateLootSpawner();
-            SaveStash();
         }
 
         private void EnterRoundPreparation()
         {
             _ordersService.CreateOrder();
-            _roundStateService.EnterRoundPreparation();
+            _daysService.EnterRoundPreparation();
             _lootService.ClearCollectedLoot();
         }
 
         private void EnterRoundCompletion()
         {
             _lootService.CreateLootConsumer();
-        }
-
-        private void SaveStash()
-        {
-            foreach (var storage in Contexts.sharedInstance.game.GetGroup(GameMatcher.AllOf(GameMatcher.CurrencyStorage, GameMatcher.Gold)))
-                GameplayCurrencyService.CurrencyCache[CurrencyTypeId.Gold] = storage.Gold;
-            foreach (var storage in Contexts.sharedInstance.game.GetGroup(GameMatcher.AllOf(GameMatcher.CurrencyStorage, GameMatcher.Plus)))
-                GameplayCurrencyService.CurrencyCache[CurrencyTypeId.Plus] = storage.Plus;
-            foreach (var storage in Contexts.sharedInstance.game.GetGroup(GameMatcher.AllOf(GameMatcher.CurrencyStorage, GameMatcher.Minus)))
-                GameplayCurrencyService.CurrencyCache[CurrencyTypeId.Minus] = storage.Minus;
         }
     }
 }

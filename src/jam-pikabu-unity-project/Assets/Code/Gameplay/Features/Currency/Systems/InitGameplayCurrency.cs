@@ -9,9 +9,10 @@ namespace Code.Gameplay.Features.Currency.Systems
         private readonly ICurrencyFactory _currencyFactory;
         private readonly IGameplayCurrencyService _service;
         private readonly IGroup<GameEntity> _storages;
+        
         private readonly IGroup<MetaEntity> _metaGold;
-        private IGroup<MetaEntity> _metaPLus;
-        private IGroup<MetaEntity> _metaMinus;
+        private readonly IGroup<MetaEntity> _metaPLus;
+        private readonly IGroup<MetaEntity> _metaMinus;
 
         public InitGameplayCurrency(ICurrencyFactory currencyFactory, MetaContext meta, GameContext gameContext, IGameplayCurrencyService service)
         {

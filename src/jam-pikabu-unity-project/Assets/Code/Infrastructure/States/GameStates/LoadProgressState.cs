@@ -1,16 +1,14 @@
 using Code.Common.Entity;
 using Code.Common.Extensions;
-using Code.Gameplay.Features.RoundState.Configs;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Tutorial.Service;
 using Code.Infrastructure.Localization;
-using Code.Infrastructure.SceneLoading;
 using Code.Infrastructure.States.GameStateHandler;
-using Code.Infrastructure.States.GameStates.Game;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
 using Code.Infrastructure.Systems;
 using Code.Meta.Features;
+using Code.Meta.Features.Days.Configs;
 using Code.Progress.Provider;
 using Code.Progress.SaveLoadService;
 using Zenject;
@@ -72,27 +70,8 @@ namespace Code.Infrastructure.States.GameStates
                 _saveLoadService.LoadProgress();
             else
                 CreateNewProgress();
-            
-            int startGoldAmount = _staticData.GetStaticData<RoundStateStaticData>().StartGoldAmount;
-
-            CreateMetaEntity
-                .Empty()
-                .With(x => x.isStorage = true)
-                .With(x => x.AddGold(startGoldAmount));
-            CreateMetaEntity
-                .Empty()
-                .With(x => x.isStorage = true)
-                .With(x => x.AddPlus(0));
-            CreateMetaEntity
-                .Empty()
-                .With(x => x.isStorage = true)
-                .With(x => x.AddMinus(0));
-
-            CreateMetaEntity
-                .Empty()
-                .AddDay(1);
         }
-        
+
         private void ActualizeProgress()
         {
             ActualizeProgressFeature loadProgressFeature = _systemFactory.Create<ActualizeProgressFeature>();
@@ -110,27 +89,43 @@ namespace Code.Infrastructure.States.GameStates
         {
             _saveLoadService.CreateProgress();
 
-            CreateHardStorage();
+            CreateStorages();
         }
 
-        private static void CreateHardStorage()
+        private void CreateStorages()
         {
-            CreateMetaEntity.Empty()
+            int startGoldAmount = _staticData.GetStaticData<DaysStaticData>().StartGoldAmount;
+
+            CreateMetaEntity
+                .Empty()
                 .With(x => x.isStorage = true)
-                .AddHard(0)
-                ;
+                .With(x => x.AddGold(startGoldAmount));
+
+            CreateMetaEntity
+                .Empty()
+                .With(x => x.isStorage = true)
+                .With(x => x.AddPlus(0));
+
+            CreateMetaEntity
+                .Empty()
+                .With(x => x.isStorage = true)
+                .With(x => x.AddMinus(0));
+
+            CreateMetaEntity
+                .Empty()
+                .With(x => x.isStorage = true)
+                .AddDay(1);
         }
-        
+
         private void LoadNextState()
         {
             _gameStateHandlerService.OnExitLoadProgressState();
-            
+
 #if UNITY_EDITOR
             _stateMachine.Enter<EditorLoadSceneState>();
             return;
 #endif
-            _stateMachine.Enter<LoadLevelSimpleState,  LoadLevelPayloadParameters>(new LoadLevelPayloadParameters());
+            _stateMachine.Enter<LoadLevelSimpleState, LoadLevelPayloadParameters>(new LoadLevelPayloadParameters());
         }
-        
     }
 }

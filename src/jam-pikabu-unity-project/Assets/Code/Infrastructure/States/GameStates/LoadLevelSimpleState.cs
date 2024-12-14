@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using Code.Gameplay.Features.RoundState.Configs;
-using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows;
 using Code.Gameplay.Windows.Factory;
@@ -10,6 +8,8 @@ using Code.Infrastructure.States.GameStateHandler;
 using Code.Infrastructure.States.GameStates.Game;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
+using Code.Meta.Features.Days.Configs;
+using Code.Meta.Features.Days.Service;
 using Cysharp.Threading.Tasks;
 using Zenject;
 
@@ -22,7 +22,7 @@ namespace Code.Infrastructure.States.GameStates
         private readonly IGameStateMachine _gameStateMachine;
         private readonly IGameStateHandlerService _gameStateHandler;
         private readonly IUIFactory _uiFactory;
-        private readonly IRoundStateService _roundStateService;
+        private readonly IDaysService _daysService;
         private readonly IStaticDataService _staticDataService;
 
         [Inject]
@@ -33,12 +33,12 @@ namespace Code.Infrastructure.States.GameStates
             IWindowService windowService,
             IGameStateHandlerService gameStateHandlerService,
             IUIFactory uiFactory,
-            IRoundStateService roundStateService,
+            IDaysService daysService,
             IStaticDataService staticDataService
         )
         {
             _uiFactory = uiFactory;
-            _roundStateService = roundStateService;
+            _daysService = daysService;
             _staticDataService = staticDataService;
             _gameStateHandler = gameStateHandlerService;
             _gameStateMachine = gameStateMachine;
@@ -68,7 +68,7 @@ namespace Code.Infrastructure.States.GameStates
         
         public DayData GetDayData(int currentDay)
         {
-            List<DayData> dayDatas = _staticDataService.GetStaticData<RoundStateStaticData>().Days;
+            List<DayData> dayDatas = _staticDataService.GetStaticData<DaysStaticData>().Days;
             foreach (DayData data in dayDatas)
             {
                 if (data.Day >= currentDay)

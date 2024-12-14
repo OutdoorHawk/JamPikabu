@@ -13,14 +13,14 @@ using Code.Gameplay.Features.GameState.Service;
 using Code.Gameplay.Features.HUD;
 using Code.Gameplay.Features.Loot.Service;
 using Code.Gameplay.Features.Orders.Service;
-using Code.Gameplay.Features.RoundState.Configs;
-using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.Sound;
 using Code.Gameplay.Windows.Service;
 using Code.Infrastructure.States.GameStates;
 using Code.Infrastructure.States.GameStates.Game;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
+using Code.Meta.Features.Days.Configs;
+using Code.Meta.Features.Days.Service;
 using Cysharp.Threading.Tasks;
 using Entitas;
 using UnityEngine;
@@ -31,7 +31,7 @@ namespace Code.Gameplay.Features.GameState.Systems
     public class ProcessEndDayStateSystem : IExecuteSystem, ITearDownSystem
     {
         private readonly IGameStateService _gameStateService;
-        private readonly IRoundStateService _roundService;
+        private readonly IDaysService _roundService;
         private readonly IOrdersService _ordersService;
         private readonly ILootService _lootService;
         private readonly IGameOverService _gameOverService;
@@ -50,7 +50,7 @@ namespace Code.Gameplay.Features.GameState.Systems
         (
             GameContext context,
             IGameStateService gameStateService,
-            IRoundStateService roundService,
+            IDaysService roundService,
             IOrdersService ordersService,
             ILootService lootService,
             IGameOverService gameOverService,

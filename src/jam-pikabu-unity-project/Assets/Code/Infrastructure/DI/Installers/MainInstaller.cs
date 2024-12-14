@@ -19,7 +19,6 @@ using Code.Gameplay.Features.Loot.UIFactory;
 using Code.Gameplay.Features.Orders.Factory;
 using Code.Gameplay.Features.Orders.Service;
 using Code.Gameplay.Features.RoundState.Factory;
-using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.Input.Service;
 using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
@@ -41,6 +40,8 @@ using Code.Infrastructure.States.GameStates.Game;
 using Code.Infrastructure.States.StateMachine;
 using Code.Infrastructure.Systems;
 using Code.Infrastructure.View.Factory;
+using Code.Meta.Features.Days.Factory;
+using Code.Meta.Features.Days.Service;
 using Code.Meta.UI.HardCurrencyHolder.Service;
 using Code.Meta.UI.Shop.Factory;
 using Code.Meta.UI.Shop.Service;
@@ -134,7 +135,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.BindInterfacesTo<SoundService>().FromInstance(_soundService).AsSingle();
             Container.BindInterfacesTo<GameplayCurrencyService>().AsSingle();
             Container.BindInterfacesTo<GameOverService>().AsSingle();
-            Container.BindInterfacesTo<RoundStateService>().AsSingle();
+            Container.BindInterfacesTo<DaysService>().AsSingle();
             Container.BindInterfacesTo<OrdersService>().AsSingle();
             Container.BindInterfacesTo<CustomersService>().AsSingle();
             Container.BindInterfacesTo<GameStateService>().AsSingle();
@@ -179,6 +180,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.BindInterfacesTo<RoundStateFactory>().AsSingle();
             Container.BindInterfacesTo<OrdersFactory>().AsSingle();
             Container.BindInterfacesTo<GameStateFactory>().AsSingle();
+            Container.BindInterfacesTo<DaysFactory>().AsSingle();
         }
 
         private void BindGameplayFactories()

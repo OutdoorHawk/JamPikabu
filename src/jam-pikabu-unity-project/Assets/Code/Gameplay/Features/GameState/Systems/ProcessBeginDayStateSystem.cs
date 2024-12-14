@@ -3,7 +3,7 @@ using Code.Gameplay.Features.GameState.Service;
 using Code.Gameplay.Features.Loot.Factory;
 using Code.Gameplay.Features.Loot.Service;
 using Code.Gameplay.Features.Orders.Service;
-using Code.Gameplay.Features.RoundState.Service;
+using Code.Meta.Features.Days.Service;
 using Entitas;
 
 namespace Code.Gameplay.Features.GameState.Systems
@@ -14,7 +14,7 @@ namespace Code.Gameplay.Features.GameState.Systems
         private readonly IGroup<GameEntity> _completedLootSpawners;
         private readonly List<GameEntity> _buffer = new();
         private readonly IGameStateService _gameStateService;
-        private readonly IRoundStateService _roundStateService;
+        private readonly IDaysService _daysService;
         private readonly IOrdersService _ordersService;
         private readonly ILootService _lootService;
         private readonly ILootFactory _lootFactory;
@@ -23,14 +23,14 @@ namespace Code.Gameplay.Features.GameState.Systems
         (
             GameContext context,
             IGameStateService gameStateService,
-            IRoundStateService roundStateService,
+            IDaysService daysService,
             IOrdersService ordersService,
             ILootService lootService,
             ILootFactory lootFactory
         )
         {
             _gameStateService = gameStateService;
-            _roundStateService = roundStateService;
+            _daysService = daysService;
             _ordersService = ordersService;
             _lootService = lootService;
             _lootFactory = lootFactory;

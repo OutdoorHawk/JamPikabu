@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Loot.Configs;
-using Code.Gameplay.Features.RoundState.Configs;
-using Code.Gameplay.Features.RoundState.Service;
 using Code.Gameplay.StaticData;
 using Code.Infrastructure.SceneLoading;
+using Code.Meta.Features.Days.Configs;
+using Code.Meta.Features.Days.Service;
 using UnityEngine;
 
 namespace Code.Gameplay.Features.Loot.Factory
@@ -14,17 +14,17 @@ namespace Code.Gameplay.Features.Loot.Factory
     public class LootFactory : ILootFactory
     {
         private readonly IStaticDataService _staticDataService;
-        private readonly IRoundStateService _roundStateService;
+        private readonly IDaysService _daysService;
 
-        public LootFactory(IStaticDataService staticDataService, IRoundStateService roundStateService)
+        public LootFactory(IStaticDataService staticDataService, IDaysService daysService)
         {
             _staticDataService = staticDataService;
-            _roundStateService = roundStateService;
+            _daysService = daysService;
         }
 
         public GameEntity CreateLootSpawner()
         {
-            DayData dayData = _roundStateService.GetDayData();
+            DayData dayData = _daysService.GetDayData();
             
             switch (dayData.SceneId)
             {

@@ -1,5 +1,5 @@
 ﻿using System;
-using Code.Gameplay.Features.RoundState.Service;
+using Code.Meta.Features.Days.Service;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -10,28 +10,28 @@ namespace Code.Gameplay.Features.RoundState.Behaviours
     {
         [SerializeField] private TMP_Text _dayText;
 
-        private IRoundStateService _roundStateService;
+        private IDaysService _daysService;
 
         [Inject]
-        private void Construct(IRoundStateService roundStateService)
+        private void Construct(IDaysService daysService)
         {
-            _roundStateService = roundStateService;
+            _daysService = daysService;
         }
 
         private void Start()
         {
-            _roundStateService.OnDayBegin += UpdateText;
+            _daysService.OnDayBegin += UpdateText;
             UpdateText();
         }
 
         private void OnDestroy()
         {
-            _roundStateService.OnDayBegin -= UpdateText;
+            _daysService.OnDayBegin -= UpdateText;
         }
 
         private void UpdateText()
         {
-            _dayText.text = $"{_roundStateService.CurrentDay}/{_roundStateService.MaxDays}";
+            _dayText.text = $"{_daysService.CurrentDay}/{_daysService.MaxDays}";
         }
     }
 }
