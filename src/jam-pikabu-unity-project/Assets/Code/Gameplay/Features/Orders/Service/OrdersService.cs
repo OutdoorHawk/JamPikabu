@@ -121,8 +121,20 @@ namespace Code.Gameplay.Features.Orders.Service
                 collectedTypes = Mathf.Clamp(collectedTypes, 0, ingredientData.Amount);
                 collected += collectedTypes;
             }
+
+            float penaltyFactor = 1;
+            foreach (IngredientData ingredientData in bad)
+            {
+                int collectedTypes = _lootService.CollectedLootItems.Count(type => type == ingredientData.TypeId);
+                if (collectedTypes >= ingredientData.Amount)
+                {
+                    penaltyFactor = _ordersData.BadIngredientPenalty;
+                    break;
+                }
+            }
             
             float progress = collected / (float)total;
+            progress *= penaltyFactor;
             return progress;
         }
 
@@ -144,18 +156,14 @@ namespace Code.Gameplay.Features.Orders.Service
 
         public bool OrderPassesConditions()
         {
-            OrderData order = GetCurrentOrder();
-
             if (_lootService.CollectedLootItems.Count == 0)
                 return false;
 
-            /*if (CheckGoodMinimum(order) == false)
-                return false;
+            foreach (var typeId in _lootService.CollectedLootItems)
+                if (_orderIngredients.good.Any(goodIngredient => typeId == goodIngredient.TypeId))
+                    return true;
 
-            if (CheckBadMaximum(order) == false)
-                return false;*/
-
-            return true;
+            return false;
         }
 
         private void InitIngredientsDic(OrderData order)

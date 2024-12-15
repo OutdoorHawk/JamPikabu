@@ -15,26 +15,42 @@ MonoBehaviour:
   Configs:
   - Id: 1
     OrdersAmount: 2
-    RoundDuration: 3
+    RoundDuration: 6
     IsBossDay: 0
     SceneId: 2
     AvailableIngredients: 
+    Stars:
+    - RatingAmount: 0
+    - RatingAmount: 0
+    - RatingAmount: 0
   - Id: 2
     OrdersAmount: 3
     RoundDuration: 20
     IsBossDay: 0
     SceneId: 2
     AvailableIngredients: 
+    Stars:
+    - RatingAmount: 0
+    - RatingAmount: 0
+    - RatingAmount: 0
   - Id: 3
     OrdersAmount: 4
     RoundDuration: 20
     IsBossDay: 0
     SceneId: 2
     AvailableIngredients: 
-  - Id: 0
+    Stars:
+    - RatingAmount: 0
+    - RatingAmount: 0
+    - RatingAmount: 0
+  - Id: 4
     OrdersAmount: 1
     RoundDuration: 45
     IsBossDay: 0
     SceneId: 3
     AvailableIngredients: 
+    Stars:
+    - RatingAmount: 0
+    - RatingAmount: 0
+    - RatingAmount: 0
   StartGoldAmount: 20
