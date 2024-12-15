@@ -112,6 +112,7 @@ namespace Code.Gameplay.Features.Loot.Systems
                 .OnComplete(() =>
                 {
                     loot.Release(this);
+                    loot.isBusy = false;
                     RemoveLootView(loot);
                     lootItemUI.AnimateCollected();
                 })

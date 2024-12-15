@@ -29,8 +29,7 @@ namespace Code.Gameplay.Features.Loot.Systems
                 GameMatcher.AllOf(
                     GameMatcher.Loot,
                     GameMatcher.Collected,
-                    GameMatcher.Rating,
-                    GameMatcher.LootItemUI
+                    GameMatcher.Rating
                 ).NoneOf(
                     GameMatcher.Consumed));
         }
@@ -46,7 +45,7 @@ namespace Code.Gameplay.Features.Loot.Systems
                     continue;
 
                 int ratingAmount = loot.Rating * data.RatingFactor;
-                _currencyFactory.CreateAddCurrencyRequest(data.RatingType, ratingAmount, ratingAmount);
+                _currencyFactory.CreateAddCurrencyRequest(data.RatingType, ratingAmount, 0);
             }
         }
     }

@@ -52,7 +52,7 @@ namespace Code.Gameplay.Features.Orders.Systems
             _uiFactory.SetRaycastAvailable(false);
             if (_lootService.CollectedLootItems.Count != 0)
             {
-                UniTaskCompletionSource completion = new();
+                /*UniTaskCompletionSource completion = new();
                 var orderWindow = await _windowService.OpenWindow<OrderWindow>(WindowTypeId.OrderWindow);
 
                 await orderWindow.PlayOrderComplete(completion, orderSusscesful: order.isReject == false);
@@ -67,7 +67,7 @@ namespace Code.Gameplay.Features.Orders.Systems
 
                 await UniTask.WhenAny(_tasksBuffer);
 
-                _tasksBuffer.Clear();
+                _tasksBuffer.Clear();*/
             }
             
             _uiFactory.SetRaycastAvailable(true);

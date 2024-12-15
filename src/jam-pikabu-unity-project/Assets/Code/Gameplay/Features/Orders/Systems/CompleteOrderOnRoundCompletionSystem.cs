@@ -34,8 +34,7 @@ namespace Code.Gameplay.Features.Orders.Systems
             _collectedLoot = context.GetGroup(
                 GameMatcher.AllOf(
                     GameMatcher.Loot,
-                    GameMatcher.Collected,
-                    GameMatcher.LootItemUI));
+                    GameMatcher.Collected));
 
             _orders = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.Order,

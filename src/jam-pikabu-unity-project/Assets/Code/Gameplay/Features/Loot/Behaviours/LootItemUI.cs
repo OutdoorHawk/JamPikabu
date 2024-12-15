@@ -34,6 +34,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         private Tweener _lootItemTween;
 
         public int AmountNeed { get; private set; }
+        public bool CollectedAtLeastOne { get; private set; }
         public LootTypeId Type { get; private set; }
 
         [Inject]
@@ -67,6 +68,8 @@ namespace Code.Gameplay.Features.Loot.Behaviours
 
         public async UniTask AnimateFlyToVat(Transform flyEndPoint)
         {
+            await LootAnimator.WaitForAnimationCompleteAsync(AnimationParameter.Fly.AsHash(), destroyCancellationToken);
+            
             _soundService.PlaySound(SoundTypeId.Construction_Fly);
             await transform
                     .DOJump(flyEndPoint.position, Random.Range(1, 4), 1, FlyToVatDuration)
@@ -77,6 +80,8 @@ namespace Code.Gameplay.Features.Loot.Behaviours
 
         public void AnimateCollected()
         {
+            CollectedAtLeastOne = true;
+            
             if (AmountNeed == 1)
             {
                 AnimateComplete();

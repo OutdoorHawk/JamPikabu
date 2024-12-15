@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Config;
 using Code.Gameplay.Features.Loot.Service;
@@ -7,9 +6,11 @@ using Code.Gameplay.Features.Loot.UIFactory;
 using Code.Gameplay.Features.Orders;
 using Code.Gameplay.Features.Orders.Config;
 using Code.Gameplay.Features.Orders.Service;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using static Code.Common.Extensions.AsyncGameplayExtensions;
 
 namespace Code.Gameplay.Features.Loot.Behaviours
 {
@@ -18,17 +19,13 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         public GridLayoutGroup LootGrid;
         public Image VatIcon;
 
-        private readonly List<LootItemUI> _items = new();
-        private readonly List<LootItemUI> _goodItems = new();
-        private readonly List<LootItemUI> _badItems = new();
-
         private ILootService _lootService;
         private ILootItemUIFactory _lootItemUIFactory;
         private IOrdersService _ordersService;
 
-        public List<LootItemUI> Items => _items;
-        
-        public Dictionary<LootTypeId, LootItemUI> ItemsByLootType = new();
+        public readonly Dictionary<LootTypeId, LootItemUI> ItemsByLootType = new();
+
+        private readonly List<UniTask> _tasksBuffer = new(16);
 
         [Inject]
         private void Construct
@@ -53,17 +50,54 @@ namespace Code.Gameplay.Features.Loot.Behaviours
             _ordersService.OnOrderUpdated -= RefreshCurrentOrder;
         }
 
+        public async UniTask AnimateFlyToVat()
+        {
+            await ProcessAnimation();
+        }
+
+        private async UniTask ProcessAnimation()
+        {
+            const float interval = 0.15f;
+            _tasksBuffer.Clear();
+
+            foreach (var lootItemUI in ItemsByLootType.Values)
+            {
+                await DelaySeconds(interval, lootItemUI.destroyCancellationToken);
+
+                if (lootItemUI.CollectedAtLeastOne)
+                {
+                    UniTask task = lootItemUI.AnimateFlyToVat(VatIcon.transform);
+                    _tasksBuffer.Add(task);
+                }
+                else
+                {
+                    UniTask task = lootItemUI.AnimateConsume();
+                    _tasksBuffer.Add(task);
+                }
+            }
+
+            await UniTask.WhenAll(_tasksBuffer);
+        }
+
         private void RefreshCurrentOrder()
         {
-            ItemsByLootType.Clear();
-            
+            ClearList();
+
             (List<IngredientData> good, List<IngredientData> bad) = _ordersService.OrderIngredients;
 
-            foreach (IngredientData data in good) 
+            foreach (IngredientData data in good)
                 CreateLootItem(data, LootGrid.transform);
-            
-            foreach (IngredientData data in bad) 
+
+            foreach (IngredientData data in bad)
                 CreateLootItem(data, LootGrid.transform);
+        }
+
+        private void ClearList()
+        {
+            foreach (LootItemUI lootItemUI in ItemsByLootType.Values) 
+                Destroy(lootItemUI.gameObject);
+
+            ItemsByLootType.Clear();
         }
 
         private void CreateLootItem(in IngredientData ingredientData, Transform parent)
@@ -79,7 +113,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
                     CreateBadIngredient(ingredientData, item);
                     break;
             }
-            
+
             ItemsByLootType.Add(ingredientData.TypeId, item);
         }
 
@@ -90,8 +124,6 @@ namespace Code.Gameplay.Features.Loot.Behaviours
                 CurrencyType = CurrencyTypeId.Plus,
                 Amount = ingredientData.RatingFactor
             });
-            
-            _goodItems.Add(item);
         }
 
         private void CreateBadIngredient(in IngredientData ingredientData, LootItemUI item)
@@ -101,8 +133,6 @@ namespace Code.Gameplay.Features.Loot.Behaviours
                 CurrencyType = CurrencyTypeId.Minus,
                 Amount = ingredientData.RatingFactor
             });
-
-            _badItems.Add(item);
         }
     }
 }
