@@ -100,11 +100,6 @@ namespace Code.Infrastructure.States.GameStates
                 .Empty()
                 .With(x => x.isStorage = true)
                 .With(x => x.AddGold(startGoldAmount));
-
-            CreateMetaEntity
-                .Empty()
-                .With(x => x.isStorage = true)
-                .AddDay(1);
         }
 
         private void LoadNextState()

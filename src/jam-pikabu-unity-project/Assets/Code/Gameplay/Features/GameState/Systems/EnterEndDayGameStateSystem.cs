@@ -30,17 +30,12 @@ namespace Code.Gameplay.Features.GameState.Systems
                 .AllOf(GameMatcher.GameState,
                     GameMatcher.RoundCompletion
                 ));
-
-            _daysMeta = meta.GetGroup(MetaMatcher
-                .AllOf(MetaMatcher.Day
-                ));
         }
 
         public void Execute()
         {
             foreach (var request in _requests)
             foreach (var gameState in _entities.GetEntities(_buffer))
-            foreach (var day in _daysMeta)
             {
                 request.isDestructed = true;
                 gameState.isStateProcessingAvailable = true;

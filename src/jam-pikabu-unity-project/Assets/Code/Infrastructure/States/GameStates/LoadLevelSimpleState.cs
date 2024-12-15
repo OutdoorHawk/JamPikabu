@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows;
 using Code.Gameplay.Windows.Factory;
@@ -11,6 +12,7 @@ using Code.Infrastructure.States.StateMachine;
 using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Service;
 using Cysharp.Threading.Tasks;
+using Entitas;
 using Zenject;
 
 namespace Code.Infrastructure.States.GameStates
@@ -58,11 +60,14 @@ namespace Code.Infrastructure.States.GameStates
                 return;
             }
 
-            foreach (var day in Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Day))
+            IGroup<MetaEntity> group = Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Day);
+         
+            foreach (var day in group)
             {
                 DayData dayData = GetDayData(day.Day);
             
                 _sceneLoader.LoadScene(dayData.SceneId, onLoaded: () => OnLoaded(payload));
+                return;
             }
         }
         

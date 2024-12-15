@@ -1,5 +1,6 @@
 ﻿using Code.Gameplay.StaticData.Data;
 using Code.Infrastructure.View;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Code.Gameplay.Features.Loot.Configs
@@ -27,6 +28,15 @@ namespace Code.Gameplay.Features.Loot.Configs
         public LootSetup GetConfig(LootTypeId typeId)
         {
             return GetByKey((int)typeId);
+        }
+
+        [Button]
+        public void SetColliderSize(float size)
+        {
+            foreach (LootSetup lootSetup in Configs)
+            {
+                lootSetup.ColliderSize = size;
+            }
         }
     }
 }

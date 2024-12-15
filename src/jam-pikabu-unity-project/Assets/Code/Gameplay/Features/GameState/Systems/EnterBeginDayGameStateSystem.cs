@@ -21,7 +21,6 @@ namespace Code.Gameplay.Features.GameState.Systems
         private readonly ILootFactory _lootFactory;
         private readonly IGroup<GameEntity> _requests;
         private readonly List<GameEntity> _buffer = new();
-        private readonly IGroup<MetaEntity> _daysMeta;
 
         public EnterBeginDayGameStateSystem
         (
@@ -48,17 +47,12 @@ namespace Code.Gameplay.Features.GameState.Systems
             _entities = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.GameState
                 ));
-            
-            _daysMeta = meta.GetGroup(MetaMatcher
-                .AllOf(MetaMatcher.Day
-                ));
         }
 
         public void Execute()
         {
             foreach (var request in _requests)
             foreach (var gameState in _entities.GetEntities(_buffer))
-            foreach (var day in _daysMeta)
             {
                 request.isDestructed = true;
                 gameState.isStateProcessingAvailable = true;

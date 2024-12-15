@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Loot.Configs;
@@ -25,11 +24,11 @@ namespace Code.Gameplay.Features.Loot.Factory
         public GameEntity CreateLootSpawner()
         {
             DayData dayData = _daysService.GetDayData();
-            
+
             switch (dayData.SceneId)
             {
                 case SceneTypeId.Level_1:
-                   return CreateSingleSpawner();
+                    return CreateSingleSpawner();
                 case SceneTypeId.Level_2:
                     return CreateConveyorSpawner();
                 default:
@@ -41,7 +40,7 @@ namespace Code.Gameplay.Features.Loot.Factory
         {
             LootSetup lootSetup = GetLootSetup(typeId);
             GameEntity loot = CreateBaseLoot(typeId, parent, at, spawnRotation);
-            
+
             switch (typeId)
             {
                 case LootTypeId.Unknown:
@@ -54,8 +53,8 @@ namespace Code.Gameplay.Features.Loot.Factory
         private static GameEntity CreateSingleSpawner()
         {
             return CreateGameEntity.Empty()
-                .With(x => x.isLootSpawner = true)
-                .With(x => x.isSingleSpawn = true)
+                    .With(x => x.isLootSpawner = true)
+                    .With(x => x.isSingleSpawn = true)
                 ;
         }
 

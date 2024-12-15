@@ -2,6 +2,7 @@
 using Code.Gameplay.Features.Cooldowns.Systems;
 using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Systems;
+using Code.Gameplay.Features.Days.Systems;
 using Code.Gameplay.Features.GameState;
 using Code.Gameplay.Features.GrapplingHook;
 using Code.Gameplay.Features.GrapplingHook.Systems;
@@ -40,6 +41,8 @@ namespace Code.Gameplay.Features
             Add(systems.Create<CurrencyFeature>());
 
             Add(systems.Create<GameStateFeature>());
+            
+            Add(systems.Create<ApplyDayProgressOnEndDay>());
 
             Add(systems.Create<ProcessDestructedFeature>());
         }

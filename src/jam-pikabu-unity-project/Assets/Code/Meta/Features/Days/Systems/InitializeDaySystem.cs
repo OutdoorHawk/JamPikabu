@@ -17,9 +17,9 @@ namespace Code.Meta.Features.Days.Systems
 
         public void Initialize()
         {
-            foreach (var entity in _days)
+            if (_days.count == 0)
             {
-                _daysService.SetCurrentDay(entity.Day);
+                _daysService.SetCurrentDay(1);
             }
         }
     }

@@ -52,6 +52,7 @@ MonoBehaviour:
   BarBackImage: {fileID: 6515405399848331998}
   BarFillImage: {fileID: 2648933208696677467}
   AnchorBack: {fileID: 8694167527549458477}
+  RatingFlyPos: {fileID: 4174295697770571449}
   ProgressText: {fileID: 1890342572451806922}
   Container: {fileID: 3782988446112693811}
   Prefab: {fileID: 5332791734227483135, guid: adc943941343ac946a2394d9537528e1, type: 3}
@@ -162,6 +163,7 @@ RectTransform:
   - {fileID: 8694167527549458477}
   - {fileID: 3782988446112693811}
   - {fileID: 1000059248990538579}
+  - {fileID: 4174295697770571449}
   m_Father: {fileID: 755828779794091335}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -279,6 +281,50 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &5330090733366069256
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4174295697770571449}
+  - component: {fileID: 1637021464180684303}
+  m_Layer: 5
+  m_Name: RatingFlyPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4174295697770571449
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5330090733366069256}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3930543576214124963}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -591, y: 0}
+  m_SizeDelta: {x: 112.04071, y: 91}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1637021464180684303
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5330090733366069256}
+  m_CullTransparentMesh: 1
 --- !u!1 &7141353396935588607
 GameObject:
   m_ObjectHideFlags: 0

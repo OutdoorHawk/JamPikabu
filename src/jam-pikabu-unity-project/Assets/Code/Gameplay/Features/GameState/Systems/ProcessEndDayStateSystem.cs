@@ -21,7 +21,6 @@ namespace Code.Gameplay.Features.GameState.Systems
         private readonly IGroup<GameEntity> _gameState;
         private readonly List<GameEntity> _buffer = new();
         private readonly CancellationTokenSource _tearDownSource = new();
-        private readonly IGroup<MetaEntity> _days;
 
         public ProcessEndDayStateSystem
         (
@@ -41,10 +40,6 @@ namespace Code.Gameplay.Features.GameState.Systems
                     GameMatcher.EndDay,
                     GameMatcher.StateProcessingAvailable
                 ));
-
-            _days = metaContext.GetGroup(MetaMatcher
-                .AllOf(MetaMatcher.Day
-                ));
         }
 
         public void Execute()
@@ -61,13 +56,6 @@ namespace Code.Gameplay.Features.GameState.Systems
         private async UniTaskVoid IncreaseDayAndLoadMap(GameEntity state)
         {
             await DelaySeconds(0.75f, _tearDownSource.Token);
-
-            foreach (var day in _days)
-            {
-                //TODO CREATE NEW DAY PROGRESS
-                int newValue = Mathf.Min(_roundService.MaxDays, day.Day + 1);
-                day.ReplaceDay(newValue);
-            }
 
             _stateMachine.Enter<GameOverState>();
             await UniTask.Yield();

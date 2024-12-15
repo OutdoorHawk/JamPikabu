@@ -20,6 +20,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours
         public Image BarBackImage;
         public Image BarFillImage;
         public RectTransform AnchorBack;
+        public RectTransform RatingFlyPos;
         public TMP_Text ProgressText;
         public RectTransform Container;
         public RatingBarStarItem Prefab;

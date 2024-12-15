@@ -18,7 +18,7 @@ namespace Code.Meta.Features.Days.Service
         private List<DayData> _daysData;
         private DayData _currentDayData;
 
-        private int _currentDay;
+        private int _currentDay = 1;
 
         public int CurrentDay => _currentDay;
         public int MaxDays => _staticDataService.GetStaticData<DaysStaticData>().Configs.Count;

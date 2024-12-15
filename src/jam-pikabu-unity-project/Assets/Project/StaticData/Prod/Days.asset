@@ -40,7 +40,7 @@ MonoBehaviour:
     SceneId: 2
     AvailableIngredients: 
     Stars: []
-  - Id: 0
+  - Id: 4
     OrdersAmount: 1
     RoundDuration: 45
     IsBossDay: 0
