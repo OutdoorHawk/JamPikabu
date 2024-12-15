@@ -117,8 +117,9 @@ namespace Code.Gameplay.Features.Orders.Service
             
             foreach (IngredientData ingredientData in good)
             {
-                collected += _lootService.CollectedLootItems.Count(type => type == ingredientData.TypeId);
-                collected = Mathf.Clamp(collected, 0, ingredientData.Amount);
+                int collectedTypes = _lootService.CollectedLootItems.Count(type => type == ingredientData.TypeId);
+                collectedTypes = Mathf.Clamp(collectedTypes, 0, ingredientData.Amount);
+                collected += collectedTypes;
             }
             
             float progress = collected / (float)total;
