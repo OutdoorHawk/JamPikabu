@@ -1,4 +1,5 @@
-﻿using Code.Meta.Features.Days.Service;
+﻿using System.Linq;
+using Code.Meta.Features.Days.Service;
 using Entitas;
 
 namespace Code.Meta.Features.Days.Systems
@@ -17,10 +18,7 @@ namespace Code.Meta.Features.Days.Systems
 
         public void Initialize()
         {
-            if (_days.count == 0)
-            {
-                _daysService.SetCurrentDay(1);
-            }
+            _daysService.InitializeDays(_days.GetEntities().Select(x => x.Day));
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Code.Common.Extensions;
 using Code.Gameplay.Features.RoundState.Factory;
 using Code.Gameplay.StaticData;
 using Code.Meta.Features.Days.Configs;
@@ -20,6 +21,8 @@ namespace Code.Meta.Features.Days.Service
 
         private int _currentDay = 1;
 
+        private readonly List<int> _daysProgress = new();
+        
         public int CurrentDay => _currentDay;
         public int MaxDays => _staticDataService.GetStaticData<DaysStaticData>().Configs.Count;
 
@@ -31,6 +34,11 @@ namespace Code.Meta.Features.Days.Service
         {
             _roundStateFactory = roundStateFactory;
             _staticDataService = staticDataService;
+        }
+
+        public void InitializeDays(IEnumerable<int> daysProgress)
+        {
+            _daysProgress.RefreshList(daysProgress);
         }
 
         public void SetCurrentDay(int day)
@@ -76,7 +84,7 @@ namespace Code.Meta.Features.Days.Service
             return _currentDayData;
         }
 
-        public DayData GetDayData(int currentDay)
+        private DayData GetDayData(int currentDay)
         {
             foreach (DayData data in _daysData)
             {

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Code.Meta.Features.Days.Configs;
 
 namespace Code.Meta.Features.Days.Service
@@ -10,6 +11,7 @@ namespace Code.Meta.Features.Days.Service
         event Action OnDayComplete;
         int CurrentDay { get; }
         int MaxDays { get; }
+        void InitializeDays(IEnumerable<int> daysProgress);
         void SetCurrentDay(int day);
         void BeginDay();
         void RoundEnd();
@@ -17,6 +19,5 @@ namespace Code.Meta.Features.Days.Service
         void DayComplete();
         bool CheckAllDaysComplete();
         DayData GetDayData();
-        DayData GetDayData(int currentDay);
     }
 }
