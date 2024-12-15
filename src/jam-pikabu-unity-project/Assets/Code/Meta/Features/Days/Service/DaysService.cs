@@ -41,9 +41,9 @@ namespace Code.Meta.Features.Days.Service
             _daysProgress.RefreshList(daysProgress);
         }
 
-        public void SetCurrentDay(int day)
+        public bool CompletedFirstLevel()
         {
-            _currentDay = day;
+            return _daysProgress.Count != 0;
         }
 
         public void BeginDay()

@@ -106,7 +106,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.BindInterfacesAndSelfTo<GameLoopState>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameOverState>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameWinState>().AsSingle();
-            Container.BindInterfacesAndSelfTo<LoadLevelSimpleState>().AsSingle();
+            Container.BindInterfacesAndSelfTo<LoadLevelState>().AsSingle();
         }
 
         private void BindContexts()

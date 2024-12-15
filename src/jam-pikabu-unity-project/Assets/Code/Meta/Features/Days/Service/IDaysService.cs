@@ -12,7 +12,7 @@ namespace Code.Meta.Features.Days.Service
         int CurrentDay { get; }
         int MaxDays { get; }
         void InitializeDays(IEnumerable<int> daysProgress);
-        void SetCurrentDay(int day);
+        bool CompletedFirstLevel();
         void BeginDay();
         void RoundEnd();
         void EnterRoundPreparation();

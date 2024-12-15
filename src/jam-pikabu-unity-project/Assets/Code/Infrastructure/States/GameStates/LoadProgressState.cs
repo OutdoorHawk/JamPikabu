@@ -9,6 +9,7 @@ using Code.Infrastructure.States.StateMachine;
 using Code.Infrastructure.Systems;
 using Code.Meta.Features;
 using Code.Meta.Features.Days.Configs;
+using Code.Meta.Features.Days.Service;
 using Code.Progress.Provider;
 using Code.Progress.SaveLoadService;
 using Zenject;
@@ -25,6 +26,7 @@ namespace Code.Infrastructure.States.GameStates
         private readonly LazyInject<ITutorialService> _tutorialService;
         private readonly ISystemFactory _systemFactory;
         private readonly IGameStateHandlerService _gameStateHandlerService;
+        private readonly IDaysService _daysService;
 
         public LoadProgressState
         (
@@ -35,10 +37,12 @@ namespace Code.Infrastructure.States.GameStates
             IProgressProvider progress,
             LazyInject<ITutorialService> tutorialService,
             ISystemFactory systemFactory,
-            IGameStateHandlerService gameStateHandlerService
+            IGameStateHandlerService gameStateHandlerService,
+            IDaysService daysService
         )
         {
             _gameStateHandlerService = gameStateHandlerService;
+            _daysService = daysService;
             _systemFactory = systemFactory;
             _tutorialService = tutorialService;
             _staticData = staticData;
@@ -106,11 +110,33 @@ namespace Code.Infrastructure.States.GameStates
         {
             _gameStateHandlerService.OnExitLoadProgressState();
 
+            if (CheckEditorLoad())
+                return;
+
+            if (_daysService.CompletedFirstLevel() == false)
+            {
+                LoadFirstLevel();
+                return;
+            }
+
+            _stateMachine.Enter<LoadMapMenuState>();
+        }
+
+        private void LoadFirstLevel()
+        {
+            DayData dayData = _staticData.GetStaticData<DaysStaticData>().GetDayData(1);
+            var parameters = new LoadLevelPayloadParameters(dayData.SceneId.ToString());
+            _stateMachine.Enter<LoadLevelState, LoadLevelPayloadParameters>(parameters);
+        }
+
+        private bool CheckEditorLoad()
+        {
 #if UNITY_EDITOR
             _stateMachine.Enter<EditorLoadSceneState>();
-            return;
+            return true;
 #endif
-            _stateMachine.Enter<LoadLevelSimpleState, LoadLevelPayloadParameters>(new LoadLevelPayloadParameters());
+
+            return false;
         }
     }
 }

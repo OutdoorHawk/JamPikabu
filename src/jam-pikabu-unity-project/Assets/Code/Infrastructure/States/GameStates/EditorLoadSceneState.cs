@@ -50,7 +50,7 @@ namespace Code.Infrastructure.States.GameStates
                 {
                     InstantLoad = true
                 };
-                _gameStateMachine.Enter<LoadLevelSimpleState, LoadLevelPayloadParameters>(parameters);
+                _gameStateMachine.Enter<LoadLevelState, LoadLevelPayloadParameters>(parameters);
             }
         }
     }

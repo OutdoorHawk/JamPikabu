@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Code.Gameplay.StaticData;
+﻿using Code.Gameplay.Features.HUD;
 using Code.Gameplay.Windows;
 using Code.Gameplay.Windows.Factory;
 using Code.Gameplay.Windows.Service;
@@ -9,39 +7,30 @@ using Code.Infrastructure.States.GameStateHandler;
 using Code.Infrastructure.States.GameStates.Game;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
-using Code.Meta.Features.Days.Configs;
-using Code.Meta.Features.Days.Service;
 using Cysharp.Threading.Tasks;
-using Entitas;
 using Zenject;
 
 namespace Code.Infrastructure.States.GameStates
 {
-    public class LoadLevelSimpleState : SimplePayloadState<LoadLevelPayloadParameters>
+    public class LoadLevelState : SimplePayloadState<LoadLevelPayloadParameters>
     {
         private readonly ISceneLoader _sceneLoader;
         private readonly IWindowService _windowService;
         private readonly IGameStateMachine _gameStateMachine;
         private readonly IGameStateHandlerService _gameStateHandler;
         private readonly IUIFactory _uiFactory;
-        private readonly IDaysService _daysService;
-        private readonly IStaticDataService _staticDataService;
 
         [Inject]
-        public LoadLevelSimpleState
+        public LoadLevelState
         (
             IGameStateMachine gameStateMachine,
             ISceneLoader sceneLoader,
             IWindowService windowService,
             IGameStateHandlerService gameStateHandlerService,
-            IUIFactory uiFactory,
-            IDaysService daysService,
-            IStaticDataService staticDataService
+            IUIFactory uiFactory
         )
         {
             _uiFactory = uiFactory;
-            _daysService = daysService;
-            _staticDataService = staticDataService;
             _gameStateHandler = gameStateHandlerService;
             _gameStateMachine = gameStateMachine;
             _windowService = windowService;
@@ -53,34 +42,14 @@ namespace Code.Infrastructure.States.GameStates
             base.Enter(payload);
 
             _gameStateHandler.OnEnterLoadLevel();
-                
+
             if (payload.InstantLoad)
             {
                 OnLoaded(payload);
                 return;
             }
 
-            IGroup<MetaEntity> group = Contexts.sharedInstance.meta.GetGroup(MetaMatcher.Day);
-         
-            foreach (var day in group)
-            {
-                DayData dayData = GetDayData(day.Day);
-            
-                _sceneLoader.LoadScene(dayData.SceneId, onLoaded: () => OnLoaded(payload));
-                return;
-            }
-        }
-        
-        public DayData GetDayData(int currentDay)
-        {
-            List<DayData> dayDatas = _staticDataService.GetStaticData<DaysStaticData>().Configs;
-            foreach (DayData data in dayDatas)
-            {
-                if (data.Id >= currentDay)
-                    return data;
-            }
-
-            return dayDatas[^1];
+            _sceneLoader.LoadScene(payload.LevelName, onLoaded: () => OnLoaded(payload));
         }
 
         private void OnLoaded(LoadLevelPayloadParameters payload)
@@ -91,7 +60,7 @@ namespace Code.Infrastructure.States.GameStates
         private async UniTaskVoid InitAsync(LoadLevelPayloadParameters payload)
         {
             await InitUIAsync();
-            
+
             _gameStateHandler.OnExitLoadLevel();
             _gameStateMachine.Enter<GameEnterState>();
             payload.LoadCallback?.Invoke();
@@ -101,7 +70,7 @@ namespace Code.Infrastructure.States.GameStates
         {
             _uiFactory.InitializeCamera();
             _windowService.ClearUIRoot();
-            _windowService.OpenWindow(WindowTypeId.PlayerHUD);
+            await _windowService.OpenWindow<PlayerHUDWindow>(WindowTypeId.PlayerHUD);
         }
     }
 }

@@ -73,7 +73,7 @@ namespace Code.Gameplay.Features.GameOver.Windows
 
         private void Restart()
         {
-            _gameStateMachine.Enter<LoadLevelSimpleState, LoadLevelPayloadParameters>(new LoadLevelPayloadParameters());
+            _gameStateMachine.Enter<LoadLevelState, LoadLevelPayloadParameters>(new LoadLevelPayloadParameters());
         }
 
         private void PlaySound()

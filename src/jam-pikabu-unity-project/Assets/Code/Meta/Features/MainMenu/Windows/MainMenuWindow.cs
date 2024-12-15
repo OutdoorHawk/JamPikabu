@@ -79,16 +79,6 @@ namespace Code.Meta.Features.MainMenu.Windows
             }
         }
 
-        private void OnPlayClick()
-        {
-            var parameters = new LoadLevelPayloadParameters
-            {
-                LevelName = _mapMenuService.GetSelectedScene().ToString()
-            };
-
-            _gameStateMachine.Enter<LoadLevelSimpleState, LoadLevelPayloadParameters>(parameters);
-        }
-
         private void Refresh()
         {
             PlayButton.interactable = _mapMenuService.DayIsSelected;
@@ -114,6 +104,16 @@ namespace Code.Meta.Features.MainMenu.Windows
 
                 levelButton.SetSelectedView();
             }
+        }
+
+        private void OnPlayClick()
+        {
+            var parameters = new LoadLevelPayloadParameters
+            {
+                LevelName = _mapMenuService.GetSelectedScene().ToString()
+            };
+
+            _gameStateMachine.Enter<LoadLevelState, LoadLevelPayloadParameters>(parameters);
         }
     }
 }
