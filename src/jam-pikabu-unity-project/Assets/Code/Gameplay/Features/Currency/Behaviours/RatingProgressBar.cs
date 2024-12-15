@@ -134,6 +134,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours
             RefreshFillBar(currentRating);
             RefreshText(currentRating);
             _currentPointsAmount = currentRating;
+            UpdateItemsAnimation();
         }
 
         private void RefreshFillBar(int currentRating)
@@ -149,6 +150,21 @@ namespace Code.Gameplay.Features.Currency.Behaviours
                     .DOScaleX(factor, FillBarDuration)
                     .SetLink(gameObject)
                 ;
+        }
+
+        private void UpdateItemsAnimation()
+        {
+            foreach (RatingBarStarItem item in _items)
+            {
+                if (_currentPointsAmount >= item.RatingAmount)
+                {
+                    item.PlayReplenish();
+                }
+                else
+                {
+                    item.ResetReplenish();
+                }
+            }
         }
 
         private void RefreshText(int currentRating)
