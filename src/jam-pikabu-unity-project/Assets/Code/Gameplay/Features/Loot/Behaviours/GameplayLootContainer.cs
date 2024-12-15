@@ -190,7 +190,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
                     ? "+" 
                     : "-",
                 StartPosition = lootItemUI.transform.position,
-                EndPosition = progressBar.Container.position,
+                EndPosition = progressBar.ProgressText.transform.position,
                 StartReplenishSound = SoundTypeId.PlusesAdded,
                 StartReplenishCallback = () => _currencyFactory.CreateAddCurrencyRequest(data.RatingType, 0, -countRating)
             };

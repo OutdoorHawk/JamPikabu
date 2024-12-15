@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Threading;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Currency.Service;
 using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Service;
+using Cysharp.Text;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using DG.Tweening.Core;
-using DG.Tweening.Plugins.Options;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using static System.Threading.CancellationTokenSource;
 
 namespace Code.Gameplay.Features.Currency.Behaviours
 {
@@ -17,6 +19,8 @@ namespace Code.Gameplay.Features.Currency.Behaviours
     {
         public Image BarBackImage;
         public Image BarFillImage;
+        public RectTransform AnchorBack;
+        public TMP_Text ProgressText;
         public RectTransform Container;
         public RatingBarStarItem Prefab;
         public float FillBarDuration = 0.5f;
@@ -31,6 +35,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours
         private IInstantiator _instantiator;
         private IGameplayCurrencyService _gameplayCurrencyService;
         private Tweener _tween;
+        private CancellationTokenSource _textAnimToken;
 
         [Inject]
         private void Construct
@@ -54,13 +59,13 @@ namespace Code.Gameplay.Features.Currency.Behaviours
         private void Start()
         {
             _daysService.OnDayBegin += Init;
-            _gameplayCurrencyService.CurrencyChanged += RefreshBar;
+            _gameplayCurrencyService.CurrencyChanged += Refresh;
         }
 
         private void OnDestroy()
         {
             _daysService.OnDayBegin -= Init;
-            _gameplayCurrencyService.CurrencyChanged -= RefreshBar;
+            _gameplayCurrencyService.CurrencyChanged -= Refresh;
         }
 
         private void Init()
@@ -75,6 +80,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours
             }
 
             CreateItems(values);
+            InitText();
         }
 
         private void CreateItems(List<DayStarData> values)
@@ -101,21 +107,36 @@ namespace Code.Gameplay.Features.Currency.Behaviours
 
             // Расчет позиции в прогресс-баре
             float normalizedPosition = (float)data.RatingAmount / _maxRatingInDay; // Значение от 0 до 1
-            float xPosition = normalizedPosition * BarBackImage.rectTransform.rect.width;
+            float xPosition = normalizedPosition * AnchorBack.rect.width;
 
             // Устанавливаем позицию элемента
             RectTransform elementRect = element.GetComponent<RectTransform>();
             elementRect.anchoredPosition = new Vector2(xPosition, 0);
         }
 
-        private void RefreshBar()
+        private void InitText()
+        {
+            ProgressText.text = $"{0}/{_maxRatingInDay}";
+        }
+
+        private void Refresh()
         {
             if (_maxRatingInDay == 0)
                 return;
-            
+
             int currentRating = _gameplayCurrencyService.GetCurrencyOfType(CurrencyTypeId.Plus);
             currentRating += _gameplayCurrencyService.GetCurrencyOfType(CurrencyTypeId.Minus);
 
+            if (_currentPointsAmount == currentRating)
+                return;
+
+            RefreshFillBar(currentRating);
+            RefreshText(currentRating);
+            _currentPointsAmount = currentRating;
+        }
+
+        private void RefreshFillBar(int currentRating)
+        {
             float factor = (float)currentRating / _maxRatingInDay;
             factor = Mathf.Clamp(factor, 0, _maxRatingInDay);
 
@@ -124,9 +145,25 @@ namespace Code.Gameplay.Features.Currency.Behaviours
 
             _tween?.Kill();
             _tween = BarFillImage.rectTransform
-                .DOScaleX(factor, FillBarDuration)
-                .SetLink(gameObject)
+                    .DOScaleX(factor, FillBarDuration)
+                    .SetLink(gameObject)
                 ;
+        }
+
+        private void RefreshText(int currentRating)
+        {
+            _textAnimToken?.Cancel();
+            _textAnimToken = CreateLinkedTokenSource(destroyCancellationToken);
+            
+            ProgressText.ToDoubleIntArgText
+            (
+                _currentPointsAmount,
+                currentRating,
+                _maxRatingInDay,
+                "{0}/{1}",
+                FillBarDuration,
+                _textAnimToken.Token
+            ).Forget();
         }
     }
 }

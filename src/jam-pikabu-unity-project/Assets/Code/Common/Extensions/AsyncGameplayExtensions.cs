@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Threading;
 using Code.Common.Extensions.Animations;
+using Cysharp.Text;
 using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
@@ -371,6 +372,35 @@ namespace Code.Common.Extensions
             }
 
             behaviour.SetFloat(hash, endValue);
+        }
+        
+        public static async UniTask ToDoubleIntArgText
+        (
+            this TMP_Text text,
+            int startValueArg1,
+            int finalValueArg1,
+            int arg2,
+            string format,
+            float duration,
+            CancellationToken token,
+            AnimationCurve curve = null
+        )
+        {
+            float startTime = Time.time;
+
+            while (Time.time - startTime < duration)
+            {
+                float elapsedTime = Time.time - startTime;
+                float progress = elapsedTime / duration;
+                float t = curve?.Evaluate(progress) ?? progress;
+                int value = (int)Lerp(startValueArg1, finalValueArg1, t);
+
+                text.text = ZString.Format(format, value, arg2);
+
+                await UniTask.Yield(token);
+            }
+
+            text.text = ZString.Format(format, finalValueArg1, arg2);
         }
     }
 }

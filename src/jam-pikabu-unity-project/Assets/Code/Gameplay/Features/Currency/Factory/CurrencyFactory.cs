@@ -46,7 +46,7 @@ namespace Code.Gameplay.Features.Currency.Factory
             CreateGameEntity
                 .Empty()
                 .With(x => x.isCurrencyStorage = true)
-                .AddCurrencyTypeId(CurrencyTypeId.Plus)
+                .AddCurrencyTypeId(CurrencyTypeId.Minus)
                 .AddMinus(0)
                 .AddWithdraw(0)
                 ;

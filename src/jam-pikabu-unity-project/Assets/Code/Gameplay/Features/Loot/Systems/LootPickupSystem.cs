@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Code.Common;
+using Code.Common.Extensions;
 using Code.Gameplay.Features.HUD;
 using Code.Gameplay.Features.Loot.Behaviours;
 using Code.Gameplay.Features.Loot.Configs;
@@ -117,12 +118,10 @@ namespace Code.Gameplay.Features.Loot.Systems
             loot.Retain(this);
 
             _windowService.TryGetWindow(out PlayerHUDWindow hud);
-
-            Vector3 pos1 = GetWorldPositionFromScreenPosition(hud.LootContainer.transform.position);
+           
             Vector3 pos2 = GetWorldPositionFromScreenPosition(hud.LootContainer.VatIcon.transform.position);
-
-            await FlyAnimation(loot, pos1);
-            await FlyAnimation(loot, pos2);
+            
+            await FlyToVatAnimation(loot, pos2);
 
             RemoveLootView(loot);
             loot.Release(this);
@@ -143,6 +142,20 @@ namespace Code.Gameplay.Features.Loot.Systems
                 ;
             
             await source.Task;
+        }
+        
+        private async UniTask FlyToVatAnimation(GameEntity loot, Vector3 pos1)
+        {
+            var lootStaticData = _staticData.GetStaticData<LootStaticData>();
+
+            float flyAnimationDuration = lootStaticData.CollectFlyAnimationDuration;
+            const float jumpPower = 5;
+
+           await loot.Transform
+                .DOJump(pos1, jumpPower, 1, flyAnimationDuration * 2)
+                .SetLink(loot.Transform.gameObject)
+                .AsyncWaitForCompletion()
+                ;
         }
 
         private Vector3 GetWorldPositionFromScreenPosition(Vector3 screenPos)
