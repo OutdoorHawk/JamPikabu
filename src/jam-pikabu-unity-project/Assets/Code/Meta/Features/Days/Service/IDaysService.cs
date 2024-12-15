@@ -15,6 +15,7 @@ namespace Code.Meta.Features.Days.Service
         bool IsCompletedFirstLevel();
         void SetActiveDay(int selectedDayId);
         List<DayProgressData> GetDaysProgress();
+        bool TryGetDayProgress(int dayId, out DayProgressData dayProgress);
         int GetStarsEarnedForDay(int day);
         void BeginDay();
         void RoundEnd();

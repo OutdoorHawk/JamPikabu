@@ -61,6 +61,11 @@ namespace Code.Meta.Features.Days.Service
             return _daysProgress;
         }
 
+        public bool TryGetDayProgress(int dayId, out DayProgressData dayProgress)
+        {
+            return _daysProgressByDayId.TryGetValue(dayId, out dayProgress);
+        }
+
         public int GetStarsEarnedForDay(int day)
         {
             return _daysProgressByDayId.TryGetValue(day, out DayProgressData dayProgressData) 
