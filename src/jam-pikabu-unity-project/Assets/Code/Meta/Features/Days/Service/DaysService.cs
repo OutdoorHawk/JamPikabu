@@ -21,10 +21,12 @@ namespace Code.Meta.Features.Days.Service
 
         private int _currentDay = 1;
 
-        private readonly List<int> _daysProgress = new();
-        
+        private readonly List<DayProgressData> _daysProgress = new();
+        private readonly Dictionary<int, DayProgressData> _daysProgressByDayId = new();
+
         public int CurrentDay => _currentDay;
         public int MaxDays => _staticDataService.GetStaticData<DaysStaticData>().Configs.Count;
+        private DaysStaticData DaysStaticData => _staticDataService.GetStaticData<DaysStaticData>();
 
         public DaysService
         (
@@ -36,14 +38,34 @@ namespace Code.Meta.Features.Days.Service
             _staticDataService = staticDataService;
         }
 
-        public void InitializeDays(IEnumerable<int> daysProgress)
+        public void InitializeDays(IEnumerable<DayProgressData> daysProgress)
         {
+            _daysProgressByDayId.Clear();
             _daysProgress.RefreshList(daysProgress);
+            foreach (DayProgressData dayProgressData in _daysProgress) 
+                _daysProgressByDayId[dayProgressData.DayId] = dayProgressData;
         }
 
-        public bool CompletedFirstLevel()
+        public bool IsCompletedFirstLevel()
         {
             return _daysProgress.Count != 0;
+        }
+
+        public void SetActiveDay(int selectedDayId)
+        {
+            _currentDay = selectedDayId;
+        }
+
+        public List<DayProgressData> GetDaysProgress()
+        {
+            return _daysProgress;
+        }
+
+        public int GetStarsEarnedForDay(int day)
+        {
+            return _daysProgressByDayId.TryGetValue(day, out DayProgressData dayProgressData) 
+                ? dayProgressData.StarsEarned 
+                : 0;
         }
 
         public void BeginDay()
@@ -84,15 +106,14 @@ namespace Code.Meta.Features.Days.Service
             return _currentDayData;
         }
 
-        private DayData GetDayData(int currentDay)
+        public DayData GetDayData(int currentDay)
         {
-            foreach (DayData data in _daysData)
-            {
-                if (data.Id >= currentDay)
-                    return data;
-            }
+            return GetDayDataInternal(currentDay);
+        }
 
-            return _daysData[^1];
+        private DayData GetDayDataInternal(int currentDay)
+        {
+            return DaysStaticData.GetDayData(currentDay);
         }
     }
 }

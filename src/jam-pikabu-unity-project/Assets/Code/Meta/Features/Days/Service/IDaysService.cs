@@ -11,13 +11,17 @@ namespace Code.Meta.Features.Days.Service
         event Action OnDayComplete;
         int CurrentDay { get; }
         int MaxDays { get; }
-        void InitializeDays(IEnumerable<int> daysProgress);
-        bool CompletedFirstLevel();
+        void InitializeDays(IEnumerable<DayProgressData> daysProgress);
+        bool IsCompletedFirstLevel();
+        void SetActiveDay(int selectedDayId);
+        List<DayProgressData> GetDaysProgress();
+        int GetStarsEarnedForDay(int day);
         void BeginDay();
         void RoundEnd();
         void EnterRoundPreparation();
         void DayComplete();
         bool CheckAllDaysComplete();
         DayData GetDayData();
+        DayData GetDayData(int currentDay);
     }
 }

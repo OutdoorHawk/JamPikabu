@@ -12,6 +12,8 @@ namespace Code.Meta.Features.MainMenu.Behaviours
         public Button Button;
         public Image SelectedBg;
         public int DayId;
+        public bool Inactive;
+        public bool Locked;
 
         private IMapMenuService _mapMenuService;
 
@@ -41,6 +43,7 @@ namespace Code.Meta.Features.MainMenu.Behaviours
         public void InitInactive()
         {
             Button.interactable = false;
+            Inactive = true;
         }
 
         public void SetSelectedView()
@@ -53,7 +56,13 @@ namespace Code.Meta.Features.MainMenu.Behaviours
             SelectedBg.DisableElement();
         }
 
-        private void SelectLevel()
+        public void SetLevelLocked()
+        {
+            Button.interactable = false;
+            Locked = true;
+        }
+
+        public void SelectLevel()
         {
             if (_mapMenuService.SelectedDayId == DayId)
                 _mapMenuService.SetDayDeselected(DayId);

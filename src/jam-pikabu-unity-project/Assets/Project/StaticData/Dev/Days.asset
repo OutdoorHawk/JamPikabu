@@ -20,9 +20,9 @@ MonoBehaviour:
     SceneId: 2
     AvailableIngredients: 
     Stars:
-    - RatingAmount: 5
-    - RatingAmount: 10
-    - RatingAmount: 25
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 2
+    - RatingAmountNeed: 5
   - Id: 2
     OrdersAmount: 3
     RoundDuration: 20
@@ -30,9 +30,9 @@ MonoBehaviour:
     SceneId: 2
     AvailableIngredients: 
     Stars:
-    - RatingAmount: 0
-    - RatingAmount: 0
-    - RatingAmount: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
   - Id: 3
     OrdersAmount: 4
     RoundDuration: 20
@@ -40,9 +40,9 @@ MonoBehaviour:
     SceneId: 2
     AvailableIngredients: 
     Stars:
-    - RatingAmount: 0
-    - RatingAmount: 0
-    - RatingAmount: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
   - Id: 4
     OrdersAmount: 1
     RoundDuration: 45
@@ -50,7 +50,7 @@ MonoBehaviour:
     SceneId: 3
     AvailableIngredients: 
     Stars:
-    - RatingAmount: 0
-    - RatingAmount: 0
-    - RatingAmount: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
   StartGoldAmount: 20

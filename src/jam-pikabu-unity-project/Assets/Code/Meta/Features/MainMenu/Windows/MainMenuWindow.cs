@@ -5,6 +5,7 @@ using Code.Infrastructure.States.GameStates;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
 using Code.Meta.Features.Days.Configs;
+using Code.Meta.Features.Days.Service;
 using Code.Meta.Features.MainMenu.Behaviours;
 using Code.Meta.Features.MainMenu.Service;
 using UnityEngine.UI;
@@ -20,14 +21,18 @@ namespace Code.Meta.Features.MainMenu.Windows
         private IGameStateMachine _gameStateMachine;
         private IMapMenuService _mapMenuService;
         private IStaticDataService _staticDataService;
-
-        private readonly List<LevelButton> _levelButtons = new();
-
-        private DaysStaticData DaysStaticData => _staticDataService.GetStaticData<DaysStaticData>();
+        private IDaysService _daysService;
 
         [Inject]
-        private void Construct(IGameStateMachine gameStateMachine, IMapMenuService mapMenuService, IStaticDataService staticDataService)
+        private void Construct
+        (
+            IGameStateMachine gameStateMachine,
+            IMapMenuService mapMenuService,
+            IStaticDataService staticDataService,
+            IDaysService daysService
+        )
         {
+            _daysService = daysService;
             _staticDataService = staticDataService;
             _mapMenuService = mapMenuService;
             _gameStateMachine = gameStateMachine;
@@ -36,7 +41,7 @@ namespace Code.Meta.Features.MainMenu.Windows
         protected override void Initialize()
         {
             base.Initialize();
-            InitLevels();
+            MapContainer.Init();
         }
 
         protected override void SubscribeUpdates()
@@ -44,6 +49,7 @@ namespace Code.Meta.Features.MainMenu.Windows
             base.SubscribeUpdates();
             PlayButton.onClick.AddListener(OnPlayClick);
             _mapMenuService.OnSelectionChanged += Refresh;
+            MapContainer.SubscribeUpdates();
         }
 
         protected override void Unsubscribe()
@@ -51,63 +57,17 @@ namespace Code.Meta.Features.MainMenu.Windows
             base.Unsubscribe();
             PlayButton.onClick.RemoveListener(OnPlayClick);
             _mapMenuService.OnSelectionChanged -= Refresh;
-        }
-
-        private void InitLevels()
-        {
-            _levelButtons.Clear();
-
-            foreach (MapBlock mapBlock in MapContainer.MapBlocks)
-            foreach (LevelButton levelButton in mapBlock.LevelButtons)
-            {
-                _levelButtons.Add(levelButton);
-            }
-
-            for (int i = 0; i < DaysStaticData.Configs.Count; i++)
-            {
-                DayData dayData = DaysStaticData.Configs[i];
-
-                if (i >= _levelButtons.Count)
-                    break;
-
-                _levelButtons[i].InitLevel(dayData);
-            }
-
-            for (int i = DaysStaticData.Configs.Count; i < _levelButtons.Count; i++)
-            {
-                _levelButtons[i].InitInactive();
-            }
+            MapContainer.Unsubscribe();
         }
 
         private void Refresh()
         {
             PlayButton.interactable = _mapMenuService.DayIsSelected;
-
-            UpdateSelectionView();
-        }
-
-        private void UpdateSelectionView()
-        {
-            foreach (LevelButton levelButton in _levelButtons)
-            {
-                if (_mapMenuService.DayIsSelected == false)
-                {
-                    levelButton.SetDeselectedView();
-                    continue;
-                }
-
-                if (levelButton.DayId != _mapMenuService.SelectedDayId)
-                {
-                    levelButton.SetDeselectedView();
-                    continue;
-                }
-
-                levelButton.SetSelectedView();
-            }
         }
 
         private void OnPlayClick()
         {
+            _daysService.SetActiveDay(_mapMenuService.SelectedDayId);
             var parameters = new LoadLevelPayloadParameters
             {
                 LevelName = _mapMenuService.GetSelectedScene().ToString()

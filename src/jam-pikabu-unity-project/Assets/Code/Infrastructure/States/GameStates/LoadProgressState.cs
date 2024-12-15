@@ -113,7 +113,7 @@ namespace Code.Infrastructure.States.GameStates
             if (CheckEditorLoad())
                 return;
 
-            if (_daysService.CompletedFirstLevel() == false)
+            if (_daysService.IsCompletedFirstLevel() == false)
             {
                 LoadFirstLevel();
                 return;

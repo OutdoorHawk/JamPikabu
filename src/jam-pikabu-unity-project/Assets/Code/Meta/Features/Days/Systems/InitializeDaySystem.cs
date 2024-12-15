@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Code.Meta.Features.Days.Service;
 using Entitas;
 
@@ -18,7 +19,9 @@ namespace Code.Meta.Features.Days.Systems
 
         public void Initialize()
         {
-            _daysService.InitializeDays(_days.GetEntities().Select(x => x.Day));
+            MetaEntity[] metaEntities = _days.GetEntities();
+            IEnumerable<DayProgressData> dayProgressData = metaEntities.Select(x => new DayProgressData(x.Day, x.StarsAmount));
+            _daysService.InitializeDays(dayProgressData);
         }
     }
 }

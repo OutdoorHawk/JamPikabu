@@ -16,7 +16,7 @@ namespace Code.Meta.Features.Days.Configs
 
         public DayData GetDayData(int dayIndex)
         {
-            return GetByKey(dayIndex);
+            return GetByKey(dayIndex) ?? Configs[^1];
         }
     }
 }

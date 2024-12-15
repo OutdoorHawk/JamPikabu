@@ -235,6 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LevelsParent: {fileID: 6129235697990110009}
+  StarsEarned: {fileID: 4669304740769461720}
 --- !u!1 &5688183724921920573
 GameObject:
   m_ObjectHideFlags: 0
