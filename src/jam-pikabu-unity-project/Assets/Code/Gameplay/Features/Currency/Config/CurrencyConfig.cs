@@ -1,4 +1,5 @@
 ﻿using System;
+using Sirenix.OdinInspector;
 
 namespace Code.Gameplay.Features.Currency.Config
 {
