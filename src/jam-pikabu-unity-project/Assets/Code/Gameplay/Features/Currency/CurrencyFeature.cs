@@ -12,6 +12,8 @@ namespace Code.Gameplay.Features.Currency
             
             Add(systems.Create<RefreshGoldSystem>());
             Add(systems.Create<RefreshRatingSystem>());
+            
+            Add(systems.Create<TransferGoldToMetaStorageOnEndDay>());
         }
     }
 }
