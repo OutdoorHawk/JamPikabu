@@ -26,7 +26,7 @@ namespace Code.Gameplay.Features.Loot.Systems
         private readonly IStaticDataService _staticData;
         private readonly Camera _camera;
 
-        public LootPickupSystem(GameContext context, ILootService lootService, 
+        public LootPickupSystem(GameContext context, ILootService lootService,
             IWindowService windowService, IStaticDataService staticData)
         {
             _context = context;
@@ -74,15 +74,14 @@ namespace Code.Gameplay.Features.Loot.Systems
                 return;
 
             var lootContainer = playerHud.GetComponentInChildren<GameplayLootContainer>();
-            
+
             if (lootContainer.ItemsByLootType.TryGetValue(loot.LootTypeId, out LootItemUI lootItemUI))
             {
                 PlayMoveAnimationAsync(lootItemUI, loot.Id).Forget();
             }
             else
             {
-                //TODO BAD VISUALS
-                RemoveLootView(loot);
+                PlayNeutralIngredientFly(loot).Forget();
             }
         }
 
@@ -94,33 +93,65 @@ namespace Code.Gameplay.Features.Loot.Systems
 
             if (loot.IsNullOrDestructed())
                 return;
-            
+
             loot.Retain(this);
             var lootStaticData = _staticData.GetStaticData<LootStaticData>();
             
-            Vector3 screenPosition = RectTransformUtility.WorldToScreenPoint(_camera, lootItemUI.transform.position);
+            loot.Transform
+                .DORotate(Vector3.zero, lootStaticData.CollectFlyAnimationDuration)
+                .SetLink(loot.Transform.gameObject)
+                ;
+
+            Vector3 worldPosition = GetWorldPositionFromScreenPosition(lootItemUI.transform.position);
+
+            await FlyAnimation(loot, worldPosition);
+            
+            loot.Release(this);
+            RemoveLootView(loot);
+            lootItemUI.AnimateCollected();
+
+        }
+
+        private async UniTaskVoid PlayNeutralIngredientFly(GameEntity loot)
+        {
+            loot.Retain(this);
+
+            _windowService.TryGetWindow(out PlayerHUDWindow hud);
+
+            Vector3 pos1 = GetWorldPositionFromScreenPosition(hud.LootContainer.transform.position);
+            Vector3 pos2 = GetWorldPositionFromScreenPosition(hud.LootContainer.VatIcon.transform.position);
+
+            await FlyAnimation(loot, pos1);
+            await FlyAnimation(loot, pos2);
+
+            RemoveLootView(loot);
+            loot.Release(this);
+        }
+
+        private async UniTask FlyAnimation(GameEntity loot, Vector3 pos1)
+        {
+            UniTaskCompletionSource source = new UniTaskCompletionSource();
+            var lootStaticData = _staticData.GetStaticData<LootStaticData>();
+
+            float flyAnimationDuration = lootStaticData.CollectFlyAnimationDuration;
+            float jumpPower = Random.Range(lootStaticData.CollectFlyMinMaxJump.x, lootStaticData.CollectFlyMinMaxJump.y);
+
+            loot.Transform
+                .DOJump(pos1, jumpPower, 1, flyAnimationDuration)
+                .SetLink(loot.Transform.gameObject)
+                .OnComplete(() => source.TrySetResult())
+                ;
+            
+            await source.Task;
+        }
+
+        private Vector3 GetWorldPositionFromScreenPosition(Vector3 screenPos)
+        {
+            Vector3 screenPosition = RectTransformUtility.WorldToScreenPoint(_camera, screenPos);
             screenPosition.z = Mathf.Abs(_camera.transform.position.z);
             Vector3 worldPosition = _camera.ScreenToWorldPoint(screenPosition);
             worldPosition.z = 0;
-            
-            float flyAnimationDuration = lootStaticData.CollectFlyAnimationDuration;
-            float jumpPower = Random.Range(lootStaticData.CollectFlyMinMaxJump.x, lootStaticData.CollectFlyMinMaxJump.y);
-            
-            loot.Transform
-                .DOJump(worldPosition, jumpPower, 1, flyAnimationDuration)
-                .SetLink(loot.Transform.gameObject)
-                .OnComplete(() =>
-                {
-                    loot.Release(this);
-                    RemoveLootView(loot);
-                    lootItemUI.AnimateCollected();
-                })
-                ;
-
-            loot.Transform
-                .DORotate(Vector3.zero, flyAnimationDuration)
-                .SetLink(loot.Transform.gameObject)
-                ;
+            return worldPosition;
         }
 
         private void RemoveLootView(GameEntity loot)

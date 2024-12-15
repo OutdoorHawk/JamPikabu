@@ -1564,6 +1564,7 @@ MonoBehaviour:
   _animationDuration: 0.15
   OrderViewBehaviour: {fileID: 6442048413776369884}
   CurrencyHolder: {fileID: 796113368859894653}
+  LootContainer: {fileID: 6020138444633489550}
 --- !u!1 &4935694880944245296
 GameObject:
   m_ObjectHideFlags: 0
@@ -2368,6 +2369,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 625048120833500159}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6020138444633489550 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6568299879817487217, guid: 75910f5b90817ea44a15d9405009fd2f,
+    type: 3}
+  m_PrefabInstance: {fileID: 625048120833500159}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc2dac086be54f359f5947389e3a47e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2067134799320582032
 PrefabInstance:
   m_ObjectHideFlags: 0
