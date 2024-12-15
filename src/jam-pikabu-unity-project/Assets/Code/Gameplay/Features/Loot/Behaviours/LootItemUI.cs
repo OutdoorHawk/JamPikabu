@@ -1,4 +1,5 @@
-﻿using Code.Common;
+﻿using System;
+using Code.Common;
 using Code.Common.Extensions;
 using Code.Common.Extensions.Animations;
 using Code.Gameplay.Features.Currency.Config;
@@ -15,10 +16,11 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using Random = UnityEngine.Random;
 
 namespace Code.Gameplay.Features.Loot.Behaviours
 {
-    public class LootItemUI : EntityDependant
+    public class LootItemUI : MonoBehaviour
     {
         public IconablePrice Price;
         public Image Icon;
@@ -41,6 +43,11 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         private void Construct(ISoundService soundService)
         {
             _soundService = soundService;
+        }
+
+        private void Awake()
+        {
+            CanvasGroup.alpha = 0;
         }
 
         public void InitType(LootSetup setup)
@@ -112,7 +119,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
 
         public void Show()
         {
-            Entity.isBusy = true;
+            CanvasGroup.alpha = 0;
             _lootItemTween?.Kill();
             _lootItemTween = CanvasGroup
                     .DOFade(1, 0.15f)
@@ -132,11 +139,6 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         {
             _lootItemTween?.Kill();
             _lootItemTween = null;
-
-            if (Entity.IsNullOrDestructed())
-                return;
-
-            Entity.isBusy = false;
         }
     }
 }

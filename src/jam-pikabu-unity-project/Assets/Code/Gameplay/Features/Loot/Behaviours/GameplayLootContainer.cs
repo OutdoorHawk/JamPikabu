@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Code.Common.Extensions;
 using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Config;
 using Code.Gameplay.Features.Loot.Service;
@@ -57,7 +58,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
 
         private async UniTask ProcessAnimation()
         {
-            const float interval = 0.15f;
+            const float interval = 0.25f;
             _tasksBuffer.Clear();
 
             foreach (var lootItemUI in ItemsByLootType.Values)
@@ -90,6 +91,16 @@ namespace Code.Gameplay.Features.Loot.Behaviours
 
             foreach (IngredientData data in bad)
                 CreateLootItem(data, LootGrid.transform);
+
+            ShowAsync().Forget();
+        }
+
+        private async UniTaskVoid ShowAsync()
+        {
+            await DelaySeconds(0.85f, destroyCancellationToken);
+            
+            foreach (LootItemUI lootItemUI in ItemsByLootType.Values) 
+                lootItemUI.Show();
         }
 
         private void ClearList()
@@ -113,7 +124,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
                     CreateBadIngredient(ingredientData, item);
                     break;
             }
-
+            
             ItemsByLootType.Add(ingredientData.TypeId, item);
         }
 

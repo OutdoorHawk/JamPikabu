@@ -717,7 +717,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be1ab1b954d442a801db4d6d3088606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EntityView: {fileID: 6122044623407222926}
   Price: {fileID: 7998801270718034529}
   Icon: {fileID: 6295771697361863592}
   IconBackground: {fileID: 6783495076972430831}
@@ -852,4 +851,4 @@ CanvasGroup:
   m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 1
+  m_IgnoreParentGroups: 0

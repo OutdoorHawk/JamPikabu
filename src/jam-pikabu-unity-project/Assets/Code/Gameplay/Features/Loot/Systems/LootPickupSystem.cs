@@ -112,7 +112,6 @@ namespace Code.Gameplay.Features.Loot.Systems
                 .OnComplete(() =>
                 {
                     loot.Release(this);
-                    loot.isBusy = false;
                     RemoveLootView(loot);
                     lootItemUI.AnimateCollected();
                 })
@@ -131,6 +130,7 @@ namespace Code.Gameplay.Features.Loot.Systems
             Object.Destroy(lootWorldView.gameObject);
             loot.RemoveView();
             loot.RemoveViewPrefab();
+            loot.isBusy = false;
         }
 
         public void Cleanup()
