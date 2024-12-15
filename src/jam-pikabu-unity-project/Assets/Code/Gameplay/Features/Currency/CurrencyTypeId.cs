@@ -6,6 +6,7 @@
         Gold = 1,
         Plus = 2,
         Minus = 3,
+        Star = 4,
         
         Count
     }

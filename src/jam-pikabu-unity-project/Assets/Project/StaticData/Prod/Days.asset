@@ -10,31 +10,41 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 941126b668c946d5a10db97695651308, type: 3}
-  m_Name: RoundState
+  m_Name: Days
   m_EditorClassIdentifier: 
   Configs:
   - Id: 1
     OrdersAmount: 2
-    RoundDuration: 3
+    RoundDuration: 5
     IsBossDay: 0
     SceneId: 2
     AvailableIngredients: 00000000
+    Stars:
+    - RatingAmount: 0
+    - RatingAmount: 5
+    - RatingAmount: 20
   - Id: 2
     OrdersAmount: 3
     RoundDuration: 20
     IsBossDay: 0
     SceneId: 2
     AvailableIngredients: 
+    Stars:
+    - RatingAmount: 0
+    - RatingAmount: 7
+    - RatingAmount: 25
   - Id: 3
     OrdersAmount: 4
     RoundDuration: 20
     IsBossDay: 0
     SceneId: 2
     AvailableIngredients: 
+    Stars: []
   - Id: 0
     OrdersAmount: 1
     RoundDuration: 45
     IsBossDay: 0
     SceneId: 3
     AvailableIngredients: 
+    Stars: []
   StartGoldAmount: 20

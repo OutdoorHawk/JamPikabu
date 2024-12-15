@@ -46,7 +46,7 @@ MonoBehaviour:
     - DevStaticData
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9d8af480cdb254b46a27827e90a31137
-    m_Address: RoundState
+    m_Address: Days
     m_ReadOnly: 0
     m_SerializedLabels:
     - DevStaticData

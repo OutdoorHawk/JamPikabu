@@ -14,5 +14,6 @@ namespace Code.Meta.Features.Days.Configs
         public bool IsBossDay;
         public SceneTypeId SceneId = SceneTypeId.Level_1;
         public List<LootTypeId> AvailableIngredients;
+        public List<DayStarData> Stars = new() { new DayStarData(), new DayStarData(), new DayStarData() };
     }
 }
