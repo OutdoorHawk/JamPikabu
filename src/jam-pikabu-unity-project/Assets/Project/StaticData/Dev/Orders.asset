@@ -20,8 +20,8 @@ MonoBehaviour:
         CurrencyType: 1
         Amount: 15
       MinMaxDayToUnlock: {x: 0, y: 0}
-      MinMaxAmount: {x: 1, y: 3}
-      MinMaxGoodIngredients: {x: 1, y: 3}
-      MinMaxBadIngredients: {x: 1, y: 3}
-      MinMaxIngredientsRatingFactor: {x: 1, y: 1}
+      MinMaxAmount: {x: 2, y: 2}
+      MinMaxGoodIngredients: {x: 2, y: 2}
+      MinMaxBadIngredients: {x: 2, y: 2}
+      MinMaxIngredientsRatingFactor: {x: 1, y: 2}
   BadIngredientPenalty: 0.5

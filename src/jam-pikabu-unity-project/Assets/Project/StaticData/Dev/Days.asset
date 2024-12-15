@@ -15,14 +15,14 @@ MonoBehaviour:
   Configs:
   - Id: 1
     OrdersAmount: 2
-    RoundDuration: 6
+    RoundDuration: 15
     IsBossDay: 0
     SceneId: 2
     AvailableIngredients: 
     Stars:
-    - RatingAmount: 0
-    - RatingAmount: 0
-    - RatingAmount: 0
+    - RatingAmount: 5
+    - RatingAmount: 10
+    - RatingAmount: 25
   - Id: 2
     OrdersAmount: 3
     RoundDuration: 20

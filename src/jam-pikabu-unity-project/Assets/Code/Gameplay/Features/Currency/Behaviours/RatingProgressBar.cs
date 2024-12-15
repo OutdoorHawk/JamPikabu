@@ -126,7 +126,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours
                 return;
 
             int currentRating = _gameplayCurrencyService.GetCurrencyOfType(CurrencyTypeId.Plus);
-            currentRating += _gameplayCurrencyService.GetCurrencyOfType(CurrencyTypeId.Minus);
+            currentRating -= _gameplayCurrencyService.GetCurrencyOfType(CurrencyTypeId.Minus);
 
             if (_currentPointsAmount == currentRating)
                 return;
