@@ -9,7 +9,7 @@ namespace Code.Gameplay.Features.Orders
         {
             Add(systems.Create<CompleteOrderOnRoundCompletionSystem>());
 
-            Add(systems.Create<PlayOrderWindowOnLootConsumedVisualsSystem>());
+            Add(systems.Create<PlayGoldForOrderVisualsSystem>());
         }
     }
 }

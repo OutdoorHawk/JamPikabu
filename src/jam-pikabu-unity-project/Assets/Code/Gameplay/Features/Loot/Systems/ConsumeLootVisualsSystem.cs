@@ -51,10 +51,12 @@ namespace Code.Gameplay.Features.Loot.Systems
         {
             _lootService.SetLootIsConsumingState(true);
             
-            _windowService.TryGetWindow<PlayerHUDWindow>(out var window);
-            var lootContainer = window.GetComponentInChildren<GameplayLootContainer>();
+            _windowService.TryGetWindow<PlayerHUDWindow>(out var hud);
+            var lootContainer = hud.GetComponentInChildren<GameplayLootContainer>();
+            var orderView = hud.OrderViewBehaviour;
             
             await lootContainer.AnimateFlyToVat(_consumedLoot);
+            orderView.InitOrderFillProgress();
 
             foreach (var loot in _consumedLoot)
                 loot.isDestructed = true;

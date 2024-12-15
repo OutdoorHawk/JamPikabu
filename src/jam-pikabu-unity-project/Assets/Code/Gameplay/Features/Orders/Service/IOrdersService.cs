@@ -17,6 +17,7 @@ namespace Code.Gameplay.Features.Orders.Service
         bool TryGetIngredientData(LootTypeId lootTypeId, out IngredientData ingredientData);
         OrderData GetCurrentOrder();
         bool CheckAllOrdersCompleted();
+        float GetOrderProgress();
         void GoToNextOrder();
         void GameOver();
         bool OrderPassesConditions();

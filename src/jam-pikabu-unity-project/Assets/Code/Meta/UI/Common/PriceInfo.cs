@@ -43,6 +43,16 @@ namespace Code.Meta.UI.Common
             SetupPriceInternal(costSetup.Amount, costSetup.CurrencyType, withAnimation);
         }
 
+        public void SetupIcon(CurrencyTypeId typeId)
+        {
+            SetupIconInternal(typeId);
+        }
+        
+        public void SetupText(string text)
+        {
+            _amountText.text = text;
+        }
+
         public void PlayReplenish()
         {
             _iconAnimator.SetTrigger(AnimationParameter.Replenish.AsHash());
@@ -82,6 +92,21 @@ namespace Code.Meta.UI.Common
             }
 
             _currentAmount = amount;
+        }
+
+        private void SetupIconInternal(CurrencyTypeId typeId)
+        {
+            var staticData = _staticDataService.GetStaticData<CurrencyStaticData>();
+            CurrencyConfig currency = staticData.GetCurrencyConfig(typeId);
+
+            if (currency == null)
+            {
+                Debug.LogError($"Unknown currency!");
+                return;
+            }
+            
+            if (_currencyIcon.sprite != currency.Data.Icon)
+                _currencyIcon.sprite = currency.Data.Icon;
         }
 
         public void Show()

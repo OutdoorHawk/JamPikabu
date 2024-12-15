@@ -108,6 +108,23 @@ namespace Code.Gameplay.Features.Orders.Service
             return _ordersCompleted + 1 >= _daysService.GetDayData().OrdersAmount;
         }
 
+        public float GetOrderProgress()
+        {
+            (List<IngredientData> good, List<IngredientData> bad) = OrderIngredients;
+            
+            int total = good.Sum(data => data.Amount);
+            int collected = 0;
+            
+            foreach (IngredientData ingredientData in good)
+            {
+                collected += _lootService.CollectedLootItems.Count(type => type == ingredientData.TypeId);
+                collected = Mathf.Clamp(collected, 0, ingredientData.Amount);
+            }
+            
+            float progress = collected / (float)total;
+            return progress;
+        }
+
         public void GoToNextOrder()
         {
             _ordersCompleted++;

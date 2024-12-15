@@ -26,6 +26,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
     {
         public GridLayoutGroup LootGrid;
         public Image VatIcon;
+        public float StartFlyToVatAnimationDelay = 0.5f;
 
         private ILootService _lootService;
         private ILootItemUIFactory _lootItemUIFactory;
@@ -67,63 +68,6 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         public async UniTask AnimateFlyToVat(IGroup<GameEntity> consumedLoot)
         {
             await ProcessAnimation(consumedLoot);
-        }
-
-        private async UniTask ProcessAnimation(IGroup<GameEntity> consumedLoot)
-        {
-            const float interval = 0.25f;
-            _tasksBuffer.Clear();
-
-            foreach (var lootItemUI in ItemsByLootType.Values)
-            {
-                PlayCurrencyAnimation(lootItemUI, consumedLoot);
-                await DelaySeconds(interval, lootItemUI.destroyCancellationToken);
-
-                if (lootItemUI.CollectedAtLeastOne)
-                {
-                    UniTask task = lootItemUI.AnimateFlyToVat(VatIcon.transform);
-                    _tasksBuffer.Add(task);
-                }
-                else
-                {
-                    UniTask task = lootItemUI.AnimateConsume();
-                    _tasksBuffer.Add(task);
-                }
-            }
-
-            await UniTask.WhenAll(_tasksBuffer);
-        }
-
-        private void PlayCurrencyAnimation(LootItemUI lootItemUI, IGroup<GameEntity> consumedLoot)
-        {
-            LootTypeId type = lootItemUI.Type;
-
-            IEnumerable<GameEntity> consumed = consumedLoot
-                .GetEntities()
-                .Where(x => x.LootTypeId == type);
-
-            if (_ordersService.TryGetIngredientData(type, out IngredientData data) == false)
-                return;
-
-            _windowService.TryGetWindow(out PlayerHUDWindow window);
-            var progressBar = window.GetComponentInChildren<RatingProgressBar>();
-
-            int countRating = consumed.Sum(loot => loot.Rating * data.RatingFactor);
-
-            if (countRating == 0)
-                return;
-
-            var parameters = new CurrencyAnimationParameters
-            {
-                Type = data.RatingType,
-                Count = countRating,
-                StartPosition = lootItemUI.transform.position,
-                EndPosition = progressBar.Container.position,
-                StartReplenishSound = SoundTypeId.PlusesAdded,
-                StartReplenishCallback = () => _currencyFactory.CreateAddCurrencyRequest(data.RatingType, 0, -countRating)
-            };
-
-            _currencyFactory.PlayCurrencyAnimation(parameters);
         }
 
         private void RefreshCurrentOrder()
@@ -190,6 +134,68 @@ namespace Code.Gameplay.Features.Loot.Behaviours
                 CurrencyType = CurrencyTypeId.Minus,
                 Amount = ingredientData.RatingFactor
             });
+        }
+
+        private async UniTask ProcessAnimation(IGroup<GameEntity> consumedLoot)
+        {
+            const float interval = 0.25f;
+            _tasksBuffer.Clear();
+
+            await DelaySeconds(StartFlyToVatAnimationDelay, destroyCancellationToken);
+            
+            foreach (var lootItemUI in ItemsByLootType.Values)
+            {
+                PlayCurrencyAnimation(lootItemUI, consumedLoot);
+                await DelaySeconds(interval, lootItemUI.destroyCancellationToken);
+
+                if (lootItemUI.CollectedAtLeastOne)
+                {
+                    UniTask task = lootItemUI.AnimateFlyToVat(VatIcon.transform);
+                    _tasksBuffer.Add(task);
+                }
+                else
+                {
+                    UniTask task = lootItemUI.AnimateConsume();
+                    _tasksBuffer.Add(task);
+                }
+            }
+
+            await UniTask.WhenAll(_tasksBuffer);
+        }
+
+        private void PlayCurrencyAnimation(LootItemUI lootItemUI, IGroup<GameEntity> consumedLoot)
+        {
+            LootTypeId type = lootItemUI.Type;
+
+            IEnumerable<GameEntity> consumed = consumedLoot
+                .GetEntities()
+                .Where(x => x.LootTypeId == type);
+
+            if (_ordersService.TryGetIngredientData(type, out IngredientData data) == false)
+                return;
+
+            _windowService.TryGetWindow(out PlayerHUDWindow window);
+            var progressBar = window.GetComponentInChildren<RatingProgressBar>();
+
+            int countRating = consumed.Sum(loot => loot.Rating * data.RatingFactor);
+
+            if (countRating == 0)
+                return;
+
+            var parameters = new CurrencyAnimationParameters
+            {
+                Type = data.RatingType,
+                Count = countRating,
+                TextPrefix = data.IngredientType == IngredientTypeId.Good 
+                    ? "+" 
+                    : "-",
+                StartPosition = lootItemUI.transform.position,
+                EndPosition = progressBar.Container.position,
+                StartReplenishSound = SoundTypeId.PlusesAdded,
+                StartReplenishCallback = () => _currencyFactory.CreateAddCurrencyRequest(data.RatingType, 0, -countRating)
+            };
+
+            _currencyFactory.PlayCurrencyAnimation(parameters);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Code.Gameplay.Features.Orders.Config;
+﻿using Code.Gameplay.Features.Currency.Config;
+using Code.Gameplay.Features.Orders.Config;
 using Entitas;
 
 namespace Code.Gameplay.Features.Orders
@@ -10,4 +11,5 @@ namespace Code.Gameplay.Features.Orders
     [Game] public sealed class BossOrder : IComponent { }
     [Game] public sealed class ResultProcessed : IComponent { }
     [Game] public sealed class NextOrderRequest : IComponent { }
+    [Game] public sealed class OrderReward : IComponent { public CostSetup Value; }
 }

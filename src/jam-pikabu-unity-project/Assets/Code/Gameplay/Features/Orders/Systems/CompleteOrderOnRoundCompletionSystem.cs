@@ -2,6 +2,8 @@
 using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Currency;
+using Code.Gameplay.Features.Currency.Config;
+using Code.Gameplay.Features.Currency.Factory;
 using Code.Gameplay.Features.Orders.Config;
 using Code.Gameplay.Features.Orders.Service;
 using Code.Gameplay.Windows;
@@ -19,10 +21,12 @@ namespace Code.Gameplay.Features.Orders.Systems
         private readonly List<GameEntity> _buffer = new(1);
         private readonly IGroup<GameEntity> _gameState;
         private readonly IGroup<GameEntity> _collectedLoot;
+        private readonly ICurrencyFactory _currencyFactory;
 
         public CompleteOrderOnRoundCompletionSystem(GameContext context, IWindowService windowService
-            , IOrdersService ordersService)
+            , IOrdersService ordersService, ICurrencyFactory currencyFactory)
         {
+            _currencyFactory = currencyFactory;
             _windowService = windowService;
             _ordersService = ordersService;
 
@@ -46,39 +50,33 @@ namespace Code.Gameplay.Features.Orders.Systems
         public void Execute()
         {
             foreach (var game in _gameState)
-            foreach (var entity in _orders.GetEntities(_buffer))
+            foreach (var order in _orders.GetEntities(_buffer))
             {
                 if (_collectedLoot.count != 0)
                     continue;
                 
-                OrderSetup orderDataSetup = entity.OrderData.Setup;
-                entity.isComplete = true;
+                OrderSetup orderDataSetup = order.OrderData.Setup;
+                order.isComplete = true;
 
                 if (_ordersService.OrderPassesConditions())
                 {
-                    entity.isReject = false;
-                    GiveRewardForOrder(orderDataSetup);
+                    order.isReject = false;
+                    GiveRewardForOrder(order, orderDataSetup);
                 }
                 else
                 {
-                    entity.isReject = true;
+                    order.isReject = true;
                 }
-
-                _windowService.Close(WindowTypeId.OrderWindow);
             }
         }
 
-        private static void GiveRewardForOrder(OrderSetup orderDataSetup)
+        private void GiveRewardForOrder(GameEntity order, OrderSetup orderDataSetup)
         {
-            if (orderDataSetup.Reward.CurrencyType is CurrencyTypeId.Gold)
-            {
-                CreateGameEntity
-                    .Empty()
-                    .With(x => x.isAddCurrencyRequest = true)
-                    .AddGold(orderDataSetup.Reward.Amount)
-                    .AddWithdraw(orderDataSetup.Reward.Amount)
-                    ;
-            }
+            float rewardAmount = orderDataSetup.Reward.Amount;
+            rewardAmount *= _ordersService.GetOrderProgress();
+            int rewardRounded = (int)rewardAmount;
+            order.AddOrderReward(new CostSetup(orderDataSetup.Reward.CurrencyType, rewardRounded));
+            _currencyFactory.CreateAddCurrencyRequest(orderDataSetup.Reward.CurrencyType, rewardRounded, rewardRounded);
         }
     }
 }

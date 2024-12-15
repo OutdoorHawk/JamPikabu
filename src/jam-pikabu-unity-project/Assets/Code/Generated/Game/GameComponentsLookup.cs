@@ -97,23 +97,24 @@ public static class GameComponentsLookup {
     public const int NextOrderRequest = 86;
     public const int Order = 87;
     public const int OrderData = 88;
-    public const int Reject = 89;
-    public const int ResultProcessed = 90;
-    public const int DayCompleteRequest = 91;
-    public const int GameOver = 92;
-    public const int Round = 93;
-    public const int RoundComplete = 94;
-    public const int RoundDuration = 95;
-    public const int RoundInProcess = 96;
-    public const int RoundOver = 97;
-    public const int RoundStartAvailable = 98;
-    public const int RoundStartRequest = 99;
-    public const int RoundStateController = 100;
-    public const int RoundStateViewBehaviour = 101;
-    public const int RoundTimeLeft = 102;
-    public const int AudioSourceBehaviour = 103;
+    public const int OrderReward = 89;
+    public const int Reject = 90;
+    public const int ResultProcessed = 91;
+    public const int DayCompleteRequest = 92;
+    public const int GameOver = 93;
+    public const int Round = 94;
+    public const int RoundComplete = 95;
+    public const int RoundDuration = 96;
+    public const int RoundInProcess = 97;
+    public const int RoundOver = 98;
+    public const int RoundStartAvailable = 99;
+    public const int RoundStartRequest = 100;
+    public const int RoundStateController = 101;
+    public const int RoundStateViewBehaviour = 102;
+    public const int RoundTimeLeft = 103;
+    public const int AudioSourceBehaviour = 104;
 
-    public const int TotalComponents = 104;
+    public const int TotalComponents = 105;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -205,6 +206,7 @@ public static class GameComponentsLookup {
         "NextOrderRequest",
         "Order",
         "OrderData",
+        "OrderReward",
         "Reject",
         "ResultProcessed",
         "DayCompleteRequest",
@@ -312,6 +314,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Orders.NextOrderRequest),
         typeof(Code.Gameplay.Features.Orders.Order),
         typeof(Code.Gameplay.Features.Orders.OrderDataComponent),
+        typeof(Code.Gameplay.Features.Orders.OrderReward),
         typeof(Code.Gameplay.Features.Orders.Reject),
         typeof(Code.Gameplay.Features.Orders.ResultProcessed),
         typeof(Code.Gameplay.Features.RoundState.DayCompleteRequest),

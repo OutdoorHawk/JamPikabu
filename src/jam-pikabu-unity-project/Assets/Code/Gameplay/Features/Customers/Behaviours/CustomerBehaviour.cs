@@ -2,6 +2,7 @@
 using Code.Common.Extensions.Animations;
 using Code.Gameplay.Features.Customers.Config;
 using Code.Gameplay.Features.Customers.Service;
+using Code.Gameplay.Features.Orders.Behaviours;
 using Code.Gameplay.Features.Orders.Service;
 using Code.Gameplay.Sound;
 using Code.Gameplay.Sound.Service;
@@ -18,6 +19,7 @@ namespace Code.Gameplay.Features.Customers.Behaviours
         [SerializeField] private Image _customerImage;
         [SerializeField] private Animator _animator;
         [SerializeField] private Animator _bubble;
+        [SerializeField] private OrderViewBehaviour _orderView;
         [SerializeField] private bool _hideOnAwake;
 
         private IDaysService _daysService;
@@ -80,6 +82,7 @@ namespace Code.Gameplay.Features.Customers.Behaviours
 
             _hided = false;
             UpdateSprite();
+            UpdateOrder();
             _soundService.PlayOneShotSound(SoundTypeId.CustomerSwap);
             await _animator.WaitForAnimationCompleteAsync(AnimationParameter.Show.AsHash(), destroyCancellationToken);
             await _bubble.WaitForAnimationCompleteAsync(AnimationParameter.Show.AsHash(), destroyCancellationToken);
@@ -89,6 +92,11 @@ namespace Code.Gameplay.Features.Customers.Behaviours
         {
             CustomerSetup customer = _customersService.GetCustomerSetup();
             _customerImage.sprite = customer.Sprite;
+        }
+
+        private void UpdateOrder()
+        {
+            _orderView.InitOrder();
         }
     }
 }
