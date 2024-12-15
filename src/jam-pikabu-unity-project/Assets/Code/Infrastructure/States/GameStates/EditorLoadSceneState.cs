@@ -36,13 +36,13 @@ namespace Code.Infrastructure.States.GameStates
         {
             if (SceneManager.GetActiveScene().name is nameof(SceneTypeId.BootstrapScene))
             {
-                _gameStateMachine.Enter<LoadMainMenuState>();
+                _gameStateMachine.Enter<LoadMapMenuState>();
                 return;
             }
             
             if (SceneManager.GetActiveScene().name is nameof(SceneTypeId.MapMenu))
             {
-                _gameStateMachine.Enter<LoadMainMenuState>();
+                _gameStateMachine.Enter<LoadMapMenuState>();
             }
             else
             {

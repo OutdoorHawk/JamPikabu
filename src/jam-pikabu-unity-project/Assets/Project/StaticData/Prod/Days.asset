@@ -20,8 +20,8 @@ MonoBehaviour:
     SceneId: 2
     AvailableIngredients: 00000000
     Stars:
-    - RatingAmount: 0
     - RatingAmount: 5
+    - RatingAmount: 10
     - RatingAmount: 20
   - Id: 2
     OrdersAmount: 3

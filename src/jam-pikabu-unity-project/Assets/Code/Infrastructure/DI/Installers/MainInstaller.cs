@@ -99,7 +99,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.BindInterfacesAndSelfTo<BootstrapState>().AsSingle();
             Container.BindInterfacesAndSelfTo<LoadProgressState>().AsSingle();
             Container.BindInterfacesAndSelfTo<EditorLoadSceneState>().AsSingle();
-            Container.BindInterfacesAndSelfTo<LoadMainMenuState>().AsSingle();
+            Container.BindInterfacesAndSelfTo<LoadMapMenuState>().AsSingle();
             Container.BindInterfacesAndSelfTo<MapMenuState>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameEnterState>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameLoopState>().AsSingle();

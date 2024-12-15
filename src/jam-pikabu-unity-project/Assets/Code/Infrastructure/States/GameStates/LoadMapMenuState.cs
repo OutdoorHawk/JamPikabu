@@ -8,14 +8,14 @@ using Zenject;
 
 namespace Code.Infrastructure.States.GameStates
 {
-    public class LoadMainMenuState : SimpleState
+    public class LoadMapMenuState : SimpleState
     {
         private readonly ISceneLoader _sceneLoader;
         private readonly IWindowService _windowService;
         private readonly IGameStateMachine _gameStateMachine;
 
         [Inject]
-        public LoadMainMenuState
+        public LoadMapMenuState
         (
             IGameStateMachine gameStateMachine,
             ISceneLoader sceneLoader,

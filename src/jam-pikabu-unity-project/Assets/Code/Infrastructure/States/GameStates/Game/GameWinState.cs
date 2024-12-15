@@ -29,7 +29,7 @@ namespace Code.Infrastructure.States.GameStates.Game
 
         public override void Enter()
         {
-            _gameStateMachine.Enter<LoadMainMenuState>();
+            _gameStateMachine.Enter<LoadMapMenuState>();
         }
     }
 }

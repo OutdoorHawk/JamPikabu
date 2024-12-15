@@ -53,14 +53,9 @@ namespace Code.Gameplay.Features.GameState.Systems
             {
                 gameState.isStateProcessingAvailable = false;
 
-                CheckGameWinOrLoseConditions(gameState);
+                IncreaseDayAndLoadMap(gameState).Forget();
                 _lootService.ClearCollectedLoot();
             }
-        }
-
-        private void CheckGameWinOrLoseConditions(GameEntity gameState)
-        {
-            IncreaseDayAndLoadMap(gameState).Forget();
         }
 
         private async UniTaskVoid IncreaseDayAndLoadMap(GameEntity state)
@@ -76,7 +71,7 @@ namespace Code.Gameplay.Features.GameState.Systems
 
             _stateMachine.Enter<GameOverState>();
             await UniTask.Yield();
-            _stateMachine.Enter<MapMenuState>();
+            _stateMachine.Enter<LoadMapMenuState>();
         }
 
         public void TearDown()

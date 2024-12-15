@@ -52,17 +52,7 @@ namespace Code.Gameplay.Features.GameState.Systems
         private void CheckDayEndConditions(GameEntity order)
         {
             order.isDestructed = true;
-
-            if (order.isBossOrder)
-            {
-                if (order.isReject)
-                    _gameOverService.GameOver();
-                else
-                    _gameOverService.GameWin();
-
-                return;
-            }
-
+            
             if (_ordersService.CheckAllOrdersCompleted() == false)
             {
                 GoToNextOrder();

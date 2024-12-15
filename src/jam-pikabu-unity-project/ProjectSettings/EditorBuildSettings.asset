@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Project/Scenes/BootstrapScene.unity
     guid: 6ae6b5db976617e4fac2d72d481e3bf4
   - enabled: 1
+    path: Assets/Project/Scenes/MapMenu.unity
+    guid: e0662486c9807ba4896af58d06960786
+  - enabled: 1
     path: Assets/Project/Scenes/Level_1.unity
     guid: b30628fdb00c3fc41ae4535236c84ab5
   - enabled: 1
