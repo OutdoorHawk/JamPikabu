@@ -77,6 +77,16 @@ namespace Code.Gameplay.StaticData
             return _configs[typeof(T)] as T;
         }
 
+        public void RegisterHandler(IConfigsInitHandler handler)
+        {
+            _handlers.Value.Add(handler);
+        }
+        
+        public void UnRegisterHandler(IConfigsInitHandler handler)
+        {
+            _handlers.Value.Remove(handler);
+        }
+
         private void NotifyHandlers()
         {
             foreach (var handler in _handlers.Value)

@@ -31,6 +31,10 @@ MonoBehaviour:
     m_Key: S_COMING_SOON
     m_Metadata:
       m_Items: []
+  - m_Id: 56222672685846528
+    m_Key: S_SHOP
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

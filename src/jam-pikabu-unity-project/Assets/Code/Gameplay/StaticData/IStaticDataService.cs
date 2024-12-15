@@ -4,7 +4,9 @@ namespace Code.Gameplay.StaticData
 {
     public interface IStaticDataService
     {
-        public UniTask Load();
+        UniTask Load();
         T GetStaticData<T>() where T : class;
+        void RegisterHandler(IConfigsInitHandler handler);
+        void UnRegisterHandler(IConfigsInitHandler handler);
     }
 }
