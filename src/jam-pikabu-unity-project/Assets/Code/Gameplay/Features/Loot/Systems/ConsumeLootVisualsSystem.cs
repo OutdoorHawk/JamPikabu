@@ -13,13 +13,13 @@ namespace Code.Gameplay.Features.Loot.Systems
     {
         private readonly IWindowService _windowService;
         private readonly ILootService _lootService;
-        private readonly IGroup<GameEntity> _loot;
+        private readonly IGroup<GameEntity> _consumedLoot;
 
         public ConsumeLootVisualsSystem(GameContext context, IWindowService windowService, ILootService lootService) : base(context)
         {
             _windowService = windowService;
             _lootService = lootService;
-            _loot = context.GetGroup(
+            _consumedLoot = context.GetGroup(
                 GameMatcher.AllOf(
                     GameMatcher.Loot,
                     GameMatcher.Consumed
@@ -54,9 +54,9 @@ namespace Code.Gameplay.Features.Loot.Systems
             _windowService.TryGetWindow<PlayerHUDWindow>(out var window);
             var lootContainer = window.GetComponentInChildren<GameplayLootContainer>();
             
-            await lootContainer.AnimateFlyToVat();
+            await lootContainer.AnimateFlyToVat(_consumedLoot);
 
-            foreach (var loot in _loot)
+            foreach (var loot in _consumedLoot)
                 loot.isDestructed = true;
 
             applier.isDestructed = true;

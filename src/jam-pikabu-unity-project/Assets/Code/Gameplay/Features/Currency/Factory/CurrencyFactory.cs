@@ -65,7 +65,7 @@ namespace Code.Gameplay.Features.Currency.Factory
         {
             GameEntity request = CreateGameEntity.Empty()
                     .With(x => x.isAddCurrencyRequest = true)
-                    .With(x => x.AddWithdraw(withdraw), when: withdraw > 0)
+                    .With(x => x.AddWithdraw(withdraw), when: withdraw != 0)
                 ;
 
             switch (type)

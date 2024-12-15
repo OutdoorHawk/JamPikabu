@@ -1,13 +1,20 @@
 ﻿using System.Collections.Generic;
-using Code.Common.Extensions;
+using System.Linq;
 using Code.Gameplay.Features.Currency;
+using Code.Gameplay.Features.Currency.Behaviours;
+using Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation;
 using Code.Gameplay.Features.Currency.Config;
+using Code.Gameplay.Features.Currency.Factory;
+using Code.Gameplay.Features.HUD;
 using Code.Gameplay.Features.Loot.Service;
 using Code.Gameplay.Features.Loot.UIFactory;
 using Code.Gameplay.Features.Orders;
 using Code.Gameplay.Features.Orders.Config;
 using Code.Gameplay.Features.Orders.Service;
+using Code.Gameplay.Sound;
+using Code.Gameplay.Windows.Service;
 using Cysharp.Threading.Tasks;
+using Entitas;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -23,6 +30,8 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         private ILootService _lootService;
         private ILootItemUIFactory _lootItemUIFactory;
         private IOrdersService _ordersService;
+        private IWindowService _windowService;
+        private ICurrencyFactory _currencyFactory;
 
         public readonly Dictionary<LootTypeId, LootItemUI> ItemsByLootType = new();
 
@@ -33,9 +42,13 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         (
             ILootService lootService,
             ILootItemUIFactory lootUIFactory,
-            IOrdersService ordersService
+            IOrdersService ordersService,
+            IWindowService windowService,
+            ICurrencyFactory currencyFactory
         )
         {
+            _currencyFactory = currencyFactory;
+            _windowService = windowService;
             _ordersService = ordersService;
             _lootItemUIFactory = lootUIFactory;
             _lootService = lootService;
@@ -51,18 +64,19 @@ namespace Code.Gameplay.Features.Loot.Behaviours
             _ordersService.OnOrderUpdated -= RefreshCurrentOrder;
         }
 
-        public async UniTask AnimateFlyToVat()
+        public async UniTask AnimateFlyToVat(IGroup<GameEntity> consumedLoot)
         {
-            await ProcessAnimation();
+            await ProcessAnimation(consumedLoot);
         }
 
-        private async UniTask ProcessAnimation()
+        private async UniTask ProcessAnimation(IGroup<GameEntity> consumedLoot)
         {
             const float interval = 0.25f;
             _tasksBuffer.Clear();
 
             foreach (var lootItemUI in ItemsByLootType.Values)
             {
+                PlayCurrencyAnimation(lootItemUI, consumedLoot);
                 await DelaySeconds(interval, lootItemUI.destroyCancellationToken);
 
                 if (lootItemUI.CollectedAtLeastOne)
@@ -78,6 +92,38 @@ namespace Code.Gameplay.Features.Loot.Behaviours
             }
 
             await UniTask.WhenAll(_tasksBuffer);
+        }
+
+        private void PlayCurrencyAnimation(LootItemUI lootItemUI, IGroup<GameEntity> consumedLoot)
+        {
+            LootTypeId type = lootItemUI.Type;
+
+            IEnumerable<GameEntity> consumed = consumedLoot
+                .GetEntities()
+                .Where(x => x.LootTypeId == type);
+
+            if (_ordersService.TryGetIngredientData(type, out IngredientData data) == false)
+                return;
+
+            _windowService.TryGetWindow(out PlayerHUDWindow window);
+            var progressBar = window.GetComponentInChildren<RatingProgressBar>();
+
+            int countRating = consumed.Sum(loot => loot.Rating * data.RatingFactor);
+
+            if (countRating == 0)
+                return;
+
+            var parameters = new CurrencyAnimationParameters
+            {
+                Type = data.RatingType,
+                Count = countRating,
+                StartPosition = lootItemUI.transform.position,
+                EndPosition = progressBar.Container.position,
+                StartReplenishSound = SoundTypeId.PlusesAdded,
+                StartReplenishCallback = () => _currencyFactory.CreateAddCurrencyRequest(data.RatingType, 0, -countRating)
+            };
+
+            _currencyFactory.PlayCurrencyAnimation(parameters);
         }
 
         private void RefreshCurrentOrder()
@@ -98,14 +144,14 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         private async UniTaskVoid ShowAsync()
         {
             await DelaySeconds(0.85f, destroyCancellationToken);
-            
-            foreach (LootItemUI lootItemUI in ItemsByLootType.Values) 
+
+            foreach (LootItemUI lootItemUI in ItemsByLootType.Values)
                 lootItemUI.Show();
         }
 
         private void ClearList()
         {
-            foreach (LootItemUI lootItemUI in ItemsByLootType.Values) 
+            foreach (LootItemUI lootItemUI in ItemsByLootType.Values)
                 Destroy(lootItemUI.gameObject);
 
             ItemsByLootType.Clear();
@@ -124,7 +170,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
                     CreateBadIngredient(ingredientData, item);
                     break;
             }
-            
+
             ItemsByLootType.Add(ingredientData.TypeId, item);
         }
 

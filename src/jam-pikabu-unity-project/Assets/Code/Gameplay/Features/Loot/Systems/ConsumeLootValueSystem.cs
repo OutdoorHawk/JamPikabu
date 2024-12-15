@@ -45,7 +45,7 @@ namespace Code.Gameplay.Features.Loot.Systems
                     continue;
 
                 int ratingAmount = loot.Rating * data.RatingFactor;
-                _currencyFactory.CreateAddCurrencyRequest(data.RatingType, ratingAmount, 0);
+                _currencyFactory.CreateAddCurrencyRequest(data.RatingType, ratingAmount, ratingAmount);
             }
         }
     }
