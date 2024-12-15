@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Code.Gameplay.Features.GameOver.Service;
 using Code.Gameplay.Features.GameState.Service;
+using Code.Gameplay.Features.Loot.Service;
 using Code.Gameplay.Features.Orders.Service;
 using Entitas;
 
@@ -11,6 +12,7 @@ namespace Code.Gameplay.Features.GameState.Systems
         private readonly IGameStateService _gameStateService;
         private readonly IOrdersService _ordersService;
         private readonly IGameOverService _gameOverService;
+        private readonly ILootService _lootService;
         private readonly IGroup<GameEntity> _entities;
         private readonly IGroup<GameEntity> _activeOrders;
         private readonly List<GameEntity> _buffer = new();
@@ -20,12 +22,14 @@ namespace Code.Gameplay.Features.GameState.Systems
             GameContext context,
             IGameStateService gameStateService,
             IOrdersService ordersService,
-            IGameOverService gameOverService
+            IGameOverService gameOverService,
+            ILootService lootService
         )
         {
             _gameStateService = gameStateService;
             _ordersService = ordersService;
             _gameOverService = gameOverService;
+            _lootService = lootService;
 
             _entities = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.GameState,

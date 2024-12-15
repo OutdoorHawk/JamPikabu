@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Code.Gameplay.Features.GameState.Service;
+using Code.Gameplay.Features.Loot.Service;
 using Code.Infrastructure.States.GameStates.Game;
 using Code.Infrastructure.States.StateMachine;
 using Entitas;
@@ -16,9 +17,17 @@ namespace Code.Gameplay.Features.GameState.Systems
         private readonly IGroup<GameEntity> _busyHook;
         private readonly IGameStateMachine _gameStateMachine;
         private readonly IGroup<GameEntity> _collectedLoot;
+        private readonly ILootService _lootService;
 
-        public ProcessRoundLoopStateSystem(GameContext context, IGameStateService gameStateService, IGameStateMachine gameStateMachine)
+        public ProcessRoundLoopStateSystem
+        (
+            GameContext context, 
+            IGameStateService gameStateService,
+            IGameStateMachine gameStateMachine,
+            ILootService lootService
+            )
         {
+            _lootService = lootService;
             _gameStateMachine = gameStateMachine;
             _gameStateService = gameStateService;
             
@@ -58,7 +67,7 @@ namespace Code.Gameplay.Features.GameState.Systems
 
                 if (CheckLootIsStillBusy())
                     continue;
-
+                
                 entity.isStateProcessingAvailable = false;
                 _gameStateService.AskToSwitchState(newState: GameStateTypeId.RoundCompletion);
             }

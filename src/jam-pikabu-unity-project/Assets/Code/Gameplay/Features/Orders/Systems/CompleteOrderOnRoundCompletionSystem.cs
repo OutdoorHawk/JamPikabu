@@ -4,6 +4,7 @@ using Code.Common.Extensions;
 using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Config;
 using Code.Gameplay.Features.Currency.Factory;
+using Code.Gameplay.Features.Loot.Service;
 using Code.Gameplay.Features.Orders.Config;
 using Code.Gameplay.Features.Orders.Service;
 using Code.Gameplay.Windows;
@@ -22,11 +23,13 @@ namespace Code.Gameplay.Features.Orders.Systems
         private readonly IGroup<GameEntity> _gameState;
         private readonly IGroup<GameEntity> _collectedLoot;
         private readonly ICurrencyFactory _currencyFactory;
+        private readonly ILootService _lootService;
 
         public CompleteOrderOnRoundCompletionSystem(GameContext context, IWindowService windowService
-            , IOrdersService ordersService, ICurrencyFactory currencyFactory)
+            , IOrdersService ordersService, ICurrencyFactory currencyFactory, ILootService lootService)
         {
             _currencyFactory = currencyFactory;
+            _lootService = lootService;
             _windowService = windowService;
             _ordersService = ordersService;
 
@@ -53,6 +56,9 @@ namespace Code.Gameplay.Features.Orders.Systems
             foreach (var order in _orders.GetEntities(_buffer))
             {
                 if (_collectedLoot.count != 0)
+                    continue;
+
+                if (_lootService.LootIsBusy)
                     continue;
                 
                 OrderSetup orderDataSetup = order.OrderData.Setup;

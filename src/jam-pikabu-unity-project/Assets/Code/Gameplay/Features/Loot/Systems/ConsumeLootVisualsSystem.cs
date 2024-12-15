@@ -5,7 +5,6 @@ using Code.Gameplay.Features.Loot.Service;
 using Code.Gameplay.Windows.Service;
 using Cysharp.Threading.Tasks;
 using Entitas;
-using static Code.Common.Extensions.AsyncGameplayExtensions;
 
 namespace Code.Gameplay.Features.Loot.Systems
 {
@@ -50,11 +49,11 @@ namespace Code.Gameplay.Features.Loot.Systems
         private async UniTaskVoid AnimateAsync(GameEntity applier)
         {
             _lootService.SetLootIsConsumingState(true);
-            
+
             _windowService.TryGetWindow<PlayerHUDWindow>(out var hud);
             var lootContainer = hud.GetComponentInChildren<GameplayLootContainer>();
             var orderView = hud.OrderViewBehaviour;
-            
+
             await lootContainer.AnimateFlyToVat(_consumedLoot);
             orderView.InitOrderFillProgress();
 
