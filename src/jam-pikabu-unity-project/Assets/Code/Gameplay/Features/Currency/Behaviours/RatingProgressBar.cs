@@ -91,7 +91,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours
 
             _items.Clear();
 
-            _maxRatingInDay = values[^1].RatingAmount;
+            _maxRatingInDay = values[^1].RatingAmountNeed;
 
             foreach (DayStarData value in values)
             {
@@ -107,7 +107,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours
             element.Init(in data);
 
             // Расчет позиции в прогресс-баре
-            float normalizedPosition = (float)data.RatingAmount / _maxRatingInDay; // Значение от 0 до 1
+            float normalizedPosition = (float)data.RatingAmountNeed / _maxRatingInDay; // Значение от 0 до 1
             float xPosition = normalizedPosition * AnchorBack.rect.width;
 
             // Устанавливаем позицию элемента

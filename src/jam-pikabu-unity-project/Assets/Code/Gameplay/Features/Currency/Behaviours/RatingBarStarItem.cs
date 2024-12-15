@@ -34,8 +34,8 @@ namespace Code.Gameplay.Features.Currency.Behaviours
 
         public void Init(in DayStarData data)
         {
-            Amount.text = data.RatingAmount.ToString();
-            RatingAmount = data.RatingAmount;
+            Amount.text = data.RatingAmountNeed.ToString();
+            RatingAmount = data.RatingAmountNeed;
         }
         
         public void PlayReplenish()

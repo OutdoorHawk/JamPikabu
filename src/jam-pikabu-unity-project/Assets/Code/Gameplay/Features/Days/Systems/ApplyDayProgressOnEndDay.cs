@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Code.Common.Entity;
 using Code.Common.Extensions;
+using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Service;
 using Code.Progress.SaveLoadService;
 using Entitas;
@@ -12,6 +14,8 @@ namespace Code.Gameplay.Features.Days.Systems
         private readonly ISaveLoadService _saveLoadService;
         private readonly IDaysService _daysService;
         private readonly IGroup<MetaEntity> _days;
+        private readonly IGroup<GameEntity> _ratingPlus;
+        private readonly IGroup<GameEntity> _ratingMinus;
 
         public ApplyDayProgressOnEndDay(GameContext context, MetaContext meta,
             ISaveLoadService saveLoadService, IDaysService daysService) : base(context)
@@ -20,6 +24,8 @@ namespace Code.Gameplay.Features.Days.Systems
             _daysService = daysService;
 
             _days = meta.GetGroup(MetaMatcher.Day);
+            _ratingPlus = context.GetGroup(GameMatcher.AllOf(GameMatcher.CurrencyStorage, GameMatcher.Plus));
+            _ratingMinus = context.GetGroup(GameMatcher.AllOf(GameMatcher.CurrencyStorage, GameMatcher.Minus));
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
@@ -36,18 +42,9 @@ namespace Code.Gameplay.Features.Days.Systems
 
         protected override void Execute(List<GameEntity> entities)
         {
-            MetaEntity day = TryFindExistingDay();
+            MetaEntity day = TryFindExistingDay() ?? CreateNewDayProgressEntity();
 
-            if (day != null)
-            {
-                day.ReplaceStarsAmount(0); //TODO: STAR COUNT
-            }
-            else
-            {
-                CreateMetaEntity.Empty()
-                    .With(x => x.AddDay(_daysService.CurrentDay))
-                    .ReplaceStarsAmount(0);
-            }
+            UpdateStarsAmount(day);
 
             _saveLoadService.SaveProgress();
         }
@@ -63,6 +60,23 @@ namespace Code.Gameplay.Features.Days.Systems
             }
 
             return null;
+        }
+
+        private MetaEntity CreateNewDayProgressEntity()
+        {
+            return CreateMetaEntity.Empty()
+                .With(x => x.AddDay(_daysService.CurrentDay))
+                .AddStarsAmount(0);
+        }
+
+        private void UpdateStarsAmount(MetaEntity day)
+        {
+            DayData data = _daysService.GetDayData();
+            int totalRating = _ratingPlus.GetEntities().Sum(x => x.Plus) - _ratingMinus.GetEntities().Sum(x => x.Minus);
+            int starsCount = data.Stars.Count(starData => totalRating >= starData.RatingAmountNeed);
+
+            if (starsCount > day.StarsAmount)
+                day.ReplaceStarsAmount(starsCount);
         }
     }
 }
