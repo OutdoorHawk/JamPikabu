@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Code.Gameplay.StaticData.Data;
+﻿using Code.Gameplay.StaticData.Data;
 using UnityEngine;
 
 namespace Code.Meta.Features.Days.Configs
@@ -8,8 +7,6 @@ namespace Code.Meta.Features.Days.Configs
     public class DaysStaticData : BaseStaticData<DayData>
     {
         public int StartGoldAmount = 0;
-
-        public List<DayData> Days;
 
         public override void OnConfigInit()
         {

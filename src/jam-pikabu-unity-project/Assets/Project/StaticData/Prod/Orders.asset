@@ -17,8 +17,8 @@ MonoBehaviour:
     Setup:
       OrderIcon: {fileID: 21300000, guid: 3451bf123b94ad14089220c2800c8be3, type: 3}
       Reward:
-        CurrencyType: 4
-        Amount: 1
+        CurrencyType: 1
+        Amount: 15
       MinMaxDayToUnlock: {x: 0, y: 0}
       MinMaxAmount: {x: 1, y: 1}
       MinMaxGoodIngredients: {x: 8, y: 8}
@@ -32,7 +32,7 @@ MonoBehaviour:
         Amount: 4
       MinMaxDayToUnlock: {x: 0, y: 0}
       MinMaxAmount: {x: 1, y: 5}
-      MinMaxGoodIngredients: {x: 1, y: 2}
+      MinMaxGoodIngredients: {x: 2, y: 3}
       MinMaxBadIngredients: {x: 0, y: 0}
       MinMaxIngredientsRatingFactor: {x: 1, y: 1}
   - Id: 3
@@ -43,7 +43,7 @@ MonoBehaviour:
         Amount: 6
       MinMaxDayToUnlock: {x: 0, y: 0}
       MinMaxAmount: {x: 1, y: 5}
-      MinMaxGoodIngredients: {x: 1, y: 2}
+      MinMaxGoodIngredients: {x: 2, y: 3}
       MinMaxBadIngredients: {x: 0, y: 0}
       MinMaxIngredientsRatingFactor: {x: 1, y: 1}
   - Id: 4

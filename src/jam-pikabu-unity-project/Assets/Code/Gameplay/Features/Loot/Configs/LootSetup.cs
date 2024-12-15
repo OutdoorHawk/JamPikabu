@@ -16,6 +16,6 @@ namespace Code.Gameplay.Features.Loot.Configs
         public int MaxDayToUnlock;
         public float Size = 1;
         public float ColliderSize = 0.9f;
-        public int BaseRatingValue = 10;
+        public int BaseRatingValue = 1;
     }
 }
