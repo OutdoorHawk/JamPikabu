@@ -33,7 +33,6 @@ namespace Code.Gameplay.Features
             Add(systems.Create<ActiveRoundProcessingFeature>());
 
             Add(systems.Create<LootSpawningFeature>());
-            Add(systems.Create<LootPickupSystem>());
             Add(systems.Create<LootConsumeFeature>());
             
             Add(systems.Create<OrdersFeature>());

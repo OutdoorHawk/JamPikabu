@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Code.Common;
-using Code.Common.Extensions;
 using Code.Gameplay.Features.HUD;
 using Code.Gameplay.Features.Loot.Behaviours;
 using Code.Gameplay.Features.Loot.Configs;
