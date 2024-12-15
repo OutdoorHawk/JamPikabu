@@ -6,7 +6,7 @@ namespace Code.Gameplay.StaticData.Data
 {
     public abstract class BaseStaticData<T> : BaseStaticData where T : BaseData
     {
-        [PropertyOrder(99), ListDrawerSettings(CustomAddFunction = nameof(OnAddNewConfig))] public List<T> Configs;
+        [PropertyOrder(99)] public List<T> Configs;
 
         private readonly Dictionary<int, T> _data = new();
 
@@ -28,16 +28,6 @@ namespace Code.Gameplay.StaticData.Data
         {
             _data.TryGetValue(key, out var value);
             return value;
-        }
-
-        private T OnAddNewConfig()
-        {
-            var onAddNewConfig = Activator.CreateInstance<T>();
-
-            if (onAddNewConfig is BaseData baseData)
-                baseData.Id = Configs.Count;
-
-            return onAddNewConfig;
         }
 
         private void OnValidate()

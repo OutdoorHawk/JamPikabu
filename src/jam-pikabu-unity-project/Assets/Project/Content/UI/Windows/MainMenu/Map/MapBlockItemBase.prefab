@@ -194,6 +194,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3666934895448133161}
+  - component: {fileID: 6304370665381783916}
   m_Layer: 5
   m_Name: MapBlockItemBase
   m_TagString: Untagged
@@ -221,6 +222,19 @@ RectTransform:
   m_AnchoredPosition: {x: 960, y: -316.91864}
   m_SizeDelta: {x: 500, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6304370665381783916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3672960233091212803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84bb4ab6217d4506b8a2a8fdd505b465, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LevelsParent: {fileID: 6129235697990110009}
 --- !u!1 &5688183724921920573
 GameObject:
   m_ObjectHideFlags: 0

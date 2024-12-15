@@ -42,6 +42,7 @@ using Code.Infrastructure.Systems;
 using Code.Infrastructure.View.Factory;
 using Code.Meta.Features.Days.Factory;
 using Code.Meta.Features.Days.Service;
+using Code.Meta.Features.MainMenu.Service;
 using Code.Meta.UI.HardCurrencyHolder.Service;
 using Code.Meta.UI.Shop.Factory;
 using Code.Meta.UI.Shop.Service;
@@ -139,6 +140,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.BindInterfacesTo<OrdersService>().AsSingle();
             Container.BindInterfacesTo<CustomersService>().AsSingle();
             Container.BindInterfacesTo<GameStateService>().AsSingle();
+            Container.BindInterfacesTo<MapMenuService>().AsSingle();
             Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
             Container.Bind<IMousePositionService>().To<MousePositionService>().AsSingle();
             Container.Bind<ICameraProvider>().To<CameraProvider>().AsSingle();
