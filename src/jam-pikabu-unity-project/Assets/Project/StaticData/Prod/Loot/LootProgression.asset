@@ -14,24 +14,79 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Configs:
   - Id: 1
-    Type: 2
+    Type: 3
     Levels:
     - RatingBoostAmount: 0
       Cost:
         CurrencyType: 1
         Amount: 0
-    - RatingBoostAmount: 5
+    - RatingBoostAmount: 1
       Cost:
         CurrencyType: 1
-        Amount: 0
-    - RatingBoostAmount: 10
+        Amount: 5
+    - RatingBoostAmount: 3
       Cost:
         CurrencyType: 1
-        Amount: 0
-    - RatingBoostAmount: 15
+        Amount: 12
+    - RatingBoostAmount: 4
       Cost:
         CurrencyType: 1
-        Amount: 0
+        Amount: 10
   - Id: 2
-    Type: 12
-    Levels: []
+    Type: 4
+    Levels:
+    - RatingBoostAmount: 0
+      Cost:
+        CurrencyType: 1
+        Amount: 0
+    - RatingBoostAmount: 1
+      Cost:
+        CurrencyType: 1
+        Amount: 5
+    - RatingBoostAmount: 3
+      Cost:
+        CurrencyType: 1
+        Amount: 12
+    - RatingBoostAmount: 4
+      Cost:
+        CurrencyType: 1
+        Amount: 10
+  - Id: 3
+    Type: 5
+    Levels:
+    - RatingBoostAmount: 0
+      Cost:
+        CurrencyType: 1
+        Amount: 0
+    - RatingBoostAmount: 1
+      Cost:
+        CurrencyType: 1
+        Amount: 5
+    - RatingBoostAmount: 3
+      Cost:
+        CurrencyType: 1
+        Amount: 12
+    - RatingBoostAmount: 4
+      Cost:
+        CurrencyType: 1
+        Amount: 10
+  - Id: 4
+    Type: 6
+    Levels:
+    - RatingBoostAmount: 0
+      Cost:
+        CurrencyType: 1
+        Amount: 0
+    - RatingBoostAmount: 1
+      Cost:
+        CurrencyType: 1
+        Amount: 5
+    - RatingBoostAmount: 3
+      Cost:
+        CurrencyType: 1
+        Amount: 12
+    - RatingBoostAmount: 4
+      Cost:
+        CurrencyType: 1
+        Amount: 10
+  StartGameUnlockedLoot: 03000000040000000500000006000000

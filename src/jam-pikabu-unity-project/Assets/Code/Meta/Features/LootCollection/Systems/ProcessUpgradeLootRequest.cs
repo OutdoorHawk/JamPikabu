@@ -1,4 +1,3 @@
-using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Factory;
 using Code.Meta.Features.LootCollection.Service;
 using Entitas;
@@ -39,21 +38,26 @@ namespace Code.Meta.Features.LootCollection.Systems
         public void Execute()
         {
             foreach (MetaEntity request in _requests)
-            foreach (MetaEntity storage in _storages)
             foreach (MetaEntity loot in _lootCollection)
             {
-                request.isDestructed = true;
-
-                if (request.Gold < storage.Gold)
+                if (request.LootTypeId != loot.LootTypeId)
                     continue;
-                
-                ProcessUpgrade(request, loot);
+
+                foreach (MetaEntity storage in _storages)
+                {
+                    request.isDestructed = true;
+
+                    if (storage.Gold < request.Gold)
+                        continue;
+
+                    storage.ReplaceGold(storage.Gold - request.Gold);
+                    ProcessUpgrade(loot);
+                }
             }
         }
 
-        private void ProcessUpgrade(MetaEntity request, MetaEntity loot)
+        private void ProcessUpgrade(MetaEntity loot)
         {
-            _currencyFactory.CreateAddCurrencyRequest(CurrencyTypeId.Gold, -request.Gold);
             int newLevel = loot.Level + 1;
             loot.ReplaceLevel(newLevel);
             _lootCollectionService.LootUpgraded(loot.LootTypeId, newLevel: newLevel);

@@ -65,7 +65,7 @@ namespace Code.Meta.UI.Shop.Templates.UpgradeLoot
 
             foreach (LootItemCollectionData item in _lootCollectionService.LootProgression.Values)
             {
-                var instance = _instantiator.InstantiatePrefabForComponent<GameObject>(prefab.Prefab, Layout.transform);
+                var instance = _instantiator.InstantiatePrefab(prefab.Prefab, Layout.transform);
                 var upgradeItem = instance.GetComponent<LootUpgradeShopItem>();
                 upgradeItem.Init(in item);
                 _items.Add(upgradeItem);

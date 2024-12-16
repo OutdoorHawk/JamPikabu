@@ -12,6 +12,7 @@ using Code.Meta.Features.LootCollection.Configs;
 using Code.Meta.UI.Common;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.UI;
 using Zenject;
 
@@ -25,16 +26,18 @@ namespace Code.Meta.UI.Shop.Templates.UpgradeLoot
         public PriceInfo UpgradePrice;
         public PriceInfo RatingFrom;
         public PriceInfo RatingTo;
+        public LootTypeId TypeId;
 
         private IStaticDataService _staticData;
         private IGameplayCurrencyService _gameplayCurrencyService;
-        
+
         private CostSetup _upgradePrice;
 
-        public LootTypeId Type { get; private set; }
+        public LootTypeId Type => TypeId;
+        public bool MaxLevelReached { get; private set; }
         private LootSettingsStaticData LootSettings => _staticData.GetStaticData<LootSettingsStaticData>();
         private LootProgressionStaticData ProgressionStaticData => _staticData.GetStaticData<LootProgressionStaticData>();
-        
+
         [Inject]
         private void Construct(IStaticDataService staticData, IGameplayCurrencyService gameplayCurrencyService)
         {
@@ -57,8 +60,12 @@ namespace Code.Meta.UI.Shop.Templates.UpgradeLoot
         public void Init(in LootItemCollectionData item)
         {
             Icon.sprite = LootSettings.GetConfig(item.Type).Icon;
-            Name.text = LootSettings.GetConfig(item.Type).LocalizedName.GetLocalizedString();
-            Type = item.Type;
+            TypeId = item.Type;
+            
+            LocalizedString localizedString = LootSettings.GetConfig(item.Type).LocalizedName;
+            if (localizedString.IsEmpty == false)
+                Name.text = localizedString.GetLocalizedString();
+            
             InitCurrentLevel(in item);
             InitNextLevel(in item);
             InitUpgradePrice(in item);
@@ -82,10 +89,11 @@ namespace Code.Meta.UI.Shop.Templates.UpgradeLoot
 
             if (item.Level + 1 >= levels.Count)
             {
-                InitMaxLevelReached();
+                MaxLevelReached = true;
                 return;
             }
 
+            MaxLevelReached = false;
             LootLevelData nextLevel = levels[item.Level + 1];
             RatingTo.SetupPrice(nextLevel.RatingBoostAmount, CurrencyTypeId.Plus);
         }
@@ -93,7 +101,7 @@ namespace Code.Meta.UI.Shop.Templates.UpgradeLoot
         private void InitUpgradePrice(in LootItemCollectionData item)
         {
             _upgradePrice = null;
-            
+
             List<LootLevelData> levels = ProgressionStaticData.GetConfig(item.Type).Levels;
 
             if (item.Level >= levels.Count)
@@ -104,26 +112,50 @@ namespace Code.Meta.UI.Shop.Templates.UpgradeLoot
             _upgradePrice = currentLevel.Cost;
         }
 
-        private void InitMaxLevelReached()
-        {
-            UpgradeButton.interactable = false;
-            RatingTo.DisableElement();
-        }
-
         private void UpdateAvailable()
         {
+            ResetAll();
+            
             if (_upgradePrice == null)
+                return;
+
+            if (MaxLevelReached)
             {
-                SetUpgradeLocked();
+                SetMaxLevelReached();
                 return;
             }
-            
+
             int goldAmount = _gameplayCurrencyService.GetCurrencyOfType(_upgradePrice.CurrencyType);
-            
+
             if (goldAmount >= _upgradePrice.Amount)
                 SetCanUpgrade();
             else
-                SetUpgradeLocked();
+                SetNoMoneyForUpgrade();
+        }
+
+        private void ResetAll()
+        {
+            UpgradePrice.DisableElement();
+            RatingTo.DisableElement();
+            UpgradeButton.interactable = false;
+        }
+
+        private void SetMaxLevelReached()
+        {
+         
+        }
+
+        private void SetNoMoneyForUpgrade()
+        {
+            UpgradePrice.EnableElement();
+            RatingTo.EnableElement();
+        }
+
+        private void SetCanUpgrade()
+        {
+            UpgradePrice.EnableElement();
+            RatingTo.EnableElement();
+            UpgradeButton.interactable = true;
         }
 
         private void RefreshState()
@@ -139,16 +171,6 @@ namespace Code.Meta.UI.Shop.Templates.UpgradeLoot
                 .AddLootTypeId(Type)
                 .AddGold(_upgradePrice.Amount)
                 ;
-        }
-
-        private void SetCanUpgrade()
-        {
-            UpgradeButton.interactable = true;
-        }
-
-        private void SetUpgradeLocked()
-        {
-            UpgradeButton.interactable = false;
         }
     }
 }
