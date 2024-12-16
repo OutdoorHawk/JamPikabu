@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Configs:
   - Id: 1
+    StarsNeedToUnlock: 0
     OrdersAmount: 2
     RoundDuration: 15
     IsBossDay: 0
@@ -24,6 +25,7 @@ MonoBehaviour:
     - RatingAmountNeed: 2
     - RatingAmountNeed: 5
   - Id: 2
+    StarsNeedToUnlock: 3
     OrdersAmount: 3
     RoundDuration: 20
     IsBossDay: 0
@@ -34,6 +36,7 @@ MonoBehaviour:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
   - Id: 3
+    StarsNeedToUnlock: 5
     OrdersAmount: 4
     RoundDuration: 20
     IsBossDay: 0
@@ -44,10 +47,22 @@ MonoBehaviour:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
   - Id: 4
+    StarsNeedToUnlock: 10
     OrdersAmount: 1
     RoundDuration: 45
     IsBossDay: 0
     SceneId: 3
+    AvailableIngredients: 
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+  - Id: 5
+    StarsNeedToUnlock: 15
+    OrdersAmount: 0
+    RoundDuration: 20
+    IsBossDay: 0
+    SceneId: 2
     AvailableIngredients: 
     Stars:
     - RatingAmountNeed: 0

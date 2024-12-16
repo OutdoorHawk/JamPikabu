@@ -10,10 +10,11 @@ namespace Code.Progress.Writer
 
         public bool HasSavedProgress()
         {
-            if (GP_Init.isReady == false)
-                return PlayerPrefs.HasKey(PROGRESS_KEY);
-
-            if (GP_Player.Has(PROGRESS_KEY) || PlayerPrefs.HasKey(PROGRESS_KEY))
+#if !UNITY_EDITOR
+            if (GP_Init.isReady && GP_Player.Has(PROGRESS_KEY))
+                return true;
+#endif
+            if (PlayerPrefs.HasKey(PROGRESS_KEY))
                 return true;
 
             return false;
@@ -35,13 +36,14 @@ namespace Code.Progress.Writer
 
         public T ReadProgress<T>() where T : class
         {
-            string progress;
+            string progress = PlayerPrefs.GetString(PROGRESS_KEY);
 
+#if !UNITY_EDITOR
             if (GP_Init.isReady && GP_Player.Has(PROGRESS_KEY))
+            {
                 progress = GP_Player.GetString(PROGRESS_KEY);
-            else
-                progress = PlayerPrefs.GetString(PROGRESS_KEY);
-
+            }
+#endif
             return progress.FromJson<T>();
         }
 
