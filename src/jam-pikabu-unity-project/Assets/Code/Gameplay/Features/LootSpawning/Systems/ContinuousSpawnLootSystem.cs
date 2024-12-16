@@ -22,7 +22,7 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
 
         private int _currentConfig;
 
-        private LootStaticData LootStaticData => _staticDataService.GetStaticData<LootStaticData>();
+        private LootSettingsStaticData LootStaticData => _staticDataService.GetStaticData<LootSettingsStaticData>();
 
         public ContinuousSpawnLootSystem(GameContext context, IStaticDataService staticDataService,
             ISceneContextProvider provider, ILootService lootService, ILootFactory lootFactory)
@@ -49,7 +49,7 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
         {
             foreach (var entity in _entities.GetEntities(_buffer))
             {
-                LootStaticData staticData = LootStaticData;
+                LootSettingsStaticData staticData = LootStaticData;
 
                 if (_activeLoot.GetEntities().Length >= LootStaticData.MaxLootAmount)
                     continue;

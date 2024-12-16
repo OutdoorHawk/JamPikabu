@@ -78,7 +78,7 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
         private async UniTaskVoid SpawnLootAsync(GameEntity lootSpawner)
         {
             int lootSpawnerId = lootSpawner.Id;
-            var staticData = _staticDataService.GetStaticData<LootStaticData>();
+            var staticData = _staticDataService.GetStaticData<LootSettingsStaticData>();
 
             SceneContextComponent sceneContext = _provider.Context;
 
@@ -96,7 +96,7 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
             spawner.isComplete = true;
         }
 
-        private async UniTask ProcessLootSpawn(LootStaticData staticData, SceneContextComponent sceneContext)
+        private async UniTask ProcessLootSpawn(LootSettingsStaticData staticData, SceneContextComponent sceneContext)
         {
             float lootSpawnAmount = staticData.MaxLootAmount / _lootService.AvailableLoot.Count;
 

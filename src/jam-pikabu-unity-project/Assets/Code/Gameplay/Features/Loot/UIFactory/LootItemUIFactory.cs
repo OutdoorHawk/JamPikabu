@@ -20,7 +20,7 @@ namespace Code.Gameplay.Features.Loot.UIFactory
 
         public LootItemUI CreateLootItem(Transform parent, in IngredientData ingredientData)
         {
-            var lootStaticData = _staticData.GetStaticData<LootStaticData>();
+            var lootStaticData = _staticData.GetStaticData<LootSettingsStaticData>();
             var prefab = lootStaticData.LootItemUI;
             var lootItemUI = _instantiator.InstantiatePrefabForComponent<LootItemUI>(prefab, parent);
             var lootSetup = lootStaticData.GetConfig(ingredientData.TypeId);

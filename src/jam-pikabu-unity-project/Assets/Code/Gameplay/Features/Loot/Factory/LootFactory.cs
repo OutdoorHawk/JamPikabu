@@ -71,7 +71,7 @@ namespace Code.Gameplay.Features.Loot.Factory
         private GameEntity CreateBaseLoot(LootTypeId typeId, Transform parent, Vector2 at, Vector3 spawnRotation)
         {
             LootSetup lootSetup = GetLootSetup(typeId);
-            var staticData = _staticDataService.GetStaticData<LootStaticData>();
+            var staticData = _staticDataService.GetStaticData<LootSettingsStaticData>();
 
             GameEntity loot = CreateGameEntity.Empty()
                     .With(x => x.isLoot = true)
@@ -90,7 +90,7 @@ namespace Code.Gameplay.Features.Loot.Factory
 
         private LootSetup GetLootSetup(LootTypeId typeId)
         {
-            var staticData = _staticDataService.GetStaticData<LootStaticData>();
+            var staticData = _staticDataService.GetStaticData<LootSettingsStaticData>();
             var lootSetup = staticData.GetConfig(typeId);
             return lootSetup;
         }

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae18e344aba742529e8dd3cc9ddaed96, type: 3}
-  m_Name: Loot
+  m_Name: LootSettings
   m_EditorClassIdentifier: 
   Configs:
   - Id: 1
@@ -20,7 +20,7 @@ MonoBehaviour:
     MinDayToUnlock: 0
     MaxDayToUnlock: 0
     Size: 1
-    ColliderSize: 0.85
+    ColliderSize: 0.8
     BaseRatingValue: 1
   - Id: 2
     Type: 12
@@ -29,7 +29,7 @@ MonoBehaviour:
     MinDayToUnlock: 0
     MaxDayToUnlock: 0
     Size: 1
-    ColliderSize: 0.85
+    ColliderSize: 0.8
     BaseRatingValue: 1
   - Id: 3
     Type: 11
@@ -38,7 +38,7 @@ MonoBehaviour:
     MinDayToUnlock: 2
     MaxDayToUnlock: 0
     Size: 1
-    ColliderSize: 0.85
+    ColliderSize: 0.8
     BaseRatingValue: 1
   - Id: 4
     Type: 10
@@ -47,7 +47,7 @@ MonoBehaviour:
     MinDayToUnlock: 2
     MaxDayToUnlock: 0
     Size: 1
-    ColliderSize: 0.85
+    ColliderSize: 0.8
     BaseRatingValue: 1
   - Id: 5
     Type: 8
@@ -56,7 +56,7 @@ MonoBehaviour:
     MinDayToUnlock: 0
     MaxDayToUnlock: 0
     Size: 1
-    ColliderSize: 0.85
+    ColliderSize: 0.8
     BaseRatingValue: 1
   - Id: 6
     Type: 5
@@ -65,7 +65,7 @@ MonoBehaviour:
     MinDayToUnlock: 2
     MaxDayToUnlock: 0
     Size: 1
-    ColliderSize: 0.85
+    ColliderSize: 0.8
     BaseRatingValue: 1
   - Id: 7
     Type: 6
@@ -74,7 +74,7 @@ MonoBehaviour:
     MinDayToUnlock: 2
     MaxDayToUnlock: 0
     Size: 1
-    ColliderSize: 0.85
+    ColliderSize: 0.8
     BaseRatingValue: 1
   - Id: 8
     Type: 3
@@ -83,7 +83,7 @@ MonoBehaviour:
     MinDayToUnlock: 0
     MaxDayToUnlock: 0
     Size: 1
-    ColliderSize: 0.85
+    ColliderSize: 0.8
     BaseRatingValue: 1
   - Id: 9
     Type: 2
@@ -92,7 +92,7 @@ MonoBehaviour:
     MinDayToUnlock: 3
     MaxDayToUnlock: 0
     Size: 1
-    ColliderSize: 0.85
+    ColliderSize: 0.8
     BaseRatingValue: 1
   - Id: 10
     Type: 16
@@ -101,7 +101,7 @@ MonoBehaviour:
     MinDayToUnlock: 4
     MaxDayToUnlock: 0
     Size: 1
-    ColliderSize: 0.85
+    ColliderSize: 0.8
     BaseRatingValue: 1
   - Id: 11
     Type: 14
@@ -110,7 +110,7 @@ MonoBehaviour:
     MinDayToUnlock: 3
     MaxDayToUnlock: 0
     Size: 1
-    ColliderSize: 0.85
+    ColliderSize: 0.8
     BaseRatingValue: 1
   - Id: 12
     Type: 15
@@ -119,7 +119,7 @@ MonoBehaviour:
     MinDayToUnlock: 4
     MaxDayToUnlock: 0
     Size: 1
-    ColliderSize: 0.85
+    ColliderSize: 0.8
     BaseRatingValue: 1
   - Id: 13
     Type: 4
@@ -128,7 +128,7 @@ MonoBehaviour:
     MinDayToUnlock: 2
     MaxDayToUnlock: 0
     Size: 1
-    ColliderSize: 0.85
+    ColliderSize: 0.8
     BaseRatingValue: 1
   - Id: 14
     Type: 9
@@ -137,22 +137,22 @@ MonoBehaviour:
     MinDayToUnlock: 3
     MaxDayToUnlock: 0
     Size: 1
-    ColliderSize: 0.9
+    ColliderSize: 0.8
     BaseRatingValue: 1
-  - Id: 0
+  - Id: 15
     Type: 17
     ViewPrefab: {fileID: 0}
     Icon: {fileID: 21300000, guid: e61f33ab3dd737a4b83d5a709a9fdc8a, type: 3}
     MinDayToUnlock: 3
     MaxDayToUnlock: 0
     Size: 1
-    ColliderSize: 0.9
+    ColliderSize: 0.8
     BaseRatingValue: 1
   LootSpawnInterval: 0.02
   LootSpawnConveyorInterval: 0.5
   LootSpawnStartDelay: 0.15
   DelayAfterLootSpawn: 0.4
-  MaxLootAmount: 40
+  MaxLootAmount: 50
   CollectFlyAnimationDuration: 0.5
   CollectFlyMinMaxJump: {x: -1, y: 2}
   LootItemUI: {fileID: 6122044623407222926, guid: 17a9554d4999c3b43a5c2052ad4cdf08,

@@ -27,6 +27,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - DevStaticData
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 47e4baa73aaf0e144afa956b01f393cf
+    m_Address: LootSettings
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DevStaticData
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4b5fb69db4cc8b54fbed34cea530fd40
     m_Address: Tutorial
     m_ReadOnly: 0
@@ -39,14 +45,14 @@ MonoBehaviour:
     m_SerializedLabels:
     - DevStaticData
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 83563980ba52d584694b769af5ca99ef
-    m_Address: Loot
+  - m_GUID: 9d8af480cdb254b46a27827e90a31137
+    m_Address: Days
     m_ReadOnly: 0
     m_SerializedLabels:
     - DevStaticData
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9d8af480cdb254b46a27827e90a31137
-    m_Address: Days
+  - m_GUID: b17a3303094272a4486efd6bd1774dfe
+    m_Address: LootProgression
     m_ReadOnly: 0
     m_SerializedLabels:
     - DevStaticData

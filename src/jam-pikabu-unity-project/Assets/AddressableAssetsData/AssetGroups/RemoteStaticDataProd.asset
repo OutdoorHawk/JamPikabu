@@ -27,6 +27,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - ProdStaticData
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3f49ce273dd3bcf48b79895914a39142
+    m_Address: LootProgression
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ProdStaticData
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 51bae8d9fb54fb049b39700df178822c
     m_Address: GrapplingHook
     m_ReadOnly: 0
@@ -64,7 +70,7 @@ MonoBehaviour:
     - ProdStaticData
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d1c851350d7d8b345b3c20ef3cde1e87
-    m_Address: Loot
+    m_Address: LootSettings
     m_ReadOnly: 0
     m_SerializedLabels:
     - ProdStaticData

@@ -11,9 +11,7 @@ namespace Code.Gameplay.Features.Loot.Configs
     {
         public LootTypeId Type;
         [HideInInspector] public EntityView ViewPrefab;
-         [PreviewField] public Sprite Icon;
-        [FoldoutGroup("Data")] public int MinDayToUnlock;
-        [FoldoutGroup("Data")] public int MaxDayToUnlock;
+        [PreviewField] public Sprite Icon;
         [FoldoutGroup("Data")] public float Size = 1;
         [FoldoutGroup("Data")] public float ColliderSize = 0.9f;
         [FoldoutGroup("Data")] public int BaseRatingValue = 1;

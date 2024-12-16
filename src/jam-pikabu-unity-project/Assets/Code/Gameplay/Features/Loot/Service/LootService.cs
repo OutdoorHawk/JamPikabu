@@ -66,30 +66,14 @@ namespace Code.Gameplay.Features.Loot.Service
 
         private void InitLootBufferInternal()
         {
-            List<LootSetup> configs = _staticDataService.GetStaticData<LootStaticData>().Configs;
-            int currentDay = _daysService.CurrentDay;
+            var staticData = _staticDataService.GetStaticData<LootSettingsStaticData>();
+            var currentDay = _daysService.GetDayData();
 
             _availableLoot.Clear();
-            foreach (var config in configs)
+            foreach (LootTypeId lootTypeId in currentDay.AvailableIngredients)
             {
-                if (CheckMinDayToUnlock(config, currentDay))
-                    continue;
-
-                if (CheckMaxDayToUnlock(config, currentDay))
-                    continue;
-
-                _availableLoot.Add(config);
+                _availableLoot.Add(staticData.GetConfig(lootTypeId));
             }
-        }
-
-        private static bool CheckMinDayToUnlock(LootSetup data, int currentDay)
-        {
-            return data.MinDayToUnlock > 0 && currentDay < data.MinDayToUnlock;
-        }
-
-        private static bool CheckMaxDayToUnlock(LootSetup data, int currentDay)
-        {
-            return data.MaxDayToUnlock > 0 && currentDay > data.MaxDayToUnlock;
         }
 
         private void NotifyLootUpdated()
