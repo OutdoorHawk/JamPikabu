@@ -4,16 +4,13 @@ using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
 using Code.Infrastructure.Systems;
 using Code.Meta.Features;
-using Code.Meta.UI.HardCurrencyHolder.Service;
 using Code.Progress.SaveLoadService;
-using Zenject;
 
 namespace Code.Infrastructure.States.GameStates
 {
     public class MapMenuState : EndOfFrameExitState
     {
         private readonly IWindowService _windowService;
-        private readonly LazyInject<IStorageUIService> _storageUIService;
         private readonly ISystemFactory _systemFactory;
         private readonly ISaveLoadService _saveLoadService;
         private readonly IGameStateMachine _gameStateMachine;
@@ -25,7 +22,6 @@ namespace Code.Infrastructure.States.GameStates
         (
             IGameStateMachine gameStateMachine,
             IWindowService windowService,
-            LazyInject<IStorageUIService> storageUIService,
             ISystemFactory systemFactory,
             ISaveLoadService saveLoadService,
             IGameStateHandlerService gameStateHandlerService
@@ -35,7 +31,6 @@ namespace Code.Infrastructure.States.GameStates
             _saveLoadService = saveLoadService;
             _gameStateMachine = gameStateMachine;
             _windowService = windowService;
-            _storageUIService = storageUIService;
             _systemFactory = systemFactory;
         }
 
@@ -57,7 +52,6 @@ namespace Code.Infrastructure.States.GameStates
 
         protected override void ExitOnEndOfFrame()
         {
-            _storageUIService.Value.Cleanup();
             _windowService.ClearUIRoot();
 
             _mapMenuFeature.DeactivateReactiveSystems();

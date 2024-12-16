@@ -140,7 +140,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours
         private void RefreshFillBar(int currentRating)
         {
             float factor = (float)currentRating / _maxRatingInDay;
-            factor = Mathf.Clamp(factor, 0, _maxRatingInDay);
+            factor = Mathf.Clamp(factor, 0, 1);
 
             if (Mathf.Approximately(factor, BarFillImage.rectTransform.localScale.x))
                 return;
