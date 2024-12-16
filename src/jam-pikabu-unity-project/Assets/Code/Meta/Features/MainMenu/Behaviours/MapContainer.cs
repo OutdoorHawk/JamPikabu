@@ -49,6 +49,7 @@ namespace Code.Meta.Features.MainMenu.Behaviours
         {
             InitLevels();
             SelectLastLevel();
+            Refresh();
         }
 
         public void SubscribeUpdates()
@@ -73,9 +74,10 @@ namespace Code.Meta.Features.MainMenu.Behaviours
         private void SelectLastLevel()
         {
             List<DayProgressData> dayProgressData = _daysService.GetDaysProgress();
+            
             if (dayProgressData.Count == 0)
             {
-                _buttonByDayIds[0].SelectLevel();
+                _buttonByDayIds[1].SelectLevel();
                 return;
             }
 

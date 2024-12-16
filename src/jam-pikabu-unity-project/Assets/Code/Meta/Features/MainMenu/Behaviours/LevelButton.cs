@@ -23,10 +23,15 @@ namespace Code.Meta.Features.MainMenu.Behaviours
             _mapMenuService = mapMenuService;
         }
 
+        private void Awake()
+        {
+            if (_mapMenuService.SelectedDayId != DayId)
+                SelectedBg.DisableElement();
+        }
+
         private void Start()
         {
             Button.onClick.AddListener(SelectLevel);
-            SelectedBg.DisableElement();
         }
 
         private void OnDestroy()
