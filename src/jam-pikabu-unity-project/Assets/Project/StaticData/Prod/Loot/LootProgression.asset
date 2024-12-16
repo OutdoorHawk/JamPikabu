@@ -12,4 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae7d4f210894f04b2583342991cb457, type: 3}
   m_Name: LootProgression
   m_EditorClassIdentifier: 
-  Configs: []
+  Configs:
+  - Id: 1
+    Type: 2
+    Levels:
+    - RatingBoostAmount: 0
+      Cost:
+        CurrencyType: 1
+        Amount: 0
+    - RatingBoostAmount: 5
+      Cost:
+        CurrencyType: 1
+        Amount: 0
+    - RatingBoostAmount: 10
+      Cost:
+        CurrencyType: 1
+        Amount: 0
+    - RatingBoostAmount: 15
+      Cost:
+        CurrencyType: 1
+        Amount: 0
+  - Id: 2
+    Type: 12
+    Levels: []

@@ -1,11 +1,10 @@
 ﻿using Code.Gameplay.StaticData.Data;
-using Code.Meta.UI.Shop.Items;
 using UnityEngine;
 
 namespace Code.Meta.UI.Shop.Configs
 {
-    [CreateAssetMenu(menuName = "StaticData/" + nameof(ShopItemTemplatesData), fileName = "ShopItemTemplates")]
-    public class ShopItemTemplatesData : BaseStaticData<ShopItemTemplateData>
+    [CreateAssetMenu(menuName = "StaticData/" + nameof(ShopItemTemplatesStaticData), fileName = "ShopItemTemplates")]
+    public class ShopItemTemplatesStaticData : BaseStaticData<ShopItemTemplateData>
     {
         public override void OnConfigInit()
         {

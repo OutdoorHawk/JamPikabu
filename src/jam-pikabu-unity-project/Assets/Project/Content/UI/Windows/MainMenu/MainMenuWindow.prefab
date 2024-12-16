@@ -1420,7 +1420,7 @@ PrefabInstance:
     - target: {fileID: 3607257478831258093, guid: a1321f7c3c4e27340bf725c10179a593,
         type: 3}
       propertyPath: m_Name
-      value: UIPlayButton
+      value: ShopButton
       objectReference: {fileID: 0}
     - target: {fileID: 3607257478831258093, guid: a1321f7c3c4e27340bf725c10179a593,
         type: 3}
@@ -1445,7 +1445,7 @@ PrefabInstance:
     - target: {fileID: 6714446974779947133, guid: a1321f7c3c4e27340bf725c10179a593,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6714446974779947133, guid: a1321f7c3c4e27340bf725c10179a593,
         type: 3}
@@ -1495,8 +1495,31 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3607257478831258093, guid: a1321f7c3c4e27340bf725c10179a593,
+        type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 8544647822029497998}
   m_SourcePrefab: {fileID: 100100000, guid: a1321f7c3c4e27340bf725c10179a593, type: 3}
+--- !u!1 &28013674495975824 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3607257478831258093, guid: a1321f7c3c4e27340bf725c10179a593,
+    type: 3}
+  m_PrefabInstance: {fileID: 3633292027127666813}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8544647822029497998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28013674495975824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2598b67af884eb0b6fe6c32f5f2a83e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _windowType: 14
 --- !u!224 &1377491731460513307 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2409952154061751910, guid: a1321f7c3c4e27340bf725c10179a593,

@@ -47,6 +47,7 @@ using Code.Meta.Features.MainMenu.Service;
 using Code.Meta.UI.HardCurrencyHolder.Service;
 using Code.Meta.UI.Shop.Factory;
 using Code.Meta.UI.Shop.Service;
+using Code.Meta.UI.Shop.WindowService;
 using Code.Progress.Provider;
 using Code.Progress.SaveLoadService;
 using Code.Progress.Writer;
@@ -198,6 +199,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.BindInterfacesTo<StorageUIService>().AsSingle();
             Container.Bind<IShopUIService>().To<ShopUIService>().AsSingle();
             Container.BindInterfacesTo<LootService>().AsSingle();
+            Container.BindInterfacesTo<ShopWindowService>().AsSingle();
         }
 
         private void BindUIFactories()

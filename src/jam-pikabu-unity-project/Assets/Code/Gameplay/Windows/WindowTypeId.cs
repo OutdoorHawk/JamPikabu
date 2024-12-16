@@ -12,6 +12,7 @@
         GameWinWindow = 9,
         InfoWindow = 12,
         OrderWindow = 13,
+        ShopWindow = 14,
         
         Count
     }

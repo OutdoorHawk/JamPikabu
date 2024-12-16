@@ -45,8 +45,8 @@ MonoBehaviour:
     WindowName: 
     WindowPrefab: {fileID: 500684334685123049, guid: b1f1c63cbe650de4f85e6cce44fa1542,
       type: 3}
-  - Type: 13
+  - Type: 14
     WindowName: 
-    WindowPrefab: {fileID: 4894891263581342043, guid: 28cebeb386417754fa9f056451af6fed,
+    WindowPrefab: {fileID: 8988717871522706021, guid: b4ca9cf07a2d85b40a96de14f3507c92,
       type: 3}
   _uiRoot: {fileID: 6539333087589960381, guid: 00d044d10b5681844a7bfa28ccf69a81, type: 3}

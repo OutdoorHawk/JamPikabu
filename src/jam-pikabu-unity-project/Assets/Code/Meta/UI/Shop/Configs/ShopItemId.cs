@@ -1,4 +1,4 @@
-﻿namespace Code.Meta.UI.Shop.Items
+﻿namespace Code.Meta.UI.Shop.Configs
 {
     public enum ShopItemKind
     {
