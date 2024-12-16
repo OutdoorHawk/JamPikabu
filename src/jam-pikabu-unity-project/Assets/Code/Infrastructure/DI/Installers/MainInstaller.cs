@@ -151,8 +151,6 @@ namespace Code.Infrastructure.DI.Installers
         {
             Container.Bind<ISaveLoadService>().To<SaveLoadService>().AsSingle();
             Container.Bind<IProgressProvider>().To<ProgressProvider>().AsSingle();
-
-            Container.Bind<IProgressReadWrite>().To<DefaultFileProgressReadWrite>().AsSingle();
         }
 
         private void BindCommonServices()
@@ -212,7 +210,9 @@ namespace Code.Infrastructure.DI.Installers
 #if GAME_PUSH
             Container.BindInterfacesTo<GamePushIntegration>().AsSingle();
             Container.BindInterfacesTo<GamePushAdsService>().AsSingle();
+            Container.BindInterfacesTo<GamePushProgressReadWrite>().AsSingle();
 #else
+            Container.Bind<IProgressReadWrite>().To<DefaultFileProgressReadWrite>().AsSingle();
             Container.BindInterfacesTo<Ads.Service.FakeAdsService>().AsSingle();
 #endif
         }

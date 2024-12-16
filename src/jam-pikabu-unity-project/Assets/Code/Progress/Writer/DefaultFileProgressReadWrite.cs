@@ -6,7 +6,7 @@ namespace Code.Progress.Writer
 {
     public class DefaultFileProgressReadWrite : IProgressReadWrite
     {
-        private const string PROGRESS_KEY = "PlayerProgress";
+        private const string PROGRESS_KEY = "player_progress";
 
         private static string ProgressPath => Path.Combine(Application.persistentDataPath, PROGRESS_KEY);
 

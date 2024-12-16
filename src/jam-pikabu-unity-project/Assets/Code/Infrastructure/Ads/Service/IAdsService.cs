@@ -4,10 +4,13 @@ namespace Code.Infrastructure.Ads.Service
 {
     public interface IAdsService
     {
+        bool CanShowRewarded { get; }
+        bool CanShowInterstitial { get; }
         void SetupIdentifier(string id);
         void RegisterAdsHandler(IAdsHandler handler);
         void UnregisterAdsHandler(IAdsHandler handler);
         void RequestRewardedAd();
-        void RequestMidGameAd();
+        void RequestInterstitial();
+        void RequestBanner();
     }
 }

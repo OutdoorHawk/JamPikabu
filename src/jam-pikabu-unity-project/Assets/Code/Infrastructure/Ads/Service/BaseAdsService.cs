@@ -10,13 +10,17 @@ namespace Code.Infrastructure.Ads.Service
     {
         private readonly BufferedList<IAdsStartedHandler> _startedHandlers = new();
         private readonly BufferedList<IAdsErrorHandler> _errorHandlers = new();
-        private readonly BufferedList<IAdsSuccsessfulHandler> _succsessfulHandlers = new();
+        private readonly BufferedList<IAdsSuccsessfulHandler> _successfulHandlers = new();
         
         private ILoggerService _logger;
 
         protected ILoggerService Logger => _logger;
 
         protected string _identifier;
+        
+        public virtual bool CanShowRewarded => true;
+        public virtual bool CanShowInterstitial => true;
+        public virtual bool CanShowBanner => true;
 
         [Inject]
         private void Construct
@@ -28,10 +32,12 @@ namespace Code.Infrastructure.Ads.Service
         )
         {
             _logger = logger;
-            _succsessfulHandlers.AddRange(succsessfulHandlers);
+            _successfulHandlers.AddRange(succsessfulHandlers);
             _errorHandlers.AddRange(errorHandlers);
             _startedHandlers.AddRange(startedHandlers);
         }
+
+        #region Handlers
 
         public void SetupIdentifier(string id)
         {
@@ -43,7 +49,7 @@ namespace Code.Infrastructure.Ads.Service
             switch (handler)
             {
                 case IAdsSuccsessfulHandler succsessfulHandler:
-                    _succsessfulHandlers.Add(succsessfulHandler);
+                    _successfulHandlers.Add(succsessfulHandler);
                     break;
                 case IAdsErrorHandler errorHandler:
                     _errorHandlers.Add(errorHandler);
@@ -59,7 +65,7 @@ namespace Code.Infrastructure.Ads.Service
             switch (handler)
             {
                 case IAdsSuccsessfulHandler succsessfulHandler:
-                    _succsessfulHandlers.Remove(succsessfulHandler);
+                    _successfulHandlers.Remove(succsessfulHandler);
                     break;
                 case IAdsErrorHandler errorHandler:
                     _errorHandlers.Remove(errorHandler);
@@ -70,14 +76,27 @@ namespace Code.Infrastructure.Ads.Service
             }
         }
 
+        #endregion
+
+        #region IAdsService
+
         public virtual void RequestRewardedAd()
         {
             _logger.Log("[AD] Request Rewarded Ad");
         }
 
-        public virtual void RequestMidGameAd()
+        public virtual void RequestInterstitial()
         {
         }
+
+        public virtual void RequestBanner()
+        {
+            _logger.Log("[AD] Request Banner");
+        }
+
+        #endregion
+
+        #region Internal
 
         protected void NotifyStartedHandlers()
         {
@@ -93,10 +112,12 @@ namespace Code.Infrastructure.Ads.Service
         {
             _logger.Log("<b>[Ads]</b> Ad success");
 
-            foreach (var handler in _succsessfulHandlers)
+            foreach (var handler in _successfulHandlers)
             {
                 handler.OnAdsSuccsessful();
             }
+
+            ClearIdentifier();
         }
 
         protected void NotifyErrorHandlers(string error)
@@ -107,6 +128,15 @@ namespace Code.Infrastructure.Ads.Service
             {
                 handler.OnAdsError(error);
             }
+            
+            ClearIdentifier();
         }
+
+        private void ClearIdentifier()
+        {
+            _identifier = null;
+        }
+
+        #endregion
     }
 }
