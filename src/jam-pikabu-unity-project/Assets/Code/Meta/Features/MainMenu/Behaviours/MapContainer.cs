@@ -72,7 +72,15 @@ namespace Code.Meta.Features.MainMenu.Behaviours
 
         private void SelectLastLevel()
         {
-            int lastDay = _daysService.GetDaysProgress().Last().DayId;
+            List<DayProgressData> dayProgressData = _daysService.GetDaysProgress();
+            if (dayProgressData.Count == 0)
+            {
+                _buttonByDayIds[0].SelectLevel();
+                return;
+            }
+
+            DayProgressData progressData = dayProgressData.Last();
+            int lastDay = progressData.DayId;
             _buttonByDayIds[lastDay].SelectLevel();
         }
 
