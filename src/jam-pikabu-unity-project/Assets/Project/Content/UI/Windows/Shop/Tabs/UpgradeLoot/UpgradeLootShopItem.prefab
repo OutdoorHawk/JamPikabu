@@ -50,11 +50,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 2461332234841002557}
+  RatingArrow: {fileID: 3380913108445562436}
   Name: {fileID: 930214909893118790}
   UpgradeButton: {fileID: 667261953086847967}
   UpgradePrice: {fileID: 4888606229752570085}
   RatingFrom: {fileID: 4784155044078736095}
   RatingTo: {fileID: 6672622703739465222}
+  TypeId: 0
 --- !u!1 &5200908205342751339
 GameObject:
   m_ObjectHideFlags: 0

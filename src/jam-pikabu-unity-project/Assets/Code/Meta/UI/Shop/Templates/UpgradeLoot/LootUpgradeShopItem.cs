@@ -21,6 +21,7 @@ namespace Code.Meta.UI.Shop.Templates.UpgradeLoot
     public class LootUpgradeShopItem : MonoBehaviour
     {
         public Image Icon;
+        public Image RatingArrow;
         public TMP_Text Name;
         public Button UpgradeButton;
         public PriceInfo UpgradePrice;
@@ -137,6 +138,8 @@ namespace Code.Meta.UI.Shop.Templates.UpgradeLoot
         {
             UpgradePrice.DisableElement();
             RatingTo.DisableElement();
+            RatingArrow.DisableElement();
+            UpgradeButton.DisableElement();
             UpgradeButton.interactable = false;
         }
 
@@ -148,13 +151,17 @@ namespace Code.Meta.UI.Shop.Templates.UpgradeLoot
         private void SetNoMoneyForUpgrade()
         {
             UpgradePrice.EnableElement();
+            UpgradeButton.EnableElement();
             RatingTo.EnableElement();
+            RatingArrow.EnableElement();
         }
 
         private void SetCanUpgrade()
         {
             UpgradePrice.EnableElement();
             RatingTo.EnableElement();
+            UpgradeButton.EnableElement();
+            RatingArrow.EnableElement();
             UpgradeButton.interactable = true;
         }
 
