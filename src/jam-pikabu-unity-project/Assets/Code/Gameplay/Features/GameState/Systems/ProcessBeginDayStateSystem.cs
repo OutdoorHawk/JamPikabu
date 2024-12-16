@@ -16,7 +16,7 @@ namespace Code.Gameplay.Features.GameState.Systems
         private readonly IGameStateService _gameStateService;
         private readonly IDaysService _daysService;
         private readonly IOrdersService _ordersService;
-        private readonly ILootService _lootService;
+        private readonly IGameplayLootService _gameplayLootService;
         private readonly ILootFactory _lootFactory;
 
         public ProcessBeginDayStateSystem
@@ -25,14 +25,14 @@ namespace Code.Gameplay.Features.GameState.Systems
             IGameStateService gameStateService,
             IDaysService daysService,
             IOrdersService ordersService,
-            ILootService lootService,
+            IGameplayLootService gameplayLootService,
             ILootFactory lootFactory
         )
         {
             _gameStateService = gameStateService;
             _daysService = daysService;
             _ordersService = ordersService;
-            _lootService = lootService;
+            _gameplayLootService = gameplayLootService;
             _lootFactory = lootFactory;
             
             _entities = context.GetGroup(GameMatcher

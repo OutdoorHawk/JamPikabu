@@ -14,14 +14,14 @@ namespace Code.Gameplay.Cheats.Cheats
     public class SkipOrderCheat : BaseCheat, ICheatActionBasic
     {
         private IGameStateService _gameStateService;
-        private ILootService _lootService;
+        private IGameplayLootService _gameplayLootService;
         public string CheatLabel => "Пропустить заказ";
         public OrderType Order => OrderType.First;
 
         [Inject]
-        private void Construct(IGameStateService gameStateService, ILootService lootService)
+        private void Construct(IGameStateService gameStateService, IGameplayLootService gameplayLootService)
         {
-            _lootService = lootService;
+            _gameplayLootService = gameplayLootService;
             _gameStateService = gameStateService;
         }
 
@@ -36,7 +36,7 @@ namespace Code.Gameplay.Cheats.Cheats
                 entity.isComplete = true;
             }
             
-            _lootService.SetLootIsConsumingState(false);
+            _gameplayLootService.SetLootIsConsumingState(false);
             
             _gameStateService.AskToSwitchState(GameStateTypeId.RoundCompletion);
 

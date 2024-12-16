@@ -4,7 +4,7 @@ using Code.Gameplay.Features.Loot.Configs;
 
 namespace Code.Gameplay.Features.Loot.Service
 {
-    public interface ILootService
+    public interface IGameplayLootService
     {
         event Action OnLootUpdate;
         bool LootIsBusy { get; }

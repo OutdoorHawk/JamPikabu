@@ -18,7 +18,7 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
         private readonly ILootFactory _lootFactory;
         private readonly IStaticDataService _staticDataService;
         private readonly ISceneContextProvider _provider;
-        private readonly ILootService _lootService;
+        private readonly IGameplayLootService _gameplayLootService;
         private readonly GameContext _context;
         
         private readonly IGroup<GameEntity> _completedSpawners;
@@ -28,12 +28,12 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
         private int _spawnPointIndex;
 
         public SingleSpawnLootSystem(GameContext context, ILootFactory lootFactory, IStaticDataService staticDataService,
-            ISceneContextProvider provider, ILootService lootService) :
+            ISceneContextProvider provider, IGameplayLootService gameplayLootService) :
             base(context)
         {
             _context = context;
             _provider = provider;
-            _lootService = lootService;
+            _gameplayLootService = gameplayLootService;
             _staticDataService = staticDataService;
             _lootFactory = lootFactory;
 
@@ -98,13 +98,13 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
 
         private async UniTask ProcessLootSpawn(LootSettingsStaticData staticData, SceneContextComponent sceneContext)
         {
-            float lootSpawnAmount = staticData.MaxLootAmount / _lootService.AvailableLoot.Count;
+            float lootSpawnAmount = staticData.MaxLootAmount / _gameplayLootService.AvailableLoot.Count;
 
             for (int i = 0; i < lootSpawnAmount; i++)
             {
                 Transform spawn = GetSpawnPoint(sceneContext);
 
-                foreach (var lootSetup in _lootService.AvailableLoot)
+                foreach (var lootSetup in _gameplayLootService.AvailableLoot)
                 {
                     _lootFactory.CreateLootEntity(lootSetup.Type, sceneContext.LootParent, spawn.position, spawn.rotation.eulerAngles);
                     await DelaySeconds(staticData.LootSpawnInterval, _exitGameSource.Token);

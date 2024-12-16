@@ -48,7 +48,7 @@ namespace Code.Gameplay.Features.Orders.Windows
         private IStaticDataService _staticDataService;
         private ICurrencyFactory _currencyFactory;
         private ISoundService _soundService;
-        private ILootService _lootService;
+        private IGameplayLootService _gameplayLootService;
         private IWindowService _windowService;
         private IDaysService _daysService;
 
@@ -64,7 +64,7 @@ namespace Code.Gameplay.Features.Orders.Windows
 
         [Inject]
         private void WConstruct(IOrdersService ordersService, ILootItemUIFactory lootItemUIFactory,
-            ICurrencyFactory currencyFactory, IStaticDataService staticDataService, ILootService lootService, ISoundService soundService,
+            ICurrencyFactory currencyFactory, IStaticDataService staticDataService, IGameplayLootService gameplayLootService, ISoundService soundService,
             IDaysService daysService,
             IWindowService windowService, IGameOverService gameOverService)
         {
@@ -72,7 +72,7 @@ namespace Code.Gameplay.Features.Orders.Windows
             _daysService = daysService;
             _windowService = windowService;
             _soundService = soundService;
-            _lootService = lootService;
+            _gameplayLootService = gameplayLootService;
             _staticDataService = staticDataService;
             _currencyFactory = currencyFactory;
             _lootItemUIFactory = lootItemUIFactory;

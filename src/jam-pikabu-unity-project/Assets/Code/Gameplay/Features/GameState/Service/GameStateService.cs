@@ -11,7 +11,7 @@ namespace Code.Gameplay.Features.GameState.Service
         private readonly IGameStateFactory _gameStateFactory;
         private readonly IGameStateMachine _gameStateMachine;
         private readonly IOrdersService _ordersService;
-        private readonly ILootService _lootService;
+        private readonly IGameplayLootService _gameplayLootService;
         private readonly IDaysService _daysService;
 
         public GameStateService
@@ -19,14 +19,14 @@ namespace Code.Gameplay.Features.GameState.Service
             IGameStateFactory gameStateFactory,
             IGameStateMachine gameStateMachine,
             IOrdersService ordersService,
-            ILootService lootService,
+            IGameplayLootService gameplayLootService,
             IDaysService daysService
         )
         {
             _gameStateFactory = gameStateFactory;
             _gameStateMachine = gameStateMachine;
             _ordersService = ordersService;
-            _lootService = lootService;
+            _gameplayLootService = gameplayLootService;
             _daysService = daysService;
         }
 
@@ -61,19 +61,19 @@ namespace Code.Gameplay.Features.GameState.Service
         {
             _daysService.BeginDay();
             _ordersService.InitDayBegin();
-            _lootService.CreateLootSpawner();
+            _gameplayLootService.CreateLootSpawner();
         }
 
         private void EnterRoundPreparation()
         {
             _ordersService.CreateOrder();
             _daysService.EnterRoundPreparation();
-            _lootService.ClearCollectedLoot();
+            _gameplayLootService.ClearCollectedLoot();
         }
 
         private void EnterRoundCompletion()
         {
-            _lootService.CreateLootConsumer();
+            _gameplayLootService.CreateLootConsumer();
         }
     }
 }

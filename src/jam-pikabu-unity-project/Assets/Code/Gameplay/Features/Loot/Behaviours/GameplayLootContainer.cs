@@ -28,7 +28,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         public Image VatIcon;
         public float StartFlyToVatAnimationDelay = 0.5f;
 
-        private ILootService _lootService;
+        private IGameplayLootService _gameplayLootService;
         private ILootItemUIFactory _lootItemUIFactory;
         private IOrdersService _ordersService;
         private IWindowService _windowService;
@@ -41,7 +41,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         [Inject]
         private void Construct
         (
-            ILootService lootService,
+            IGameplayLootService gameplayLootService,
             ILootItemUIFactory lootUIFactory,
             IOrdersService ordersService,
             IWindowService windowService,
@@ -52,7 +52,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
             _windowService = windowService;
             _ordersService = ordersService;
             _lootItemUIFactory = lootUIFactory;
-            _lootService = lootService;
+            _gameplayLootService = gameplayLootService;
         }
 
         private void Start()

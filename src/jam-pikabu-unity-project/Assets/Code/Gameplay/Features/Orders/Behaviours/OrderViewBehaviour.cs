@@ -18,7 +18,7 @@ namespace Code.Gameplay.Features.Orders.Behaviours
         [SerializeField] private float _fillDelay = 0.75f;
 
         private IOrdersService _ordersService;
-        private ILootService _lootService;
+        private IGameplayLootService _gameplayLootService;
 
         private CancellationTokenSource _fillDelaySource;
         private Tweener _tweener;
@@ -26,9 +26,9 @@ namespace Code.Gameplay.Features.Orders.Behaviours
         public PriceInfo Reward => _orderReward;
 
         [Inject]
-        private void Construct(IOrdersService ordersService, ILootService lootService)
+        private void Construct(IOrdersService ordersService, IGameplayLootService gameplayLootService)
         {
-            _lootService = lootService;
+            _gameplayLootService = gameplayLootService;
             _ordersService = ordersService;
         }
 

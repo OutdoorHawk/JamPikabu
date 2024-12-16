@@ -23,13 +23,13 @@ namespace Code.Gameplay.Features.Orders.Systems
         private readonly IGroup<GameEntity> _gameState;
         private readonly IGroup<GameEntity> _collectedLoot;
         private readonly ICurrencyFactory _currencyFactory;
-        private readonly ILootService _lootService;
+        private readonly IGameplayLootService _gameplayLootService;
 
         public CompleteOrderOnRoundCompletionSystem(GameContext context, IWindowService windowService
-            , IOrdersService ordersService, ICurrencyFactory currencyFactory, ILootService lootService)
+            , IOrdersService ordersService, ICurrencyFactory currencyFactory, IGameplayLootService gameplayLootService)
         {
             _currencyFactory = currencyFactory;
-            _lootService = lootService;
+            _gameplayLootService = gameplayLootService;
             _windowService = windowService;
             _ordersService = ordersService;
 
@@ -58,7 +58,7 @@ namespace Code.Gameplay.Features.Orders.Systems
                 if (_collectedLoot.count != 0)
                     continue;
 
-                if (_lootService.LootIsBusy)
+                if (_gameplayLootService.LootIsBusy)
                     continue;
                 
                 OrderSetup orderDataSetup = order.OrderData.Setup;

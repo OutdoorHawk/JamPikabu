@@ -19,7 +19,7 @@ namespace Code.Gameplay.Features.GameState.Systems
             GameContext context,
             IGameStateService gameStateService,
             IOrdersService ordersService,
-            ILootService lootService,
+            IGameplayLootService gameplayLootService,
             IDaysService daysService
         )
         {

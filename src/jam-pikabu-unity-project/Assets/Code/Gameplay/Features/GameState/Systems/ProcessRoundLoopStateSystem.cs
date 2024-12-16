@@ -17,17 +17,17 @@ namespace Code.Gameplay.Features.GameState.Systems
         private readonly IGroup<GameEntity> _busyHook;
         private readonly IGameStateMachine _gameStateMachine;
         private readonly IGroup<GameEntity> _collectedLoot;
-        private readonly ILootService _lootService;
+        private readonly IGameplayLootService _gameplayLootService;
 
         public ProcessRoundLoopStateSystem
         (
             GameContext context, 
             IGameStateService gameStateService,
             IGameStateMachine gameStateMachine,
-            ILootService lootService
+            IGameplayLootService gameplayLootService
             )
         {
-            _lootService = lootService;
+            _gameplayLootService = gameplayLootService;
             _gameStateMachine = gameStateMachine;
             _gameStateService = gameStateService;
             

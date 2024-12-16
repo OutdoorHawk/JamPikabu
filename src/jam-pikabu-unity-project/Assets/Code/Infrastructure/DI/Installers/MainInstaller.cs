@@ -198,7 +198,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.Bind<IWindowService>().To<WindowService>().AsSingle();
             Container.BindInterfacesTo<StorageUIService>().AsSingle();
             Container.Bind<IShopUIService>().To<ShopUIService>().AsSingle();
-            Container.BindInterfacesTo<LootService>().AsSingle();
+            Container.BindInterfacesTo<GameplayLootService>().AsSingle();
             Container.BindInterfacesTo<ShopWindowService>().AsSingle();
         }
 

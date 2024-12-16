@@ -9,7 +9,7 @@ using Code.Meta.Features.Days.Service;
 
 namespace Code.Gameplay.Features.Loot.Service
 {
-    public class LootService : ILootService
+    public class GameplayLootService : IGameplayLootService
     {
         private readonly IStaticDataService _staticDataService;
         private readonly IDaysService _daysService;
@@ -24,7 +24,7 @@ namespace Code.Gameplay.Features.Loot.Service
         public IReadOnlyList<LootTypeId> CollectedLootItems => _collectedLootItems;
         public IReadOnlyList<LootSetup> AvailableLoot => _availableLoot;
 
-        public LootService(IStaticDataService staticDataService, IDaysService daysService,
+        public GameplayLootService(IStaticDataService staticDataService, IDaysService daysService,
             ILootFactory lootFactory)
         {
             _staticDataService = staticDataService;

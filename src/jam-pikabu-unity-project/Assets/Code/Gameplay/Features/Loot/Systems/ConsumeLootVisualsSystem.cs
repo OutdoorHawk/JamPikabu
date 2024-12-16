@@ -11,13 +11,13 @@ namespace Code.Gameplay.Features.Loot.Systems
     public class ConsumeLootVisualsSystem : ReactiveSystem<GameEntity>
     {
         private readonly IWindowService _windowService;
-        private readonly ILootService _lootService;
+        private readonly IGameplayLootService _gameplayLootService;
         private readonly IGroup<GameEntity> _consumedLoot;
 
-        public ConsumeLootVisualsSystem(GameContext context, IWindowService windowService, ILootService lootService) : base(context)
+        public ConsumeLootVisualsSystem(GameContext context, IWindowService windowService, IGameplayLootService gameplayLootService) : base(context)
         {
             _windowService = windowService;
-            _lootService = lootService;
+            _gameplayLootService = gameplayLootService;
             _consumedLoot = context.GetGroup(
                 GameMatcher.AllOf(
                     GameMatcher.Loot,
@@ -48,7 +48,7 @@ namespace Code.Gameplay.Features.Loot.Systems
 
         private async UniTaskVoid AnimateAsync(GameEntity applier)
         {
-            _lootService.SetLootIsConsumingState(true);
+            _gameplayLootService.SetLootIsConsumingState(true);
 
             _windowService.TryGetWindow<PlayerHUDWindow>(out var hud);
             var lootContainer = hud.GetComponentInChildren<GameplayLootContainer>();
@@ -61,7 +61,7 @@ namespace Code.Gameplay.Features.Loot.Systems
                 loot.isDestructed = true;
 
             applier.isDestructed = true;
-            _lootService.SetLootIsConsumingState(false);
+            _gameplayLootService.SetLootIsConsumingState(false);
         }
     }
 }

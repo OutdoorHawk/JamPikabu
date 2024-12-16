@@ -22,7 +22,7 @@ namespace Code.Gameplay.Features.Orders.Service
         private readonly IStaticDataService _staticDataService;
         private readonly IDaysService _daysService;
         private readonly IOrdersFactory _ordersFactory;
-        private readonly ILootService _lootService;
+        private readonly IGameplayLootService _gameplayLootService;
 
         private OrdersStaticData _ordersData;
         private int _currentOrderIndex;
@@ -43,13 +43,13 @@ namespace Code.Gameplay.Features.Orders.Service
             IStaticDataService staticDataService,
             IDaysService daysService,
             IOrdersFactory ordersFactory,
-            ILootService lootService
+            IGameplayLootService gameplayLootService
         )
         {
             _staticDataService = staticDataService;
             _daysService = daysService;
             _ordersFactory = ordersFactory;
-            _lootService = lootService;
+            _gameplayLootService = gameplayLootService;
         }
 
         public void InitDayBegin()
@@ -117,7 +117,7 @@ namespace Code.Gameplay.Features.Orders.Service
             
             foreach (IngredientData ingredientData in good)
             {
-                int collectedTypes = _lootService.CollectedLootItems.Count(type => type == ingredientData.TypeId);
+                int collectedTypes = _gameplayLootService.CollectedLootItems.Count(type => type == ingredientData.TypeId);
                 collectedTypes = Mathf.Clamp(collectedTypes, 0, ingredientData.Amount);
                 collected += collectedTypes;
             }
@@ -125,7 +125,7 @@ namespace Code.Gameplay.Features.Orders.Service
             float penaltyFactor = 1;
             foreach (IngredientData ingredientData in bad)
             {
-                int collectedTypes = _lootService.CollectedLootItems.Count(type => type == ingredientData.TypeId);
+                int collectedTypes = _gameplayLootService.CollectedLootItems.Count(type => type == ingredientData.TypeId);
                 if (collectedTypes >= ingredientData.Amount)
                 {
                     penaltyFactor = _ordersData.BadIngredientPenalty;
@@ -156,10 +156,10 @@ namespace Code.Gameplay.Features.Orders.Service
 
         public bool OrderPassesConditions()
         {
-            if (_lootService.CollectedLootItems.Count == 0)
+            if (_gameplayLootService.CollectedLootItems.Count == 0)
                 return false;
 
-            foreach (var typeId in _lootService.CollectedLootItems)
+            foreach (var typeId in _gameplayLootService.CollectedLootItems)
                 if (_orderIngredients.good.Any(goodIngredient => typeId == goodIngredient.TypeId))
                     return true;
 
@@ -178,7 +178,7 @@ namespace Code.Gameplay.Features.Orders.Service
         {
             _orderIngredients.good = new List<IngredientData>();
             _orderIngredients.bad = new List<IngredientData>();
-            List<LootSetup> availableLoot = new List<LootSetup>(_lootService.AvailableLoot);
+            List<LootSetup> availableLoot = new List<LootSetup>(_gameplayLootService.AvailableLoot);
 
             availableLoot.ShuffleList();
 

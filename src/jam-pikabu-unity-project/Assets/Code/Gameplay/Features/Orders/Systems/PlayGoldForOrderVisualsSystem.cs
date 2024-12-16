@@ -18,7 +18,7 @@ namespace Code.Gameplay.Features.Orders.Systems
     {
         private readonly IWindowService _windowService;
         private readonly IUIFactory _uiFactory;
-        private readonly ILootService _lootService;
+        private readonly IGameplayLootService _gameplayLootService;
         private readonly ICurrencyFactory _currencyFactory;
         private readonly ISoundService _soundService;
 
@@ -27,7 +27,7 @@ namespace Code.Gameplay.Features.Orders.Systems
         public PlayGoldForOrderVisualsSystem(GameContext context,
             IWindowService windowService,
             IUIFactory uiFactory,
-            ILootService lootService,
+            IGameplayLootService gameplayLootService,
             ICurrencyFactory currencyFactory,
             ISoundService soundService
         ) :
@@ -35,7 +35,7 @@ namespace Code.Gameplay.Features.Orders.Systems
         {
             _windowService = windowService;
             _uiFactory = uiFactory;
-            _lootService = lootService;
+            _gameplayLootService = gameplayLootService;
             _currencyFactory = currencyFactory;
             _soundService = soundService;
         }
@@ -63,7 +63,7 @@ namespace Code.Gameplay.Features.Orders.Systems
 
         private async UniTask PlayOrderCompleteAnimation(GameEntity order)
         {
-            if (_lootService.CollectedLootItems.Count == 0)
+            if (_gameplayLootService.CollectedLootItems.Count == 0)
             {
                 order.isResultProcessed = true;
                 return;

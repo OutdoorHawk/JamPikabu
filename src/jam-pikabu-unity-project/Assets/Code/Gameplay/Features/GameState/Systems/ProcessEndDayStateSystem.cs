@@ -15,7 +15,7 @@ namespace Code.Gameplay.Features.GameState.Systems
     public class ProcessEndDayStateSystem : IExecuteSystem, ITearDownSystem
     {
         private readonly IDaysService _roundService;
-        private readonly ILootService _lootService;
+        private readonly IGameplayLootService _gameplayLootService;
         private readonly IGameStateMachine _stateMachine;
 
         private readonly IGroup<GameEntity> _gameState;
@@ -26,13 +26,13 @@ namespace Code.Gameplay.Features.GameState.Systems
         (
             GameContext context,
             IDaysService roundService,
-            ILootService lootService,
+            IGameplayLootService gameplayLootService,
             IGameStateMachine stateMachine,
             MetaContext metaContext
         )
         {
             _roundService = roundService;
-            _lootService = lootService;
+            _gameplayLootService = gameplayLootService;
             _stateMachine = stateMachine;
 
             _gameState = context.GetGroup(GameMatcher
@@ -49,7 +49,7 @@ namespace Code.Gameplay.Features.GameState.Systems
                 gameState.isStateProcessingAvailable = false;
 
                 IncreaseDayAndLoadMap(gameState).Forget();
-                _lootService.ClearCollectedLoot();
+                _gameplayLootService.ClearCollectedLoot();
             }
         }
 

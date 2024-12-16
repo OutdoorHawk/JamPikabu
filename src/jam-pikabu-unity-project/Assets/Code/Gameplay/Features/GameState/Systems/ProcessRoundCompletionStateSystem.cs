@@ -12,7 +12,7 @@ namespace Code.Gameplay.Features.GameState.Systems
         private readonly IGameStateService _gameStateService;
         private readonly IOrdersService _ordersService;
         private readonly IGameOverService _gameOverService;
-        private readonly ILootService _lootService;
+        private readonly IGameplayLootService _gameplayLootService;
         private readonly IGroup<GameEntity> _entities;
         private readonly IGroup<GameEntity> _activeOrders;
         private readonly List<GameEntity> _buffer = new();
@@ -23,13 +23,13 @@ namespace Code.Gameplay.Features.GameState.Systems
             IGameStateService gameStateService,
             IOrdersService ordersService,
             IGameOverService gameOverService,
-            ILootService lootService
+            IGameplayLootService gameplayLootService
         )
         {
             _gameStateService = gameStateService;
             _ordersService = ordersService;
             _gameOverService = gameOverService;
-            _lootService = lootService;
+            _gameplayLootService = gameplayLootService;
 
             _entities = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.GameState,

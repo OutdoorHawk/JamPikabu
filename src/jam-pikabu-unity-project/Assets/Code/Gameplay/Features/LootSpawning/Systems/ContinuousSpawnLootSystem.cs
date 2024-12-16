@@ -14,7 +14,7 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
     {
         private readonly IStaticDataService _staticDataService;
         private readonly ISceneContextProvider _provider;
-        private readonly ILootService _lootService;
+        private readonly IGameplayLootService _gameplayLootService;
         private readonly ILootFactory _lootFactory;
         private readonly IGroup<GameEntity> _entities;
         private readonly IGroup<GameEntity> _activeLoot;
@@ -25,11 +25,11 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
         private LootSettingsStaticData LootStaticData => _staticDataService.GetStaticData<LootSettingsStaticData>();
 
         public ContinuousSpawnLootSystem(GameContext context, IStaticDataService staticDataService,
-            ISceneContextProvider provider, ILootService lootService, ILootFactory lootFactory)
+            ISceneContextProvider provider, IGameplayLootService gameplayLootService, ILootFactory lootFactory)
         {
             _staticDataService = staticDataService;
             _provider = provider;
-            _lootService = lootService;
+            _gameplayLootService = gameplayLootService;
             _lootFactory = lootFactory;
 
             _entities = context.GetGroup(GameMatcher
@@ -54,10 +54,10 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
                 if (_activeLoot.GetEntities().Length >= LootStaticData.MaxLootAmount)
                     continue;
 
-                if (_currentConfig >= _lootService.AvailableLoot.Count)
+                if (_currentConfig >= _gameplayLootService.AvailableLoot.Count)
                     _currentConfig = 0;
 
-                LootSetup lootSetup = _lootService.AvailableLoot[_currentConfig];
+                LootSetup lootSetup = _gameplayLootService.AvailableLoot[_currentConfig];
                 Transform spawn = GetSpawnPoint();
                 _lootFactory.CreateLootEntity(lootSetup.Type, _provider.Context.LootParent, spawn.position, spawn.rotation.eulerAngles);
                 _currentConfig++;

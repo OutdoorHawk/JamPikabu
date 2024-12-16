@@ -19,20 +19,20 @@ namespace Code.Gameplay.Features.Loot.Systems
     {
         private readonly GameContext _context;
         private readonly IGroup<GameEntity> _loot;
-        private readonly ILootService _lootService;
+        private readonly IGameplayLootService _gameplayLootService;
 
         private readonly List<GameEntity> _buffer = new(64);
         private readonly IWindowService _windowService;
         private readonly IStaticDataService _staticData;
         private readonly Camera _camera;
 
-        public LootPickupSystem(GameContext context, ILootService lootService,
+        public LootPickupSystem(GameContext context, IGameplayLootService gameplayLootService,
             IWindowService windowService, IStaticDataService staticData)
         {
             _context = context;
             _windowService = windowService;
             _staticData = staticData;
-            _lootService = lootService;
+            _gameplayLootService = gameplayLootService;
             _camera = Camera.main;
 
             _loot = context.GetGroup(GameMatcher
@@ -57,7 +57,7 @@ namespace Code.Gameplay.Features.Loot.Systems
 
         private void SetLootCollected(GameEntity loot)
         {
-            _lootService.AddCollectedLoot(loot.LootTypeId);
+            _gameplayLootService.AddCollectedLoot(loot.LootTypeId);
             loot.isCollected = true;
             loot.isBusy = true;
         }
