@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using Code.Common.Entity;
 using Code.Common.Extensions;
+using Code.Gameplay.Features.Loot;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Tutorial.Service;
 using Code.Infrastructure.Localization;
@@ -10,6 +12,7 @@ using Code.Infrastructure.Systems;
 using Code.Meta.Features;
 using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Service;
+using Code.Meta.Features.LootCollection.Configs;
 using Code.Progress.Provider;
 using Code.Progress.SaveLoadService;
 using Zenject;
@@ -94,6 +97,7 @@ namespace Code.Infrastructure.States.GameStates
             _saveLoadService.CreateProgress();
 
             CreateStorages();
+            CreateLoot();
         }
 
         private void CreateStorages()
@@ -104,6 +108,20 @@ namespace Code.Infrastructure.States.GameStates
                 .Empty()
                 .With(x => x.isStorage = true)
                 .With(x => x.AddGold(startGoldAmount));
+        }
+
+        private void CreateLoot()
+        {
+            List<LootTypeId> startGameUnlockedLoot = _staticData.GetStaticData<LootProgressionStaticData>().StartGameUnlockedLoot;
+
+            foreach (LootTypeId lootTypeId in startGameUnlockedLoot)
+            {
+                CreateMetaEntity.Empty()
+                    .With(x => x.isLoot = true)
+                    .AddLootTypeId(lootTypeId)
+                    .AddLevel(0)
+                    ;
+            }
         }
 
         private void LoadNextState()

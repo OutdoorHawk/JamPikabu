@@ -1,6 +1,7 @@
 using Code.Common.Destruct;
 using Code.Infrastructure.Systems;
 using Code.Meta.Features.Days.Systems;
+using Code.Meta.Features.LootCollection;
 using Code.Meta.Features.Storage;
 
 namespace Code.Meta.Features
@@ -11,6 +12,7 @@ namespace Code.Meta.Features
         {
             Add(systems.Create<InitializeDaySystem>());
             
+            Add(systems.Create<LootCollectionFeature>());
             Add(systems.Create<StorageFeature>());
 
             Add(systems.Create<ProcessDestructedFeature>());

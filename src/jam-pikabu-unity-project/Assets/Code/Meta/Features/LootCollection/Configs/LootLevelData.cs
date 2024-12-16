@@ -2,7 +2,7 @@
 using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Config;
 
-namespace Code.Meta.UI.LootProgression.Configs
+namespace Code.Meta.Features.LootCollection.Configs
 {
     [Serializable]
     public class LootLevelData

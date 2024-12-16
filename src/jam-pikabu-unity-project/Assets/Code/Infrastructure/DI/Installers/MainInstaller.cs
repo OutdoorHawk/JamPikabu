@@ -43,6 +43,7 @@ using Code.Infrastructure.Systems;
 using Code.Infrastructure.View.Factory;
 using Code.Meta.Features.Days.Factory;
 using Code.Meta.Features.Days.Service;
+using Code.Meta.Features.LootCollection.Service;
 using Code.Meta.Features.MainMenu.Service;
 using Code.Meta.UI.HardCurrencyHolder.Service;
 using Code.Meta.UI.Shop.Factory;
@@ -200,6 +201,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.Bind<IShopUIService>().To<ShopUIService>().AsSingle();
             Container.BindInterfacesTo<GameplayLootService>().AsSingle();
             Container.BindInterfacesTo<ShopWindowService>().AsSingle();
+            Container.BindInterfacesTo<LootCollectionService>().AsSingle();
         }
 
         private void BindUIFactories()
