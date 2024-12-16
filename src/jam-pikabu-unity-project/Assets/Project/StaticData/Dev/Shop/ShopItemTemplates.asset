@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f359288487e94c8491efc1fdf383751f, type: 3}
-  m_Name: BuildConfig
+  m_Script: {fileID: 11500000, guid: 33e3e7e962364eee86c7c236f29ae3fa, type: 3}
+  m_Name: ShopItemTemplates
   m_EditorClassIdentifier: 
-  _buildConfigType: 1
+  Configs: []

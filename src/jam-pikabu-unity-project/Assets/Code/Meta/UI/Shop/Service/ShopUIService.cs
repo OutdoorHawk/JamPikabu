@@ -11,7 +11,7 @@ namespace Code.Meta.UI.Shop.Service
     public class ShopUIService : IShopUIService
     {
         private readonly List<int> _purchasedItems = new();
-        private readonly Dictionary<int, ShopItemConfig> _availableItems = new();
+        private readonly Dictionary<int, ShopItemData> _availableItems = new();
 
         private readonly IStaticDataService _staticData;
         private readonly IStorageUIService _storageUIService;
@@ -37,12 +37,12 @@ namespace Code.Meta.UI.Shop.Service
             ShopChanged?.Invoke();
         }
 
-        public List<ShopItemConfig> GetAvailableShopItems()
+        public List<ShopItemData> GetAvailableShopItems()
         {
-            return new List<ShopItemConfig>(_availableItems.Values);
+            return new List<ShopItemData>(_availableItems.Values);
         }
 
-        public ShopItemConfig GetConfig(int shopItemId)
+        public ShopItemData GetConfig(int shopItemId)
         {
             return _availableItems.GetValueOrDefault(shopItemId);
         }

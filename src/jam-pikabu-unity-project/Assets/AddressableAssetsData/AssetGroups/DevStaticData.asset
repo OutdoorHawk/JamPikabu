@@ -69,6 +69,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - DevStaticData
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d7fbffb1ee1a30f498d616bec22c34c1
+    m_Address: ShopItemTemplates
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DevStaticData
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f9bd6f459a5d3d940aa9bcaf74666160
     m_Address: Sounds
     m_ReadOnly: 0

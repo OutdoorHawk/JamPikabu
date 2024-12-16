@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Code.Meta.UI.Shop.Configs
 {
-    [CreateAssetMenu(menuName = "StaticData/" + nameof(ShopStaticData), fileName = "Shop")]
-    public class ShopStaticData : BaseStaticData<ShopItemData>
+    [CreateAssetMenu(menuName = "StaticData/" + nameof(ShopItemTemplatesData), fileName = "ShopItemTemplates")]
+    public class ShopItemTemplatesData : BaseStaticData<ShopItemTemplateData>
     {
         public override void OnConfigInit()
         {
@@ -14,7 +14,7 @@ namespace Code.Meta.UI.Shop.Configs
             AddIndex(data => (int)data.Kind);
         }
 
-        public ShopItemData GetByItemKind(ShopItemKind kind)
+        public ShopItemTemplateData GetByItemKind(ShopItemKind kind)
         {
             return GetByKey((int)kind);
         }
