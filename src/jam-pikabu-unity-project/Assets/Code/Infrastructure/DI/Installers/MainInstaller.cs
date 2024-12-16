@@ -25,6 +25,7 @@ using Code.Gameplay.StaticData;
 using Code.Gameplay.Tutorial.Service;
 using Code.Gameplay.Windows.Factory;
 using Code.Gameplay.Windows.Service;
+using Code.Infrastructure.Ads.Service;
 using Code.Infrastructure.AssetManagement.AssetDownload;
 using Code.Infrastructure.AssetManagement.AssetProvider;
 using Code.Infrastructure.Common.CoroutineRunner;
@@ -162,8 +163,6 @@ namespace Code.Infrastructure.DI.Installers
             Container.Bind<ISceneLoader>().FromInstance(_sceneLoader).AsSingle();
 
             Container.BindInterfacesTo<DefaultLogger>().AsSingle();
-
-            Container.BindInterfacesTo<Ads.Service.FakeAdsService>().AsSingle();
         }
 
         private void BindInputService()
@@ -212,6 +211,9 @@ namespace Code.Infrastructure.DI.Installers
         {
 #if GAME_PUSH
             Container.BindInterfacesTo<GamePushIntegration>().AsSingle();
+            Container.BindInterfacesTo<GamePushAdsService>().AsSingle();
+#else
+            Container.BindInterfacesTo<Ads.Service.FakeAdsService>().AsSingle();
 #endif
         }
     }

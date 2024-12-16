@@ -15,7 +15,7 @@ namespace Code.Infrastructure.Ads.Service
         public override void RequestRewardedAd()
         {
             base.RequestRewardedAd();
-            NotifySuccsessfulHandlers();
+            NotifySuccessfulHandlers();
         }
     }
 }

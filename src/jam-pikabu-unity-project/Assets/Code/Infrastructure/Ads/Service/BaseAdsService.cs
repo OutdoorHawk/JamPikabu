@@ -11,9 +11,12 @@ namespace Code.Infrastructure.Ads.Service
         private readonly BufferedList<IAdsStartedHandler> _startedHandlers = new();
         private readonly BufferedList<IAdsErrorHandler> _errorHandlers = new();
         private readonly BufferedList<IAdsSuccsessfulHandler> _succsessfulHandlers = new();
+        
         private ILoggerService _logger;
 
         protected ILoggerService Logger => _logger;
+
+        protected string _identifier;
 
         [Inject]
         private void Construct
@@ -28,6 +31,11 @@ namespace Code.Infrastructure.Ads.Service
             _succsessfulHandlers.AddRange(succsessfulHandlers);
             _errorHandlers.AddRange(errorHandlers);
             _startedHandlers.AddRange(startedHandlers);
+        }
+
+        public void SetupIdentifier(string id)
+        {
+            _identifier = id;
         }
 
         public void RegisterAdsHandler(IAdsHandler handler)
@@ -81,7 +89,7 @@ namespace Code.Infrastructure.Ads.Service
             }
         }
 
-        protected void NotifySuccsessfulHandlers()
+        protected void NotifySuccessfulHandlers()
         {
             _logger.Log("<b>[Ads]</b> Ad success");
 
