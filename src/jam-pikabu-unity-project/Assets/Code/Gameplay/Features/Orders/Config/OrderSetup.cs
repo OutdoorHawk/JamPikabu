@@ -17,14 +17,13 @@ namespace Code.Gameplay.Features.Orders.Config
     public class OrderSetup
     {
         [PreviewField] public Sprite OrderIcon;
-        
+
         public CostSetup GoldReward = new(CurrencyTypeId.Gold);
         public Vector2Int MinMaxDayToUnlock;
-        
-        public Vector2Int MinMaxAmount = Vector2Int.one;
-        
-        public Vector2Int MinMaxGoodIngredients = Vector2Int.one;
-        public Vector2Int MinMaxBadIngredients;
-        public Vector2Int MinMaxIngredientsRatingFactor  = Vector2Int.one;
+
+        [Tooltip("Необходимое кол-во продуктов для типа")] public Vector2Int MinMaxNeedAmount = Vector2Int.one;
+        [Tooltip("Кол-во типов хороших продуктов")] public Vector2Int MinMaxGoodIngredients = Vector2Int.one;
+        [Tooltip("Кол-во типов плохих продуктов")] public Vector2Int MinMaxBadIngredients;
+        [Tooltip("Бонус рейтинга за продукт")] public Vector2Int MinMaxIngredientsRatingFactor = Vector2Int.one;
     }
 }

@@ -196,7 +196,7 @@ namespace Code.Gameplay.Features.Orders.Service
                 goodCount,
                 _orderIngredients.good,
                 minMaxFactor,
-                orderSetup.MinMaxAmount,
+                orderSetup.MinMaxNeedAmount,
                 IngredientTypeId.Good
             );
 
@@ -206,7 +206,7 @@ namespace Code.Gameplay.Features.Orders.Service
                 badCount,
                 _orderIngredients.bad,
                 minMaxFactor,
-                orderSetup.MinMaxAmount,
+                orderSetup.MinMaxNeedAmount,
                 IngredientTypeId.Bad, 
                 _orderIngredients.good
             );

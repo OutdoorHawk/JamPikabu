@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections.Generic;
 using System.Linq;
 using Code.Gameplay.Features.Loot;
@@ -7,7 +8,6 @@ using RoyalGold.Sources.Scripts.Game.MVC.Utils;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-#if UNITY_EDITOR
 namespace Code.Meta.Features.Days.Configs
 {
     public partial class DaysStaticData
@@ -71,16 +71,37 @@ namespace Code.Meta.Features.Days.Configs
         {
             foreach (DayData dayData in Configs)
             {
-                var availableProducts = dayData.AvailableIngredients;
-                    // OrdersData.Configs.
+                float averageMinRatingPerDay = 0;
+                float averageMaxRatingPerDay = 0;
+                
+                List<LootTypeId> availableProducts = dayData.AvailableIngredients;
+                int ordersPerDay = dayData.OrdersAmount;
 
+                for (int i = 0; i < ordersPerDay; i++)
+                {
+                    OrderData randomOrder = OrdersData.Configs[Random.Range(0, OrdersData.Configs.Count)];
+                    OrderSetup orderSetup = randomOrder.Setup;
+                    float averageProductCount = GetAverage(orderSetup.MinMaxNeedAmount);
+                    float averageGoodIngredients = GetAverage(orderSetup.MinMaxGoodIngredients);
+                    float averageBadIngredients = GetAverage(orderSetup.MinMaxBadIngredients);
+                    float averageIngredientFactor = GetAverage(orderSetup.MinMaxIngredientsRatingFactor);
+                }
+                
                 foreach (LootTypeId product in availableProducts)
                 {
                     LootProgressionData progression = LootProgression.GetConfig(product);
                     int minRatingPerProduct = progression.Levels[0].RatingBoostAmount;
                     int maxRatingPerProduct = progression.Levels[^1].RatingBoostAmount;
                 }
+                
+                dayData.AverageMinRatingPerDay = averageMinRatingPerDay;
+                dayData.AverageMaxRatingPerDay = averageMaxRatingPerDay;
             }
+        }
+
+        private static float GetAverage(Vector2Int range)
+        {
+            return (range.x + range.y) / 2f;
         }
     }
 }

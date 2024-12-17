@@ -20,8 +20,8 @@ namespace Code.Meta.Features.Days.Configs
         [FoldoutGroup("Data")] public List<DayStarData> Stars = new() { new DayStarData(), new DayStarData(), new DayStarData() };
 
 #if UNITY_EDITOR
-        [FoldoutGroup("Editor"), ReadOnly] public int AverageRatingPerLevelMinGrade;
-        [FoldoutGroup("Editor"), ReadOnly] public int AverageRatingPerLevelMaxGrade;
+        [FoldoutGroup("Editor"), ReadOnly] public float AverageMinRatingPerDay;
+        [FoldoutGroup("Editor"), ReadOnly] public float AverageMaxRatingPerDay;
 #endif
     }
 }
