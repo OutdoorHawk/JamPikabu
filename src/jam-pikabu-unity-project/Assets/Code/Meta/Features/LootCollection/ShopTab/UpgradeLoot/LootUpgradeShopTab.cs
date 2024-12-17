@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
 using Code.Common.Extensions;
 using Code.Gameplay.StaticData;
-using Code.Meta.Features.LootCollection;
 using Code.Meta.Features.LootCollection.Service;
 using Code.Meta.UI.Shop.Configs;
+using Code.Meta.UI.Shop.Templates;
 using Code.Meta.UI.Shop.WindowService;
-using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Code.Meta.UI.Shop.Templates.UpgradeLoot
+namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
 {
     public class LootUpgradeShopTab : BaseShopTab
     {

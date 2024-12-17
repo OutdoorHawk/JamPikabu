@@ -26,6 +26,7 @@ namespace Code.Meta.UI.Common
         private int _currentAmount;
 
         public Image CurrencyIcon => _currencyIcon;
+        public TMP_Text AmountText => _amountText;
 
         [Inject]
         private void Construct(IStaticDataService staticDataService)

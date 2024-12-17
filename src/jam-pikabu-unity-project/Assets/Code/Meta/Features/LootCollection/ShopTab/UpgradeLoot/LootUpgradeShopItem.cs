@@ -7,7 +7,6 @@ using Code.Gameplay.Features.Currency.Service;
 using Code.Gameplay.Features.Loot;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.StaticData;
-using Code.Meta.Features.LootCollection;
 using Code.Meta.Features.LootCollection.Configs;
 using Code.Meta.UI.Common;
 using TMPro;
@@ -16,7 +15,7 @@ using UnityEngine.Localization;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Code.Meta.UI.Shop.Templates.UpgradeLoot
+namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
 {
     public class LootUpgradeShopItem : MonoBehaviour
     {
@@ -33,6 +32,7 @@ namespace Code.Meta.UI.Shop.Templates.UpgradeLoot
         private IGameplayCurrencyService _gameplayCurrencyService;
 
         private CostSetup _upgradePrice;
+        private CurrencyTypeId _ratingCurrency;
 
         public LootTypeId Type => TypeId;
         public bool MaxLevelReached { get; private set; }
@@ -62,15 +62,21 @@ namespace Code.Meta.UI.Shop.Templates.UpgradeLoot
         {
             Icon.sprite = LootSettings.GetConfig(item.Type).Icon;
             TypeId = item.Type;
+            _ratingCurrency = CurrencyTypeId.Plus;
             
-            LocalizedString localizedString = LootSettings.GetConfig(item.Type).LocalizedName;
-            if (localizedString.IsEmpty == false)
-                Name.text = localizedString.GetLocalizedString();
-            
+            InitLocale(in item);
             InitCurrentLevel(in item);
             InitNextLevel(in item);
             InitUpgradePrice(in item);
             UpdateAvailable();
+        }
+
+        private void InitLocale(in LootItemCollectionData item)
+        {
+            LocalizedString localizedString = LootSettings.GetConfig(item.Type).LocalizedName;
+            
+            if (localizedString.IsEmpty == false)
+                Name.text = localizedString.GetLocalizedString();
         }
 
         private void InitCurrentLevel(in LootItemCollectionData item)
@@ -81,7 +87,7 @@ namespace Code.Meta.UI.Shop.Templates.UpgradeLoot
                 return;
 
             LootLevelData currentLevel = levels[item.Level];
-            RatingFrom.SetupPrice(currentLevel.RatingBoostAmount, CurrencyTypeId.Plus);
+            RatingFrom.SetupPrice(currentLevel.RatingBoostAmount, _ratingCurrency);
         }
 
         private void InitNextLevel(in LootItemCollectionData item)
@@ -96,7 +102,7 @@ namespace Code.Meta.UI.Shop.Templates.UpgradeLoot
 
             MaxLevelReached = false;
             LootLevelData nextLevel = levels[item.Level + 1];
-            RatingTo.SetupPrice(nextLevel.RatingBoostAmount, CurrencyTypeId.Plus);
+            RatingTo.SetupPrice(nextLevel.RatingBoostAmount, _ratingCurrency);
         }
 
         private void InitUpgradePrice(in LootItemCollectionData item)
@@ -137,6 +143,7 @@ namespace Code.Meta.UI.Shop.Templates.UpgradeLoot
         private void ResetAll()
         {
             UpgradePrice.DisableElement();
+            UpgradePrice.CurrencyIcon.EnableElement();
             RatingTo.DisableElement();
             RatingArrow.DisableElement();
             UpgradeButton.DisableElement();
@@ -145,7 +152,9 @@ namespace Code.Meta.UI.Shop.Templates.UpgradeLoot
 
         private void SetMaxLevelReached()
         {
-         
+            UpgradePrice.CurrencyIcon.DisableElement();
+            UpgradePrice.EnableElement();
+            UpgradePrice.AmountText.text = "Max";
         }
 
         private void SetNoMoneyForUpgrade()

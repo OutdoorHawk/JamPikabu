@@ -22,11 +22,13 @@ namespace Code.Progress.Writer
 
         public void WriteProgress(string json)
         {
+            bool hasDiffs = json.Equals(PlayerPrefs.GetString(PROGRESS_KEY)) == false;
+            
             if (GP_Init.isReady)
             {
                 GP_Player.Set(PROGRESS_KEY, json);
 
-                if (GP_Player.HasAnyCredentials())
+                if (GP_Player.HasAnyCredentials() && hasDiffs)
                     GP_Player.Sync();
             }
 
