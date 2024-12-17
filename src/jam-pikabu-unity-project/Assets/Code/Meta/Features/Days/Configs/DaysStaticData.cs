@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Code.Meta.Features.Days.Configs
 {
     [CreateAssetMenu(menuName = "StaticData/" + nameof(DaysStaticData), fileName = "Days")]
-    public class DaysStaticData : BaseStaticData<DayData>
+    public partial class DaysStaticData : BaseStaticData<DayData>
     {
         public int StartGoldAmount = 0;
 

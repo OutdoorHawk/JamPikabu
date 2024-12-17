@@ -4,13 +4,13 @@ using Entitas;
 
 namespace Code.Meta.Features.LootCollection.Systems
 {
-    public class ProcessLootUnlockRequest : IExecuteSystem
+    public class ProcessUnlockLootRequest : IExecuteSystem
     {
         private readonly ILootCollectionFactory _lootCollectionFactory;
         private readonly IGroup<MetaEntity> _request;
         private readonly IGroup<MetaEntity> _existingLoot;
 
-        public ProcessLootUnlockRequest(MetaContext context, ILootCollectionFactory lootCollectionFactory)
+        public ProcessUnlockLootRequest(MetaContext context, ILootCollectionFactory lootCollectionFactory)
         {
             _lootCollectionFactory = lootCollectionFactory;
             

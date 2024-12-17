@@ -52,7 +52,7 @@ namespace Code.Gameplay.Features.Orders.Behaviours
             _orderIconFilled.sprite = currentOrder.Setup.OrderIcon;
             _orderIconFilled.fillAmount = 0;
 
-            Reward.SetupPrice(currentOrder.Setup.Reward);
+            Reward.SetupPrice(currentOrder.Setup.GoldReward);
         }
 
         public void InitOrderFillProgress()

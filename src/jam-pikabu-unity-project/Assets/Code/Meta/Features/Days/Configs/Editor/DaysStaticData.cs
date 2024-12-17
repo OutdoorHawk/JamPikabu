@@ -1,6 +1,67 @@
+using System.Collections.Generic;
+using System.Linq;
+using Code.Gameplay.Features.Orders.Config;
+using RoyalGold.Sources.Scripts.Game.MVC.Utils;
+using Sirenix.OdinInspector;
+using UnityEngine;
+
+#if UNITY_EDITOR
 namespace Code.Meta.Features.Days.Configs
 {
     public partial class DaysStaticData
     {
+        [FoldoutGroup("Editor")] public OrdersStaticData OrdersData;
+
+        [FoldoutGroup("Editor")] [ReadOnly] public List<int> AverageGoldPerLevel;
+        [FoldoutGroup("Editor")] [ReadOnly] public int TotalGoldPerLevels;
+
+        [FoldoutGroup("Editor")] public float MinGoldFactor = 1f; 
+        [FoldoutGroup("Editor")] public float MaxGoldFactor = 5f;
+        [FoldoutGroup("Editor")] public AnimationCurve GoldFactorCurve;
+
+        [FoldoutGroup("Editor")]
+        [Button]
+        public void CalculateAverageGoldPerLevel()
+        {
+            AverageGoldPerLevel.Clear();
+            List<OrderData> orderConfigs = OrdersData.Configs;
+            List<DayData> dayDataConfigs = Configs;
+
+            foreach (var day in dayDataConfigs)
+            {
+                int totalGoldPerDay = 0;
+
+                orderConfigs.ShuffleList();
+
+                for (int i = 0; i < day.OrdersAmount; i++)
+                {
+                    float goldPerOrder = orderConfigs[i].Setup.GoldReward.Amount * day.DayGoldFactor;
+                    totalGoldPerDay += Mathf.RoundToInt(goldPerOrder);
+                }
+
+                AverageGoldPerLevel.Add(totalGoldPerDay);
+            }
+
+            TotalGoldPerLevels = AverageGoldPerLevel.Sum();
+        }
+
+        [FoldoutGroup("Editor")]
+        [Button]
+        private void ApplyGoldFactorBalance()
+        {
+            List<DayData> dayDataConfigs = Configs;
+
+            int totalCount = dayDataConfigs.Count;
+
+            for (int i = 0; i < totalCount; i++)
+            {
+                float t = i / (float)(totalCount - 1);
+                float curveValue = GoldFactorCurve.Evaluate(t);
+                float newGoldFactor = Mathf.Lerp(MinGoldFactor, MaxGoldFactor, curveValue);
+                
+                dayDataConfigs[i].DayGoldFactor = newGoldFactor;
+            }
+        }
     }
 }
+#endif

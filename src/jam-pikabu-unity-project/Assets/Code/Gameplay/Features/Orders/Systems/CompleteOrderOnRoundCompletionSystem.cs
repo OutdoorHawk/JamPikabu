@@ -10,6 +10,7 @@ using Code.Gameplay.Features.Orders.Service;
 using Code.Gameplay.Windows;
 using Code.Gameplay.Windows.Service;
 using Entitas;
+using UnityEngine;
 
 namespace Code.Gameplay.Features.Orders.Systems
 {
@@ -78,11 +79,11 @@ namespace Code.Gameplay.Features.Orders.Systems
 
         private void GiveRewardForOrder(GameEntity order, OrderSetup orderDataSetup)
         {
-            float rewardAmount = orderDataSetup.Reward.Amount;
+            float rewardAmount = orderDataSetup.GoldReward.Amount;
             rewardAmount *= _ordersService.GetOrderProgress();
-            int rewardRounded = (int)rewardAmount;
-            order.AddOrderReward(new CostSetup(orderDataSetup.Reward.CurrencyType, rewardRounded));
-            _currencyFactory.CreateAddCurrencyRequest(orderDataSetup.Reward.CurrencyType, rewardRounded, rewardRounded);
+            int rewardRounded = Mathf.RoundToInt(rewardAmount);
+            order.AddOrderReward(new CostSetup(orderDataSetup.GoldReward.CurrencyType, rewardRounded));
+            _currencyFactory.CreateAddCurrencyRequest(orderDataSetup.GoldReward.CurrencyType, rewardRounded, rewardRounded);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Code.Gameplay.Features.Orders.Config
     {
         [PreviewField] public Sprite OrderIcon;
         
-        public CostSetup Reward = new(CurrencyTypeId.Gold);
+        public CostSetup GoldReward = new(CurrencyTypeId.Gold);
         public Vector2Int MinMaxDayToUnlock;
         
         public Vector2Int MinMaxAmount = Vector2Int.one;

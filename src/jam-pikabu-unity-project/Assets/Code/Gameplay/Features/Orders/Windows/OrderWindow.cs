@@ -119,7 +119,7 @@ namespace Code.Gameplay.Features.Orders.Windows
             CreateItems(_ordersService.OrderIngredients.good, _goodItems, _goodIngredients.transform);
             CreateItems(_ordersService.OrderIngredients.bad, _badItems, _badIngredients.transform);
 
-            _orderReward.SetupPrice(_currentOrder.Setup.Reward);
+            _orderReward.SetupPrice(_currentOrder.Setup.GoldReward);
         }
 
         private void CreateItems(List<IngredientData> ingredients, List<LootItemUI> items, Transform parent)
@@ -200,12 +200,12 @@ namespace Code.Gameplay.Features.Orders.Windows
 
             var parameters = new CurrencyAnimationParameters
             {
-                Type = _currentOrder.Setup.Reward.CurrencyType,
-                Count = _currentOrder.Setup.Reward.Amount,
+                Type = _currentOrder.Setup.GoldReward.CurrencyType,
+                Count = _currentOrder.Setup.GoldReward.Amount,
                 StartReplenishSound = SoundTypeId.Gold_Currency_Collect,
                 StartPosition = _orderReward.CurrencyIcon.transform.position,
                 EndPosition = _currencyHolder.PlayerCurrentGold.CurrencyIcon.transform.position,
-                StartReplenishCallback = () => RemoveWithdraw(_currentOrder.Setup.Reward.Amount)
+                StartReplenishCallback = () => RemoveWithdraw(_currentOrder.Setup.GoldReward.Amount)
             };
 
             _soundService.PlaySound(SoundTypeId.Order_Completed);
