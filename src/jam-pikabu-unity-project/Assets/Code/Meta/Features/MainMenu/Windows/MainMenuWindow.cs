@@ -17,6 +17,7 @@ namespace Code.Meta.Features.MainMenu.Windows
     {
         public MapContainer MapContainer;
         public Button PlayButton;
+        public Button ShopButton;
 
         private IGameStateMachine _gameStateMachine;
         private IMapMenuService _mapMenuService;
@@ -62,7 +63,8 @@ namespace Code.Meta.Features.MainMenu.Windows
 
         private void Refresh()
         {
-            PlayButton.interactable = _mapMenuService.DayIsSelected;
+            if (PlayButton != null) 
+                PlayButton.interactable = _mapMenuService.DayIsSelected;
         }
 
         private void OnPlayClick()

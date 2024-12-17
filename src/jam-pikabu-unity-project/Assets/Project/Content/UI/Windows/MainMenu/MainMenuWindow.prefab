@@ -524,6 +524,7 @@ MonoBehaviour:
   _animationDuration: 0.15
   MapContainer: {fileID: 2104741244981334193}
   PlayButton: {fileID: 1595205656589882711}
+  ShopButton: {fileID: 8017122206792310784}
 --- !u!225 &3730107551682015233
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -855,6 +856,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1233993181089495494, guid: 465b01d70c146454491c3d30e95bb29f,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1311630627813888966, guid: 465b01d70c146454491c3d30e95bb29f,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -989,6 +995,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4372327642109282096, guid: 465b01d70c146454491c3d30e95bb29f,
+        type: 3}
+      propertyPath: m_Material
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4633518093557928949, guid: 465b01d70c146454491c3d30e95bb29f,
         type: 3}
@@ -1219,6 +1230,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8522738610428716393, guid: 465b01d70c146454491c3d30e95bb29f,
+        type: 3}
+      propertyPath: m_Material
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8577932000857226205, guid: 465b01d70c146454491c3d30e95bb29f,
         type: 3}
@@ -1526,6 +1542,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 3633292027127666813}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8017122206792310784 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6714446974779947133, guid: a1321f7c3c4e27340bf725c10179a593,
+    type: 3}
+  m_PrefabInstance: {fileID: 3633292027127666813}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28013674495975824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4713131771371455046
 PrefabInstance:
   m_ObjectHideFlags: 0

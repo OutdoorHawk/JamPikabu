@@ -18,5 +18,6 @@
         Lose = 13,
         Complete = 14,
         Fly = 15,
+        Collect = 16,
     }
 }
