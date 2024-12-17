@@ -1,5 +1,6 @@
 using System.Linq;
 using Code.Meta.Features.LootCollection.Factory;
+using Code.Progress.SaveLoadService;
 using Entitas;
 
 namespace Code.Meta.Features.LootCollection.Systems
@@ -7,16 +8,17 @@ namespace Code.Meta.Features.LootCollection.Systems
     public class ProcessUnlockLootRequest : IExecuteSystem
     {
         private readonly ILootCollectionFactory _lootCollectionFactory;
+        private readonly ISaveLoadService _saveLoadService;
         private readonly IGroup<MetaEntity> _request;
         private readonly IGroup<MetaEntity> _existingLoot;
 
-        public ProcessUnlockLootRequest(MetaContext context, ILootCollectionFactory lootCollectionFactory)
+        public ProcessUnlockLootRequest(MetaContext context, ILootCollectionFactory lootCollectionFactory, ISaveLoadService saveLoadService)
         {
             _lootCollectionFactory = lootCollectionFactory;
-            
-            //TODO: REQUEST COMPONENT
+            _saveLoadService = saveLoadService;
+
             _request = context.GetGroup(MetaMatcher
-                .AllOf(
+                .AllOf(MetaMatcher.UnlockLootRequest,
                     MetaMatcher.LootTypeId
                 ));
             
@@ -38,6 +40,7 @@ namespace Code.Meta.Features.LootCollection.Systems
                     continue;
 
                 _lootCollectionFactory.UnlockNewLoot(request.LootTypeId);
+                _saveLoadService.SaveProgress();
             }
         }
 

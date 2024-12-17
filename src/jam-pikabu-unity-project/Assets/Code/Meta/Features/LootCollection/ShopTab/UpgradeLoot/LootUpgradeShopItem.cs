@@ -26,6 +26,7 @@ namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
         public PriceInfo UpgradePrice;
         public PriceInfo RatingFrom;
         public PriceInfo RatingTo;
+        public GameObject MaxReached;
         public LootTypeId TypeId;
 
         private IStaticDataService _staticData;
@@ -142,8 +143,8 @@ namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
 
         private void ResetAll()
         {
+            MaxReached.DisableElement();
             UpgradePrice.DisableElement();
-            UpgradePrice.CurrencyIcon.EnableElement();
             RatingTo.DisableElement();
             RatingArrow.DisableElement();
             UpgradeButton.DisableElement();
@@ -152,9 +153,7 @@ namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
 
         private void SetMaxLevelReached()
         {
-            UpgradePrice.CurrencyIcon.DisableElement();
-            UpgradePrice.EnableElement();
-            UpgradePrice.AmountText.text = "Max";
+            MaxReached.EnableElement();
         }
 
         private void SetNoMoneyForUpgrade()

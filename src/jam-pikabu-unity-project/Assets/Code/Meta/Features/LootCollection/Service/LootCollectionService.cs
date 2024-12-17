@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using Code.Gameplay.Features.Loot;
-using Code.Progress.SaveLoadService;
 
 namespace Code.Meta.Features.LootCollection.Service
 {
     public class LootCollectionService : ILootCollectionService
     {
-        private readonly ISaveLoadService _saveLoadService;
         public event Action OnUpgraded;
         public Dictionary<LootTypeId, LootItemCollectionData> LootProgression { get; private set; } = new();
 
-        public LootCollectionService(ISaveLoadService saveLoadService)
+        public LootCollectionService()
         {
-            _saveLoadService = saveLoadService;
         }
         
         public void InitializeLootProgression(List<LootItemCollectionData> items)
@@ -30,7 +27,6 @@ namespace Code.Meta.Features.LootCollection.Service
         {
             LootProgression[type] = new LootItemCollectionData(type, newLevel);
             OnUpgraded?.Invoke();
-            _saveLoadService.SaveProgress();
         }
     }
 }

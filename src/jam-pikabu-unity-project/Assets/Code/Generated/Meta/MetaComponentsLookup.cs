@@ -15,17 +15,18 @@ public static class MetaComponentsLookup {
     public const int Level = 4;
     public const int Loot = 5;
     public const int LootTypeId = 6;
-    public const int UpgradeLootRequest = 7;
-    public const int AddCurrencyToStorageRequest = 8;
-    public const int Gold = 9;
-    public const int Storage = 10;
-    public const int Withdraw = 11;
-    public const int ForAd = 12;
-    public const int BuyRequest = 13;
-    public const int Purchased = 14;
-    public const int ShopItemId = 15;
+    public const int UnlockLootRequest = 7;
+    public const int UpgradeLootRequest = 8;
+    public const int AddCurrencyToStorageRequest = 9;
+    public const int Gold = 10;
+    public const int Storage = 11;
+    public const int Withdraw = 12;
+    public const int ForAd = 13;
+    public const int BuyRequest = 14;
+    public const int Purchased = 15;
+    public const int ShopItemId = 16;
 
-    public const int TotalComponents = 16;
+    public const int TotalComponents = 17;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -35,6 +36,7 @@ public static class MetaComponentsLookup {
         "Level",
         "Loot",
         "LootTypeId",
+        "UnlockLootRequest",
         "UpgradeLootRequest",
         "AddCurrencyToStorageRequest",
         "Gold",
@@ -54,6 +56,7 @@ public static class MetaComponentsLookup {
         typeof(Code.Meta.Features.LootCollection.Level),
         typeof(Code.Meta.Features.LootCollection.Loot),
         typeof(Code.Meta.Features.LootCollection.LootTypeIdComponent),
+        typeof(Code.Meta.Features.LootCollection.UnlockLootRequest),
         typeof(Code.Meta.Features.LootCollection.UpgradeLootRequest),
         typeof(Code.Meta.Features.Storage.AddCurrencyToStorageRequest),
         typeof(Code.Meta.Features.Storage.Gold),
