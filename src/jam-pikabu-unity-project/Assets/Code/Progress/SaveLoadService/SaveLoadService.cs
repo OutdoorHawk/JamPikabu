@@ -9,6 +9,7 @@ using Code.Progress.Provider;
 using Code.Progress.Writer;
 using Entitas;
 using UnityEngine;
+using static Code.Progress.SaveLoadService.ISaveLoadService;
 
 namespace Code.Progress.SaveLoadService
 {
@@ -18,9 +19,7 @@ namespace Code.Progress.SaveLoadService
         private readonly IProgressReadWrite _progressReadWrite;
         private readonly GameContext _gameContext;
         private readonly MetaContext _metaContext;
-
-        private const string PROGRESS_KEY = "PlayerProgress";
-
+        
         public static string PlayerProgressPath => Path.Combine(Application.persistentDataPath, PROGRESS_KEY);
 
         public bool HasSavedProgress => _progressReadWrite.HasSavedProgress();

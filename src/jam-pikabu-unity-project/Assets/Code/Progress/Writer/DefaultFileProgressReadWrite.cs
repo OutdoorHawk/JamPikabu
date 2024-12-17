@@ -1,13 +1,12 @@
 using System.IO;
 using Code.Infrastructure.Serialization;
 using UnityEngine;
+using static Code.Progress.SaveLoadService.ISaveLoadService;
 
 namespace Code.Progress.Writer
 {
     public class DefaultFileProgressReadWrite : IProgressReadWrite
     {
-        private const string PROGRESS_KEY = "player_progress";
-
         private static string ProgressPath => Path.Combine(Application.persistentDataPath, PROGRESS_KEY);
 
         public bool HasSavedProgress()

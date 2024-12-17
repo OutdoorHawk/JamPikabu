@@ -3,6 +3,7 @@ using Code.Progress;
 using Code.Progress.SaveLoadService;
 using UnityEditor;
 using UnityEditor.SceneManagement;
+using UnityEngine;
 
 namespace Code.Editor
 {
@@ -30,6 +31,7 @@ namespace Code.Editor
         public static void ClearPlayerProgress()
         {
             ProgressExtensions.DeleteProgress(SaveLoadService.PlayerProgressPath);
+            PlayerPrefs.DeleteAll();
         }
 
         [MenuItem("Tools/System/Recompile Code")]

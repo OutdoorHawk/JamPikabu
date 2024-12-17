@@ -1,13 +1,12 @@
 using Code.Infrastructure.Serialization;
 using GamePush;
 using UnityEngine;
+using static Code.Progress.SaveLoadService.ISaveLoadService;
 
 namespace Code.Progress.Writer
 {
     public class GamePushProgressReadWrite : IProgressReadWrite
     {
-        private const string PROGRESS_KEY = "player_progress";
-
         public bool HasSavedProgress()
         {
 #if !UNITY_EDITOR

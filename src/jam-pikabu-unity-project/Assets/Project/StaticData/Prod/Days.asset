@@ -17,6 +17,7 @@ MonoBehaviour:
     StarsNeedToUnlock: 0
     OrdersAmount: 2
     RoundDuration: 5
+    DayGoldFactor: 1
     IsBossDay: 0
     SceneId: 2
     AvailableIngredients: 03000000040000000500000006000000
@@ -24,10 +25,13 @@ MonoBehaviour:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
   - Id: 2
     StarsNeedToUnlock: 0
     OrdersAmount: 3
     RoundDuration: 20
+    DayGoldFactor: 1
     IsBossDay: 0
     SceneId: 2
     AvailableIngredients: 
@@ -35,20 +39,54 @@ MonoBehaviour:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
   - Id: 3
     StarsNeedToUnlock: 0
     OrdersAmount: 4
     RoundDuration: 20
+    DayGoldFactor: 1
     IsBossDay: 0
     SceneId: 2
     AvailableIngredients: 
     Stars: []
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
   - Id: 4
     StarsNeedToUnlock: 0
     OrdersAmount: 1
     RoundDuration: 45
+    DayGoldFactor: 1
     IsBossDay: 0
     SceneId: 3
     AvailableIngredients: 
     Stars: []
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
+  - Id: 5
+    StarsNeedToUnlock: 0
+    OrdersAmount: 0
+    RoundDuration: 20
+    DayGoldFactor: 1
+    IsBossDay: 0
+    SceneId: 2
+    AvailableIngredients: 
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
   StartGoldAmount: 20
+  OrdersData: {fileID: 0}
+  LootProgression: {fileID: 0}
+  AverageGoldPerLevel: 
+  TotalGoldPerLevels: 0
+  MinGoldFactor: 1
+  MaxGoldFactor: 5
+  GoldFactorCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
