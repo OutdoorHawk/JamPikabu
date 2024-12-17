@@ -18,5 +18,10 @@ namespace Code.Meta.Features.Days.Configs
         [FoldoutGroup("Data")] public SceneTypeId SceneId = SceneTypeId.Level_1;
         [FoldoutGroup("Data")] public List<LootTypeId> AvailableIngredients;
         [FoldoutGroup("Data")] public List<DayStarData> Stars = new() { new DayStarData(), new DayStarData(), new DayStarData() };
+
+#if UNITY_EDITOR
+        [FoldoutGroup("Editor"), ReadOnly] public int AverageRatingPerLevelMinGrade;
+        [FoldoutGroup("Editor"), ReadOnly] public int AverageRatingPerLevelMaxGrade;
+#endif
     }
 }

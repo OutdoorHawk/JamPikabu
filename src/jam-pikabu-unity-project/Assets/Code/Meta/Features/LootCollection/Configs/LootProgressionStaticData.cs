@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Code.Meta.Features.LootCollection.Configs
 {
     [CreateAssetMenu(menuName = "StaticData/" + nameof(LootProgressionStaticData), fileName = "LootProgression")]
-    public class LootProgressionStaticData : BaseStaticData<LootProgressionData>
+    public partial class LootProgressionStaticData : BaseStaticData<LootProgressionData>
     {
         public List<LootTypeId> StartGameUnlockedLoot;
         
