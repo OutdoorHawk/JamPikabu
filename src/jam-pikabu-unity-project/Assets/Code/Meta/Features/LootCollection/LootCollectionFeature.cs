@@ -10,6 +10,7 @@ namespace Code.Meta.Features.LootCollection
             Add(systems.Create<InitLootProgressionSystem>());
             
             Add(systems.Create<ProcessUpgradeLootRequest>());
+            Add(systems.Create<ProcessUnlockLootRequest>());
         }
     }
 }

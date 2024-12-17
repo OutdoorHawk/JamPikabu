@@ -43,6 +43,7 @@ using Code.Infrastructure.Systems;
 using Code.Infrastructure.View.Factory;
 using Code.Meta.Features.Days.Factory;
 using Code.Meta.Features.Days.Service;
+using Code.Meta.Features.LootCollection.Factory;
 using Code.Meta.Features.LootCollection.Service;
 using Code.Meta.Features.MainMenu.Service;
 using Code.Meta.UI.HardCurrencyHolder.Service;
@@ -182,6 +183,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.BindInterfacesTo<OrdersFactory>().AsSingle();
             Container.BindInterfacesTo<GameStateFactory>().AsSingle();
             Container.BindInterfacesTo<DaysFactory>().AsSingle();
+            Container.BindInterfacesTo<LootCollectionFactory>().AsSingle();
         }
 
         private void BindGameplayFactories()
