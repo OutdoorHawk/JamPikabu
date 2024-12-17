@@ -78,7 +78,7 @@ MonoBehaviour:
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   StartGoldAmount: 20
-  OrdersData: {fileID: 0}
+  OrdersData: {fileID: 11400000, guid: cf868022c2d7cf349a5e0bd1ae7f42c9, type: 2}
   LootProgression: {fileID: 0}
   AverageGoldPerLevel: 
   TotalGoldPerLevels: 0

@@ -1,19 +1,31 @@
+#if UNITY_EDITOR
 using System.Collections.Generic;
 using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Config;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-#if UNITY_EDITOR
 namespace Code.Meta.Features.LootCollection.Configs
 {
     public partial class LootProgressionStaticData
     {
+        [FoldoutGroup("Editor")] public int LevelsAmount = 15;
         [FoldoutGroup("Editor")] public float GrowthExponent = 1.5f;
         [FoldoutGroup("Editor")] public float StepFactor = 2f;
         [FoldoutGroup("Editor")] public int BonusAdjustment = 1;
 
-        [FoldoutGroup("Editor"), ReadOnly] public AnimationCurve ProgressionCurve;
+        [FoldoutGroup("Editor")] public AnimationCurve ProgressionCurve;
+
+        [Button]
+        private void RecreateLevels()
+        {
+            foreach (var config in Configs)
+            {
+                config.Levels.Clear();
+                for (int i = 0; i < LevelsAmount; i++) 
+                    config.Levels.Add(new LootLevelData());
+            }
+        }
 
         [Button]
         private void ApplyLootProgressionFormula()
@@ -28,7 +40,7 @@ namespace Code.Meta.Features.LootCollection.Configs
                 CurrencyTypeId currencyType = levels[0].Cost.CurrencyType;
 
                 // Итерация по уровням и применение формулы
-                for (int i = 0; i < levels.Count; i++)
+                for (int i = 1; i < levels.Count; i++)
                 {
                     float boostValue = baseBoostAmount + StepFactor * Mathf.Pow(i, GrowthExponent) + BonusAdjustment;
                     float costValue = baseCostAmount + StepFactor * Mathf.Pow(i, GrowthExponent) + BonusAdjustment;
