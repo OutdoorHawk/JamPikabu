@@ -5,7 +5,9 @@ using Code.Common.Extensions;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.Features.Loot.Factory;
 using Code.Gameplay.StaticData;
+using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Service;
+using RoyalGold.Sources.Scripts.Game.MVC.Utils;
 
 namespace Code.Gameplay.Features.Loot.Service
 {
@@ -73,6 +75,26 @@ namespace Code.Gameplay.Features.Loot.Service
             foreach (LootTypeId lootTypeId in currentDay.AvailableIngredients)
             {
                 _availableLoot.Add(staticData.GetConfig(lootTypeId));
+            }
+
+            FallbackRandom(currentDay, staticData);
+        }
+
+        private void FallbackRandom(DayData currentDay, LootSettingsStaticData staticData)
+        {
+            if (currentDay.AvailableIngredients.Count != 0)
+                return;
+            
+            List<LootTypeId> lootTypes = new List<LootTypeId>();
+            
+            for (LootTypeId i = 0; i < LootTypeId.Count; i++)
+                lootTypes.Add(i);
+
+            lootTypes.ShuffleList();
+
+            for (int i = 0; i < 5; i++)
+            {
+                _availableLoot.Add(staticData.GetConfig(lootTypes[i]));
             }
         }
 

@@ -52,8 +52,6 @@ namespace Code.Infrastructure.States.GameStates
 
         protected override void ExitOnEndOfFrame()
         {
-            _windowService.ClearUIRoot();
-
             _mapMenuFeature.DeactivateReactiveSystems();
             _mapMenuFeature.ClearReactiveSystems();
 

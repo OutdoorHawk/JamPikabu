@@ -47,6 +47,7 @@ namespace Code.Gameplay.Windows
 
         private void OnDestroy()
         {
+            Cleanup();
             _animationTweener?.Kill();
         }
 

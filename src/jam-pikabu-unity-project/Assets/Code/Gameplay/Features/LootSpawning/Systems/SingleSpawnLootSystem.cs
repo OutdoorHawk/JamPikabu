@@ -98,9 +98,12 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
 
         private async UniTask ProcessLootSpawn(LootSettingsStaticData staticData, SceneContextComponent sceneContext)
         {
-            float lootSpawnAmount = staticData.MaxLootAmount / _gameplayLootService.AvailableLoot.Count;
+            float lootSpawnAmount = staticData.MaxLootAmount;
 
-            for (int i = 0; i < lootSpawnAmount; i++)
+            if (lootSpawnAmount == 0 || _gameplayLootService.AvailableLoot == null)
+                return;
+
+            for (int i = 0; i < lootSpawnAmount / _gameplayLootService.AvailableLoot.Count; i++)
             {
                 Transform spawn = GetSpawnPoint(sceneContext);
 

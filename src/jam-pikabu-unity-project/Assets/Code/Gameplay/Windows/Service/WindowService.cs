@@ -94,7 +94,7 @@ namespace Code.Gameplay.Windows.Service
 
         public void ClearUIRoot()
         {
-            foreach (BaseWindow window in _windowsHistory.Values)
+            foreach (BaseWindow window in _windowsHistory.Values) 
                 Object.Destroy(window.gameObject);
 
             _windowsHistory.Clear();

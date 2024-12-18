@@ -44,9 +44,6 @@ namespace Code.Infrastructure.States.StateInfrastructure
     {
       if (!ExitWasRequested)
         OnFixedUpdate();
-      
-      if (ExitWasRequested) 
-        ResolveExitPromise();
     }
 
     protected virtual void ExitOnEndOfFrame()
