@@ -20,6 +20,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 using static System.Threading.CancellationTokenSource;
+using static Code.Common.Extensions.AsyncGameplayExtensions;
 
 namespace Code.Meta.Features.LootCollection.Behaviours
 {
@@ -190,7 +191,6 @@ namespace Code.Meta.Features.LootCollection.Behaviours
                 return;
 
             UnlockButton.interactable = false;
-            UnlockIngredient();
             CollectNewIngredient().Forget();
         }
 
@@ -205,18 +205,20 @@ namespace Code.Meta.Features.LootCollection.Behaviours
                 .AddGold(0);
         }
 
+        private async UniTaskVoid CollectNewIngredient()
+        {
+            MoveIngredientToShop(from: FlyIconRect.transform.position);
+            await DelaySeconds(0.5f, destroyCancellationToken);
+            await UnlockIngredientAnimator.WaitForAnimationCompleteAsync(AnimationParameter.Collect.AsHash(), destroyCancellationToken);
+            await UniTask.Yield(destroyCancellationToken);
+            UnlockIngredient();
+        }
+
         private void UnlockIngredient()
         {
             CreateMetaEntity.Empty()
                 .With(x => x.isUnlockLootRequest = true)
                 .AddLootTypeId(_unlocksIngredient);
-        }
-
-        private async UniTaskVoid CollectNewIngredient()
-        {
-            await UnlockIngredientAnimator.WaitForAnimationCompleteAsync(AnimationParameter.Collect.AsHash(), destroyCancellationToken);
-            MoveIngredientToShop(from: FlyIconRect.transform.position);
-            await UniTask.Yield(destroyCancellationToken);
         }
 
         private void MoveIngredientToShop(Vector3 from)
