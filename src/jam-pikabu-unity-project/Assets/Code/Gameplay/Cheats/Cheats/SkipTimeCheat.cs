@@ -24,7 +24,7 @@ namespace Code.Gameplay.Cheats.Cheats
 
         public void Execute(string input)
         {
-            int secondsOffset = int.Parse(input) / 60;
+            int secondsOffset = int.Parse(input) * 60;
             _timeService.TimeOffset += secondsOffset;
             PlayerPrefs.SetInt(CheatTimeOffsetKey, _timeService.TimeOffset);
         }

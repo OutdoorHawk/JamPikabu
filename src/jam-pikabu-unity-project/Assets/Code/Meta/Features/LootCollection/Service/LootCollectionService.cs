@@ -36,7 +36,7 @@ namespace Code.Meta.Features.LootCollection.Service
 
         public void AddNewUnlockedLoot(LootTypeId type)
         {
-            LootProgression.Add(type, new LootItemCollectionData(type, 1));
+            LootProgression.Add(type, new LootItemCollectionData(type, 0));
         }
 
         public void LootUpgraded(LootTypeId type, int newLevel)
@@ -71,10 +71,12 @@ namespace Code.Meta.Features.LootCollection.Service
 
         public bool CanUpgradeForFree(LootTypeId type)
         {
-            if (LootProgression.TryGetValue(type, out var progression) == false)
+            LootProgressionData progressionData = LootData.GetConfig(type);
+            
+            if (progressionData == null)
                 return false;
 
-            if (progression.NextFreeUpgradeTime == 0)
+            if (progressionData.FreeUpgradeTimeHours == 0)
                 return false;
             
             return true;

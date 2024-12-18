@@ -31,6 +31,22 @@ MonoBehaviour:
     m_Key: C_LOADING
     m_Metadata:
       m_Items: []
+  - m_Id: 15251886529794048
+    m_Key: TIMER_SECONDS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15251937779994624
+    m_Key: TIMER_MINUTES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15251967748296704
+    m_Key: TIMER_HOURS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15251988761759744
+    m_Key: TIMER_DAYS
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

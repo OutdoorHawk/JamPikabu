@@ -37,7 +37,10 @@ namespace Code.Gameplay.Common.Time.Behaviours
 
         private void Awake()
         {
-            //TODO: LOCALIZATION INIT
+            _localizedSeconds = _localizationService[$"COMMON/TIMER_SECONDS"];
+            _localizedMinutes = _localizationService[$"COMMON/TIMER_MINUTES"];
+            _localizedHour = _localizationService[$"COMMON/TIMER_HOURS"];
+            _localizedDay = _localizationService[$"COMMON/TIMER_DAYS"];
         }
 
         public void StartTimer(Func<double> getTimeFunc, Action onTimerEnd = null)

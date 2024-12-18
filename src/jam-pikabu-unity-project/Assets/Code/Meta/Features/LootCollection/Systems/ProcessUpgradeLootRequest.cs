@@ -1,4 +1,4 @@
-using Code.Gameplay.Features.Currency.Factory;
+using Code.Gameplay.Common.Time;
 using Code.Meta.Features.LootCollection.Service;
 using Entitas;
 
@@ -10,16 +10,16 @@ namespace Code.Meta.Features.LootCollection.Systems
         private readonly IGroup<MetaEntity> _lootCollection;
         private readonly IGroup<MetaEntity> _requests;
         private readonly IGroup<MetaEntity> _storages;
-        private readonly ICurrencyFactory _currencyFactory;
+        private readonly ITimeService _timeService;
 
         public ProcessUpgradeLootRequest
         (
             MetaContext context,
             ILootCollectionService lootCollectionService,
-            ICurrencyFactory currencyFactory
+            ITimeService timeService
         )
         {
-            _currencyFactory = currencyFactory;
+            _timeService = timeService;
             _lootCollectionService = lootCollectionService;
 
             _requests = context.GetGroup(MetaMatcher.AllOf(
@@ -42,21 +42,45 @@ namespace Code.Meta.Features.LootCollection.Systems
             {
                 if (request.LootTypeId != loot.LootTypeId)
                     continue;
+                
+                request.isDestructed = true;
 
-                foreach (MetaEntity storage in _storages)
+                bool isFreeUpgrade = request.Gold == 0;
+                
+                if (isFreeUpgrade)
                 {
-                    request.isDestructed = true;
-
-                    if (storage.Gold < request.Gold)
-                        continue;
-
-                    storage.ReplaceGold(storage.Gold - request.Gold);
-                    ProcessUpgrade(loot);
+                    ProcessFreeUpgrade(loot);
+                    break;
                 }
+
+                ProcessPaid(request, loot);
             }
         }
 
-        private void ProcessUpgrade(MetaEntity loot)
+        private void ProcessPaid(MetaEntity request, MetaEntity loot)
+        {
+            foreach (MetaEntity storage in _storages)
+            {
+                if (storage.Gold < request.Gold)
+                    continue;
+
+                storage.ReplaceGold(storage.Gold - request.Gold);
+                UpgradeLevel(loot);
+            }
+        }
+
+        private void ProcessFreeUpgrade(MetaEntity loot)
+        {
+            UpgradeLevel(loot);
+
+            if (loot.hasFreeUpgradeTimeSeconds)
+            {
+                loot.ReplaceNextFreeUpgradeTime(_timeService.TimeStamp + loot.FreeUpgradeTimeSeconds);
+                _lootCollectionService.FreeUpgradeTimerUpdated(loot.LootTypeId, loot.NextFreeUpgradeTime);
+            }
+        }
+
+        private void UpgradeLevel(MetaEntity loot)
         {
             int newLevel = loot.Level + 1;
             loot.ReplaceLevel(newLevel);

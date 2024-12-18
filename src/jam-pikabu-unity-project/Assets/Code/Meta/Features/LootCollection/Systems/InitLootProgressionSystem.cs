@@ -24,6 +24,8 @@ namespace Code.Meta.Features.LootCollection.Systems
             foreach (MetaEntity loot in _lootCollection)
             {
                 var item = new LootItemCollectionData(loot.LootTypeId, loot.Level);
+                if (loot.hasNextFreeUpgradeTime) 
+                    item.NextFreeUpgradeTime = loot.NextFreeUpgradeTime;
                 items.Add(item);
             }
 

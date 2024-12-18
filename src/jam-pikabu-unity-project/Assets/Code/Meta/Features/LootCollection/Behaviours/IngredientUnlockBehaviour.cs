@@ -13,6 +13,7 @@ using Code.Gameplay.Windows.Service;
 using Code.Meta.Features.LootCollection.Configs;
 using Code.Meta.Features.LootCollection.Service;
 using Code.Meta.Features.MainMenu.Windows;
+using Code.Meta.UI.Common.Replenish;
 using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
@@ -100,7 +101,7 @@ namespace Code.Meta.Features.LootCollection.Behaviours
         {
             ResetAll();
             
-            if (_lootCollectionService.CanUpgradeForFree(type))
+            if (_lootCollectionService.CanUpgradeForFree(type) == false)
                 return;
 
             Init(type);
@@ -175,7 +176,7 @@ namespace Code.Meta.Features.LootCollection.Behaviours
             while (timeLeftSeconds > 0)
             {
                 timeLeftSeconds = GetTimeFunc();
-                float factor = timeLeftSeconds / maxWaitTimeSeconds;
+                float factor = 1-(timeLeftSeconds / maxWaitTimeSeconds);
                 fillImage.fillAmount = factor;
                 await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: _fillToken.Token);
             }
@@ -216,7 +217,6 @@ namespace Code.Meta.Features.LootCollection.Behaviours
             await UnlockIngredientAnimator.WaitForAnimationCompleteAsync(AnimationParameter.Collect.AsHash(), destroyCancellationToken);
             MoveIngredientToShop(from: FlyIconRect.transform.position);
             await UniTask.Yield(destroyCancellationToken);
-            InitFreeUpgradeState(_unlocksIngredient);
         }
 
         private void MoveIngredientToShop(Vector3 from)
@@ -233,7 +233,8 @@ namespace Code.Meta.Features.LootCollection.Behaviours
                 Sprite = IngredientIcons[1].sprite,
                 EndPosition = shopButton.position,
                 StartPosition = from,
-                LinkObject = gameObject
+                LinkObject = gameObject,
+                StartReplenishCallback = () => shopButton.GetComponent<IReplenishAnimator>().Replenish()
             };
 
             _currencyFactory.PlayCurrencyAnimation(parameters);

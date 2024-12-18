@@ -1,4 +1,5 @@
-﻿using Code.Gameplay.Common.Time;
+﻿using System.Collections.Generic;
+using Code.Gameplay.Common.Time;
 using Code.Infrastructure.Systems;
 using Code.Meta.Features.LootCollection.Service;
 using Entitas;
@@ -10,6 +11,7 @@ namespace Code.Meta.Features.LootCollection.Systems
         private readonly ITimeService _timeService;
         private readonly ILootCollectionService _lootCollection;
         private readonly IGroup<MetaEntity> _loot;
+        private readonly List<MetaEntity> _buffer = new(32);
 
         public ProcessFreeUpgradeLootTimerSystem(float interval, MetaContext context, ITimeService timeService, ILootCollectionService lootCollection) : base(interval, timeService)
         {
@@ -26,13 +28,14 @@ namespace Code.Meta.Features.LootCollection.Systems
 
         protected override void Execute()
         {
-            foreach (var loot in _loot)
+            foreach (var loot in _loot.GetEntities(_buffer))
             {
                 if (_timeService.TimeStamp < loot.NextFreeUpgradeTime)
                     continue;
 
-                loot.ReplaceNextFreeUpgradeTime(_timeService.TimeStamp + loot.FreeUpgradeTimeSeconds);
-                _lootCollection.FreeUpgradeTimerUpdated(loot.LootTypeId, loot.NextFreeUpgradeTime);
+                loot.isReadyToFreeUpgrade = true;
+                loot.RemoveNextFreeUpgradeTime();
+                _lootCollection.FreeUpgradeTimerUpdated(loot.LootTypeId, 0);
             }
         }
     }
