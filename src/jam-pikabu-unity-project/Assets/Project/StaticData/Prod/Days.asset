@@ -82,6 +82,36 @@ MonoBehaviour:
     - RatingAmountNeed: 0
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
+  - Id: 6
+    StarsNeedToUnlock: 0
+    OrdersAmount: 0
+    RoundDuration: 20
+    DayGoldFactor: 1
+    IsBossDay: 0
+    SceneId: 2
+    UnlocksIngredient: 0
+    AvailableIngredients: 
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
+  - Id: 7
+    StarsNeedToUnlock: 0
+    OrdersAmount: 0
+    RoundDuration: 20
+    DayGoldFactor: 1
+    IsBossDay: 0
+    SceneId: 2
+    UnlocksIngredient: 11
+    AvailableIngredients: 06000000
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
   StartGoldAmount: 20
   OrdersData: {fileID: 11400000, guid: cf868022c2d7cf349a5e0bd1ae7f42c9, type: 2}
   LootProgression: {fileID: 0}

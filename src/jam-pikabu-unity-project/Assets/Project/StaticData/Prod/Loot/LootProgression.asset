@@ -133,6 +133,30 @@ MonoBehaviour:
       Cost:
         CurrencyType: 1
         Amount: 13
+  - Id: 6
+    Type: 11
+    FreeUpgradeTimeHours: 0.5
+    Levels:
+    - RatingBoostAmount: 1
+      Cost:
+        CurrencyType: 1
+        Amount: 0
+    - RatingBoostAmount: 6
+      Cost:
+        CurrencyType: 1
+        Amount: 5
+    - RatingBoostAmount: 9
+      Cost:
+        CurrencyType: 1
+        Amount: 8
+    - RatingBoostAmount: 12
+      Cost:
+        CurrencyType: 1
+        Amount: 11
+    - RatingBoostAmount: 14
+      Cost:
+        CurrencyType: 1
+        Amount: 13
   StartGameUnlockedLoot: 03000000040000000500000006000000
   LevelsAmount: 5
   GrowthExponent: 0.95

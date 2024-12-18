@@ -1043,7 +1043,7 @@ MonoBehaviour:
   - {fileID: 8047492733822885778}
   - {fileID: 7981159087587012768}
   _text: {fileID: 3852434585521466099}
-  _flyDuration: 0.75
+  _flyDuration: 0.5
   _scatterDuration: 1
 --- !u!225 &1414978835546845687
 CanvasGroup:

@@ -39,7 +39,7 @@ namespace Code.Meta.Features.LootCollection.Factory
             if (data.FreeUpgradeTimeHours == 0)
                 return;
 
-            int timeSeconds = (int)data.FreeUpgradeTimeHours * 60 * 60;
+            int timeSeconds = (int)(data.FreeUpgradeTimeHours * 60 * 60);
             int nextTime = _timeService.TimeStamp + timeSeconds;
             
             lootMeta.AddNextFreeUpgradeTime(nextTime)
