@@ -36,7 +36,7 @@ MonoBehaviour:
     IsBossDay: 0
     SceneId: 2
     UnlocksIngredient: 0
-    AvailableIngredients: 
+    AvailableIngredients: 03000000040000000500000006000000
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
     IsBossDay: 0
     SceneId: 2
     UnlocksIngredient: 0
-    AvailableIngredients: 
+    AvailableIngredients: 03000000040000000500000006000000
     Stars: []
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
@@ -63,7 +63,7 @@ MonoBehaviour:
     IsBossDay: 0
     SceneId: 3
     UnlocksIngredient: 12
-    AvailableIngredients: 
+    AvailableIngredients: 03000000040000000500000006000000
     Stars: []
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
@@ -75,7 +75,7 @@ MonoBehaviour:
     IsBossDay: 0
     SceneId: 2
     UnlocksIngredient: 0
-    AvailableIngredients: 
+    AvailableIngredients: 03000000040000000500000006000000
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0

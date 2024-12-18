@@ -42,7 +42,9 @@ namespace Code.Meta.Features.MainMenu.Behaviours
 
         private void Awake()
         {
-            MapBlocks.RefreshList(MainScroll.content.GetComponentsInChildren<MapBlock>());
+            MapBlocks.RefreshList(MainScroll.content.GetComponentsInChildren<MapBlock>(true));
+            foreach (MapBlock mapBlock in MapBlocks) 
+                mapBlock.EnableElement();
         }
 
         public void Init()

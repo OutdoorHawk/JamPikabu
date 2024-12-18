@@ -19,5 +19,7 @@
         Complete = 14,
         Fly = 15,
         Collect = 16,
+        Ready = 17,
+        Upgrade = 18,
     }
 }

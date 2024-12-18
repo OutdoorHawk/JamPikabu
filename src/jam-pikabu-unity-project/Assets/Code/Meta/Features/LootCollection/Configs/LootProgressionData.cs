@@ -9,6 +9,7 @@ namespace Code.Meta.Features.LootCollection.Configs
     public class LootProgressionData : BaseData
     {
         public LootTypeId Type;
+        public float FreeUpgradeTimeHours;
         public List<LootLevelData> Levels;
     }
 }

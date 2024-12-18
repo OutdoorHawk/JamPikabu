@@ -15,7 +15,7 @@ using UnityEngine.Localization;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
+namespace Code.Meta.Features.LootCollection.ShopTab
 {
     public class LootUpgradeShopItem : MonoBehaviour
     {

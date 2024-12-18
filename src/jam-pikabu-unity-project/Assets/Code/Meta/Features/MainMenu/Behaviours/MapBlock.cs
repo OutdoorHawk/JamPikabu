@@ -1,16 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Code.Common.Extensions;
-using Code.Common.Extensions.Animations;
 using Code.Gameplay.Features.Loot;
 using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Service;
 using Code.Meta.Features.LootCollection.Behaviours;
 using Code.Meta.Features.LootCollection.Service;
-using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
 namespace Code.Meta.Features.MainMenu.Behaviours
@@ -61,7 +58,10 @@ namespace Code.Meta.Features.MainMenu.Behaviours
                     continue;
 
                 if (CheckIngredientAlreadyUnlocked(dayData))
+                {
+                    SetUpgradeState(dayData.UnlocksIngredient);
                     continue;
+                }
 
                 if (CheckPreviousDayIsCompleted() == false)
                 {
@@ -92,6 +92,11 @@ namespace Code.Meta.Features.MainMenu.Behaviours
         private int PickLowestDayInBlock()
         {
             return LevelButtons[0].DayId;
+        }
+
+        private void SetUpgradeState(LootTypeId unlocksIngredient)
+        {
+            UnlockableIngredient.InitAwaitUpgrade(unlocksIngredient);
         }
 
         private void SetIngredientLockedState(LootTypeId unlocksIngredient)

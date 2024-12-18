@@ -15,18 +15,20 @@ public static class MetaComponentsLookup {
     public const int Level = 4;
     public const int Loot = 5;
     public const int LootTypeId = 6;
-    public const int UnlockLootRequest = 7;
-    public const int UpgradeLootRequest = 8;
-    public const int AddCurrencyToStorageRequest = 9;
-    public const int Gold = 10;
-    public const int Storage = 11;
-    public const int Withdraw = 12;
-    public const int ForAd = 13;
-    public const int BuyRequest = 14;
-    public const int Purchased = 15;
-    public const int ShopItemId = 16;
+    public const int NextFreeUpgradeTime = 7;
+    public const int ReadyToFreeUpgrade = 8;
+    public const int UnlockLootRequest = 9;
+    public const int UpgradeLootRequest = 10;
+    public const int AddCurrencyToStorageRequest = 11;
+    public const int Gold = 12;
+    public const int Storage = 13;
+    public const int Withdraw = 14;
+    public const int ForAd = 15;
+    public const int BuyRequest = 16;
+    public const int Purchased = 17;
+    public const int ShopItemId = 18;
 
-    public const int TotalComponents = 17;
+    public const int TotalComponents = 19;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -36,6 +38,8 @@ public static class MetaComponentsLookup {
         "Level",
         "Loot",
         "LootTypeId",
+        "NextFreeUpgradeTime",
+        "ReadyToFreeUpgrade",
         "UnlockLootRequest",
         "UpgradeLootRequest",
         "AddCurrencyToStorageRequest",
@@ -56,6 +60,8 @@ public static class MetaComponentsLookup {
         typeof(Code.Meta.Features.LootCollection.Level),
         typeof(Code.Meta.Features.LootCollection.Loot),
         typeof(Code.Meta.Features.LootCollection.LootTypeIdComponent),
+        typeof(Code.Meta.Features.LootCollection.NextFreeUpgradeTime),
+        typeof(Code.Meta.Features.LootCollection.ReadyToFreeUpgrade),
         typeof(Code.Meta.Features.LootCollection.UnlockLootRequest),
         typeof(Code.Meta.Features.LootCollection.UpgradeLootRequest),
         typeof(Code.Meta.Features.Storage.AddCurrencyToStorageRequest),

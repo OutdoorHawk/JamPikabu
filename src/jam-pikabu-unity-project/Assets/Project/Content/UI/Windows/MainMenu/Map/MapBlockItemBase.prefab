@@ -895,6 +895,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UnlockableIngredient
       objectReference: {fileID: 0}
+    - target: {fileID: 4732437637818540671, guid: 1938d357be68b174f9755b8fc03dc461,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7735083342102971988, guid: 1938d357be68b174f9755b8fc03dc461,
         type: 3}
       propertyPath: m_Pivot.x

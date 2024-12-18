@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using Code.Gameplay.StaticData;
+﻿using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows;
 using Code.Infrastructure.States.GameStates;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
-using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Service;
 using Code.Meta.Features.MainMenu.Behaviours;
 using Code.Meta.Features.MainMenu.Service;

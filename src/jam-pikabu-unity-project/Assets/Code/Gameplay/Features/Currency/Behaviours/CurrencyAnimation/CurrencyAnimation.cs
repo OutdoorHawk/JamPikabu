@@ -43,13 +43,11 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
 
         private void InitIcons(in CurrencyAnimationParameters parameters)
         {
-            CurrencyConfig currencyConfig = _staticData
-                .GetStaticData<CurrencyStaticData>()
-                .GetCurrencyConfig(parameters.Type);
+            var sprite = GetSprite(parameters);
 
             for (int i = 0; i < _icons.Length; i++)
             {
-                _icons[i].sprite = currencyConfig.Data.Icon;
+                _icons[i].sprite = sprite;
                 _icons[i].color = Color.white;
             }
 
@@ -66,6 +64,18 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
 
             _text.text = $"{parameters.TextPrefix}{parameters.Count.ToString()}";
             _text.alpha = 1;
+        }
+
+        private Sprite GetSprite(in CurrencyAnimationParameters parameters)
+        {
+            if (parameters.Sprite != null)
+                return parameters.Sprite;
+            CurrencyConfig currencyConfig = _staticData
+                .GetStaticData<CurrencyStaticData>()
+                .GetCurrencyConfig(parameters.Type);
+
+            Sprite sprite = currencyConfig.Data.Icon;
+            return sprite;
         }
 
         private void PlayAnimation(in CurrencyAnimationParameters parameters)
