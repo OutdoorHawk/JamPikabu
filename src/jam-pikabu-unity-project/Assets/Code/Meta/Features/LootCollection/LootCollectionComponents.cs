@@ -10,5 +10,6 @@ namespace Code.Meta.Features.LootCollection
     [Meta] public sealed class UpgradeLootRequest : IComponent { } 
     [Meta] public sealed class UnlockLootRequest : IComponent { } 
     [Meta] public sealed class ReadyToFreeUpgrade : IComponent { } 
-    [Meta] public sealed class NextFreeUpgradeTime : IComponent { public int Value; } 
+    [Meta] public sealed class NextFreeUpgradeTime : ISavedComponent { public int Value; } 
+    [Meta] public sealed class FreeUpgradeTimeSeconds : ISavedComponent { public int Value; } 
 }

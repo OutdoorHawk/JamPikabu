@@ -9,13 +9,12 @@ namespace Code.Gameplay.Features.Currency.Config
     public class CurrencyStaticData : BaseStaticData
     {
         [SerializeField] private List<CurrencyConfig> _configs;
-        [SerializeField] private CurrencyAnimation _currencyAnimationPrefab;
+        [SerializeField] private CurrencyAnimationData[] _currencyAnimationPrefab;
 
         public List<CurrencyConfig> Configs => _configs;
 
-        public CurrencyAnimation CurrencyAnimationPrefab => _currencyAnimationPrefab;
-
         private readonly Dictionary<CurrencyTypeId, CurrencyConfig> _currencyConfigs = new();
+        private readonly Dictionary<string, CurrencyAnimation> _currencyAnimations = new();
 
         public override void OnConfigInit()
         {
@@ -25,11 +24,18 @@ namespace Code.Gameplay.Features.Currency.Config
 
             foreach (var config in _configs)
                 _currencyConfigs[config.CurrencyTypeId] = config;
+            foreach (var config in _currencyAnimationPrefab)
+                _currencyAnimations[config.Name] = config.Prefab;
         }
 
         public CurrencyConfig GetCurrencyConfig(CurrencyTypeId id)
         {
             return _currencyConfigs.GetValueOrDefault(id);
+        }
+        
+        public CurrencyAnimation GetCurrencyAnimation(string name)
+        {
+            return _currencyAnimations.GetValueOrDefault(name);
         }
     }
 }

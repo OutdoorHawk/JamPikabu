@@ -15,6 +15,7 @@ MonoBehaviour:
   Configs:
   - Id: 1
     Type: 3
+    FreeUpgradeTimeHours: 0
     Levels:
     - RatingBoostAmount: 1
       Cost:
@@ -38,6 +39,7 @@ MonoBehaviour:
         Amount: 13
   - Id: 2
     Type: 4
+    FreeUpgradeTimeHours: 0
     Levels:
     - RatingBoostAmount: 1
       Cost:
@@ -61,6 +63,7 @@ MonoBehaviour:
         Amount: 13
   - Id: 3
     Type: 5
+    FreeUpgradeTimeHours: 0
     Levels:
     - RatingBoostAmount: 1
       Cost:
@@ -84,6 +87,31 @@ MonoBehaviour:
         Amount: 13
   - Id: 4
     Type: 6
+    FreeUpgradeTimeHours: 0
+    Levels:
+    - RatingBoostAmount: 1
+      Cost:
+        CurrencyType: 1
+        Amount: 0
+    - RatingBoostAmount: 6
+      Cost:
+        CurrencyType: 1
+        Amount: 5
+    - RatingBoostAmount: 9
+      Cost:
+        CurrencyType: 1
+        Amount: 8
+    - RatingBoostAmount: 12
+      Cost:
+        CurrencyType: 1
+        Amount: 11
+    - RatingBoostAmount: 14
+      Cost:
+        CurrencyType: 1
+        Amount: 13
+  - Id: 5
+    Type: 12
+    FreeUpgradeTimeHours: 0
     Levels:
     - RatingBoostAmount: 1
       Cost:

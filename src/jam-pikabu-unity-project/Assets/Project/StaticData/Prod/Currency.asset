@@ -25,5 +25,10 @@ MonoBehaviour:
   - CurrencyTypeId: 4
     Data:
       Icon: {fileID: 21300000, guid: 4f7657dab082c6f46ac70904e4f35353, type: 3}
-  _currencyAnimationPrefab: {fileID: 9005244342350799300, guid: ad3023e097a02a146a3d1a9f9a568fe3,
-    type: 3}
+  _currencyAnimationPrefab:
+  - Name: Default
+    Prefab: {fileID: 9005244342350799300, guid: ad3023e097a02a146a3d1a9f9a568fe3,
+      type: 3}
+  - Name: UnlockLoot
+    Prefab: {fileID: 5626784923644417221, guid: 8bde386a334f5f24191893b65dfe7317,
+      type: 3}

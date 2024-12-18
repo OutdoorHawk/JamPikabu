@@ -12,7 +12,7 @@ namespace Code.Gameplay.Common.Time
         DateTime UtcNow { get; }
         DateTime EpochStart { get; }
         int TimeOffset { get; set; }
-        int Time { get; }
+        int TimeStamp { get; }
         void Register(IPauseHandler handler);
         void UnRegister(IPauseHandler handler);
         void EnablePause();

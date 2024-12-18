@@ -23,7 +23,7 @@ namespace Code.Gameplay.Common.Time
         
         public int TimeOffset { get; set; }
         
-        public int Time 
+        public int TimeStamp 
         {
             get {
                 var time = (DateTime.UtcNow - EpochStart).TotalSeconds + DeltaTime;

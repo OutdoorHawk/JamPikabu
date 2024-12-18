@@ -21,5 +21,6 @@
         Collect = 16,
         Ready = 17,
         Upgrade = 18,
+        Locked = 19,
     }
 }

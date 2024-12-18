@@ -21,7 +21,10 @@ namespace Code.Gameplay.Cheats.Cheats
             for (int i = 1; i < int.Parse(input); i++)
             {
                 MetaEntity day = TryFindExistingDay(days, i) ?? CreateNewDayProgressEntity(i);
+                day.ReplaceStarsAmount(3);
             }
+            
+            _saveLoadService.SaveProgress();
         }
 
         private MetaEntity TryFindExistingDay(IGroup<MetaEntity> days, int i)

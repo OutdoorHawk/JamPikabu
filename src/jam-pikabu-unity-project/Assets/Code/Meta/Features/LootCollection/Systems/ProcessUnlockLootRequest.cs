@@ -1,5 +1,6 @@
 using System.Linq;
 using Code.Meta.Features.LootCollection.Factory;
+using Code.Meta.Features.LootCollection.Service;
 using Code.Progress.SaveLoadService;
 using Entitas;
 
@@ -8,13 +9,21 @@ namespace Code.Meta.Features.LootCollection.Systems
     public class ProcessUnlockLootRequest : IExecuteSystem
     {
         private readonly ILootCollectionFactory _lootCollectionFactory;
+        private readonly ILootCollectionService _lootCollection;
         private readonly ISaveLoadService _saveLoadService;
         private readonly IGroup<MetaEntity> _request;
         private readonly IGroup<MetaEntity> _existingLoot;
 
-        public ProcessUnlockLootRequest(MetaContext context, ILootCollectionFactory lootCollectionFactory, ISaveLoadService saveLoadService)
+        public ProcessUnlockLootRequest
+        (
+            MetaContext context,
+            ILootCollectionFactory lootCollectionFactory,
+            ILootCollectionService lootCollection,
+            ISaveLoadService saveLoadService
+        )
         {
             _lootCollectionFactory = lootCollectionFactory;
+            _lootCollection = lootCollection;
             _saveLoadService = saveLoadService;
 
             _request = context.GetGroup(MetaMatcher
@@ -39,7 +48,12 @@ namespace Code.Meta.Features.LootCollection.Systems
                 if (CheckLootAlreadyAcquired(request))
                     continue;
 
-                _lootCollectionFactory.UnlockNewLoot(request.LootTypeId);
+                MetaEntity newLoot = _lootCollectionFactory.UnlockNewLoot(request.LootTypeId);
+                _lootCollection.AddNewUnlockedLoot(newLoot.LootTypeId);
+                
+                if (newLoot.hasFreeUpgradeTimeSeconds) 
+                    _lootCollection.FreeUpgradeTimerUpdated(newLoot.LootTypeId, newLoot.NextFreeUpgradeTime);
+                
                 _saveLoadService.SaveProgress();
             }
         }

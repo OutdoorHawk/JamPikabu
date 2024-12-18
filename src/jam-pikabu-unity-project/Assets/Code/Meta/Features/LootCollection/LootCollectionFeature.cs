@@ -11,6 +11,7 @@ namespace Code.Meta.Features.LootCollection
             
             Add(systems.Create<ProcessUpgradeLootRequest>());
             Add(systems.Create<ProcessUnlockLootRequest>());
+            Add(systems.Create<ProcessFreeUpgradeLootTimerSystem>(1f));
         }
     }
 }

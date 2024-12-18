@@ -80,6 +80,7 @@ namespace Code.Meta.Features.LootCollection.Behaviours
         {
             ResetAll();
             Init(unlocksIngredient);
+            UnlockIngredientAnimator.SetTrigger(AnimationParameter.Locked.AsHash());
             UnlockButton.EnableElement();
             UnlockButton.interactable = false;
             LockedText.EnableElement();
@@ -92,16 +93,25 @@ namespace Code.Meta.Features.LootCollection.Behaviours
             UnlockButton.EnableElement();
             UnlockButton.interactable = true;
             ReadyToUnlockText.EnableElement();
-            UnlockIngredientAnimator.SetBehaviorEnabled();
+            UnlockIngredientAnimator.SetTrigger(AnimationParameter.Ready.AsHash());
         }
 
-        public void InitAwaitUpgrade(LootTypeId unlocksIngredient)
+        public void InitFreeUpgradeState(LootTypeId type)
         {
             ResetAll();
+            
+            if (_lootCollectionService.CanUpgradeForFree(type))
+                return;
 
-            Init(unlocksIngredient);
+            Init(type);
 
-            if (_lootCollectionService.CanUpgradeForFree(unlocksIngredient) == false)
+            if (_lootCollectionService.UpgradedForMaxLevel(type))
+            {
+                InitMaxLevelReached();
+                return;
+            }
+
+            if (_lootCollectionService.TimeToFreeUpgradePassed(type) == false)
                 InitWaitUpgradeIdle();
             else
                 InitReadyToFreeUpgrade();
@@ -109,11 +119,14 @@ namespace Code.Meta.Features.LootCollection.Behaviours
 
         private void ResetAll()
         {
+            gameObject.DisableElement();
             FreeUpgradeButton.DisableElement();
             UnlockButton.DisableElement();
-            UnlockIngredientAnimator.SetBehaviorDisabled();
             LockedText.DisableElement();
             ReadyToUnlockText.DisableElement();
+            UpgradeTimer.DisableElement();
+            UpgradeTimer.StopTimer();
+            _fillToken?.Cancel();
         }
 
         private void Init(LootTypeId unlocksIngredient)
@@ -124,6 +137,13 @@ namespace Code.Meta.Features.LootCollection.Behaviours
             foreach (var icon in IngredientIcons)
                 icon.sprite = lootSettings.GetConfig(_unlocksIngredient).Icon;
         }
+        
+        private void InitMaxLevelReached()
+        {
+            UpgradeTimer.EnableElement();
+            UpgradeTimer.TimerText.text = "Max";
+            IngredientIcons[0].fillAmount = 1;
+        }
 
         private void InitReadyToFreeUpgrade()
         {
@@ -131,12 +151,13 @@ namespace Code.Meta.Features.LootCollection.Behaviours
             UpgradeTimer.DisableElement();
             UpgradeTimer.StopTimer();
             FreeUpgradeButton.EnableElement();
+            IngredientIcons[0].fillAmount = 1;
         }
 
         private void InitWaitUpgradeIdle()
         {
-            UnlockIngredientAnimator.SetBehaviorEnabled();
-            UpgradeTimer.StartTimer(GetTimeFunc, () => InitAwaitUpgrade(_unlocksIngredient));
+            UpgradeTimer.EnableElement();
+            UpgradeTimer.StartTimer(GetTimeFunc);
             UpdateFillAmountAsync().Forget();
         }
 
@@ -176,6 +197,11 @@ namespace Code.Meta.Features.LootCollection.Behaviours
         {
             UnlockIngredientAnimator.SetTrigger(AnimationParameter.Idle.AsHash());
             MoveIngredientToShop(from: IngredientIcons[0].transform.position);
+
+            CreateMetaEntity.Empty()
+                .With(x => x.isUpgradeLootRequest = true)
+                .AddLootTypeId(_unlocksIngredient)
+                .AddGold(0);
         }
 
         private void UnlockIngredient()
@@ -190,7 +216,7 @@ namespace Code.Meta.Features.LootCollection.Behaviours
             await UnlockIngredientAnimator.WaitForAnimationCompleteAsync(AnimationParameter.Collect.AsHash(), destroyCancellationToken);
             MoveIngredientToShop(from: FlyIconRect.transform.position);
             await UniTask.Yield(destroyCancellationToken);
-            InitAwaitUpgrade(_unlocksIngredient);
+            InitFreeUpgradeState(_unlocksIngredient);
         }
 
         private void MoveIngredientToShop(Vector3 from)
@@ -203,6 +229,7 @@ namespace Code.Meta.Features.LootCollection.Behaviours
             var parameters = new CurrencyAnimationParameters()
             {
                 Count = 1,
+                AnimationName = "UnlockLoot",
                 Sprite = IngredientIcons[1].sprite,
                 EndPosition = shopButton.position,
                 StartPosition = from,

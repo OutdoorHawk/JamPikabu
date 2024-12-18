@@ -64,7 +64,7 @@ namespace Code.Meta.Features.LootCollection.ShopTab
             Icon.sprite = LootSettings.GetConfig(item.Type).Icon;
             TypeId = item.Type;
             _ratingCurrency = CurrencyTypeId.Plus;
-            
+
             InitLocale(in item);
             InitCurrentLevel(in item);
             InitNextLevel(in item);
@@ -75,19 +75,14 @@ namespace Code.Meta.Features.LootCollection.ShopTab
         private void InitLocale(in LootItemCollectionData item)
         {
             LocalizedString localizedString = LootSettings.GetConfig(item.Type).LocalizedName;
-            
+
             if (localizedString.IsEmpty == false)
                 Name.text = localizedString.GetLocalizedString();
         }
 
         private void InitCurrentLevel(in LootItemCollectionData item)
         {
-            List<LootLevelData> levels = ProgressionStaticData.GetConfig(item.Type).Levels;
-
-            if (item.Level >= levels.Count)
-                return;
-
-            LootLevelData currentLevel = levels[item.Level];
+            LootLevelData currentLevel = GetCurrentLevel(item);
             RatingFrom.SetupPrice(currentLevel.RatingBoostAmount, _ratingCurrency);
         }
 
@@ -110,20 +105,25 @@ namespace Code.Meta.Features.LootCollection.ShopTab
         {
             _upgradePrice = null;
 
+            LootLevelData currentLevel = GetCurrentLevel(item);
+            UpgradePrice.SetupPrice(currentLevel.Cost);
+            _upgradePrice = currentLevel.Cost;
+        }
+
+        private LootLevelData GetCurrentLevel(in LootItemCollectionData item)
+        {
             List<LootLevelData> levels = ProgressionStaticData.GetConfig(item.Type).Levels;
 
             if (item.Level >= levels.Count)
-                return;
+                return levels[^1];
 
-            LootLevelData currentLevel = levels[item.Level];
-            UpgradePrice.SetupPrice(currentLevel.Cost);
-            _upgradePrice = currentLevel.Cost;
+            return levels[item.Level];
         }
 
         private void UpdateAvailable()
         {
             ResetAll();
-            
+
             if (_upgradePrice == null)
                 return;
 

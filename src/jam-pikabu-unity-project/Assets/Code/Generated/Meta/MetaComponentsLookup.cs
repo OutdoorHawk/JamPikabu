@@ -12,29 +12,31 @@ public static class MetaComponentsLookup {
     public const int Id = 1;
     public const int Day = 2;
     public const int StarsAmount = 3;
-    public const int Level = 4;
-    public const int Loot = 5;
-    public const int LootTypeId = 6;
-    public const int NextFreeUpgradeTime = 7;
-    public const int ReadyToFreeUpgrade = 8;
-    public const int UnlockLootRequest = 9;
-    public const int UpgradeLootRequest = 10;
-    public const int AddCurrencyToStorageRequest = 11;
-    public const int Gold = 12;
-    public const int Storage = 13;
-    public const int Withdraw = 14;
-    public const int ForAd = 15;
-    public const int BuyRequest = 16;
-    public const int Purchased = 17;
-    public const int ShopItemId = 18;
+    public const int FreeUpgradeTimeSeconds = 4;
+    public const int Level = 5;
+    public const int Loot = 6;
+    public const int LootTypeId = 7;
+    public const int NextFreeUpgradeTime = 8;
+    public const int ReadyToFreeUpgrade = 9;
+    public const int UnlockLootRequest = 10;
+    public const int UpgradeLootRequest = 11;
+    public const int AddCurrencyToStorageRequest = 12;
+    public const int Gold = 13;
+    public const int Storage = 14;
+    public const int Withdraw = 15;
+    public const int ForAd = 16;
+    public const int BuyRequest = 17;
+    public const int Purchased = 18;
+    public const int ShopItemId = 19;
 
-    public const int TotalComponents = 19;
+    public const int TotalComponents = 20;
 
     public static readonly string[] componentNames = {
         "Destructed",
         "Id",
         "Day",
         "StarsAmount",
+        "FreeUpgradeTimeSeconds",
         "Level",
         "Loot",
         "LootTypeId",
@@ -57,6 +59,7 @@ public static class MetaComponentsLookup {
         typeof(Code.Gameplay.Common.Id),
         typeof(Code.Meta.Features.Days.Day),
         typeof(Code.Meta.Features.Days.StarsAmount),
+        typeof(Code.Meta.Features.LootCollection.FreeUpgradeTimeSeconds),
         typeof(Code.Meta.Features.LootCollection.Level),
         typeof(Code.Meta.Features.LootCollection.Loot),
         typeof(Code.Meta.Features.LootCollection.LootTypeIdComponent),

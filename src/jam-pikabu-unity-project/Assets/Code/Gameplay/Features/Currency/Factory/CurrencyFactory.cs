@@ -56,8 +56,11 @@ namespace Code.Gameplay.Features.Currency.Factory
         {
             var currencyConfig = _staticDataService.GetStaticData<CurrencyStaticData>();
 
-            var instance = _instantiator.InstantiatePrefabForComponent<CurrencyAnimation>(currencyConfig.CurrencyAnimationPrefab, _uiFactory.UIRoot);
+            CurrencyAnimation currencyAnimation = string.IsNullOrEmpty(parameters.AnimationName)
+                ? currencyConfig.GetCurrencyAnimation("Default")
+                : currencyConfig.GetCurrencyAnimation(parameters.AnimationName);
 
+            var instance = _instantiator.InstantiatePrefabForComponent<CurrencyAnimation>(currencyAnimation, _uiFactory.UIRoot);
             instance.Initialize(parameters);
         }
 

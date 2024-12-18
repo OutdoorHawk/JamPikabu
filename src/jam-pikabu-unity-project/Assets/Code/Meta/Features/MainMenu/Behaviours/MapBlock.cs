@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Loot;
@@ -33,12 +34,20 @@ namespace Code.Meta.Features.MainMenu.Behaviours
         private void Awake()
         {
             LevelButtons.RefreshList(LevelsParent.GetComponentsInChildren<LevelButton>());
+            _lootCollectionService.OnFreeUpgradeTimeEnd += InitUnlockableIngredient;
+            _lootCollectionService.OnUpgraded += InitUnlockableIngredient;
         }
 
         private void Start()
         {
             InitStarsAmount();
             InitUnlockableIngredient();
+        }
+
+        private void OnDestroy()
+        {
+            _lootCollectionService.OnFreeUpgradeTimeEnd -= InitUnlockableIngredient;
+            _lootCollectionService.OnUpgraded -= InitUnlockableIngredient;
         }
 
         private void InitStarsAmount()
@@ -57,16 +66,16 @@ namespace Code.Meta.Features.MainMenu.Behaviours
                 if (dayData.UnlocksIngredient == LootTypeId.Unknown)
                     continue;
 
-                if (CheckIngredientAlreadyUnlocked(dayData))
-                {
-                    SetUpgradeState(dayData.UnlocksIngredient);
-                    continue;
-                }
-
                 if (CheckPreviousDayIsCompleted() == false)
                 {
                     SetIngredientLockedState(dayData.UnlocksIngredient);
-                    continue;
+                    break;
+                }
+
+                if (CheckIngredientAlreadyUnlocked(dayData))
+                {
+                    SetUpgradeState(dayData.UnlocksIngredient);
+                    break;
                 }
 
                 SetReadyToUnlockState(dayData.UnlocksIngredient);
@@ -96,7 +105,7 @@ namespace Code.Meta.Features.MainMenu.Behaviours
 
         private void SetUpgradeState(LootTypeId unlocksIngredient)
         {
-            UnlockableIngredient.InitAwaitUpgrade(unlocksIngredient);
+            UnlockableIngredient.InitFreeUpgradeState(unlocksIngredient);
         }
 
         private void SetIngredientLockedState(LootTypeId unlocksIngredient)
