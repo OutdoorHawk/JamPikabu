@@ -10,9 +10,12 @@ namespace Code.Gameplay.Common.Time
         float DeltaTime { get; }
         float FixedDeltaTime { get; }
         DateTime UtcNow { get; }
-        float Time { get; }
-
+        DateTime EpochStart { get; }
+        int TimeOffset { get; set; }
+        int Time { get; }
         void Register(IPauseHandler handler);
         void UnRegister(IPauseHandler handler);
+        void EnablePause();
+        void DisablePause();
     }
 }

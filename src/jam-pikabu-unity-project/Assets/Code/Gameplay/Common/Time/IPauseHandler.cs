@@ -2,7 +2,7 @@ namespace Code.Infrastructure.Common.Time
 {
     public interface IPauseHandler
     {
-        void EnablePause();
-        void DisablePause();
+        public void EnablePause();
+        public void DisablePause();
     }
 }

@@ -5,6 +5,7 @@ using Code.Common.Extensions.Animations;
 using Code.Gameplay.Features.Loot;
 using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Service;
+using Code.Meta.Features.LootCollection.Behaviours;
 using Code.Meta.Features.LootCollection.Service;
 using Cysharp.Threading.Tasks;
 using TMPro;
@@ -18,11 +19,10 @@ namespace Code.Meta.Features.MainMenu.Behaviours
     {
         public RectTransform LevelsParent;
         public TMP_Text StarsEarned;
-        public UnlockableIngredient UnlockableIngredient;
+        public IngredientUnlockBehaviour UnlockableIngredient;
 
         private IDaysService _daysService;
         private ILootCollectionService _lootCollectionService;
-        private List<LevelButton> _buffer = new();
 
         public List<LevelButton> LevelButtons { get; private set; } = new();
 
@@ -91,10 +91,7 @@ namespace Code.Meta.Features.MainMenu.Behaviours
 
         private int PickLowestDayInBlock()
         {
-            _buffer.Clear();
-            _buffer.AddRange(LevelButtons);
-            _buffer.Sort((x, y) => x.DayId.CompareTo(y.DayId));
-            return _buffer[0].DayId;
+            return LevelButtons[0].DayId;
         }
 
         private void SetIngredientLockedState(LootTypeId unlocksIngredient)

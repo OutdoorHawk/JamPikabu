@@ -9,6 +9,8 @@ namespace Code.Meta.Features.LootCollection.Service
         event Action OnUpgraded;
         Dictionary<LootTypeId, LootItemCollectionData> LootProgression { get; }
         void InitializeLootProgression(List<LootItemCollectionData> items);
-        void LootUpgraded(LootTypeId lootLootTypeId, int newLevel);
+        void LootUpgraded(LootTypeId type, int newLevel);
+        bool CanUpgradeForFree(LootTypeId type);
+        int GetTimeLeftToFreeUpgrade(LootTypeId type);
     }
 }

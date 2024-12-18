@@ -6,11 +6,13 @@ namespace Code.Meta.Features.LootCollection
     {
         public LootTypeId Type;
         public int Level;
+        public int FreeUpgradeTime;
 
         public LootItemCollectionData(LootTypeId type, int level)
         {
             Type = type;
             Level = level;
+            FreeUpgradeTime = 0;
         }
     }
 }

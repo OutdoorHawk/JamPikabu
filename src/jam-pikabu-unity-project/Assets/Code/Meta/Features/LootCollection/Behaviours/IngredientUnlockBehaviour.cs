@@ -14,9 +14,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Code.Meta.Features.MainMenu.Behaviours
+namespace Code.Meta.Features.LootCollection.Behaviours
 {
-    public class UnlockableIngredient : MonoBehaviour
+    public class IngredientUnlockBehaviour : MonoBehaviour
     {
         public Button UnlockButton;
         public Image IngredientIcon;
@@ -24,6 +24,7 @@ namespace Code.Meta.Features.MainMenu.Behaviours
         public TMP_Text ReadyToUnlockText;
         public TMP_Text LockedText;
         public Animator UnlockIngredientAnimator;
+        public TMP_Text TimerText;
 
         private LootTypeId _unlocksIngredient;
 
