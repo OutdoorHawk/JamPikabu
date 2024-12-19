@@ -14,6 +14,7 @@ namespace Code.Meta.Features.LootCollection.Service
         private readonly IStaticDataService _staticData;
         public event Action OnUpgraded;
         public event Action OnFreeUpgradeTimeEnd;
+        public event Action OnNewLootUnlocked;
         public Dictionary<LootTypeId, LootItemCollectionData> LootProgression { get; private set; } = new();
         
         private LootProgressionStaticData LootData => _staticData.GetStaticData<LootProgressionStaticData>();
@@ -37,6 +38,7 @@ namespace Code.Meta.Features.LootCollection.Service
         public void AddNewUnlockedLoot(LootTypeId type)
         {
             LootProgression.Add(type, new LootItemCollectionData(type, 0));
+            OnNewLootUnlocked?.Invoke();
         }
 
         public void LootUpgraded(LootTypeId type, int newLevel)

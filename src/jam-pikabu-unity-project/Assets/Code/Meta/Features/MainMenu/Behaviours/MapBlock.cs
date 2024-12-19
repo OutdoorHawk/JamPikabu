@@ -38,7 +38,7 @@ namespace Code.Meta.Features.MainMenu.Behaviours
             _lootCollectionService.OnUpgraded += InitUnlockableIngredient;
         }
 
-        private void Start()
+        public void Init()
         {
             InitStarsAmount();
             InitUnlockableIngredient();
@@ -115,7 +115,7 @@ namespace Code.Meta.Features.MainMenu.Behaviours
 
         private void SetReadyToUnlockState(LootTypeId unlocksIngredient)
         {
-            UnlockableIngredient.InitReadyToCollect(unlocksIngredient);
+            UnlockableIngredient.InitReadyToUnlock(unlocksIngredient);
         }
     }
 }

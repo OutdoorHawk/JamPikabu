@@ -73,6 +73,8 @@ namespace Code.Meta.Features.MainMenu.Behaviours
             LockAllDaysOutsideOfConfig();
             LockLevelsByProgress();
             LockLevelsByStars();
+            foreach (MapBlock mapBlock in MapBlocks) 
+                mapBlock.Init();
         }
 
         private void SelectLastLevel()

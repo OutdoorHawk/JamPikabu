@@ -154,7 +154,7 @@ MonoBehaviour:
     DayGoldFactor: 1
     IsBossDay: 0
     SceneId: 2
-    UnlocksIngredient: 11
+    UnlocksIngredient: 9
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0

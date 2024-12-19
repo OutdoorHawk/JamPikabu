@@ -36,6 +36,7 @@ namespace Code.Meta.Features.LootCollection.ShopTab
         private IGameplayCurrencyService _gameplayCurrencyService;
         private ICurrencyFactory _currencyFactory;
 
+        private bool _firstInitComplete;
         private CostSetup _upgradePrice;
         private CurrencyTypeId _ratingCurrency;
 
@@ -87,6 +88,7 @@ namespace Code.Meta.Features.LootCollection.ShopTab
             InitNextLevel(in item);
             InitUpgradePrice(in item);
             UpdateAvailable();
+            _firstInitComplete = true;
         }
 
         private void InitLocale(in LootItemCollectionData item)
@@ -100,7 +102,7 @@ namespace Code.Meta.Features.LootCollection.ShopTab
         private void InitCurrentLevel(in LootItemCollectionData item)
         {
             LootLevelData currentLevel = GetCurrentLevel(item);
-            RatingFrom.SetupPrice(currentLevel.RatingBoostAmount, _ratingCurrency);
+            RatingFrom.SetupPrice(currentLevel.RatingBoostAmount, _ratingCurrency, withAnimation: _firstInitComplete);
         }
 
         private void InitNextLevel(in LootItemCollectionData item)
@@ -115,7 +117,7 @@ namespace Code.Meta.Features.LootCollection.ShopTab
 
             MaxLevelReached = false;
             LootLevelData nextLevel = levels[item.Level + 1];
-            RatingTo.SetupPrice(nextLevel.RatingBoostAmount, _ratingCurrency);
+            RatingTo.SetupPrice(nextLevel.RatingBoostAmount, _ratingCurrency, withAnimation: _firstInitComplete);
         }
 
         private void InitUpgradePrice(in LootItemCollectionData item)
@@ -123,7 +125,7 @@ namespace Code.Meta.Features.LootCollection.ShopTab
             _upgradePrice = null;
 
             LootLevelData currentLevel = GetCurrentLevel(item);
-            UpgradePrice.SetupPrice(currentLevel.Cost);
+            UpgradePrice.SetupPrice(currentLevel.Cost, withAnimation: _firstInitComplete);
             _upgradePrice = currentLevel.Cost;
         }
 

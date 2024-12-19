@@ -4,6 +4,7 @@ using Code.Infrastructure.States.GameStates;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
 using Code.Meta.Features.Days.Service;
+using Code.Meta.Features.LootCollection.Service;
 using Code.Meta.Features.MainMenu.Behaviours;
 using Code.Meta.Features.MainMenu.Service;
 using UnityEngine.UI;
@@ -21,6 +22,7 @@ namespace Code.Meta.Features.MainMenu.Windows
         private IMapMenuService _mapMenuService;
         private IStaticDataService _staticDataService;
         private IDaysService _daysService;
+        private ILootCollectionService _lootCollectionService;
 
         [Inject]
         private void Construct
@@ -28,9 +30,11 @@ namespace Code.Meta.Features.MainMenu.Windows
             IGameStateMachine gameStateMachine,
             IMapMenuService mapMenuService,
             IStaticDataService staticDataService,
-            IDaysService daysService
+            IDaysService daysService,
+            ILootCollectionService lootCollectionService
         )
         {
+            _lootCollectionService = lootCollectionService;
             _daysService = daysService;
             _staticDataService = staticDataService;
             _mapMenuService = mapMenuService;
@@ -41,6 +45,7 @@ namespace Code.Meta.Features.MainMenu.Windows
         {
             base.Initialize();
             MapContainer.Init();
+            Refresh();
         }
 
         protected override void SubscribeUpdates()
@@ -48,6 +53,7 @@ namespace Code.Meta.Features.MainMenu.Windows
             base.SubscribeUpdates();
             PlayButton.onClick.AddListener(OnPlayClick);
             _mapMenuService.OnSelectionChanged += Refresh;
+            _lootCollectionService.OnNewLootUnlocked += Refresh;
             MapContainer.SubscribeUpdates();
         }
 
@@ -56,19 +62,40 @@ namespace Code.Meta.Features.MainMenu.Windows
             base.Unsubscribe();
             PlayButton.onClick.RemoveListener(OnPlayClick);
             _mapMenuService.OnSelectionChanged -= Refresh;
+            _lootCollectionService.OnNewLootUnlocked -= Refresh;
             MapContainer.Unsubscribe();
         }
 
         private void Refresh()
         {
-            if (PlayButton != null) 
-                PlayButton.interactable = _mapMenuService.DayIsSelected;
+            RefreshPlayButton();
+        }
+
+        private void RefreshPlayButton()
+        {
+            if (PlayButton == null)
+                return;
+
+            foreach (MapBlock mapBlock in MapContainer.MapBlocks)
+            foreach (LevelButton level in mapBlock.LevelButtons)
+            {
+                if (_mapMenuService.SelectedDayId != level.DayId)
+                    continue;
+
+                if (mapBlock.UnlockableIngredient.ReadyToUnlock == false)
+                    continue;
+
+                PlayButton.interactable = false;
+                return;
+            }
+
+            PlayButton.interactable = _mapMenuService.DayIsSelected;
         }
 
         private void OnPlayClick()
         {
             _daysService.SetActiveDay(_mapMenuService.SelectedDayId);
-            
+
             var parameters = new LoadLevelPayloadParameters
             {
                 LevelName = _mapMenuService.GetSelectedScene().ToString()

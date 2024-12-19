@@ -36,6 +36,8 @@ namespace Code.Meta.Features.LootCollection.Behaviours
         public UniversalTimer UpgradeTimer;
 
         public LootTypeId UnlocksIngredient { get; private set; }
+        
+        public bool ReadyToUnlock { get; private set; }
 
         private IStaticDataService _staticData;
         private IWindowService _windowService;
@@ -88,7 +90,7 @@ namespace Code.Meta.Features.LootCollection.Behaviours
             LockedText.EnableElement();
         }
 
-        public void InitReadyToCollect(LootTypeId unlocksIngredient)
+        public void InitReadyToUnlock(LootTypeId unlocksIngredient)
         {
             ResetAll();
             Init(unlocksIngredient);
@@ -96,6 +98,7 @@ namespace Code.Meta.Features.LootCollection.Behaviours
             UnlockButton.interactable = true;
             ReadyToUnlockText.EnableElement();
             UnlockIngredientAnimator.SetTrigger(AnimationParameter.Ready.AsHash());
+            ReadyToUnlock = true;
         }
 
         public void InitFreeUpgradeState(LootTypeId type)
@@ -121,6 +124,7 @@ namespace Code.Meta.Features.LootCollection.Behaviours
 
         private void ResetAll()
         {
+            ReadyToUnlock = false;
             gameObject.DisableElement();
             FreeUpgradeButton.DisableElement();
             UnlockButton.DisableElement();

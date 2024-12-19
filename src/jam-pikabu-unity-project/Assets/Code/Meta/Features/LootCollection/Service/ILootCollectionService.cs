@@ -8,6 +8,7 @@ namespace Code.Meta.Features.LootCollection.Service
     {
         event Action OnUpgraded;
         event Action OnFreeUpgradeTimeEnd;
+        event Action OnNewLootUnlocked;
         Dictionary<LootTypeId, LootItemCollectionData> LootProgression { get; }
         void InitializeLootProgression(List<LootItemCollectionData> items);
         void AddNewUnlockedLoot(LootTypeId type);
