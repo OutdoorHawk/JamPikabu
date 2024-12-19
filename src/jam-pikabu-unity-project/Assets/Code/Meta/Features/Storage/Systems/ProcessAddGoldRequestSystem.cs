@@ -1,5 +1,4 @@
-﻿using Code.Progress.SaveLoadService;
-using Entitas;
+﻿using Entitas;
 
 namespace Code.Meta.Features.Storage.Systems
 {
@@ -7,11 +6,9 @@ namespace Code.Meta.Features.Storage.Systems
     {
         private readonly IGroup<MetaEntity> _requests;
         private readonly IGroup<MetaEntity> _storages;
-        private readonly ISaveLoadService _saveLoadService;
 
-        public ProcessAddGoldRequestSystem(MetaContext context, ISaveLoadService saveLoadService)
+        public ProcessAddGoldRequestSystem(MetaContext context)
         {
-            _saveLoadService = saveLoadService;
             _requests = context.GetGroup(MetaMatcher
                 .AllOf(
                     MetaMatcher.Gold,
@@ -32,7 +29,8 @@ namespace Code.Meta.Features.Storage.Systems
                 request.isDestructed = true;
                 storage.ReplaceGold(storage.Gold + request.Gold);
                 
-                _saveLoadService.SaveProgress();
+                if (request.hasWithdraw)
+                    storage.ReplaceWithdraw(storage.Withdraw + request.Withdraw);
             }
         }
     }

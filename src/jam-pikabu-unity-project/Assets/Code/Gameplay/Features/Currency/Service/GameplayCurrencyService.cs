@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Code.Gameplay.Features.Currency.Behaviours;
 using Code.Gameplay.Features.Currency.Config;
 using Code.Gameplay.Features.Currency.Factory;
 using Code.Gameplay.StaticData;
@@ -18,6 +19,7 @@ namespace Code.Gameplay.Features.Currency.Service
         public event Action CurrencyChanged;
 
         private int _currentTurnCostGold;
+        public CurrencyHolder Holder { get; private set; }
 
         private readonly Dictionary<CurrencyTypeId, CurrencyCount> _currencies = new();
 
@@ -34,6 +36,16 @@ namespace Code.Gameplay.Features.Currency.Service
         public void OnConfigsInitInitComplete()
         {
             InitCurrency();
+        }
+
+        public void RegisterHolder(CurrencyHolder currencyHolder)
+        {
+            Holder = currencyHolder;
+        }
+
+        public void UnregisterHolder(CurrencyHolder currencyHolder)
+        {
+            Holder = null;
         }
 
         public int GetCurrencyOfType(CurrencyTypeId typeId)

@@ -2,11 +2,14 @@
 using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Currency;
+using Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation;
 using Code.Gameplay.Features.Currency.Config;
+using Code.Gameplay.Features.Currency.Factory;
 using Code.Gameplay.Features.Currency.Service;
 using Code.Gameplay.Features.Loot;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.StaticData;
+using Code.Gameplay.Windows.Service;
 using Code.Meta.Features.LootCollection.Configs;
 using Code.Meta.UI.Common;
 using TMPro;
@@ -31,6 +34,7 @@ namespace Code.Meta.Features.LootCollection.ShopTab
 
         private IStaticDataService _staticData;
         private IGameplayCurrencyService _gameplayCurrencyService;
+        private ICurrencyFactory _currencyFactory;
 
         private CostSetup _upgradePrice;
         private CurrencyTypeId _ratingCurrency;
@@ -41,8 +45,15 @@ namespace Code.Meta.Features.LootCollection.ShopTab
         private LootProgressionStaticData ProgressionStaticData => _staticData.GetStaticData<LootProgressionStaticData>();
 
         [Inject]
-        private void Construct(IStaticDataService staticData, IGameplayCurrencyService gameplayCurrencyService)
+        private void Construct
+        (
+            IStaticDataService staticData,
+            IGameplayCurrencyService gameplayCurrencyService,
+            ICurrencyFactory currencyFactory,
+            IWindowService windowService
+        )
         {
+            _currencyFactory = currencyFactory;
             _gameplayCurrencyService = gameplayCurrencyService;
             _staticData = staticData;
         }
@@ -185,6 +196,35 @@ namespace Code.Meta.Features.LootCollection.ShopTab
                 .With(x => x.isUpgradeLootRequest = true)
                 .AddLootTypeId(Type)
                 .AddGold(_upgradePrice.Amount)
+                .AddWithdraw(_upgradePrice.Amount)
+                ;
+
+            PlayAnimation();
+            RefreshState();
+        }
+
+        private void PlayAnimation()
+        {
+            var parameters = new CurrencyAnimationParameters()
+            {
+                TextPrefix = "-",
+                Type = CurrencyTypeId.Gold,
+                Count = _upgradePrice.Amount,
+                StartPosition = UpgradePrice.CurrencyIcon.transform.position,
+                EndPosition = _gameplayCurrencyService.Holder.PlayerCurrentGold.CurrencyIcon.transform.position,
+                StartReplenishCallback = () => RemoveWithdraw(_upgradePrice.Amount)
+            };
+
+            _currencyFactory.PlayCurrencyAnimation(parameters);
+        }
+
+        private void RemoveWithdraw(int upgradePriceAmount)
+        {
+            CreateMetaEntity
+                .Empty()
+                .With(x => x.isAddCurrencyToStorageRequest = true)
+                .AddGold(0)
+                .AddWithdraw(-upgradePriceAmount)
                 ;
         }
     }

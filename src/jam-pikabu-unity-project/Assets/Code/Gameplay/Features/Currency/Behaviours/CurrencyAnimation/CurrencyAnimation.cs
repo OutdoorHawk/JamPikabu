@@ -82,7 +82,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
         {
             CurrencyAnimationParameters animationParameters = parameters;
             Vector3 startPosition = parameters.StartPosition; // начальная точка (в глобальных координатах)
-            Vector3 endPosition = parameters.EndPosition; // конечная точка (в глобальных координатах)
+            Vector3 endPosition = GetEndPosition(parameters); // конечная точка (в глобальных координатах)
             float flightDuration = _flyDuration; // длительность полета к финальной позиции
             float scatterDuration = _scatterDuration; // длительность разлета
             float textFadeDuration = 0.65f; // длительность разлета
@@ -131,6 +131,11 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
 
             animationSequence.SetLink(gameObject);
             animationSequence.Play();
+        }
+
+        private Vector3 GetEndPosition(in CurrencyAnimationParameters parameters)
+        {
+            return parameters.EndPosition;
         }
 
         private async UniTaskVoid TextAnimation(float textFadeDuration)

@@ -107,7 +107,9 @@ namespace Code.Infrastructure.States.GameStates
             CreateMetaEntity
                 .Empty()
                 .With(x => x.isStorage = true)
-                .With(x => x.AddGold(startGoldAmount));
+                .With(x => x.AddGold(startGoldAmount))
+                .With(x => x.AddWithdraw(0))
+                ;
         }
 
         private void CreateLoot()

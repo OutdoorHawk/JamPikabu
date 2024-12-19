@@ -22,6 +22,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours
         private void Awake()
         {
             _gameplayCurrencyService.CurrencyChanged += Refresh;
+            _gameplayCurrencyService.RegisterHolder(this);
         }
 
         private void Start()
@@ -32,6 +33,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours
         private void OnDestroy()
         {
             _gameplayCurrencyService.CurrencyChanged -= Refresh;
+            _gameplayCurrencyService.UnregisterHolder(this);
         }
 
         private void RefreshStatic()

@@ -65,6 +65,10 @@ namespace Code.Meta.Features.LootCollection.Systems
                     continue;
 
                 storage.ReplaceGold(storage.Gold - request.Gold);
+                
+                if (request.hasWithdraw) 
+                    storage.ReplaceWithdraw(storage.Withdraw + request.Withdraw);
+                
                 UpgradeLevel(loot);
             }
         }

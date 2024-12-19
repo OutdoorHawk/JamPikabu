@@ -21,7 +21,7 @@ namespace Code.Meta.Features.Storage.Systems
         public void Execute()
         {
             foreach (MetaEntity storage in _storages)
-                _gameplayCurrencyService.UpdateCurrencyAmount(storage.Gold, 0, CurrencyTypeId.Gold);
+                _gameplayCurrencyService.UpdateCurrencyAmount(storage.Gold, storage.Withdraw, CurrencyTypeId.Gold);
         }
     }
 }
