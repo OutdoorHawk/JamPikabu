@@ -24,50 +24,50 @@ MonoBehaviour:
     - RatingAmountNeed: 1
     - RatingAmountNeed: 2
     - RatingAmountNeed: 5
-    AverageMinRatingPerDay: 6
-    AverageMaxRatingPerDay: 129
+    AverageMinRatingPerDay: 10.125
+    AverageMaxRatingPerDay: 133.125
   - Id: 2
     StarsNeedToUnlock: 0
     UnlocksIngredient: 0
     IsBossDay: 0
     OrdersAmount: 3
-    DayGoldFactor: 1
+    DayGoldFactor: 1.38
     SceneId: 2
     Stars:
     - RatingAmountNeed: 2
     - RatingAmountNeed: 3
     - RatingAmountNeed: 6
-    AverageMinRatingPerDay: 9
-    AverageMaxRatingPerDay: 132
+    AverageMinRatingPerDay: 23.25
+    AverageMaxRatingPerDay: 146.25
   - Id: 3
     StarsNeedToUnlock: 0
     UnlocksIngredient: 0
     IsBossDay: 1
     OrdersAmount: 1
-    DayGoldFactor: 1
+    DayGoldFactor: 1.72
     SceneId: 3
     Stars:
     - RatingAmountNeed: 3
     - RatingAmountNeed: 4
     - RatingAmountNeed: 8
-    AverageMinRatingPerDay: 5.5
-    AverageMaxRatingPerDay: 128.5
+    AverageMinRatingPerDay: 6.375
+    AverageMaxRatingPerDay: 129.375
   - Id: 4
     StarsNeedToUnlock: 0
     UnlocksIngredient: 2
     IsBossDay: 0
     OrdersAmount: 1
-    DayGoldFactor: 1
+    DayGoldFactor: 2.02
     SceneId: 2
     Stars: []
-    AverageMinRatingPerDay: 19
-    AverageMaxRatingPerDay: 183
+    AverageMinRatingPerDay: 21.375
+    AverageMaxRatingPerDay: 185.375
   - Id: 5
     StarsNeedToUnlock: 0
     UnlocksIngredient: 0
     IsBossDay: 0
-    OrdersAmount: 0
-    DayGoldFactor: 1
+    OrdersAmount: 3
+    DayGoldFactor: 2.2800002
     SceneId: 2
     Stars:
     - RatingAmountNeed: 0
@@ -79,8 +79,8 @@ MonoBehaviour:
     StarsNeedToUnlock: 0
     UnlocksIngredient: 0
     IsBossDay: 0
-    OrdersAmount: 0
-    DayGoldFactor: 1
+    OrdersAmount: 3
+    DayGoldFactor: 2.5
     SceneId: 2
     Stars:
     - RatingAmountNeed: 0
@@ -92,8 +92,8 @@ MonoBehaviour:
     StarsNeedToUnlock: 0
     UnlocksIngredient: 5
     IsBossDay: 0
-    OrdersAmount: 0
-    DayGoldFactor: 1
+    OrdersAmount: 3
+    DayGoldFactor: 2.68
     SceneId: 2
     Stars:
     - RatingAmountNeed: 0
@@ -105,8 +105,8 @@ MonoBehaviour:
     StarsNeedToUnlock: 0
     UnlocksIngredient: 0
     IsBossDay: 0
-    OrdersAmount: 0
-    DayGoldFactor: 1
+    OrdersAmount: 3
+    DayGoldFactor: 2.82
     SceneId: 2
     Stars:
     - RatingAmountNeed: 0
@@ -118,8 +118,8 @@ MonoBehaviour:
     StarsNeedToUnlock: 0
     UnlocksIngredient: 0
     IsBossDay: 0
-    OrdersAmount: 0
-    DayGoldFactor: 1
+    OrdersAmount: 3
+    DayGoldFactor: 2.92
     SceneId: 2
     Stars:
     - RatingAmountNeed: 0
@@ -131,8 +131,8 @@ MonoBehaviour:
     StarsNeedToUnlock: 0
     UnlocksIngredient: 6
     IsBossDay: 0
-    OrdersAmount: 0
-    DayGoldFactor: 1
+    OrdersAmount: 3
+    DayGoldFactor: 2.98
     SceneId: 2
     Stars:
     - RatingAmountNeed: 0
@@ -144,8 +144,8 @@ MonoBehaviour:
     StarsNeedToUnlock: 0
     UnlocksIngredient: 0
     IsBossDay: 0
-    OrdersAmount: 0
-    DayGoldFactor: 1
+    OrdersAmount: 3
+    DayGoldFactor: 3
     SceneId: 2
     Stars:
     - RatingAmountNeed: 0
@@ -159,14 +159,32 @@ MonoBehaviour:
   OrdersData: {fileID: 11400000, guid: cf868022c2d7cf349a5e0bd1ae7f42c9, type: 2}
   LootProgression: {fileID: 11400000, guid: 3f49ce273dd3bcf48b79895914a39142, type: 2}
   DayLootSettings: {fileID: 11400000, guid: d2e09ade8284fce4a9fa79fc48f90a6e, type: 2}
-  AverageGoldPerLevel: 
-  TotalGoldPerLevels: 0
+  AverageGoldPerLevel: 17000000420000002b00000065000000cd000000af000000e6000000ac000000af000000da0000007b000000
+  TotalGoldPerLevels: 1531
   IgnoreBadIngredients: 0
   MinGoldFactor: 1
-  MaxGoldFactor: 5
+  MaxGoldFactor: 3
   GoldFactorCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
