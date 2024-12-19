@@ -13,7 +13,8 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         [SerializeField] private SpriteRenderer _colliderRenderer;
 
         private IStaticDataService _staticData;
-        private CapsuleCollider2D _collider2D;
+        private PolygonCollider2D _collider2D;
+        private Collider2D _collider;
         private ICollisionRegistry _collisionRegistry;
 
         public SpriteRenderer Sprite => _sprite;
@@ -36,11 +37,23 @@ namespace Code.Gameplay.Features.Loot.Behaviours
             _sprite.sprite = lootSetup.Icon;
             _colliderRenderer.sprite = lootSetup.Icon;
             transform.localScale = Vector3.one * lootSetup.Size;
-            _collider2D = _colliderRenderer.gameObject.AddComponent<CapsuleCollider2D>();
-            _collider2D.size = Vector3.one * lootSetup.ColliderSize;
-            _collider2D.sharedMaterial = _collider2D.attachedRigidbody.sharedMaterial;
-            _collisionRegistry.Register(_collider2D.GetInstanceID(), Entity);
+            CreateCollider(lootSetup);
             Destroy(_colliderRenderer);
+        }
+
+        private void CreateCollider(LootSetup lootSetup)
+        {
+            AddCapsule(lootSetup);
+            _collider.sharedMaterial = _collider.attachedRigidbody.sharedMaterial;
+            
+            _collisionRegistry.Register(_collider.GetInstanceID(), Entity);
+        }
+
+        private void AddCapsule(LootSetup lootSetup)
+        {
+            var capsuleCollider2D = _colliderRenderer.gameObject.AddComponent<CapsuleCollider2D>();
+            capsuleCollider2D.size = Vector3.one * lootSetup.ColliderSize;
+            _collider = capsuleCollider2D;
         }
     }
 }
