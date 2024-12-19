@@ -11,12 +11,11 @@ namespace Code.Meta.Features.Days.Configs
     public class DayData : BaseData
     {
         public int StarsNeedToUnlock;
+        public LootTypeId UnlocksIngredient;
+        public bool IsBossDay;
         [FoldoutGroup("Data")] public int OrdersAmount = 3;
-        [FoldoutGroup("Data")] public float RoundDuration = 20;
         [FoldoutGroup("Data")] public float DayGoldFactor = 1;
-        [FoldoutGroup("Data")] public bool IsBossDay;
         [FoldoutGroup("Data")] public SceneTypeId SceneId = SceneTypeId.Level_1;
-        [FoldoutGroup("Data")] public LootTypeId UnlocksIngredient;
         [FoldoutGroup("Data")] public List<DayStarData> Stars = new() { new DayStarData(), new DayStarData(), new DayStarData() };
 
 #if UNITY_EDITOR

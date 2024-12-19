@@ -12,33 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a18003660246b3a5d94d97b10106bf, type: 3}
   m_Name: ShopItems
   m_EditorClassIdentifier: 
-  Configs:
-  - Id: 1
-    Kind: 1
-    Icon: {fileID: 0}
-    LayoutOrder: 0
-    NameLocale:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    DescriptionLocale:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    Cost:
-      CurrencyType: 0
-      Amount: 0
-    IngredientType: 12
+  Configs: []
   references:
     version: 2
     RefIds: []

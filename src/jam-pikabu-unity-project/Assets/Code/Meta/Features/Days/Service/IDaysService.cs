@@ -21,6 +21,7 @@ namespace Code.Meta.Features.Days.Service
         void RoundEnd();
         void EnterRoundPreparation();
         void DayComplete();
+        float GetRoundDuration();
         bool CheckAllDaysComplete();
         DayData GetDayData();
         DayData GetDayData(int currentDay);

@@ -15,12 +15,11 @@ MonoBehaviour:
   Configs:
   - Id: 1
     StarsNeedToUnlock: 0
-    OrdersAmount: 2
-    RoundDuration: 5
-    DayGoldFactor: 1
-    IsBossDay: 0
-    SceneId: 2
     UnlocksIngredient: 0
+    IsBossDay: 0
+    OrdersAmount: 2
+    DayGoldFactor: 1
+    SceneId: 2
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
@@ -29,12 +28,11 @@ MonoBehaviour:
     AverageMaxRatingPerDay: 0
   - Id: 2
     StarsNeedToUnlock: 0
-    OrdersAmount: 3
-    RoundDuration: 20
-    DayGoldFactor: 1
-    IsBossDay: 0
-    SceneId: 2
     UnlocksIngredient: 0
+    IsBossDay: 0
+    OrdersAmount: 3
+    DayGoldFactor: 1
+    SceneId: 2
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
@@ -43,34 +41,31 @@ MonoBehaviour:
     AverageMaxRatingPerDay: 0
   - Id: 3
     StarsNeedToUnlock: 0
-    OrdersAmount: 4
-    RoundDuration: 20
-    DayGoldFactor: 1
-    IsBossDay: 0
-    SceneId: 2
     UnlocksIngredient: 0
+    IsBossDay: 1
+    OrdersAmount: 1
+    DayGoldFactor: 1
+    SceneId: 3
     Stars: []
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 4
     StarsNeedToUnlock: 0
-    OrdersAmount: 1
-    RoundDuration: 45
-    DayGoldFactor: 1
+    UnlocksIngredient: 2
     IsBossDay: 0
-    SceneId: 3
-    UnlocksIngredient: 12
+    OrdersAmount: 1
+    DayGoldFactor: 1
+    SceneId: 2
     Stars: []
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 5
     StarsNeedToUnlock: 0
-    OrdersAmount: 0
-    RoundDuration: 20
-    DayGoldFactor: 1
-    IsBossDay: 0
-    SceneId: 2
     UnlocksIngredient: 0
+    IsBossDay: 0
+    OrdersAmount: 0
+    DayGoldFactor: 1
+    SceneId: 2
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
@@ -79,12 +74,11 @@ MonoBehaviour:
     AverageMaxRatingPerDay: 0
   - Id: 6
     StarsNeedToUnlock: 0
-    OrdersAmount: 0
-    RoundDuration: 20
-    DayGoldFactor: 1
-    IsBossDay: 0
-    SceneId: 2
     UnlocksIngredient: 0
+    IsBossDay: 0
+    OrdersAmount: 0
+    DayGoldFactor: 1
+    SceneId: 2
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
@@ -93,12 +87,11 @@ MonoBehaviour:
     AverageMaxRatingPerDay: 0
   - Id: 7
     StarsNeedToUnlock: 0
-    OrdersAmount: 0
-    RoundDuration: 20
-    DayGoldFactor: 1
+    UnlocksIngredient: 5
     IsBossDay: 0
+    OrdersAmount: 0
+    DayGoldFactor: 1
     SceneId: 2
-    UnlocksIngredient: 14
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
@@ -107,12 +100,11 @@ MonoBehaviour:
     AverageMaxRatingPerDay: 0
   - Id: 8
     StarsNeedToUnlock: 0
-    OrdersAmount: 0
-    RoundDuration: 20
-    DayGoldFactor: 1
+    UnlocksIngredient: 0
     IsBossDay: 0
+    OrdersAmount: 0
+    DayGoldFactor: 1
     SceneId: 2
-    UnlocksIngredient: 2
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
@@ -121,12 +113,11 @@ MonoBehaviour:
     AverageMaxRatingPerDay: 0
   - Id: 9
     StarsNeedToUnlock: 0
-    OrdersAmount: 0
-    RoundDuration: 20
-    DayGoldFactor: 1
+    UnlocksIngredient: 0
     IsBossDay: 0
+    OrdersAmount: 0
+    DayGoldFactor: 1
     SceneId: 2
-    UnlocksIngredient: 11
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
@@ -135,12 +126,11 @@ MonoBehaviour:
     AverageMaxRatingPerDay: 0
   - Id: 10
     StarsNeedToUnlock: 0
-    OrdersAmount: 0
-    RoundDuration: 20
-    DayGoldFactor: 1
+    UnlocksIngredient: 6
     IsBossDay: 0
+    OrdersAmount: 0
+    DayGoldFactor: 1
     SceneId: 2
-    UnlocksIngredient: 10
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
@@ -149,12 +139,11 @@ MonoBehaviour:
     AverageMaxRatingPerDay: 0
   - Id: 11
     StarsNeedToUnlock: 0
-    OrdersAmount: 0
-    RoundDuration: 20
-    DayGoldFactor: 1
+    UnlocksIngredient: 0
     IsBossDay: 0
+    OrdersAmount: 0
+    DayGoldFactor: 1
     SceneId: 2
-    UnlocksIngredient: 9
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
@@ -162,11 +151,14 @@ MonoBehaviour:
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   StartGoldAmount: 20
+  DefaultRoundDuration: 20
+  BossRoundDuration: 40
   OrdersData: {fileID: 11400000, guid: cf868022c2d7cf349a5e0bd1ae7f42c9, type: 2}
-  LootProgression: {fileID: 0}
-  DayLootSettings: {fileID: 0}
+  LootProgression: {fileID: 11400000, guid: 3f49ce273dd3bcf48b79895914a39142, type: 2}
+  DayLootSettings: {fileID: 11400000, guid: d2e09ade8284fce4a9fa79fc48f90a6e, type: 2}
   AverageGoldPerLevel: 
   TotalGoldPerLevels: 0
+  IgnoreBadIngredients: 0
   MinGoldFactor: 1
   MaxGoldFactor: 5
   GoldFactorCurve:

@@ -191,7 +191,7 @@ namespace Code.Meta.Features.LootCollection.Behaviours
 
         private void ProceedUnlockClicked()
         {
-            if (UnlocksIngredient is LootTypeId.Unknown)
+            if (UnlocksIngredient is LootTypeId.None)
                 return;
 
             UnlockButton.interactable = false;

@@ -79,9 +79,11 @@ namespace Code.Meta.Features.Days.Service
             _daysData = staticData.Configs;
 
             _currentDayData = GetDayData(_currentDay);
+            
+            float roundDuration = GetRoundDuration();
 
             _roundStateFactory.CreateRoundStateController()
-                .AddRoundDuration(_currentDayData.RoundDuration)
+                .AddRoundDuration(roundDuration)
                 ;
 
             OnDayBegin?.Invoke();
@@ -99,6 +101,15 @@ namespace Code.Meta.Features.Days.Service
         public void DayComplete()
         {
             OnDayComplete?.Invoke();
+        }
+
+        public float GetRoundDuration()
+        {
+            float roundDuration = _currentDayData.IsBossDay 
+                ? DaysStaticData.BossRoundDuration 
+                : DaysStaticData.DefaultRoundDuration;
+            
+            return roundDuration;
         }
 
         public bool CheckAllDaysComplete()

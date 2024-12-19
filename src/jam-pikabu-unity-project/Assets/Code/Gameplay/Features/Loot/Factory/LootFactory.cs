@@ -43,7 +43,7 @@ namespace Code.Gameplay.Features.Loot.Factory
 
             switch (typeId)
             {
-                case LootTypeId.Unknown:
+                case LootTypeId.None:
                     break;
             }
 

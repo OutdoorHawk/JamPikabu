@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace Code.Gameplay.Features.Loot
+﻿namespace Code.Gameplay.Features.Loot
 {
     public enum LootTypeId
     {
-        Unknown = 0,
+        None = 0,
         GoldCoin = 1,
         Cheese = 2,
         Broccoli = 3,
@@ -22,7 +20,7 @@ namespace Code.Gameplay.Features.Loot
         Sock = 15,
         Pepper = 16,
         Spoon = 17,
-        
+
         Count,
     }
 }

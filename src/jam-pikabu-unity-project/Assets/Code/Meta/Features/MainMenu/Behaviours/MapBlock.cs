@@ -63,7 +63,7 @@ namespace Code.Meta.Features.MainMenu.Behaviours
             {
                 DayData dayData = _daysService.GetDayData(levelButton.DayId);
 
-                if (dayData.UnlocksIngredient == LootTypeId.Unknown)
+                if (dayData.UnlocksIngredient == LootTypeId.None)
                     continue;
 
                 if (CheckPreviousDayIsCompleted() == false)

@@ -36,7 +36,7 @@ namespace Code.Gameplay.Features.RoundState.Behaviours
 
         private void ResetTimer()
         {
-            float roundDuration = _daysService.GetDayData().RoundDuration;
+            float roundDuration = _daysService.GetRoundDuration();
             _currentTime = Mathf.RoundToInt(roundDuration);
             RoundTimerText.text = _currentTime.ToString();
         }

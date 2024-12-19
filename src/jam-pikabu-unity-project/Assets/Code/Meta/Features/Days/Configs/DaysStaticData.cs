@@ -1,4 +1,5 @@
 ﻿using Code.Gameplay.StaticData.Data;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Code.Meta.Features.Days.Configs
@@ -7,6 +8,8 @@ namespace Code.Meta.Features.Days.Configs
     public partial class DaysStaticData : BaseStaticData<DayData>
     {
         public int StartGoldAmount = 0;
+        public float DefaultRoundDuration = 20;
+        public float BossRoundDuration = 40;
 
         public override void OnConfigInit()
         {

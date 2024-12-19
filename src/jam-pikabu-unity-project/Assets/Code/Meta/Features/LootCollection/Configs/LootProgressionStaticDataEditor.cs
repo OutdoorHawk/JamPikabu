@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Config;
+using Code.Gameplay.Features.Loot;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -13,20 +14,40 @@ namespace Code.Meta.Features.LootCollection.Configs
         [FoldoutGroup("Editor")] public float GrowthExponent = 1.5f;
         [FoldoutGroup("Editor")] public float StepFactor = 2f;
         [FoldoutGroup("Editor")] public int BonusAdjustment = 1;
+        [FoldoutGroup("Editor"), ReadOnly] public int FullUpgradeCost;
 
         [FoldoutGroup("Editor")] public AnimationCurve ProgressionCurve;
 
+        /*
+        [FoldoutGroup("Editor")]
+        [Button]
+        private void CreateAllLoot()
+        {
+            for (LootTypeId i = 0; i < LootTypeId.Count; i++)
+            {
+                if (Configs.Exists(data => data.Type == i))
+                    continue;
+                
+                Configs.Add(new LootProgressionData {Type = i});
+            }
+            
+            Configs.Sort((x, y) => x.Type.CompareTo(y.Type));
+        }
+        */
+
+        [FoldoutGroup("Editor")]
         [Button]
         private void RecreateLevels()
         {
             foreach (var config in Configs)
             {
                 config.Levels.Clear();
-                for (int i = 0; i < LevelsAmount; i++) 
+                for (int i = 0; i < LevelsAmount; i++)
                     config.Levels.Add(new LootLevelData());
             }
         }
 
+        [FoldoutGroup("Editor")]
         [Button]
         private void ApplyLootProgressionFormula()
         {
@@ -48,6 +69,20 @@ namespace Code.Meta.Features.LootCollection.Configs
                     levels[i].RatingBoostAmount = Mathf.RoundToInt(boostValue);
                     levels[i].Cost = new CostSetup(currencyType, Mathf.RoundToInt(costValue));
                     ProgressionCurve.AddKey(i, boostValue);
+                }
+            }
+        }
+
+        [FoldoutGroup("Editor")]
+        [Button]
+        private void CalculateFullUpgradeCost()
+        {
+            FullUpgradeCost = 0;
+            foreach (var lootProgression in Configs)
+            {
+                foreach (var level in lootProgression.Levels)
+                {
+                    FullUpgradeCost += level.Cost.Amount;
                 }
             }
         }
