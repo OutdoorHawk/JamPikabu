@@ -19,6 +19,8 @@ namespace Code.Meta.Features.Days.Configs
 
         [FoldoutGroup("Editor")] [ReadOnly] public List<int> AverageGoldPerLevel;
         [FoldoutGroup("Editor")] [ReadOnly] public int TotalGoldPerLevels;
+        
+        [FoldoutGroup("Editor")] [ReadOnly] public bool IgnoreBadIngredients;
 
         [FoldoutGroup("Editor")] public float MinGoldFactor = 1f; 
         [FoldoutGroup("Editor")] public float MaxGoldFactor = 5f;
@@ -68,6 +70,7 @@ namespace Code.Meta.Features.Days.Configs
             }
         }
 
+        [FoldoutGroup("Editor")]
         [Button]
         private void CalculateAverageRatingPerDay()
         {
@@ -84,10 +87,23 @@ namespace Code.Meta.Features.Days.Configs
                 {
                     OrderData randomOrder = OrdersData.Configs[Random.Range(0, OrdersData.Configs.Count)];
                     OrderSetup orderSetup = randomOrder.Setup;
-                    float averageProductCount = GetAverage(orderSetup.MinMaxNeedAmount);
+                    float averageLootTypesCount = GetAverage(orderSetup.MinMaxNeedAmount);
                     float averageGoodIngredients = GetAverage(orderSetup.MinMaxGoodIngredients);
                     float averageBadIngredients = GetAverage(orderSetup.MinMaxBadIngredients);
                     float averageIngredientFactor = GetAverage(orderSetup.MinMaxIngredientsRatingFactor);
+                    
+                    // Calculate rating contributions for a single order
+                    float minRatingForOrder = 
+                        (averageGoodIngredients * averageLootTypesCount * averageIngredientFactor) -
+                        (IgnoreBadIngredients ? 0 : averageBadIngredients * averageLootTypesCount * averageIngredientFactor);
+
+                    float maxRatingForOrder = 
+                        (averageGoodIngredients * averageLootTypesCount * averageIngredientFactor) -
+                        (IgnoreBadIngredients ? 0 : averageBadIngredients * averageLootTypesCount * averageIngredientFactor);
+
+                    // Accumulate to daily totals
+                    averageMinRatingPerDay += minRatingForOrder;
+                    averageMaxRatingPerDay += maxRatingForOrder;
                 }
                 
                 foreach (LootTypeId product in availableProducts)
@@ -95,6 +111,10 @@ namespace Code.Meta.Features.Days.Configs
                     LootProgressionData progression = LootProgression.GetConfig(product);
                     int minRatingPerProduct = progression.Levels[0].RatingBoostAmount;
                     int maxRatingPerProduct = progression.Levels[^1].RatingBoostAmount;
+                    
+                    // Factor in the rating contribution for the available products
+                    averageMinRatingPerDay += minRatingPerProduct;
+                    averageMaxRatingPerDay += maxRatingPerProduct;
                 }
                 
                 dayData.AverageMinRatingPerDay = averageMinRatingPerDay;
