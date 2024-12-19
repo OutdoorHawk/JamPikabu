@@ -26,6 +26,12 @@ namespace Code.Editor
         {
             EditorSceneManager.OpenScene($"Assets/Project/Scenes/{SceneTypeId.Level_1}.unity", OpenSceneMode.Single);
         }
+        
+        [MenuItem("Tools/Scenes/Open Loot Setup", false, 2)]
+        public static void OpenLootSetupScene()
+        {
+            EditorSceneManager.OpenScene($"Assets/Project/Scenes/LootSetup.unity", OpenSceneMode.Single);
+        }
 
         [MenuItem("Tools/PlayerProgress/DeleteProgress")]
         public static void ClearPlayerProgress()

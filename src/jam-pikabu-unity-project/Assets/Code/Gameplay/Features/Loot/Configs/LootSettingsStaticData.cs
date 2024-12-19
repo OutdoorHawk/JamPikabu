@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Code.Gameplay.Features.Loot.Configs
 {
     [CreateAssetMenu(menuName = "StaticData/" + nameof(LootSettingsStaticData), fileName = "LootSettings")]
-    public class LootSettingsStaticData : BaseStaticData<LootSetup>
+    public partial class LootSettingsStaticData : BaseStaticData<LootSetup>
     {
         public float LootSpawnInterval = 0.02f;
         public float LootSpawnConveyorInterval = 0.5f;

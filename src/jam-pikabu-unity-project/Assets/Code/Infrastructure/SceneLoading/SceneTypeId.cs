@@ -5,6 +5,6 @@
         BootstrapScene = 0,
         MapMenu = 1,
         Level_1 = 2,
-        Level_2 = 3,
+        Level_2 = 3
     }
 }

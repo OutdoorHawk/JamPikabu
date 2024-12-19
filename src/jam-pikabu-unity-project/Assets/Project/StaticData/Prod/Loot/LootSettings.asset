@@ -295,6 +295,7 @@ MonoBehaviour:
     type: 3}
   LootItem: {fileID: 6313876982729068303, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943,
     type: 3}
+  Parent: {fileID: 0}
   references:
     version: 2
     RefIds: []
