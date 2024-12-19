@@ -29,7 +29,7 @@ namespace Code.Meta.Features.Storage.Systems
                 request.isDestructed = true;
                 storage.ReplaceGold(storage.Gold + request.Gold);
                 
-                if (request.hasWithdraw)
+                if (request.hasWithdraw) 
                     storage.ReplaceWithdraw(storage.Withdraw + request.Withdraw);
             }
         }

@@ -76,6 +76,12 @@ namespace Code.Meta.Features.LootCollection.ShopTab
             TypeId = item.Type;
             _ratingCurrency = CurrencyTypeId.Plus;
 
+            if (GetCurrentLevel(item) == null)
+            {
+                gameObject.DisableElement();
+                return;
+            }
+
             InitLocale(in item);
             InitCurrentLevel(in item);
             InitNextLevel(in item);
@@ -123,7 +129,12 @@ namespace Code.Meta.Features.LootCollection.ShopTab
 
         private LootLevelData GetCurrentLevel(in LootItemCollectionData item)
         {
-            List<LootLevelData> levels = ProgressionStaticData.GetConfig(item.Type).Levels;
+            LootProgressionData lootProgressionData = ProgressionStaticData.GetConfig(item.Type);
+            
+            if (lootProgressionData == null)
+                return null;
+            
+            List<LootLevelData> levels = lootProgressionData.Levels;
 
             if (item.Level >= levels.Count)
                 return levels[^1];
@@ -196,7 +207,7 @@ namespace Code.Meta.Features.LootCollection.ShopTab
                 .With(x => x.isUpgradeLootRequest = true)
                 .AddLootTypeId(Type)
                 .AddGold(_upgradePrice.Amount)
-                .AddWithdraw(_upgradePrice.Amount)
+                .AddWithdraw(-_upgradePrice.Amount)
                 ;
 
             PlayAnimation();
@@ -205,14 +216,15 @@ namespace Code.Meta.Features.LootCollection.ShopTab
 
         private void PlayAnimation()
         {
+            int upgradePriceAmount = _upgradePrice.Amount;
             var parameters = new CurrencyAnimationParameters()
             {
                 TextPrefix = "-",
                 Type = CurrencyTypeId.Gold,
-                Count = _upgradePrice.Amount,
+                Count = upgradePriceAmount,
                 StartPosition = UpgradePrice.CurrencyIcon.transform.position,
                 EndPosition = _gameplayCurrencyService.Holder.PlayerCurrentGold.CurrencyIcon.transform.position,
-                StartReplenishCallback = () => RemoveWithdraw(_upgradePrice.Amount)
+                StartReplenishCallback = () => RemoveWithdraw(upgradePriceAmount)
             };
 
             _currencyFactory.PlayCurrencyAnimation(parameters);
@@ -224,7 +236,7 @@ namespace Code.Meta.Features.LootCollection.ShopTab
                 .Empty()
                 .With(x => x.isAddCurrencyToStorageRequest = true)
                 .AddGold(0)
-                .AddWithdraw(-upgradePriceAmount)
+                .AddWithdraw(upgradePriceAmount)
                 ;
         }
     }

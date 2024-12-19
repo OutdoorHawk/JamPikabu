@@ -108,7 +108,6 @@ namespace Code.Infrastructure.States.GameStates
                 .Empty()
                 .With(x => x.isStorage = true)
                 .With(x => x.AddGold(startGoldAmount))
-                .With(x => x.AddWithdraw(0))
                 ;
         }
 
