@@ -35,7 +35,7 @@ namespace Code.Meta.Features.LootCollection.Behaviours
         public Animator UnlockIngredientAnimator;
         public UniversalTimer UpgradeTimer;
 
-        private LootTypeId _unlocksIngredient;
+        public LootTypeId UnlocksIngredient { get; private set; }
 
         private IStaticDataService _staticData;
         private IWindowService _windowService;
@@ -134,10 +134,10 @@ namespace Code.Meta.Features.LootCollection.Behaviours
         private void Init(LootTypeId unlocksIngredient)
         {
             gameObject.EnableElement();
-            _unlocksIngredient = unlocksIngredient;
+            UnlocksIngredient = unlocksIngredient;
             var lootSettings = _staticData.GetStaticData<LootSettingsStaticData>();
             foreach (var icon in IngredientIcons)
-                icon.sprite = lootSettings.GetConfig(_unlocksIngredient).Icon;
+                icon.sprite = lootSettings.GetConfig(UnlocksIngredient).Icon;
         }
         
         private void InitMaxLevelReached()
@@ -169,7 +169,7 @@ namespace Code.Meta.Features.LootCollection.Behaviours
             _fillToken = CreateLinkedTokenSource(destroyCancellationToken);
 
             Image fillImage = IngredientIcons[0];
-            LootProgressionData data = LootData.GetConfig(_unlocksIngredient);
+            LootProgressionData data = LootData.GetConfig(UnlocksIngredient);
 
             float maxWaitTimeSeconds = data.FreeUpgradeTimeHours * 60 * 60;
             int timeLeftSeconds = GetTimeFunc();
@@ -187,7 +187,7 @@ namespace Code.Meta.Features.LootCollection.Behaviours
 
         private void ProceedUnlockClicked()
         {
-            if (_unlocksIngredient is LootTypeId.Unknown)
+            if (UnlocksIngredient is LootTypeId.Unknown)
                 return;
 
             UnlockButton.interactable = false;
@@ -201,7 +201,7 @@ namespace Code.Meta.Features.LootCollection.Behaviours
 
             CreateMetaEntity.Empty()
                 .With(x => x.isUpgradeLootRequest = true)
-                .AddLootTypeId(_unlocksIngredient)
+                .AddLootTypeId(UnlocksIngredient)
                 .AddGold(0);
         }
 
@@ -218,7 +218,7 @@ namespace Code.Meta.Features.LootCollection.Behaviours
         {
             CreateMetaEntity.Empty()
                 .With(x => x.isUnlockLootRequest = true)
-                .AddLootTypeId(_unlocksIngredient);
+                .AddLootTypeId(UnlocksIngredient);
         }
 
         private void MoveIngredientToShop(Vector3 from)
@@ -244,7 +244,7 @@ namespace Code.Meta.Features.LootCollection.Behaviours
 
         private int GetTimeFunc()
         {
-            return _lootCollectionService.GetTimeLeftToFreeUpgrade(_unlocksIngredient);
+            return _lootCollectionService.GetTimeLeftToFreeUpgrade(UnlocksIngredient);
         }
     }
 }

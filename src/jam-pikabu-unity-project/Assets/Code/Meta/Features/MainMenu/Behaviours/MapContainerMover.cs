@@ -1,6 +1,10 @@
+using Code.Common.Extensions;
+using Code.Gameplay.Features.Loot;
+using Code.Meta.Features.LootCollection.Service;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Code.Meta.Features.MainMenu.Behaviours
 {
@@ -9,26 +13,43 @@ namespace Code.Meta.Features.MainMenu.Behaviours
         public ScrollRect MainScroll;
         public Button LeftButton;
         public Button RightButton;
-        public MapContainer MapContainer;
+        public GameObject LeftPin;
+        public GameObject RightPin;
         public float MoveThreshold = 100;
         public float MoveDuration = 0.5f;
 
+        private ILootCollectionService _lootCollectionService;
+        
         private Tween _moveTween;
         private float _cellSizeX;
         private float _spacing;
         private float _currentMoveValue;
 
-        private RectTransform[] _segments;
+        private MapBlock[] _segments;
 
         private const int SEGMENTS_ON_SCREEN = 3;
 
         private int _currentSegment;
         private int _totalSegments;
 
+        [Inject]
+        private void Construct(ILootCollectionService lootCollectionService)
+        {
+            _lootCollectionService = lootCollectionService;
+        }
+
         private void Awake()
         {
             LeftButton.onClick.AddListener(MoveLeft);
             RightButton.onClick.AddListener(MoveRight);
+            _lootCollectionService.OnFreeUpgradeTimeEnd += UpdatePin;
+        }
+
+        private void OnDestroy()
+        {
+            LeftButton.onClick.RemoveListener(MoveLeft);
+            RightButton.onClick.RemoveListener(MoveRight);
+            _lootCollectionService.OnFreeUpgradeTimeEnd -= UpdatePin;
         }
 
         private void Start()
@@ -44,25 +65,18 @@ namespace Code.Meta.Features.MainMenu.Behaviours
             TryMoveByThreshold();
         }
 
-        private void OnDestroy()
-        {
-            LeftButton.onClick.RemoveListener(MoveLeft);
-            RightButton.onClick.RemoveListener(MoveRight);
-        }
-
         private void Initialize()
         {
-            HorizontalLayoutGroup layoutGroup = MapContainer.GetComponent<HorizontalLayoutGroup>();
+            HorizontalLayoutGroup layoutGroup = MainScroll.content.GetComponent<HorizontalLayoutGroup>();
+            MapBlock[] mapBlocks = MainScroll.content.GetComponentsInChildren<MapBlock>(true);
             _spacing = layoutGroup.spacing;
-            _cellSizeX = MapContainer.MapBlocks[0].GetComponent<RectTransform>().rect.width + _spacing;
+            _cellSizeX = mapBlocks[0].GetComponent<RectTransform>().rect.width + _spacing;
 
-            _totalSegments = MapContainer.MapBlocks.Count;
-            _segments = new RectTransform[_totalSegments];
+            _totalSegments = mapBlocks.Length;
+            _segments = new MapBlock[_totalSegments];
 
-            for (int i = 0; i < _totalSegments; i++)
-            {
-                _segments[i] = MapContainer.MapBlocks[i].GetComponent<RectTransform>();
-            }
+            for (int i = 0; i < _totalSegments; i++) 
+                _segments[i] = mapBlocks[i];
         }
 
         private void UpdateMoveValue()
@@ -139,6 +153,38 @@ namespace Code.Meta.Features.MainMenu.Behaviours
         {
             LeftButton.interactable = _currentSegment > 0;
             RightButton.interactable = _currentSegment < _totalSegments - SEGMENTS_ON_SCREEN;
+            UpdatePin();
+        }
+        
+        private void UpdatePin()
+        {
+            LeftPin.DisableElement();
+            RightPin.DisableElement();
+            
+            for (int i = 0; i < _segments.Length; i++)
+            {
+                MapBlock mapBlock = _segments[i];
+                LootTypeId type = mapBlock.UnlockableIngredient.UnlocksIngredient;
+
+                if (_lootCollectionService.CanUpgradeForFree(type) == false)
+                    continue;
+
+                if (_lootCollectionService.GetTimeLeftToFreeUpgrade(type) > 0)
+                    continue;
+                
+                // Определяем позицию mapBlock относительно видимой области
+                if (i < _currentSegment) // Левее видимой области
+                {
+                    LeftPin.EnableElement();
+                    return;
+                }
+
+                if (i >= _currentSegment + SEGMENTS_ON_SCREEN) // Правее видимой области
+                {
+                    RightPin.EnableElement();
+                    return;
+                }
+            }
         }
     }
 }

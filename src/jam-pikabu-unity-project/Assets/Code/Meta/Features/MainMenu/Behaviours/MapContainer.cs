@@ -15,6 +15,7 @@ namespace Code.Meta.Features.MainMenu.Behaviours
     public class MapContainer : MonoBehaviour
     {
         public ScrollRect MainScroll;
+        public MapContainerMover Mover;
 
         public List<MapBlock> MapBlocks { get; private set; } = new();
 
@@ -43,6 +44,7 @@ namespace Code.Meta.Features.MainMenu.Behaviours
         private void Awake()
         {
             MapBlocks.RefreshList(MainScroll.content.GetComponentsInChildren<MapBlock>(true));
+            
             foreach (MapBlock mapBlock in MapBlocks) 
                 mapBlock.EnableElement();
         }
