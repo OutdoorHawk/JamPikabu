@@ -108,7 +108,7 @@ namespace Code.Meta.Features.Days.Configs
                 
                 foreach (LootTypeId product in availableProducts)
                 {
-                    LootProgressionData progression = LootProgression.GetConfig(product);
+                    LootProgressionData progression = LootProgression.Configs.Find(data => data.Type == product);
                     int minRatingPerProduct = progression.Levels[0].RatingBoostAmount;
                     int maxRatingPerProduct = progression.Levels[^1].RatingBoostAmount;
                     

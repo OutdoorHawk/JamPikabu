@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Configs:
   - Id: 1
-    DaysRange: {x: 1, y: 10}
-    AvailableIngredients: 030000000400000005000000060000000c000000
+    DaysRange: {x: 1, y: 3}
+    AvailableIngredients: 060000000300000004000000
+  - Id: 2
+    DaysRange: {x: 4, y: 10}
+    AvailableIngredients: 06000000030000000400000005000000
