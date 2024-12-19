@@ -1,5 +1,6 @@
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Loot;
+using Code.Meta.Features.Days.Service;
 using Code.Meta.Features.LootCollection.Service;
 using DG.Tweening;
 using UnityEngine;
@@ -19,6 +20,7 @@ namespace Code.Meta.Features.MainMenu.Behaviours
         public float MoveDuration = 0.5f;
 
         private ILootCollectionService _lootCollectionService;
+        private IDaysService _daysService;
         
         private Tween _moveTween;
         private float _cellSizeX;
@@ -33,8 +35,9 @@ namespace Code.Meta.Features.MainMenu.Behaviours
         private int _totalSegments;
 
         [Inject]
-        private void Construct(ILootCollectionService lootCollectionService)
+        private void Construct(ILootCollectionService lootCollectionService, IDaysService daysService)
         {
+            _daysService = daysService;
             _lootCollectionService = lootCollectionService;
         }
 
@@ -151,8 +154,33 @@ namespace Code.Meta.Features.MainMenu.Behaviours
 
         private void UpdateButtonInteractivity()
         {
+            // Проверяем возможность перехода на левый сегмент
             LeftButton.interactable = _currentSegment > 0;
-            RightButton.interactable = _currentSegment < _totalSegments - SEGMENTS_ON_SCREEN;
+
+            // Проверяем возможность перехода на правый сегмент
+            if (_currentSegment < _totalSegments - SEGMENTS_ON_SCREEN)
+            {
+                bool allLevelsCompletedInSegment = true;
+
+                // Проверяем все уровни предыдущего сегмента
+                MapBlock previousSegment = _segments[_currentSegment + SEGMENTS_ON_SCREEN - 1];
+                foreach (LevelButton levelButton in previousSegment.LevelButtons)
+                {
+                    if (_daysService.TryGetDayProgress(levelButton.DayId, out _) == false)
+                    {
+                        allLevelsCompletedInSegment = false;
+                        break;
+                    }
+                }
+
+                // Если все уровни предыдущего сегмента пройдены, разблокируем кнопку
+                RightButton.interactable = allLevelsCompletedInSegment;
+            }
+            else
+            {
+                RightButton.interactable = false;
+            }
+            
             UpdatePin();
         }
         
