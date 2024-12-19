@@ -1,5 +1,8 @@
-﻿namespace Code.Gameplay.Features.Loot
+﻿using System;
+
+namespace Code.Gameplay.Features.Loot
 {
+    [Flags]
     public enum LootTypeId
     {
         Unknown = 0,

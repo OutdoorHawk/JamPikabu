@@ -10,8 +10,6 @@ namespace Code.Gameplay.Features.LootSpawning
             Add(systems.Create<SingleSpawnLootSystem>());
             Add(systems.Create<ContinuousSpawnLootSystem>());
             Add(systems.Create<SetLootInitialSpeedSystem>());
-
-            Add(systems.Create<EnterNextStateOnLootSpawningComplete>());
         }
     }
 }

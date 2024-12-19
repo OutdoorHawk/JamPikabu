@@ -1,12 +1,15 @@
 using System.Collections.Generic;
+using System.Threading;
 using Code.Common.Extensions;
 using Code.Gameplay.Windows;
 using Code.Gameplay.Windows.Factory;
 using Code.Gameplay.Windows.Service;
 using Code.Infrastructure.Localization;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using static System.Threading.CancellationTokenSource;
 
 namespace Code.Gameplay.Tutorial.Window
 {
@@ -14,6 +17,8 @@ namespace Code.Gameplay.Tutorial.Window
     {
         [SerializeField] private TutorialMessageBox[] _messageBoxes;
         [SerializeField] private GameObject _blackBackground;
+        [SerializeField] private GameObject _tapToContinueText;
+        [SerializeField] private Button _tapToContinueButton;
         [SerializeField] private RectTransform _arrow;
 
         private ILocalizationService _localizationService;
@@ -173,6 +178,15 @@ namespace Code.Gameplay.Tutorial.Window
             return this;
         }
 
+        public async UniTask AwaitForTapAnywhere(CancellationToken token)
+        {
+            _tapToContinueText.EnableElement();
+            _tapToContinueButton.EnableElement();
+            await _tapToContinueButton.OnClickAsync(CreateLinkedTokenSource(token, destroyCancellationToken).Token);
+            _tapToContinueButton.DisableElement();
+            _tapToContinueText.DisableElement();
+        }
+
         private string GetLocalizedText(int locale, string arg1 = null)
         {
             string result = arg1 == null
@@ -188,6 +202,7 @@ namespace Code.Gameplay.Tutorial.Window
 
             _blackBackground.DisableElement();
             _arrow.DisableElement();
+            _tapToContinueText.DisableElement();
 
             ClearHighlights();
         }

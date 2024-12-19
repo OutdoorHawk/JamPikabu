@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Code.Gameplay.Features.Loot;
 using Code.Gameplay.Features.Orders.Config;
+using Code.Meta.Features.DayLootSettings.Configs;
 using Code.Meta.Features.LootCollection.Configs;
 using RoyalGold.Sources.Scripts.Game.MVC.Utils;
 using Sirenix.OdinInspector;
@@ -14,6 +15,7 @@ namespace Code.Meta.Features.Days.Configs
     {
         [FoldoutGroup("Editor")] public OrdersStaticData OrdersData;
         [FoldoutGroup("Editor")] public LootProgressionStaticData LootProgression;
+        [FoldoutGroup("Editor")] public DayLootSettingsStaticData DayLootSettings;
 
         [FoldoutGroup("Editor")] [ReadOnly] public List<int> AverageGoldPerLevel;
         [FoldoutGroup("Editor")] [ReadOnly] public int TotalGoldPerLevels;
@@ -73,8 +75,9 @@ namespace Code.Meta.Features.Days.Configs
             {
                 float averageMinRatingPerDay = 0;
                 float averageMaxRatingPerDay = 0;
-                
-                List<LootTypeId> availableProducts = dayData.AvailableIngredients;
+
+                DayLootSettingsData dayLoot = DayLootSettings.GetDayLootByDayId(dayData.Id);
+                List<LootTypeId> availableProducts = dayLoot.AvailableIngredients;
                 int ordersPerDay = dayData.OrdersAmount;
 
                 for (int i = 0; i < ordersPerDay; i++)

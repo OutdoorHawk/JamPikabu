@@ -17,7 +17,6 @@ namespace Code.Meta.Features.Days.Configs
         [FoldoutGroup("Data")] public bool IsBossDay;
         [FoldoutGroup("Data")] public SceneTypeId SceneId = SceneTypeId.Level_1;
         [FoldoutGroup("Data")] public LootTypeId UnlocksIngredient;
-        [FoldoutGroup("Data")] public List<LootTypeId> AvailableIngredients;
         [FoldoutGroup("Data")] public List<DayStarData> Stars = new() { new DayStarData(), new DayStarData(), new DayStarData() };
 
 #if UNITY_EDITOR
