@@ -11,7 +11,7 @@ namespace Code.Meta.Features.Days.Configs
     public class DayData : BaseData
     {
         public int StarsNeedToUnlock;
-        [FoldoutGroup("Data")] public int OrdersAmount;
+        [FoldoutGroup("Data")] public int OrdersAmount = 3;
         [FoldoutGroup("Data")] public float RoundDuration = 20;
         [FoldoutGroup("Data")] public float DayGoldFactor = 1;
         [FoldoutGroup("Data")] public bool IsBossDay;

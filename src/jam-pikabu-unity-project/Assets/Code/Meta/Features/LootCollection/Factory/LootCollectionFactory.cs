@@ -35,6 +35,9 @@ namespace Code.Meta.Features.LootCollection.Factory
         private void AddFreeUpgradeTime(MetaEntity lootMeta)
         {
             LootProgressionData data = LootData.GetConfig(lootMeta.LootTypeId);
+            
+            if(data == null)
+                return;
 
             if (data.FreeUpgradeTimeHours == 0)
                 return;

@@ -58,6 +58,7 @@ namespace Code.Meta.Features.MainMenu.Behaviours
         private void Start()
         {
             Initialize();
+            JumpToNextUncompletedSegment();
             UpdateButtonInteractivity();
         }
 
@@ -81,6 +82,27 @@ namespace Code.Meta.Features.MainMenu.Behaviours
             for (int i = 0; i < _totalSegments; i++) 
                 _segments[i] = mapBlocks[i];
         }
+        
+        private void JumpToNextUncompletedSegment()
+        {
+            for (int i = 0; i < _segments.Length; i++)
+            {
+                MapBlock segment = _segments[i];
+
+                if (segment == null)
+                    continue;
+
+                foreach (LevelButton levelButton in segment.LevelButtons)
+                {
+                    if (_daysService.TryGetDayProgress(levelButton.DayId, out _) == false)
+                    {
+                        _currentSegment = Mathf.Clamp(i - 2, 0, _totalSegments - SEGMENTS_ON_SCREEN);
+                        MainScroll.content.anchoredPosition = CalculateTargetPosition(_currentSegment);
+                        return;
+                    }
+                }
+            }
+        }
 
         private void UpdateMoveValue()
         {
@@ -91,18 +113,22 @@ namespace Code.Meta.Features.MainMenu.Behaviours
         {
             if (_moveTween != null || Mathf.Abs(_currentMoveValue) > 0)
                 return;
-
+            
             Vector2 targetPosition = CalculateTargetPosition(_currentSegment);
 
             _moveTween?.Kill();
             _moveTween = MainScroll.content
                 .DOAnchorPos(targetPosition, MoveDuration)
                 .SetLink(gameObject)
-                .SetEase(Ease.OutQuad);
+                .SetEase(Ease.OutQuad)
+                .OnComplete(ResetTween)
+                ;
         }
 
         private void TryMoveByThreshold()
         {
+            if (Mathf.Abs(_currentMoveValue) > 0)
+                return;
             if (_moveTween != null || Mathf.Abs(_currentMoveValue) < MoveThreshold)
                 return;
 
@@ -124,7 +150,9 @@ namespace Code.Meta.Features.MainMenu.Behaviours
             _moveTween = MainScroll.content
                 .DOAnchorPos(targetPosition, MoveDuration)
                 .SetEase(Ease.OutQuad)
-                .SetLink(gameObject);
+                .SetLink(gameObject)
+                .OnComplete(ResetTween)
+                ;
 
             UpdateButtonInteractivity();
         }
@@ -141,7 +169,9 @@ namespace Code.Meta.Features.MainMenu.Behaviours
             _moveTween = MainScroll.content
                 .DOAnchorPos(targetPosition, MoveDuration)
                 .SetEase(Ease.OutQuad)
-                .SetLink(gameObject);
+                .SetLink(gameObject)
+                .OnComplete(ResetTween)
+                ;
 
             UpdateButtonInteractivity();
         }
@@ -183,7 +213,7 @@ namespace Code.Meta.Features.MainMenu.Behaviours
             
             UpdatePin();
         }
-        
+
         private void UpdatePin()
         {
             LeftPin.DisableElement();
@@ -213,6 +243,12 @@ namespace Code.Meta.Features.MainMenu.Behaviours
                     return;
                 }
             }
+        }
+
+        private void ResetTween()
+        {
+            _moveTween?.Kill();
+            _moveTween = null;
         }
     }
 }

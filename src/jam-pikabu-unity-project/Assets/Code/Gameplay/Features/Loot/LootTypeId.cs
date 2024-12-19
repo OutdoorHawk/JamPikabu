@@ -2,7 +2,6 @@
 
 namespace Code.Gameplay.Features.Loot
 {
-    [Flags]
     public enum LootTypeId
     {
         Unknown = 0,

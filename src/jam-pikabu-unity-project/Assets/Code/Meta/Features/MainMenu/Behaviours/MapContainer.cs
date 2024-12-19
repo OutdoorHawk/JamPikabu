@@ -86,8 +86,11 @@ namespace Code.Meta.Features.MainMenu.Behaviours
             }
 
             DayProgressData progressData = dayProgressData.Last();
-            int lastDay = progressData.DayId;
-            _buttonByDayIds[lastDay].SelectLevel();
+            int dayToSelect = progressData.DayId + 1;
+            if (dayToSelect >= _buttonByDayIds.Count)
+                _buttonByDayIds.Last().Value.SelectLevel();
+            else
+                _buttonByDayIds[dayToSelect].SelectLevel();
         }
 
         private void InitLevelList()

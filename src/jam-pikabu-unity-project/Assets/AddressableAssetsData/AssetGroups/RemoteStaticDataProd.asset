@@ -75,6 +75,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - ProdStaticData
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d2e09ade8284fce4a9fa79fc48f90a6e
+    m_Address: DayLootSettings
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ProdStaticData
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e00455f83177c0d419f1ac1714d63cd0
     m_Address: Shop
     m_ReadOnly: 0

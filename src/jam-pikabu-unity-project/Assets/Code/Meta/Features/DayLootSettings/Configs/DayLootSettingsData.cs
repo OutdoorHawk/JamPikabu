@@ -10,7 +10,7 @@ namespace Code.Meta.Features.DayLootSettings.Configs
     [Serializable]
     public class DayLootSettingsData : BaseData
     {
-        [MinMaxSlider(1, 99)] public Vector2Int DaysRange;
+        [MinMaxSlider(1, 99, showFields: true)] public Vector2Int DaysRange = Vector2Int.one;
         public List<LootTypeId> AvailableIngredients = new();
     }
 }
