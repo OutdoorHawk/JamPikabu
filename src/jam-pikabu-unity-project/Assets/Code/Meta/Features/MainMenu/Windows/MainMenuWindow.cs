@@ -68,6 +68,7 @@ namespace Code.Meta.Features.MainMenu.Windows
         private void OnPlayClick()
         {
             _daysService.SetActiveDay(_mapMenuService.SelectedDayId);
+            
             var parameters = new LoadLevelPayloadParameters
             {
                 LevelName = _mapMenuService.GetSelectedScene().ToString()
