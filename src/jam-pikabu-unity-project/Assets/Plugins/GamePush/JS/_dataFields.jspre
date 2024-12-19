@@ -1,5 +1,5 @@
-const dataProjectId = '5815';
-const dataPublicToken = 'BL5y2Oqp3Wl622MDcOAWrd55hJJF08SD';
+const dataProjectId = '18994';
+const dataPublicToken = '4lpK3IlApzozxxiZKm7Ex9jlG7t3pxhv';
 const showPreloaderAd = 'False';
 const showStickyOnStart = 'False';
 const waitPluginReady = 'True';
