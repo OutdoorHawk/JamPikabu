@@ -18,20 +18,12 @@ MonoBehaviour:
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 7259725824
-    m_Localized: PURCHASE
+  - m_Id: 56222672685846528
+    m_Localized: Shop
     m_Metadata:
       m_Items: []
-  - m_Id: 42118486205018112
-    m_Localized: UNLOCK SLOT
-    m_Metadata:
-      m_Items: []
-  - m_Id: 42740164119375872
-    m_Localized: "Allows you to bring  \nmore turrets"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 45702865637036032
-    m_Localized: COMING SOON
+  - m_Id: 57932065957695488
+    m_Localized: Ingredients
     m_Metadata:
       m_Items: []
   references:

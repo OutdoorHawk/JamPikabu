@@ -65,7 +65,7 @@ MonoBehaviour:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fedb08ed6c787924e9e945ceb3cb300f
-    m_Address: CONSTRUCTIONS_es
+    m_Address: INGREDIENTS_es
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-es

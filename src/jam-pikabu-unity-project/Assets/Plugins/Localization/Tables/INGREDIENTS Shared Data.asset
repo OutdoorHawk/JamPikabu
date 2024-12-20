@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: INGREDIENTS Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: INGREDIENTS
+  m_TableCollectionNameGuidString: a17a10c6ed09ff248b952b3e362f0e43
+  m_Entries:
+  - m_Id: 60076927607853056
+    m_Key: GOLD_COIN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60076999586304000
+    m_Key: CHEESE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60077047699165184
+    m_Key: BROCCOLI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60077186887143424
+    m_Key: BERRY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60077230830866432
+    m_Key: LEMON
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60077298858283008
+    m_Key: CARROT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60077322044395520
+    m_Key: PEA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60077343515037696
+    m_Key: CUCUMBER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60077359914766336
+    m_Key: MUSHROOM
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60077375622434816
+    m_Key: WATERMELON
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60077395289526272
+    m_Key: BANANA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60077405511045120
+    m_Key: PUMPKIN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60077433235394560
+    m_Key: STRAWBERRY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60077450989883392
+    m_Key: WOOD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60077466169069568
+    m_Key: SOCK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60077474729644032
+    m_Key: SPOON
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 2814284846592688130
+  references:
+    version: 2
+    RefIds:
+    - rid: 2814284846592688130
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
+        asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1720378451187

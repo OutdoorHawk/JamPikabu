@@ -28,14 +28,6 @@ MonoBehaviour:
     m_Localized: JUGAR
     m_Metadata:
       m_Items: []
-  - m_Id: 142827577344
-    m_Localized: "SELECCI\xD3N DE ESTRUCTURAS"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 323815989248
-    m_Localized: "SELECCI\xD3N DE ARMAS"
-    m_Metadata:
-      m_Items: []
   - m_Id: 507966906368
     m_Localized: AJUSTES
     m_Metadata:

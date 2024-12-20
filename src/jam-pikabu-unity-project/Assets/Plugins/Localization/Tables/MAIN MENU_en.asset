@@ -20,19 +20,11 @@ MonoBehaviour:
     - rid: 2194680340899692627
   m_TableData:
   - m_Id: 8836341760
-    m_Localized: PLAY
-    m_Metadata:
-      m_Items: []
-  - m_Id: 142827577344
-    m_Localized: SELECT DEFENCE
-    m_Metadata:
-      m_Items: []
-  - m_Id: 323815989248
-    m_Localized: SELECT WEAPON
+    m_Localized: Play
     m_Metadata:
       m_Items: []
   - m_Id: 507966906368
-    m_Localized: SETTINGS
+    m_Localized: Settings
     m_Metadata:
       m_Items: []
   - m_Id: 2191103352832

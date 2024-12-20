@@ -17,23 +17,7 @@ MonoBehaviour:
   m_SharedData: {fileID: 11400000, guid: 257c2cea6ea3f7644b70dd1457151e70, type: 2}
   m_Metadata:
     m_Items: []
-  m_TableData:
-  - m_Id: 7259725824
-    m_Localized: COMPRAR
-    m_Metadata:
-      m_Items: []
-  - m_Id: 42740164119375872
-    m_Localized: "Permite llevar  \nm\xE1s torretas"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 42118486205018112
-    m_Localized: DESBLOQUEAR RANUR
-    m_Metadata:
-      m_Items: []
-  - m_Id: 45702865637036032
-    m_Localized: VINIENDO PRONTO
-    m_Metadata:
-      m_Items: []
+  m_TableData: []
   references:
     version: 2
     RefIds: []
