@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Code.Common.Extensions;
 using Code.Meta.Features.DayLootSettings.Configs;
 using Code.Meta.Features.Days.Service;
@@ -47,8 +46,15 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
 
         private void InitStarsAmount()
         {
-            int earnedStars = LevelButtons.Sum(levelButton => _daysService.GetStarsEarnedForDay(levelButton.DayId));
-            int maxStars = LevelButtons.Sum(levelButton => _daysService.GetDayStarData(levelButton.DayId).Stars.Count);
+            int earnedStars = 0;
+            int maxStars = 0;
+
+            for (int i = _mapBlockData.DaysRange.x - 1; i < _mapBlockData.DaysRange.y; i++)
+            {
+                earnedStars += _daysService.GetStarsEarnedForDay(i);
+                maxStars += _daysService.GetDayStarData(i).Stars.Count;
+            }
+
             StarsEarned.text = $"{earnedStars}/{maxStars}";
         }
     }

@@ -74,11 +74,6 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
             _staticData = staticData;
         }
 
-        private void Awake()
-        {
-            gameObject.DisableElement();
-        }
-
         private void Start()
         {
             _lootCollectionService.OnFreeUpgradeTimeEnd += InitializeState;
@@ -104,6 +99,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
 
         private void InitializeState()
         {
+            gameObject.DisableElement();
             TryInitState();
         }
 

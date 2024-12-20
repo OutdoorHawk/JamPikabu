@@ -951,6 +951,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4312134155214366844, guid: a85d40b7a8e2bfc4486325d4edb91fe5,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4855317524356620587, guid: a85d40b7a8e2bfc4486325d4edb91fe5,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263755712684827736, guid: a85d40b7a8e2bfc4486325d4edb91fe5,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -974,6 +989,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UnlockableIngredient
+      objectReference: {fileID: 0}
+    - target: {fileID: 769137504192041858, guid: 1938d357be68b174f9755b8fc03dc461,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4732437637818540671, guid: 1938d357be68b174f9755b8fc03dc461,
         type: 3}
@@ -1221,6 +1241,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4312134155214366844, guid: a85d40b7a8e2bfc4486325d4edb91fe5,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4855317524356620587, guid: a85d40b7a8e2bfc4486325d4edb91fe5,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263755712684827736, guid: a85d40b7a8e2bfc4486325d4edb91fe5,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1344,6 +1379,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4312134155214366844, guid: a85d40b7a8e2bfc4486325d4edb91fe5,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4855317524356620587, guid: a85d40b7a8e2bfc4486325d4edb91fe5,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263755712684827736, guid: a85d40b7a8e2bfc4486325d4edb91fe5,
+        type: 3}
+      propertyPath: m_Material
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
