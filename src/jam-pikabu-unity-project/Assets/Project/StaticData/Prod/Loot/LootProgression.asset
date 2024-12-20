@@ -1037,7 +1037,7 @@ MonoBehaviour:
       Cost:
         CurrencyType: 1
         Amount: 41
-  StartGameUnlockedLoot: 060000000300000004000000
+  StartGameUnlockedLoot: 06000000030000000400000002000000
   LevelsAmount: 15
   GrowthExponent: 0.85
   StepFactor: 4
