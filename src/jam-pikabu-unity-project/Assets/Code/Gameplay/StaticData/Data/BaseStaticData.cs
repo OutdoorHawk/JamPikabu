@@ -4,29 +4,54 @@ using Sirenix.OdinInspector;
 
 namespace Code.Gameplay.StaticData.Data
 {
-    public abstract class BaseStaticData<T> : BaseStaticData where T : BaseData
+    public abstract class BaseStaticData<TData> : BaseStaticData where TData : BaseData
     {
-        [PropertyOrder(99)] public List<T> Configs;
+        [PropertyOrder(99)] public List<TData> Configs;
 
-        private readonly Dictionary<int, T> _data = new();
+        private Dictionary<int, TData> _uniqueIndex;
+        private Dictionary<int, List<TData>> _nonUniqueIndex;
 
-        protected void AddIndex(Func<T, int> keySelector)
+        protected void AddIndex(Func<TData, int> keySelector)
         {
             if (Configs == null || keySelector == null)
                 throw new ArgumentNullException();
 
-            _data.Clear();
+            _uniqueIndex = new Dictionary<int, TData>();
 
             foreach (var item in Configs)
             {
                 int key = keySelector(item);
-                _data.TryAdd(key, item);
+                _uniqueIndex.TryAdd(key, item);
+            }
+        }
+        
+        protected void AddNonUniqueIndex(Func<TData, int> keySelector)
+        {
+            if (Configs == null || keySelector == null)
+                throw new ArgumentNullException();
+
+            _nonUniqueIndex = new Dictionary<int, List<TData>>();
+
+            foreach (var item in Configs)
+            {
+                int key = keySelector(item);
+                
+                if (_nonUniqueIndex.ContainsKey(key))
+                    _nonUniqueIndex[key].Add(item);
+                else
+                    _nonUniqueIndex.Add(key, new List<TData> { item });
             }
         }
 
-        protected T GetByKey(int key)
+        protected TData GetByKey(int key)
         {
-            _data.TryGetValue(key, out var value);
+            _uniqueIndex.TryGetValue(key, out var value);
+            return value;
+        }
+        
+        protected List<TData> GetNonUniqueByKey(int key)
+        {
+            _nonUniqueIndex.TryGetValue(key, out var value);
             return value;
         }
 

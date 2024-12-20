@@ -20,6 +20,7 @@ namespace Code.Gameplay.Features.Orders.Config
 
         public CostSetup GoldReward = new(CurrencyTypeId.Gold);
         public Vector2Int MinMaxDayToUnlock;
+        public OrderTag Tag;
 
         [Tooltip("Необходимое кол-во продуктов для типа")] public Vector2Int MinMaxNeedAmount = Vector2Int.one;
         [Tooltip("Кол-во типов хороших продуктов")] public Vector2Int MinMaxGoodIngredients = Vector2Int.one;
