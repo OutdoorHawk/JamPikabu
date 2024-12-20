@@ -125,21 +125,19 @@ namespace Code.Gameplay.Features.Orders.Service
                 collectedTypes = Mathf.Clamp(collectedTypes, 0, ingredientData.Amount);
                 collected += collectedTypes;
             }
-
-            float penaltyFactor = 1;
-            foreach (IngredientData ingredientData in bad)
-            {
-                int collectedTypes = _gameplayLootService.CollectedLootItems.Count(type => type == ingredientData.TypeId);
-                if (collectedTypes >= ingredientData.Amount)
-                {
-                    penaltyFactor = _ordersData.BadIngredientPenalty;
-                    break;
-                }
-            }
             
             float progress = collected / (float)total;
-            progress *= penaltyFactor;
             return progress;
+        }
+        
+        public float GetPenaltyFactor()
+        {
+            (List<IngredientData> good, List<IngredientData> bad) = OrderIngredients;
+            
+            int total = good.Sum(data => data.Amount);
+
+            float penaltyFactor = ApplyPenaltyFactor(bad, total);
+            return penaltyFactor;
         }
 
         public void GoToNextOrder()
@@ -211,7 +209,7 @@ namespace Code.Gameplay.Features.Orders.Service
                 badCount,
                 _orderIngredients.bad,
                 minMaxFactor,
-                orderSetup.MinMaxNeedAmount,
+                Vector2Int.zero, 
                 IngredientTypeId.Bad, 
                 _orderIngredients.good
             );
@@ -264,6 +262,19 @@ namespace Code.Gameplay.Features.Orders.Service
             }
         }
         
+        private float ApplyPenaltyFactor(List<IngredientData> bad, int total)
+        {
+            int collectedBad = 0;
+            foreach (IngredientData ingredientData in bad)
+            {
+                int collectedTypes = _gameplayLootService.CollectedLootItems.Count(type => type == ingredientData.TypeId);
+                collectedBad += collectedTypes;
+            }
+
+            float badCollected = collectedBad * _ordersData.BadIngredientPenaltyFactor;
+            float penaltyFactor = 1 - badCollected / total;
+            return penaltyFactor;
+        }
         
         private static bool CheckMinDayToUnlock(OrderData data, int currentDay)
         {

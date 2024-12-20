@@ -81,6 +81,7 @@ namespace Code.Gameplay.Features.Orders.Systems
         {
             float rewardAmount = orderDataSetup.GoldReward.Amount;
             rewardAmount *= _ordersService.GetOrderProgress();
+            rewardAmount *= _ordersService.GetPenaltyFactor();
             int rewardRounded = Mathf.RoundToInt(rewardAmount);
             order.AddOrderReward(new CostSetup(orderDataSetup.GoldReward.CurrencyType, rewardRounded));
             _currencyFactory.CreateAddCurrencyRequest(orderDataSetup.GoldReward.CurrencyType, rewardRounded, rewardRounded);

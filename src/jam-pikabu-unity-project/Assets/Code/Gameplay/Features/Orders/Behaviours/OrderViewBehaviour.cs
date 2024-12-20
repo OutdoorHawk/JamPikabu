@@ -14,6 +14,7 @@ namespace Code.Gameplay.Features.Orders.Behaviours
     {
         [SerializeField] private Image _orderIcon;
         [SerializeField] private Image _orderIconFilled;
+        [SerializeField] private Image _orderIconPenaltyFilled;
         [SerializeField] private PriceInfo _orderReward;
         [SerializeField] private float _fillDelay = 0.75f;
 
@@ -50,7 +51,9 @@ namespace Code.Gameplay.Features.Orders.Behaviours
 
             _orderIcon.sprite = currentOrder.Setup.OrderIcon;
             _orderIconFilled.sprite = currentOrder.Setup.OrderIcon;
+            _orderIconPenaltyFilled.sprite = currentOrder.Setup.OrderIcon;
             _orderIconFilled.fillAmount = 0;
+            _orderIconPenaltyFilled.fillAmount = 0;
 
             Reward.SetupPrice(currentOrder.Setup.GoldReward);
         }
@@ -63,7 +66,11 @@ namespace Code.Gameplay.Features.Orders.Behaviours
             _tweener?.Kill();
             _tweener = _orderIconFilled
                 .DOFillAmount(_ordersService.GetOrderProgress(), 0.25f)
-                .SetLink(gameObject);
+                .SetLink(gameObject)
+                .OnComplete(() =>  _orderIconPenaltyFilled
+                    .DOFillAmount(1-_ordersService.GetPenaltyFactor(), 0.5f)
+                    .SetLink(gameObject))
+                ;
         }
     }
 }

@@ -18,6 +18,7 @@ namespace Code.Gameplay.Features.Orders.Service
         OrderData GetCurrentOrder();
         bool CheckAllOrdersCompleted();
         float GetOrderProgress();
+        float GetPenaltyFactor();
         void GoToNextOrder();
         void GameOver();
         bool OrderPassesConditions();

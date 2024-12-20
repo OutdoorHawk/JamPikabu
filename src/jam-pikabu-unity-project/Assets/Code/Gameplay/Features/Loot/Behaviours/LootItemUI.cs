@@ -34,6 +34,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
 
         private ISoundService _soundService;
         private Tweener _lootItemTween;
+        private IngredientTypeId _ingredientTypeId;
 
         public int AmountNeed { get; private set; }
         public bool CollectedAtLeastOne { get; private set; }
@@ -58,12 +59,13 @@ namespace Code.Gameplay.Features.Loot.Behaviours
 
         public void InitItem(in IngredientData ingredientData)
         {
+            _ingredientTypeId = ingredientData.IngredientType;
             AmountNeed = ingredientData.Amount;
             UpdateNeedAmount();
             
-            if (ingredientData.IngredientType is IngredientTypeId.Good)
+            if (_ingredientTypeId is IngredientTypeId.Good)
                 IconBackground.color = GoodBackColor;
-            if (ingredientData.IngredientType is IngredientTypeId.Bad) 
+            if (_ingredientTypeId is IngredientTypeId.Bad) 
                 IconBackground.color = BadBackColor;
         }
 
@@ -88,6 +90,12 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         public void AnimateCollected()
         {
             CollectedAtLeastOne = true;
+
+            if (_ingredientTypeId is IngredientTypeId.Bad)
+            {
+                LootAnimator.SetTrigger(AnimationParameter.Replenish.AsHash());
+                return;
+            }
             
             if (AmountNeed == 1)
             {
@@ -132,7 +140,12 @@ namespace Code.Gameplay.Features.Loot.Behaviours
 
         private void UpdateNeedAmount()
         {
-            AmountNeedText.text = $"x{AmountNeed}";
+            AmountNeedText.text = "";
+            
+            if (_ingredientTypeId == IngredientTypeId.Good)
+            {
+                AmountNeedText.text = $"x{AmountNeed}";
+            }
         }
 
         private void SetReadyToApply()

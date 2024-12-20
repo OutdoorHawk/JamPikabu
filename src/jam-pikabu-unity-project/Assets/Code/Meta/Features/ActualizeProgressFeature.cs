@@ -1,5 +1,6 @@
 ﻿using Code.Infrastructure.Systems;
 using Code.Meta.Features.Days.Systems;
+using Code.Meta.Features.LootCollection.Systems;
 
 namespace Code.Meta.Features
 {
@@ -8,6 +9,7 @@ namespace Code.Meta.Features
         public ActualizeProgressFeature(ISystemFactory systems)
         {
             Add(systems.Create<InitializeDaySystem>());
+            Add(systems.Create<InitLootProgressionSystem>());
         }
     }
 }
