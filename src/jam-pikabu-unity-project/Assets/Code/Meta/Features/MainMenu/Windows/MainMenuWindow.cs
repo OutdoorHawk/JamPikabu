@@ -7,6 +7,7 @@ using Code.Meta.Features.Days.Service;
 using Code.Meta.Features.LootCollection.Service;
 using Code.Meta.Features.MainMenu.Behaviours;
 using Code.Meta.Features.MainMenu.Service;
+using Code.Meta.Features.MapBlocks.Behaviours;
 using UnityEngine.UI;
 using Zenject;
 

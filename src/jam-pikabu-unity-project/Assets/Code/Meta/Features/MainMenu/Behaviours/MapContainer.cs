@@ -7,6 +7,7 @@ using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Configs.Stars;
 using Code.Meta.Features.Days.Service;
 using Code.Meta.Features.MainMenu.Service;
+using Code.Meta.Features.MapBlocks.Behaviours;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;

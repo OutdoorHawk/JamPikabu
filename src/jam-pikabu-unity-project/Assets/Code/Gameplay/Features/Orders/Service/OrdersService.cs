@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Loot;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.Features.Loot.Service;
 using Code.Gameplay.Features.Orders.Config;
 using Code.Gameplay.Features.Orders.Factory;
 using Code.Gameplay.StaticData;
-using Code.Meta.Features.DayLootSettings.Configs;
+using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Service;
 using RoyalGold.Sources.Scripts.Game.MVC.Utils;
 using UnityEngine;
@@ -74,7 +73,7 @@ namespace Code.Gameplay.Features.Orders.Service
 
                 if (CheckMaxDayToUnlock(data, currentDay))
                     continue;
-                
+
                 if (CheckTag(data, currentDay) == false)
                     continue;
 
@@ -115,25 +114,25 @@ namespace Code.Gameplay.Features.Orders.Service
         public float GetOrderProgress()
         {
             (List<IngredientData> good, List<IngredientData> bad) = OrderIngredients;
-            
+
             int total = good.Sum(data => data.Amount);
             int collected = 0;
-            
+
             foreach (IngredientData ingredientData in good)
             {
                 int collectedTypes = _gameplayLootService.CollectedLootItems.Count(type => type == ingredientData.TypeId);
                 collectedTypes = Mathf.Clamp(collectedTypes, 0, ingredientData.Amount);
                 collected += collectedTypes;
             }
-            
+
             float progress = collected / (float)total;
             return progress;
         }
-        
+
         public float GetPenaltyFactor()
         {
             (List<IngredientData> good, List<IngredientData> bad) = OrderIngredients;
-            
+
             int total = good.Sum(data => data.Amount);
 
             float penaltyFactor = ApplyPenaltyFactor(bad, total);
@@ -209,8 +208,8 @@ namespace Code.Gameplay.Features.Orders.Service
                 badCount,
                 _orderIngredients.bad,
                 minMaxFactor,
-                Vector2Int.zero, 
-                IngredientTypeId.Bad, 
+                Vector2Int.zero,
+                IngredientTypeId.Bad,
                 _orderIngredients.good
             );
         }
@@ -247,7 +246,7 @@ namespace Code.Gameplay.Features.Orders.Service
                     ratingFactor: ratingFactor,
                     amount
                 );
-                
+
                 listToFill.Add(data);
                 countToCreate--;
             }
@@ -261,7 +260,7 @@ namespace Code.Gameplay.Features.Orders.Service
                     Debug.LogError($"Config error! Order cannot have same ingredient in bad and good ingredient list: {ingredientData}.");
             }
         }
-        
+
         private float ApplyPenaltyFactor(List<IngredientData> bad, int total)
         {
             int collectedBad = 0;
@@ -275,7 +274,7 @@ namespace Code.Gameplay.Features.Orders.Service
             float penaltyFactor = 1 - badCollected / total;
             return penaltyFactor;
         }
-        
+
         private static bool CheckMinDayToUnlock(OrderData data, int currentDay)
         {
             return data.Setup.MinMaxDayToUnlock.x > 0 && currentDay < data.Setup.MinMaxDayToUnlock.x;
@@ -285,19 +284,17 @@ namespace Code.Gameplay.Features.Orders.Service
         {
             return data.Setup.MinMaxDayToUnlock.y > 0 && currentDay > data.Setup.MinMaxDayToUnlock.y;
         }
-        
+
         private bool CheckTag(OrderData data, int currentDay)
         {
-            DayLootSettingsData settings = _staticDataService
-                .GetStaticData<DayLootSettingsStaticData>()
-                .GetSettingsById(currentDay);
-
             if (data.Setup.Tag == OrderTag.None)
                 return true;
 
-            if (settings.AvailableOrderTags.Contains(data.Setup.Tag))
-                return true;
+            DayData dayData = _daysService.GetDayData(currentDay);
             
+            if (dayData.AvailableOrderTags.Contains(data.Setup.Tag))
+                return true;
+
             return false;
         }
     }

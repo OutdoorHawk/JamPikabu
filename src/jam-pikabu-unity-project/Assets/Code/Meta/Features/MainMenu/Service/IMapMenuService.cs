@@ -1,5 +1,6 @@
 ﻿using System;
 using Code.Infrastructure.SceneLoading;
+using Code.Meta.Features.DayLootSettings.Configs;
 
 namespace Code.Meta.Features.MainMenu.Service
 {
@@ -11,5 +12,6 @@ namespace Code.Meta.Features.MainMenu.Service
         void SetDaySelected(int dayId);
         void SetDayDeselected(int dayId);
         SceneTypeId GetSelectedScene();
+        MapBlockData GetMapBlockData(int currentDay);
     }
 }

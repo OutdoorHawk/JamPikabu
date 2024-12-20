@@ -32,7 +32,7 @@ MonoBehaviour:
     DayGoldFactor: 1.4352753
     SceneId: 2
   - Id: 4
-    UnlocksIngredient: 0
+    UnlocksIngredient: 5
     IsBossDay: 0
     OrdersAmount: 4
     DayGoldFactor: 1.6020563
@@ -50,7 +50,7 @@ MonoBehaviour:
     DayGoldFactor: 1.9059746
     SceneId: 2
   - Id: 7
-    UnlocksIngredient: 0
+    UnlocksIngredient: 11
     IsBossDay: 0
     OrdersAmount: 3
     DayGoldFactor: 2.0482407
@@ -125,9 +125,6 @@ MonoBehaviour:
   DefaultRoundDuration: 20
   BossRoundDuration: 40
   OrdersData: {fileID: 11400000, guid: cf868022c2d7cf349a5e0bd1ae7f42c9, type: 2}
-  LootProgression: {fileID: 11400000, guid: 3f49ce273dd3bcf48b79895914a39142, type: 2}
-  DayLootSettings: {fileID: 11400000, guid: d2e09ade8284fce4a9fa79fc48f90a6e, type: 2}
-  DayStars: {fileID: 11400000, guid: c2107c3c3394a6e429c0180c82982262, type: 2}
   AverageGoldPerLevel: 32000000630000008200000095000000dc00000090000000cc0000003f0000007b000000e40000009b000000240100002c010000bd000000600100001f010000d60000008b000000
   TotalGoldPerLevels: 3338
   IgnoreBadIngredients: 0

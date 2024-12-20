@@ -3,28 +3,33 @@ using UnityEngine;
 
 namespace Code.Meta.Features.DayLootSettings.Configs
 {
-    [CreateAssetMenu(menuName = "StaticData/" + nameof(DayLootSettingsStaticData), fileName = "IngredientPool")]
-    public class DayLootSettingsStaticData : BaseStaticData<DayLootSettingsData>
+    [CreateAssetMenu(menuName = "StaticData/" + nameof(MapBlocksStaticData), fileName = "MapBlocks")]
+    public class MapBlocksStaticData : BaseStaticData<MapBlockData>
     {
+        public const int DAYS_IN_BLOCK = 3;
+        
         public override void OnConfigInit()
         {
             base.OnConfigInit();
             AddIndex(data => data.Id);
         }
 
-        public DayLootSettingsData GetSettingsById(int settingsId)
+        public MapBlockData GetMapBlockDataByMapBlockId(int settingsId)
         {
             return GetByKey(settingsId) ?? Configs[^1];
         }
 
-        public DayLootSettingsData GetDayLootByDayId(int dayIndex)
+        public MapBlockData GetMapBlockDataByDayId(int dayId)
         {
             foreach (var settings in Configs)
             {
-                if (dayIndex < settings.DaysRange.x)
+                int mapBlockFirstDay = settings.DaysRange.x;
+                int mapBlockLastDay = settings.DaysRange.y;
+               
+                if (dayId < mapBlockFirstDay)
                     continue;
                 
-                if (dayIndex > settings.DaysRange.y)
+                if (dayId > mapBlockLastDay)
                     continue;
                 
                 return settings;

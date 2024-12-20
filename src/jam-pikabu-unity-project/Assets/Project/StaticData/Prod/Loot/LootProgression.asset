@@ -271,7 +271,7 @@ MonoBehaviour:
         Amount: 47
   - Id: 5
     Type: 5
-    FreeUpgradeTimeHours: 0
+    FreeUpgradeTimeHours: 1
     Levels:
     - RatingBoostAmount: 15
       Cost:

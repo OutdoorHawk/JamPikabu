@@ -69,13 +69,13 @@ namespace Code.Gameplay.Features.Loot.Service
         private void InitLootBufferInternal()
         {
             var staticData = _staticDataService.GetStaticData<LootSettingsStaticData>();
-            var dayLootSettingsStaticData = _staticDataService.GetStaticData<DayLootSettingsStaticData>();
+            var dayLootSettingsStaticData = _staticDataService.GetStaticData<MapBlocksStaticData>();
             var currentDay = _daysService.GetDayData();
 
-            DayLootSettingsData dayLootSettings = dayLootSettingsStaticData.GetDayLootByDayId(currentDay.Id);
+            MapBlockData mapBlock = dayLootSettingsStaticData.GetMapBlockDataByDayId(currentDay.Id);
 
             _availableLoot.Clear();
-            foreach (LootTypeId lootTypeId in dayLootSettings.AvailableIngredients)
+            foreach (LootTypeId lootTypeId in mapBlock.AvailableIngredients)
             {
                 _availableLoot.Add(staticData.GetConfig(lootTypeId));
             }

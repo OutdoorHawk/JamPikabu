@@ -1,6 +1,7 @@
 ﻿using System;
 using Code.Gameplay.StaticData;
 using Code.Infrastructure.SceneLoading;
+using Code.Meta.Features.DayLootSettings.Configs;
 using Code.Meta.Features.Days.Configs;
 
 namespace Code.Meta.Features.MainMenu.Service
@@ -13,6 +14,7 @@ namespace Code.Meta.Features.MainMenu.Service
         public bool DayIsSelected { get; private set; }
 
         private DaysStaticData DaysStaticData => _staticDataService.GetStaticData<DaysStaticData>();
+        private MapBlocksStaticData BlocksStaticData => _staticDataService.GetStaticData<MapBlocksStaticData>();
 
         public MapMenuService(IStaticDataService staticDataService)
         {
@@ -41,6 +43,11 @@ namespace Code.Meta.Features.MainMenu.Service
         public SceneTypeId GetSelectedScene()
         {
             return DaysStaticData.GetDayData(SelectedDayId).SceneId;
+        }
+        
+        public MapBlockData GetMapBlockData(int currentDay)
+        {
+            return BlocksStaticData.GetMapBlockDataByDayId(currentDay);
         }
     }
 }

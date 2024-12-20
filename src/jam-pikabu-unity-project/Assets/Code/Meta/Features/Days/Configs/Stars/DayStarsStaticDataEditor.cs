@@ -14,7 +14,7 @@ namespace Code.Meta.Features.Days.Configs.Stars
         [FoldoutGroup("Editor")] public DaysStaticData DaysStaticData;
         [FoldoutGroup("Editor")] public LootProgressionStaticData LootProgression;
         [FoldoutGroup("Editor")] public LootSettingsStaticData LootSettings;
-        [FoldoutGroup("Editor")] public DayLootSettingsStaticData DayLootSettings;
+        [FoldoutGroup("Editor")] public MapBlocksStaticData DayLootSettings;
         [FoldoutGroup("Editor")] public OrdersStaticData OrdersData;
         
         [FoldoutGroup("Editor")]
@@ -37,7 +37,7 @@ namespace Code.Meta.Features.Days.Configs.Stars
                 float averageMinRatingPerDay = 0;
                 float averageMaxRatingPerDay = 0;
 
-                DayLootSettingsData dayLoot = DayLootSettings.GetDayLootByDayId(dayData.Id);
+                MapBlockData dayLoot = DayLootSettings.GetMapBlockDataByDayId(dayData.Id);
                 List<LootTypeId> availableProducts = dayLoot.AvailableIngredients;
                 int ordersPerDay = dayData.OrdersAmount;
                 DayLootSettings.OnConfigInit();
@@ -99,7 +99,7 @@ namespace Code.Meta.Features.Days.Configs.Stars
 
                 if (config.Setup.Tag != OrderTag.None)
                 {
-                    if (DayLootSettings.GetSettingsById(dayData.Id).AvailableOrderTags.Contains(config.Setup.Tag) == false)
+                    if (dayData.AvailableOrderTags.Contains(config.Setup.Tag) == false)
                         continue;
                 }
 

@@ -2,6 +2,7 @@ using Code.Common.Extensions;
 using Code.Gameplay.Features.Loot;
 using Code.Meta.Features.Days.Service;
 using Code.Meta.Features.LootCollection.Service;
+using Code.Meta.Features.MapBlocks.Behaviours;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;

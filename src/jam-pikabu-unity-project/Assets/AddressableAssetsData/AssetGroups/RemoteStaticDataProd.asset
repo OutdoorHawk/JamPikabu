@@ -82,7 +82,7 @@ MonoBehaviour:
     - ProdStaticData
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d2e09ade8284fce4a9fa79fc48f90a6e
-    m_Address: DayLootSettings
+    m_Address: MapBlocks
     m_ReadOnly: 0
     m_SerializedLabels:
     - ProdStaticData
