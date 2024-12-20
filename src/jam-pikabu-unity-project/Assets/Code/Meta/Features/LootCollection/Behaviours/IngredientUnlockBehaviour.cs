@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using Code.Common.Entity;
 using Code.Common.Extensions;
@@ -11,8 +12,12 @@ using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows.Service;
 using Code.Meta.Features.DayLootSettings.Configs;
+using Code.Meta.Features.Days.Configs;
+using Code.Meta.Features.Days.Service;
 using Code.Meta.Features.LootCollection.Configs;
 using Code.Meta.Features.LootCollection.Service;
+using Code.Meta.Features.MainMenu.Behaviours;
+using Code.Meta.Features.MainMenu.Service;
 using Code.Meta.Features.MainMenu.Windows;
 using Code.Meta.UI.Common.Replenish;
 using Cysharp.Threading.Tasks;
@@ -37,7 +42,7 @@ namespace Code.Meta.Features.LootCollection.Behaviours
         public UniversalTimer UpgradeTimer;
 
         public LootTypeId UnlocksIngredient { get; private set; }
-        
+
         public bool ReadyToUnlock { get; private set; }
 
         private IStaticDataService _staticData;
@@ -45,6 +50,9 @@ namespace Code.Meta.Features.LootCollection.Behaviours
         private ILootCollectionService _lootCollectionService;
         private CancellationTokenSource _fillToken;
         private ICurrencyFactory _currencyFactory;
+        private IDaysService _daysService;
+        private IMapMenuService _mapMenuService;
+        private List<LevelButton> _levelButtons;
 
         private LootProgressionStaticData LootData => _staticData.GetStaticData<LootProgressionStaticData>();
         private MapBlocksStaticData MapBlocksData => _staticData.GetStaticData<MapBlocksStaticData>();
@@ -55,9 +63,13 @@ namespace Code.Meta.Features.LootCollection.Behaviours
             IStaticDataService staticData,
             IWindowService windowService,
             ILootCollectionService lootCollectionService,
-            ICurrencyFactory currencyFactory
+            ICurrencyFactory currencyFactory,
+            IDaysService daysService,
+            IMapMenuService mapMenuService
         )
         {
+            _mapMenuService = mapMenuService;
+            _daysService = daysService;
             _currencyFactory = currencyFactory;
             _lootCollectionService = lootCollectionService;
             _windowService = windowService;
@@ -71,18 +83,81 @@ namespace Code.Meta.Features.LootCollection.Behaviours
 
         private void Start()
         {
+            _lootCollectionService.OnFreeUpgradeTimeEnd += InitializeState;
+            _lootCollectionService.OnUpgraded += InitializeState;
             UnlockButton.onClick.AddListener(ProceedUnlockClicked);
             FreeUpgradeButton.onClick.AddListener(FreeUpgradeClicked);
         }
 
         private void OnDestroy()
         {
+            _lootCollectionService.OnFreeUpgradeTimeEnd -= InitializeState;
+            _lootCollectionService.OnUpgraded -= InitializeState;
             UnlockButton.onClick.RemoveAllListeners();
             FreeUpgradeButton.onClick.RemoveAllListeners();
             _fillToken?.Cancel();
         }
 
-        public void InitLocked(LootTypeId unlocksIngredient)
+        public void Initialize(List<LevelButton> levelButtons)
+        {
+            _levelButtons = levelButtons;
+            InitializeState();
+        }
+
+        private void InitializeState()
+        {
+            foreach (LevelButton levelButton in _levelButtons)
+            {
+                if (TryInitState(levelButton) == false)
+                    continue;
+                
+                break;
+            }
+        }
+
+        private bool TryInitState(LevelButton levelButton)
+        {
+            DayData dayData = _daysService.GetDayData(levelButton.DayId);
+
+            MapBlockData mapBlockData = _mapMenuService.GetMapBlockData(dayData.Id);
+            LootTypeId unlocksIngredient = mapBlockData.UnlocksIngredient;
+
+            if (mapBlockData.UnlocksIngredient == LootTypeId.None)
+                return false;
+
+            if (CheckPreviousDayIsCompleted() == false)
+            {
+                InitLocked(unlocksIngredient);
+                return true;
+            }
+
+            if (CheckIngredientAlreadyUnlocked(unlocksIngredient))
+            {
+                InitFreeUpgradeState(unlocksIngredient);
+                return true;
+            }
+
+            InitReadyToUnlock(unlocksIngredient);
+            return true;
+        }
+
+        private bool CheckIngredientAlreadyUnlocked(LootTypeId unlocksIngredient)
+        {
+            return _lootCollectionService.LootLevels.TryGetValue(unlocksIngredient, out _);
+        }
+
+        private bool CheckPreviousDayIsCompleted()
+        {
+            int lowestDay = _levelButtons[0].DayId;
+            int previousDayCompleted = lowestDay - 1;
+
+            if (_daysService.TryGetDayProgress(previousDayCompleted, out _) == false)
+                return false;
+
+            return true;
+        }
+
+        private void InitLocked(LootTypeId unlocksIngredient)
         {
             ResetAll();
             Init(unlocksIngredient);
@@ -92,7 +167,7 @@ namespace Code.Meta.Features.LootCollection.Behaviours
             LockedText.EnableElement();
         }
 
-        public void InitReadyToUnlock(LootTypeId unlocksIngredient)
+        private void InitReadyToUnlock(LootTypeId unlocksIngredient)
         {
             ResetAll();
             Init(unlocksIngredient);
@@ -103,10 +178,10 @@ namespace Code.Meta.Features.LootCollection.Behaviours
             ReadyToUnlock = true;
         }
 
-        public void InitFreeUpgradeState(LootTypeId type)
+        private void InitFreeUpgradeState(LootTypeId type)
         {
             ResetAll();
-            
+
             if (_lootCollectionService.CanUpgradeForFree(type) == false)
                 return;
 
@@ -145,7 +220,7 @@ namespace Code.Meta.Features.LootCollection.Behaviours
             foreach (var icon in IngredientIcons)
                 icon.sprite = lootSettings.GetConfig(UnlocksIngredient).Icon;
         }
-        
+
         private void InitMaxLevelReached()
         {
             UpgradeTimer.EnableElement();
@@ -216,7 +291,12 @@ namespace Code.Meta.Features.LootCollection.Behaviours
         {
             MoveIngredientToShop(from: FlyIconRect.transform.position);
             await DelaySeconds(0.5f, destroyCancellationToken);
-            await UnlockIngredientAnimator.WaitForAnimationCompleteAsync(AnimationParameter.Collect.AsHash(), destroyCancellationToken);
+            
+            if (_lootCollectionService.CanUpgradeForFree(UnlocksIngredient)) 
+                await UnlockIngredientAnimator.WaitForAnimationCompleteAsync(AnimationParameter.Collect.AsHash(), destroyCancellationToken);
+            else
+                gameObject.DisableElement();
+            
             await UniTask.Yield(destroyCancellationToken);
             UnlockIngredient();
         }
