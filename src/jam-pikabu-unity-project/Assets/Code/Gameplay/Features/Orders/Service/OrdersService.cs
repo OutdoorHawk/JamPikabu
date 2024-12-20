@@ -75,7 +75,7 @@ namespace Code.Gameplay.Features.Orders.Service
                 if (CheckMaxDayToUnlock(data, currentDay))
                     continue;
                 
-                if (CheckTag(data, currentDay))
+                if (CheckTag(data, currentDay) == false)
                     continue;
 
                 _ordersBuffer.Add(data);

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Code.Gameplay.Features.Loot;
+using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.Features.Orders.Config;
 using Code.Meta.Features.DayLootSettings.Configs;
 using Code.Meta.Features.LootCollection.Configs;
@@ -12,6 +13,7 @@ namespace Code.Meta.Features.Days.Configs.Stars
     {
         [FoldoutGroup("Editor")] public DaysStaticData DaysStaticData;
         [FoldoutGroup("Editor")] public LootProgressionStaticData LootProgression;
+        [FoldoutGroup("Editor")] public LootSettingsStaticData LootSettings;
         [FoldoutGroup("Editor")] public DayLootSettingsStaticData DayLootSettings;
         [FoldoutGroup("Editor")] public OrdersStaticData OrdersData;
         
@@ -68,8 +70,9 @@ namespace Code.Meta.Features.Days.Configs.Stars
                 foreach (LootTypeId product in availableProducts)
                 {
                     LootProgressionData progression = LootProgression.Configs.Find(data => data.Type == product);
-                    int minRatingPerProduct = progression.Levels[0].RatingBoostAmount;
-                    int maxRatingPerProduct = progression.Levels[^1].RatingBoostAmount;
+                    LootSetup lootSetup = LootSettings.Configs.Find(data => data.Type == product && data.BaseRatingValue > 0);
+                    int minRatingPerProduct = progression.Levels[0].RatingBoostAmount + lootSetup.BaseRatingValue;
+                    int maxRatingPerProduct = progression.Levels[^1].RatingBoostAmount + lootSetup.BaseRatingValue;
 
                     // Factor in the rating contribution for the available products
                     averageMinRatingPerDay += minRatingPerProduct;
