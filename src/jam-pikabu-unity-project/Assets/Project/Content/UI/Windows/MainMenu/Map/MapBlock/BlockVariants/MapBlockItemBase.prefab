@@ -238,6 +238,7 @@ MonoBehaviour:
   LevelsParent: {fileID: 6129235697990110009}
   StarsEarned: {fileID: 4669304740769461720}
   UnlockableIngredient: {fileID: 2076107538705724348}
+  AvailableIngredients: {fileID: 4321616417051636844}
 --- !u!1 &5688183724921920573
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,7 +652,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Layout: {fileID: 4884453621749797280}
-  IconTemplate: {fileID: 8198523188848922367, guid: 7cbbfd03361075843b6e859d4fc532de,
+  IconTemplate: {fileID: 221515692322188444, guid: 7cbbfd03361075843b6e859d4fc532de,
     type: 3}
 --- !u!114 &4884453621749797280
 MonoBehaviour:

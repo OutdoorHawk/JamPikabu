@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using Code.Gameplay.Features.Loot.Configs;
+using Code.Gameplay.StaticData;
+using Code.Meta.Features.DayLootSettings.Configs;
+using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
@@ -7,12 +10,25 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
     public class AvailableIngredientsView : MonoBehaviour
     {
         public HorizontalLayoutGroup Layout;
-        public GameObject IconTemplate;
+        public Image IconTemplate;
+        private IStaticDataService _staticData;
+
+        private LootSettingsStaticData LootSettings => _staticData.GetStaticData<LootSettingsStaticData>();
 
         [Inject]
-        private void Construct()
+        private void Construct(IStaticDataService staticData)
         {
+            _staticData = staticData;
+        }
 
+        public void Init(MapBlockData mapBlockData)
+        {
+            foreach (var type in mapBlockData.AvailableIngredients)
+            {
+                LootSetup lootSetup = LootSettings.GetConfig(type);
+                Image instance = Instantiate(IconTemplate, Layout.transform);
+                instance.sprite = lootSetup.Icon;
+            }
         }
     }
 }

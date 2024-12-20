@@ -17,6 +17,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
         public RectTransform LevelsParent;
         public TMP_Text StarsEarned;
         public UnlockableIngredient UnlockableIngredient;
+        public AvailableIngredientsView AvailableIngredients;
 
         private IDaysService _daysService;
         private ILootCollectionService _lootCollectionService;
@@ -41,6 +42,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
             LevelButtons.RefreshList(LevelsParent.GetComponentsInChildren<LevelButton>());
             InitStarsAmount();
             UnlockableIngredient.Initialize(mapBlockData);
+            AvailableIngredients.Init(mapBlockData);
         }
 
         private void InitStarsAmount()

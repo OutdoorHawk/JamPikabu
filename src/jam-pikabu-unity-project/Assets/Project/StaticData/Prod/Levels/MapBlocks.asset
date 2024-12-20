@@ -30,10 +30,10 @@ MonoBehaviour:
       type: 3}
     UnlocksIngredient: 11
     FreeUpgradeTimeHours: 0
-    AvailableIngredients: 06000000030000000400000005000000
+    AvailableIngredients: 060000000300000004000000050000000b000000
   - Id: 4
     ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
       type: 3}
     UnlocksIngredient: 12
     FreeUpgradeTimeHours: 0
-    AvailableIngredients: 06000000030000000400000005000000
+    AvailableIngredients: 0300000004000000050000000b0000000c000000
