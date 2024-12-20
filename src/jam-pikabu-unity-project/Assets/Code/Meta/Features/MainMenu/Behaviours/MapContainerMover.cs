@@ -194,7 +194,7 @@ namespace Code.Meta.Features.MainMenu.Behaviours
                 bool allLevelsCompletedInSegment = true;
 
                 // Проверяем все уровни предыдущего сегмента
-                MapBlock previousSegment = _segments[_currentSegment + SEGMENTS_ON_SCREEN - 1];
+                MapBlock previousSegment = _segments[_currentSegment + SEGMENTS_ON_SCREEN - 2];
                 foreach (LevelButton levelButton in previousSegment.LevelButtons)
                 {
                     if (_daysService.TryGetDayProgress(levelButton.DayId, out _) == false)

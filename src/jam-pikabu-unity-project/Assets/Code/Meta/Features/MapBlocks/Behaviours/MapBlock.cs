@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Code.Common.Extensions;
+using Code.Infrastructure.Localization;
 using Code.Meta.Features.DayLootSettings.Configs;
 using Code.Meta.Features.Days.Service;
 using Code.Meta.Features.LootCollection.Service;
@@ -7,32 +8,56 @@ using Code.Meta.Features.MainMenu.Behaviours;
 using Code.Meta.Features.MainMenu.Service;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
 using Zenject;
 
 namespace Code.Meta.Features.MapBlocks.Behaviours
 {
-    public class MapBlock : MonoBehaviour
+    public class MapBlock : MonoBehaviour, ILocalizationHandler
     {
         public RectTransform LevelsParent;
         public TMP_Text StarsEarned;
         public UnlockableIngredient UnlockableIngredient;
         public AvailableIngredientsView AvailableIngredients;
+        public GameObject LockedContent;
+        public TMP_Text LockedText;
 
         private IDaysService _daysService;
         private ILootCollectionService _lootCollectionService;
         private IMapMenuService _mapMenuService;
         private MapBlockData _mapBlockData;
+        private ILocalizationService _localizationService;
 
         public List<LevelButton> LevelButtons { get; private set; } = new();
 
         [Inject]
-        private void Construct(IDaysService daysService,
+        private void Construct
+        (
+            IDaysService daysService,
             ILootCollectionService lootCollectionService,
-            IMapMenuService mapMenuService)
+            IMapMenuService mapMenuService,
+            ILocalizationService localizationService
+        )
         {
+            _localizationService = localizationService;
             _mapMenuService = mapMenuService;
             _lootCollectionService = lootCollectionService;
             _daysService = daysService;
+        }
+
+        private void Start()
+        {
+            _localizationService.RegisterHandler(this);
+        }
+
+        private void OnDestroy()
+        {
+            _localizationService.UnregisterHandler(this);
+        }
+
+        public void OnLanguageChanged(Locale locale)
+        {
+            UpdateLockedText();
         }
 
         public void InitData(MapBlockData mapBlockData)
@@ -42,6 +67,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
             InitStarsAmount();
             UnlockableIngredient.Initialize(mapBlockData);
             AvailableIngredients.Init(mapBlockData);
+            InitLockedState();
         }
 
         private void InitStarsAmount()
@@ -56,6 +82,26 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
             }
 
             StarsEarned.text = $"{earnedStars}/{maxStars}";
+        }
+
+        private void InitLockedState()
+        {
+            LockedContent.DisableElement();
+
+            if (_mapMenuService.MapBlockIsAvailable(_mapBlockData))
+                return;
+            
+            LockedContent.EnableElement();
+            UpdateLockedText();
+        }
+
+        private void UpdateLockedText()
+        {
+            if (_mapBlockData == null)
+                return;
+            
+            int diff = _mapBlockData.StarsNeedToUnlock - _daysService.GetAllEarnedStars();
+            LockedText.text = _localizationService["MAIN MENU/STARS_NEED_TO_UNLOCK", diff.ToString()];
         }
     }
 }

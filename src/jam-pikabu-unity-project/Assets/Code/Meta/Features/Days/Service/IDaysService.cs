@@ -18,6 +18,7 @@ namespace Code.Meta.Features.Days.Service
         List<DayProgressData> GetDaysProgress();
         bool TryGetDayProgress(int dayId, out DayProgressData dayProgress);
         int GetStarsEarnedForDay(int day);
+        int GetAllEarnedStars();
         void BeginDay();
         void RoundEnd();
         void EnterRoundPreparation();

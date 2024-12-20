@@ -8,7 +8,6 @@ namespace Code.Meta.Features.Days.Configs.Stars
     [Serializable]
     public class DayStarsSetup : BaseData
     {
-        public int StarsNeedToUnlock;
         [FoldoutGroup("Data")] public List<DayStarData> Stars = new() { new DayStarData(), new DayStarData(), new DayStarData() };
 
 #if UNITY_EDITOR

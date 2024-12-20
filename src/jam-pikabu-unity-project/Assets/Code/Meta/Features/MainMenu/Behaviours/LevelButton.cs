@@ -1,4 +1,7 @@
 ﻿using Code.Common.Extensions;
+using Code.Gameplay.Features.Currency;
+using Code.Gameplay.Features.Currency.Config;
+using Code.Gameplay.StaticData;
 using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Service;
 using Code.Meta.Features.MainMenu.Service;
@@ -15,27 +18,33 @@ namespace Code.Meta.Features.MainMenu.Behaviours
         public Button Button;
         public Image SelectedBg;
         public TMP_Text LevelNumber;
+        public Transform StarsParent;
         public Image[] Stars;
         public int DayId;
         [ReadOnly] public bool Inactive;
         [ReadOnly] public bool Locked;
 
+        private Image[] _starIcons;
         private IMapMenuService _mapMenuService;
         private IDaysService _daysService;
+        private IStaticDataService _staticDataService;
 
         [Inject]
         private void Construct
         (
             IMapMenuService mapMenuService,
-            IDaysService daysService
+            IDaysService daysService,
+            IStaticDataService staticDataService
         )
         {
+            _staticDataService = staticDataService;
             _daysService = daysService;
             _mapMenuService = mapMenuService;
         }
 
         private void Awake()
         {
+            _starIcons = StarsParent.GetComponentsInChildren<Image>(true);
             if (_mapMenuService.SelectedDayId != DayId)
                 SelectedBg.DisableElement();
         }
@@ -101,7 +110,14 @@ namespace Code.Meta.Features.MainMenu.Behaviours
 
         private void InitStars()
         {
-            foreach (var star in Stars)
+            CurrencyConfig config = _staticDataService
+                .GetStaticData<CurrencyStaticData>()
+                .GetCurrencyConfig(CurrencyTypeId.Star);
+
+            foreach (var star in _starIcons) 
+                star.sprite = config.Data.Icon;
+
+            foreach (var star in Stars) 
                 star.DisableElement();
 
             if (_daysService.TryGetDayProgress(DayId, out var progress) == false)

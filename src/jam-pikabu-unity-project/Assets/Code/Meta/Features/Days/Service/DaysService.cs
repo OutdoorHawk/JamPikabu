@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.RoundState.Factory;
 using Code.Gameplay.StaticData;
@@ -44,7 +45,7 @@ namespace Code.Meta.Features.Days.Service
         {
             _daysProgressByDayId.Clear();
             _daysProgress.RefreshList(daysProgress);
-            foreach (DayProgressData dayProgressData in _daysProgress) 
+            foreach (DayProgressData dayProgressData in _daysProgress)
                 _daysProgressByDayId[dayProgressData.DayId] = dayProgressData;
         }
 
@@ -70,9 +71,14 @@ namespace Code.Meta.Features.Days.Service
 
         public int GetStarsEarnedForDay(int day)
         {
-            return _daysProgressByDayId.TryGetValue(day, out DayProgressData dayProgressData) 
-                ? dayProgressData.StarsEarned 
+            return _daysProgressByDayId.TryGetValue(day, out DayProgressData dayProgressData)
+                ? dayProgressData.StarsEarned
                 : 0;
+        }
+
+        public int GetAllEarnedStars()
+        {
+            return _daysProgress.Sum(data => data.StarsEarned);
         }
 
         public void BeginDay()
@@ -81,7 +87,7 @@ namespace Code.Meta.Features.Days.Service
             _daysData = staticData.Configs;
 
             _currentDayData = GetDayData(_currentDay);
-            
+
             float roundDuration = GetRoundDuration();
 
             _roundStateFactory.CreateRoundStateController()
@@ -107,10 +113,10 @@ namespace Code.Meta.Features.Days.Service
 
         public float GetRoundDuration()
         {
-            float roundDuration = _currentDayData.IsBossDay 
-                ? DaysStaticData.BossRoundDuration 
+            float roundDuration = _currentDayData.IsBossDay
+                ? DaysStaticData.BossRoundDuration
                 : DaysStaticData.DefaultRoundDuration;
-            
+
             return roundDuration;
         }
 

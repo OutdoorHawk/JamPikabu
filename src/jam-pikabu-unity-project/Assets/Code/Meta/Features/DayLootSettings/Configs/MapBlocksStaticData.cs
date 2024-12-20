@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Code.Meta.Features.DayLootSettings.Configs
 {
     [CreateAssetMenu(menuName = "StaticData/" + nameof(MapBlocksStaticData), fileName = "MapBlocks")]
-    public class MapBlocksStaticData : BaseStaticData<MapBlockData>
+    public partial class MapBlocksStaticData : BaseStaticData<MapBlockData>
     {
         public const int DAYS_IN_BLOCK = 3;
 

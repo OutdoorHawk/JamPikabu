@@ -59,9 +59,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 15858835369709568
-    m_Localized: "Complete previous levels \nto unlock"
+    m_Localized: 'Earn {0} <sprite index=12> more
+
+      to unlock!'
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 2194680340899692627
   - m_Id: 15858980064808960
     m_Localized: Click to unlock!
     m_Metadata:
@@ -75,3 +78,4 @@ MonoBehaviour:
         m_Entries: 
         m_SharedEntries:
         - id: 2191103352832
+        - id: 15858835369709568

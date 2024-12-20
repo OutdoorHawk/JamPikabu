@@ -56,10 +56,12 @@ MonoBehaviour:
   Button: {fileID: 1749918004857986728}
   SelectedBg: {fileID: 3433818336511282785}
   LevelNumber: {fileID: 4047486323915667674}
+  StarsParent: {fileID: 5805855710834514894}
   Stars:
   - {fileID: 9176823812628584835}
   - {fileID: 571088642784776404}
   - {fileID: 5662695144180997360}
+  StarIcons: []
   DayId: 0
   Inactive: 0
   Locked: 0

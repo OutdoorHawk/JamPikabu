@@ -35,6 +35,8 @@ public sealed partial class MetaEntity : INamedEntity
             {
                 switch (component.GetType().Name)
                 {
+                    case nameof(Code.Meta.Features.Days.Day):
+                        return PrintDay();
                     case nameof(Purchased):
                         return PrintPurchasedItem();
                     case nameof(LootFreeUpgradeTimer):
@@ -50,6 +52,14 @@ public sealed partial class MetaEntity : INamedEntity
         }
 
         return components.First().GetType().Name;
+    }
+
+    private string PrintDay()
+    {
+        return new StringBuilder($"Completed Day")
+            .With(s => s.Append($" : {Day.ToString()} "))
+            .With(s => s.Append($" : {StarsAmount.ToString()} "))
+            .ToString();
     }
 
     private string PrintPurchasedItem()

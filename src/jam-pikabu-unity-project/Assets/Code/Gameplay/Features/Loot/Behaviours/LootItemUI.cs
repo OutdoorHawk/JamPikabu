@@ -89,6 +89,12 @@ namespace Code.Gameplay.Features.Loot.Behaviours
 
         public void AnimateCollected()
         {
+            if (this == null)
+                return;
+            
+            if (LootAnimator == null)
+                return;
+            
             CollectedAtLeastOne = true;
 
             if (_ingredientTypeId is IngredientTypeId.Bad)

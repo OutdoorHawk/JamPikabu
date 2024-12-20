@@ -110,7 +110,6 @@ namespace Code.Gameplay.Features.Loot.Systems
             loot.Release(this);
             RemoveLootView(loot);
             lootItemUI.AnimateCollected();
-
         }
 
         private async UniTaskVoid PlayNeutralIngredientFly(GameEntity loot)

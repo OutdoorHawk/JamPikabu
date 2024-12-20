@@ -86,7 +86,6 @@ namespace Code.Meta.Features.MainMenu.Behaviours
             BindLevelToDayId();
             LockAllDaysOutsideOfConfig();
             LockLevelsByProgress();
-            LockLevelsByStars();
         }
 
         private void SelectLastLevel()
@@ -101,6 +100,13 @@ namespace Code.Meta.Features.MainMenu.Behaviours
 
             DayProgressData progressData = dayProgressData.Last();
             int dayToSelect = progressData.DayId + 1;
+
+            if (_mapMenuService.MapBlockIsAvailable(dayToSelect) == false)
+            {
+                _buttonByDayIds[dayToSelect - 1].SelectLevel();
+                return;
+            }
+            
             if (dayToSelect >= _buttonByDayIds.Count)
                 _buttonByDayIds.Last().Value.SelectLevel();
             else
@@ -156,22 +162,6 @@ namespace Code.Meta.Features.MainMenu.Behaviours
 
                 LevelButton nextLevel = _levelButtons[i + 1];
                 nextLevel.SetLevelLocked();
-            }
-        }
-
-        private void LockLevelsByStars()
-        {
-            for (int i = 0; i < _levelButtons.Count; i++)
-            {
-                LevelButton levelButton = _levelButtons[i];
-                DayData dayData = _daysService.GetDayData(levelButton.DayId);
-                DayStarsSetup dayStars = _daysService.GetDayStarData(levelButton.DayId);
-
-                if (_daysService.TryGetDayProgress(levelButton.DayId, out DayProgressData progress) == false)
-                    continue;
-
-                if (progress.StarsEarned < dayStars.StarsNeedToUnlock)
-                    levelButton.SetLevelLocked();
             }
         }
 

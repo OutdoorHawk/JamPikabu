@@ -11,7 +11,6 @@ using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows.Service;
 using Code.Meta.Features.DayLootSettings.Configs;
-using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Service;
 using Code.Meta.Features.LootCollection.Configs;
 using Code.Meta.Features.LootCollection.Service;
@@ -35,7 +34,6 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
         public Image[] IngredientIcons;
         public RectTransform FlyIconRect;
         public TMP_Text ReadyToUnlockText;
-        public TMP_Text LockedText;
         public Animator UnlockIngredientAnimator;
         public UniversalTimer UpgradeTimer;
 
@@ -149,7 +147,6 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
             UnlockIngredientAnimator.SetTrigger(AnimationParameter.Locked.AsHash());
             UnlockButton.EnableElement();
             UnlockButton.interactable = false;
-            LockedText.EnableElement();
         }
 
         private void InitReadyToUnlock(LootTypeId unlocksIngredient)
@@ -190,7 +187,6 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
             gameObject.DisableElement();
             FreeUpgradeButton.DisableElement();
             UnlockButton.DisableElement();
-            LockedText.DisableElement();
             ReadyToUnlockText.DisableElement();
             UpgradeTimer.DisableElement();
             UpgradeTimer.StopTimer();
