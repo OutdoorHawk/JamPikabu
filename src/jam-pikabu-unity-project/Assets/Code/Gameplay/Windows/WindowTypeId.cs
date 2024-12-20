@@ -13,6 +13,7 @@
         InfoWindow = 12,
         OrderWindow = 13,
         ShopWindow = 14,
+        Settings = 15,
         
         Count
     }

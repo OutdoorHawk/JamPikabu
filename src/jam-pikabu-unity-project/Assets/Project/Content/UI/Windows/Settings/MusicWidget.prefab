@@ -61,6 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _soundType: 30
+  _overrideSound: 0
 --- !u!114 &9001908713799078112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,6 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _soundType: 30
+  _overrideSound: 0
 --- !u!114 &8530611647145929963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,8 +442,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Bitwave Beats
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 26666a8a4aa25b4458dc2a4683ae7e1b, type: 2}
-  m_sharedMaterial: {fileID: -2374718582540299372, guid: 26666a8a4aa25b4458dc2a4683ae7e1b,
+  m_fontAsset: {fileID: 11400000, guid: 5283ed63678ad8549843916fe92f918b, type: 2}
+  m_sharedMaterial: {fileID: -5343447789192355002, guid: 5283ed63678ad8549843916fe92f918b,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
