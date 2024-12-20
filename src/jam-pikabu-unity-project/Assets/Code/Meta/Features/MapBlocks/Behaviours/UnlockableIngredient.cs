@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
 using Code.Common.Entity;
 using Code.Common.Extensions;
@@ -16,7 +15,6 @@ using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Service;
 using Code.Meta.Features.LootCollection.Configs;
 using Code.Meta.Features.LootCollection.Service;
-using Code.Meta.Features.MainMenu.Behaviours;
 using Code.Meta.Features.MainMenu.Service;
 using Code.Meta.Features.MainMenu.Windows;
 using Code.Meta.UI.Common.Replenish;
@@ -28,9 +26,9 @@ using Zenject;
 using static System.Threading.CancellationTokenSource;
 using static Code.Common.Extensions.AsyncGameplayExtensions;
 
-namespace Code.Meta.Features.LootCollection.Behaviours
+namespace Code.Meta.Features.MapBlocks.Behaviours
 {
-    public class IngredientUnlockBehaviour : MonoBehaviour
+    public class UnlockableIngredient : MonoBehaviour
     {
         public Button UnlockButton;
         public Button FreeUpgradeButton;
@@ -52,7 +50,7 @@ namespace Code.Meta.Features.LootCollection.Behaviours
         private ICurrencyFactory _currencyFactory;
         private IDaysService _daysService;
         private IMapMenuService _mapMenuService;
-        private List<LevelButton> _levelButtons;
+        private MapBlockData _mapBlockData;
 
         private LootProgressionStaticData LootData => _staticData.GetStaticData<LootProgressionStaticData>();
         private MapBlocksStaticData MapBlocksData => _staticData.GetStaticData<MapBlocksStaticData>();
@@ -98,47 +96,38 @@ namespace Code.Meta.Features.LootCollection.Behaviours
             _fillToken?.Cancel();
         }
 
-        public void Initialize(List<LevelButton> levelButtons)
+        public void Initialize(MapBlockData mapBlockData)
         {
-            _levelButtons = levelButtons;
+            _mapBlockData = mapBlockData;
             InitializeState();
         }
 
         private void InitializeState()
         {
-            foreach (LevelButton levelButton in _levelButtons)
-            {
-                if (TryInitState(levelButton) == false)
-                    continue;
-                
-                break;
-            }
+            TryInitState();
         }
 
-        private bool TryInitState(LevelButton levelButton)
+        private void TryInitState()
         {
-            DayData dayData = _daysService.GetDayData(levelButton.DayId);
-
-            MapBlockData mapBlockData = _mapMenuService.GetMapBlockData(dayData.Id);
+            MapBlockData mapBlockData = _mapBlockData;
             LootTypeId unlocksIngredient = mapBlockData.UnlocksIngredient;
 
             if (mapBlockData.UnlocksIngredient == LootTypeId.None)
-                return false;
+                return;
 
             if (CheckPreviousDayIsCompleted() == false)
             {
                 InitLocked(unlocksIngredient);
-                return true;
+                return;
             }
 
             if (CheckIngredientAlreadyUnlocked(unlocksIngredient))
             {
                 InitFreeUpgradeState(unlocksIngredient);
-                return true;
+                return;
             }
 
             InitReadyToUnlock(unlocksIngredient);
-            return true;
         }
 
         private bool CheckIngredientAlreadyUnlocked(LootTypeId unlocksIngredient)
@@ -148,7 +137,7 @@ namespace Code.Meta.Features.LootCollection.Behaviours
 
         private bool CheckPreviousDayIsCompleted()
         {
-            int lowestDay = _levelButtons[0].DayId;
+            int lowestDay = _mapBlockData.DaysRange.x;
             int previousDayCompleted = lowestDay - 1;
 
             if (_daysService.TryGetDayProgress(previousDayCompleted, out _) == false)

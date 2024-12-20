@@ -23,7 +23,8 @@ namespace Code.Meta.Features.MapBlocks.Systems
                 .AllOf(MetaMatcher.LootFreeUpgradeTimer,
                     MetaMatcher.LootTypeId,
                     MetaMatcher.NextFreeUpgradeTime
-                ));
+                ).NoneOf(
+                    MetaMatcher.ReadyToFreeUpgrade));
         }
 
 

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Code.Common.Extensions;
+using Code.Meta.Features.DayLootSettings.Configs;
 using Code.Meta.Features.Days.Service;
-using Code.Meta.Features.LootCollection.Behaviours;
 using Code.Meta.Features.LootCollection.Service;
 using Code.Meta.Features.MainMenu.Behaviours;
 using Code.Meta.Features.MainMenu.Service;
@@ -16,11 +16,12 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
     {
         public RectTransform LevelsParent;
         public TMP_Text StarsEarned;
-        public IngredientUnlockBehaviour UnlockableIngredient;
+        public UnlockableIngredient UnlockableIngredient;
 
         private IDaysService _daysService;
         private ILootCollectionService _lootCollectionService;
         private IMapMenuService _mapMenuService;
+        private MapBlockData _mapBlockData;
 
         public List<LevelButton> LevelButtons { get; private set; } = new();
 
@@ -34,19 +35,12 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
             _daysService = daysService;
         }
 
-        private void Awake()
+        public void InitData(MapBlockData mapBlockData)
         {
+            _mapBlockData = mapBlockData;
             LevelButtons.RefreshList(LevelsParent.GetComponentsInChildren<LevelButton>());
-        }
-
-        public void Init()
-        {
             InitStarsAmount();
-            UnlockableIngredient.Initialize(LevelButtons);
-        }
-
-        private void OnDestroy()
-        {
+            UnlockableIngredient.Initialize(mapBlockData);
         }
 
         private void InitStarsAmount()

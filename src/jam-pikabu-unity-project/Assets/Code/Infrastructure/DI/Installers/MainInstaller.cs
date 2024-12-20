@@ -46,6 +46,7 @@ using Code.Meta.Features.Days.Service;
 using Code.Meta.Features.LootCollection.Factory;
 using Code.Meta.Features.LootCollection.Service;
 using Code.Meta.Features.MainMenu.Service;
+using Code.Meta.Features.MainMenu.UIFactory;
 using Code.Meta.UI.HardCurrencyHolder.Service;
 using Code.Meta.UI.Shop.Factory;
 using Code.Meta.UI.Shop.Service;
@@ -184,6 +185,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.BindInterfacesTo<GameStateFactory>().AsSingle();
             Container.BindInterfacesTo<DaysFactory>().AsSingle();
             Container.BindInterfacesTo<LootCollectionFactory>().AsSingle();
+            Container.BindInterfacesTo<MapMenuFactory>().AsSingle();
         }
 
         private void BindGameplayFactories()

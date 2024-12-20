@@ -19,6 +19,7 @@ namespace Code.Meta.Features.DayLootSettings.Configs
         ]
         public Vector2Int DaysRange => GetDaysRange();
 
+        public GameObject ViewPrefab;
         public LootTypeId UnlocksIngredient;
         public float FreeUpgradeTimeHours = 0.5f;
 

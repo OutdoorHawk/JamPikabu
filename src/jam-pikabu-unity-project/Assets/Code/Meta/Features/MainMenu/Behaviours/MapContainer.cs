@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Code.Common.Extensions;
 using Code.Gameplay.StaticData;
+using Code.Meta.Features.DayLootSettings.Configs;
 using Code.Meta.Features.Days;
 using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Configs.Stars;
 using Code.Meta.Features.Days.Service;
 using Code.Meta.Features.MainMenu.Service;
+using Code.Meta.Features.MainMenu.UIFactory;
 using Code.Meta.Features.MapBlocks.Behaviours;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,17 +28,21 @@ namespace Code.Meta.Features.MainMenu.Behaviours
         private IStaticDataService _staticDataService;
         private IMapMenuService _mapMenuService;
         private IDaysService _daysService;
+        private IMapMenuFactory _mapMenuFactory;
 
         private DaysStaticData DaysStaticData => _staticDataService.GetStaticData<DaysStaticData>();
+        private MapBlocksStaticData MapBlocksStaticData => _staticDataService.GetStaticData<MapBlocksStaticData>();
 
         [Inject]
         private void Construct
         (
             IStaticDataService staticDataService,
             IMapMenuService mapMenuService,
-            IDaysService daysService
+            IDaysService daysService,
+            IMapMenuFactory mapMenuFactory
         )
         {
+            _mapMenuFactory = mapMenuFactory;
             _mapMenuService = mapMenuService;
             _staticDataService = staticDataService;
             _daysService = daysService;
@@ -45,16 +50,14 @@ namespace Code.Meta.Features.MainMenu.Behaviours
 
         private void Awake()
         {
-            MapBlocks.RefreshList(MainScroll.content.GetComponentsInChildren<MapBlock>(true));
-            
-            foreach (MapBlock mapBlock in MapBlocks) 
-                mapBlock.EnableElement();
+            InitMapBlocks();
         }
 
         public void Init()
         {
             InitLevels();
             SelectLastLevel();
+            Mover.Init();
             Refresh();
         }
 
@@ -68,6 +71,15 @@ namespace Code.Meta.Features.MainMenu.Behaviours
             _mapMenuService.OnSelectionChanged -= Refresh;
         }
 
+        private void InitMapBlocks()
+        {
+            foreach (var mapBlockData in MapBlocksStaticData.Configs)
+            {
+                MapBlock mapBlock = _mapMenuFactory.CreateMapBlock(mapBlockData, parent: MainScroll.content);
+                MapBlocks.Add(mapBlock);
+            }
+        }
+
         private void InitLevels()
         {
             InitLevelList();
@@ -75,14 +87,12 @@ namespace Code.Meta.Features.MainMenu.Behaviours
             LockAllDaysOutsideOfConfig();
             LockLevelsByProgress();
             LockLevelsByStars();
-            foreach (MapBlock mapBlock in MapBlocks) 
-                mapBlock.Init();
         }
 
         private void SelectLastLevel()
         {
             List<DayProgressData> dayProgressData = _daysService.GetDaysProgress();
-            
+
             if (dayProgressData.Count == 0)
             {
                 _buttonByDayIds[1].SelectLevel();

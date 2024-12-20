@@ -56,7 +56,7 @@ namespace Code.Meta.Features.MainMenu.Behaviours
             _lootCollectionService.OnFreeUpgradeTimeEnd -= UpdatePin;
         }
 
-        private void Start()
+        public void Init()
         {
             Initialize();
             JumpToNextUncompletedSegment();
