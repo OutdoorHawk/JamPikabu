@@ -3,6 +3,7 @@ using System.Linq;
 using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Meta.Features.Days.Configs;
+using Code.Meta.Features.Days.Configs.Stars;
 using Code.Meta.Features.Days.Service;
 using Code.Progress.SaveLoadService;
 using Entitas;
@@ -72,8 +73,9 @@ namespace Code.Gameplay.Features.Days.Systems
         private void UpdateStarsAmount(MetaEntity day)
         {
             DayData data = _daysService.GetDayData();
+            DayStarsSetup starsData = _daysService.GetDayStarData();
             int totalRating = _ratingPlus.GetEntities().Sum(x => x.Plus) - _ratingMinus.GetEntities().Sum(x => x.Minus);
-            int starsCount = data.Stars.Count(starData => totalRating >= starData.RatingAmountNeed);
+            int starsCount = starsData.Stars.Count(starData => totalRating >= starData.RatingAmountNeed);
 
             if (starsCount > day.StarsAmount)
                 day.ReplaceStarsAmount(starsCount);

@@ -4,6 +4,7 @@ using System.Linq;
 using Code.Gameplay.Features.Loot;
 using Code.Gameplay.Features.Orders.Config;
 using Code.Meta.Features.DayLootSettings.Configs;
+using Code.Meta.Features.Days.Configs.Stars;
 using Code.Meta.Features.LootCollection.Configs;
 using RoyalGold.Sources.Scripts.Game.MVC.Utils;
 using Sirenix.OdinInspector;
@@ -16,15 +17,42 @@ namespace Code.Meta.Features.Days.Configs
         [FoldoutGroup("Editor")] public OrdersStaticData OrdersData;
         [FoldoutGroup("Editor")] public LootProgressionStaticData LootProgression;
         [FoldoutGroup("Editor")] public DayLootSettingsStaticData DayLootSettings;
+        [FoldoutGroup("Editor")] public DayStarsStaticData DayStars;
 
         [FoldoutGroup("Editor")] [ReadOnly] public List<int> AverageGoldPerLevel;
         [FoldoutGroup("Editor")] [ReadOnly] public int TotalGoldPerLevels;
-        
+
         [FoldoutGroup("Editor")] [ReadOnly] public bool IgnoreBadIngredients;
 
-        [FoldoutGroup("Editor")] public float MinGoldFactor = 1f; 
-        [FoldoutGroup("Editor")] public float MaxGoldFactor = 5f;
-        [FoldoutGroup("Editor")] public AnimationCurve GoldFactorCurve;
+        [FoldoutGroup("Editor")] public int LevelsAmount = 18;
+        [FoldoutGroup("Editor")] public float BaseGoldFactor = 1;
+        [FoldoutGroup("Editor")] public float GrowthExponent = 1.5f;
+        [FoldoutGroup("Editor")] public float StepFactor = 2f;
+        [FoldoutGroup("Editor")] public int BonusAdjustment = 1;
+
+        [FoldoutGroup("Editor")]
+        [Button]
+        private void CreateLevelsAndApplyFormula()
+        {
+            for (int i = 1; i < LevelsAmount; i++)
+            {
+                float goldFactor = BaseGoldFactor + StepFactor * Mathf.Pow(i, GrowthExponent) + BonusAdjustment;
+
+                if (i >= Configs.Count)
+                {
+                    var dayData = new DayData
+                    {
+                        DayGoldFactor = goldFactor,
+                        OrdersAmount = Random.Range(3, 5),
+                    };
+                    
+                    Configs.Add(dayData);
+                    continue;
+                }
+
+                Configs[i].DayGoldFactor = goldFactor;
+            }
+        }
 
         [FoldoutGroup("Editor")]
         [Button]
@@ -54,24 +82,6 @@ namespace Code.Meta.Features.Days.Configs
 
         [FoldoutGroup("Editor")]
         [Button]
-        private void ApplyGoldFactorBalance()
-        {
-            List<DayData> dayDataConfigs = Configs;
-
-            int totalCount = dayDataConfigs.Count;
-
-            for (int i = 0; i < totalCount; i++)
-            {
-                float t = i / (float)(totalCount - 1);
-                float curveValue = GoldFactorCurve.Evaluate(t);
-                float newGoldFactor = Mathf.Lerp(MinGoldFactor, MaxGoldFactor, curveValue);
-                
-                dayDataConfigs[i].DayGoldFactor = newGoldFactor;
-            }
-        }
-
-        [FoldoutGroup("Editor")]
-        [Button]
         private void CalculateAverageRatingPerDay()
         {
             foreach (DayData dayData in Configs)
@@ -91,13 +101,13 @@ namespace Code.Meta.Features.Days.Configs
                     float averageGoodIngredients = GetAverage(orderSetup.MinMaxGoodIngredients);
                     float averageBadIngredients = GetAverage(orderSetup.MinMaxBadIngredients);
                     float averageIngredientFactor = GetAverage(orderSetup.MinMaxIngredientsRatingFactor);
-                    
+
                     // Calculate rating contributions for a single order
-                    float minRatingForOrder = 
+                    float minRatingForOrder =
                         (averageGoodIngredients * averageLootTypesCount * averageIngredientFactor) -
                         (IgnoreBadIngredients ? 0 : averageBadIngredients * averageLootTypesCount * averageIngredientFactor);
 
-                    float maxRatingForOrder = 
+                    float maxRatingForOrder =
                         (averageGoodIngredients * averageLootTypesCount * averageIngredientFactor) -
                         (IgnoreBadIngredients ? 0 : averageBadIngredients * averageLootTypesCount * averageIngredientFactor);
 
@@ -105,20 +115,21 @@ namespace Code.Meta.Features.Days.Configs
                     averageMinRatingPerDay += minRatingForOrder;
                     averageMaxRatingPerDay += maxRatingForOrder;
                 }
-                
+
                 foreach (LootTypeId product in availableProducts)
                 {
                     LootProgressionData progression = LootProgression.Configs.Find(data => data.Type == product);
                     int minRatingPerProduct = progression.Levels[0].RatingBoostAmount;
                     int maxRatingPerProduct = progression.Levels[^1].RatingBoostAmount;
-                    
+
                     // Factor in the rating contribution for the available products
                     averageMinRatingPerDay += minRatingPerProduct;
                     averageMaxRatingPerDay += maxRatingPerProduct;
                 }
-                
-                dayData.AverageMinRatingPerDay = averageMinRatingPerDay;
-                dayData.AverageMaxRatingPerDay = averageMaxRatingPerDay;
+
+                DayStarsSetup starsSetup = DayStars.GetDayStarsData(dayData.Id);
+                starsSetup.AverageMinRatingPerDay = averageMinRatingPerDay;
+                starsSetup.AverageMaxRatingPerDay = averageMaxRatingPerDay;
             }
         }
 

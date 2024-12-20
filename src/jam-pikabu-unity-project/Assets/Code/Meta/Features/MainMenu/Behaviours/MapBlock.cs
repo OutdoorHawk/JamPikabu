@@ -53,7 +53,7 @@ namespace Code.Meta.Features.MainMenu.Behaviours
         private void InitStarsAmount()
         {
             int earnedStars = LevelButtons.Sum(levelButton => _daysService.GetStarsEarnedForDay(levelButton.DayId));
-            int maxStars = LevelButtons.Sum(levelButton => _daysService.GetDayData(levelButton.DayId).Stars.Count);
+            int maxStars = LevelButtons.Sum(levelButton => _daysService.GetDayStarData(levelButton.DayId).Stars.Count);
             StarsEarned.text = $"{earnedStars}/{maxStars}";
         }
 

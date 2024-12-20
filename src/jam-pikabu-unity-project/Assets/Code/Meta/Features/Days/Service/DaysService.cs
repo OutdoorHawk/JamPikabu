@@ -4,6 +4,7 @@ using Code.Common.Extensions;
 using Code.Gameplay.Features.RoundState.Factory;
 using Code.Gameplay.StaticData;
 using Code.Meta.Features.Days.Configs;
+using Code.Meta.Features.Days.Configs.Stars;
 
 namespace Code.Meta.Features.Days.Service
 {
@@ -27,6 +28,7 @@ namespace Code.Meta.Features.Days.Service
         public int CurrentDay => _currentDay;
         public int MaxDays => _staticDataService.GetStaticData<DaysStaticData>().Configs.Count;
         private DaysStaticData DaysStaticData => _staticDataService.GetStaticData<DaysStaticData>();
+        private DayStarsStaticData DayStarsStaticData => _staticDataService.GetStaticData<DayStarsStaticData>();
 
         public DaysService
         (
@@ -125,6 +127,16 @@ namespace Code.Meta.Features.Days.Service
         public DayData GetDayData(int currentDay)
         {
             return GetDayDataInternal(currentDay);
+        }
+
+        public DayStarsSetup GetDayStarData()
+        {
+            return DayStarsStaticData.GetDayStarsData(_currentDayData.Id);
+        }
+
+        public DayStarsSetup GetDayStarData(int currentDay)
+        {
+            return DayStarsStaticData.GetDayStarsData(currentDay);
         }
 
         private DayData GetDayDataInternal(int currentDay)

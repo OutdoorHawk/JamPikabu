@@ -4,6 +4,7 @@ using Code.Common.Extensions;
 using Code.Gameplay.StaticData;
 using Code.Meta.Features.Days;
 using Code.Meta.Features.Days.Configs;
+using Code.Meta.Features.Days.Configs.Stars;
 using Code.Meta.Features.Days.Service;
 using Code.Meta.Features.MainMenu.Service;
 using UnityEngine;
@@ -153,11 +154,12 @@ namespace Code.Meta.Features.MainMenu.Behaviours
             {
                 LevelButton levelButton = _levelButtons[i];
                 DayData dayData = _daysService.GetDayData(levelButton.DayId);
+                DayStarsSetup dayStars = _daysService.GetDayStarData(levelButton.DayId);
 
                 if (_daysService.TryGetDayProgress(levelButton.DayId, out DayProgressData progress) == false)
                     continue;
 
-                if (progress.StarsEarned < dayData.StarsNeedToUnlock)
+                if (progress.StarsEarned < dayStars.StarsNeedToUnlock)
                     levelButton.SetLevelLocked();
             }
         }

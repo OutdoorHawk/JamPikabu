@@ -3,6 +3,7 @@ using System.Threading;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Currency.Service;
 using Code.Meta.Features.Days.Configs;
+using Code.Meta.Features.Days.Configs.Stars;
 using Code.Meta.Features.Days.Service;
 using Cysharp.Text;
 using Cysharp.Threading.Tasks;
@@ -72,7 +73,8 @@ namespace Code.Gameplay.Features.Currency.Behaviours
         private void Init()
         {
             DayData dayData = _daysService.GetDayData();
-            List<DayStarData> values = dayData.Stars;
+            DayStarsSetup dayStarsSetup = _daysService.GetDayStarData(dayData.Id);
+            List<DayStarData> values = dayStarsSetup.Stars;
 
             if (values == null || values.Count == 0)
             {

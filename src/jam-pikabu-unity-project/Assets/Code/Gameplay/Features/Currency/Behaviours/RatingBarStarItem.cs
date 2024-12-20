@@ -2,6 +2,7 @@
 using Code.Gameplay.Features.Currency.Config;
 using Code.Gameplay.StaticData;
 using Code.Meta.Features.Days.Configs;
+using Code.Meta.Features.Days.Configs.Stars;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

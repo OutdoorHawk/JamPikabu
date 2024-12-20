@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Code.Meta.Features.Days.Configs
+namespace Code.Meta.Features.Days.Configs.Stars
 {
     [Serializable]
     public struct DayStarData
