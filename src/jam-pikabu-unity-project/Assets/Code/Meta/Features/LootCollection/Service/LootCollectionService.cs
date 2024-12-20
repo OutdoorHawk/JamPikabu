@@ -17,7 +17,7 @@ namespace Code.Meta.Features.LootCollection.Service
         public event Action OnNewLootUnlocked;
         public Dictionary<LootTypeId, LootItemCollectionData> LootProgression { get; private set; } = new();
         
-        private LootProgressionStaticData LootData => _staticData.GetStaticData<LootProgressionStaticData>();
+        public LootProgressionStaticData LootData => _staticData.GetStaticData<LootProgressionStaticData>();
 
         public LootCollectionService(ITimeService timeService, IStaticDataService staticData)
         {
@@ -100,6 +100,28 @@ namespace Code.Meta.Features.LootCollection.Service
 
             int diff = progression.NextFreeUpgradeTime - _timeService.TimeStamp;
             return diff.ZeroIfNegative();
+        }
+
+        public bool TryGetLootLevel(LootTypeId type, out LootLevelData levelData)
+        {
+            levelData = null;
+            
+            if (LootProgression.TryGetValue(type, out LootItemCollectionData lootProgression) == false)
+                return false;
+
+            LootProgressionData progressionStatic = LootData.GetConfig(type);
+            
+            if (progressionStatic == null)
+                return false;
+
+            if (lootProgression.Level >= progressionStatic.Levels.Count)
+            {
+                levelData = progressionStatic.Levels[^1];
+                return true;
+            }
+            
+            levelData = progressionStatic.Levels[lootProgression.Level];
+            return true;
         }
     }
 }

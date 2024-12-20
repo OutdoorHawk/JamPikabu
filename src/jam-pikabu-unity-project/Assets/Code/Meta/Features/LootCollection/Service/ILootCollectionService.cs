@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Code.Gameplay.Features.Loot;
+using Code.Meta.Features.LootCollection.Configs;
 
 namespace Code.Meta.Features.LootCollection.Service
 {
@@ -10,6 +11,7 @@ namespace Code.Meta.Features.LootCollection.Service
         event Action OnFreeUpgradeTimeEnd;
         event Action OnNewLootUnlocked;
         Dictionary<LootTypeId, LootItemCollectionData> LootProgression { get; }
+        LootProgressionStaticData LootData { get; }
         void InitializeLootProgression(List<LootItemCollectionData> items);
         void AddNewUnlockedLoot(LootTypeId type);
         void LootUpgraded(LootTypeId type, int newLevel);
@@ -18,5 +20,7 @@ namespace Code.Meta.Features.LootCollection.Service
         bool CanUpgradeForFree(LootTypeId type);
         bool TimeToFreeUpgradePassed(LootTypeId type);
         int GetTimeLeftToFreeUpgrade(LootTypeId type);
+        bool TryGetLootLevel(LootTypeId type, out LootLevelData levelData);
+        
     }
 }

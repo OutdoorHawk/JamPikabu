@@ -24,4 +24,5 @@ namespace Code.Gameplay.Features.Loot
     [Game] public sealed class IncreaseValueEffect : IComponent { }
     [Game] public sealed class Available : IComponent { }
     [Game] public sealed class Effect : IComponent { }
+    [Game] public sealed class ConsumableIngredient : IComponent { }
 }

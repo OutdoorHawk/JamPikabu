@@ -6,6 +6,9 @@ using Code.Gameplay.StaticData;
 using Code.Infrastructure.SceneLoading;
 using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Service;
+using Code.Meta.Features.LootCollection;
+using Code.Meta.Features.LootCollection.Configs;
+using Code.Meta.Features.LootCollection.Service;
 using UnityEngine;
 
 namespace Code.Gameplay.Features.Loot.Factory
@@ -14,11 +17,13 @@ namespace Code.Gameplay.Features.Loot.Factory
     {
         private readonly IStaticDataService _staticDataService;
         private readonly IDaysService _daysService;
+        private readonly ILootCollectionService _lootCollectionService;
 
-        public LootFactory(IStaticDataService staticDataService, IDaysService daysService)
+        public LootFactory(IStaticDataService staticDataService, IDaysService daysService, ILootCollectionService lootCollectionService)
         {
             _staticDataService = staticDataService;
             _daysService = daysService;
+            _lootCollectionService = lootCollectionService;
         }
 
         public GameEntity CreateLootSpawner()
@@ -43,7 +48,11 @@ namespace Code.Gameplay.Features.Loot.Factory
 
             switch (typeId)
             {
-                case LootTypeId.None:
+                case LootTypeId.GoldCoin:
+                    loot.AddGold(1);
+                    break;
+                default:
+                    AddRating(loot, typeId);
                     break;
             }
 
@@ -79,13 +88,22 @@ namespace Code.Gameplay.Features.Loot.Factory
                     .AddStartRotation(spawnRotation)
                     .AddTargetParent(parent)
                     .AddLootTypeId(typeId)
-                    .AddBaseRating(lootSetup.BaseRatingValue)
-                    .AddRating(lootSetup.BaseRatingValue)
                     .With(x => x.AddViewPrefab(staticData.LootItem), when: lootSetup.ViewPrefab == null)
                     .With(x => x.AddViewPrefab(lootSetup.ViewPrefab), when: lootSetup.ViewPrefab != null)
                 ;
 
             return loot;
+        }
+
+        private void AddRating(GameEntity loot, LootTypeId typeId)
+        {
+            LootSetup lootSetup = GetLootSetup(typeId);
+            
+            loot.AddBaseRating(lootSetup.BaseRatingValue)
+                .With(x => x.isConsumableIngredient = true);
+
+            if (_lootCollectionService.TryGetLootLevel(typeId, out var levelData)) 
+                loot.AddRating(loot.BaseRating + levelData.RatingBoostAmount);
         }
 
         private LootSetup GetLootSetup(LootTypeId typeId)

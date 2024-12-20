@@ -15,7 +15,7 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.Loot.Systems
 {
-    public class LootPickupSystem : IExecuteSystem, ICleanupSystem
+    public class LootWithRatingPickupSystem : IExecuteSystem, ICleanupSystem
     {
         private readonly GameContext _context;
         private readonly IGroup<GameEntity> _loot;
@@ -26,7 +26,7 @@ namespace Code.Gameplay.Features.Loot.Systems
         private readonly IStaticDataService _staticData;
         private readonly Camera _camera;
 
-        public LootPickupSystem(GameContext context, IGameplayLootService gameplayLootService,
+        public LootWithRatingPickupSystem(GameContext context, IGameplayLootService gameplayLootService,
             IWindowService windowService, IStaticDataService staticData)
         {
             _context = context;
@@ -39,7 +39,8 @@ namespace Code.Gameplay.Features.Loot.Systems
                 .AllOf(
                     GameMatcher.Loot,
                     GameMatcher.LootTypeId,
-                    GameMatcher.CollectLootRequest
+                    GameMatcher.CollectLootRequest,
+                    GameMatcher.Rating
                 ));
         }
 
