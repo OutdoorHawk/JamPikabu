@@ -22,7 +22,7 @@ namespace Code.Meta.Features.LootCollection.Service
         public Dictionary<LootTypeId, LootLevelsProgressionData> LootLevels { get; private set; } = new();
         public Dictionary<LootTypeId, LootFreeUpgradeTimerData> LootFreeUpgrade { get; private set; } = new();
 
-        private LootProgressionStaticData LootData => _staticData.GetStaticData<LootProgressionStaticData>();
+        public LootProgressionStaticData LootData => _staticData.GetStaticData<LootProgressionStaticData>();
         private MapBlocksStaticData MapBlocksStaticData => _staticData.GetStaticData<MapBlocksStaticData>();
 
         public LootCollectionService(ITimeService timeService,

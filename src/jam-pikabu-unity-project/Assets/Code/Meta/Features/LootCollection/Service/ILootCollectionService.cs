@@ -13,6 +13,7 @@ namespace Code.Meta.Features.LootCollection.Service
         event Action OnNewLootUnlocked;
         Dictionary<LootTypeId, LootLevelsProgressionData> LootLevels { get; }
         Dictionary<LootTypeId, LootFreeUpgradeTimerData> LootFreeUpgrade { get; }
+        LootProgressionStaticData LootData { get; }
         void InitializeLootProgression(List<LootLevelsProgressionData> items);
         void InitializeLootFreeUpgradeTimers(List<LootFreeUpgradeTimerData> items);
         void AddNewUnlockedLoot(LootTypeId type);
