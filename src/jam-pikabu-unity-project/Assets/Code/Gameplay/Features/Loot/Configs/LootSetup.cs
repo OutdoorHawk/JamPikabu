@@ -14,6 +14,7 @@ namespace Code.Gameplay.Features.Loot.Configs
         [HideInInspector] public EntityView ViewPrefab;
         [PreviewField] public Sprite Icon;
         [FoldoutGroup("Data")] public float Size = 1;
+        [FoldoutGroup("Data")] public bool CanBeUsedInOrders = true;
         [FoldoutGroup("Data")] public LocalizedString LocalizedName;
         [FoldoutGroup("Data")] public float ColliderSize = 0.9f;
         [FoldoutGroup("Data")] public int BaseRatingValue = 1;

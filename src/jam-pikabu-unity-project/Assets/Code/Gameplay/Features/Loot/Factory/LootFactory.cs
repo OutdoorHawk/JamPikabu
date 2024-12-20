@@ -102,8 +102,12 @@ namespace Code.Gameplay.Features.Loot.Factory
             loot.AddBaseRating(lootSetup.BaseRatingValue)
                 .With(x => x.isConsumableIngredient = true);
 
-            if (_lootCollectionService.TryGetLootLevel(typeId, out var levelData)) 
-                loot.AddRating(loot.BaseRating + levelData.RatingBoostAmount);
+            loot.AddRating(loot.BaseRating);
+
+            if (_lootCollectionService.TryGetLootLevel(typeId, out var levelData))
+            {
+                loot.ReplaceRating(loot.BaseRating + levelData.RatingBoostAmount);
+            }
         }
 
         private LootSetup GetLootSetup(LootTypeId typeId)

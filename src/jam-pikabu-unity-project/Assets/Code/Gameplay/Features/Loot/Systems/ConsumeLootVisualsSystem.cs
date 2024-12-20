@@ -21,7 +21,8 @@ namespace Code.Gameplay.Features.Loot.Systems
             _consumedLoot = context.GetGroup(
                 GameMatcher.AllOf(
                     GameMatcher.Loot,
-                    GameMatcher.Consumed
+                    GameMatcher.Consumed,
+                    GameMatcher.Rating
                 ));
         }
 

@@ -5,6 +5,7 @@ using Code.Gameplay.Features.Currency.Config;
 using Code.Gameplay.Features.Currency.Service;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows.Factory;
+using UnityEngine;
 using Zenject;
 
 namespace Code.Gameplay.Features.Currency.Factory

@@ -18,6 +18,7 @@ MonoBehaviour:
     ViewPrefab: {fileID: 0}
     Icon: {fileID: 21300000, guid: 960d9ea6b81ffd44c97fd99ad1de401a, type: 3}
     Size: 1
+    CanBeUsedInOrders: 0
     LocalizedName:
       m_TableReference:
         m_TableCollectionName: 
@@ -34,6 +35,7 @@ MonoBehaviour:
     ViewPrefab: {fileID: 0}
     Icon: {fileID: 21300000, guid: d5484a6d66e6c6d4985b79523eb5e8af, type: 3}
     Size: 1
+    CanBeUsedInOrders: 1
     LocalizedName:
       m_TableReference:
         m_TableCollectionName: 
@@ -50,6 +52,7 @@ MonoBehaviour:
     ViewPrefab: {fileID: 0}
     Icon: {fileID: 21300000, guid: 10919e892d413804db97bc43fd8ccd5f, type: 3}
     Size: 1
+    CanBeUsedInOrders: 1
     LocalizedName:
       m_TableReference:
         m_TableCollectionName: 
@@ -66,6 +69,7 @@ MonoBehaviour:
     ViewPrefab: {fileID: 0}
     Icon: {fileID: 21300000, guid: ace03efe7af3e944d83bec45293fa8c6, type: 3}
     Size: 1
+    CanBeUsedInOrders: 1
     LocalizedName:
       m_TableReference:
         m_TableCollectionName: 
@@ -82,6 +86,7 @@ MonoBehaviour:
     ViewPrefab: {fileID: 0}
     Icon: {fileID: 21300000, guid: 69746f6467c274345a907904316a96f4, type: 3}
     Size: 1
+    CanBeUsedInOrders: 1
     LocalizedName:
       m_TableReference:
         m_TableCollectionName: 
@@ -98,6 +103,7 @@ MonoBehaviour:
     ViewPrefab: {fileID: 0}
     Icon: {fileID: 21300000, guid: a642067d57e6ffb41a26fd53e0e68dba, type: 3}
     Size: 1
+    CanBeUsedInOrders: 1
     LocalizedName:
       m_TableReference:
         m_TableCollectionName: 
@@ -114,6 +120,7 @@ MonoBehaviour:
     ViewPrefab: {fileID: 0}
     Icon: {fileID: 21300000, guid: 98ebdbe102f03834781e181dc0339c2a, type: 3}
     Size: 1
+    CanBeUsedInOrders: 1
     LocalizedName:
       m_TableReference:
         m_TableCollectionName: 
@@ -130,6 +137,7 @@ MonoBehaviour:
     ViewPrefab: {fileID: 0}
     Icon: {fileID: 21300000, guid: 07a4266ed0b2aaa4398515eec554347b, type: 3}
     Size: 1
+    CanBeUsedInOrders: 1
     LocalizedName:
       m_TableReference:
         m_TableCollectionName: 
@@ -146,6 +154,7 @@ MonoBehaviour:
     ViewPrefab: {fileID: 0}
     Icon: {fileID: 21300000, guid: bae58bcecadd88b4ebdf1b3541aec620, type: 3}
     Size: 1
+    CanBeUsedInOrders: 1
     LocalizedName:
       m_TableReference:
         m_TableCollectionName: 
@@ -162,6 +171,7 @@ MonoBehaviour:
     ViewPrefab: {fileID: 0}
     Icon: {fileID: 21300000, guid: 34820a12b2370804ca85637ec4d7cb55, type: 3}
     Size: 1
+    CanBeUsedInOrders: 1
     LocalizedName:
       m_TableReference:
         m_TableCollectionName: 
@@ -178,6 +188,7 @@ MonoBehaviour:
     ViewPrefab: {fileID: 0}
     Icon: {fileID: 21300000, guid: 642e4b6c30234eb4885738900646712e, type: 3}
     Size: 1
+    CanBeUsedInOrders: 1
     LocalizedName:
       m_TableReference:
         m_TableCollectionName: 
@@ -194,6 +205,7 @@ MonoBehaviour:
     ViewPrefab: {fileID: 0}
     Icon: {fileID: 21300000, guid: ec4f6a8de083b284c9954c4ac10c8a13, type: 3}
     Size: 1
+    CanBeUsedInOrders: 1
     LocalizedName:
       m_TableReference:
         m_TableCollectionName: 
@@ -210,6 +222,7 @@ MonoBehaviour:
     ViewPrefab: {fileID: 0}
     Icon: {fileID: 21300000, guid: 7bc5706c486253a48a6c062bac70d4e5, type: 3}
     Size: 1
+    CanBeUsedInOrders: 1
     LocalizedName:
       m_TableReference:
         m_TableCollectionName: 
@@ -226,6 +239,7 @@ MonoBehaviour:
     ViewPrefab: {fileID: 0}
     Icon: {fileID: 21300000, guid: a53148400a147fc4a86da08a6941ba67, type: 3}
     Size: 1
+    CanBeUsedInOrders: 1
     LocalizedName:
       m_TableReference:
         m_TableCollectionName: 
@@ -242,6 +256,7 @@ MonoBehaviour:
     ViewPrefab: {fileID: 0}
     Icon: {fileID: 21300000, guid: b9d6e0ca81572d34aae2f59bb41f1e70, type: 3}
     Size: 1
+    CanBeUsedInOrders: 1
     LocalizedName:
       m_TableReference:
         m_TableCollectionName: 
@@ -258,6 +273,7 @@ MonoBehaviour:
     ViewPrefab: {fileID: 0}
     Icon: {fileID: 21300000, guid: bc0eaf0bd736d2a44a0a0b3e4704224b, type: 3}
     Size: 1
+    CanBeUsedInOrders: 1
     LocalizedName:
       m_TableReference:
         m_TableCollectionName: 
@@ -274,6 +290,7 @@ MonoBehaviour:
     ViewPrefab: {fileID: 0}
     Icon: {fileID: 21300000, guid: e61f33ab3dd737a4b83d5a709a9fdc8a, type: 3}
     Size: 1
+    CanBeUsedInOrders: 1
     LocalizedName:
       m_TableReference:
         m_TableCollectionName: 

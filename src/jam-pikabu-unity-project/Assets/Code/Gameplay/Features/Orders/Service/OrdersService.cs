@@ -181,6 +181,7 @@ namespace Code.Gameplay.Features.Orders.Service
             List<LootSetup> availableLoot = new List<LootSetup>(_gameplayLootService.AvailableLoot);
 
             availableLoot.ShuffleList();
+            availableLoot.RemoveAll(setup => setup.CanBeUsedInOrders == false);
 
             OrderSetup orderSetup = order.Setup;
             Vector2Int minMaxGoodIngredients = orderSetup.MinMaxGoodIngredients;

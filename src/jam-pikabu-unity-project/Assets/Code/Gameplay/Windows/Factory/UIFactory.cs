@@ -17,6 +17,7 @@ namespace Code.Gameplay.Windows.Factory
 
         private Transform _uiRoot;
         private GraphicRaycaster _graphicRaycaster;
+        private Canvas _canvas;
 
         private const string PATH = "Windows/";
 
@@ -29,12 +30,13 @@ namespace Code.Gameplay.Windows.Factory
         }
 
         public Transform UIRoot => _uiRoot;
+        public Canvas Canvas => _canvas;
 
         public void InitializeCamera()
         {
-            var canvas = _uiRoot.GetComponent<Canvas>();
-            _graphicRaycaster = canvas.GetComponent<GraphicRaycaster>();
-            canvas.worldCamera = Camera.main;
+            _canvas = _uiRoot.GetComponent<Canvas>();
+            _graphicRaycaster = _canvas.GetComponent<GraphicRaycaster>();
+            _canvas.worldCamera = Camera.main;
         }
 
         public void CreateUiRoot()

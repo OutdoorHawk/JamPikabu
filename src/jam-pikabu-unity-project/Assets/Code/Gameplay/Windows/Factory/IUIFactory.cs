@@ -5,8 +5,9 @@ namespace Code.Gameplay.Windows.Factory
 {
     public interface IUIFactory
     {
-        void InitializeCamera();
         Transform UIRoot { get; }
+        Canvas Canvas { get; }
+        void InitializeCamera();
         void CreateUiRoot();
         void SetRaycastAvailable(bool available);
         UniTask<T> CreateWindow<T>(WindowTypeId type) where T : BaseWindow;
