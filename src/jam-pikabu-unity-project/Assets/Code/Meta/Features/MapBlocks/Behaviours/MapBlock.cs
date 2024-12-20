@@ -93,7 +93,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
 
         private bool CheckIngredientAlreadyUnlocked(LootTypeId unlocksIngredient)
         {
-            return _lootCollectionService.LootProgression.TryGetValue(unlocksIngredient, out _);
+            return _lootCollectionService.LootLevels.TryGetValue(unlocksIngredient, out _);
         }
 
         private bool CheckPreviousDayIsCompleted()

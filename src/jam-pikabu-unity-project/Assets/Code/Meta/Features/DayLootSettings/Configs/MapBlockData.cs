@@ -20,8 +20,11 @@ namespace Code.Meta.Features.DayLootSettings.Configs
         public Vector2Int DaysRange => GetDaysRange();
 
         public LootTypeId UnlocksIngredient;
+        public float FreeUpgradeTimeHours = 0.5f;
 
         public List<LootTypeId> AvailableIngredients = new();
+        
+        public int FreeUpgradeTimeSeconds => (int)(FreeUpgradeTimeHours * 60 * 60);
 
         private Vector2Int GetDaysRange()
         {

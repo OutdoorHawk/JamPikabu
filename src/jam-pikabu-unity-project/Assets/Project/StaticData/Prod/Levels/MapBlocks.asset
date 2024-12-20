@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Configs:
   - Id: 1
-    DaysRange: {x: 1, y: 3}
+    UnlocksIngredient: 0
+    FreeUpgradeTimeHours: 0
     AvailableIngredients: 06000000030000000400000002000000
-    AvailableOrderTags: 
   - Id: 2
-    DaysRange: {x: 4, y: 10}
+    UnlocksIngredient: 5
+    FreeUpgradeTimeHours: 0.5
     AvailableIngredients: 06000000030000000400000005000000
-    AvailableOrderTags: 
   - Id: 3
-    DaysRange: {x: 6, y: 6}
+    UnlocksIngredient: 11
+    FreeUpgradeTimeHours: 0
     AvailableIngredients: 06000000030000000400000005000000
-    AvailableOrderTags: 04000000

@@ -33,13 +33,13 @@ public sealed partial class MetaMatcher {
 //------------------------------------------------------------------------------
 public partial class MetaEntity {
 
-    public Code.Meta.Features.LootCollection.NextFreeUpgradeTime nextFreeUpgradeTime { get { return (Code.Meta.Features.LootCollection.NextFreeUpgradeTime)GetComponent(MetaComponentsLookup.NextFreeUpgradeTime); } }
+    public Code.Meta.Features.MapBlocks.NextFreeUpgradeTime nextFreeUpgradeTime { get { return (Code.Meta.Features.MapBlocks.NextFreeUpgradeTime)GetComponent(MetaComponentsLookup.NextFreeUpgradeTime); } }
     public int NextFreeUpgradeTime { get { return nextFreeUpgradeTime.Value; } }
     public bool hasNextFreeUpgradeTime { get { return HasComponent(MetaComponentsLookup.NextFreeUpgradeTime); } }
 
     public MetaEntity AddNextFreeUpgradeTime(int newValue) {
         var index = MetaComponentsLookup.NextFreeUpgradeTime;
-        var component = (Code.Meta.Features.LootCollection.NextFreeUpgradeTime)CreateComponent(index, typeof(Code.Meta.Features.LootCollection.NextFreeUpgradeTime));
+        var component = (Code.Meta.Features.MapBlocks.NextFreeUpgradeTime)CreateComponent(index, typeof(Code.Meta.Features.MapBlocks.NextFreeUpgradeTime));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +47,7 @@ public partial class MetaEntity {
 
     public MetaEntity ReplaceNextFreeUpgradeTime(int newValue) {
         var index = MetaComponentsLookup.NextFreeUpgradeTime;
-        var component = (Code.Meta.Features.LootCollection.NextFreeUpgradeTime)CreateComponent(index, typeof(Code.Meta.Features.LootCollection.NextFreeUpgradeTime));
+        var component = (Code.Meta.Features.MapBlocks.NextFreeUpgradeTime)CreateComponent(index, typeof(Code.Meta.Features.MapBlocks.NextFreeUpgradeTime));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

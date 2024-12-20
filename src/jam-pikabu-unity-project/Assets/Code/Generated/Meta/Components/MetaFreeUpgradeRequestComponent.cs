@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class MetaMatcher {
 
-    static Entitas.IMatcher<MetaEntity> _matcherReadyToFreeUpgrade;
+    static Entitas.IMatcher<MetaEntity> _matcherFreeUpgradeRequest;
 
-    public static Entitas.IMatcher<MetaEntity> ReadyToFreeUpgrade {
+    public static Entitas.IMatcher<MetaEntity> FreeUpgradeRequest {
         get {
-            if (_matcherReadyToFreeUpgrade == null) {
-                var matcher = (Entitas.Matcher<MetaEntity>)Entitas.Matcher<MetaEntity>.AllOf(MetaComponentsLookup.ReadyToFreeUpgrade);
+            if (_matcherFreeUpgradeRequest == null) {
+                var matcher = (Entitas.Matcher<MetaEntity>)Entitas.Matcher<MetaEntity>.AllOf(MetaComponentsLookup.FreeUpgradeRequest);
                 matcher.componentNames = MetaComponentsLookup.componentNames;
-                _matcherReadyToFreeUpgrade = matcher;
+                _matcherFreeUpgradeRequest = matcher;
             }
 
-            return _matcherReadyToFreeUpgrade;
+            return _matcherFreeUpgradeRequest;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class MetaMatcher {
 //------------------------------------------------------------------------------
 public partial class MetaEntity {
 
-    static readonly Code.Meta.Features.MapBlocks.ReadyToFreeUpgrade readyToFreeUpgradeComponent = new Code.Meta.Features.MapBlocks.ReadyToFreeUpgrade();
+    static readonly Code.Meta.Features.MapBlocks.FreeUpgradeRequest freeUpgradeRequestComponent = new Code.Meta.Features.MapBlocks.FreeUpgradeRequest();
 
-    public bool isReadyToFreeUpgrade {
-        get { return HasComponent(MetaComponentsLookup.ReadyToFreeUpgrade); }
+    public bool isFreeUpgradeRequest {
+        get { return HasComponent(MetaComponentsLookup.FreeUpgradeRequest); }
         set {
-            if (value != isReadyToFreeUpgrade) {
-                var index = MetaComponentsLookup.ReadyToFreeUpgrade;
+            if (value != isFreeUpgradeRequest) {
+                var index = MetaComponentsLookup.FreeUpgradeRequest;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : readyToFreeUpgradeComponent;
+                            : freeUpgradeRequestComponent;
 
                     AddComponent(index, component);
                 } else {

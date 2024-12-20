@@ -118,7 +118,7 @@ namespace Code.Infrastructure.States.GameStates
             foreach (LootTypeId lootTypeId in startGameUnlockedLoot)
             {
                 CreateMetaEntity.Empty()
-                    .With(x => x.isLoot = true)
+                    .With(x => x.isLootProgression = true)
                     .AddLootTypeId(lootTypeId)
                     .AddLevel(0)
                     ;

@@ -10,6 +10,7 @@ using Code.Gameplay.Features.Loot;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows.Service;
+using Code.Meta.Features.DayLootSettings.Configs;
 using Code.Meta.Features.LootCollection.Configs;
 using Code.Meta.Features.LootCollection.Service;
 using Code.Meta.Features.MainMenu.Windows;
@@ -46,6 +47,7 @@ namespace Code.Meta.Features.LootCollection.Behaviours
         private ICurrencyFactory _currencyFactory;
 
         private LootProgressionStaticData LootData => _staticData.GetStaticData<LootProgressionStaticData>();
+        private MapBlocksStaticData MapBlocksData => _staticData.GetStaticData<MapBlocksStaticData>();
 
         [Inject]
         private void Construct
@@ -173,15 +175,15 @@ namespace Code.Meta.Features.LootCollection.Behaviours
             _fillToken = CreateLinkedTokenSource(destroyCancellationToken);
 
             Image fillImage = IngredientIcons[0];
-            LootProgressionData data = LootData.GetConfig(UnlocksIngredient);
+            MapBlockData mapBlockData = MapBlocksData.GetMapBlockDataByLinkedIngredient(UnlocksIngredient);
 
-            float maxWaitTimeSeconds = data.FreeUpgradeTimeHours * 60 * 60;
+            float maxWaitTimeSeconds = mapBlockData.FreeUpgradeTimeHours * 60 * 60;
             int timeLeftSeconds = GetTimeFunc();
 
             while (timeLeftSeconds > 0)
             {
                 timeLeftSeconds = GetTimeFunc();
-                float factor = 1-(timeLeftSeconds / maxWaitTimeSeconds);
+                float factor = 1 - (timeLeftSeconds / maxWaitTimeSeconds);
                 fillImage.fillAmount = factor;
                 await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: _fillToken.Token);
             }
@@ -205,6 +207,7 @@ namespace Code.Meta.Features.LootCollection.Behaviours
 
             CreateMetaEntity.Empty()
                 .With(x => x.isUpgradeLootRequest = true)
+                .With(x => x.isFreeUpgradeRequest = true)
                 .AddLootTypeId(UnlocksIngredient)
                 .AddGold(0);
         }

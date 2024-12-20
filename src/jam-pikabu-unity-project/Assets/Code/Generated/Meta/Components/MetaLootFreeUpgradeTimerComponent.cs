@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class MetaMatcher {
 
-    static Entitas.IMatcher<MetaEntity> _matcherLoot;
+    static Entitas.IMatcher<MetaEntity> _matcherLootFreeUpgradeTimer;
 
-    public static Entitas.IMatcher<MetaEntity> Loot {
+    public static Entitas.IMatcher<MetaEntity> LootFreeUpgradeTimer {
         get {
-            if (_matcherLoot == null) {
-                var matcher = (Entitas.Matcher<MetaEntity>)Entitas.Matcher<MetaEntity>.AllOf(MetaComponentsLookup.Loot);
+            if (_matcherLootFreeUpgradeTimer == null) {
+                var matcher = (Entitas.Matcher<MetaEntity>)Entitas.Matcher<MetaEntity>.AllOf(MetaComponentsLookup.LootFreeUpgradeTimer);
                 matcher.componentNames = MetaComponentsLookup.componentNames;
-                _matcherLoot = matcher;
+                _matcherLootFreeUpgradeTimer = matcher;
             }
 
-            return _matcherLoot;
+            return _matcherLootFreeUpgradeTimer;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class MetaMatcher {
 //------------------------------------------------------------------------------
 public partial class MetaEntity {
 
-    static readonly Code.Meta.Features.LootCollection.Loot lootComponent = new Code.Meta.Features.LootCollection.Loot();
+    static readonly Code.Meta.Features.MapBlocks.LootFreeUpgradeTimer lootFreeUpgradeTimerComponent = new Code.Meta.Features.MapBlocks.LootFreeUpgradeTimer();
 
-    public bool isLoot {
-        get { return HasComponent(MetaComponentsLookup.Loot); }
+    public bool isLootFreeUpgradeTimer {
+        get { return HasComponent(MetaComponentsLookup.LootFreeUpgradeTimer); }
         set {
-            if (value != isLoot) {
-                var index = MetaComponentsLookup.Loot;
+            if (value != isLootFreeUpgradeTimer) {
+                var index = MetaComponentsLookup.LootFreeUpgradeTimer;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : lootComponent;
+                            : lootFreeUpgradeTimerComponent;
 
                     AddComponent(index, component);
                 } else {

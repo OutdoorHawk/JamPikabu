@@ -4,6 +4,7 @@ namespace Code.Meta.Features.LootCollection.Factory
 {
     public interface ILootCollectionFactory
     {
-        MetaEntity UnlockNewLoot(LootTypeId type);
+        MetaEntity CreateNewLootProgressionEntity(LootTypeId type);
+        MetaEntity CreateLootFreeUpgradeTimer(LootTypeId type, int timer);
     }
 }

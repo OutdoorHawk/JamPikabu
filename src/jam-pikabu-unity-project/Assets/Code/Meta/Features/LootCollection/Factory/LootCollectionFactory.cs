@@ -20,34 +20,22 @@ namespace Code.Meta.Features.LootCollection.Factory
             _staticData = staticData;
         }
 
-        public MetaEntity UnlockNewLoot(LootTypeId type)
+        public MetaEntity CreateNewLootProgressionEntity(LootTypeId type)
         {
             MetaEntity lootMeta = CreateMetaEntity.Empty()
-                .With(x => x.isLoot = true)
+                .With(x => x.isLootProgression = true)
                 .AddLootTypeId(type)
                 .AddLevel(0);
-
-
-            AddFreeUpgradeTime(lootMeta);
+            
             return lootMeta;
         }
 
-        private void AddFreeUpgradeTime(MetaEntity lootMeta)
+        public MetaEntity CreateLootFreeUpgradeTimer(LootTypeId type, int timer)
         {
-            LootProgressionData data = LootData.GetConfig(lootMeta.LootTypeId);
-            
-            if(data == null)
-                return;
-
-            if (data.FreeUpgradeTimeHours == 0)
-                return;
-
-            int timeSeconds = (int)(data.FreeUpgradeTimeHours * 60 * 60);
-            int nextTime = _timeService.TimeStamp + timeSeconds;
-            
-            lootMeta.AddNextFreeUpgradeTime(nextTime)
-                .AddFreeUpgradeTimeSeconds(timeSeconds)
-                ;
+            return CreateMetaEntity.Empty()
+                .With(x => x.isLootFreeUpgradeTimer = true)
+                .AddLootTypeId(type)
+                .AddNextFreeUpgradeTime(_timeService.TimeStamp + timer);
         }
     }
 }

@@ -11,6 +11,7 @@ using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows.Service;
 using Code.Meta.Features.LootCollection.Configs;
+using Code.Meta.Features.LootCollection.Data;
 using Code.Meta.UI.Common;
 using TMPro;
 using UnityEngine;
@@ -71,7 +72,7 @@ namespace Code.Meta.Features.LootCollection.ShopTab
             UpgradeButton.onClick.RemoveListener(PurchaseUpgrade);
         }
 
-        public void Init(in LootItemCollectionData item)
+        public void Init(in LootLevelsProgressionData item)
         {
             Icon.sprite = LootSettings.GetConfig(item.Type).Icon;
             TypeId = item.Type;
@@ -91,7 +92,7 @@ namespace Code.Meta.Features.LootCollection.ShopTab
             _firstInitComplete = true;
         }
 
-        private void InitLocale(in LootItemCollectionData item)
+        private void InitLocale(in LootLevelsProgressionData item)
         {
             LocalizedString localizedString = LootSettings.GetConfig(item.Type).LocalizedName;
 
@@ -99,14 +100,14 @@ namespace Code.Meta.Features.LootCollection.ShopTab
                 Name.text = localizedString.GetLocalizedString();
         }
 
-        private void InitCurrentLevel(in LootItemCollectionData item)
+        private void InitCurrentLevel(in LootLevelsProgressionData item)
         {
             LootSetup lootSetup = LootSettings.GetConfig(item.Type);
             LootLevelData currentLevel = GetCurrentLevel(item);
             RatingFrom.SetupPrice(lootSetup.BaseRatingValue + currentLevel.RatingBoostAmount, _ratingCurrency, withAnimation: _firstInitComplete);
         }
 
-        private void InitNextLevel(in LootItemCollectionData item)
+        private void InitNextLevel(in LootLevelsProgressionData item)
         {
             LootSetup lootSetup = LootSettings.GetConfig(item.Type);
             List<LootLevelData> levels = ProgressionStaticData.GetConfig(item.Type).Levels;
@@ -122,7 +123,7 @@ namespace Code.Meta.Features.LootCollection.ShopTab
             RatingTo.SetupPrice(lootSetup.BaseRatingValue + nextLevel.RatingBoostAmount, _ratingCurrency, withAnimation: _firstInitComplete);
         }
 
-        private void InitUpgradePrice(in LootItemCollectionData item)
+        private void InitUpgradePrice(in LootLevelsProgressionData item)
         {
             _upgradePrice = null;
 
@@ -131,7 +132,7 @@ namespace Code.Meta.Features.LootCollection.ShopTab
             _upgradePrice = currentLevel.Cost;
         }
 
-        private LootLevelData GetCurrentLevel(in LootItemCollectionData item)
+        private LootLevelData GetCurrentLevel(in LootLevelsProgressionData item)
         {
             LootProgressionData lootProgressionData = ProgressionStaticData.GetConfig(item.Type);
 

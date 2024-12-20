@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class MetaMatcher {
 
-    static Entitas.IMatcher<MetaEntity> _matcherReadyToFreeUpgrade;
+    static Entitas.IMatcher<MetaEntity> _matcherLootProgression;
 
-    public static Entitas.IMatcher<MetaEntity> ReadyToFreeUpgrade {
+    public static Entitas.IMatcher<MetaEntity> LootProgression {
         get {
-            if (_matcherReadyToFreeUpgrade == null) {
-                var matcher = (Entitas.Matcher<MetaEntity>)Entitas.Matcher<MetaEntity>.AllOf(MetaComponentsLookup.ReadyToFreeUpgrade);
+            if (_matcherLootProgression == null) {
+                var matcher = (Entitas.Matcher<MetaEntity>)Entitas.Matcher<MetaEntity>.AllOf(MetaComponentsLookup.LootProgression);
                 matcher.componentNames = MetaComponentsLookup.componentNames;
-                _matcherReadyToFreeUpgrade = matcher;
+                _matcherLootProgression = matcher;
             }
 
-            return _matcherReadyToFreeUpgrade;
+            return _matcherLootProgression;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class MetaMatcher {
 //------------------------------------------------------------------------------
 public partial class MetaEntity {
 
-    static readonly Code.Meta.Features.MapBlocks.ReadyToFreeUpgrade readyToFreeUpgradeComponent = new Code.Meta.Features.MapBlocks.ReadyToFreeUpgrade();
+    static readonly Code.Meta.Features.LootCollection.LootProgression lootProgressionComponent = new Code.Meta.Features.LootCollection.LootProgression();
 
-    public bool isReadyToFreeUpgrade {
-        get { return HasComponent(MetaComponentsLookup.ReadyToFreeUpgrade); }
+    public bool isLootProgression {
+        get { return HasComponent(MetaComponentsLookup.LootProgression); }
         set {
-            if (value != isReadyToFreeUpgrade) {
-                var index = MetaComponentsLookup.ReadyToFreeUpgrade;
+            if (value != isLootProgression) {
+                var index = MetaComponentsLookup.LootProgression;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : readyToFreeUpgradeComponent;
+                            : lootProgressionComponent;
 
                     AddComponent(index, component);
                 } else {

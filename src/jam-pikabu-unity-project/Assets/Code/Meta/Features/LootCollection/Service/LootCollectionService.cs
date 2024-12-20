@@ -4,7 +4,10 @@ using Code.Common.Extensions;
 using Code.Gameplay.Common.Time;
 using Code.Gameplay.Features.Loot;
 using Code.Gameplay.StaticData;
+using Code.Meta.Features.DayLootSettings.Configs;
 using Code.Meta.Features.LootCollection.Configs;
+using Code.Meta.Features.LootCollection.Data;
+using Code.Meta.Features.LootCollection.Factory;
 
 namespace Code.Meta.Features.LootCollection.Service
 {
@@ -12,61 +15,68 @@ namespace Code.Meta.Features.LootCollection.Service
     {
         private readonly ITimeService _timeService;
         private readonly IStaticDataService _staticData;
+        private readonly ILootCollectionFactory _factory;
         public event Action OnUpgraded;
         public event Action OnFreeUpgradeTimeEnd;
         public event Action OnNewLootUnlocked;
-        public Dictionary<LootTypeId, LootItemCollectionData> LootProgression { get; private set; } = new();
-        
-        public LootProgressionStaticData LootData => _staticData.GetStaticData<LootProgressionStaticData>();
+        public Dictionary<LootTypeId, LootLevelsProgressionData> LootLevels { get; private set; } = new();
+        public Dictionary<LootTypeId, LootFreeUpgradeTimerData> LootFreeUpgrade { get; private set; } = new();
 
-        public LootCollectionService(ITimeService timeService, IStaticDataService staticData)
+        private LootProgressionStaticData LootData => _staticData.GetStaticData<LootProgressionStaticData>();
+        private MapBlocksStaticData MapBlocksStaticData => _staticData.GetStaticData<MapBlocksStaticData>();
+
+        public LootCollectionService(ITimeService timeService,
+            IStaticDataService staticData, ILootCollectionFactory factory)
         {
             _timeService = timeService;
             _staticData = staticData;
+            _factory = factory;
         }
 
-        public void InitializeLootProgression(List<LootItemCollectionData> items)
+        public void InitializeLootProgression(List<LootLevelsProgressionData> items)
         {
-            LootProgression.Clear();
+            LootLevels.Clear();
 
-            foreach (LootItemCollectionData item in items)
+            foreach (LootLevelsProgressionData item in items)
             {
-                LootProgression.Add(item.Type, item);
+                LootLevels.Add(item.Type, item);
+            }
+        }
+
+        public void InitializeLootFreeUpgradeTimers(List<LootFreeUpgradeTimerData> items)
+        {
+            LootFreeUpgrade.Clear();
+
+            foreach (var item in items)
+            {
+                LootFreeUpgrade.Add(item.Type, item);
             }
         }
 
         public void AddNewUnlockedLoot(LootTypeId type)
         {
-            LootProgression.Add(type, new LootItemCollectionData(type, 0));
+            LootLevels.Add(type, new LootLevelsProgressionData(type, 0));
             OnNewLootUnlocked?.Invoke();
         }
 
         public void LootUpgraded(LootTypeId type, int newLevel)
         {
-            LootItemCollectionData currentData = LootProgression[type];
+            LootLevelsProgressionData currentData = LootLevels[type];
             currentData.Level = newLevel;
-            LootProgression[type] = currentData;
+            LootLevels[type] = currentData;
             OnUpgraded?.Invoke();
-        }
-        
-        public void FreeUpgradeTimerUpdated(LootTypeId type, int nextTime)
-        {
-            LootItemCollectionData currentData = LootProgression[type];
-            currentData.NextFreeUpgradeTime = nextTime;
-            LootProgression[type] = currentData;
-            OnFreeUpgradeTimeEnd?.Invoke();
         }
 
         public bool UpgradedForMaxLevel(LootTypeId type)
         {
-            if (LootProgression.TryGetValue(type, out var progression) == false)
+            if (LootLevels.TryGetValue(type, out var progression) == false)
                 return false;
 
             LootProgressionData progressionData = LootData.GetConfig(type);
-            
+
             if (progressionData == null)
                 return false;
-            
+
             bool result = progression.Level >= progressionData.Levels.Count;
             return result;
         }
@@ -74,13 +84,15 @@ namespace Code.Meta.Features.LootCollection.Service
         public bool CanUpgradeForFree(LootTypeId type)
         {
             LootProgressionData progressionData = LootData.GetConfig(type);
-            
+
             if (progressionData == null)
                 return false;
 
-            if (progressionData.FreeUpgradeTimeHours == 0)
+            MapBlockData mapBlockData = MapBlocksStaticData.GetMapBlockDataByLinkedIngredient(type);
+
+            if (mapBlockData.FreeUpgradeTimeHours == 0)
                 return false;
-            
+
             return true;
         }
 
@@ -92,25 +104,25 @@ namespace Code.Meta.Features.LootCollection.Service
 
         public int GetTimeLeftToFreeUpgrade(LootTypeId type)
         {
-            if (LootProgression.TryGetValue(type, out var progression) == false)
+            if (LootFreeUpgrade.TryGetValue(type, out var progression) == false)
                 return 0;
 
-            if (progression.NextFreeUpgradeTime == 0)
+            if (progression.NextFreeUpgradeTimeStamp == 0)
                 return 0;
 
-            int diff = progression.NextFreeUpgradeTime - _timeService.TimeStamp;
+            int diff = progression.NextFreeUpgradeTimeStamp - _timeService.TimeStamp;
             return diff.ZeroIfNegative();
         }
 
         public bool TryGetLootLevel(LootTypeId type, out LootLevelData levelData)
         {
             levelData = null;
-            
-            if (LootProgression.TryGetValue(type, out LootItemCollectionData lootProgression) == false)
+
+            if (LootLevels.TryGetValue(type, out LootLevelsProgressionData lootProgression) == false)
                 return false;
 
             LootProgressionData progressionStatic = LootData.GetConfig(type);
-            
+
             if (progressionStatic == null)
                 return false;
 
@@ -119,9 +131,43 @@ namespace Code.Meta.Features.LootCollection.Service
                 levelData = progressionStatic.Levels[^1];
                 return true;
             }
-            
+
             levelData = progressionStatic.Levels[lootProgression.Level];
             return true;
+        }
+
+        public void CreateFreeUpgradeTimer(LootTypeId type)
+        {
+            MapBlockData mapBlockData = MapBlocksStaticData.GetMapBlockDataByLinkedIngredient(type);
+
+            if (mapBlockData == null)
+                return;
+
+            if (mapBlockData.FreeUpgradeTimeHours == 0)
+                return;
+
+            MetaEntity timer = _factory.CreateLootFreeUpgradeTimer(type, mapBlockData.FreeUpgradeTimeSeconds);
+            FreeUpgradeTimerUpdated(type, timer.NextFreeUpgradeTime);
+        }
+
+        public void FreeUpgradeTimerEnded(LootTypeId type)
+        {
+            FreeUpgradeTimerUpdated(type, 0);
+        }
+
+        private void FreeUpgradeTimerUpdated(LootTypeId type, int nextTime)
+        {
+            if (LootFreeUpgrade.TryGetValue(type, out var currentData))
+            {
+                currentData.NextFreeUpgradeTimeStamp = nextTime;
+                LootFreeUpgrade[type] = currentData;
+            }
+            else
+            {
+                LootFreeUpgrade.Add(type, new LootFreeUpgradeTimerData(type, nextTime));
+            }
+
+            OnFreeUpgradeTimeEnd?.Invoke();
         }
     }
 }

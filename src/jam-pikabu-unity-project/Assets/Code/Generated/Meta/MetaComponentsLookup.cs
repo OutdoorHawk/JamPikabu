@@ -12,38 +12,40 @@ public static class MetaComponentsLookup {
     public const int Id = 1;
     public const int Day = 2;
     public const int StarsAmount = 3;
-    public const int FreeUpgradeTimeSeconds = 4;
-    public const int Level = 5;
-    public const int Loot = 6;
-    public const int LootTypeId = 7;
-    public const int NextFreeUpgradeTime = 8;
-    public const int ReadyToFreeUpgrade = 9;
-    public const int UnlockLootRequest = 10;
-    public const int UpgradeLootRequest = 11;
-    public const int AddCurrencyToStorageRequest = 12;
-    public const int Gold = 13;
-    public const int Storage = 14;
-    public const int Withdraw = 15;
-    public const int ForAd = 16;
-    public const int BuyRequest = 17;
-    public const int Purchased = 18;
-    public const int ShopItemId = 19;
+    public const int Level = 4;
+    public const int LootProgression = 5;
+    public const int LootTypeId = 6;
+    public const int UnlockLootRequest = 7;
+    public const int UpgradeLootRequest = 8;
+    public const int FreeUpgradeRequest = 9;
+    public const int LootFreeUpgradeTimer = 10;
+    public const int NextFreeUpgradeTime = 11;
+    public const int ReadyToFreeUpgrade = 12;
+    public const int AddCurrencyToStorageRequest = 13;
+    public const int Gold = 14;
+    public const int Storage = 15;
+    public const int Withdraw = 16;
+    public const int ForAd = 17;
+    public const int BuyRequest = 18;
+    public const int Purchased = 19;
+    public const int ShopItemId = 20;
 
-    public const int TotalComponents = 20;
+    public const int TotalComponents = 21;
 
     public static readonly string[] componentNames = {
         "Destructed",
         "Id",
         "Day",
         "StarsAmount",
-        "FreeUpgradeTimeSeconds",
         "Level",
-        "Loot",
+        "LootProgression",
         "LootTypeId",
-        "NextFreeUpgradeTime",
-        "ReadyToFreeUpgrade",
         "UnlockLootRequest",
         "UpgradeLootRequest",
+        "FreeUpgradeRequest",
+        "LootFreeUpgradeTimer",
+        "NextFreeUpgradeTime",
+        "ReadyToFreeUpgrade",
         "AddCurrencyToStorageRequest",
         "Gold",
         "Storage",
@@ -59,14 +61,15 @@ public static class MetaComponentsLookup {
         typeof(Code.Gameplay.Common.Id),
         typeof(Code.Meta.Features.Days.Day),
         typeof(Code.Meta.Features.Days.StarsAmount),
-        typeof(Code.Meta.Features.LootCollection.FreeUpgradeTimeSeconds),
         typeof(Code.Meta.Features.LootCollection.Level),
-        typeof(Code.Meta.Features.LootCollection.Loot),
+        typeof(Code.Meta.Features.LootCollection.LootProgression),
         typeof(Code.Meta.Features.LootCollection.LootTypeIdComponent),
-        typeof(Code.Meta.Features.LootCollection.NextFreeUpgradeTime),
-        typeof(Code.Meta.Features.LootCollection.ReadyToFreeUpgrade),
         typeof(Code.Meta.Features.LootCollection.UnlockLootRequest),
         typeof(Code.Meta.Features.LootCollection.UpgradeLootRequest),
+        typeof(Code.Meta.Features.MapBlocks.FreeUpgradeRequest),
+        typeof(Code.Meta.Features.MapBlocks.LootFreeUpgradeTimer),
+        typeof(Code.Meta.Features.MapBlocks.NextFreeUpgradeTime),
+        typeof(Code.Meta.Features.MapBlocks.ReadyToFreeUpgrade),
         typeof(Code.Meta.Features.Storage.AddCurrencyToStorageRequest),
         typeof(Code.Meta.Features.Storage.Gold),
         typeof(Code.Meta.Features.Storage.Storage),

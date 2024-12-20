@@ -1,4 +1,3 @@
-using Code.Gameplay.Common.Time;
 using Code.Meta.Features.LootCollection.Service;
 using Entitas;
 
@@ -10,16 +9,13 @@ namespace Code.Meta.Features.LootCollection.Systems
         private readonly IGroup<MetaEntity> _lootCollection;
         private readonly IGroup<MetaEntity> _requests;
         private readonly IGroup<MetaEntity> _storages;
-        private readonly ITimeService _timeService;
 
         public ProcessUpgradeLootRequest
         (
             MetaContext context,
-            ILootCollectionService lootCollectionService,
-            ITimeService timeService
+            ILootCollectionService lootCollectionService
         )
         {
-            _timeService = timeService;
             _lootCollectionService = lootCollectionService;
 
             _requests = context.GetGroup(MetaMatcher.AllOf(
@@ -27,7 +23,7 @@ namespace Code.Meta.Features.LootCollection.Systems
                 MetaMatcher.LootTypeId));
 
             _lootCollection = context.GetGroup(MetaMatcher.AllOf(
-                MetaMatcher.Loot,
+                MetaMatcher.LootProgression,
                 MetaMatcher.LootTypeId));
 
             _storages = context.GetGroup(MetaMatcher.AllOf(
@@ -45,16 +41,23 @@ namespace Code.Meta.Features.LootCollection.Systems
                 
                 request.isDestructed = true;
 
-                bool isFreeUpgrade = request.Gold == 0;
+                bool isFreeUpgrade = request.isFreeUpgradeRequest;
                 
                 if (isFreeUpgrade)
                 {
-                    ProcessFreeUpgrade(loot);
+                    UpgradeLevel(loot);
                     break;
                 }
 
                 ProcessPaid(request, loot);
             }
+        }
+
+        private void UpgradeLevel(MetaEntity loot)
+        {
+            int newLevel = loot.Level + 1;
+            loot.ReplaceLevel(newLevel);
+            _lootCollectionService.LootUpgraded(loot.LootTypeId, newLevel: newLevel);
         }
 
         private void ProcessPaid(MetaEntity request, MetaEntity loot)
@@ -71,24 +74,6 @@ namespace Code.Meta.Features.LootCollection.Systems
                 
                 UpgradeLevel(loot);
             }
-        }
-
-        private void ProcessFreeUpgrade(MetaEntity loot)
-        {
-            UpgradeLevel(loot);
-
-            if (loot.hasFreeUpgradeTimeSeconds)
-            {
-                loot.ReplaceNextFreeUpgradeTime(_timeService.TimeStamp + loot.FreeUpgradeTimeSeconds);
-                _lootCollectionService.FreeUpgradeTimerUpdated(loot.LootTypeId, loot.NextFreeUpgradeTime);
-            }
-        }
-
-        private void UpgradeLevel(MetaEntity loot)
-        {
-            int newLevel = loot.Level + 1;
-            loot.ReplaceLevel(newLevel);
-            _lootCollectionService.LootUpgraded(loot.LootTypeId, newLevel: newLevel);
         }
     }
 }

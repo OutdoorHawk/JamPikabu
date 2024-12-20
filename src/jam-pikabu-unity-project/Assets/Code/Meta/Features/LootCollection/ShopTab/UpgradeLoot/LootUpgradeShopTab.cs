@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Code.Common.Extensions;
 using Code.Gameplay.StaticData;
+using Code.Meta.Features.LootCollection.Data;
 using Code.Meta.Features.LootCollection.Service;
 using Code.Meta.UI.Shop.Configs;
 using Code.Meta.UI.Shop.Templates;
@@ -62,7 +63,7 @@ namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
         {
             ShopItemTemplateData prefab = _shopWindowService.GetTemplate(ShopItemKind.UpgradeIngredient);
 
-            foreach (LootItemCollectionData item in _lootCollectionService.LootProgression.Values)
+            foreach (LootLevelsProgressionData item in _lootCollectionService.LootLevels.Values)
             {
                 var instance = _instantiator.InstantiatePrefab(prefab.Prefab, Layout.transform);
                 var upgradeItem = instance.GetComponent<LootUpgradeShopItem>();
@@ -75,7 +76,7 @@ namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
         {
             foreach (LootUpgradeShopItem item in _items)
             {
-                item.Init(_lootCollectionService.LootProgression[item.Type]);
+                item.Init(_lootCollectionService.LootLevels[item.Type]);
             }
         }
     }
