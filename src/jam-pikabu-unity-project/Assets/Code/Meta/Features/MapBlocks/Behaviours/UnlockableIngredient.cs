@@ -191,6 +191,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
             UpgradeTimer.DisableElement();
             UpgradeTimer.StopTimer();
             _fillToken?.Cancel();
+            FreeUpgradeButton.interactable = false;
         }
 
         private void Init(LootTypeId unlocksIngredient)
@@ -211,6 +212,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
 
         private void InitReadyToFreeUpgrade()
         {
+            FreeUpgradeButton.interactable = true;
             UnlockIngredientAnimator.SetTrigger(AnimationParameter.Upgrade.AsHash());
             UpgradeTimer.DisableElement();
             UpgradeTimer.StopTimer();
@@ -258,6 +260,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
 
         private void FreeUpgradeClicked()
         {
+            FreeUpgradeButton.interactable = false;
             UnlockIngredientAnimator.SetTrigger(AnimationParameter.Idle.AsHash());
             MoveIngredientToShop(from: IngredientIcons[0].transform.position);
 
