@@ -57,6 +57,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - ProdStaticData
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c2107c3c3394a6e429c0180c82982262
+    m_Address: DayStars
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ProdStaticData
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cb4a1369a82a4d04a8eea5b0afb2734a
     m_Address: ShopItemTemplates
     m_ReadOnly: 0

@@ -12,4 +12,237 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75ab52eb11a64be8984b8cd02a7f0d88, type: 3}
   m_Name: DayStars
   m_EditorClassIdentifier: 
-  Configs: []
+  Configs:
+  - Id: 1
+    StarsNeedToUnlock: 0
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
+  - Id: 2
+    StarsNeedToUnlock: 0
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
+  - Id: 3
+    StarsNeedToUnlock: 0
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
+  - Id: 4
+    StarsNeedToUnlock: 0
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
+  - Id: 5
+    StarsNeedToUnlock: 0
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
+  - Id: 6
+    StarsNeedToUnlock: 0
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
+  - Id: 7
+    StarsNeedToUnlock: 0
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
+  - Id: 8
+    StarsNeedToUnlock: 0
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
+  - Id: 9
+    StarsNeedToUnlock: 0
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
+  - Id: 10
+    StarsNeedToUnlock: 0
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
+  - Id: 11
+    StarsNeedToUnlock: 0
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
+  - Id: 12
+    StarsNeedToUnlock: 0
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
+  - Id: 13
+    StarsNeedToUnlock: 0
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
+  - Id: 14
+    StarsNeedToUnlock: 0
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
+  - Id: 15
+    StarsNeedToUnlock: 0
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
+  - Id: 16
+    StarsNeedToUnlock: 0
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
+  - Id: 17
+    StarsNeedToUnlock: 0
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
+  - Id: 18
+    StarsNeedToUnlock: 0
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
+  - Id: 19
+    StarsNeedToUnlock: 0
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
+  - Id: 20
+    StarsNeedToUnlock: 0
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
+  - Id: 21
+    StarsNeedToUnlock: 0
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
+  - Id: 22
+    StarsNeedToUnlock: 0
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
+  - Id: 23
+    StarsNeedToUnlock: 0
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
+  - Id: 24
+    StarsNeedToUnlock: 0
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
+  - Id: 25
+    StarsNeedToUnlock: 0
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
+  - Id: 26
+    StarsNeedToUnlock: 0
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
+  - Id: 27
+    StarsNeedToUnlock: 0
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
+  - Id: 28
+    StarsNeedToUnlock: 0
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 0
+    AverageMaxRatingPerDay: 0
+  - Id: 29
+    StarsNeedToUnlock: 0
+    Stars:
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    - RatingAmountNeed: 0
+    AverageMinRatingPerDay: 43.125
+    AverageMaxRatingPerDay: 207.125
+  DaysStaticData: {fileID: 11400000, guid: 982023cec6b56da45b241cd491aa6c9d, type: 2}
