@@ -31,11 +31,11 @@ MonoBehaviour:
       GoldReward:
         CurrencyType: 1
         Amount: 6
-      MinMaxDayToUnlock: {x: 0, y: 3}
+      MinMaxDayToUnlock: {x: 0, y: 4}
       Tag: 0
       MinMaxNeedAmount: {x: 2, y: 4}
       MinMaxGoodIngredients: {x: 2, y: 3}
-      MinMaxBadIngredients: {x: 1, y: 1}
+      MinMaxBadIngredients: {x: 1, y: 2}
       MinMaxIngredientsRatingFactor: {x: 1, y: 2}
   - Id: 3
     Setup:
@@ -43,11 +43,11 @@ MonoBehaviour:
       GoldReward:
         CurrencyType: 1
         Amount: 8
-      MinMaxDayToUnlock: {x: 0, y: 3}
+      MinMaxDayToUnlock: {x: 0, y: 4}
       Tag: 0
       MinMaxNeedAmount: {x: 3, y: 4}
       MinMaxGoodIngredients: {x: 2, y: 3}
-      MinMaxBadIngredients: {x: 1, y: 1}
+      MinMaxBadIngredients: {x: 1, y: 2}
       MinMaxIngredientsRatingFactor: {x: 1, y: 2}
   - Id: 4
     Setup:
@@ -55,11 +55,11 @@ MonoBehaviour:
       GoldReward:
         CurrencyType: 1
         Amount: 10
-      MinMaxDayToUnlock: {x: 0, y: 3}
+      MinMaxDayToUnlock: {x: 0, y: 4}
       Tag: 0
       MinMaxNeedAmount: {x: 3, y: 5}
       MinMaxGoodIngredients: {x: 2, y: 4}
-      MinMaxBadIngredients: {x: 1, y: 1}
+      MinMaxBadIngredients: {x: 1, y: 2}
       MinMaxIngredientsRatingFactor: {x: 1, y: 2}
   - Id: 5
     Setup:

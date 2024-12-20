@@ -1,11 +1,7 @@
 #if UNITY_EDITOR
 using System.Collections.Generic;
 using System.Linq;
-using Code.Gameplay.Features.Loot;
 using Code.Gameplay.Features.Orders.Config;
-using Code.Meta.Features.DayLootSettings.Configs;
-using Code.Meta.Features.Days.Configs.Stars;
-using Code.Meta.Features.LootCollection.Configs;
 using RoyalGold.Sources.Scripts.Game.MVC.Utils;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -15,9 +11,6 @@ namespace Code.Meta.Features.Days.Configs
     public partial class DaysStaticData
     {
         [FoldoutGroup("Editor")] public OrdersStaticData OrdersData;
-        [FoldoutGroup("Editor")] public LootProgressionStaticData LootProgression;
-        [FoldoutGroup("Editor")] public DayLootSettingsStaticData DayLootSettings;
-        [FoldoutGroup("Editor")] public DayStarsStaticData DayStars;
 
         [FoldoutGroup("Editor")] [ReadOnly] public List<int> AverageGoldPerLevel;
         [FoldoutGroup("Editor")] [ReadOnly] public int TotalGoldPerLevels;
@@ -45,7 +38,7 @@ namespace Code.Meta.Features.Days.Configs
                         DayGoldFactor = goldFactor,
                         OrdersAmount = Random.Range(3, 5),
                     };
-                    
+
                     Configs.Add(dayData);
                     continue;
                 }
@@ -78,64 +71,6 @@ namespace Code.Meta.Features.Days.Configs
             }
 
             TotalGoldPerLevels = AverageGoldPerLevel.Sum();
-        }
-
-        [FoldoutGroup("Editor")]
-        [Button]
-        private void CalculateAverageRatingPerDay()
-        {
-            foreach (DayData dayData in Configs)
-            {
-                float averageMinRatingPerDay = 0;
-                float averageMaxRatingPerDay = 0;
-
-                DayLootSettingsData dayLoot = DayLootSettings.GetDayLootByDayId(dayData.Id);
-                List<LootTypeId> availableProducts = dayLoot.AvailableIngredients;
-                int ordersPerDay = dayData.OrdersAmount;
-
-                for (int i = 0; i < ordersPerDay; i++)
-                {
-                    OrderData randomOrder = OrdersData.Configs[Random.Range(0, OrdersData.Configs.Count)];
-                    OrderSetup orderSetup = randomOrder.Setup;
-                    float averageLootTypesCount = GetAverage(orderSetup.MinMaxNeedAmount);
-                    float averageGoodIngredients = GetAverage(orderSetup.MinMaxGoodIngredients);
-                    float averageBadIngredients = GetAverage(orderSetup.MinMaxBadIngredients);
-                    float averageIngredientFactor = GetAverage(orderSetup.MinMaxIngredientsRatingFactor);
-
-                    // Calculate rating contributions for a single order
-                    float minRatingForOrder =
-                        (averageGoodIngredients * averageLootTypesCount * averageIngredientFactor) -
-                        (IgnoreBadIngredients ? 0 : averageBadIngredients * averageLootTypesCount * averageIngredientFactor);
-
-                    float maxRatingForOrder =
-                        (averageGoodIngredients * averageLootTypesCount * averageIngredientFactor) -
-                        (IgnoreBadIngredients ? 0 : averageBadIngredients * averageLootTypesCount * averageIngredientFactor);
-
-                    // Accumulate to daily totals
-                    averageMinRatingPerDay += minRatingForOrder;
-                    averageMaxRatingPerDay += maxRatingForOrder;
-                }
-
-                foreach (LootTypeId product in availableProducts)
-                {
-                    LootProgressionData progression = LootProgression.Configs.Find(data => data.Type == product);
-                    int minRatingPerProduct = progression.Levels[0].RatingBoostAmount;
-                    int maxRatingPerProduct = progression.Levels[^1].RatingBoostAmount;
-
-                    // Factor in the rating contribution for the available products
-                    averageMinRatingPerDay += minRatingPerProduct;
-                    averageMaxRatingPerDay += maxRatingPerProduct;
-                }
-
-                DayStarsSetup starsSetup = DayStars.GetDayStarsData(dayData.Id);
-                starsSetup.AverageMinRatingPerDay = averageMinRatingPerDay;
-                starsSetup.AverageMaxRatingPerDay = averageMaxRatingPerDay;
-            }
-        }
-
-        private static float GetAverage(Vector2Int range)
-        {
-            return (range.x + range.y) / 2f;
         }
     }
 }

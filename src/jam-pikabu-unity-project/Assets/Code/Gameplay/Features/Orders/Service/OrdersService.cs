@@ -8,6 +8,7 @@ using Code.Gameplay.Features.Loot.Service;
 using Code.Gameplay.Features.Orders.Config;
 using Code.Gameplay.Features.Orders.Factory;
 using Code.Gameplay.StaticData;
+using Code.Meta.Features.DayLootSettings.Configs;
 using Code.Meta.Features.Days.Service;
 using RoyalGold.Sources.Scripts.Game.MVC.Utils;
 using UnityEngine;
@@ -72,6 +73,9 @@ namespace Code.Gameplay.Features.Orders.Service
                     continue;
 
                 if (CheckMaxDayToUnlock(data, currentDay))
+                    continue;
+                
+                if (CheckTag(data, currentDay))
                     continue;
 
                 _ordersBuffer.Add(data);
@@ -269,6 +273,21 @@ namespace Code.Gameplay.Features.Orders.Service
         private static bool CheckMaxDayToUnlock(OrderData data, int currentDay)
         {
             return data.Setup.MinMaxDayToUnlock.y > 0 && currentDay > data.Setup.MinMaxDayToUnlock.y;
+        }
+        
+        private bool CheckTag(OrderData data, int currentDay)
+        {
+            DayLootSettingsData settings = _staticDataService
+                .GetStaticData<DayLootSettingsStaticData>()
+                .GetSettingsById(currentDay);
+
+            if (data.Setup.Tag == OrderTag.None)
+                return true;
+
+            if (settings.AvailableOrderTags.Contains(data.Setup.Tag))
+                return true;
+            
+            return false;
         }
     }
 }

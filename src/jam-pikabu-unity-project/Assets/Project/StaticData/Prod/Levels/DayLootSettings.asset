@@ -15,7 +15,13 @@ MonoBehaviour:
   Configs:
   - Id: 1
     DaysRange: {x: 1, y: 3}
-    AvailableIngredients: 060000000300000004000000100000000f0000000e000000020000000a00000007000000
+    AvailableIngredients: 060000000300000004000000
+    AvailableOrderTags: 
   - Id: 2
     DaysRange: {x: 4, y: 10}
     AvailableIngredients: 06000000030000000400000005000000
+    AvailableOrderTags: 
+  - Id: 3
+    DaysRange: {x: 6, y: 6}
+    AvailableIngredients: 06000000030000000400000005000000
+    AvailableOrderTags: 04000000
