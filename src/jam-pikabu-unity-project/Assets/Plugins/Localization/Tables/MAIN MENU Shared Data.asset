@@ -51,6 +51,14 @@ MonoBehaviour:
     m_Key: M_NORMAL_MODE
     m_Metadata:
       m_Items: []
+  - m_Id: 15858835369709568
+    m_Key: COMPLETE_TO_UNLOCK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15858980064808960
+    m_Key: PRESS_TO_UNLOCK
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

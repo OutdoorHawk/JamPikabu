@@ -58,6 +58,14 @@ MonoBehaviour:
     m_Localized: normal mode
     m_Metadata:
       m_Items: []
+  - m_Id: 15858835369709568
+    m_Localized: "Complete previous levels \nto unlock"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15858980064808960
+    m_Localized: Click to unlock!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
