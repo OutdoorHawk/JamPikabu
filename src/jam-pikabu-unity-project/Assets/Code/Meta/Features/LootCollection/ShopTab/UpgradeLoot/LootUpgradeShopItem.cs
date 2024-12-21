@@ -160,7 +160,7 @@ namespace Code.Meta.Features.LootCollection.ShopTab
                 return;
             }
 
-            int goldAmount = _gameplayCurrencyService.GetCurrencyOfType(_upgradePrice.CurrencyType);
+            int goldAmount = _gameplayCurrencyService.GetCurrencyOfType(_upgradePrice.CurrencyType,false);
 
             if (goldAmount >= _upgradePrice.Amount)
                 SetCanUpgrade();
@@ -175,7 +175,6 @@ namespace Code.Meta.Features.LootCollection.ShopTab
             RatingTo.DisableElement();
             RatingArrow.DisableElement();
             UpgradeButton.DisableElement();
-            UpgradeButton.interactable = false;
         }
 
         private void SetMaxLevelReached()
@@ -189,6 +188,7 @@ namespace Code.Meta.Features.LootCollection.ShopTab
             UpgradeButton.EnableElement();
             RatingTo.EnableElement();
             RatingArrow.EnableElement();
+            UpgradeButton.interactable = false;
         }
 
         private void SetCanUpgrade()

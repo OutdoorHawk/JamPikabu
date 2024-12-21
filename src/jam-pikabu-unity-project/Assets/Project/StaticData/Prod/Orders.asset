@@ -20,7 +20,7 @@ MonoBehaviour:
         CurrencyType: 1
         Amount: 50
       MinMaxDayToUnlock: {x: 0, y: 0}
-      Tag: 16
+      Tag: 4
       MinMaxNeedAmount: {x: 4, y: 8}
       MinMaxGoodIngredients: {x: 3, y: 5}
       MinMaxBadIngredients: {x: 4, y: 5}

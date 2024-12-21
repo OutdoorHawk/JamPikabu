@@ -85,7 +85,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
             Vector3 endPosition = GetEndPosition(parameters); // конечная точка (в глобальных координатах)
             float flightDuration = _flyDuration; // длительность полета к финальной позиции
             float scatterDuration = _scatterDuration; // длительность разлета
-            float textFadeDuration = 0.65f; // длительность разлета
+            float textFadeDuration = 0.75f; // длительность разлета
             float spreadRange = 10f; // радиус разлета
             
             Sequence animationSequence = DOTween.Sequence();
@@ -141,9 +141,9 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
         private async UniTaskVoid TextAnimation(float textFadeDuration)
         {
             _text.alpha = 1;
-            float movePosY = _text.transform.localPosition.y - 10;
+            float movePosY = _text.transform.localPosition.y - 30;
             _text.transform.DOLocalMoveY(movePosY, textFadeDuration*2);
-            await DelaySeconds(textFadeDuration, _text.destroyCancellationToken);
+            await DelaySeconds(0.2f, _text.destroyCancellationToken);
             _text.DOFade(0, textFadeDuration);
         }
 

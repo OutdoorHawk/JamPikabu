@@ -48,13 +48,17 @@ namespace Code.Gameplay.Features.Currency.Service
             Holder = null;
         }
 
-        public int GetCurrencyOfType(CurrencyTypeId typeId)
+        public int GetCurrencyOfType(CurrencyTypeId typeId, bool applyWithdraw = true)
         {
             CurrencyCount currency = GetCurrencyOfTypeInternal(typeId);
 
             if (currency == null)
                 return 0;
-            return currency.Amount - currency.Withdraw;
+
+            if (applyWithdraw)
+                return currency.Amount - currency.Withdraw;
+            else
+                return currency.Amount;
         }
 
         public void UpdateCurrencyAmount(int newAmount, int withdraw, CurrencyTypeId typeId)
@@ -63,10 +67,10 @@ namespace Code.Gameplay.Features.Currency.Service
                 return;
 
             CurrencyCount currency = GetCurrencyOfTypeInternal(typeId);
-            
+
             if (currency == null)
                 return;
-            
+
             bool changed = false;
 
             if (currency.Withdraw != withdraw)

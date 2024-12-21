@@ -10,7 +10,7 @@ namespace Code.Gameplay.Features.Currency.Service
         void OnConfigsInitInitComplete();
         void RegisterHolder(CurrencyHolder currencyHolder);
         void UnregisterHolder(CurrencyHolder currencyHolder);
-        int GetCurrencyOfType(CurrencyTypeId typeId);
+        int GetCurrencyOfType(CurrencyTypeId typeId, bool applyWithdraw = true);
         void UpdateCurrencyAmount(int newAmount, int withdraw, CurrencyTypeId typeId);
         void Cleanup();
         void InitCurrency();
