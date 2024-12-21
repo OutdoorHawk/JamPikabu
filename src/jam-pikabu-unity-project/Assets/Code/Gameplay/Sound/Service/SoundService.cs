@@ -78,7 +78,7 @@ namespace Code.Gameplay.Sound.Service
 
         public AudioClip GetCurrentMusicClip()
         {
-            return GetCurrentMusicClipInternal();
+            return _mainSoundContainer.MusicSource.clip;
         }
 
         public float GetVolumeForChannel(SoundVolumeTypeId channelType)

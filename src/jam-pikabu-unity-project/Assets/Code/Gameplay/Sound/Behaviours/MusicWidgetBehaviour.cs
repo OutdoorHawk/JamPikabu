@@ -1,4 +1,6 @@
 ﻿using Code.Gameplay.Sound.Service;
+using Code.Meta.Features.Days.Configs;
+using Code.Meta.Features.Days.Service;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,15 +15,18 @@ namespace Code.Gameplay.Sound.Behaviours
         [SerializeField] private TMP_Text _songName;
 
         private ISoundService _soundService;
+        private IDaysService _daysService;
 
         [Inject]
-        private void Construct(ISoundService soundService)
+        private void Construct(ISoundService soundService, IDaysService daysService)
         {
+            _daysService = daysService;
             _soundService = soundService;
         }
 
         private void Start()
         {
+            InitBossState();
             _next.onClick.AddListener(NextSong);
             _previous.onClick.AddListener(PreviousSong);
             _soundService.OnSongUpdated += UpdateSongName;
@@ -33,6 +38,19 @@ namespace Code.Gameplay.Sound.Behaviours
             _next.onClick.RemoveListener(NextSong);
             _previous.onClick.RemoveListener(PreviousSong);
             _soundService.OnSongUpdated -= UpdateSongName;
+        }
+
+        private void InitBossState()
+        {
+            DayData dayData = _daysService.GetDayData();
+            if (dayData == null)
+                return;
+
+            if (dayData.IsBossDay)
+            {
+                _next.interactable = false;
+                _previous.interactable = false;
+            }
         }
 
         private void UpdateSongName()
