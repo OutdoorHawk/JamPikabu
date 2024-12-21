@@ -10,6 +10,7 @@ namespace Code.Meta.Features.Days.Service
         event Action OnEnterRoundPreparation;
         event Action OnDayBegin;
         event Action OnDayComplete;
+        List<DayStarData> DayStarsData { get; }
         int CurrentDay { get; }
         int MaxDays { get; }
         void InitializeDays(IEnumerable<DayProgressData> daysProgress);
@@ -28,7 +29,5 @@ namespace Code.Meta.Features.Days.Service
         bool CheckDayUnlocked(int dayId);
         DayData GetDayData();
         DayData GetDayData(int currentDay);
-        DayStarsSetup GetDayStarData();
-        DayStarsSetup GetDayStarData(int currentDay);
     }
 }

@@ -8,6 +8,8 @@ using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
 using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Configs.Stars;
+using UnityEngine;
+using static Code.Meta.Features.Days.Configs.Stars.DayStarsStaticData;
 
 namespace Code.Meta.Features.Days.Service
 {
@@ -28,6 +30,8 @@ namespace Code.Meta.Features.Days.Service
 
         private readonly List<DayProgressData> _daysProgress = new();
         private readonly Dictionary<int, DayProgressData> _daysProgressByDayId = new();
+        
+        public List<DayStarData> DayStarsData { get; } = new(3);
 
         public int CurrentDay => _currentDay;
         public int MaxDays => _staticDataService.GetStaticData<DaysStaticData>().Configs.Count;
@@ -99,10 +103,10 @@ namespace Code.Meta.Features.Days.Service
                 .AddRoundDuration(roundDuration)
                 ;
 
-            if (_currentDayData.IsBossDay)
-            {
+            if (_currentDayData.IsBossDay) 
                 _soundService.PlayMusic(SoundTypeId.SpecialGameplayMusic);
-            }
+
+            InitStars();
 
             OnDayBegin?.Invoke();
         }
@@ -171,6 +175,25 @@ namespace Code.Meta.Features.Days.Service
         private DayData GetDayDataInternal(int currentDay)
         {
             return DaysStaticData.GetDayData(currentDay);
+        }
+
+        private void InitStars()
+        {
+            DayStarsData.Clear();
+            
+            DayStarsSetup dayStarsSetup = DayStarsStaticData.GetDayStarsData(_currentDayData.Id);
+            int ratingNeedAll = dayStarsSetup.RatingNeedAll;
+            float[] starsFactorSetup = DayStarsStaticData.StarsFactorSetup;
+
+            for (int i = 0; i < starsFactorSetup.Length; i++)
+            {
+                var dayStarData = new DayStarData
+                {
+                    RatingAmountNeed = Mathf.RoundToInt(ratingNeedAll * starsFactorSetup[i])
+                };
+                
+                DayStarsData.Add(dayStarData); 
+            }
         }
     }
 }

@@ -14,208 +14,125 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Configs:
   - Id: 1
-    Stars:
-    - RatingAmountNeed: 1
-    - RatingAmountNeed: 5
-    - RatingAmountNeed: 50
+    RatingNeedAll: 45
     AverageMinRatingPerDay: 38.5
     AverageMaxRatingPerDay: 202.5
   - Id: 2
-    Stars:
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 58
-    AverageMaxRatingPerDay: 222
+    RatingNeedAll: 50
+    AverageMinRatingPerDay: 61
+    AverageMaxRatingPerDay: 225
   - Id: 3
-    Stars:
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
+    RatingNeedAll: 60
     AverageMinRatingPerDay: 47.5
     AverageMaxRatingPerDay: 211.5
   - Id: 4
-    Stars:
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 77.5
-    AverageMaxRatingPerDay: 241.5
+    RatingNeedAll: 80
+    AverageMinRatingPerDay: 59.5
+    AverageMaxRatingPerDay: 223.5
   - Id: 5
-    Stars:
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
+    RatingNeedAll: 100
     AverageMinRatingPerDay: 109
     AverageMaxRatingPerDay: 273
   - Id: 6
-    Stars:
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 88.75
-    AverageMaxRatingPerDay: 252.75
+    RatingNeedAll: 0
+    AverageMinRatingPerDay: 41.5
+    AverageMaxRatingPerDay: 205.5
   - Id: 7
-    Stars:
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
+    RatingNeedAll: 0
+    AverageMinRatingPerDay: 117.75
+    AverageMaxRatingPerDay: 322.75
+  - Id: 8
+    RatingNeedAll: 0
+    AverageMinRatingPerDay: 116.625
+    AverageMaxRatingPerDay: 321.625
+  - Id: 9
+    RatingNeedAll: 0
     AverageMinRatingPerDay: 115.5
     AverageMaxRatingPerDay: 320.5
-  - Id: 8
-    Stars:
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 117.75
-    AverageMaxRatingPerDay: 322.75
-  - Id: 9
-    Stars:
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 117.75
-    AverageMaxRatingPerDay: 322.75
   - Id: 10
-    Stars:
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 220.375
-    AverageMaxRatingPerDay: 425.375
+    RatingNeedAll: 0
+    AverageMinRatingPerDay: 223.75
+    AverageMaxRatingPerDay: 428.75
   - Id: 11
-    Stars:
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 196.75
-    AverageMaxRatingPerDay: 401.75
-  - Id: 12
-    Stars:
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 218.125
-    AverageMaxRatingPerDay: 423.125
-  - Id: 13
-    Stars:
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 217
-    AverageMaxRatingPerDay: 422
-  - Id: 14
-    Stars:
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
+    RatingNeedAll: 0
     AverageMinRatingPerDay: 197.875
     AverageMaxRatingPerDay: 402.875
+  - Id: 12
+    RatingNeedAll: 0
+    AverageMinRatingPerDay: 222.625
+    AverageMaxRatingPerDay: 427.625
+  - Id: 13
+    RatingNeedAll: 0
+    AverageMinRatingPerDay: 219.25
+    AverageMaxRatingPerDay: 424.25
+  - Id: 14
+    RatingNeedAll: 0
+    AverageMinRatingPerDay: 196.75
+    AverageMaxRatingPerDay: 401.75
   - Id: 15
-    Stars:
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
+    RatingNeedAll: 0
     AverageMinRatingPerDay: 219.25
     AverageMaxRatingPerDay: 424.25
   - Id: 16
-    Stars:
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
+    RatingNeedAll: 0
+    AverageMinRatingPerDay: 194.5
+    AverageMaxRatingPerDay: 399.5
+  - Id: 17
+    RatingNeedAll: 0
     AverageMinRatingPerDay: 196.75
     AverageMaxRatingPerDay: 401.75
-  - Id: 17
-    Stars:
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
+  - Id: 18
+    RatingNeedAll: 0
     AverageMinRatingPerDay: 197.875
     AverageMaxRatingPerDay: 402.875
-  - Id: 18
-    Stars:
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
+  - Id: 19
+    RatingNeedAll: 0
+    AverageMinRatingPerDay: 221.5
+    AverageMaxRatingPerDay: 426.5
+  - Id: 20
+    RatingNeedAll: 0
+    AverageMinRatingPerDay: 195.625
+    AverageMaxRatingPerDay: 400.625
+  - Id: 21
+    RatingNeedAll: 0
+    AverageMinRatingPerDay: 219.25
+    AverageMaxRatingPerDay: 424.25
+  - Id: 22
+    RatingNeedAll: 0
+    AverageMinRatingPerDay: 222.625
+    AverageMaxRatingPerDay: 427.625
+  - Id: 23
+    RatingNeedAll: 0
+    AverageMinRatingPerDay: 220.375
+    AverageMaxRatingPerDay: 425.375
+  - Id: 24
+    RatingNeedAll: 0
+    AverageMinRatingPerDay: 222.625
+    AverageMaxRatingPerDay: 427.625
+  - Id: 25
+    RatingNeedAll: 0
+    AverageMinRatingPerDay: 222.625
+    AverageMaxRatingPerDay: 427.625
+  - Id: 26
+    RatingNeedAll: 0
     AverageMinRatingPerDay: 196.75
     AverageMaxRatingPerDay: 401.75
-  - Id: 19
-    Stars:
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 0
-    AverageMaxRatingPerDay: 0
-  - Id: 20
-    Stars:
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 0
-    AverageMaxRatingPerDay: 0
-  - Id: 21
-    Stars:
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 0
-    AverageMaxRatingPerDay: 0
-  - Id: 22
-    Stars:
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 0
-    AverageMaxRatingPerDay: 0
-  - Id: 23
-    Stars:
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 0
-    AverageMaxRatingPerDay: 0
-  - Id: 24
-    Stars:
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 0
-    AverageMaxRatingPerDay: 0
-  - Id: 25
-    Stars:
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 0
-    AverageMaxRatingPerDay: 0
-  - Id: 26
-    Stars:
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 0
-    AverageMaxRatingPerDay: 0
   - Id: 27
-    Stars:
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 0
-    AverageMaxRatingPerDay: 0
+    RatingNeedAll: 0
+    AverageMinRatingPerDay: 221.5
+    AverageMaxRatingPerDay: 426.5
   - Id: 28
-    Stars:
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 0
-    AverageMaxRatingPerDay: 0
+    RatingNeedAll: 0
+    AverageMinRatingPerDay: 219.25
+    AverageMaxRatingPerDay: 424.25
   - Id: 29
-    Stars:
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 43.125
-    AverageMaxRatingPerDay: 207.125
+    RatingNeedAll: 0
+    AverageMinRatingPerDay: 219.25
+    AverageMaxRatingPerDay: 424.25
+  StarsFactorSetup:
+  - 0.1
+  - 0.5
+  - 0.9
   DaysStaticData: {fileID: 11400000, guid: 982023cec6b56da45b241cd491aa6c9d, type: 2}
   LootProgression: {fileID: 11400000, guid: 3f49ce273dd3bcf48b79895914a39142, type: 2}
   LootSettings: {fileID: 11400000, guid: d1c851350d7d8b345b3c20ef3cde1e87, type: 2}

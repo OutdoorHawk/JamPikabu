@@ -95,6 +95,7 @@ namespace Code.Gameplay.Sound.Service
         public void OnEnterLoadProgress()
         {
             InitSoundService();
+            PlayCurrentSong().Forget();
         }
 
         public void OnExitLoadProgress()

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Currency.Service;
@@ -45,6 +46,11 @@ namespace Code.Gameplay.Features.Currency.Behaviours
             _daysService = daysService;
         }
 
+        private void Awake()
+        {
+            ResetToken();
+        }
+
         private void Start()
         {
             _daysService.OnDayBegin += Init;
@@ -59,9 +65,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours
 
         private void Init()
         {
-            DayData dayData = _daysService.GetDayData();
-            DayStarsSetup dayStarsSetup = _daysService.GetDayStarData(dayData.Id);
-            List<DayStarData> values = dayStarsSetup.Stars;
+            List<DayStarData> values = _daysService.DayStarsData;
 
             if (values == null || values.Count == 0)
             {
@@ -79,11 +83,11 @@ namespace Code.Gameplay.Features.Currency.Behaviours
         {
             _maxRatingInDay = values[^1].RatingAmountNeed;
             _items = Container.GetComponentsInChildren<RatingBarStarItem>();
-            DayStarsSetup dayStarsSetup = _daysService.GetDayStarData();
+            
             for (int i = 0; i < _items.Length; i++)
             {
                 RatingBarStarItem ratingBarStarItem = _items[i];
-                ratingBarStarItem.Init(dayStarsSetup.Stars[i]);
+                ratingBarStarItem.Init(values[i]);
             }
         }
 
@@ -99,11 +103,6 @@ namespace Code.Gameplay.Features.Currency.Behaviours
 
         private async UniTaskVoid RefreshDelayed()
         {
-            if (_maxRatingInDay == 0)
-                return;
-
-            ResetToken();
-
             const float currencyFlyDelay = 1.5f;
             await DelaySeconds(currencyFlyDelay, _barToken.Token);
 
@@ -113,6 +112,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours
             if (_currentPointsAmount == currentRating)
                 return;
 
+            ResetToken();
             RefreshFillBar(currentRating, BarFillImage, FillBarDuration);
             RefreshFillBar(currentRating, BarWithdrawImage, WithdrawDuration);
             RefreshText(currentRating);

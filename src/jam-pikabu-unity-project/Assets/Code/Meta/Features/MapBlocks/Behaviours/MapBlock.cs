@@ -82,7 +82,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
             for (int i = _mapBlockData.DaysRange.x - 1; i < _mapBlockData.DaysRange.y; i++)
             {
                 earnedStars += _daysService.GetStarsEarnedForDay(i);
-                maxStars += _daysService.GetDayStarData(i).Stars.Count;
+                maxStars += _daysService.DayStarsData.Count;
             }
 
             StarsEarned.text = $"{earnedStars}/{maxStars}";
