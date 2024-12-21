@@ -57,7 +57,7 @@ namespace Code.Gameplay.Features.Loot.Systems
             var orderView = hud.OrderViewBehaviour;
 
             await lootContainer.AnimateFlyToVat(_consumedLoot);
-            orderView.InitOrderFillProgress();
+           // orderView.InitOrderFillProgress();
             await DelaySeconds(0.25f, orderView.destroyCancellationToken);
 
             foreach (var loot in _consumedLoot)

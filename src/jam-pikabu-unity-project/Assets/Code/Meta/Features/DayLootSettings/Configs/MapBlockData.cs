@@ -21,10 +21,10 @@ namespace Code.Meta.Features.DayLootSettings.Configs
 
         public int StarsNeedToUnlock;
         public GameObject ViewPrefab;
-        [FoldoutGroup("Ingredients")] public LootTypeId UnlocksIngredient;
-        [FoldoutGroup("Ingredients")] public float FreeUpgradeTimeHours = 0.5f;
+        public LootTypeId UnlocksIngredient;
+         public float FreeUpgradeTimeHours = 0.5f;
 
-        [FoldoutGroup("Ingredients")] public List<LootTypeId> AvailableIngredients = new();
+        public List<LootTypeId> AvailableIngredients = new();
 
         public int FreeUpgradeTimeSeconds => (int)(FreeUpgradeTimeHours * 60 * 60);
 

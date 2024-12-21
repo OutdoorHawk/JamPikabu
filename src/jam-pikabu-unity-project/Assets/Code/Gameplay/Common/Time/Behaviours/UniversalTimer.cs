@@ -155,12 +155,7 @@ namespace Code.Gameplay.Common.Time.Behaviours
 
             if (min > 0)
             {
-                if (sec == 0)
-                {
-                    return ZString.Format(_timeFormat, min, _localizedMinutes, string.Empty, string.Empty);
-                }
-
-                return ZString.Format(_timeFormat, min, _localizedMinutes, sec, _localizedSeconds);
+                return ZString.Format(_timeFormat, min, _localizedMinutes, string.Empty, string.Empty);
             }
 
             return ZString.Format(_timeFormatOnlySeconds, sec, _localizedSeconds);
