@@ -32,9 +32,9 @@ namespace Code.Gameplay.Features.Loot.Factory
 
             switch (dayData.SceneId)
             {
-                case SceneTypeId.Level_1:
+                case SceneTypeId.GameplayScene:
                     return CreateSingleSpawner();
-                case SceneTypeId.Level_2:
+                case SceneTypeId.ConveyorGameplayScene:
                     return CreateConveyorSpawner();
                 default:
                     throw new ArgumentOutOfRangeException();

@@ -3,6 +3,7 @@ using Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation;
 using Code.Gameplay.Features.Currency.Factory;
 using Code.Gameplay.Features.Currency.Service;
 using Code.Gameplay.Windows.Factory;
+using Code.Meta.Features.Days.Service;
 using Entitas;
 using UnityEngine;
 
@@ -13,15 +14,17 @@ namespace Code.Gameplay.Features.Loot
         private readonly ICurrencyFactory _currencyFactory;
         private readonly IGameplayCurrencyService _gameplayCurrencyService;
         private readonly IUIFactory _uiFactory;
+        private readonly IDaysService _daysService;
         private readonly IGroup<GameEntity> _loot;
         private readonly Camera _camera;
 
         public GoldLootPickupSystem(GameContext context, ICurrencyFactory currencyFactory,
-            IGameplayCurrencyService gameplayCurrencyService, IUIFactory uiFactory)
+            IGameplayCurrencyService gameplayCurrencyService, IUIFactory uiFactory, IDaysService daysService)
         {
             _currencyFactory = currencyFactory;
             _gameplayCurrencyService = gameplayCurrencyService;
             _uiFactory = uiFactory;
+            _daysService = daysService;
 
             _camera = Camera.main;
 
@@ -38,7 +41,7 @@ namespace Code.Gameplay.Features.Loot
         {
             foreach (var entity in _loot)
             {
-                int goldAmount = entity.Gold;
+                int goldAmount = Mathf.RoundToInt(entity.Gold * _daysService.GetDayData().DayGoldFactor);
                 _currencyFactory.CreateAddCurrencyRequest(CurrencyTypeId.Gold, goldAmount, goldAmount);
 
                 Vector3 startPosition = GetWorldPositionForUI(entity.Transform.position);

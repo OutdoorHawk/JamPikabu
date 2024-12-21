@@ -41,14 +41,14 @@ namespace Code.Gameplay.Features.Customers.Service
         {
             DayData dayData = _daysService.GetDayData();
             if (dayData == null)
-            {
                 return _configs[_currentCustomerId];
-            }
+            
             if (dayData.IsBossDay)
-                return new CustomerSetup() {Sprite =  CustomerData.BossSprite};
+                return _configs.Find(setup => setup.IsBossCustomer);
 
             if (_currentCustomerId >= _configs.Count)
                 return _configs[^1];
+            
             return _configs[_currentCustomerId];
         }
 

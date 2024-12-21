@@ -99,7 +99,7 @@ namespace Code.Meta.Features.Days.Configs.Stars
 
                 if (config.Setup.Tag != OrderTag.None)
                 {
-                    if (dayData.AvailableOrderTags.Contains(config.Setup.Tag) == false)
+                    if (dayData.AvailableOrderTags.HasFlag(config.Setup.Tag) == false)
                         continue;
                 }
 

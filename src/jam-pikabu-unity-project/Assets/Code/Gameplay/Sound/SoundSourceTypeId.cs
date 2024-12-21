@@ -14,7 +14,7 @@
     {
         Unknown = 0,
         GameplayMusic = 1,
-        Ambience = 2,
+        SpecialGameplayMusic = 2,
         Base_Pistol_Shot = 3,
         Submachine_Uzi_Shot = 4,
         Nailgun_Shot = 5,

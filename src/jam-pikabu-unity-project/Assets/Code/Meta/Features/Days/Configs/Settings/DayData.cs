@@ -12,9 +12,9 @@ namespace Code.Meta.Features.Days.Configs
     public class DayData : BaseData
     {
         public bool IsBossDay;
-        public List<OrderTag> AvailableOrderTags;
+        public OrderTag AvailableOrderTags;
         [FoldoutGroup("Data")] public int OrdersAmount = 3;
         [FoldoutGroup("Data")] public float DayGoldFactor = 1;
-        [FoldoutGroup("Data")] public SceneTypeId SceneId = SceneTypeId.Level_1;
+        [FoldoutGroup("Data")] public SceneTypeId SceneId = SceneTypeId.GameplayScene;
     }
 }
