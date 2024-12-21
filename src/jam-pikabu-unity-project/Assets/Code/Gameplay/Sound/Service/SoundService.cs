@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Code.Common.Logger.Service;
@@ -14,7 +13,6 @@ using Code.Progress.Provider;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Audio;
 using Zenject;
 using static Code.Common.Extensions.AsyncGameplayExtensions;
 using Random = UnityEngine.Random;
@@ -24,7 +22,6 @@ namespace Code.Gameplay.Sound.Service
     public class SoundService : MonoBehaviour,
         ISoundService,
         IEnterMainMenuStateHandler,
-        IEnterGameLoopStateHandler,
         ILoadProgressStateHandler
     {
         private IStaticDataService _staticDataService;
@@ -38,11 +35,12 @@ namespace Code.Gameplay.Sound.Service
         private Coroutine _sfxFadeCoroutine;
 
         private Tweener _fadeTween;
+        private bool _firstInit = true;
 
         private const int MIN_MIXER_VOLUME = -60;
         private const int MAX_MIXER_VOLUME = 5;
         private const string MAIN_SOUND_CONTAINER = "Sound/MainSoundContainer";
-        
+
         public event Action OnSongUpdated;
 
         [Inject]
@@ -82,7 +80,7 @@ namespace Code.Gameplay.Sound.Service
         {
             return GetCurrentMusicClipInternal();
         }
-        
+
         public float GetVolumeForChannel(SoundVolumeTypeId channelType)
         {
             return GetSavedVolumeValueInternal(channelType);
@@ -101,15 +99,11 @@ namespace Code.Gameplay.Sound.Service
 
         public void OnExitLoadProgress()
         {
-            
         }
 
         public void OnEnterMainMenu()
         {
-        }
-
-        public void OnEnterGameLoop()
-        {
+            PlayCurrentSong().Forget();
         }
 
         #endregion
@@ -159,12 +153,16 @@ namespace Code.Gameplay.Sound.Service
             SetupPitch(setup, soundSource);
             soundSource.PlayOneShot(soundSource.clip, volumeScale: setup.Volume);
         }
-        
 
         public void StopSound(SoundTypeId typeId)
         {
             SoundConfig clip = _staticDataService.GetStaticData<SoundsStaticData>().GetSoundConfig(typeId);
             StopClip(clip);
+        }
+
+        public void PlayMusic(SoundTypeId typeId)
+        {
+            PlayMusicAsync(typeId).Forget();
         }
 
         public void StopMusic()
@@ -173,17 +171,15 @@ namespace Code.Gameplay.Sound.Service
         }
 
         #region Private Methods
-        
+
         private void InitSoundService()
         {
             _staticData = _staticDataService.GetStaticData<SoundsStaticData>();
             var go = _assetProvider.LoadAssetFromResources<MainSoundContainer>(MAIN_SOUND_CONTAINER);
             _mainSoundContainer = Instantiate(go, transform).GetComponent<MainSoundContainer>();
-            
+
             for (SoundVolumeTypeId i = 0; i < SoundVolumeTypeId.Count; i++)
                 LoadVolume(i);
-
-            PlayCurrentSong().Forget();
         }
 
         private void LoadVolume(SoundVolumeTypeId channelType)
@@ -191,7 +187,7 @@ namespace Code.Gameplay.Sound.Service
             float currentValue = GetSavedVolumeValueInternal(channelType);
             SetValueToChanel(channelType.ToString(), currentValue);
         }
-        
+
         /// <summary>
         /// Mixer volume
         /// </summary>
@@ -234,10 +230,10 @@ namespace Code.Gameplay.Sound.Service
 
         private void SetValueToChanel(string exposedParam, float value)
         {
-            float volume = value > 0 
-                ? Mathf.Log10(value) * 20 
+            float volume = value > 0
+                ? Mathf.Log10(value) * 20
                 : -80f;
-            
+
             _mainSoundContainer.Mixer.SetFloat(exposedParam, volume);
         }
 
@@ -264,7 +260,7 @@ namespace Code.Gameplay.Sound.Service
 
             return _mainSoundContainer.SfxList[0];
         }
-        
+
         private void PlayNormal(SoundConfig soundConfig, AudioSource soundSource = null)
         {
             SoundSetup soundSetup = soundConfig.Data;
@@ -312,11 +308,15 @@ namespace Code.Gameplay.Sound.Service
         private async UniTask PlayCurrentSong()
         {
             AudioClip currentClip = GetCurrentMusicClipInternal();
-            
+
             if (currentClip == null)
                 return;
-            
+
+            if (currentClip == _mainSoundContainer.MusicSource.clip)
+                return;
+
             await FadeToClip(_mainSoundContainer.MusicSource, currentClip);
+
             PlayGameplayMusic().Forget();
             OnSongUpdated?.Invoke();
         }
@@ -359,11 +359,26 @@ namespace Code.Gameplay.Sound.Service
             return currentClip;
         }
 
+        private async UniTask PlayMusicAsync(SoundTypeId typeId)
+        {
+            SoundConfig soundSetup = _staticDataService.GetStaticData<SoundsStaticData>().GetSoundConfig(typeId);
+
+            if (soundSetup == null)
+            {
+                PlayGameplayMusic().Forget();
+                return;
+            }
+
+            ResetMusicToken();
+            AudioClip audioClip = soundSetup.Data.Clips[Random.Range(0, soundSetup.Data.Clips.Length)];
+            await FadeToClip(_mainSoundContainer.MusicSource, audioClip);
+        }
+
         private async UniTask FadeToClip(AudioSource soundSource, AudioClip newClip)
         {
             const float fadeDuration = 0.2f;
             const string channelType = nameof(SoundVolumeTypeId.MusicAndAmbientVolume);
-      
+
             _fadeTween?.Kill();
             _fadeTween = _mainSoundContainer.Mixer.DOSetFloat(channelType, MIN_MIXER_VOLUME, fadeDuration);
             await DelaySeconds(fadeDuration, soundSource.GetCancellationTokenOnDestroy());
@@ -377,7 +392,7 @@ namespace Code.Gameplay.Sound.Service
         private async UniTaskVoid PlayGameplayMusic()
         {
             AudioSource soundSource = _mainSoundContainer.MusicSource;
-            ResetToken(soundSource.GetCancellationTokenOnDestroy());
+            ResetMusicToken();
 
             while (_gamePlayMusicToken.Token.IsCancellationRequested == false)
             {
@@ -386,12 +401,13 @@ namespace Code.Gameplay.Sound.Service
             }
         }
 
-        private void ResetToken(CancellationToken sourceDestroyToken)
+        private void ResetMusicToken()
         {
+            CancellationToken token = _mainSoundContainer.MusicSource.GetCancellationTokenOnDestroy();
             _gamePlayMusicToken?.Cancel();
-            _gamePlayMusicToken = CancellationTokenSource.CreateLinkedTokenSource(sourceDestroyToken);
+            _gamePlayMusicToken = CancellationTokenSource.CreateLinkedTokenSource(token);
         }
-        
+
         private SoundConfig GetSoundConfig(SoundTypeId soundTypeId)
         {
             return _staticData.GetSoundConfig(soundTypeId);

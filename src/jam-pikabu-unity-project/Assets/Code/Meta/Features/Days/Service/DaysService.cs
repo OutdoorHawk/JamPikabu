@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.RoundState.Factory;
+using Code.Gameplay.Sound;
+using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
 using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Configs.Stars;
@@ -17,6 +19,7 @@ namespace Code.Meta.Features.Days.Service
 
         private readonly IRoundStateFactory _roundStateFactory;
         private readonly IStaticDataService _staticDataService;
+        private readonly ISoundService _soundService;
 
         private List<DayData> _daysData;
         private DayData _currentDayData;
@@ -34,11 +37,13 @@ namespace Code.Meta.Features.Days.Service
         public DaysService
         (
             IRoundStateFactory roundStateFactory,
-            IStaticDataService staticDataService
+            IStaticDataService staticDataService,
+            ISoundService soundService
         )
         {
             _roundStateFactory = roundStateFactory;
             _staticDataService = staticDataService;
+            _soundService = soundService;
         }
 
         public void InitializeDays(IEnumerable<DayProgressData> daysProgress)
@@ -93,6 +98,11 @@ namespace Code.Meta.Features.Days.Service
             _roundStateFactory.CreateRoundStateController()
                 .AddRoundDuration(roundDuration)
                 ;
+
+            if (_currentDayData.IsBossDay)
+            {
+                _soundService.PlaySound(SoundTypeId.SpecialGameplayMusic);
+            }
 
             OnDayBegin?.Invoke();
         }

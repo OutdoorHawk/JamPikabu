@@ -15,11 +15,15 @@ namespace Code.Gameplay.Sound.Service
         void PreviousSong();
         AudioClip GetCurrentMusicClip();
         float GetVolumeForChannel(SoundVolumeTypeId channelType);
+        void OnEnterLoadProgress();
+        void OnExitLoadProgress();
+        void OnEnterMainMenu();
         void PlaySound(SoundTypeId typeId);
         void PlaySound(SoundTypeId typeId, AudioSource audioSource);
         void PlayOneShotSound(SoundTypeId soundTypeId, AudioSource audioSource);
         void PlayOneShotSound(SoundTypeId soundTypeId);
         void StopSound(SoundTypeId typeId);
+        void PlayMusic(SoundTypeId typeId);
         void StopMusic();
     }
 }

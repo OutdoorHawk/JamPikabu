@@ -40,6 +40,7 @@ namespace Code.Gameplay.Features.Customers.Service
         public CustomerSetup GetCustomerSetup()
         {
             DayData dayData = _daysService.GetDayData();
+            
             if (dayData == null)
                 return _configs[_currentCustomerId];
             
@@ -48,8 +49,9 @@ namespace Code.Gameplay.Features.Customers.Service
 
             if (_currentCustomerId >= _configs.Count)
                 return _configs[^1];
-            
-            return _configs[_currentCustomerId];
+
+            List<CustomerSetup> configsWithoutBoss = _configs.FindAll(setup => setup.IsBossCustomer == false);
+            return configsWithoutBoss[_currentCustomerId];
         }
 
         private void SetNewCustomer()
