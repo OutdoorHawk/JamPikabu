@@ -46,10 +46,11 @@ namespace Code.Gameplay.Features.Currency.Behaviours
 
         public void ResetReplenish()
         {
-            _replenishPlayed = false;
+            if (_replenishPlayed == false)
+                return;
             
+            _replenishPlayed = false;
             StarAnimator.SetTrigger(AnimationParameter.Reset.AsHash());
-            _replenishPlayed = true;
         }
     }
 }

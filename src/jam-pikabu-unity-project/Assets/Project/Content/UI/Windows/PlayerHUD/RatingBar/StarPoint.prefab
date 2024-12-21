@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Version: 300
   m_EffectMaterial: {fileID: 21939717441729078, guid: 17b17d6effbe14075a3bbdf1fda1f6e1,
     type: 2}
-  m_EffectFactor: 0
+  m_EffectFactor: 1
   m_Width: 1
   m_Softness: 0.5
   m_Color: {r: 0.37647063, g: 0.16470589, b: 0.023529414, a: 1}

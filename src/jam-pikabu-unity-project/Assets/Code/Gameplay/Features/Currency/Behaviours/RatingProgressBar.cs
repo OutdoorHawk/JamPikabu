@@ -34,6 +34,8 @@ namespace Code.Gameplay.Features.Currency.Behaviours
         private IDaysService _daysService;
         private IGameplayCurrencyService _gameplayCurrencyService;
         private CancellationTokenSource _barToken;
+        
+        private const float CurrencyFlyDelay = 1.4f;
 
         [Inject]
         private void Construct
@@ -103,8 +105,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours
 
         private async UniTaskVoid RefreshDelayed()
         {
-            const float currencyFlyDelay = 1.5f;
-            await DelaySeconds(currencyFlyDelay, _barToken.Token);
+            await DelaySeconds(CurrencyFlyDelay, _barToken.Token);
 
             int currentRating = _gameplayCurrencyService.GetCurrencyOfType(CurrencyTypeId.Plus, false);
             currentRating -= _gameplayCurrencyService.GetCurrencyOfType(CurrencyTypeId.Minus, false);
@@ -117,7 +118,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours
             RefreshFillBar(currentRating, BarWithdrawImage, WithdrawDuration);
             RefreshText(currentRating);
             _currentPointsAmount = currentRating;
-            UpdateItemsAnimation();
+            UpdateItemsAnimation().Forget();
         }
 
         private void RefreshFillBar(int currentRating, SlicedFilledImage filledImage, float duration)
@@ -136,10 +137,12 @@ namespace Code.Gameplay.Features.Currency.Behaviours
             ).Forget();
         }
 
-        private void UpdateItemsAnimation()
+        private async UniTaskVoid UpdateItemsAnimation()
         {
             foreach (RatingBarStarItem item in _items)
             {
+                await DelaySeconds(FillBarDuration/ _items.Length, _barToken.Token);
+                
                 if (_currentPointsAmount >= item.RatingAmount)
                 {
                     item.PlayReplenish();

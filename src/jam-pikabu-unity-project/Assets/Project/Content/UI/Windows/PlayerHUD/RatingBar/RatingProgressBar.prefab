@@ -345,7 +345,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: e42e97e3e2c568a4f8c029153bd2f948, type: 3}
   m_FillDirection: 0
-  m_FillAmount: 0.631
+  m_FillAmount: 0
   m_FillCenter: 1
   m_PixelsPerUnitMultiplier: 1
 --- !u!1 &5330090733366069256
