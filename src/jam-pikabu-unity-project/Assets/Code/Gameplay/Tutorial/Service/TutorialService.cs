@@ -183,6 +183,7 @@ namespace Code.Gameplay.Tutorial.Service
 
             _activeProcessor.source?.Cancel();
             tutorialProcessor.Finalization();
+
             MarkTutorialCompleted(tutorialSaveData);
             TryStartTutorial();
         }

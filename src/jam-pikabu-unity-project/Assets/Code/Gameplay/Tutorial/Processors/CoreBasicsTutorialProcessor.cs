@@ -9,6 +9,7 @@ using Code.Gameplay.Tutorial.Window;
 using Code.Gameplay.Windows;
 using Code.Infrastructure.DI.Installers;
 using Code.Infrastructure.States.GameStates.Game;
+using Code.Meta.Features.Days.Service;
 using Cysharp.Threading.Tasks;
 using Zenject;
 
@@ -18,6 +19,8 @@ namespace Code.Gameplay.Tutorial.Processors
     public class CoreBasicsTutorialProcessor : BaseTutorialProcessor
     {
         private IGameStateService _gameStateService;
+        private IDaysService _daysService;
+
         public override TutorialTypeId TypeId => TutorialTypeId.CoreBasics;
 
         private const int MESSAGE_1 = 1;
@@ -25,8 +28,9 @@ namespace Code.Gameplay.Tutorial.Processors
         private const int MESSAGE_3 = 3;
 
         [Inject]
-        private void Construct(IGameStateService gameStateService)
+        private void Construct(IGameStateService gameStateService, IDaysService daysService)
         {
+            _daysService = daysService;
             _gameStateService = gameStateService;
         }
 
@@ -42,7 +46,7 @@ namespace Code.Gameplay.Tutorial.Processors
 
         public override bool CanSkipTutorial()
         {
-            return false;
+            return _daysService.GetDaysProgress().Count > 0;
         }
 
         public override void Finalization()
@@ -70,6 +74,10 @@ namespace Code.Gameplay.Tutorial.Processors
 
             await tutorialWindow.AwaitForTapAnywhere(token);
             
+            _gameStateService.AskToSwitchState(GameStateTypeId.BeginDay);
+
+            await WaitForGameState(GameStateTypeId.BeginDay, token);
+            
             _gameStateService.AskToSwitchState(GameStateTypeId.RoundPreparation);
 
             await WaitForGameState(GameStateTypeId.RoundPreparation, token);
@@ -83,8 +91,6 @@ namespace Code.Gameplay.Tutorial.Processors
                     .ShowMessage(MESSAGE_3)
                     .AwaitForTapAnywhere(token)
                 ;
-            
-            
             
             var lootRect = hud.LootContainer.LootGrid.gameObject; //todo
         }

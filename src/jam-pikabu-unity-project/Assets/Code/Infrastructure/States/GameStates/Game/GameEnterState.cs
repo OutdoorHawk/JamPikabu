@@ -35,8 +35,8 @@ namespace Code.Infrastructure.States.GameStates.Game
         public override void Enter()
         {
             _mousePositionService.Initialize();
-            _gameStateHandlerService.OnEnterGameLoop();
             _stateMachine.Enter<GameLoopState>();
+            _gameStateHandlerService.OnEnterGameLoop();
           
         }
     }

@@ -88,10 +88,13 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
         private void InitLockedState()
         {
             LockedContent.DisableElement();
+            LockedByLevelsText.DisableElement();
+            LockedByStarsText.DisableElement();
 
             if (_mapMenuService.ChekMapBlockIsAvailableByStars(_mapBlockData) == false)
             {
                 LockedContent.EnableElement();
+                LockedByStarsText.EnableElement();
                 UpdateLockedStarsText();
                 return;
             }
