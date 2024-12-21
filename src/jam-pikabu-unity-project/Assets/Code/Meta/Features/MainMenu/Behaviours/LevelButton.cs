@@ -112,12 +112,12 @@ namespace Code.Meta.Features.MainMenu.Behaviours
 
         private void InitStars()
         {
-            CurrencyConfig config = _staticDataService
+            /*CurrencyConfig config = _staticDataService
                 .GetStaticData<CurrencyStaticData>()
                 .GetCurrencyConfig(CurrencyTypeId.Star);
 
             foreach (var star in _starIcons) 
-                star.sprite = config.Data.Icon;
+                star.sprite = config.Data.Icon;*/
 
             foreach (var star in Stars) 
                 star.DisableElement();

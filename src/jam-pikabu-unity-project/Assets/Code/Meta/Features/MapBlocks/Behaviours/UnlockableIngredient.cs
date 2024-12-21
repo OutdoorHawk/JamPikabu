@@ -18,6 +18,7 @@ using Code.Meta.Features.MainMenu.Service;
 using Code.Meta.Features.MainMenu.Windows;
 using Code.Meta.UI.Common.Replenish;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,10 +33,11 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
         public Button UnlockButton;
         public Button FreeUpgradeButton;
         public Image[] IngredientIcons;
-        public RectTransform FlyIconRect;
+        public RectTransform FlyToShopStartPosition;
         public TMP_Text ReadyToUnlockText;
         public Animator UnlockIngredientAnimator;
         public UniversalTimer UpgradeTimer;
+        public float UnlockMoveDuration = 0.6f;
 
         public LootTypeId UnlocksIngredient { get; private set; }
 
@@ -49,6 +51,10 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
         private IDaysService _daysService;
         private IMapMenuService _mapMenuService;
         private MapBlockData _mapBlockData;
+
+        private Image FillIcon => IngredientIcons[0];
+        private Image BigFlyIcon => IngredientIcons[1];
+        private Image GrayIcon => IngredientIcons[2];
 
         private LootProgressionStaticData LootData => _staticData.GetStaticData<LootProgressionStaticData>();
         private MapBlocksStaticData MapBlocksData => _staticData.GetStaticData<MapBlocksStaticData>();
@@ -147,6 +153,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
             UnlockIngredientAnimator.SetTrigger(AnimationParameter.Locked.AsHash());
             UnlockButton.EnableElement();
             UnlockButton.interactable = false;
+            BigFlyIcon.EnableElement();
         }
 
         private void InitReadyToUnlock(LootTypeId unlocksIngredient)
@@ -158,6 +165,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
             ReadyToUnlockText.EnableElement();
             UnlockIngredientAnimator.SetTrigger(AnimationParameter.Ready.AsHash());
             ReadyToUnlock = true;
+            BigFlyIcon.EnableElement();
         }
 
         private void InitFreeUpgradeState(LootTypeId type)
@@ -183,12 +191,15 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
 
         private void ResetAll()
         {
+            BigFlyIcon.DisableElement();
+            FillIcon.DisableElement();
+            GrayIcon.DisableElement();
             ReadyToUnlock = false;
             gameObject.DisableElement();
             FreeUpgradeButton.DisableElement();
             UnlockButton.DisableElement();
             ReadyToUnlockText.DisableElement();
-            UpgradeTimer.DisableElement();
+            UpgradeTimer.TimerText.text = "00:00";
             UpgradeTimer.StopTimer();
             _fillToken?.Cancel();
             FreeUpgradeButton.interactable = false;
@@ -205,24 +216,26 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
 
         private void InitMaxLevelReached()
         {
-            UpgradeTimer.EnableElement();
+            GrayIcon.EnableElement();
             UpgradeTimer.TimerText.text = "Max";
-            IngredientIcons[0].fillAmount = 1;
+            FillIcon.fillAmount = 1;
         }
 
         private void InitReadyToFreeUpgrade()
         {
+            GrayIcon.EnableElement();
+            FillIcon.EnableElement();
             FreeUpgradeButton.interactable = true;
             UnlockIngredientAnimator.SetTrigger(AnimationParameter.Upgrade.AsHash());
-            UpgradeTimer.DisableElement();
             UpgradeTimer.StopTimer();
             FreeUpgradeButton.EnableElement();
-            IngredientIcons[0].fillAmount = 1;
+            FillIcon.fillAmount = 1;
         }
 
         private void InitWaitUpgradeIdle()
         {
-            UpgradeTimer.EnableElement();
+            GrayIcon.EnableElement();
+            FillIcon.EnableElement();
             UpgradeTimer.StartTimer(GetTimeFunc);
             UpdateFillAmountAsync().Forget();
         }
@@ -232,7 +245,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
             _fillToken?.Cancel();
             _fillToken = CreateLinkedTokenSource(destroyCancellationToken);
 
-            Image fillImage = IngredientIcons[0];
+            Image fillImage = FillIcon;
             MapBlockData mapBlockData = MapBlocksData.GetMapBlockDataByLinkedIngredient(UnlocksIngredient);
 
             float maxWaitTimeSeconds = mapBlockData.FreeUpgradeTimeHours * 60 * 60;
@@ -262,7 +275,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
         {
             FreeUpgradeButton.interactable = false;
             UnlockIngredientAnimator.SetTrigger(AnimationParameter.Idle.AsHash());
-            MoveIngredientToShop(from: IngredientIcons[0].transform.position);
+            MoveIngredientToShop(from: FillIcon.transform.position);
 
             CreateMetaEntity.Empty()
                 .With(x => x.isUpgradeLootRequest = true)
@@ -273,14 +286,39 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
 
         private async UniTaskVoid CollectNewIngredient()
         {
-            MoveIngredientToShop(from: FlyIconRect.transform.position);
-            await DelaySeconds(0.5f, destroyCancellationToken);
-            
-            if (_lootCollectionService.CanUpgradeForFree(UnlocksIngredient)) 
-                await UnlockIngredientAnimator.WaitForAnimationCompleteAsync(AnimationParameter.Collect.AsHash(), destroyCancellationToken);
-            else
+            MoveIngredientToShop(from: FlyToShopStartPosition.transform.position);
+
+            if (_lootCollectionService.CanUpgradeForFree(UnlocksIngredient) == false)
+            {
                 gameObject.DisableElement();
-            
+                return;
+            }
+
+            UnlockIngredientAnimator.WaitForAnimationCompleteAsync(AnimationParameter.Collect.AsHash(), destroyCancellationToken).Forget();
+
+            await DelaySeconds(0.5f, destroyCancellationToken);
+
+            BigFlyIcon.rectTransform
+                .DOScale(1, UnlockMoveDuration)
+                .SetLink(gameObject);
+
+            await BigFlyIcon.rectTransform
+                    .DOMove(FillIcon.transform.position, UnlockMoveDuration)
+                    .SetLink(gameObject)
+                    .AsyncWaitForCompletion()
+                ;
+
+            GrayIcon.EnableElement();
+            BigFlyIcon.rectTransform.DisableElement();
+            FillIcon.EnableElement();
+            FillIcon.fillAmount = 1;
+
+            await FillIcon
+                    .DOFillAmount(0, 0.75f)
+                    .SetLink(gameObject)
+                    .AsyncWaitForCompletion()
+                ;
+
             await UniTask.Yield(destroyCancellationToken);
             UnlockIngredient();
         }
@@ -303,7 +341,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
             {
                 Count = 1,
                 AnimationName = "UnlockLoot",
-                Sprite = IngredientIcons[1].sprite,
+                Sprite = BigFlyIcon.sprite,
                 EndPosition = shopButton.position,
                 StartPosition = from,
                 LinkObject = gameObject,

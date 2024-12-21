@@ -12,6 +12,7 @@ namespace Code.Gameplay.Common.Time.Behaviours
     public class UniversalTimer : MonoBehaviour
     {
         [SerializeField] private TMP_Text _timerText;
+        [SerializeField] private TimeFormat _format;
 
         private CancellationTokenSource _timerToken = new();
         private ILocalizationService _localizationService;
@@ -73,7 +74,7 @@ namespace Code.Gameplay.Common.Time.Behaviours
             double time = getTime.Invoke();
             while (time > 0)
             {
-                _timerText.text = GetLocalizedTime((int)time);
+                _timerText.text = FormatTime((int)time);
                 await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: _timerToken.Token);
                 time = getTime.Invoke();
             }
@@ -88,7 +89,7 @@ namespace Code.Gameplay.Common.Time.Behaviours
             int time = getTime.Invoke();
             while (time > 0)
             {
-                _timerText.text = GetLocalizedTime(time);
+                _timerText.text = FormatTime(time);
                 await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: _timerToken.Token);
                 time = getTime.Invoke();
             }
@@ -106,6 +107,25 @@ namespace Code.Gameplay.Common.Time.Behaviours
         private void OnDestroy()
         {
             _timerToken?.Cancel();
+        }
+
+        private string FormatTime(int time)
+        {
+            return _format switch
+            {
+                TimeFormat.LocalizedTime => GetLocalizedTime(time),
+                TimeFormat.MMSS => GetTimeInMinutesAndSeconds(time),
+                _ => throw new ArgumentOutOfRangeException()
+            };
+        }
+        
+        private string GetTimeInMinutesAndSeconds(int time)
+        {
+            time = Mathf.Max(0, time);
+            int minutes = time / 60;
+            int seconds = time % 60;
+            
+            return $"{minutes:D2}:{seconds:D2}";
         }
 
         private string GetLocalizedTime(int time)
