@@ -11,13 +11,13 @@ PrefabInstance:
     - target: {fileID: 2289340064695817078, guid: a1321f7c3c4e27340bf725c10179a593,
         type: 3}
       propertyPath: m_Type
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2289340064695817078, guid: a1321f7c3c4e27340bf725c10179a593,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300024, guid: 1eaee135ce037439d925cee5e41ce026,
+      objectReference: {fileID: 21300000, guid: 3146224ecfa10aa49b5146036a9c40cf,
         type: 3}
     - target: {fileID: 2409952154061751910, guid: a1321f7c3c4e27340bf725c10179a593,
         type: 3}
@@ -127,7 +127,7 @@ PrefabInstance:
     - target: {fileID: 3607257478831258093, guid: a1321f7c3c4e27340bf725c10179a593,
         type: 3}
       propertyPath: m_Name
-      value: ShopButton Variant
+      value: ShopButton
       objectReference: {fileID: 0}
     - target: {fileID: 3607257478831258093, guid: a1321f7c3c4e27340bf725c10179a593,
         type: 3}
@@ -195,7 +195,8 @@ PrefabInstance:
       value: GUID:257c2cea6ea3f7644b70dd1457151e70
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2188149419232765938, guid: a1321f7c3c4e27340bf725c10179a593, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2409952154061751910, guid: a1321f7c3c4e27340bf725c10179a593,
         type: 3}
