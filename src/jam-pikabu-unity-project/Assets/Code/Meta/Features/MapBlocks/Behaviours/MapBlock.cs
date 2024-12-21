@@ -20,7 +20,8 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
         public UnlockableIngredient UnlockableIngredient;
         public AvailableIngredientsView AvailableIngredients;
         public GameObject LockedContent;
-        public TMP_Text LockedText;
+        public TMP_Text LockedByStarsText;
+        public TMP_Text LockedByLevelsText;
 
         private IDaysService _daysService;
         private ILootCollectionService _lootCollectionService;
@@ -57,7 +58,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
 
         public void OnLanguageChanged(Locale locale)
         {
-            UpdateLockedText();
+            UpdateLockedStarsText();
         }
 
         public void InitData(MapBlockData mapBlockData)
@@ -88,20 +89,27 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
         {
             LockedContent.DisableElement();
 
-            if (_mapMenuService.MapBlockIsAvailable(_mapBlockData))
+            if (_mapMenuService.ChekMapBlockIsAvailableByStars(_mapBlockData) == false)
+            {
+                LockedContent.EnableElement();
+                UpdateLockedStarsText();
                 return;
-            
-            LockedContent.EnableElement();
-            UpdateLockedText();
+            }
+
+            if (_mapMenuService.CheckMapBlockIsAvailableByLevels(_mapBlockData) == false)
+            {
+                LockedContent.EnableElement();
+                LockedByLevelsText.EnableElement();
+            }
         }
 
-        private void UpdateLockedText()
+        private void UpdateLockedStarsText()
         {
             if (_mapBlockData == null)
                 return;
             
             int diff = _mapBlockData.StarsNeedToUnlock - _daysService.GetAllEarnedStars();
-            LockedText.text = _localizationService["MAIN MENU/STARS_NEED_TO_UNLOCK", diff.ToString()];
+            LockedByStarsText.text = _localizationService["MAIN MENU/STARS_NEED_TO_UNLOCK", diff.ToString()];
         }
     }
 }

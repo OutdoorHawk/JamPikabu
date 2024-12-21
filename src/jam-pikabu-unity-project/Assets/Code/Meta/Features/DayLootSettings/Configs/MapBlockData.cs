@@ -34,5 +34,6 @@ namespace Code.Meta.Features.DayLootSettings.Configs
             int lastDay = Id * DAYS_IN_BLOCK;
             return new Vector2Int(firstDay, lastDay);
         }
+        
     }
 }

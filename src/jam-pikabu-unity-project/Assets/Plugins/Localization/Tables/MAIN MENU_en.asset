@@ -36,22 +36,8 @@ MonoBehaviour:
     m_Localized: Congratulations
     m_Metadata:
       m_Items: []
-  - m_Id: 6165241520148480
-    m_Localized: "You\u2019ve completed all the levels!\n\n<color=red>ENDLESS MODE</color>
-      unlocked.\n\nNew enemies, weapons, and levels are coming soon. Stay tuned for
-      updates!"
-    m_Metadata:
-      m_Items: []
   - m_Id: 6165266056826880
     m_Localized: Got it
-    m_Metadata:
-      m_Items: []
-  - m_Id: 6172227049574400
-    m_Localized: Endless Mode
-    m_Metadata:
-      m_Items: []
-  - m_Id: 6523363661139968
-    m_Localized: 'BEST SCORE:'
     m_Metadata:
       m_Items: []
   - m_Id: 6530706759176192
@@ -67,6 +53,12 @@ MonoBehaviour:
       - rid: 2194680340899692627
   - m_Id: 15858980064808960
     m_Localized: Click to unlock!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16157142335836160
+    m_Localized: 'Complete previous levels,
+
+      to unlock!'
     m_Metadata:
       m_Items: []
   references:

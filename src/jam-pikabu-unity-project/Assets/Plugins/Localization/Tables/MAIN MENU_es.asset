@@ -36,22 +36,8 @@ MonoBehaviour:
     m_Localized: "\xA1Felicidades!"
     m_Metadata:
       m_Items: []
-  - m_Id: 6165241520148480
-    m_Localized: "\xA1Has completado todos los niveles!\n\n<color=red>MODO INFINITO</color>
-      desbloqueado.\n\nNuevos enemigos, armas y niveles llegar\xE1n pronto. \xA1Estate
-      atento a las actualizaciones!"
-    m_Metadata:
-      m_Items: []
   - m_Id: 6165266056826880
     m_Localized: Entendido
-    m_Metadata:
-      m_Items: []
-  - m_Id: 6172227049574400
-    m_Localized: Modo Infinito
-    m_Metadata:
-      m_Items: []
-  - m_Id: 6523363661139968
-    m_Localized: "MEJOR PUNTUACI\xD3N:"
     m_Metadata:
       m_Items: []
   - m_Id: 6530706759176192

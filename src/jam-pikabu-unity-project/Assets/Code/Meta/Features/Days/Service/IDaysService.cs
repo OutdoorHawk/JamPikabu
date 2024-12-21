@@ -25,6 +25,7 @@ namespace Code.Meta.Features.Days.Service
         void DayComplete();
         float GetRoundDuration();
         bool CheckAllDaysComplete();
+        bool CheckDayUnlocked(int dayId);
         DayData GetDayData();
         DayData GetDayData(int currentDay);
         DayStarsSetup GetDayStarData();

@@ -56,18 +56,33 @@ namespace Code.Meta.Features.MainMenu.Service
         public bool MapBlockIsAvailable(int dayId)
         {
             MapBlockData mapBlockData = BlocksStaticData.GetMapBlockDataByDayId(dayId);
-            return MapBlockIsAvailable(mapBlockData);
+            bool availableByStars = ChekMapBlockIsAvailableByStars(mapBlockData);
+            availableByStars |= CheckMapBlockIsAvailableByLevels(mapBlockData);
+            return availableByStars;
         }
 
-        public bool MapBlockIsAvailable(MapBlockData mapBlockData)
+        public bool ChekMapBlockIsAvailableByStars(MapBlockData mapBlockData)
         {
             int starsEarned = _daysService.GetAllEarnedStars();
-            
+
             if (mapBlockData == null)
                 return false;
 
             if (starsEarned >= mapBlockData.StarsNeedToUnlock)
                 return true;
+
+            return false;
+        }
+
+        public bool CheckMapBlockIsAvailableByLevels(MapBlockData mapBlockData)
+        {
+            for (int i = mapBlockData.DaysRange.x - 1; i < mapBlockData.DaysRange.y; i++)
+            {
+                bool dayUnlocked = _daysService.CheckDayUnlocked(i);
+                
+                if (dayUnlocked)
+                    return true;
+            }
 
             return false;
         }

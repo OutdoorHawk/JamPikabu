@@ -125,6 +125,19 @@ namespace Code.Meta.Features.Days.Service
             return _currentDay >= MaxDays;
         }
 
+        public bool CheckDayUnlocked(int dayId)
+        {
+            int previousDay = dayId - 1;
+
+            if (previousDay == 0)
+                return true;
+
+            if (_daysProgressByDayId.TryGetValue(previousDay, out DayProgressData _) == false)
+                return false;
+
+            return true;
+        }
+
         public DayData GetDayData()
         {
             return _currentDayData;

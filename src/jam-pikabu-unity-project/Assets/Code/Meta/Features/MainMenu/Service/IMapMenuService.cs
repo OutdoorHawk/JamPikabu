@@ -14,6 +14,7 @@ namespace Code.Meta.Features.MainMenu.Service
         SceneTypeId GetSelectedScene();
         MapBlockData GetMapBlockData(int currentDay);
         bool MapBlockIsAvailable(int dayId);
-        bool MapBlockIsAvailable(MapBlockData mapBlockData);
+        bool ChekMapBlockIsAvailableByStars(MapBlockData mapBlockData);
+        bool CheckMapBlockIsAvailableByLevels(MapBlockData mapBlockData);
     }
 }

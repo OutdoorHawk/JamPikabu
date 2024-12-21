@@ -31,20 +31,8 @@ MonoBehaviour:
     m_Key: M_GAME_COMPLETE_TITLE
     m_Metadata:
       m_Items: []
-  - m_Id: 6165241520148480
-    m_Key: M_GAME_COMPLETE_TEXT
-    m_Metadata:
-      m_Items: []
   - m_Id: 6165266056826880
     m_Key: M_GAME_COMPLETE_EXIT
-    m_Metadata:
-      m_Items: []
-  - m_Id: 6172227049574400
-    m_Key: M_ENDLESS_PLAY
-    m_Metadata:
-      m_Items: []
-  - m_Id: 6523363661139968
-    m_Key: M_ENDLESS_BEST
     m_Metadata:
       m_Items: []
   - m_Id: 6530706759176192
@@ -57,6 +45,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 15858980064808960
     m_Key: PRESS_TO_UNLOCK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16157142335836160
+    m_Key: LEVELS_NEED_TO_UNLOCK
     m_Metadata:
       m_Items: []
   m_Metadata:

@@ -21,30 +21,32 @@ MonoBehaviour:
     FreeUpgradeTimeHours: 0
     AvailableIngredients: 06000000030000000400000002000000
   - Id: 2
-    StarsNeedToUnlock: 9
+    StarsNeedToUnlock: 6
     ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
       type: 3}
     UnlocksIngredient: 5
     FreeUpgradeTimeHours: 0.5
     AvailableIngredients: 06000000030000000400000005000000
   - Id: 3
-    StarsNeedToUnlock: 18
+    StarsNeedToUnlock: 10
     ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
       type: 3}
     UnlocksIngredient: 11
     FreeUpgradeTimeHours: 0
     AvailableIngredients: 060000000300000004000000050000000b000000
   - Id: 4
-    StarsNeedToUnlock: 27
+    StarsNeedToUnlock: 13
     ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
       type: 3}
     UnlocksIngredient: 12
     FreeUpgradeTimeHours: 0
     AvailableIngredients: 0300000004000000050000000b0000000c000000
   - Id: 5
-    StarsNeedToUnlock: 36
+    StarsNeedToUnlock: 17
     ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
       type: 3}
     UnlocksIngredient: 0
     FreeUpgradeTimeHours: 0
     AvailableIngredients: 0300000004000000050000000b0000000c000000
+  BaseStars: 3
+  DifficultyGrowth: 0.4
