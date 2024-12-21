@@ -29,7 +29,7 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
     ColliderSize: 1
-    BaseRatingValue: 1
+    BaseRatingValue: 0
   - Id: 2
     Type: 2
     ViewPrefab: {fileID: 0}
@@ -239,7 +239,7 @@ MonoBehaviour:
     ViewPrefab: {fileID: 0}
     Icon: {fileID: 21300000, guid: a53148400a147fc4a86da08a6941ba67, type: 3}
     Size: 1
-    CanBeUsedInOrders: 1
+    CanBeUsedInOrders: 0
     LocalizedName:
       m_TableReference:
         m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
@@ -256,7 +256,7 @@ MonoBehaviour:
     ViewPrefab: {fileID: 0}
     Icon: {fileID: 21300000, guid: b9d6e0ca81572d34aae2f59bb41f1e70, type: 3}
     Size: 1
-    CanBeUsedInOrders: 1
+    CanBeUsedInOrders: 0
     LocalizedName:
       m_TableReference:
         m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
@@ -290,7 +290,7 @@ MonoBehaviour:
     ViewPrefab: {fileID: 0}
     Icon: {fileID: 21300000, guid: e61f33ab3dd737a4b83d5a709a9fdc8a, type: 3}
     Size: 1
-    CanBeUsedInOrders: 1
+    CanBeUsedInOrders: 0
     LocalizedName:
       m_TableReference:
         m_TableCollectionName: 

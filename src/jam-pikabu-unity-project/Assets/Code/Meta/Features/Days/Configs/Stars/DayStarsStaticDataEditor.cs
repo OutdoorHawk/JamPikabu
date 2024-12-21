@@ -70,7 +70,7 @@ namespace Code.Meta.Features.Days.Configs.Stars
                 foreach (LootTypeId product in availableProducts)
                 {
                     LootProgressionData progression = LootProgression.Configs.Find(data => data.Type == product);
-                    LootSetup lootSetup = LootSettings.Configs.Find(data => data.Type == product && data.BaseRatingValue > 0);
+                    LootSetup lootSetup = LootSettings.Configs.Find(data => data.Type == product && data.CanBeUsedInOrders);
                     int minRatingPerProduct = progression.Levels[0].RatingBoostAmount + lootSetup.BaseRatingValue;
                     int maxRatingPerProduct = progression.Levels[^1].RatingBoostAmount + lootSetup.BaseRatingValue;
 

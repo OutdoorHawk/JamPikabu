@@ -14,151 +14,132 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Configs:
   - Id: 1
-    StarsNeedToUnlock: 0
     Stars:
     - RatingAmountNeed: 1
     - RatingAmountNeed: 5
     - RatingAmountNeed: 50
-    AverageMinRatingPerDay: 27
-    AverageMaxRatingPerDay: 150
+    AverageMinRatingPerDay: 38.5
+    AverageMaxRatingPerDay: 202.5
   - Id: 2
-    StarsNeedToUnlock: 0
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 46.5
-    AverageMaxRatingPerDay: 169.5
+    AverageMinRatingPerDay: 58
+    AverageMaxRatingPerDay: 222
   - Id: 3
-    StarsNeedToUnlock: 0
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 70.5
-    AverageMaxRatingPerDay: 193.5
+    AverageMinRatingPerDay: 47.5
+    AverageMaxRatingPerDay: 211.5
   - Id: 4
-    StarsNeedToUnlock: 0
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 124
-    AverageMaxRatingPerDay: 288
+    AverageMinRatingPerDay: 77.5
+    AverageMaxRatingPerDay: 241.5
   - Id: 5
-    StarsNeedToUnlock: 0
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 134.5
-    AverageMaxRatingPerDay: 298.5
+    AverageMinRatingPerDay: 109
+    AverageMaxRatingPerDay: 273
   - Id: 6
-    StarsNeedToUnlock: 0
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 91.75
-    AverageMaxRatingPerDay: 255.75
+    AverageMinRatingPerDay: 88.75
+    AverageMaxRatingPerDay: 252.75
   - Id: 7
-    StarsNeedToUnlock: 0
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 112
-    AverageMaxRatingPerDay: 276
+    AverageMinRatingPerDay: 115.5
+    AverageMaxRatingPerDay: 320.5
   - Id: 8
-    StarsNeedToUnlock: 0
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 91.75
-    AverageMaxRatingPerDay: 255.75
+    AverageMinRatingPerDay: 117.75
+    AverageMaxRatingPerDay: 322.75
   - Id: 9
-    StarsNeedToUnlock: 0
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 92.875
-    AverageMaxRatingPerDay: 256.875
+    AverageMinRatingPerDay: 117.75
+    AverageMaxRatingPerDay: 322.75
   - Id: 10
-    StarsNeedToUnlock: 0
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 115.375
-    AverageMaxRatingPerDay: 279.375
+    AverageMinRatingPerDay: 220.375
+    AverageMaxRatingPerDay: 425.375
   - Id: 11
-    StarsNeedToUnlock: 0
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 135.625
-    AverageMaxRatingPerDay: 299.625
+    AverageMinRatingPerDay: 196.75
+    AverageMaxRatingPerDay: 401.75
   - Id: 12
-    StarsNeedToUnlock: 0
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 135.625
-    AverageMaxRatingPerDay: 299.625
+    AverageMinRatingPerDay: 218.125
+    AverageMaxRatingPerDay: 423.125
   - Id: 13
-    StarsNeedToUnlock: 0
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 113.125
-    AverageMaxRatingPerDay: 277.125
+    AverageMinRatingPerDay: 217
+    AverageMaxRatingPerDay: 422
   - Id: 14
-    StarsNeedToUnlock: 0
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 91.75
-    AverageMaxRatingPerDay: 255.75
+    AverageMinRatingPerDay: 197.875
+    AverageMaxRatingPerDay: 402.875
   - Id: 15
-    StarsNeedToUnlock: 0
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 114.25
-    AverageMaxRatingPerDay: 278.25
+    AverageMinRatingPerDay: 219.25
+    AverageMaxRatingPerDay: 424.25
   - Id: 16
-    StarsNeedToUnlock: 0
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 91.75
-    AverageMaxRatingPerDay: 255.75
+    AverageMinRatingPerDay: 196.75
+    AverageMaxRatingPerDay: 401.75
   - Id: 17
-    StarsNeedToUnlock: 0
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 114.25
-    AverageMaxRatingPerDay: 278.25
+    AverageMinRatingPerDay: 197.875
+    AverageMaxRatingPerDay: 402.875
   - Id: 18
-    StarsNeedToUnlock: 0
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
-    AverageMinRatingPerDay: 92.875
-    AverageMaxRatingPerDay: 256.875
+    AverageMinRatingPerDay: 196.75
+    AverageMaxRatingPerDay: 401.75
   - Id: 19
-    StarsNeedToUnlock: 0
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
@@ -166,7 +147,6 @@ MonoBehaviour:
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 20
-    StarsNeedToUnlock: 0
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
@@ -174,7 +154,6 @@ MonoBehaviour:
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 21
-    StarsNeedToUnlock: 0
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
@@ -182,7 +161,6 @@ MonoBehaviour:
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 22
-    StarsNeedToUnlock: 0
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
@@ -190,7 +168,6 @@ MonoBehaviour:
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 23
-    StarsNeedToUnlock: 0
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
@@ -198,7 +175,6 @@ MonoBehaviour:
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 24
-    StarsNeedToUnlock: 0
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
@@ -206,7 +182,6 @@ MonoBehaviour:
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 25
-    StarsNeedToUnlock: 0
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
@@ -214,7 +189,6 @@ MonoBehaviour:
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 26
-    StarsNeedToUnlock: 0
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
@@ -222,7 +196,6 @@ MonoBehaviour:
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 27
-    StarsNeedToUnlock: 0
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
@@ -230,7 +203,6 @@ MonoBehaviour:
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 28
-    StarsNeedToUnlock: 0
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
@@ -238,7 +210,6 @@ MonoBehaviour:
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 29
-    StarsNeedToUnlock: 0
     Stars:
     - RatingAmountNeed: 0
     - RatingAmountNeed: 0
