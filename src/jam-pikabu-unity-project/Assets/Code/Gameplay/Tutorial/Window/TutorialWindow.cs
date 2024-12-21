@@ -6,10 +6,13 @@ using Code.Gameplay.Windows.Factory;
 using Code.Gameplay.Windows.Service;
 using Code.Infrastructure.Localization;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 using static System.Threading.CancellationTokenSource;
+using static Code.Common.Extensions.AsyncGameplayExtensions;
 
 namespace Code.Gameplay.Tutorial.Window
 {
@@ -17,12 +20,13 @@ namespace Code.Gameplay.Tutorial.Window
     {
         [SerializeField] private TutorialMessageBox[] _messageBoxes;
         [SerializeField] private GameObject _blackBackground;
-        [SerializeField] private GameObject _tapToContinueText;
+        [SerializeField] private CanvasGroup _tapToContinueText;
         [SerializeField] private Button _tapToContinueButton;
         [SerializeField] private RectTransform _arrow;
 
         private ILocalizationService _localizationService;
         private IWindowService _windowService;
+        private Tween _textTween;
 
         private Transform _uiRoot;
         private TutorialMessageBox _currentMessage;
@@ -63,13 +67,25 @@ namespace Code.Gameplay.Tutorial.Window
 
         private void Update()
         {
-            RectTransform targetRect = _arrowTarget.rect;
+            if (_arrowTarget.rect == null || _arrow == null || _uiRoot == null)
+                return;
 
+            RectTransform targetRect = _arrowTarget.rect;
             if (targetRect == null)
                 return;
 
-            Vector2 targetPos = (Vector2)targetRect.position + _arrowTarget.offset * _uiRoot.localScale;
-            _arrow.position = targetPos;
+            // Получаем мировые координаты цели
+            Vector3 worldPosition = targetRect.position + (Vector3)(_arrowTarget.offset * _uiRoot.localScale);
+
+            // Преобразуем мировые координаты в экранные
+            Vector2 screenPosition = RectTransformUtility.WorldToScreenPoint(Camera.main, worldPosition);
+
+            // Преобразуем экранные координаты обратно в локальные для канваса
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                (RectTransform)_uiRoot, screenPosition, Camera.main, out Vector2 localPosition);
+
+            // Устанавливаем позицию стрелки
+            _arrow.localPosition = localPosition;
         }
 
         public TutorialWindow ShowMessage(int locale, string arg1 = null, TutorialMessageAnchorType anchorType = TutorialMessageAnchorType.VeryTop)
@@ -159,6 +175,7 @@ namespace Code.Gameplay.Tutorial.Window
             var canvas = rect.AddComponent<Canvas>();
             var caster = rect.AddComponent<GraphicRaycaster>();
             canvas.overrideSorting = true;
+            canvas.sortingLayerName = "Tutorial";
             canvas.sortingOrder = HIGHLIGHT_SORT_ORDER;
             _highlightedObjects.Add((canvas, caster));
             return this;
@@ -178,10 +195,20 @@ namespace Code.Gameplay.Tutorial.Window
             return this;
         }
 
-        public async UniTask AwaitForTapAnywhere(CancellationToken token)
+        public async UniTask AwaitForTapAnywhere(CancellationToken token, float delay = 0)
         {
             _tapToContinueText.EnableElement();
             _tapToContinueButton.EnableElement();
+            _tapToContinueText.alpha = 0;
+            
+            await DelaySeconds(delay, token);
+            
+            _textTween?.Kill();
+            _textTween = _tapToContinueText
+                    .DOFade(1, 0.25f)
+                    .SetLink(_tapToContinueText.gameObject)
+                ;
+
             await _tapToContinueButton.OnClickAsync(CreateLinkedTokenSource(token, destroyCancellationToken).Token);
             _tapToContinueButton.DisableElement();
             _tapToContinueText.DisableElement();

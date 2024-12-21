@@ -67,16 +67,16 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 26666a8a4aa25b4458dc2a4683ae7e1b, type: 2}
-  m_sharedMaterial: {fileID: -2374718582540299372, guid: 26666a8a4aa25b4458dc2a4683ae7e1b,
+  m_fontAsset: {fileID: 11400000, guid: e0b7b1bfdb6e69445808e5f2093d1487, type: 2}
+  m_sharedMaterial: {fileID: -5343447789192355002, guid: e0b7b1bfdb6e69445808e5f2093d1487,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278196027
+  m_fontColor: {r: 0.23137257, g: 0.09019608, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -200,6 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 870021887301887180}
+  _anchorType: 0
 --- !u!114 &8594729019798139829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,7 +221,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300024, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7c85b1da662cfa34f845ccde92b4a71a, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -290,6 +291,6 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 3
+  m_SortingLayerID: -26604983
+  m_SortingOrder: 1
   m_TargetDisplay: 0

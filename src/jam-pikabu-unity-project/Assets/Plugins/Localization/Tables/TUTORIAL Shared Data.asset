@@ -92,6 +92,10 @@ MonoBehaviour:
     m_Key: T_19
     m_Metadata:
       m_Items: []
+  - m_Id: 127669633619808256
+    m_Key: TAP
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

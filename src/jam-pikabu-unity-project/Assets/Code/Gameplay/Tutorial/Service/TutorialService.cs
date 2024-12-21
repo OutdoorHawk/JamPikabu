@@ -207,6 +207,10 @@ namespace Code.Gameplay.Tutorial.Service
         {
             _logger.Log($"<b><color=cyan>[Tutorial]</b></color> Complete {tutorialSaveData.Type}");
             tutorialSaveData.Completed = true;
+
+            if (_staticData.GetStaticData<TutorialStaticData>().DebugDisableSave) 
+                return;
+            
             _saveLoadService.SaveProgress();
         }
     }

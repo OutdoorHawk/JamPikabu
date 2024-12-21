@@ -30,47 +30,41 @@ MonoBehaviour:
       m_Items:
       - rid: 2194680379798978651
   - m_Id: 312303898624
-    m_Localized: Press <color="yellow">wasd</color> to move.
+    m_Localized: 'Welcome to Claw Cuisine!
+
+
+      Your task is to prepare dishes
+      for customers within the given time.'
     m_Metadata:
       m_Items: []
   - m_Id: 112043397806546944
-    m_Localized: '<color="red">Enemies</color> are on their way,
-
-      don''t let
-      them destroy the <color="yellow">generators</color>!'
+    m_Localized: "If you add fewer ingredients than required, \nthe dish will fail,
+      and you\u2019ll earn less gold for the order."
     m_Metadata:
       m_Items: []
   - m_Id: 112043413698764800
-    m_Localized: 'Finish off the remaining ones and stay alert,
-
-      zombies will
-      <color="red">devour</color>
-
-      everything in their path!'
+    m_Localized: "These are your ingredients. \nThey are delivered to the storage
+      every day."
     m_Metadata:
       m_Items: []
   - m_Id: 112043438730371072
-    m_Localized: 'Let''s strengthen our defense.
-
-      Choose a turret to build
-      by clicking on it.'
+    m_Localized: "This is your hook\u2014use it \nto grab the right ingredients."
     m_Metadata:
       m_Items: []
   - m_Id: 112043449203548160
-    m_Localized: 'Drag the turret onto the field to place it.
-
-      Build <color="yellow">2</color>
-      turrets to continue.'
+    m_Localized: "Looks like the first customer has arrived! \nLet\u2019s see what
+      they want."
     m_Metadata:
       m_Items: []
   - m_Id: 112043459408289792
-    m_Localized: Good job, you survived the day!
+    m_Localized: "Here\u2019s the order recipe. Green highlights the necessary ingredients,
+      \nwhile red marks the ones that can ruin the dish and lower the restaurant's
+      rating."
     m_Metadata:
       m_Items: []
   - m_Id: 112046629740077056
-    m_Localized: 'Let''s improve our defense.
-
-      Open the building menu.'
+    m_Localized: "Now you\u2019re ready to start! \nPress any movement key to begin
+      the round."
     m_Metadata:
       m_Items: []
   - m_Id: 112046672849133568
@@ -124,6 +118,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 112046809080127488
     m_Localized: And don't forget about your <color="red">health</color>.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 127669633619808256
+    m_Localized: "TAP ANYWHERE \nTO CONTINUE"
     m_Metadata:
       m_Items: []
   references:

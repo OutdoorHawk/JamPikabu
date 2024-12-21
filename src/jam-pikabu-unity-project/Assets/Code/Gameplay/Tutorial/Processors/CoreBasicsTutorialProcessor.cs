@@ -1,6 +1,5 @@
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using Code.Gameplay.Features.GameState;
 using Code.Gameplay.Features.GameState.Service;
 using Code.Gameplay.Features.HUD;
@@ -12,6 +11,8 @@ using Code.Infrastructure.States.GameStates.Game;
 using Code.Meta.Features.Days.Service;
 using Cysharp.Threading.Tasks;
 using Zenject;
+using static System.Threading.CancellationTokenSource;
+using static Code.Common.Extensions.AsyncGameplayExtensions;
 
 namespace Code.Gameplay.Tutorial.Processors
 {
@@ -26,6 +27,12 @@ namespace Code.Gameplay.Tutorial.Processors
         private const int MESSAGE_1 = 1;
         private const int MESSAGE_2 = 2;
         private const int MESSAGE_3 = 3;
+        private const int MESSAGE_4 = 4;
+        private const int MESSAGE_5 = 5;
+        private const int MESSAGE_6 = 6;
+        private const int MESSAGE_7 = 7;
+
+        private CancellationTokenSource _destroyGameStateSource = new();
 
         [Inject]
         private void Construct(IGameStateService gameStateService, IDaysService daysService)
@@ -51,15 +58,15 @@ namespace Code.Gameplay.Tutorial.Processors
 
         public override void Finalization()
         {
+            _inputService.PlayerInput.Enable();
+            StopDestroyGameState();
         }
 
         protected override async UniTask ProcessInternal(CancellationToken token)
         {
-            foreach (var gameState in GetGameEntitiesGroup(GameMatcher.AllOf(GameMatcher.SwitchGameStateRequest)))
-            {
-                gameState.isSwitchGameStateRequest = false;
-                gameState.isDestructed = true;
-            }
+            _inputService.PlayerInput.Disable();
+
+            StartDestroyGameState(token);
 
             await _windowService.OpenWindow<TutorialWindow>(WindowTypeId.Tutorial);
             TutorialWindow tutorialWindow = GetCurrentWindow();
@@ -68,31 +75,111 @@ namespace Code.Gameplay.Tutorial.Processors
                 .ShowMessage(MESSAGE_1)
                 ;
 
-            await tutorialWindow.AwaitForTapAnywhere(token);
+            await tutorialWindow.AwaitForTapAnywhere(token, 1f);
 
-            tutorialWindow.ShowMessage(MESSAGE_2);
+            tutorialWindow.HideMessages();
 
-            await tutorialWindow.AwaitForTapAnywhere(token);
-            
+            StopDestroyGameState();
             _gameStateService.AskToSwitchState(GameStateTypeId.BeginDay);
 
-            await WaitForGameState(GameStateTypeId.BeginDay, token);
-            
+            await UniTask.WaitUntil(() => GetGameEntitiesGroup(GameMatcher.LootSpawner).Length != 0, cancellationToken: token);
+
+            StartDestroyGameState(token);
+
+            await UniTask.WaitUntil(() => GetGameEntitiesGroup(GameMatcher.LootSpawner).Length == 0, cancellationToken: token);
+
+            var hud = await WaitForWindowToOpen<PlayerHUDWindow>(token);
+
+            await tutorialWindow
+                    .ShowMessage(MESSAGE_3)
+                    .ShowArrow(hud.LootPoint, 0)
+                    .AwaitForTapAnywhere(token, 1f)
+                ;
+
+            await tutorialWindow
+                    .HideMessages()
+                    .ShowMessage(MESSAGE_4, anchorType: TutorialMessageAnchorType.Bottom)
+                    .ShowArrow(hud.HookPoint, 0, -200, ArrowRotation.Bottom)
+                    .AwaitForTapAnywhere(token, 1f)
+                ;
+
+            tutorialWindow
+                .HideMessages()
+                .HideArrow();
+
+            StopDestroyGameState();
             _gameStateService.AskToSwitchState(GameStateTypeId.RoundPreparation);
 
             await WaitForGameState(GameStateTypeId.RoundPreparation, token);
 
-            var hud = await WaitForWindowToOpen<PlayerHUDWindow>(token);
-
-            var boxRect = hud.gameObject; //todo
+            await DelaySeconds(1.5f, token);
 
             await tutorialWindow
-                    .HighlightObject(boxRect)
-                    .ShowMessage(MESSAGE_3)
-                    .AwaitForTapAnywhere(token)
+                    .ShowMessage(MESSAGE_5)
+                    .ShowDarkBackground()
+                    .HighlightObject(hud.OrderViewBehaviour.gameObject)
+                    .ShowArrow(hud.OrderViewBehaviour.transform, -200, -170, ArrowRotation.Left)
+                    .AwaitForTapAnywhere(token, 1f)
+                ;
+
+
+            var lootRect = hud.LootContainer.LootGrid.gameObject; //todo
+
+            await tutorialWindow
+                    .ClearHighlights()
+                    .ShowMessage(MESSAGE_6, anchorType: TutorialMessageAnchorType.Bottom)
+                    .ShowDarkBackground()
+                    .HighlightObject(lootRect.gameObject)
+                    .ShowArrow(lootRect.transform, 0, 0, ArrowRotation.Bottom)
+                    .AwaitForTapAnywhere(token, 1f)
+                ;
+
+            await tutorialWindow
+                    .ClearHighlights()
+                    .HideDarkBackground()
+                    .HideMessages()
+                    .HideArrow()
+                    .ShowMessage(MESSAGE_2)
+                    .AwaitForTapAnywhere(token, 1f)
                 ;
             
-            var lootRect = hud.LootContainer.LootGrid.gameObject; //todo
+            _inputService.PlayerInput.Enable();
+
+            tutorialWindow
+                .ClearHighlights()
+                .HideDarkBackground()
+                .HideMessages()
+                .ShowMessage(MESSAGE_7)
+                ;
+            
+            await WaitForGameState(GameStateTypeId.RoundLoop, token);
+
+            tutorialWindow.Close();
+        }
+
+        private void StartDestroyGameState(CancellationToken token)
+        {
+            _destroyGameStateSource = CreateLinkedTokenSource(token);
+            DestroyAllRequestsAsync().Forget();
+        }
+
+        private void StopDestroyGameState()
+        {
+            _destroyGameStateSource?.Cancel();
+        }
+
+        private async UniTaskVoid DestroyAllRequestsAsync()
+        {
+            while (_destroyGameStateSource.Token.IsCancellationRequested == false)
+            {
+                foreach (var gameState in GetGameEntitiesGroup(GameMatcher.AllOf(GameMatcher.SwitchGameStateRequest)))
+                {
+                    gameState.isSwitchGameStateRequest = false;
+                    gameState.isDestructed = true;
+                }
+
+                await UniTask.Yield(_destroyGameStateSource.Token);
+            }
         }
 
         private async UniTask WaitForGameState(GameStateTypeId state, CancellationToken token)
@@ -102,7 +189,7 @@ namespace Code.Gameplay.Tutorial.Processors
                 GameEntity[] gameState = GetGameEntitiesGroup(GameMatcher
                     .AllOf(GameMatcher.GameState,
                         GameMatcher.GameStateTypeId));
-                
+
                 if (gameState.Any(x => x.GameStateTypeId == state))
                     return;
 
