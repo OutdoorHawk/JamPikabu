@@ -45,7 +45,7 @@ MonoBehaviour:
     SceneId: 2
   - Id: 6
     IsBossDay: 1
-    AvailableOrderTags: 16
+    AvailableOrderTags: 4
     OrdersAmount: 1
     DayGoldFactor: 1.5435848
     SceneId: 3

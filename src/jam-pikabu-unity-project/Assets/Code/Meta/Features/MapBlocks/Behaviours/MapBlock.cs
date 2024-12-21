@@ -31,6 +31,8 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
 
         public List<LevelButton> LevelButtons { get; private set; } = new();
 
+        public MapBlockData BlockData => _mapBlockData;
+
         [Inject]
         private void Construct
         (
@@ -73,6 +75,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
 
         private void InitStarsAmount()
         {
+            return; //Disable for now
             int earnedStars = 0;
             int maxStars = 0;
 

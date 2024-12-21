@@ -27,6 +27,15 @@ namespace Code.Gameplay.Cheats.Cheats
 
         public void Execute()
         {
+            IGroup<GameEntity> timers = _gameContext.GetGroup(GameMatcher.AllOf(
+                GameMatcher.RoundInProcess,
+                GameMatcher.RoundTimeLeft));
+            
+            foreach (var timer in timers)
+            {
+                timer.ReplaceRoundTimeLeft(0);
+            }
+            
             IGroup<GameEntity> order = _gameContext.GetGroup(GameMatcher.AllOf(
                 GameMatcher.Order));
             

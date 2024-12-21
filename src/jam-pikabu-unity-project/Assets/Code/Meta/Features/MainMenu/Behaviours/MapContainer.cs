@@ -6,6 +6,7 @@ using Code.Meta.Features.Days;
 using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Configs.Stars;
 using Code.Meta.Features.Days.Service;
+using Code.Meta.Features.LootCollection.Service;
 using Code.Meta.Features.MainMenu.Service;
 using Code.Meta.Features.MainMenu.UIFactory;
 using Code.Meta.Features.MapBlocks.Behaviours;
@@ -29,6 +30,7 @@ namespace Code.Meta.Features.MainMenu.Behaviours
         private IMapMenuService _mapMenuService;
         private IDaysService _daysService;
         private IMapMenuFactory _mapMenuFactory;
+        private ILootCollectionService _lootCollectionService;
 
         private DaysStaticData DaysStaticData => _staticDataService.GetStaticData<DaysStaticData>();
         private MapBlocksStaticData MapBlocksStaticData => _staticDataService.GetStaticData<MapBlocksStaticData>();
@@ -39,9 +41,11 @@ namespace Code.Meta.Features.MainMenu.Behaviours
             IStaticDataService staticDataService,
             IMapMenuService mapMenuService,
             IDaysService daysService,
-            IMapMenuFactory mapMenuFactory
+            IMapMenuFactory mapMenuFactory,
+            ILootCollectionService lootCollectionService
         )
         {
+            _lootCollectionService = lootCollectionService;
             _mapMenuFactory = mapMenuFactory;
             _mapMenuService = mapMenuService;
             _staticDataService = staticDataService;

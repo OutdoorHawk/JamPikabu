@@ -3,7 +3,6 @@ using Code.Common.Extensions;
 using Code.Gameplay.Cheats.Cheats.Abstract;
 using Code.Infrastructure.DI.Installers;
 using Code.Infrastructure.States.GameStateHandler;
-using Code.Meta.Features.MainMenu.Windows;
 using Entitas;
 
 namespace Code.Gameplay.Cheats.Cheats
@@ -11,7 +10,7 @@ namespace Code.Gameplay.Cheats.Cheats
     [Injectable(typeof(ICheatAction))]
     public class SetDayCheat : BaseCheat, ICheatActionInputString
     {
-        public string CheatLabel => "Пройти до дня";
+        public string CheatLabel => "Пройти дней";
         public OrderType Order => OrderType.Third;
 
         public void Execute(string input)
@@ -19,7 +18,7 @@ namespace Code.Gameplay.Cheats.Cheats
             IGroup<MetaEntity> days = _metaContext.GetGroup(MetaMatcher.AllOf(
                 MetaMatcher.Day));
 
-            for (int i = 1; i < int.Parse(input); i++)
+            for (int i = 1; i <= int.Parse(input); i++)
             {
                 MetaEntity day = TryFindExistingDay(days, i) ?? CreateNewDayProgressEntity(i);
                 day.ReplaceStarsAmount(3);

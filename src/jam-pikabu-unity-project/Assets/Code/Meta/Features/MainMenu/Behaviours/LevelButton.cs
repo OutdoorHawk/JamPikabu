@@ -20,6 +20,7 @@ namespace Code.Meta.Features.MainMenu.Behaviours
         public TMP_Text LevelNumber;
         public Transform StarsParent;
         public Image[] Stars;
+        public GameObject BossIcon;
         public int DayId;
         [ReadOnly] public bool Inactive;
         [ReadOnly] public bool Locked;
@@ -100,6 +101,7 @@ namespace Code.Meta.Features.MainMenu.Behaviours
         {
             InitLevel();
             InitStars();
+            InitBoss();
         }
 
         private void InitLevel()
@@ -127,6 +129,12 @@ namespace Code.Meta.Features.MainMenu.Behaviours
             {
                 Stars[i].EnableElement();
             }
+        }
+
+        private void InitBoss()
+        {
+            bool isBossDay = _daysService.GetDayData(DayId).IsBossDay;
+            BossIcon.gameObject.SetActive(isBossDay);
         }
     }
 }

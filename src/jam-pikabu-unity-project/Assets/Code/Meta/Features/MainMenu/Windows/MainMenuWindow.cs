@@ -8,6 +8,7 @@ using Code.Meta.Features.LootCollection.Service;
 using Code.Meta.Features.MainMenu.Behaviours;
 using Code.Meta.Features.MainMenu.Service;
 using Code.Meta.Features.MapBlocks.Behaviours;
+using Cysharp.Threading.Tasks;
 using UnityEngine.UI;
 using Zenject;
 
@@ -69,13 +70,15 @@ namespace Code.Meta.Features.MainMenu.Windows
 
         private void Refresh()
         {
-            RefreshPlayButton();
+            RefreshPlayButtonAsync().Forget();
         }
 
-        private void RefreshPlayButton()
+        private async UniTaskVoid RefreshPlayButtonAsync()
         {
             if (PlayButton == null)
                 return;
+            
+            await UniTask.Yield(destroyCancellationToken);
 
             foreach (MapBlock mapBlock in MapContainer.MapBlocks)
             foreach (LevelButton level in mapBlock.LevelButtons)

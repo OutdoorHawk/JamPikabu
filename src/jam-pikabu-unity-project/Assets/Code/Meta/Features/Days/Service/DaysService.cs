@@ -101,7 +101,7 @@ namespace Code.Meta.Features.Days.Service
 
             if (_currentDayData.IsBossDay)
             {
-                _soundService.PlaySound(SoundTypeId.SpecialGameplayMusic);
+                _soundService.PlayMusic(SoundTypeId.SpecialGameplayMusic);
             }
 
             OnDayBegin?.Invoke();

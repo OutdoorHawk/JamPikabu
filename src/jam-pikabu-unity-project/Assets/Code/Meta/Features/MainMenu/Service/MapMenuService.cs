@@ -1,9 +1,12 @@
 ﻿using System;
+using Code.Gameplay.Features.Loot;
 using Code.Gameplay.StaticData;
 using Code.Infrastructure.SceneLoading;
 using Code.Meta.Features.DayLootSettings.Configs;
 using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Service;
+using Code.Meta.Features.LootCollection.Service;
+using Code.Meta.Features.MapBlocks.Behaviours;
 
 namespace Code.Meta.Features.MainMenu.Service
 {
@@ -11,6 +14,7 @@ namespace Code.Meta.Features.MainMenu.Service
     {
         private readonly IStaticDataService _staticDataService;
         private readonly IDaysService _daysService;
+        private readonly ILootCollectionService _lootCollectionService;
         public event Action OnSelectionChanged;
         public int SelectedDayId { get; private set; }
         public bool DayIsSelected { get; private set; }
@@ -18,10 +22,11 @@ namespace Code.Meta.Features.MainMenu.Service
         private DaysStaticData DaysStaticData => _staticDataService.GetStaticData<DaysStaticData>();
         private MapBlocksStaticData BlocksStaticData => _staticDataService.GetStaticData<MapBlocksStaticData>();
 
-        public MapMenuService(IStaticDataService staticDataService, IDaysService daysService)
+        public MapMenuService(IStaticDataService staticDataService, IDaysService daysService, ILootCollectionService lootCollectionService)
         {
             _staticDataService = staticDataService;
             _daysService = daysService;
+            _lootCollectionService = lootCollectionService;
         }
 
         public void SetDaySelected(int dayId)
@@ -76,7 +81,7 @@ namespace Code.Meta.Features.MainMenu.Service
 
         public bool CheckMapBlockIsAvailableByLevels(MapBlockData mapBlockData)
         {
-            for (int i = mapBlockData.DaysRange.x - 1; i < mapBlockData.DaysRange.y; i++)
+            for (int i = mapBlockData.DaysRange.x; i < mapBlockData.DaysRange.y; i++)
             {
                 bool dayUnlocked = _daysService.CheckDayUnlocked(i);
                 

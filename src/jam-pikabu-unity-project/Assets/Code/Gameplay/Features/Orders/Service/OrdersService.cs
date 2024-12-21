@@ -287,10 +287,10 @@ namespace Code.Gameplay.Features.Orders.Service
 
         private bool CheckTag(OrderData data, int currentDay)
         {
-            if (data.Setup.Tag == OrderTag.None)
-                return true;
-
             DayData dayData = _daysService.GetDayData(currentDay);
+            
+            if (dayData.AvailableOrderTags == OrderTag.None)
+                return true;
             
             if (dayData.AvailableOrderTags.HasFlag(data.Setup.Tag))
                 return true;

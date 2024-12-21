@@ -20,20 +20,20 @@ MonoBehaviour:
         CurrencyType: 1
         Amount: 50
       MinMaxDayToUnlock: {x: 0, y: 0}
-      Tag: 4
+      Tag: 16
       MinMaxNeedAmount: {x: 4, y: 8}
-      MinMaxGoodIngredients: {x: 4, y: 6}
+      MinMaxGoodIngredients: {x: 3, y: 5}
       MinMaxBadIngredients: {x: 4, y: 5}
       MinMaxIngredientsRatingFactor: {x: 1, y: 2}
   - Id: 2
     Setup:
-      OrderIcon: {fileID: 21300000, guid: 736f6e346141df74aac8c062c95aea9c, type: 3}
+      OrderIcon: {fileID: 21300000, guid: def3b3bfc0b969c4896fa4901b7c7692, type: 3}
       GoldReward:
         CurrencyType: 1
-        Amount: 6
+        Amount: 10
       MinMaxDayToUnlock: {x: 0, y: 4}
       Tag: 0
-      MinMaxNeedAmount: {x: 2, y: 4}
+      MinMaxNeedAmount: {x: 3, y: 5}
       MinMaxGoodIngredients: {x: 2, y: 2}
       MinMaxBadIngredients: {x: 1, y: 1}
       MinMaxIngredientsRatingFactor: {x: 1, y: 2}
@@ -51,27 +51,27 @@ MonoBehaviour:
       MinMaxIngredientsRatingFactor: {x: 1, y: 2}
   - Id: 4
     Setup:
-      OrderIcon: {fileID: 21300000, guid: def3b3bfc0b969c4896fa4901b7c7692, type: 3}
+      OrderIcon: {fileID: 21300000, guid: 4cfd027a06c4146449416e7dc55ccf6d, type: 3}
       GoldReward:
         CurrencyType: 1
-        Amount: 10
-      MinMaxDayToUnlock: {x: 0, y: 4}
+        Amount: 15
+      MinMaxDayToUnlock: {x: 6, y: 0}
       Tag: 0
-      MinMaxNeedAmount: {x: 3, y: 5}
-      MinMaxGoodIngredients: {x: 2, y: 2}
-      MinMaxBadIngredients: {x: 1, y: 1}
+      MinMaxNeedAmount: {x: 3, y: 6}
+      MinMaxGoodIngredients: {x: 3, y: 4}
+      MinMaxBadIngredients: {x: 2, y: 3}
       MinMaxIngredientsRatingFactor: {x: 1, y: 2}
   - Id: 5
     Setup:
-      OrderIcon: {fileID: 21300000, guid: def3b3bfc0b969c4896fa4901b7c7692, type: 3}
+      OrderIcon: {fileID: 21300000, guid: 736f6e346141df74aac8c062c95aea9c, type: 3}
       GoldReward:
         CurrencyType: 1
-        Amount: 20
-      MinMaxDayToUnlock: {x: 4, y: 0}
+        Amount: 6
+      MinMaxDayToUnlock: {x: 0, y: 4}
       Tag: 0
-      MinMaxNeedAmount: {x: 4, y: 6}
-      MinMaxGoodIngredients: {x: 2, y: 4}
-      MinMaxBadIngredients: {x: 2, y: 2}
+      MinMaxNeedAmount: {x: 2, y: 4}
+      MinMaxGoodIngredients: {x: 2, y: 2}
+      MinMaxBadIngredients: {x: 1, y: 1}
       MinMaxIngredientsRatingFactor: {x: 1, y: 2}
   - Id: 6
     Setup:
@@ -87,15 +87,15 @@ MonoBehaviour:
       MinMaxIngredientsRatingFactor: {x: 1, y: 2}
   - Id: 7
     Setup:
-      OrderIcon: {fileID: 21300000, guid: 4cfd027a06c4146449416e7dc55ccf6d, type: 3}
+      OrderIcon: {fileID: 21300000, guid: def3b3bfc0b969c4896fa4901b7c7692, type: 3}
       GoldReward:
         CurrencyType: 1
-        Amount: 15
-      MinMaxDayToUnlock: {x: 6, y: 0}
+        Amount: 20
+      MinMaxDayToUnlock: {x: 4, y: 0}
       Tag: 0
-      MinMaxNeedAmount: {x: 3, y: 6}
-      MinMaxGoodIngredients: {x: 3, y: 4}
-      MinMaxBadIngredients: {x: 2, y: 3}
+      MinMaxNeedAmount: {x: 4, y: 6}
+      MinMaxGoodIngredients: {x: 2, y: 4}
+      MinMaxBadIngredients: {x: 2, y: 2}
       MinMaxIngredientsRatingFactor: {x: 1, y: 2}
   - Id: 8
     Setup:
