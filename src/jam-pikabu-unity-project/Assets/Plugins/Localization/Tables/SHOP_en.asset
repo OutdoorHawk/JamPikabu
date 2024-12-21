@@ -26,6 +26,12 @@ MonoBehaviour:
     m_Localized: Ingredients
     m_Metadata:
       m_Items: []
+  - m_Id: 58371613166620672
+    m_Localized: 'Coming
+
+      Soon'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

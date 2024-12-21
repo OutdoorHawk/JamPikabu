@@ -13,13 +13,14 @@ using Code.Gameplay.Windows.Service;
 using Code.Meta.Features.LootCollection.Configs;
 using Code.Meta.Features.LootCollection.Data;
 using Code.Meta.UI.Common;
+using Coffee.UIExtensions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Code.Meta.Features.LootCollection.ShopTab
+namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
 {
     public class LootUpgradeShopItem : MonoBehaviour
     {
@@ -27,11 +28,17 @@ namespace Code.Meta.Features.LootCollection.ShopTab
         public Image RatingArrow;
         public TMP_Text Name;
         public Button UpgradeButton;
+        public UIShiny UpgradeButtonShiny;
         public PriceInfo UpgradePrice;
         public PriceInfo RatingFrom;
         public PriceInfo RatingTo;
-        public GameObject MaxReached;
+        public TMP_Text MaxReached;
         public LootTypeId TypeId;
+
+        public Image AvailableButton;
+        public Image NotAvailableButton;
+        public Color AvailableColor;
+        public Color NotAvailableColor;
 
         private IStaticDataService _staticData;
         private IGameplayCurrencyService _gameplayCurrencyService;
@@ -174,30 +181,32 @@ namespace Code.Meta.Features.LootCollection.ShopTab
             UpgradePrice.DisableElement();
             RatingTo.DisableElement();
             RatingArrow.DisableElement();
-            UpgradeButton.DisableElement();
         }
 
         private void SetMaxLevelReached()
         {
             MaxReached.EnableElement();
+            UpgradeButtonShiny.Stop();
+            SetAvailableButtonColors();
         }
 
         private void SetNoMoneyForUpgrade()
         {
             UpgradePrice.EnableElement();
-            UpgradeButton.EnableElement();
             RatingTo.EnableElement();
             RatingArrow.EnableElement();
-            UpgradeButton.interactable = false;
+            UpgradeButton.enabled = false;
+            SetNotAvailableButtonColors();
         }
 
         private void SetCanUpgrade()
         {
             UpgradePrice.EnableElement();
             RatingTo.EnableElement();
-            UpgradeButton.EnableElement();
             RatingArrow.EnableElement();
-            UpgradeButton.interactable = true;
+            UpgradeButton.enabled = true;
+            UpgradeButtonShiny.Play();
+            SetAvailableButtonColors();
         }
 
         private void RefreshState()
@@ -243,6 +252,20 @@ namespace Code.Meta.Features.LootCollection.ShopTab
                 .AddGold(0)
                 .AddWithdraw(upgradePriceAmount)
                 ;
+        }
+
+        private void SetAvailableButtonColors()
+        {
+            AvailableButton.EnableElement();
+            NotAvailableButton.DisableElement();
+            UpgradePrice.AmountText.color = AvailableColor;
+        }
+        
+        private void SetNotAvailableButtonColors()
+        {
+            AvailableButton.DisableElement();
+            NotAvailableButton.EnableElement();
+            UpgradePrice.AmountText.color = NotAvailableColor;
         }
     }
 }

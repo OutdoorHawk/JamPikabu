@@ -2,6 +2,7 @@
 using Code.Meta.Features.Days.Systems;
 using Code.Meta.Features.LootCollection.Systems;
 using Code.Meta.Features.MapBlocks;
+using Code.Meta.Features.Storage;
 
 namespace Code.Meta.Features
 {
@@ -12,6 +13,8 @@ namespace Code.Meta.Features
             Add(systems.Create<InitializeDaySystem>());
             Add(systems.Create<InitLootProgressionSystem>());
             Add(systems.Create<InitializeLootFreeUpgradeTimers>());
+            
+            Add(systems.Create<StorageFeature>());
         }
     }
 }

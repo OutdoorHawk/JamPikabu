@@ -1,5 +1,4 @@
-﻿using System;
-using Code.Common.Extensions;
+﻿using Code.Common.Extensions;
 using Code.Gameplay.Features.Currency.Service;
 using Code.Gameplay.Features.Loot;
 using Code.Meta.Features.LootCollection.Configs;
@@ -48,14 +47,19 @@ namespace Code.Meta.UI.Shop.Behaviours
         private void RefreshPin()
         {
             Pin.DisableElement();
-            
+
             foreach ((LootTypeId key, LootLevelsProgressionData value) in _lootCollectionService.LootLevels)
             {
                 if (_lootCollectionService.UpgradedForMaxLevel(key))
                     continue;
 
                 LootProgressionData progressionData = _lootCollectionService.LootData.GetConfig(key);
-                LootLevelData level = progressionData.Levels[value.Level];
+                int nextLevel = value.Level + 1;
+
+                if (nextLevel >= progressionData.Levels.Count)
+                    continue;
+
+                LootLevelData level = progressionData.Levels[nextLevel];
 
                 int amount = _currencyService.GetCurrencyOfType(level.Cost.CurrencyType);
 

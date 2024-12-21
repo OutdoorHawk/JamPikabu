@@ -90,7 +90,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
             float flightDuration = _flyDuration; // длительность полета к финальной позиции
             float scatterDuration = _scatterDuration; // длительность разлета
             float textFadeDuration = 0.75f; // длительность разлета
-            float spreadRange = 10f; // радиус разлета
+            float spreadRange = 25f; // радиус разлета
             
             Sequence animationSequence = DOTween.Sequence();
 
@@ -125,7 +125,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
                     .OnComplete(() => CompleteMovement(rect, animationParameters));
 
                 // Задержка между движениями иконок
-                animationSequence.Insert(i * 0.1f, moveTween);
+                animationSequence.Insert(i * 0.09f, moveTween);
             }
 
             animationSequence.OnComplete(() => { Destroy(gameObject); });

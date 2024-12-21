@@ -775,8 +775,8 @@ MonoBehaviour:
   - {fileID: 2938583072566751236}
   - {fileID: 4828477875027390670}
   _text: {fileID: 831659491099244272}
-  _flyDuration: 1
-  _scatterDuration: 1
+  _flyDuration: 0.75
+  _scatterDuration: 0.75
 --- !u!225 &8957467827591539236
 CanvasGroup:
   m_ObjectHideFlags: 0
