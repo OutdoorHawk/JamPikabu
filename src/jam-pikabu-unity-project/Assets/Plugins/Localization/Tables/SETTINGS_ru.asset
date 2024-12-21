@@ -19,19 +19,19 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 6916624384
-    m_Localized: "\u041D\u0410\u0421\u0422\u0420\u041E\u0419\u041A\u0418"
+    m_Localized: "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438"
     m_Metadata:
       m_Items: []
   - m_Id: 76424630272
-    m_Localized: "\u041E\u0411\u0429\u0410\u042F \u0413\u0420\u041E\u041C\u041A\u041E\u0421\u0422\u042C"
+    m_Localized: "\u0413\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C"
     m_Metadata:
       m_Items: []
   - m_Id: 190195126272
-    m_Localized: "\u0413\u0420\u041E\u041C\u041A\u041E\u0421\u0422\u042C \u041C\u0423\u0417\u042B\u041A\u0418"
+    m_Localized: "\u041C\u0443\u0437\u044B\u043A\u0430"
     m_Metadata:
       m_Items: []
   - m_Id: 214673084416
-    m_Localized: "\u0413\u0420\u041E\u041C\u041A\u041E\u0421\u0422\u042C \u042D\u0424\u0424\u0415\u041A\u0422\u041E\u0412"
+    m_Localized: "\u042D\u0444\u0444\u0435\u043A\u0442\u044B"
     m_Metadata:
       m_Items: []
   - m_Id: 4343544781426688

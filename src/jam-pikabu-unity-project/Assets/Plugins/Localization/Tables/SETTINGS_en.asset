@@ -19,19 +19,19 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 6916624384
-    m_Localized: SETTINGS
+    m_Localized: Settings
     m_Metadata:
       m_Items: []
   - m_Id: 76424630272
-    m_Localized: 'MASTER '
+    m_Localized: Volume
     m_Metadata:
       m_Items: []
   - m_Id: 190195126272
-    m_Localized: MUSIC
+    m_Localized: Music
     m_Metadata:
       m_Items: []
   - m_Id: 214673084416
-    m_Localized: SFX
+    m_Localized: Sfx
     m_Metadata:
       m_Items: []
   - m_Id: 4343544781426688
