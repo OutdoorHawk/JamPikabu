@@ -43,11 +43,24 @@ namespace Code.Gameplay.Features.Days.Systems
 
         protected override void Execute(List<GameEntity> entities)
         {
+            int starsReceived = GetStarsReceived();
+
+            if (starsReceived == 0)
+                return;
+
             MetaEntity day = TryFindExistingDay() ?? CreateNewDayProgressEntity();
 
-            UpdateStarsAmount(day);
+            UpdateStarsAmount(day, starsReceived);
 
             _saveLoadService.SaveProgress();
+        }
+
+        private int GetStarsReceived()
+        {
+            var starsData = _daysService.DayStarsData;
+            int totalRating = _ratingPlus.GetEntities().Sum(x => x.Plus) - _ratingMinus.GetEntities().Sum(x => x.Minus);
+            int starsReceived = starsData.Count(starData => totalRating >= starData.RatingAmountNeed);
+            return starsReceived;
         }
 
         private MetaEntity TryFindExistingDay()
@@ -70,15 +83,10 @@ namespace Code.Gameplay.Features.Days.Systems
                 .AddStarsAmount(0);
         }
 
-        private void UpdateStarsAmount(MetaEntity day)
+        private void UpdateStarsAmount(MetaEntity day, int starsReceived)
         {
-            DayData data = _daysService.GetDayData();
-            var starsData = _daysService.DayStarsData;
-            int totalRating = _ratingPlus.GetEntities().Sum(x => x.Plus) - _ratingMinus.GetEntities().Sum(x => x.Minus);
-            int starsCount = starsData.Count(starData => totalRating >= starData.RatingAmountNeed);
-
-            if (starsCount > day.StarsAmount)
-                day.ReplaceStarsAmount(starsCount);
+            if (starsReceived > day.StarsAmount)
+                day.ReplaceStarsAmount(starsReceived);
         }
     }
 }
