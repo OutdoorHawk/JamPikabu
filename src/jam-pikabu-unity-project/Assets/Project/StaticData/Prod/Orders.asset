@@ -71,7 +71,7 @@ MonoBehaviour:
       Tag: 0
       MinMaxNeedAmount: {x: 4, y: 6}
       MinMaxGoodIngredients: {x: 2, y: 4}
-      MinMaxBadIngredients: {x: 2, y: 4}
+      MinMaxBadIngredients: {x: 2, y: 2}
       MinMaxIngredientsRatingFactor: {x: 1, y: 2}
   - Id: 6
     Setup:
@@ -83,7 +83,7 @@ MonoBehaviour:
       Tag: 0
       MinMaxNeedAmount: {x: 4, y: 6}
       MinMaxGoodIngredients: {x: 2, y: 4}
-      MinMaxBadIngredients: {x: 1, y: 3}
+      MinMaxBadIngredients: {x: 1, y: 2}
       MinMaxIngredientsRatingFactor: {x: 1, y: 2}
   - Id: 7
     Setup:
@@ -95,7 +95,7 @@ MonoBehaviour:
       Tag: 0
       MinMaxNeedAmount: {x: 3, y: 6}
       MinMaxGoodIngredients: {x: 3, y: 4}
-      MinMaxBadIngredients: {x: 2, y: 4}
+      MinMaxBadIngredients: {x: 2, y: 3}
       MinMaxIngredientsRatingFactor: {x: 1, y: 2}
   - Id: 8
     Setup:
@@ -107,6 +107,6 @@ MonoBehaviour:
       Tag: 0
       MinMaxNeedAmount: {x: 5, y: 6}
       MinMaxGoodIngredients: {x: 2, y: 4}
-      MinMaxBadIngredients: {x: 2, y: 3}
+      MinMaxBadIngredients: {x: 2, y: 2}
       MinMaxIngredientsRatingFactor: {x: 1, y: 2}
-  BadIngredientPenalty: 0.5
+  BadIngredientPenaltyFactor: 0.5
