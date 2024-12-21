@@ -181,6 +181,7 @@ namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
             UpgradePrice.DisableElement();
             RatingTo.DisableElement();
             RatingArrow.DisableElement();
+            UpgradeButton.enabled = false;
         }
 
         private void SetMaxLevelReached()
@@ -195,7 +196,6 @@ namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
             UpgradePrice.EnableElement();
             RatingTo.EnableElement();
             RatingArrow.EnableElement();
-            UpgradeButton.enabled = false;
             SetNotAvailableButtonColors();
         }
 
