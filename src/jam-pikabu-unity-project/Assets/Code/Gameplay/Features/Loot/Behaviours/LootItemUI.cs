@@ -48,7 +48,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
 
         private void Awake()
         {
-            CanvasGroup.alpha = 0;
+           // CanvasGroup.alpha = 0;
         }
 
         public void InitType(LootSetup setup)
@@ -129,6 +129,11 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         {
             AmountNeed = 0;
             LootAnimator.SetTrigger(AnimationParameter.Complete.AsHash());
+        }
+
+        public void Hide()
+        {
+            CanvasGroup.alpha = 0;
         }
 
         public void Show()

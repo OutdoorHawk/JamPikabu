@@ -1,4 +1,5 @@
-﻿using Code.Common.Extensions;
+﻿using System;
+using Code.Common.Extensions;
 using Code.Gameplay.Features.Currency.Config;
 using Code.Gameplay.Sound;
 using Code.Gameplay.Sound.Service;
@@ -10,6 +11,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 using static Code.Common.Extensions.AsyncGameplayExtensions;
+using Random = UnityEngine.Random;
 
 namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
 {
@@ -24,6 +26,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
         private IStaticDataService _staticData;
         private ISoundService _soundService;
         private bool _firstObject = true;
+        private Action StartReplenishCallback;
 
         [Inject]
         private void Construct(IStaticDataService staticDataService, ISoundService soundService)
@@ -34,6 +37,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
 
         public void Initialize(in CurrencyAnimationParameters parameters)
         {
+            StartReplenishCallback = parameters.StartReplenishCallback;
             InitIcons(parameters);
             PlayAnimation(parameters);
             
@@ -159,6 +163,11 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
             }
 
             rect.DisableSafe();
+        }
+
+        private void OnDestroy()
+        {
+          
         }
     }
 }

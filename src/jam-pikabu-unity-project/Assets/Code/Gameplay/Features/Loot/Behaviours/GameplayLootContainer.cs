@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Behaviours;
 using Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation;
@@ -18,6 +19,7 @@ using Entitas;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using static System.Threading.CancellationTokenSource;
 using static Code.Common.Extensions.AsyncGameplayExtensions;
 
 namespace Code.Gameplay.Features.Loot.Behaviours
@@ -37,6 +39,8 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         public readonly Dictionary<LootTypeId, LootItemUI> ItemsByLootType = new();
 
         private readonly List<UniTask> _tasksBuffer = new(16);
+        
+        private CancellationTokenSource _refreshSource = new();
 
         [Inject]
         private void Construct
@@ -87,7 +91,9 @@ namespace Code.Gameplay.Features.Loot.Behaviours
 
         private async UniTaskVoid ShowAsync()
         {
-            await DelaySeconds(0.85f, destroyCancellationToken);
+            ResetToken();
+
+            await DelaySeconds(0.85f, _refreshSource.Token);
 
             foreach (LootItemUI lootItemUI in ItemsByLootType.Values)
                 lootItemUI.Show();
@@ -141,12 +147,14 @@ namespace Code.Gameplay.Features.Loot.Behaviours
             const float interval = 0.25f;
             _tasksBuffer.Clear();
 
-            await DelaySeconds(StartFlyToVatAnimationDelay, destroyCancellationToken);
+            ResetToken();
+            
+            await DelaySeconds(StartFlyToVatAnimationDelay, _refreshSource.Token);
             
             foreach (var lootItemUI in ItemsByLootType.Values)
             {
                 PlayCurrencyAnimation(lootItemUI, consumedLoot);
-                await DelaySeconds(interval, lootItemUI.destroyCancellationToken);
+                await DelaySeconds(interval, _refreshSource.Token);
 
                 if (lootItemUI.CollectedAtLeastOne)
                 {
@@ -196,6 +204,12 @@ namespace Code.Gameplay.Features.Loot.Behaviours
             };
 
             _currencyFactory.PlayCurrencyAnimation(parameters);
+        }
+
+        private void ResetToken()
+        {
+            _refreshSource?.Cancel();
+            _refreshSource = CreateLinkedTokenSource(destroyCancellationToken);
         }
     }
 }

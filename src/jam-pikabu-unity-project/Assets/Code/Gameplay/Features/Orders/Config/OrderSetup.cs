@@ -19,12 +19,12 @@ namespace Code.Gameplay.Features.Orders.Config
         [PreviewField] public Sprite OrderIcon;
 
         public CostSetup GoldReward = new(CurrencyTypeId.Gold);
-        public Vector2Int MinMaxDayToUnlock;
         public OrderTag Tag;
 
-        [Tooltip("Необходимое кол-во продуктов для типа")] public Vector2Int MinMaxNeedAmount = Vector2Int.one;
-        [Tooltip("Кол-во типов хороших продуктов")] public Vector2Int MinMaxGoodIngredients = Vector2Int.one;
-        [Tooltip("Кол-во типов плохих продуктов")] public Vector2Int MinMaxBadIngredients;
-        [Tooltip("Бонус рейтинга за продукт")] public Vector2Int MinMaxIngredientsRatingFactor = Vector2Int.one;
+        [MinMaxSlider(1, 99, true)] public Vector2Int MinMaxDayToUnlock;
+        [Tooltip("Необходимое кол-во продуктов для типа"), MinMaxSlider(1, 10, true)] public Vector2Int MinMaxNeedAmount = Vector2Int.one;
+        [Tooltip("Кол-во типов хороших продуктов"), MinMaxSlider(1, 8, true)] public Vector2Int MinMaxGoodIngredients = Vector2Int.one;
+        [Tooltip("Кол-во типов плохих продуктов"), MinMaxSlider(1, 8, true)] public Vector2Int MinMaxBadIngredients;
+        [Tooltip("Бонус рейтинга за продукт"), MinMaxSlider(1, 4, true)] public Vector2Int MinMaxIngredientsRatingFactor = Vector2Int.one;
     }
 }

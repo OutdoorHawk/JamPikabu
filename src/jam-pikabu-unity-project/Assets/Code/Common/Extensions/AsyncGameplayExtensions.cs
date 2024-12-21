@@ -354,6 +354,26 @@ namespace Code.Common.Extensions
             scrollRect.normalizedPosition = tempPosition;
         }
         
+        public static async UniTask ToFillAmount(this SlicedFilledImage filledImage, float endValue, float duration,
+            CancellationToken token, AnimationCurve curve = null)
+        {
+            float startTime = Time.time;
+            float startValue = filledImage.fillAmount;
+            float clampedDuration = ClampDuration(duration);
+
+            while (Time.time - startTime < duration)
+            {
+                float elapsedTime = Time.time - startTime;
+                float progress = elapsedTime / clampedDuration;
+                float t = curve?.Evaluate(progress) ?? progress;
+
+                filledImage.fillAmount = Mathf.LerpUnclamped(startValue, endValue, t);
+                await UniTask.Yield(token);
+            }
+
+            filledImage.fillAmount = endValue;
+        }
+        
         public static async UniTask ToFloatParameter(this Animator behaviour, int hash, float endValue, float duration,
             CancellationToken token, AnimationCurve curve = null)
         {

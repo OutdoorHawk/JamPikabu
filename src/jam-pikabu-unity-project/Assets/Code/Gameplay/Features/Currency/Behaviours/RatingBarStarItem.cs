@@ -1,9 +1,7 @@
 ﻿using Code.Common.Extensions.Animations;
 using Code.Gameplay.Features.Currency.Config;
 using Code.Gameplay.StaticData;
-using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Configs.Stars;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -12,12 +10,12 @@ namespace Code.Gameplay.Features.Currency.Behaviours
 {
     public class RatingBarStarItem : MonoBehaviour
     {
-        public Image Icon;
-        public TMP_Text Amount;
+        public Image StarEmpty;
+        public Image StarFull;
         public Animator StarAnimator;
 
         private IStaticDataService _staticDataService;
-        
+
         private bool _replenishPlayed;
         public int RatingAmount { get; private set; }
 
@@ -29,21 +27,19 @@ namespace Code.Gameplay.Features.Currency.Behaviours
 
         private void Start()
         {
-            var currencyStaticData = _staticDataService.GetStaticData<CurrencyStaticData>();
-            Icon.sprite = currencyStaticData.GetCurrencyConfig(CurrencyTypeId.Star).Data.Icon;
+
         }
 
         public void Init(in DayStarData data)
         {
-            Amount.text = data.RatingAmountNeed.ToString();
             RatingAmount = data.RatingAmountNeed;
         }
-        
+
         public void PlayReplenish()
         {
             if (_replenishPlayed)
                 return;
-            
+
             StarAnimator.SetTrigger(AnimationParameter.Replenish.AsHash());
             _replenishPlayed = true;
         }
@@ -51,6 +47,9 @@ namespace Code.Gameplay.Features.Currency.Behaviours
         public void ResetReplenish()
         {
             _replenishPlayed = false;
+            
+            StarAnimator.SetTrigger(AnimationParameter.Reset.AsHash());
+            _replenishPlayed = true;
         }
     }
 }

@@ -289,9 +289,6 @@ namespace Code.Gameplay.Features.Orders.Service
         {
             DayData dayData = _daysService.GetDayData(currentDay);
             
-            if (dayData.AvailableOrderTags == OrderTag.None)
-                return true;
-            
             if (dayData.AvailableOrderTags.HasFlag(data.Setup.Tag))
                 return true;
 

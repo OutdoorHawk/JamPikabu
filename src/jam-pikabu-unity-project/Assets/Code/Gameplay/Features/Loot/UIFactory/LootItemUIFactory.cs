@@ -26,6 +26,7 @@ namespace Code.Gameplay.Features.Loot.UIFactory
             var lootSetup = lootStaticData.GetConfig(ingredientData.TypeId);
             lootItemUI.InitType(lootSetup);
             lootItemUI.InitItem(in ingredientData);
+            lootItemUI.Hide();
             return lootItemUI;
         }
     }

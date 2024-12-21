@@ -22,5 +22,6 @@
         Ready = 17,
         Upgrade = 18,
         Locked = 19,
+        Reset  = 20,
     }
 }
