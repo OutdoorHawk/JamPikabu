@@ -1,6 +1,8 @@
 ﻿using System.Threading;
+using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.Features.Loot.Service;
 using Code.Gameplay.Features.Orders.Service;
+using Code.Gameplay.StaticData;
 using Code.Meta.UI.Common;
 using DG.Tweening;
 using UnityEngine;
@@ -21,14 +23,19 @@ namespace Code.Gameplay.Features.Orders.Behaviours
         private IOrdersService _ordersService;
         private IGameplayLootService _gameplayLootService;
 
+        private IStaticDataService _staticDataService;
         private CancellationTokenSource _fillDelaySource;
+        private IGameplayLootService _lootService;
         private Tweener _tweener;
 
         public PriceInfo Reward => _orderReward;
 
         [Inject]
-        private void Construct(IOrdersService ordersService, IGameplayLootService gameplayLootService)
+        private void Construct(IOrdersService ordersService, IGameplayLootService gameplayLootService, 
+            IGameplayLootService lootService, IStaticDataService staticDataService)
         {
+            _staticDataService = staticDataService;
+            _lootService = lootService;
             _gameplayLootService = gameplayLootService;
             _ordersService = ordersService;
         }
@@ -36,13 +43,13 @@ namespace Code.Gameplay.Features.Orders.Behaviours
         private void Start()
         {
             //_ordersService.OnOrderUpdated += InitOrder;
-            // _lootService.OnLootUpdate += InitOrderFillProgress;
+             _lootService.OnLootUpdate += InitOrderFillProgress;
         }
 
         private void OnDestroy()
         {
             //_ordersService.OnOrderUpdated -= InitOrder;
-            // _lootService.OnLootUpdate -= InitOrderFillProgress;
+             _lootService.OnLootUpdate -= InitOrderFillProgress;
         }
 
         public void InitOrder()
@@ -62,10 +69,12 @@ namespace Code.Gameplay.Features.Orders.Behaviours
         {
             _fillDelaySource?.Cancel();
             _fillDelaySource = CreateLinkedTokenSource(destroyCancellationToken);
+            float delay = _staticDataService.GetStaticData<LootSettingsStaticData>().CollectFlyAnimationDuration;
 
             _tweener?.Kill();
             _tweener = _orderIconFilled
                 .DOFillAmount(_ordersService.GetOrderProgress(), 0.25f)
+                .SetDelay(delay)
                 .SetLink(gameObject)
                 .OnComplete(() =>  _orderIconPenaltyFilled
                     .DOFillAmount(1-_ordersService.GetPenaltyFactor(), 0.5f)
