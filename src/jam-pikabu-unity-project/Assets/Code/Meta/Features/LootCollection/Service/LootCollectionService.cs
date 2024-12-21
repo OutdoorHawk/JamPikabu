@@ -91,7 +91,7 @@ namespace Code.Meta.Features.LootCollection.Service
 
             MapBlockData mapBlockData = MapBlocksStaticData.GetMapBlockDataByLinkedIngredient(type);
 
-            if (mapBlockData.FreeUpgradeTimeHours == 0)
+            if (mapBlockData.FreeUpgradeTimeMinutes == 0)
                 return false;
 
             return true;
@@ -144,7 +144,7 @@ namespace Code.Meta.Features.LootCollection.Service
             if (mapBlockData == null)
                 return;
 
-            if (mapBlockData.FreeUpgradeTimeHours == 0)
+            if (mapBlockData.FreeUpgradeTimeMinutes == 0)
                 return;
 
             MetaEntity timer = _factory.CreateLootFreeUpgradeTimer(type, mapBlockData.FreeUpgradeTimeSeconds);

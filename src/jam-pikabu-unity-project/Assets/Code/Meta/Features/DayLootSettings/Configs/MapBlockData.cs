@@ -22,11 +22,11 @@ namespace Code.Meta.Features.DayLootSettings.Configs
         public int StarsNeedToUnlock;
         public GameObject ViewPrefab;
         public LootTypeId UnlocksIngredient;
-         public float FreeUpgradeTimeHours = 0.5f;
+        public float FreeUpgradeTimeMinutes = 10f;
 
         public List<LootTypeId> AvailableIngredients = new();
 
-        public int FreeUpgradeTimeSeconds => (int)(FreeUpgradeTimeHours * 60 * 60);
+        public int FreeUpgradeTimeSeconds => (int)(FreeUpgradeTimeMinutes * 60);
 
         private Vector2Int GetDaysRange()
         {

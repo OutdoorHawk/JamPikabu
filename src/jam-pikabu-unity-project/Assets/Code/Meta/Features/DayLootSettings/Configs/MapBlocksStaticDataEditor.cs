@@ -1,4 +1,6 @@
-﻿using Sirenix.OdinInspector;
+﻿using System.Collections.Generic;
+using Code.Gameplay.Features.Loot;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Code.Meta.Features.DayLootSettings.Configs
@@ -38,14 +40,46 @@ namespace Code.Meta.Features.DayLootSettings.Configs
             }
         }
 
-        /*[FoldoutGroup("Editor")]
+        [FoldoutGroup("Editor")]
         [Button]
-        private void SetupStarsNeedToUnlock()
+        private void SetupTimeToFreeUpgrade()
         {
             for (int i = 0; i < Configs.Count; i++)
             {
-                Configs[i].StarsNeedToUnlock = DAYS_IN_BLOCK * i * 3;
+                Configs[i].FreeUpgradeTimeMinutes = Configs[0].FreeUpgradeTimeMinutes + 10 * i;
             }
-        }*/
+        }
+        
+        [FoldoutGroup("Editor")]
+        [Button]
+        private void SetupAvailableIngredients()
+        {
+            int availableIngredientsIndex = 0; // Index to cycle through AvailableIngredients
+
+            for (int i = 2; i < Configs.Count; i++)
+            {
+                MapBlockData mapBlockData = Configs[i];
+
+                MapBlockData previousBlockData = Configs[i - 1];
+                
+                if (i > 0)
+                {
+                    mapBlockData.AvailableIngredients = new List<LootTypeId>(previousBlockData.AvailableIngredients);
+                }
+                else if (mapBlockData.AvailableIngredients.Count == 0)
+                {
+                    mapBlockData.AvailableIngredients.Add(mapBlockData.UnlocksIngredient);
+                }
+
+                if (mapBlockData.AvailableIngredients.Count > 0)
+                {
+                    // Replace the ingredient at the current index
+                    mapBlockData.AvailableIngredients[availableIngredientsIndex] = mapBlockData.UnlocksIngredient;
+
+                    // Increment the index and reset to 0 if it exceeds the list size
+                    availableIngredientsIndex = (availableIngredientsIndex + 1) % mapBlockData.AvailableIngredients.Count;
+                }
+            }
+        }
     }
 }

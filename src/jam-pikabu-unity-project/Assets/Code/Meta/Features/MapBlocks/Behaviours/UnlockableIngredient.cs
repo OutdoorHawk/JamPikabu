@@ -248,7 +248,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
             Image fillImage = FillIcon;
             MapBlockData mapBlockData = MapBlocksData.GetMapBlockDataByLinkedIngredient(UnlocksIngredient);
 
-            float maxWaitTimeSeconds = mapBlockData.FreeUpgradeTimeHours * 60 * 60;
+            float maxWaitTimeSeconds = mapBlockData.FreeUpgradeTimeSeconds;
             int timeLeftSeconds = GetTimeFunc();
 
             while (timeLeftSeconds > 0)
