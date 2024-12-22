@@ -3,7 +3,9 @@ using Code.Common.Ads.Handler;
 using Code.Common.Extensions;
 using Code.Gameplay.Common.Time.Behaviours;
 using Code.Infrastructure.Ads.Service;
+using Code.Infrastructure.Localization;
 using Code.Meta.Features.BonusLevel.Service;
+using Coffee.UIExtensions;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -15,13 +17,16 @@ namespace Code.Meta.Features.BonusLevel.Behaviours
         public Button Button;
         public UniversalTimer Timer;
         public GameObject Pin;
+        public UIShiny Shiny;
         
         private IAdsService _adsService;
         private IBonusLevelService _bonusLevelService;
+        private ILocalizationService _localizationService;
 
         [Inject]
-        private void Construct(IAdsService adsService, IBonusLevelService bonusLevelService)
+        private void Construct(IAdsService adsService, IBonusLevelService bonusLevelService, ILocalizationService localizationService)
         {
+            _localizationService = localizationService;
             _bonusLevelService = bonusLevelService;
             _adsService = adsService;
         }
@@ -61,23 +66,24 @@ namespace Code.Meta.Features.BonusLevel.Behaviours
         private void RefreshCanShowAd()
         {
             Pin.DisableElement();
+            Shiny.Stop();
+            Button.interactable = false;
             
             if (_adsService.CanShowRewarded == false)
             {
-                Button.interactable = false;
                 return;
             }
             
             if (_bonusLevelService.CanPlayBonusLevel() == false)
             {
-                Button.interactable = false;
                 StartTimer();
                 return;
             }
 
-            Timer.TimerText.text = "Бонусный уровень";
+            Timer.TimerText.text = _localizationService["MAIN MENU/BONUS_LEVEL"];
             Pin.EnableElement();
             Button.interactable = true;
+            Shiny.Play();
         }
 
         private void AskAd()

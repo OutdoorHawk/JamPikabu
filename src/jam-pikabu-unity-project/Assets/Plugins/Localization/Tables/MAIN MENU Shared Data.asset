@@ -51,6 +51,10 @@ MonoBehaviour:
     m_Key: LEVELS_NEED_TO_UNLOCK
     m_Metadata:
       m_Items: []
+  - m_Id: 16560946352967680
+    m_Key: BONUS_LEVEL
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
