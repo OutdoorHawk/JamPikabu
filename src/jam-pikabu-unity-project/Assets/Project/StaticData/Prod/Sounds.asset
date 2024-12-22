@@ -97,9 +97,9 @@ MonoBehaviour:
   - SoundType: 31
     Data:
       Clips:
-      - {fileID: 8300000, guid: 7a24607528ea9244d877b0ed5cb7e692, type: 3}
+      - {fileID: 8300000, guid: d7d7eb70e282f3f4fb365f83c7b9a8c0, type: 3}
       SourceType: 4
-      Volume: 0.15
+      Volume: 0.7
       RandomizePitch: 1
       PitchMin: 0.9
       PitchMax: 1.1
@@ -165,4 +165,22 @@ MonoBehaviour:
       Volume: 0.2
       RandomizePitch: 1
       PitchMin: 0.8
+      PitchMax: 1.2
+  - SoundType: 41
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: 6cf2d7c3e5eb9804795d276626bd2584, type: 3}
+      SourceType: 4
+      Volume: 0.3
+      RandomizePitch: 1
+      PitchMin: 1
+      PitchMax: 1.2
+  - SoundType: 44
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: 8dc4908b97870e647be10690e231edd6, type: 3}
+      SourceType: 3
+      Volume: 1
+      RandomizePitch: 1
+      PitchMin: 0.9
       PitchMax: 1.2

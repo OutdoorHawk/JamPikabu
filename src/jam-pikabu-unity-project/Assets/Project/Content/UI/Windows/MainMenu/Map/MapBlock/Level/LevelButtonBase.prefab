@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3490293716161754109}
   - component: {fileID: 5027579182034065829}
   - component: {fileID: 1749918004857986728}
+  - component: {fileID: 1468079846513585660}
   m_Layer: 5
   m_Name: LevelButtonBase
   m_TagString: Untagged
@@ -110,6 +111,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1468079846513585660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663507047312485082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d050be8295d4b3d8ca7a0c00eec8637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundType: 20
+  _overrideSound: 0
 --- !u!1 &2074613698961065176
 GameObject:
   m_ObjectHideFlags: 0

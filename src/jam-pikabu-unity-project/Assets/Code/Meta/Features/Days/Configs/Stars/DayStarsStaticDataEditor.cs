@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+using System;
 using System.Collections.Generic;
 using Code.Gameplay.Features.Loot;
 using Code.Gameplay.Features.Loot.Configs;
@@ -140,3 +141,4 @@ namespace Code.Meta.Features.Days.Configs.Stars
         }
     }
 }
+#endif

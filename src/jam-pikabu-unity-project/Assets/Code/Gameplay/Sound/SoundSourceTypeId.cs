@@ -53,5 +53,9 @@
         CustomerSwap = 38,
         PlusesAdded = 39,
         LootImpact = 40,
+        OpenShop = 41,
+        StarReceive = 42,
+        StarLoose = 43,
+        CollectIngredient = 44,
     }
 }

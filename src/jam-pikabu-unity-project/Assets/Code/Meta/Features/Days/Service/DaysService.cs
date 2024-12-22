@@ -121,7 +121,15 @@ namespace Code.Meta.Features.Days.Service
 
             InitStars();
 
-            _analyticsService.SendEvent(AnalyticsEventTypes.LevelStart, _currentDay.ToString());
+            if (BonusLevelType is BonusLevelType.GoldenCoins)
+            {
+                _analyticsService.SendEvent(AnalyticsEventTypes.LevelStart, BonusLevelType.GoldenCoins.ToString());
+            }
+            else
+            {
+                _analyticsService.SendEvent(AnalyticsEventTypes.LevelStart, _currentDay.ToString());
+            }
+           
             OnDayBegin?.Invoke();
         }
 
@@ -142,6 +150,9 @@ namespace Code.Meta.Features.Days.Service
 
         public void DayComplete()
         {
+            if (BonusLevelType is BonusLevelType.GoldenCoins) 
+                _analyticsService.SendEvent(AnalyticsEventTypes.LevelEnd, BonusLevelType.GoldenCoins.ToString());
+            
             BonusLevelType = BonusLevelType.None;
             _bonusLevelData = null;
             OnDayComplete?.Invoke();

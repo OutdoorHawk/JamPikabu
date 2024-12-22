@@ -8,6 +8,8 @@ using Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation;
 using Code.Gameplay.Features.Currency.Factory;
 using Code.Gameplay.Features.Loot;
 using Code.Gameplay.Features.Loot.Configs;
+using Code.Gameplay.Sound;
+using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows.Factory;
 using Code.Gameplay.Windows.Service;
@@ -53,6 +55,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
         private IMapMenuService _mapMenuService;
         private MapBlockData _mapBlockData;
         private IUIFactory _uiFactory;
+        private ISoundService _soundService;
 
         private Image FillIcon => IngredientIcons[0];
         private Image BigFlyIcon => IngredientIcons[1];
@@ -70,9 +73,11 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
             ICurrencyFactory currencyFactory,
             IDaysService daysService,
             IMapMenuService mapMenuService,
-            IUIFactory uiFactory
+            IUIFactory uiFactory,
+            ISoundService soundService
         )
         {
+            _soundService = soundService;
             _uiFactory = uiFactory;
             _mapMenuService = mapMenuService;
             _daysService = daysService;
@@ -281,6 +286,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
             FreeUpgradeButton.interactable = false;
             UnlockIngredientAnimator.SetTrigger(AnimationParameter.Idle.AsHash());
             MoveIngredientToShop(from: FillIcon.transform.position);
+            _soundService.PlayOneShotSound(SoundTypeId.CollectIngredient);
 
             CreateMetaEntity.Empty()
                 .With(x => x.isUpgradeLootRequest = true)
@@ -293,6 +299,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
         {
             _uiFactory.SetRaycastAvailable(false);
             MoveIngredientToShop(from: FlyToShopStartPosition.transform.position);
+            _soundService.PlayOneShotSound(SoundTypeId.CollectIngredient);
 
             if (_lootCollectionService.CanUpgradeForFree(UnlocksIngredient) == false)
             {
@@ -307,12 +314,14 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
             BigFlyIcon.rectTransform
                 .DOScale(1, UnlockMoveDuration)
                 .SetLink(gameObject);
-
+            
             await BigFlyIcon.rectTransform
                     .DOMove(FillIcon.transform.position, UnlockMoveDuration)
                     .SetLink(gameObject)
                     .AsyncWaitForCompletion()
                 ;
+            
+            _soundService.PlayOneShotSound(SoundTypeId.Construction_Place);
 
             GrayIcon.EnableElement();
             BigFlyIcon.rectTransform.DisableElement();

@@ -8,6 +8,8 @@ using Code.Gameplay.Features.Currency.Factory;
 using Code.Gameplay.Features.Currency.Service;
 using Code.Gameplay.Features.Loot;
 using Code.Gameplay.Features.Loot.Configs;
+using Code.Gameplay.Sound;
+using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows.Service;
 using Code.Meta.Features.LootCollection.Configs;
@@ -47,6 +49,7 @@ namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
         private bool _firstInitComplete;
         private CostSetup _upgradePrice;
         private CurrencyTypeId _ratingCurrency;
+        private ISoundService _soundService;
 
         public LootTypeId Type => TypeId;
         public bool MaxLevelReached { get; private set; }
@@ -59,9 +62,11 @@ namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
             IStaticDataService staticData,
             IGameplayCurrencyService gameplayCurrencyService,
             ICurrencyFactory currencyFactory,
-            IWindowService windowService
+            IWindowService windowService,
+            ISoundService soundService
         )
         {
+            _soundService = soundService;
             _currencyFactory = currencyFactory;
             _gameplayCurrencyService = gameplayCurrencyService;
             _staticData = staticData;
@@ -226,6 +231,7 @@ namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
 
             PlayAnimation();
             RefreshState();
+            _soundService.PlayOneShotSound(SoundTypeId.PurchasedQuota);
         }
 
         private void PlayAnimation()

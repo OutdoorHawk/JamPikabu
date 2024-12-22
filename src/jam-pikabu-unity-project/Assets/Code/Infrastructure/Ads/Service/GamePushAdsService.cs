@@ -10,10 +10,11 @@ namespace Code.Infrastructure.Ads.Service
     public class GamePushAdsService : BaseAdsService, IExitGameLoopStateHandler, IEnterMainMenuStateHandler
     {
 #if !UNITY_EDITOR
-        public override bool CanShowRewarded => GP_Ads.IsRewardedAvailable();
+        public override bool CanShowRewarded => IsRewardedAvailable();
 #endif
-        public override bool CanShowInterstitial => GP_Ads.IsFullscreenAvailable();
-        public override bool CanShowBanner => GP_Ads.IsStickyAvailable();
+        public override bool CanShowInterstitial => IsFullscreenAvailable();
+
+        public override bool CanShowBanner => IsStickyAvailable();
 
         public OrderType OrderType => OrderType.Last;
 
@@ -32,7 +33,7 @@ namespace Code.Infrastructure.Ads.Service
                 return;
             
             if (CanShowBanner) 
-                RequestInterstitial();
+                RequestBanner();
         }
 
         public void OnExitGameLoop()
@@ -75,6 +76,27 @@ namespace Code.Infrastructure.Ads.Service
         {
             if (success == false) 
                 NotifyErrorHandlers("");
+        }
+
+        private bool IsFullscreenAvailable()
+        {
+            bool result = GP_Ads.IsFullscreenAvailable();
+            Logger.Log($"[AD] IsFullscreenAvailable: {result}");
+            return result;
+        }
+        
+        private bool IsStickyAvailable()
+        {
+            bool result = GP_Ads.IsStickyAvailable();
+            Logger.Log($"[AD] IsStickyAvailable: {result}");
+            return result;
+        }
+        
+        private bool IsRewardedAvailable()
+        {
+            bool result = GP_Ads.IsRewardedAvailable();
+            Logger.Log($"[AD] IsRewardedAvailable: {result}");
+            return result;
         }
     }
 }
