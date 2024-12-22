@@ -2,7 +2,7 @@
 {
     public interface IBonusLevelService
     {
-        bool CanPlayBonusLevel();
+        bool CanPlayFree();
         int GetTimeToBonusLevel();
         void UpdateTimeToNextBonusLevel(int bonusLevelAvailableTimeStamp);
         void LoadBonusLevel();

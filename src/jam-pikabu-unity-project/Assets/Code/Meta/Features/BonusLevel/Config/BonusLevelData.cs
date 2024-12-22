@@ -11,11 +11,11 @@ namespace Code.Meta.Features.BonusLevel.Config
     {
         public BonusLevelType Type;
         public List<SceneTypeId> SceneTypeId;
-        public int ResetTimeMinutes;
+        public int FreePlayResetTimeMinutes = 300;
         public float GoldFactorModifier = 2;
         public int RoundTimeOverride = 45;
         public List<LootTypeId> AvailableIngredients;
 
-        public int ResetTimeSeconds => ResetTimeMinutes * 60;
+        public int ResetTimeSeconds => FreePlayResetTimeMinutes * 60;
     }
 }

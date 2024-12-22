@@ -17,8 +17,9 @@ namespace Code.Meta.Features.BonusLevel.Behaviours
         public Button Button;
         public UniversalTimer Timer;
         public GameObject Pin;
+        public GameObject Ad;
         public UIShiny Shiny;
-        
+
         private IAdsService _adsService;
         private IBonusLevelService _bonusLevelService;
         private ILocalizationService _localizationService;
@@ -31,11 +32,6 @@ namespace Code.Meta.Features.BonusLevel.Behaviours
             _adsService = adsService;
         }
 
-        private void Awake()
-        {
-            Button.onClick.AddListener(AskAd);
-        }
-
         private void Start()
         {
             RefreshCanShowAd();
@@ -43,7 +39,6 @@ namespace Code.Meta.Features.BonusLevel.Behaviours
 
         private void OnDestroy()
         {
-            Button.onClick.RemoveListener(AskAd);
             Cleanup();
         }
 
@@ -65,25 +60,31 @@ namespace Code.Meta.Features.BonusLevel.Behaviours
 
         private void RefreshCanShowAd()
         {
+            Button.onClick.RemoveAllListeners();
+            Ad.DisableElement();
             Pin.DisableElement();
             Shiny.Stop();
             Button.interactable = false;
-            
-            if (_adsService.CanShowRewarded == false)
+            Timer.TimerText.text = "00:00:00";
+
+            if (_bonusLevelService.CanPlayFree())
             {
-                return;
-            }
-            
-            if (_bonusLevelService.CanPlayBonusLevel() == false)
-            {
-                StartTimer();
+                Button.interactable = true;
+                Button.onClick.AddListener(LoadBonusLevel);
+                Shiny.Play();
+                Pin.EnableElement();
                 return;
             }
 
-            Timer.TimerText.text = _localizationService["MAIN MENU/BONUS_LEVEL"];
-            Pin.EnableElement();
-            Button.interactable = true;
-            Shiny.Play();
+            StartTimer();
+
+            if (_adsService.CanShowRewarded)
+            {
+                Button.interactable = true;
+                Button.onClick.AddListener(AskAd);
+                Ad.EnableElement();
+                return;
+            }
         }
 
         private void AskAd()
@@ -94,8 +95,8 @@ namespace Code.Meta.Features.BonusLevel.Behaviours
 
         private void StartTimer()
         {
-           Func<int> getTime = _bonusLevelService.GetTimeToBonusLevel;
-           Timer.StartTimer(getTime, RefreshCanShowAd);
+            Func<int> getTime = _bonusLevelService.GetTimeToBonusLevel;
+            Timer.StartTimer(getTime, RefreshCanShowAd);
         }
 
         private void LoadBonusLevel()

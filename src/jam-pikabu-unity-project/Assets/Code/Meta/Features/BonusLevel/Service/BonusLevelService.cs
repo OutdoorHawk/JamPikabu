@@ -65,7 +65,7 @@ namespace Code.Meta.Features.BonusLevel.Service
             _gameStateMachine.Enter<LoadLevelState, LoadLevelPayloadParameters>(parameters);
         }
 
-        public bool CanPlayBonusLevel()
+        public bool CanPlayFree()
         {
             if (_nextBonusLevelAvailableTimeStamp == 0)
                 return true;
