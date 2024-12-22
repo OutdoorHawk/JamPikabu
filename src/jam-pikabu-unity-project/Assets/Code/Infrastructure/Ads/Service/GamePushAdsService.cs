@@ -45,10 +45,6 @@ namespace Code.Infrastructure.Ads.Service
         public override void RequestRewardedAd()
         {
             base.RequestRewardedAd();
-            
-            if (GP_Ads.IsRewardPlaying())
-                return;
-            
             GP_Ads.ShowRewarded(_identifier, RewardedSuccess, Started, Finished);
         }
 
@@ -80,6 +76,9 @@ namespace Code.Infrastructure.Ads.Service
 
         private bool IsFullscreenAvailable()
         {
+            if (GP_Ads.IsFullscreenPlaying())
+                return false;
+            
             bool result = GP_Ads.IsFullscreenAvailable();
             Logger.Log($"[AD] IsFullscreenAvailable: {result}");
             return result;
@@ -94,6 +93,9 @@ namespace Code.Infrastructure.Ads.Service
         
         private bool IsRewardedAvailable()
         {
+            if (GP_Ads.IsRewardPlaying())
+                return false;
+            
             bool result = GP_Ads.IsRewardedAvailable();
             Logger.Log($"[AD] IsRewardedAvailable: {result}");
             return result;

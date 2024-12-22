@@ -102,6 +102,7 @@ namespace Code.Meta.Features.BonusLevel.Behaviours
         {
             _adsService.RegisterAdsHandler(this);
             _adsService.RequestRewardedAd();
+            RefreshCanShowAd();
         }
 
         private void StartTimer()
