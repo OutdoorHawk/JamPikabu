@@ -48,11 +48,6 @@ namespace Code.Gameplay.Tutorial.Processors
             var menu = await WaitForWindowToOpen<MainMenuWindow>(token, 480);
             
             await DelaySeconds(2f, token);
-            menu.BonusLevelButton.EnableElement();
-            menu.BonusLevelButton.transform
-                .DOScale(1, 1)
-                .SetEase(Ease.OutBounce)
-                .SetLink(menu.BonusLevelButton.gameObject);
         }
 
         private void ResetAll()

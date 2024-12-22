@@ -118,6 +118,8 @@ namespace Code.Meta.Features.Days.Service
 
             if (_currentDayData.IsBossDay)
                 _soundService.PlayMusic(SoundTypeId.SpecialGameplayMusic);
+            if (BonusLevelType is BonusLevelType.GoldenCoins)
+                _soundService.PlayMusic(SoundTypeId.SpecialGameplayMusic);
 
             InitStars();
 

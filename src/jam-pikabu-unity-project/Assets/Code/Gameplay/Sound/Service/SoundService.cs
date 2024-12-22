@@ -95,6 +95,8 @@ namespace Code.Gameplay.Sound.Service
         public void OnEnterLoadProgress()
         {
             InitSoundService();
+            SoundConfig soundSetup = GetSoundConfig(SoundTypeId.GameplayMusic);
+            PlayerPrefs.SetInt(SoundExtensions.CurrentMusicClipIndex, Random.Range(0, soundSetup.Data.Clips.Length));
             PlayCurrentSong().Forget();
         }
 
