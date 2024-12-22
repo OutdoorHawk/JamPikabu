@@ -89,9 +89,10 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 112046732869623808
-    m_Localized: 'Let''s pick a more powerful weapon.
+    m_Localized: 'Oh, it looks like you''ve unlocked a bonus level.
 
-      Open the weapon menu.'
+      Let''s
+      try it!'
     m_Metadata:
       m_Items: []
   - m_Id: 112046761378308096

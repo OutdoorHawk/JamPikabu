@@ -59,6 +59,10 @@ MonoBehaviour:
     m_Key: LVL
     m_Metadata:
       m_Items: []
+  - m_Id: 16682504648085504
+    m_Key: NEW_INGREDIENT
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

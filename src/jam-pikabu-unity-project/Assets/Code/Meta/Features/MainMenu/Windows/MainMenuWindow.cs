@@ -5,6 +5,7 @@ using Code.Infrastructure.States.GameStates;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
 using Code.Meta.Features.BonusLevel.Behaviours;
+using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Service;
 using Code.Meta.Features.LootCollection.Service;
 using Code.Meta.Features.MainMenu.Behaviours;
@@ -104,7 +105,8 @@ namespace Code.Meta.Features.MainMenu.Windows
 
         private void OnPlayClick()
         {
-            _daysService.SetActiveDay(_mapMenuService.SelectedDayId);
+            DayData dayData = _daysService.GetDayData(_mapMenuService.SelectedDayId);
+            _daysService.SetActiveDay(dayData);
 
             var parameters = new LoadLevelPayloadParameters
             {

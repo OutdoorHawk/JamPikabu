@@ -358,10 +358,14 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
 
             Transform shopButton = mainMenuWindow.ShopButton.transform;
 
-            string prefix  = string.Empty;
-            
-            if (firstUnlock == false) 
+            string prefix;
+
+            if (firstUnlock == false)
                 prefix = $"+1 {_localizationService["MAIN MENU/LVL"]}";
+            else
+            {
+                prefix = $"{_localizationService["MAIN MENU/NEW_INGREDIENT"]}";
+            }
 
             var parameters = new CurrencyAnimationParameters()
             {

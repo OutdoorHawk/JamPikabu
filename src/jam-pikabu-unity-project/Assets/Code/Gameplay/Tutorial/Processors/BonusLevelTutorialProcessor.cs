@@ -1,6 +1,8 @@
 ﻿using System.Threading;
 using Code.Common.Extensions;
 using Code.Gameplay.Tutorial.Processors.Abstract;
+using Code.Gameplay.Tutorial.Window;
+using Code.Gameplay.Windows;
 using Code.Gameplay.Windows.Factory;
 using Code.Infrastructure.DI.Installers;
 using Code.Infrastructure.States.GameStates;
@@ -9,6 +11,7 @@ using Code.Meta.Features.MainMenu.Windows;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 using static Code.Common.Extensions.AsyncGameplayExtensions;
 
 namespace Code.Gameplay.Tutorial.Processors
@@ -45,18 +48,24 @@ namespace Code.Gameplay.Tutorial.Processors
 
         protected override async UniTask ProcessInternal(CancellationToken token)
         {
-            var menu = await WaitForWindowToOpen<MainMenuWindow>(token, 480);
-            
-            await DelaySeconds(2f, token);
-        }
+            var menu = await WaitForWindowToOpen<MainMenuWindow>(token, 999);
 
-        private void ResetAll()
-        {
-            GetCurrentWindow()
-                .ClearHighlights()
-                .HideMessages()
-                .HideArrow()
-                .HideDarkBackground();
+            await DelaySeconds(0.15f, token);
+
+            var tutorial = await _windowService.OpenWindow<TutorialWindow>(WindowTypeId.Tutorial);
+
+            Button bonusButton = menu.BonusLevelButton.Button;
+
+            tutorial
+                .ShowDarkBackground()
+                .HighlightObject(bonusButton)
+                .ShowArrow(bonusButton.transform, 0, 150, ArrowRotation.Top)
+                .ShowMessage(13)
+                ;
+
+            await bonusButton.OnClickAsync(token);
+            
+            tutorial.Close();
         }
     }
 }

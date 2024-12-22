@@ -69,6 +69,10 @@ MonoBehaviour:
     m_Localized: level
     m_Metadata:
       m_Items: []
+  - m_Id: 16682504648085504
+    m_Localized: New ingredient unlocked
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

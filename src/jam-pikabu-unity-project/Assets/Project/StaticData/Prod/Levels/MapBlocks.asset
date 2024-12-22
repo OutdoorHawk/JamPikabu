@@ -22,7 +22,7 @@ MonoBehaviour:
     AvailableIngredients: 06000000030000000400000002000000
     ExtraLoot: 
   - Id: 2
-    StarsNeedToUnlock: 9
+    StarsNeedToUnlock: 6
     ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
       type: 3}
     UnlocksIngredient: 5
@@ -30,7 +30,7 @@ MonoBehaviour:
     AvailableIngredients: 0600000003000000040000000200000005000000
     ExtraLoot: 
   - Id: 3
-    StarsNeedToUnlock: 18
+    StarsNeedToUnlock: 15
     ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
       type: 3}
     UnlocksIngredient: 7
@@ -46,7 +46,7 @@ MonoBehaviour:
     AvailableIngredients: 0700000008000000040000000200000005000000
     ExtraLoot: 0100000011000000
   - Id: 5
-    StarsNeedToUnlock: 36
+    StarsNeedToUnlock: 35
     ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
       type: 3}
     UnlocksIngredient: 10
@@ -54,7 +54,7 @@ MonoBehaviour:
     AvailableIngredients: 07000000080000000a0000000200000005000000
     ExtraLoot: 0100000011000000
   - Id: 6
-    StarsNeedToUnlock: 44
+    StarsNeedToUnlock: 43
     ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
       type: 3}
     UnlocksIngredient: 9
@@ -62,7 +62,7 @@ MonoBehaviour:
     AvailableIngredients: 07000000080000000a0000000900000005000000
     ExtraLoot: 010000000f000000
   - Id: 7
-    StarsNeedToUnlock: 53
+    StarsNeedToUnlock: 51
     ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
       type: 3}
     UnlocksIngredient: 11
@@ -70,7 +70,7 @@ MonoBehaviour:
     AvailableIngredients: 07000000080000000a000000090000000b000000
     ExtraLoot: 010000000f000000
   - Id: 8
-    StarsNeedToUnlock: 61
+    StarsNeedToUnlock: 59
     ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
       type: 3}
     UnlocksIngredient: 12
@@ -78,7 +78,7 @@ MonoBehaviour:
     AvailableIngredients: 0c000000080000000a000000090000000b000000
     ExtraLoot: 010000000f000000
   - Id: 9
-    StarsNeedToUnlock: 69
+    StarsNeedToUnlock: 67
     ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
       type: 3}
     UnlocksIngredient: 13
@@ -86,7 +86,7 @@ MonoBehaviour:
     AvailableIngredients: 0c0000000d0000000a000000090000000b000000
     ExtraLoot: 010000000f000000
   - Id: 10
-    StarsNeedToUnlock: 78
+    StarsNeedToUnlock: 75
     ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
       type: 3}
     UnlocksIngredient: 16
@@ -94,4 +94,4 @@ MonoBehaviour:
     AvailableIngredients: 0c0000000d00000010000000090000000b000000
     ExtraLoot: 010000000f000000
   BaseStars: 3
-  DifficultyGrowth: 0.93
+  DifficultyGrowth: 0.9

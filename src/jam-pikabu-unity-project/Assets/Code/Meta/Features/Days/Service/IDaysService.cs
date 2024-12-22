@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Code.Infrastructure.SceneLoading;
 using Code.Meta.Features.BonusLevel.Config;
 using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Configs.Stars;
@@ -15,10 +16,10 @@ namespace Code.Meta.Features.Days.Service
         List<DayStarData> DayStarsData { get; }
         int CurrentDay { get; }
         int MaxDays { get; }
-        void SetBonusLevel(BonusLevelData type);
+        void SetBonusLevel(BonusLevelData type, SceneTypeId sceneTypeId);
         void InitializeDays(IEnumerable<DayProgressData> daysProgress);
         bool IsCompletedFirstLevel();
-        void SetActiveDay(int selectedDayId);
+        void SetActiveDay(DayData selectedDayId);
         List<DayProgressData> GetDaysProgress();
         bool TryGetDayProgress(int dayId, out DayProgressData dayProgress);
         int GetStarsEarnedForDay(int day);
@@ -29,7 +30,6 @@ namespace Code.Meta.Features.Days.Service
         void StarsRecieved(int starsReceived);
         void DayComplete();
         float GetRoundDuration();
-        bool CheckAllDaysComplete();
         bool CheckDayUnlocked(int dayId);
         DayData GetDayData();
         DayData GetDayData(int currentDay);

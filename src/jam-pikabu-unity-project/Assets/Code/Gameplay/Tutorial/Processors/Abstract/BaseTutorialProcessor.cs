@@ -152,5 +152,14 @@ namespace Code.Gameplay.Tutorial.Processors.Abstract
 
             _openedWindowsCache.Clear();
         }
+        
+        protected void ResetAll()
+        {
+            GetCurrentWindow()
+                .ClearHighlights()
+                .HideMessages()
+                .HideArrow()
+                .HideDarkBackground();
+        }
     }
 }

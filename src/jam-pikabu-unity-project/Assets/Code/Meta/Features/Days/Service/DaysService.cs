@@ -7,6 +7,7 @@ using Code.Gameplay.Sound;
 using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
 using Code.Infrastructure.Analytics;
+using Code.Infrastructure.SceneLoading;
 using Code.Meta.Features.BonusLevel.Config;
 using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Configs.Stars;
@@ -25,19 +26,16 @@ namespace Code.Meta.Features.Days.Service
         private readonly ISoundService _soundService;
         private readonly IAnalyticsService _analyticsService;
 
-        private List<DayData> _daysData;
         private DayData _currentDayData;
         private BonusLevelData _bonusLevelData;
-
-        private int _currentDay = 1;
-
+        
         private readonly List<DayProgressData> _daysProgress = new();
         private readonly Dictionary<int, DayProgressData> _daysProgressByDayId = new();
         public BonusLevelType BonusLevelType { get; private set; }
 
         public List<DayStarData> DayStarsData { get; } = new(3);
 
-        public int CurrentDay => _currentDay;
+        public int CurrentDay => _currentDayData.Id;
         public int MaxDays => _staticDataService.GetStaticData<DaysStaticData>().Configs.Count;
         private DaysStaticData DaysStaticData => _staticDataService.GetStaticData<DaysStaticData>();
         private DayStarsStaticData DayStarsStaticData => _staticDataService.GetStaticData<DayStarsStaticData>();
@@ -56,10 +54,21 @@ namespace Code.Meta.Features.Days.Service
             _analyticsService = analyticsService;
         }
 
-        public void SetBonusLevel(BonusLevelData type)
+        public void SetBonusLevel(BonusLevelData type, SceneTypeId sceneTypeId)
         {
             _bonusLevelData = type;
             BonusLevelType = type.Type;
+
+            DayProgressData dayProgressData = _daysProgress.Last();
+
+            DayData dayData = DaysStaticData.GetDayData(dayProgressData.DayId);
+
+            _currentDayData = new DayData()
+            {
+                DayGoldFactor = dayData.DayGoldFactor,
+                SceneId = sceneTypeId,
+                Id = dayData.Id,
+            };
         }
 
         public void InitializeDays(IEnumerable<DayProgressData> daysProgress)
@@ -76,9 +85,9 @@ namespace Code.Meta.Features.Days.Service
             return _daysProgress.Count != 0;
         }
 
-        public void SetActiveDay(int selectedDayId)
+        public void SetActiveDay(DayData selectedDayId)
         {
-            _currentDay = selectedDayId;
+            _currentDayData = selectedDayId;
         }
 
         public List<DayProgressData> GetDaysProgress()
@@ -106,9 +115,6 @@ namespace Code.Meta.Features.Days.Service
         public void BeginDay()
         {
             var staticData = _staticDataService.GetStaticData<DaysStaticData>();
-            _daysData = staticData.Configs;
-
-            _currentDayData = GetDayData(_currentDay);
 
             float roundDuration = GetRoundDuration();
 
@@ -129,7 +135,7 @@ namespace Code.Meta.Features.Days.Service
             }
             else
             {
-                _analyticsService.SendEvent(AnalyticsEventTypes.LevelStart, _currentDay.ToString());
+                _analyticsService.SendEvent(AnalyticsEventTypes.LevelStart, CurrentDay.ToString());
             }
            
             OnDayBegin?.Invoke();
@@ -137,6 +143,7 @@ namespace Code.Meta.Features.Days.Service
 
         public void RoundEnd()
         {
+            
         }
 
         public void EnterRoundPreparation()
@@ -146,7 +153,7 @@ namespace Code.Meta.Features.Days.Service
 
         public void StarsRecieved(int starsReceived)
         {
-            _analyticsService.SendEvent(AnalyticsEventTypes.LevelEnd, _currentDay.ToString());
+            _analyticsService.SendEvent(AnalyticsEventTypes.LevelEnd, CurrentDay.ToString());
             _analyticsService.SendEvent(AnalyticsEventTypes.StarsEarned, starsReceived.ToString());
         }
 
@@ -157,6 +164,7 @@ namespace Code.Meta.Features.Days.Service
             
             BonusLevelType = BonusLevelType.None;
             _bonusLevelData = null;
+            _currentDayData = null;
             OnDayComplete?.Invoke();
         }
 
@@ -170,11 +178,6 @@ namespace Code.Meta.Features.Days.Service
                 : DaysStaticData.DefaultRoundDuration;
 
             return roundDuration;
-        }
-
-        public bool CheckAllDaysComplete()
-        {
-            return _currentDay >= MaxDays;
         }
 
         public bool CheckDayUnlocked(int dayId)

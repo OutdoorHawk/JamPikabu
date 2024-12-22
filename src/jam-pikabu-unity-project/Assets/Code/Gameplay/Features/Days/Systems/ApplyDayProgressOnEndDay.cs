@@ -43,19 +43,18 @@ namespace Code.Gameplay.Features.Days.Systems
 
         protected override void Execute(List<GameEntity> entities)
         {
-            _daysService.DayComplete();
-            
             int starsReceived = GetStarsReceived();
+            if (starsReceived != 0)
+            {
+                MetaEntity day = TryFindExistingDay() ?? CreateNewDayProgressEntity();
 
-            if (starsReceived == 0)
-                return;
+                UpdateStarsAmount(day, starsReceived);
 
-            MetaEntity day = TryFindExistingDay() ?? CreateNewDayProgressEntity();
-
-            UpdateStarsAmount(day, starsReceived);
+                _daysService.StarsRecieved(starsReceived);
+                _saveLoadService.SaveProgress();
+            }
             
-            _daysService.StarsRecieved(starsReceived);
-            _saveLoadService.SaveProgress();
+            _daysService.DayComplete();
         }
 
         private int GetStarsReceived()

@@ -56,12 +56,6 @@ namespace Code.Gameplay.Features.Loot.Factory
                     break;
             }
 
-            switch (_daysService.GetDayData().SceneId)
-            {
-                case SceneTypeId.NoGravityScene:
-                    break;
-            }
-
             return loot;
         }
 

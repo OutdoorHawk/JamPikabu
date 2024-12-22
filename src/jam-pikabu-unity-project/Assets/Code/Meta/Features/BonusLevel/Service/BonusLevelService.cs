@@ -54,14 +54,15 @@ namespace Code.Meta.Features.BonusLevel.Service
                 .With(x => x.isBonusLevelAvailableTimer = true)
                 .AddBonusLevelAvailableTime(time);
 
-            _daysService.SetBonusLevel(bonusLevelData);
-
             List<SceneTypeId> scenes = bonusLevelData.SceneTypeId;
-            
+
+            SceneTypeId sceneTypeId = scenes[Random.Range(0, scenes.Count)];
             var parameters = new LoadLevelPayloadParameters()
             {
-                LevelName = scenes[Random.Range(0, scenes.Count)].ToString()
+                LevelName = sceneTypeId.ToString()
             };
+            
+            _daysService.SetBonusLevel(bonusLevelData, sceneTypeId);
             _gameStateMachine.Enter<LoadLevelState, LoadLevelPayloadParameters>(parameters);
         }
 
