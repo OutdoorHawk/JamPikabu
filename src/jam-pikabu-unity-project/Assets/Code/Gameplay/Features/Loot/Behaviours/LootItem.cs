@@ -1,7 +1,9 @@
 ﻿using Code.Gameplay.Common.Collisions;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.StaticData;
+using Code.Infrastructure.SceneLoading;
 using Code.Infrastructure.View;
+using Code.Meta.Features.Days.Service;
 using UnityEngine;
 using Zenject;
 
@@ -16,12 +18,14 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         private PolygonCollider2D _collider2D;
         private Collider2D _collider;
         private ICollisionRegistry _collisionRegistry;
+        private IDaysService _daysService;
 
         public SpriteRenderer Sprite => _sprite;
 
         [Inject]
-        private void Construct(IStaticDataService staticData, ICollisionRegistry collisionRegistry)
+        private void Construct(IStaticDataService staticData, ICollisionRegistry collisionRegistry, IDaysService daysService)
         {
+            _daysService = daysService;
             _collisionRegistry = collisionRegistry;
             _staticData = staticData;
         }
@@ -39,6 +43,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
             transform.localScale = Vector3.one * lootSetup.Size;
             CreateCollider(lootSetup);
             Destroy(_colliderRenderer);
+            InitDayType();
         }
 
         private void CreateCollider(LootSetup lootSetup)
@@ -54,6 +59,14 @@ namespace Code.Gameplay.Features.Loot.Behaviours
             var capsuleCollider2D = _colliderRenderer.gameObject.AddComponent<CapsuleCollider2D>();
             capsuleCollider2D.size = Vector3.one * lootSetup.ColliderSize;
             _collider = capsuleCollider2D;
+        }
+
+        private void InitDayType()
+        {
+            if (_daysService.GetDayData().SceneId is SceneTypeId.NoGravityScene)
+            {
+                Entity.Rigidbody2D.gravityScale = 0;
+            }
         }
     }
 }

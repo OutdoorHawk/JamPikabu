@@ -5,6 +5,7 @@
         BootstrapScene = 0,
         MapMenu = 1,
         GameplayScene = 2,
-        ConveyorGameplayScene = 3
+        ConveyorGameplayScene = 3,
+        NoGravityScene = 4,
     }
 }

@@ -37,7 +37,7 @@ namespace Code.Gameplay.Features.Loot.Factory
                 case SceneTypeId.ConveyorGameplayScene:
                     return CreateConveyorSpawner();
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return CreateSingleSpawner();
             }
         }
 
@@ -53,6 +53,12 @@ namespace Code.Gameplay.Features.Loot.Factory
                     break;
                 default:
                     AddRating(loot, typeId);
+                    break;
+            }
+
+            switch (_daysService.GetDayData().SceneId)
+            {
+                case SceneTypeId.NoGravityScene:
                     break;
             }
 
