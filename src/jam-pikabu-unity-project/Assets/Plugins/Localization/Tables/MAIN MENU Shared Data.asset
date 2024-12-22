@@ -55,6 +55,10 @@ MonoBehaviour:
     m_Key: BONUS_LEVEL
     m_Metadata:
       m_Items: []
+  - m_Id: 16652952207052800
+    m_Key: LVL
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

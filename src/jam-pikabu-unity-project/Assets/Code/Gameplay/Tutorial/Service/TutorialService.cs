@@ -5,12 +5,15 @@ using Code.Common.Logger.Service;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Tutorial.Config;
 using Code.Gameplay.Tutorial.Processors.Abstract;
+using Code.Gameplay.Windows;
+using Code.Gameplay.Windows.Service;
 using Code.Infrastructure.States.GameStateHandler;
 using Code.Infrastructure.States.GameStateHandler.Handlers;
 using Code.Progress.Data.Tutorial;
 using Code.Progress.Provider;
 using Code.Progress.SaveLoadService;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace Code.Gameplay.Tutorial.Service
 {
@@ -24,6 +27,7 @@ namespace Code.Gameplay.Tutorial.Service
         private readonly IStaticDataService _staticData;
         private readonly IProgressProvider _provider;
         private readonly ILoggerService _logger;
+        private readonly IWindowService _windowService;
 
         private readonly Dictionary<TutorialTypeId, TutorialUserData> _tutorialUserData = new();
         private readonly Dictionary<TutorialTypeId, ITutorialProcessor> _tutorialProcessors = new();
@@ -42,7 +46,8 @@ namespace Code.Gameplay.Tutorial.Service
             IStaticDataService staticDataService,
             ISaveLoadService saveLoadService,
             IProgressProvider provider,
-            ILoggerService logger
+            ILoggerService logger,
+            IWindowService windowService
         )
         {
             _saveLoadService = saveLoadService;
@@ -50,6 +55,7 @@ namespace Code.Gameplay.Tutorial.Service
             _staticData = staticDataService;
             _provider = provider;
             _logger = logger;
+            _windowService = windowService;
         }
 
         public void Initialize()
@@ -180,10 +186,14 @@ namespace Code.Gameplay.Tutorial.Service
             }
             catch (Exception e)
             {
+                if (Application.isPlaying == false)
+                    return;
+                
                 _logger.LogError($"<b><color=cyan>[Tutorial]</b></color> Exception: {e}\n" +
                                  "Tutorial will be skipped.");
             }
 
+            _windowService.Close(WindowTypeId.Tutorial);
             _activeProcessor.source?.Cancel();
             tutorialProcessor.Finalization();
 

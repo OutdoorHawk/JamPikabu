@@ -65,6 +65,10 @@ MonoBehaviour:
     m_Localized: Bonus lvl
     m_Metadata:
       m_Items: []
+  - m_Id: 16652952207052800
+    m_Localized: level
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

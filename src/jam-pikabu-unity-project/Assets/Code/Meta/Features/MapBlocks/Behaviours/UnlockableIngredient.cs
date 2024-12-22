@@ -13,6 +13,7 @@ using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows.Factory;
 using Code.Gameplay.Windows.Service;
+using Code.Infrastructure.Localization;
 using Code.Meta.Features.DayLootSettings.Configs;
 using Code.Meta.Features.Days.Service;
 using Code.Meta.Features.LootCollection.Configs;
@@ -56,6 +57,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
         private MapBlockData _mapBlockData;
         private IUIFactory _uiFactory;
         private ISoundService _soundService;
+        private ILocalizationService _localizationService;
 
         private Image FillIcon => IngredientIcons[0];
         private Image BigFlyIcon => IngredientIcons[1];
@@ -74,9 +76,11 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
             IDaysService daysService,
             IMapMenuService mapMenuService,
             IUIFactory uiFactory,
-            ISoundService soundService
+            ISoundService soundService,
+            ILocalizationService localizationService
         )
         {
+            _localizationService = localizationService;
             _soundService = soundService;
             _uiFactory = uiFactory;
             _mapMenuService = mapMenuService;
@@ -299,7 +303,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
         {
             CancellationToken cancellationToken = destroyCancellationToken;
             _uiFactory.SetRaycastAvailable(false);
-            MoveIngredientToShop(from: FlyToShopStartPosition.transform.position);
+            MoveIngredientToShop(from: FlyToShopStartPosition.transform.position, firstUnlock: true);
             _soundService.PlayOneShotSound(SoundTypeId.CollectIngredient);
 
             if (_lootCollectionService.CanUpgradeForFree(UnlocksIngredient) == false)
@@ -347,16 +351,23 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
                 .AddLootTypeId(UnlocksIngredient);
         }
 
-        private void MoveIngredientToShop(Vector3 from)
+        private void MoveIngredientToShop(Vector3 from, bool firstUnlock = false)
         {
             if (_windowService.TryGetWindow(out MainMenuWindow mainMenuWindow) == false)
                 return;
 
             Transform shopButton = mainMenuWindow.ShopButton.transform;
 
+            string prefix  = string.Empty;
+            
+            if (firstUnlock == false) 
+                prefix = $"+1 {_localizationService["MAIN MENU/LVL"]}";
+
             var parameters = new CurrencyAnimationParameters()
             {
                 Count = 1,
+                OverrideText = true,
+                TextPrefix = prefix,
                 AnimationName = "UnlockLoot",
                 Sprite = BigFlyIcon.sprite,
                 EndPosition = shopButton.position,

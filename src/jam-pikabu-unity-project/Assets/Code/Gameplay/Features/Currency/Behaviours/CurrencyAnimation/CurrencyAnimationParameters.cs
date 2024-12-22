@@ -9,6 +9,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
         public int Count;
         public string TextPrefix;
         public string AnimationName;
+        public bool OverrideText;
         public CurrencyTypeId Type;
         public Sprite Sprite;
         public Vector3 StartPosition;
