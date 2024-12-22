@@ -46,8 +46,8 @@ namespace Code.Gameplay.Tutorial.Processors
         protected override async UniTask ProcessInternal(CancellationToken token)
         {
             var menu = await WaitForWindowToOpen<MainMenuWindow>(token, 480);
-            await DelaySeconds(0.75f, token);
-            menu.BonusLevelButton.transform.localScale = Vector3.zero;
+            
+            await DelaySeconds(2f, token);
             menu.BonusLevelButton.EnableElement();
             menu.BonusLevelButton.transform
                 .DOScale(1, 1)

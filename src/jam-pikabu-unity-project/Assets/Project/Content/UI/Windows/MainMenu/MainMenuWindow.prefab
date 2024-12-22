@@ -652,6 +652,7 @@ MonoBehaviour:
   MapContainer: {fileID: 2104741244981334193}
   PlayButton: {fileID: 1595205656589882711}
   ShopButton: {fileID: 8017122206792310784}
+  BonusLevelButton: {fileID: 7358929738745594203}
 --- !u!225 &3730107551682015233
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2754,6 +2755,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 5040246577881331413}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7358929738745594203 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2581308146803013518, guid: f64b21b57b1f15d499a333373c10c837,
+    type: 3}
+  m_PrefabInstance: {fileID: 5040246577881331413}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 950946b3a784454da7566b6ab34b74a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5408206211060313386
 PrefabInstance:
   m_ObjectHideFlags: 0

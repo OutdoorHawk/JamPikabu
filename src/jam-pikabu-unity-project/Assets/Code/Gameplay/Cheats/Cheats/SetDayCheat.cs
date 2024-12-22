@@ -3,15 +3,25 @@ using Code.Common.Extensions;
 using Code.Gameplay.Cheats.Cheats.Abstract;
 using Code.Infrastructure.DI.Installers;
 using Code.Infrastructure.States.GameStateHandler;
+using Code.Infrastructure.States.GameStates;
+using Code.Infrastructure.States.StateMachine;
 using Entitas;
+using Zenject;
 
 namespace Code.Gameplay.Cheats.Cheats
 {
     [Injectable(typeof(ICheatAction))]
     public class SetDayCheat : BaseCheat, ICheatActionInputString
     {
+        private IGameStateMachine _gameStateMachine;
         public string CheatLabel => "Пройти дней";
         public OrderType Order => OrderType.Third;
+
+        [Inject]
+        private void Construct(IGameStateMachine gameStateMachine)
+        {
+            _gameStateMachine = gameStateMachine;
+        }
 
         public void Execute(string input)
         {
@@ -25,6 +35,7 @@ namespace Code.Gameplay.Cheats.Cheats
             }
 
             _saveLoadService.SaveProgress();
+            _gameStateMachine.Enter<LoadMapMenuState>();
         }
 
         private MetaEntity TryFindExistingDay(IGroup<MetaEntity> days, int i)
