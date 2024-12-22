@@ -837,7 +837,7 @@ MonoBehaviour:
   GrowthExponent: 0.8
   StepFactor: 4
   BonusAdjustment: 2
-  FullUpgradeCost: 7455
+  FullUpgradeCost: 6870
   ProgressionCurve:
     serializedVersion: 2
     m_Curve:
