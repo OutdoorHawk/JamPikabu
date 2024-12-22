@@ -1,6 +1,7 @@
 ﻿using Code.Gameplay.Features;
 using Code.Gameplay.Features.Currency.Service;
 using Code.Gameplay.Input;
+using Code.Infrastructure.States.GameStateHandler;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.Systems;
 
@@ -12,6 +13,7 @@ namespace Code.Infrastructure.States.GameStates.Game
         private readonly GameContext _gameContext;
         private readonly InputContext _inputContext;
         private readonly IGameplayCurrencyService _gameplayCurrencyService;
+        private readonly IGameStateHandlerService _gameStateHandlerService;
 
         private GameLoopFeature _gameLoopFeature; 
         private GameLoopPhysicsFeature _physicsLoopFeature;
@@ -22,13 +24,15 @@ namespace Code.Infrastructure.States.GameStates.Game
             ISystemFactory systemFactory,
             GameContext gameContext,
             InputContext inputContext,
-            IGameplayCurrencyService gameplayCurrencyService
+            IGameplayCurrencyService gameplayCurrencyService,
+            IGameStateHandlerService gameStateHandlerService
         )
         {
             _systemFactory = systemFactory;
             _gameContext = gameContext;
             _inputContext = inputContext;
             _gameplayCurrencyService = gameplayCurrencyService;
+            _gameStateHandlerService = gameStateHandlerService;
         }
 
         public override void Enter()
@@ -77,6 +81,8 @@ namespace Code.Infrastructure.States.GameStates.Game
 
             foreach (InputEntity entity in _inputContext.GetEntities())
                 entity.Destroy();
+            
+            _gameStateHandlerService.OnExitGameLoop();
         }
     }
 }

@@ -1,12 +1,43 @@
+using System.Collections.Generic;
+using Code.Infrastructure.States.GameStateHandler;
+using Code.Infrastructure.States.GameStateHandler.Handlers;
+using Code.Meta.Features.Days;
+using Code.Meta.Features.Days.Service;
 using GamePush;
 
 namespace Code.Infrastructure.Ads.Service
 {
-    public class GamePushAdsService : BaseAdsService
+    public class GamePushAdsService : BaseAdsService, IExitGameLoopStateHandler, IEnterMainMenuStateHandler
     {
         public override bool CanShowRewarded => GP_Ads.IsRewardedAvailable();
         public override bool CanShowInterstitial => GP_Ads.IsFullscreenAvailable();
         public override bool CanShowBanner => GP_Ads.IsStickyAvailable();
+
+        public OrderType OrderType => OrderType.Last;
+
+        private readonly IDaysService _daysService;
+
+        public GamePushAdsService(IDaysService daysService)
+        {
+            _daysService = daysService;
+        }
+
+        public void OnEnterMainMenu()
+        {
+            List<DayProgressData> dayProgressData = _daysService.GetDaysProgress();
+            
+            if (dayProgressData.Count < 1)
+                return;
+            
+            if (CanShowBanner) 
+                RequestInterstitial();
+        }
+
+        public void OnExitGameLoop()
+        {
+            if (CanShowInterstitial) 
+                RequestInterstitial();
+        }
 
         public override void RequestRewardedAd()
         {
