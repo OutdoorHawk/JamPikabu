@@ -16,13 +16,13 @@ MonoBehaviour:
   - Id: 1
     IsBossDay: 0
     AvailableOrderTags: 0
-    OrdersAmount: 2
+    OrdersAmount: 3
     DayGoldFactor: 1
     SceneId: 2
   - Id: 2
     IsBossDay: 0
     AvailableOrderTags: 0
-    OrdersAmount: 4
+    OrdersAmount: 3
     DayGoldFactor: 1.14
     SceneId: 2
   - Id: 3

@@ -2,6 +2,7 @@
 using Code.Common.Ads.Handler;
 using Code.Common.Extensions;
 using Code.Gameplay.Common.Time.Behaviours;
+using Code.Gameplay.Tutorial.Behaviours;
 using Code.Infrastructure.Ads.Service;
 using Code.Infrastructure.Localization;
 using Code.Meta.Features.BonusLevel.Service;
@@ -19,6 +20,7 @@ namespace Code.Meta.Features.BonusLevel.Behaviours
         public GameObject Pin;
         public GameObject Ad;
         public UIShiny Shiny;
+        public TutorialConditionComponent TutorialConditionComponent;
 
         private IAdsService _adsService;
         private IBonusLevelService _bonusLevelService;
@@ -32,6 +34,11 @@ namespace Code.Meta.Features.BonusLevel.Behaviours
             _adsService = adsService;
         }
 
+        private void Awake()
+        {
+            TutorialConditionComponent.ConditionChanged += RefreshCanShowAd;
+        }
+
         private void Start()
         {
             RefreshCanShowAd();
@@ -39,6 +46,7 @@ namespace Code.Meta.Features.BonusLevel.Behaviours
 
         private void OnDestroy()
         {
+            TutorialConditionComponent.ConditionChanged -= RefreshCanShowAd;
             Cleanup();
         }
 
@@ -65,7 +73,10 @@ namespace Code.Meta.Features.BonusLevel.Behaviours
             Pin.DisableElement();
             Shiny.Stop();
             Button.interactable = false;
-            Timer.TimerText.text = "00:00:00";
+            Timer.TimerText.text = "";
+            
+            if (TutorialConditionComponent.CurrentCondition == false)
+                return;
 
             if (_bonusLevelService.CanPlayFree())
             {

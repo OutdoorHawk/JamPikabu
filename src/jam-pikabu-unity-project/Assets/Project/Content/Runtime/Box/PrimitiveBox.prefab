@@ -293,7 +293,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1353896305
   m_SortingLayer: -3
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &3598148572435306208
 MonoBehaviour:
@@ -521,7 +521,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1353896305
   m_SortingLayer: -3
-  m_SortingOrder: -3
+  m_SortingOrder: -7
   m_Sprite: {fileID: 21300000, guid: a4f7053007997064b86992e55e49a5e7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -737,7 +737,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1353896305
   m_SortingLayer: -3
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &139127682668968490
 MonoBehaviour:
@@ -865,9 +865,9 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1353896305
-  m_SortingLayer: -3
-  m_SortingOrder: -1
+  m_SortingLayerID: 780278883
+  m_SortingLayer: -1
+  m_SortingOrder: 1
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &981226822599335179
 MonoBehaviour:
@@ -1137,13 +1137,13 @@ Transform:
   - {fileID: 4853037241530870029}
   - {fileID: 5531120642648804743}
   - {fileID: 8887810792975312206}
+  - {fileID: 5059617435823051116}
+  - {fileID: 6869948372968440962}
+  - {fileID: 3502887883678809498}
   - {fileID: 7856260444450637709}
   - {fileID: 6811700213533209891}
   - {fileID: 6618009972359669195}
-  - {fileID: 5059617435823051116}
   - {fileID: 4235584729095670899}
-  - {fileID: 6869948372968440962}
-  - {fileID: 3502887883678809498}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6188093289424903972
@@ -1221,7 +1221,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1353896305
   m_SortingLayer: -3
-  m_SortingOrder: 0
+  m_SortingOrder: -4
   m_Sprite: {fileID: 21300000, guid: bb75012c55555f2498a51da2b619075f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1507,7 +1507,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1353896305
   m_SortingLayer: -3
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &3239716953793321679
 MonoBehaviour:
@@ -1635,7 +1635,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1353896305
   m_SortingLayer: -3
-  m_SortingOrder: -2
+  m_SortingOrder: -5
   m_Sprite: {fileID: 21300000, guid: a3a282b5ec6794e4fac7f5fa523caa8c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1810,7 +1810,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1353896305
   m_SortingLayer: -3
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &6079164394604242522
 MonoBehaviour:
@@ -2089,7 +2089,7 @@ Transform:
   m_GameObject: {fileID: 9147906473139983843}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.11, y: 4.42, z: 0}
+  m_LocalPosition: {x: 3.75, y: 2.99, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2138,7 +2138,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1353896305
   m_SortingLayer: -3
-  m_SortingOrder: -2
+  m_SortingOrder: -5
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &1781301778110469261
 MonoBehaviour:
