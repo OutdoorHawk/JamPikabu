@@ -82,6 +82,10 @@ MonoBehaviour:
     m_Localized: Sock
     m_Metadata:
       m_Items: []
+  - m_Id: 60600473115381760
+    m_Localized: Chili
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

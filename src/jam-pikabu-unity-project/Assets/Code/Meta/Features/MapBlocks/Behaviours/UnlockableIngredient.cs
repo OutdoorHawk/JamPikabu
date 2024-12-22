@@ -9,6 +9,7 @@ using Code.Gameplay.Features.Currency.Factory;
 using Code.Gameplay.Features.Loot;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.StaticData;
+using Code.Gameplay.Windows.Factory;
 using Code.Gameplay.Windows.Service;
 using Code.Meta.Features.DayLootSettings.Configs;
 using Code.Meta.Features.Days.Service;
@@ -51,6 +52,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
         private IDaysService _daysService;
         private IMapMenuService _mapMenuService;
         private MapBlockData _mapBlockData;
+        private IUIFactory _uiFactory;
 
         private Image FillIcon => IngredientIcons[0];
         private Image BigFlyIcon => IngredientIcons[1];
@@ -67,9 +69,11 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
             ILootCollectionService lootCollectionService,
             ICurrencyFactory currencyFactory,
             IDaysService daysService,
-            IMapMenuService mapMenuService
+            IMapMenuService mapMenuService,
+            IUIFactory uiFactory
         )
         {
+            _uiFactory = uiFactory;
             _mapMenuService = mapMenuService;
             _daysService = daysService;
             _currencyFactory = currencyFactory;
@@ -191,6 +195,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
 
         private void ResetAll()
         {
+            _uiFactory.SetRaycastAvailable(true);
             BigFlyIcon.DisableElement();
             FillIcon.DisableElement();
             GrayIcon.DisableElement();
@@ -286,6 +291,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
 
         private async UniTaskVoid CollectNewIngredient()
         {
+            _uiFactory.SetRaycastAvailable(false);
             MoveIngredientToShop(from: FlyToShopStartPosition.transform.position);
 
             if (_lootCollectionService.CanUpgradeForFree(UnlocksIngredient) == false)
@@ -321,6 +327,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
 
             await UniTask.Yield(destroyCancellationToken);
             UnlockIngredient();
+            _uiFactory.SetRaycastAvailable(true);
         }
 
         private void UnlockIngredient()

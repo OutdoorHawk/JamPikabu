@@ -37,7 +37,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours
         private void OnDestroy()
         {
             _gameplayCurrencyService.CurrencyChanged -= Refresh;
-            _gameplayCurrencyService.UnregisterHolder(this);
+          //  _gameplayCurrencyService.UnregisterHolder(this);
         }
 
         private void RefreshStatic()

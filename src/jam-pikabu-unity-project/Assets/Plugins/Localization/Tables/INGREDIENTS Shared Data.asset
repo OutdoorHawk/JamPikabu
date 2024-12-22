@@ -79,6 +79,10 @@ MonoBehaviour:
     m_Key: SPOON
     m_Metadata:
       m_Items: []
+  - m_Id: 60600473115381760
+    m_Key: PEPPER
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

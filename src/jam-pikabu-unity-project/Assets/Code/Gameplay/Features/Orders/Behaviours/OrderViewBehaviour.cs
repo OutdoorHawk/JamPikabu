@@ -62,7 +62,7 @@ namespace Code.Gameplay.Features.Orders.Behaviours
             _orderIconFilled.fillAmount = 0;
             _orderIconPenaltyFilled.fillAmount = 0;
 
-            Reward.SetupPrice(currentOrder.Setup.GoldReward);
+            Reward.SetupPrice(_ordersService.GetRewardForOrder());
         }
 
         public void InitOrderFillProgress()

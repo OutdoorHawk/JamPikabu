@@ -455,7 +455,7 @@ MonoBehaviour:
         CurrencyType: 1
         Amount: 53
   - Id: 8
-    Type: 9
+    Type: 10
     Levels:
     - RatingBoostAmount: 26
       Cost:
@@ -518,7 +518,7 @@ MonoBehaviour:
         CurrencyType: 1
         Amount: 57
   - Id: 9
-    Type: 10
+    Type: 9
     Levels:
     - RatingBoostAmount: 30
       Cost:

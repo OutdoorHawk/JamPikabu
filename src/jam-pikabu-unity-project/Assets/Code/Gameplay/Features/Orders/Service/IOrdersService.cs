@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Code.Gameplay.Features.Currency.Config;
 using Code.Gameplay.Features.Loot;
 using Code.Gameplay.Features.Orders.Config;
 
@@ -22,5 +23,6 @@ namespace Code.Gameplay.Features.Orders.Service
         void GoToNextOrder();
         void GameOver();
         bool OrderPassesConditions();
+        CostSetup GetRewardForOrder();
     }
 }

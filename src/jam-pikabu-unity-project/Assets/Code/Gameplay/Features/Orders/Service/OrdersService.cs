@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Code.Gameplay.Features.Currency.Config;
 using Code.Gameplay.Features.Loot;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.Features.Loot.Service;
@@ -165,6 +166,14 @@ namespace Code.Gameplay.Features.Orders.Service
                     return true;
 
             return false;
+        }
+
+        public CostSetup GetRewardForOrder()
+        {
+            OrderData currentOrder = GetCurrentOrder();
+            DayData dayData = _daysService.GetDayData();
+            CostSetup reward = currentOrder.Setup.GoldReward;
+            return new CostSetup(reward.CurrencyType, Mathf.RoundToInt(reward.Amount * dayData.DayGoldFactor));
         }
 
         private void InitIngredientsDic(OrderData order)

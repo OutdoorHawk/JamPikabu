@@ -25,6 +25,7 @@ namespace Code.Meta.Features.DayLootSettings.Configs
         public float FreeUpgradeTimeMinutes = 10f;
 
         public List<LootTypeId> AvailableIngredients = new();
+        public List<LootTypeId> ExtraLoot = new();
 
         public int FreeUpgradeTimeSeconds => (int)(FreeUpgradeTimeMinutes * 60);
 

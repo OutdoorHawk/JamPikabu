@@ -79,6 +79,10 @@ namespace Code.Gameplay.Features.Loot.Service
             {
                 _availableLoot.Add(staticData.GetConfig(lootTypeId));
             }
+            foreach (LootTypeId lootTypeId in mapBlock.ExtraLoot)
+            {
+                _availableLoot.Add(staticData.GetConfig(lootTypeId));
+            }
 
             FallbackRandom(staticData);
         }

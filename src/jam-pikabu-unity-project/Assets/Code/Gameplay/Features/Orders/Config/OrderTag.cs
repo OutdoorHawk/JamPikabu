@@ -12,5 +12,6 @@ namespace Code.Gameplay.Features.Orders.Config
         Easy = 1 << 3,     // 00001000 (8)
         Medium = 1 << 4,   // 00010000 (16)
         Hard = 1 << 5,     // 00100000 (32)
+        IgnoreOrders = 1 << 6,    
     }
 }

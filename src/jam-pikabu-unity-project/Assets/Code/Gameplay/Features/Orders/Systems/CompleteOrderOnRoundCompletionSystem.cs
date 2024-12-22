@@ -79,7 +79,7 @@ namespace Code.Gameplay.Features.Orders.Systems
 
         private void GiveRewardForOrder(GameEntity order, OrderSetup orderDataSetup)
         {
-            float rewardAmount = orderDataSetup.GoldReward.Amount;
+            float rewardAmount = _ordersService.GetRewardForOrder().Amount;
             rewardAmount *= _ordersService.GetOrderProgress();
             rewardAmount *= _ordersService.GetPenaltyFactor();
             int rewardRounded = Mathf.RoundToInt(rewardAmount);

@@ -26,6 +26,10 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
             foreach (var type in mapBlockData.AvailableIngredients)
             {
                 LootSetup lootSetup = LootSettings.GetConfig(type);
+                
+                if (lootSetup.CanBeUsedInOrders== false)
+                    continue;
+                
                 Image instance = Instantiate(IconTemplate, Layout.transform);
                 instance.sprite = lootSetup.Icon;
             }

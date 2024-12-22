@@ -34,8 +34,6 @@ namespace Code.Gameplay.Windows.Factory
 
         public void InitializeCamera()
         {
-            _canvas = _uiRoot.GetComponent<Canvas>();
-            _graphicRaycaster = _canvas.GetComponent<GraphicRaycaster>();
             _canvas.worldCamera = Camera.main;
         }
 
@@ -48,7 +46,8 @@ namespace Code.Gameplay.Windows.Factory
             GameObject uiRoot = _instantiator.InstantiatePrefab(windows.UIRoot.gameObject);
             uiRoot.transform.SetParent(null);
             _uiRoot = uiRoot.transform;
-            
+            _canvas = _uiRoot.GetComponent<Canvas>();
+            _graphicRaycaster = _canvas.GetComponent<GraphicRaycaster>();
         }
 
         public void SetRaycastAvailable(bool available)

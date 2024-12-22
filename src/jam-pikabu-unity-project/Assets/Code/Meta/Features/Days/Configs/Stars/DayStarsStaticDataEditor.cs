@@ -30,7 +30,7 @@ namespace Code.Meta.Features.Days.Configs.Stars
         {
             for (int i = 0; i < DaysStaticData.Configs.Count; i++)
             {
-                int ratingAmountNeed = Mathf.RoundToInt(BaseRatingNeedAmount + StepFactor * Mathf.Pow(i, GrowthExponent) + BonusAdjustment);
+                int ratingAmountNeed = (int)RoundToNearestFive(BaseRatingNeedAmount + StepFactor * Mathf.Pow(i, GrowthExponent) + BonusAdjustment);
 
                 if (i >= Configs.Count)
                 {
@@ -45,6 +45,11 @@ namespace Code.Meta.Features.Days.Configs.Stars
 
                 Configs[i].RatingNeedAll = ratingAmountNeed;
             }
+        }
+
+        private float RoundToNearestFive(float value)
+        {
+            return Mathf.Round(value / 5) * 5;
         }
 
         [FoldoutGroup("Editor")]
