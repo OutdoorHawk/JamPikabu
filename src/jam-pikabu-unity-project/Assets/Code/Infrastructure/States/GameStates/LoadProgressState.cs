@@ -144,6 +144,7 @@ namespace Code.Infrastructure.States.GameStates
         private void LoadFirstLevel()
         {
             DayData dayData = _staticData.GetStaticData<DaysStaticData>().GetDayData(1);
+            _daysService.SetActiveDay(dayData);
             var parameters = new LoadLevelPayloadParameters(dayData.SceneId.ToString());
             _stateMachine.Enter<LoadLevelState, LoadLevelPayloadParameters>(parameters);
         }
