@@ -14,111 +14,111 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Configs:
   - Id: 1
-    RatingNeedAll: 35
+    RatingNeedAll: 25
     AverageMinRatingPerDay: 38.5
     AverageMaxRatingPerDay: 202.5
   - Id: 2
-    RatingNeedAll: 45
+    RatingNeedAll: 55
     AverageMinRatingPerDay: 83.5
     AverageMaxRatingPerDay: 247.5
   - Id: 3
-    RatingNeedAll: 65
+    RatingNeedAll: 105
     AverageMinRatingPerDay: 74.5
     AverageMaxRatingPerDay: 238.5
   - Id: 4
-    RatingNeedAll: 95
+    RatingNeedAll: 165
     AverageMinRatingPerDay: 121
     AverageMaxRatingPerDay: 326
   - Id: 5
-    RatingNeedAll: 130
+    RatingNeedAll: 235
     AverageMinRatingPerDay: 148
     AverageMaxRatingPerDay: 353
   - Id: 6
-    RatingNeedAll: 180
+    RatingNeedAll: 310
     AverageMinRatingPerDay: 53.5
     AverageMaxRatingPerDay: 258.5
   - Id: 7
-    RatingNeedAll: 235
+    RatingNeedAll: 395
     AverageMinRatingPerDay: 114
     AverageMaxRatingPerDay: 319
   - Id: 8
-    RatingNeedAll: 300
+    RatingNeedAll: 480
     AverageMinRatingPerDay: 116.25
     AverageMaxRatingPerDay: 321.25
   - Id: 9
-    RatingNeedAll: 375
+    RatingNeedAll: 575
     AverageMinRatingPerDay: 101.625
     AverageMaxRatingPerDay: 306.625
   - Id: 10
-    RatingNeedAll: 455
+    RatingNeedAll: 675
     AverageMinRatingPerDay: 146.625
     AverageMaxRatingPerDay: 351.625
   - Id: 11
-    RatingNeedAll: 540
+    RatingNeedAll: 780
     AverageMinRatingPerDay: 118.5
     AverageMaxRatingPerDay: 323.5
   - Id: 12
-    RatingNeedAll: 635
+    RatingNeedAll: 885
     AverageMinRatingPerDay: 146.625
     AverageMaxRatingPerDay: 351.625
   - Id: 13
-    RatingNeedAll: 735
+    RatingNeedAll: 1000
     AverageMinRatingPerDay: 171.5
     AverageMaxRatingPerDay: 376.5
   - Id: 14
-    RatingNeedAll: 845
+    RatingNeedAll: 1115
     AverageMinRatingPerDay: 146.75
     AverageMaxRatingPerDay: 351.75
   - Id: 15
-    RatingNeedAll: 960
+    RatingNeedAll: 1230
     AverageMinRatingPerDay: 172.625
     AverageMaxRatingPerDay: 377.625
   - Id: 16
-    RatingNeedAll: 1080
+    RatingNeedAll: 1355
     AverageMinRatingPerDay: 177
     AverageMaxRatingPerDay: 382
   - Id: 17
-    RatingNeedAll: 1210
+    RatingNeedAll: 1480
     AverageMinRatingPerDay: 165.75
     AverageMaxRatingPerDay: 370.75
   - Id: 18
-    RatingNeedAll: 1345
+    RatingNeedAll: 1610
     AverageMinRatingPerDay: 178.125
     AverageMaxRatingPerDay: 383.125
   - Id: 19
-    RatingNeedAll: 1490
+    RatingNeedAll: 1740
     AverageMinRatingPerDay: 218
     AverageMaxRatingPerDay: 423
   - Id: 20
-    RatingNeedAll: 1640
+    RatingNeedAll: 1875
     AverageMinRatingPerDay: 192.125
     AverageMaxRatingPerDay: 397.125
   - Id: 21
-    RatingNeedAll: 1795
+    RatingNeedAll: 2015
     AverageMinRatingPerDay: 216.875
     AverageMaxRatingPerDay: 421.875
   - Id: 22
-    RatingNeedAll: 1955
+    RatingNeedAll: 2155
     AverageMinRatingPerDay: 293.875
     AverageMaxRatingPerDay: 498.875
   - Id: 23
-    RatingNeedAll: 2120
+    RatingNeedAll: 2300
     AverageMinRatingPerDay: 291.625
     AverageMaxRatingPerDay: 496.625
   - Id: 24
-    RatingNeedAll: 2295
+    RatingNeedAll: 2445
     AverageMinRatingPerDay: 292.75
     AverageMaxRatingPerDay: 497.75
   - Id: 25
-    RatingNeedAll: 2475
+    RatingNeedAll: 2590
     AverageMinRatingPerDay: 319.75
     AverageMaxRatingPerDay: 524.75
   - Id: 26
-    RatingNeedAll: 2660
+    RatingNeedAll: 2745
     AverageMinRatingPerDay: 282.625
     AverageMaxRatingPerDay: 487.625
   - Id: 27
-    RatingNeedAll: 2855
+    RatingNeedAll: 2895
     AverageMinRatingPerDay: 344.5
     AverageMaxRatingPerDay: 549.5
   - Id: 28
@@ -126,11 +126,11 @@ MonoBehaviour:
     AverageMinRatingPerDay: 353.75
     AverageMaxRatingPerDay: 558.75
   - Id: 29
-    RatingNeedAll: 3255
+    RatingNeedAll: 3210
     AverageMinRatingPerDay: 341.375
     AverageMaxRatingPerDay: 546.375
   - Id: 30
-    RatingNeedAll: 3465
+    RatingNeedAll: 3370
     AverageMinRatingPerDay: 353.75
     AverageMaxRatingPerDay: 558.75
   StarsFactorSetup:
@@ -142,7 +142,7 @@ MonoBehaviour:
   LootSettings: {fileID: 11400000, guid: d1c851350d7d8b345b3c20ef3cde1e87, type: 2}
   DayLootSettings: {fileID: 11400000, guid: d2e09ade8284fce4a9fa79fc48f90a6e, type: 2}
   OrdersData: {fileID: 11400000, guid: cf868022c2d7cf349a5e0bd1ae7f42c9, type: 2}
-  BaseRatingNeedAmount: 15
-  GrowthExponent: 1.8
-  StepFactor: 8
-  BonusAdjustment: 20
+  BaseRatingNeedAmount: 0
+  GrowthExponent: 1.4
+  StepFactor: 30
+  BonusAdjustment: 25
