@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Code.Gameplay.Features.Loot;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.Features.Orders.Config;
@@ -6,6 +7,7 @@ using Code.Meta.Features.DayLootSettings.Configs;
 using Code.Meta.Features.LootCollection.Configs;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Code.Meta.Features.Days.Configs.Stars
 {
@@ -17,13 +19,31 @@ namespace Code.Meta.Features.Days.Configs.Stars
         [FoldoutGroup("Editor")] public MapBlocksStaticData DayLootSettings;
         [FoldoutGroup("Editor")] public OrdersStaticData OrdersData;
         
+        [FoldoutGroup("Editor")] public float BaseRatingNeedAmount = 1;
+        [FoldoutGroup("Editor")] public float GrowthExponent = 1.5f;
+        [FoldoutGroup("Editor")] public float StepFactor = 2f;
+        [FoldoutGroup("Editor")] public int BonusAdjustment = 1;
+        
         [FoldoutGroup("Editor")]
         [Button]
-        private void CreateConfigsForEveryDay()
+        private void CreateLevelsAndApplyNeedStarsFormula()
         {
-            foreach (DayData dayData in DaysStaticData.Configs)
+            for (int i = 0; i < DaysStaticData.Configs.Count; i++)
             {
-                Configs.Add(new DayStarsSetup());
+                int ratingAmountNeed = Mathf.RoundToInt(BaseRatingNeedAmount + StepFactor * Mathf.Pow(i, GrowthExponent) + BonusAdjustment);
+
+                if (i >= Configs.Count)
+                {
+                    var dayData = new DayStarsSetup()
+                    {
+                        RatingNeedAll = ratingAmountNeed,
+                    };
+
+                    Configs.Add(dayData);
+                    continue;
+                }
+
+                Configs[i].RatingNeedAll = ratingAmountNeed;
             }
         }
 
@@ -97,7 +117,7 @@ namespace Code.Meta.Features.Days.Configs.Stars
                 if (config.Setup.MinMaxDayToUnlock.x > 0 && dayData.Id < config.Setup.MinMaxDayToUnlock.x)
                     continue;
 
-                if (config.Setup.Tag != OrderTag.None)
+                if (dayData.AvailableOrderTags != OrderTag.None)
                 {
                     if (dayData.AvailableOrderTags.HasFlag(config.Setup.Tag) == false)
                         continue;

@@ -10,8 +10,8 @@ namespace Code.Meta.Features.Days.Configs.Stars
         public int RatingNeedAll;
 
 #if UNITY_EDITOR
-        [FoldoutGroup("Editor"), ReadOnly] public float AverageMinRatingPerDay;
-        [FoldoutGroup("Editor"), ReadOnly] public float AverageMaxRatingPerDay;
+        [ReadOnly] public float AverageMinRatingPerDay;
+        [ ReadOnly] public float AverageMaxRatingPerDay;
 #endif
     }
 }
