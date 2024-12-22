@@ -96,7 +96,7 @@ namespace Code.Gameplay.Tutorial.Processors
             await DelaySeconds(0.4f, token);
 
            await tutorialWindow
-                .ShowMessage(11, anchorType: TutorialMessageAnchorType.Bottom)
+                .ShowMessage(10, anchorType: TutorialMessageAnchorType.Bottom)
                 .AwaitForTapAnywhere(token, 1)
                ;
 

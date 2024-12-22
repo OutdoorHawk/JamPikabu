@@ -20,7 +20,9 @@ MonoBehaviour:
     - rid: 2194680379798978651
   m_TableData:
   - m_Id: 112046644738908160
-    m_Localized: Select {0} and press buy.
+    m_Localized: 'Looks like you''ve earned enough coins
+
+      to upgrade an ingredient!'
     m_Metadata:
       m_Items:
       - rid: 2194680379798978651
@@ -68,22 +70,22 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 112046672849133568
-    m_Localized: Now place the new turret.
+    m_Localized: Click on the ledger to open the upgrade menu.
     m_Metadata:
       m_Items: []
   - m_Id: 112046682332454912
-    m_Localized: 'Let''s unlock another slot for turrets.
-
-      Open the building
-      menu.'
+    m_Localized: "Here, you'll find all your available ingredients. \nEach one shows
+      how much rating it adds when used correctly \nand how much it subtracts if
+      added incorrectly."
     m_Metadata:
       m_Items: []
   - m_Id: 112046708009984000
-    m_Localized: Click this button to unlock a new slot.
+    m_Localized: Click the upgrade button to level up an ingredient!
     m_Metadata:
       m_Items: []
   - m_Id: 112046721175904256
-    m_Localized: Now take another turret with you.
+    m_Localized: "Great job! Remember to upgrade your ingredients regularly \nso
+      you can earn enough rating for those golden pluses!"
     m_Metadata:
       m_Items: []
   - m_Id: 112046732869623808
