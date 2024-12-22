@@ -834,7 +834,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3607257478831258093, guid: a1321f7c3c4e27340bf725c10179a593,
         type: 3}
       insertIndex: 7
-      addedObject: {fileID: 5949227822352590073}
+      addedObject: {fileID: 9048333193325067277}
   m_SourcePrefab: {fileID: 100100000, guid: a1321f7c3c4e27340bf725c10179a593, type: 3}
 --- !u!114 &1689698567936985376 stripped
 MonoBehaviour:
@@ -877,6 +877,7 @@ MonoBehaviour:
   Pin: {fileID: 1566673672188598800}
   Ad: {fileID: 3044260432987770361}
   Shiny: {fileID: 7980937731553209849}
+  TutorialConditionComponent: {fileID: 9048333193325067277}
 --- !u!114 &6277210817611615780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -924,7 +925,7 @@ MonoBehaviour:
   m_Duration: 1
   m_LoopDelay: 1
   m_UpdateMode: 0
---- !u!114 &5949227822352590073
+--- !u!114 &9048333193325067277
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -933,9 +934,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8670009306523961520}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c80a37e4e11948db925e92b1756f7124, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a8623829ac44ff795cd5ebd8c86743a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _type: 4
   _invertCondition: 0
-  _destroyAfterInit: 0

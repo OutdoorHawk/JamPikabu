@@ -1,3 +1,4 @@
+using Code.Gameplay.Windows;
 using Code.Gameplay.Windows.Service;
 using Code.Infrastructure.States.GameStateHandler;
 using Code.Infrastructure.States.StateInfrastructure;
@@ -42,6 +43,7 @@ namespace Code.Infrastructure.States.GameStates
             _saveLoadService.SaveProgress();
 
             _gameStateHandlerService.OnEnterMainMenu();
+            _windowService.OpenWindow(WindowTypeId.MainMenu);
         }
 
         protected override void OnUpdate()

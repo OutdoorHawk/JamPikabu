@@ -37,7 +37,6 @@ namespace Code.Infrastructure.States.GameStates
         private void OnLoaded()
         {
             _windowService.ClearUIRoot();
-            _windowService.OpenWindow(WindowTypeId.MainMenu);
 
             _gameStateMachine.Enter<MapMenuState>();
         }
