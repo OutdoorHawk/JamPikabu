@@ -10,6 +10,7 @@ namespace Code.Gameplay.Tutorial.Processors.Abstract
         bool CanSkipTutorial();
         void Finalization();
         UniTask Process(CancellationToken token);
+        bool CheckLevelsPassedNeeds();
     }
     
 }

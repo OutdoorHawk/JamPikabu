@@ -4,6 +4,7 @@ using Code.Infrastructure.Analytics;
 using Code.Infrastructure.States.GameStates;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
+using Code.Meta.Features.BonusLevel.Behaviours;
 using Code.Meta.Features.Days.Service;
 using Code.Meta.Features.LootCollection.Service;
 using Code.Meta.Features.MainMenu.Behaviours;
@@ -20,6 +21,7 @@ namespace Code.Meta.Features.MainMenu.Windows
         public MapContainer MapContainer;
         public Button PlayButton;
         public Button ShopButton;
+        public BonusLevelButton BonusLevelButton;
 
         private IGameStateMachine _gameStateMachine;
         private IMapMenuService _mapMenuService;

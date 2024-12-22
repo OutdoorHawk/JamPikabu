@@ -153,6 +153,9 @@ namespace Code.Gameplay.Tutorial.Service
                 MarkTutorialCompleted(savedData);
                 return false;
             }
+            
+            if (processor.CheckLevelsPassedNeeds() == false)
+                return false;
 
             if (processor.CanStartTutorial() == false)
                 return false;

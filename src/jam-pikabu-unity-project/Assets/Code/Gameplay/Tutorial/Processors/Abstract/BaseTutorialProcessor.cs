@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Threading;
 using Code.Gameplay.Input.Service;
 using Code.Gameplay.StaticData;
+using Code.Gameplay.Tutorial.Config;
 using Code.Gameplay.Tutorial.Window;
 using Code.Gameplay.Windows;
 using Code.Gameplay.Windows.Service;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
+using Code.Meta.Features.Days.Service;
 using Code.Progress.Data;
 using Code.Progress.Provider;
 using Cysharp.Threading.Tasks;
@@ -26,10 +28,12 @@ namespace Code.Gameplay.Tutorial.Processors.Abstract
 
         private IGameStateMachine _gameStateMachine;
         private IProgressProvider _progressProvider;
+        private IDaysService _daysService;
 
         private readonly List<WindowTypeId> _openedWindowsCache = new();
 
         protected PlayerProgress Progress => _progressProvider.Progress;
+        private TutorialStaticData TutorialStaticData => _staticData.GetStaticData<TutorialStaticData>();
 
         [Inject]
         private void Construct
@@ -40,10 +44,12 @@ namespace Code.Gameplay.Tutorial.Processors.Abstract
             MetaContext metaContext,
             IProgressProvider progressProvider,
             IGameStateMachine gameStateMachine,
-            IStaticDataService staticDataService
+            IStaticDataService staticDataService,
+            IDaysService daysService
         )
 
         {
+            _daysService = daysService;
             _staticData = staticDataService;
             _progressProvider = progressProvider;
             _gameStateMachine = gameStateMachine;
@@ -60,6 +66,19 @@ namespace Code.Gameplay.Tutorial.Processors.Abstract
         async UniTask ITutorialProcessor.Process(CancellationToken token)
         {
             await ProcessInternal(token);
+        }
+
+        public bool CheckLevelsPassedNeeds()
+        {
+            TutorialConfig config = TutorialStaticData.Configs.Find(x => x.Type == TypeId);
+
+            if (config.CompletedLevelsNeedToStart == 0)
+                return true;
+
+            if (_daysService.GetDaysProgress().Count < config.CompletedLevelsNeedToStart)
+                return false;
+
+            return true;
         }
 
         protected abstract UniTask ProcessInternal(CancellationToken token);
