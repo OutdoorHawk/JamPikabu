@@ -1,0 +1,13 @@
+Cloud_1.png
+size:1024,512
+filter:Linear,Linear
+pma:true
+scale:0.5
+Cloud_1
+bounds:0,290,742,207
+Cloud_2
+bounds:449,146,453,144
+Cloud_3
+bounds:0,0,456,118
+Cloud_4
+bounds:0,118,449,172
