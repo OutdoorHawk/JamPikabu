@@ -77,9 +77,11 @@ namespace Code.Gameplay.Features.Loot.Behaviours
 
         public async UniTask AnimateFlyToVat(Transform flyEndPoint)
         {
+            _soundService.PlayOneShotSound(SoundTypeId.Construction_Fly);
+            
             await LootAnimator.WaitForAnimationCompleteAsync(AnimationParameter.Fly.AsHash(), destroyCancellationToken);
             
-            _soundService.PlaySound(SoundTypeId.Construction_Fly);
+            
             await transform
                     .DOJump(flyEndPoint.position, Random.Range(1, 4), 1, FlyToVatDuration)
                     .SetLink(gameObject)
@@ -95,11 +97,12 @@ namespace Code.Gameplay.Features.Loot.Behaviours
             if (LootAnimator == null)
                 return;
             
+            _soundService.PlaySound(SoundTypeId.Construction_Place);
             CollectedAtLeastOne = true;
 
             if (_ingredientTypeId is IngredientTypeId.Bad)
             {
-                LootAnimator.SetTrigger(AnimationParameter.Replenish.AsHash());
+                Replenish();
                 return;
             }
             
@@ -111,13 +114,13 @@ namespace Code.Gameplay.Features.Loot.Behaviours
 
             if (AmountNeed == 0)
             {
-                LootAnimator.SetTrigger(AnimationParameter.Replenish.AsHash());
+                Replenish();
                 return;
             }
             
             AmountNeed--;
             UpdateNeedAmount();
-            LootAnimator.SetTrigger(AnimationParameter.Replenish.AsHash());
+            Replenish();
         }
 
         public async UniTask AnimateConsume()
@@ -145,8 +148,11 @@ namespace Code.Gameplay.Features.Loot.Behaviours
                     .SetLink(gameObject)
                     .OnComplete(SetReadyToApply)
                 ;
+        }
 
-            _soundService.PlaySound(SoundTypeId.Construction_Place);
+        private void Replenish()
+        {
+            LootAnimator.SetTrigger(AnimationParameter.Replenish.AsHash());
         }
 
         private void UpdateNeedAmount()
