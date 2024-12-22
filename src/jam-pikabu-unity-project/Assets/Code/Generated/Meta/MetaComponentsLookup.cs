@@ -10,31 +10,35 @@ public static class MetaComponentsLookup {
 
     public const int Destructed = 0;
     public const int Id = 1;
-    public const int Day = 2;
-    public const int StarsAmount = 3;
-    public const int Level = 4;
-    public const int LootProgression = 5;
-    public const int LootTypeId = 6;
-    public const int UnlockLootRequest = 7;
-    public const int UpgradeLootRequest = 8;
-    public const int FreeUpgradeRequest = 9;
-    public const int LootFreeUpgradeTimer = 10;
-    public const int NextFreeUpgradeTime = 11;
-    public const int ReadyToFreeUpgrade = 12;
-    public const int AddCurrencyToStorageRequest = 13;
-    public const int Gold = 14;
-    public const int Storage = 15;
-    public const int Withdraw = 16;
-    public const int ForAd = 17;
-    public const int BuyRequest = 18;
-    public const int Purchased = 19;
-    public const int ShopItemId = 20;
+    public const int BonusLevelAvailableTime = 2;
+    public const int BonusLevelAvailableTimer = 3;
+    public const int Day = 4;
+    public const int StarsAmount = 5;
+    public const int Level = 6;
+    public const int LootProgression = 7;
+    public const int LootTypeId = 8;
+    public const int UnlockLootRequest = 9;
+    public const int UpgradeLootRequest = 10;
+    public const int FreeUpgradeRequest = 11;
+    public const int LootFreeUpgradeTimer = 12;
+    public const int NextFreeUpgradeTime = 13;
+    public const int ReadyToFreeUpgrade = 14;
+    public const int AddCurrencyToStorageRequest = 15;
+    public const int Gold = 16;
+    public const int Storage = 17;
+    public const int Withdraw = 18;
+    public const int ForAd = 19;
+    public const int BuyRequest = 20;
+    public const int Purchased = 21;
+    public const int ShopItemId = 22;
 
-    public const int TotalComponents = 21;
+    public const int TotalComponents = 23;
 
     public static readonly string[] componentNames = {
         "Destructed",
         "Id",
+        "BonusLevelAvailableTime",
+        "BonusLevelAvailableTimer",
         "Day",
         "StarsAmount",
         "Level",
@@ -59,6 +63,8 @@ public static class MetaComponentsLookup {
     public static readonly System.Type[] componentTypes = {
         typeof(Code.Common.Destructed),
         typeof(Code.Gameplay.Common.Id),
+        typeof(Code.Meta.Features.BonusLevel.BonusLevelAvailableTime),
+        typeof(Code.Meta.Features.BonusLevel.BonusLevelAvailableTimer),
         typeof(Code.Meta.Features.Days.Day),
         typeof(Code.Meta.Features.Days.StarsAmount),
         typeof(Code.Meta.Features.LootCollection.Level),

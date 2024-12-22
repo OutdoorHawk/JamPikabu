@@ -41,6 +41,7 @@ using Code.Infrastructure.States.GameStates.Game;
 using Code.Infrastructure.States.StateMachine;
 using Code.Infrastructure.Systems;
 using Code.Infrastructure.View.Factory;
+using Code.Meta.Features.BonusLevel.Service;
 using Code.Meta.Features.Days.Factory;
 using Code.Meta.Features.Days.Service;
 using Code.Meta.Features.LootCollection.Factory;
@@ -146,6 +147,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.BindInterfacesTo<CustomersService>().AsSingle();
             Container.BindInterfacesTo<GameStateService>().AsSingle();
             Container.BindInterfacesTo<MapMenuService>().AsSingle();
+            Container.BindInterfacesTo<BonusLevelService>().AsSingle();
             Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
             Container.Bind<IMousePositionService>().To<MousePositionService>().AsSingle();
             Container.Bind<ICameraProvider>().To<CameraProvider>().AsSingle();
