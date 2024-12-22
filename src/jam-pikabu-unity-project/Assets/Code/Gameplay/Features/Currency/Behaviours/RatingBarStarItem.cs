@@ -1,5 +1,7 @@
 ﻿using Code.Common.Extensions.Animations;
 using Code.Gameplay.Features.Currency.Config;
+using Code.Gameplay.Sound;
+using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
 using Code.Meta.Features.Days.Configs.Stars;
 using UnityEngine;
@@ -15,13 +17,15 @@ namespace Code.Gameplay.Features.Currency.Behaviours
         public Animator StarAnimator;
 
         private IStaticDataService _staticDataService;
+        private ISoundService _soundService;
 
         private bool _replenishPlayed;
         public int RatingAmount { get; private set; }
 
         [Inject]
-        private void Construct(IStaticDataService staticDataService)
+        private void Construct(IStaticDataService staticDataService, ISoundService soundService)
         {
+            _soundService = soundService;
             _staticDataService = staticDataService;
         }
 
@@ -42,6 +46,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours
 
             StarAnimator.SetTrigger(AnimationParameter.Replenish.AsHash());
             _replenishPlayed = true;
+            _soundService.PlaySound(SoundTypeId.StarReceive);
         }
 
         public void ResetReplenish()
@@ -51,6 +56,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours
             
             _replenishPlayed = false;
             StarAnimator.SetTrigger(AnimationParameter.Reset.AsHash());
+            _soundService.PlaySound(SoundTypeId.StarLoose);
         }
     }
 }

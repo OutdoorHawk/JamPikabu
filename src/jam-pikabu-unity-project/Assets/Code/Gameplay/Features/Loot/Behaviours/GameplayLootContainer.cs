@@ -13,6 +13,7 @@ using Code.Gameplay.Features.Orders;
 using Code.Gameplay.Features.Orders.Config;
 using Code.Gameplay.Features.Orders.Service;
 using Code.Gameplay.Sound;
+using Code.Gameplay.Sound.Service;
 using Code.Gameplay.Windows.Service;
 using Cysharp.Threading.Tasks;
 using Entitas;
@@ -41,6 +42,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         private readonly List<UniTask> _tasksBuffer = new(16);
         
         private CancellationTokenSource _refreshSource = new();
+        private ISoundService _soundService;
 
         [Inject]
         private void Construct
@@ -49,9 +51,11 @@ namespace Code.Gameplay.Features.Loot.Behaviours
             ILootItemUIFactory lootUIFactory,
             IOrdersService ordersService,
             IWindowService windowService,
-            ICurrencyFactory currencyFactory
+            ICurrencyFactory currencyFactory,
+            ISoundService soundService
         )
         {
+            _soundService = soundService;
             _currencyFactory = currencyFactory;
             _windowService = windowService;
             _ordersService = ordersService;
@@ -199,10 +203,10 @@ namespace Code.Gameplay.Features.Loot.Behaviours
                     : "-",
                 StartPosition = lootItemUI.transform.position,
                 EndPosition = progressBar.RatingFlyPos.transform.position,
-                StartReplenishSound = SoundTypeId.PlusesAdded,
                 StartReplenishCallback = () => _currencyFactory.CreateAddCurrencyRequest(data.RatingType, 0, -countRating)
             };
 
+            _soundService.PlaySound(SoundTypeId.Soft_Currency_Collect);
             _currencyFactory.PlayCurrencyAnimation(parameters);
         }
 

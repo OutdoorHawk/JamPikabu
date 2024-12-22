@@ -4,6 +4,8 @@ using Code.Gameplay.Features.HUD;
 using Code.Gameplay.Features.Loot.Behaviours;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.Features.Loot.Service;
+using Code.Gameplay.Sound;
+using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows;
 using Code.Gameplay.Windows.Service;
@@ -24,14 +26,16 @@ namespace Code.Gameplay.Features.Loot.Systems
         private readonly List<GameEntity> _buffer = new(64);
         private readonly IWindowService _windowService;
         private readonly IStaticDataService _staticData;
+        private readonly ISoundService _soundService;
         private readonly Camera _camera;
 
         public LootWithRatingPickupSystem(GameContext context, IGameplayLootService gameplayLootService,
-            IWindowService windowService, IStaticDataService staticData)
+            IWindowService windowService, IStaticDataService staticData, ISoundService soundService)
         {
             _context = context;
             _windowService = windowService;
             _staticData = staticData;
+            _soundService = soundService;
             _gameplayLootService = gameplayLootService;
             _camera = Camera.main;
 
@@ -78,10 +82,12 @@ namespace Code.Gameplay.Features.Loot.Systems
 
             if (lootContainer.ItemsByLootType.TryGetValue(loot.LootTypeId, out LootItemUI lootItemUI))
             {
+                _soundService.PlaySound(SoundTypeId.LootFly);
                 PlayMoveAnimationAsync(lootItemUI, loot.Id).Forget();
             }
             else
             {
+                _soundService.PlaySound(SoundTypeId.LootFly);
                 PlayNeutralIngredientFly(loot).Forget();
             }
         }

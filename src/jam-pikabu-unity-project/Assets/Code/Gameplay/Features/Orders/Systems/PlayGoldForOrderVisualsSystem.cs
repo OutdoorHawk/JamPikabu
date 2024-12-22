@@ -93,9 +93,9 @@ namespace Code.Gameplay.Features.Orders.Systems
             const float delayToFinishOtherAnimations = 0.75f;
             const float goldAnimationDelay = 0.75f;
             await DelaySeconds(delayToFinishOtherAnimations, hud.destroyCancellationToken);
+            _soundService.PlaySound(SoundTypeId.Order_Completed);
             _currencyFactory.PlayCurrencyAnimation(parameters);
             await DelaySeconds(goldAnimationDelay, hud.destroyCancellationToken);
-            _soundService.PlaySound(SoundTypeId.Order_Completed);
             _uiFactory.SetRaycastAvailable(true);
             order.isResultProcessed = true;
         }

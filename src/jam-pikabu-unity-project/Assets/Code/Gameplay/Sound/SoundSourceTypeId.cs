@@ -57,5 +57,6 @@
         StarReceive = 42,
         StarLoose = 43,
         CollectIngredient = 44,
+        LootFly = 45,
     }
 }

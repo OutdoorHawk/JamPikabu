@@ -184,3 +184,31 @@ MonoBehaviour:
       RandomizePitch: 1
       PitchMin: 0.9
       PitchMax: 1.2
+  - SoundType: 42
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
+      SourceType: 4
+      Volume: 0.05
+      RandomizePitch: 1
+      PitchMin: 0.8
+      PitchMax: 1.2
+  - SoundType: 43
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: 2046a871cefd2cd4990d5eba1d2fa8fb, type: 3}
+      SourceType: 4
+      Volume: 0.05
+      RandomizePitch: 1
+      PitchMin: 0.8
+      PitchMax: 1.2
+  - SoundType: 45
+    Data:
+      Clips:
+      - {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
+      - {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
+      SourceType: 4
+      Volume: 0.1
+      RandomizePitch: 1
+      PitchMin: 1
+      PitchMax: 1.4
