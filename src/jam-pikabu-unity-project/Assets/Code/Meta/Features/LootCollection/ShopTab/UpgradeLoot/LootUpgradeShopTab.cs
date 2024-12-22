@@ -22,6 +22,8 @@ namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
         private ILootCollectionService _lootCollectionService;
         private IInstantiator _instantiator;
 
+        public IReadOnlyList<LootUpgradeShopItem> Items => _items;
+
         [Inject]
         private void Construct
         (

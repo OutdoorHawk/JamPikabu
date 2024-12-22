@@ -10,9 +10,11 @@ namespace Code.Meta.UI.Shop.Window
     {
         public RectTransform TabsParent;
 
-        private readonly Dictionary<ShopTabTypeId, BaseShopTab> TabsDictionary = new();
+        private readonly Dictionary<ShopTabTypeId, BaseShopTab> _tabsDictionary = new();
 
         private IShopWindowService _shopWindowService;
+
+        public IReadOnlyDictionary<ShopTabTypeId, BaseShopTab> TabsDictionary => _tabsDictionary;
 
         [Inject]
         private void Construct(IShopWindowService shopWindowService)
@@ -32,10 +34,10 @@ namespace Code.Meta.UI.Shop.Window
 
         public void Init()
         {
-            TabsDictionary.Clear();
+            _tabsDictionary.Clear();
 
             foreach (var tab in TabsParent.GetComponentsInChildren<BaseShopTab>())
-                TabsDictionary[tab.TypeId] = tab;
+                _tabsDictionary[tab.TypeId] = tab;
 
             _shopWindowService.SetTabSelected(ShopTabTypeId.LootUpgrade);
             Refresh();
@@ -43,7 +45,7 @@ namespace Code.Meta.UI.Shop.Window
 
         public BaseShopTab GetTab(ShopTabTypeId id)
         {
-            return TabsDictionary.GetValueOrDefault(id);
+            return _tabsDictionary.GetValueOrDefault(id);
         }
 
         private void Refresh()
@@ -53,9 +55,9 @@ namespace Code.Meta.UI.Shop.Window
 
         private void UpdateTabs()
         {
-            TabsDictionary[_shopWindowService.SelectedTab].ActivateTab();
+            _tabsDictionary[_shopWindowService.SelectedTab].ActivateTab();
 
-            foreach (BaseShopTab baseShopTab in TabsDictionary.Values)
+            foreach (BaseShopTab baseShopTab in _tabsDictionary.Values)
             {
                 if (baseShopTab.TypeId != _shopWindowService.SelectedTab)
                     baseShopTab.DeactivateTab();

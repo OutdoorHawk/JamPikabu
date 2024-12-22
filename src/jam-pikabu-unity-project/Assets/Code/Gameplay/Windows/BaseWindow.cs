@@ -19,11 +19,13 @@ namespace Code.Gameplay.Windows
         
         private Tweener _animationTweener;
         private bool _isClosing;
-        
+
+        public bool BlockClosing { get; set; }
         public bool CanCloseByBack => _canCloseByBack;
         public WindowTypeId WindowType { get; private set; }
         protected IWindowService WindowService { get; set; }
         protected ILocalizationService LocalizationService { get; private set; }
+
 
         [Inject]
         private void Construct(IWindowService windowService, ILocalizationService localizationService)
@@ -55,12 +57,12 @@ namespace Code.Gameplay.Windows
         {
             WindowType = type;
         }
-        
+
         public void SetCanCloseByBack(bool canClose)
         {
             _canCloseByBack = canClose;
         }
-        
+
         public void SetCloseButtonInteractable(bool state)
         {
             CloseButton.interactable = state;
@@ -71,6 +73,9 @@ namespace Code.Gameplay.Windows
 
         public void Close()
         {
+            if (BlockClosing)
+                return;
+            
             CloseWindowInternal();
         }
 

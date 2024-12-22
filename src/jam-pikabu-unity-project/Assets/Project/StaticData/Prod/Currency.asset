@@ -24,7 +24,7 @@ MonoBehaviour:
       Icon: {fileID: 21300000, guid: f983f0ae85d3d514da31e92451ff0cbf, type: 3}
   - CurrencyTypeId: 4
     Data:
-      Icon: {fileID: 21300000, guid: fa0aa9c7ddd6c5641acecc3328a1a479, type: 3}
+      Icon: {fileID: 21300000, guid: 4f7657dab082c6f46ac70904e4f35353, type: 3}
   _currencyAnimationPrefab:
   - Name: Default
     Prefab: {fileID: 9005244342350799300, guid: ad3023e097a02a146a3d1a9f9a568fe3,

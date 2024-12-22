@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efbdc5b3f9904595801e6089b305bd29, type: 3}
   m_Name: Tutorial
   m_EditorClassIdentifier: 
-  DebugDisableSave: 0
+  DebugDisableSave: 1
   _configs:
   - Type: 1
     Order: 0
+    DisableTutorial: 0
+  - Type: 2
+    Order: 1
     DisableTutorial: 0
