@@ -205,66 +205,66 @@ MonoBehaviour:
   - Id: 4
     Type: 2
     Levels:
-    - RatingBoostAmount: 12
+    - RatingBoostAmount: 1
       Cost:
         CurrencyType: 1
-        Amount: 6
-    - RatingBoostAmount: 19
+        Amount: 3
+    - RatingBoostAmount: 8
+      Cost:
+        CurrencyType: 1
+        Amount: 10
+    - RatingBoostAmount: 11
       Cost:
         CurrencyType: 1
         Amount: 13
-    - RatingBoostAmount: 22
+    - RatingBoostAmount: 14
       Cost:
         CurrencyType: 1
         Amount: 16
-    - RatingBoostAmount: 25
+    - RatingBoostAmount: 17
       Cost:
         CurrencyType: 1
         Amount: 19
-    - RatingBoostAmount: 28
+    - RatingBoostAmount: 20
       Cost:
         CurrencyType: 1
         Amount: 22
-    - RatingBoostAmount: 31
+    - RatingBoostAmount: 22
       Cost:
         CurrencyType: 1
-        Amount: 25
-    - RatingBoostAmount: 33
+        Amount: 24
+    - RatingBoostAmount: 25
       Cost:
         CurrencyType: 1
         Amount: 27
-    - RatingBoostAmount: 36
+    - RatingBoostAmount: 27
       Cost:
         CurrencyType: 1
-        Amount: 30
-    - RatingBoostAmount: 38
+        Amount: 29
+    - RatingBoostAmount: 30
       Cost:
         CurrencyType: 1
         Amount: 32
-    - RatingBoostAmount: 41
+    - RatingBoostAmount: 32
       Cost:
         CurrencyType: 1
-        Amount: 35
-    - RatingBoostAmount: 43
+        Amount: 34
+    - RatingBoostAmount: 35
       Cost:
         CurrencyType: 1
         Amount: 37
-    - RatingBoostAmount: 46
+    - RatingBoostAmount: 37
       Cost:
         CurrencyType: 1
-        Amount: 40
-    - RatingBoostAmount: 48
+        Amount: 39
+    - RatingBoostAmount: 39
       Cost:
         CurrencyType: 1
-        Amount: 42
-    - RatingBoostAmount: 50
+        Amount: 41
+    - RatingBoostAmount: 42
       Cost:
         CurrencyType: 1
         Amount: 44
-    - RatingBoostAmount: 53
-      Cost:
-        CurrencyType: 1
-        Amount: 47
   - Id: 5
     Type: 5
     Levels:
@@ -837,7 +837,7 @@ MonoBehaviour:
   GrowthExponent: 0.85
   StepFactor: 4
   BonusAdjustment: 3
-  FullUpgradeCost: 7500
+  FullUpgradeCost: 7455
   ProgressionCurve:
     serializedVersion: 2
     m_Curve:
