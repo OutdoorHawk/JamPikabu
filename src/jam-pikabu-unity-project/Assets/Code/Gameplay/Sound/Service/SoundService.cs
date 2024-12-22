@@ -66,6 +66,17 @@ namespace Code.Gameplay.Sound.Service
             PlayerPrefs.Save();
         }
 
+        public void MuteVolume()
+        {
+            for (SoundVolumeTypeId i = 0; i < SoundVolumeTypeId.Count; i++)
+                SetValueToChanel(i.ToString(), 0);
+        }
+
+        public void SetVolumeWithoutSave(SoundVolumeTypeId channelType, float value)
+        {
+            SetValueToChanel(channelType.ToString(), value);
+        }
+
         public void NextSong()
         {
             PlayNextSong().Forget();
@@ -181,6 +192,11 @@ namespace Code.Gameplay.Sound.Service
             var go = _assetProvider.LoadAssetFromResources<MainSoundContainer>(MAIN_SOUND_CONTAINER);
             _mainSoundContainer = Instantiate(go, transform).GetComponent<MainSoundContainer>();
 
+            ResetVolume();
+        }
+
+        public void ResetVolume()
+        {
             for (SoundVolumeTypeId i = 0; i < SoundVolumeTypeId.Count; i++)
                 LoadVolume(i);
         }

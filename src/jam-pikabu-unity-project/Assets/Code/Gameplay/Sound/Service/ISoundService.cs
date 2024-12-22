@@ -11,6 +11,7 @@ namespace Code.Gameplay.Sound.Service
         event Action OnSongUpdated;
         OrderType OrderType { get; }
         void SetVolume(SoundVolumeTypeId channelType, float value);
+        void MuteVolume();
         void NextSong();
         void PreviousSong();
         AudioClip GetCurrentMusicClip();
@@ -25,5 +26,6 @@ namespace Code.Gameplay.Sound.Service
         void StopSound(SoundTypeId typeId);
         void PlayMusic(SoundTypeId typeId);
         void StopMusic();
+        void ResetVolume();
     }
 }

@@ -1,8 +1,10 @@
 ﻿using System;
 using Code.Progress;
 using Code.Progress.SaveLoadService;
+using Code.Progress.Writer;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Zenject;
 
 namespace Code.Gameplay.Cheats.Cheats
 {
@@ -12,7 +14,13 @@ namespace Code.Gameplay.Cheats.Cheats
 
         private float _timer;
         private bool _isDown;
-        
+        private IProgressReadWrite _progressReadWrite;
+
+        [Inject]
+        private void Construct(IProgressReadWrite progressReadWrite)
+        {
+            _progressReadWrite = progressReadWrite;
+        }
         public void OnPointerDown(PointerEventData eventData)
         {
             _isDown = true;
@@ -27,7 +35,7 @@ namespace Code.Gameplay.Cheats.Cheats
 
             if (_timer > TIME)
             {
-                ProgressExtensions.DeleteProgress(SaveLoadService.PlayerProgressPath);
+                _progressReadWrite.DeleteProgress();
                 PlayerPrefs.DeleteAll();
                 Application.Quit();
             }

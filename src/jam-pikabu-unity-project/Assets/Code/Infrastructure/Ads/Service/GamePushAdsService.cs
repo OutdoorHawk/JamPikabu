@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Code.Gameplay.Sound.Service;
 using Code.Infrastructure.States.GameStateHandler;
 using Code.Infrastructure.States.GameStateHandler.Handlers;
 using Code.Meta.Features.Days;
@@ -19,11 +20,15 @@ namespace Code.Infrastructure.Ads.Service
         public OrderType OrderType => OrderType.Last;
 
         private readonly IDaysService _daysService;
+        private readonly ISoundService _soundService;
 
-        public GamePushAdsService(IDaysService daysService)
+        public GamePushAdsService(IDaysService daysService, ISoundService soundService)
         {
+            _soundService = soundService;
             _daysService = daysService;
         }
+
+        #region IStateHandler
 
         public void OnEnterMainMenu()
         {
@@ -42,6 +47,17 @@ namespace Code.Infrastructure.Ads.Service
                 RequestInterstitial();
         }
 
+        #endregion
+
+        #region BaseAds
+
+        public override void RequestInterstitial()
+        {
+            base.RequestInterstitial();
+            
+            GP_Ads.ShowFullscreen(onFullscreenStart: Started, onFullscreenClose: Finished);
+        }
+
         public override void RequestRewardedAd()
         {
             base.RequestRewardedAd();
@@ -58,8 +74,11 @@ namespace Code.Infrastructure.Ads.Service
             GP_Ads.ShowSticky();
         }
 
+        #endregion
+        
         private void Started()
         {
+            _soundService.MuteVolume();
             NotifyStartedHandlers();
         }
 
@@ -72,6 +91,8 @@ namespace Code.Infrastructure.Ads.Service
         {
             if (success == false) 
                 NotifyErrorHandlers("");
+            
+            _soundService.ResetVolume();
         }
 
         private bool IsFullscreenAvailable()
@@ -100,5 +121,6 @@ namespace Code.Infrastructure.Ads.Service
             Logger.Log($"[AD] IsRewardedAvailable: {result}");
             return result;
         }
+        
     }
 }
