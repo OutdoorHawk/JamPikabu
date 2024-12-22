@@ -170,7 +170,6 @@ MonoBehaviour:
   LootParent: {fileID: 1472564075}
   LootSpawnPoints:
   - {fileID: 351755881}
-  - {fileID: 0}
 --- !u!1001 &216312683
 PrefabInstance:
   m_ObjectHideFlags: 0

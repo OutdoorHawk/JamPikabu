@@ -114,7 +114,12 @@ namespace Code.Gameplay.Features.Orders.Service
 
         public float GetOrderProgress()
         {
-            (List<IngredientData> good, List<IngredientData> bad) = OrderIngredients;
+            (List<IngredientData> good, List<IngredientData> _) = OrderIngredients;
+
+            if (good == null)
+            {
+                return 0;
+            }
 
             int total = good.Sum(data => data.Amount);
             int collected = 0;
@@ -133,7 +138,10 @@ namespace Code.Gameplay.Features.Orders.Service
         public float GetPenaltyFactor()
         {
             (List<IngredientData> good, List<IngredientData> bad) = OrderIngredients;
-
+            
+            if (good == null)
+                return 0;
+            
             int total = good.Sum(data => data.Amount);
 
             float penaltyFactor = ApplyPenaltyFactor(bad, total);
@@ -173,7 +181,7 @@ namespace Code.Gameplay.Features.Orders.Service
             OrderData currentOrder = GetCurrentOrder();
             DayData dayData = _daysService.GetDayData();
             CostSetup reward = currentOrder.Setup.GoldReward;
-            return new CostSetup(reward.CurrencyType, Mathf.RoundToInt(reward.Amount * dayData.DayGoldFactor));
+            return new CostSetup(reward.CurrencyType, Mathf.RoundToInt(reward.Amount * _daysService.GetDayGoldFactor()));
         }
 
         private void InitIngredientsDic(OrderData order)

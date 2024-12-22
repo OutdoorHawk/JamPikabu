@@ -4,5 +4,7 @@
     {
         bool CanPlayBonusLevel();
         int GetTimeToBonusLevel();
+        void UpdateTimeToNextBonusLevel(int bonusLevelAvailableTimeStamp);
+        void LoadBonusLevel();
     }
 }

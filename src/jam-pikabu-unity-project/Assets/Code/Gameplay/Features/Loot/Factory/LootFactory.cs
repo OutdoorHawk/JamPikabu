@@ -49,7 +49,7 @@ namespace Code.Gameplay.Features.Loot.Factory
             switch (typeId)
             {
                 case LootTypeId.GoldCoin:
-                    loot.AddGold(1);
+                    CreateGold(loot);
                     break;
                 default:
                     AddRating(loot, typeId);
@@ -63,6 +63,11 @@ namespace Code.Gameplay.Features.Loot.Factory
             }
 
             return loot;
+        }
+
+        private void CreateGold(GameEntity loot)
+        {
+            loot.AddGold(_daysService.GetDayGoldFactor());
         }
 
         private static GameEntity CreateSingleSpawner()

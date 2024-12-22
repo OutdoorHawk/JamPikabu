@@ -4,7 +4,9 @@ using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.Features.Loot.Factory;
+using Code.Gameplay.Features.Orders;
 using Code.Gameplay.StaticData;
+using Code.Meta.Features.BonusLevel.Config;
 using Code.Meta.Features.DayLootSettings.Configs;
 using Code.Meta.Features.Days.Service;
 using RoyalGold.Sources.Scripts.Game.MVC.Utils;
@@ -72,16 +74,27 @@ namespace Code.Gameplay.Features.Loot.Service
             var dayLootSettingsStaticData = _staticDataService.GetStaticData<MapBlocksStaticData>();
             var currentDay = _daysService.GetDayData();
 
-            MapBlockData mapBlock = dayLootSettingsStaticData.GetMapBlockDataByDayId(currentDay.Id);
-
-            _availableLoot.Clear();
-            foreach (LootTypeId lootTypeId in mapBlock.AvailableIngredients)
+            if (_daysService.BonusLevelType is BonusLevelType.GoldenCoins)
             {
-                _availableLoot.Add(staticData.GetConfig(lootTypeId));
+                BonusLevelData bonusLevelData = _staticDataService.GetStaticData<BonusLevelStaticData>().Configs[0];
+                foreach (LootTypeId typeId in bonusLevelData.AvailableIngredients)
+                {
+                    _availableLoot.Add(staticData.GetConfig(typeId));
+                }
             }
-            foreach (LootTypeId lootTypeId in mapBlock.ExtraLoot)
+            else
             {
-                _availableLoot.Add(staticData.GetConfig(lootTypeId));
+                MapBlockData mapBlock = dayLootSettingsStaticData.GetMapBlockDataByDayId(currentDay.Id);
+
+                _availableLoot.Clear();
+                foreach (LootTypeId lootTypeId in mapBlock.AvailableIngredients)
+                {
+                    _availableLoot.Add(staticData.GetConfig(lootTypeId));
+                }
+                foreach (LootTypeId lootTypeId in mapBlock.ExtraLoot)
+                {
+                    _availableLoot.Add(staticData.GetConfig(lootTypeId));
+                }
             }
 
             FallbackRandom(staticData);

@@ -6,6 +6,7 @@ using Code.Gameplay.Features.Orders.Behaviours;
 using Code.Gameplay.Features.Orders.Service;
 using Code.Gameplay.Sound;
 using Code.Gameplay.Sound.Service;
+using Code.Meta.Features.BonusLevel.Config;
 using Code.Meta.Features.Days.Service;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -68,7 +69,8 @@ namespace Code.Gameplay.Features.Customers.Behaviours
 
         private void Hide()
         {
-            _animator.SetTrigger(AnimationParameter.Hide.AsHash());
+            if (_daysService.BonusLevelType is BonusLevelType.None) 
+                _animator.SetTrigger(AnimationParameter.Hide.AsHash());
         }
 
         private async UniTaskVoid UpdateAsync()

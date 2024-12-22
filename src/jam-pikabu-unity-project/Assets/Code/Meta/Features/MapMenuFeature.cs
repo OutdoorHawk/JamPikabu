@@ -1,5 +1,6 @@
 using Code.Common.Destruct;
 using Code.Infrastructure.Systems;
+using Code.Meta.Features.BonusLevel;
 using Code.Meta.Features.Days.Systems;
 using Code.Meta.Features.LootCollection;
 using Code.Meta.Features.MapBlocks;
@@ -16,6 +17,7 @@ namespace Code.Meta.Features
             
             Add(systems.Create<LootCollectionFeature>());
             Add(systems.Create<MapBlocksFeature>());
+            Add(systems.Create<BonusLevelFeature>());
             
             Add(systems.Create<StorageFeature>());
             

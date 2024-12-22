@@ -9,7 +9,9 @@ namespace Code.Infrastructure.Ads.Service
 {
     public class GamePushAdsService : BaseAdsService, IExitGameLoopStateHandler, IEnterMainMenuStateHandler
     {
+#if !UNITY_EDITOR
         public override bool CanShowRewarded => GP_Ads.IsRewardedAvailable();
+#endif
         public override bool CanShowInterstitial => GP_Ads.IsFullscreenAvailable();
         public override bool CanShowBanner => GP_Ads.IsStickyAvailable();
 

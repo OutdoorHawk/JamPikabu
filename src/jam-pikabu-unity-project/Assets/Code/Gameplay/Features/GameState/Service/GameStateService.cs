@@ -2,6 +2,7 @@
 using Code.Gameplay.Features.Loot.Service;
 using Code.Gameplay.Features.Orders.Service;
 using Code.Infrastructure.States.StateMachine;
+using Code.Meta.Features.BonusLevel.Config;
 using Code.Meta.Features.Days.Service;
 
 namespace Code.Gameplay.Features.GameState.Service
@@ -59,21 +60,55 @@ namespace Code.Gameplay.Features.GameState.Service
 
         private void EnterBeginDay()
         {
-            _daysService.BeginDay();
-            _ordersService.InitDayBegin();
-            _gameplayLootService.CreateLootSpawner();
+            switch (_daysService.BonusLevelType)
+            {
+                case BonusLevelType.GoldenCoins:
+                {
+                    _daysService.BeginDay();
+                    _gameplayLootService.CreateLootSpawner();
+                    break;
+                }
+                default:
+                {
+                    _daysService.BeginDay();
+                    _ordersService.InitDayBegin();
+                    _gameplayLootService.CreateLootSpawner();
+                    break;
+                }
+            }
         }
 
         private void EnterRoundPreparation()
         {
-            _ordersService.CreateOrder();
-            _daysService.EnterRoundPreparation();
-            _gameplayLootService.ClearCollectedLoot();
+            switch (_daysService.BonusLevelType)
+            {
+                case BonusLevelType.GoldenCoins:
+                {
+                    _daysService.EnterRoundPreparation();
+                    _gameplayLootService.ClearCollectedLoot();
+                    break;
+                }
+                default:
+                {
+                    _ordersService.CreateOrder();
+                    _daysService.EnterRoundPreparation();
+                    _gameplayLootService.ClearCollectedLoot();
+                    break;
+                }
+            }
         }
 
         private void EnterRoundCompletion()
         {
-            _gameplayLootService.CreateLootConsumer();
+            switch (_daysService.BonusLevelType)
+            {
+                case BonusLevelType.GoldenCoins:
+                    AskToSwitchState(GameStateTypeId.EndDay);
+                    break;
+                default:
+                    _gameplayLootService.CreateLootConsumer();
+                    break;
+            }
         }
     }
 }

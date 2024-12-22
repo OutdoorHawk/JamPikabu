@@ -41,13 +41,14 @@ namespace Code.Gameplay.Features.Loot
         {
             foreach (var entity in _loot)
             {
-                int goldAmount = Mathf.CeilToInt(entity.Gold * _daysService.GetDayData().DayGoldFactor);
+                int goldAmount = entity.Gold;
                 _currencyFactory.CreateAddCurrencyRequest(CurrencyTypeId.Gold, goldAmount, goldAmount);
 
                 Vector3 startPosition = GetWorldPositionForUI(entity.Transform.position);
 
                 var parameters = new CurrencyAnimationParameters
                 {
+                    TextPrefix = "+",
                     Type = CurrencyTypeId.Gold,
                     Count = goldAmount,
                     StartPosition = startPosition,

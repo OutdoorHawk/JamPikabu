@@ -43,6 +43,8 @@ namespace Code.Gameplay.Features.Days.Systems
 
         protected override void Execute(List<GameEntity> entities)
         {
+            _daysService.DayComplete();
+            
             int starsReceived = GetStarsReceived();
 
             if (starsReceived == 0)
@@ -52,7 +54,7 @@ namespace Code.Gameplay.Features.Days.Systems
 
             UpdateStarsAmount(day, starsReceived);
             
-            _daysService.DayComplete(starsReceived);
+            _daysService.StarsRecieved(starsReceived);
             _saveLoadService.SaveProgress();
         }
 

@@ -2,7 +2,7 @@
 {
     public enum BonusLevelType
     {
-        Unknown = 0,
+        None = 0,
         GoldenCoins = 1,
     }
 }

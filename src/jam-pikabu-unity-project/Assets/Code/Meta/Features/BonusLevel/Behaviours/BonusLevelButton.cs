@@ -1,5 +1,6 @@
 ﻿using System;
 using Code.Common.Ads.Handler;
+using Code.Common.Extensions;
 using Code.Gameplay.Common.Time.Behaviours;
 using Code.Infrastructure.Ads.Service;
 using Code.Meta.Features.BonusLevel.Service;
@@ -13,6 +14,7 @@ namespace Code.Meta.Features.BonusLevel.Behaviours
     {
         public Button Button;
         public UniversalTimer Timer;
+        public GameObject Pin;
         
         private IAdsService _adsService;
         private IBonusLevelService _bonusLevelService;
@@ -58,6 +60,8 @@ namespace Code.Meta.Features.BonusLevel.Behaviours
 
         private void RefreshCanShowAd()
         {
+            Pin.DisableElement();
+            
             if (_adsService.CanShowRewarded == false)
             {
                 Button.interactable = false;
@@ -66,9 +70,14 @@ namespace Code.Meta.Features.BonusLevel.Behaviours
             
             if (_bonusLevelService.CanPlayBonusLevel() == false)
             {
+                Button.interactable = false;
                 StartTimer();
                 return;
             }
+
+            Timer.TimerText.text = "Бонусный уровень";
+            Pin.EnableElement();
+            Button.interactable = true;
         }
 
         private void AskAd()
@@ -85,7 +94,7 @@ namespace Code.Meta.Features.BonusLevel.Behaviours
 
         private void LoadBonusLevel()
         {
-            
+            _bonusLevelService.LoadBonusLevel();
         }
 
         private void Cleanup()

@@ -39,6 +39,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - ProdStaticData
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 642f67e9dbdda694d8da9fa5b5b9ba20
+    m_Address: BonusLevel
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ProdStaticData
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 982023cec6b56da45b241cd491aa6c9d
     m_Address: Days
     m_ReadOnly: 0

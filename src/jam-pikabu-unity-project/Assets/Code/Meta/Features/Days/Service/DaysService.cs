@@ -7,6 +7,7 @@ using Code.Gameplay.Sound;
 using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
 using Code.Infrastructure.Analytics;
+using Code.Meta.Features.BonusLevel.Config;
 using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Configs.Stars;
 using UnityEngine;
@@ -26,11 +27,13 @@ namespace Code.Meta.Features.Days.Service
 
         private List<DayData> _daysData;
         private DayData _currentDayData;
+        private BonusLevelData _bonusLevelData;
 
         private int _currentDay = 1;
 
         private readonly List<DayProgressData> _daysProgress = new();
         private readonly Dictionary<int, DayProgressData> _daysProgressByDayId = new();
+        public BonusLevelType BonusLevelType { get; private set; }
 
         public List<DayStarData> DayStarsData { get; } = new(3);
 
@@ -53,10 +56,17 @@ namespace Code.Meta.Features.Days.Service
             _analyticsService = analyticsService;
         }
 
+        public void SetBonusLevel(BonusLevelData type)
+        {
+            _bonusLevelData = type;
+            BonusLevelType = type.Type;
+        }
+
         public void InitializeDays(IEnumerable<DayProgressData> daysProgress)
         {
             _daysProgressByDayId.Clear();
             _daysProgress.RefreshList(daysProgress);
+
             foreach (DayProgressData dayProgressData in _daysProgress)
                 _daysProgressByDayId[dayProgressData.DayId] = dayProgressData;
         }
@@ -124,15 +134,24 @@ namespace Code.Meta.Features.Days.Service
             OnEnterRoundPreparation?.Invoke();
         }
 
-        public void DayComplete(int starsReceived)
+        public void StarsRecieved(int starsReceived)
         {
             _analyticsService.SendEvent(AnalyticsEventTypes.LevelEnd, _currentDay.ToString());
             _analyticsService.SendEvent(AnalyticsEventTypes.StarsEarned, starsReceived.ToString());
+        }
+
+        public void DayComplete()
+        {
+            BonusLevelType = BonusLevelType.None;
+            _bonusLevelData = null;
             OnDayComplete?.Invoke();
         }
 
         public float GetRoundDuration()
         {
+            if (BonusLevelType is BonusLevelType.GoldenCoins)
+                return _bonusLevelData.RoundTimeOverride;
+
             float roundDuration = _currentDayData.IsBossDay
                 ? DaysStaticData.BossRoundDuration
                 : DaysStaticData.DefaultRoundDuration;
@@ -176,6 +195,17 @@ namespace Code.Meta.Features.Days.Service
         public DayStarsSetup GetDayStarData(int currentDay)
         {
             return DayStarsStaticData.GetDayStarsData(currentDay);
+        }
+
+        public int GetDayGoldFactor()
+        {
+            if (_currentDayData == null)
+                return 1;
+
+            if (BonusLevelType == BonusLevelType.GoldenCoins)
+                return Mathf.CeilToInt(1 * _currentDayData.DayGoldFactor * _bonusLevelData.GoldFactorModifier);
+
+            return Mathf.CeilToInt(1 * _currentDayData.DayGoldFactor);
         }
 
         private DayData GetDayDataInternal(int currentDay)
