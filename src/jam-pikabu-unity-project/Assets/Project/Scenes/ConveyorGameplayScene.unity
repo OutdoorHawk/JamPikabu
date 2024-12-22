@@ -1609,6 +1609,11 @@ PrefabInstance:
       propertyPath: m_Sources.Array.data[0].sourceTransform
       value: 
       objectReference: {fileID: 216312684}
+    - target: {fileID: 2147191148219738344, guid: 1c55f5ffc19a64547a15196800d61089,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2546771758337229168, guid: 1c55f5ffc19a64547a15196800d61089,
         type: 3}
       propertyPath: m_Mesh
@@ -1684,6 +1689,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8537891753013270653, guid: 1c55f5ffc19a64547a15196800d61089,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1747,7 +1757,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1353896305
   m_SortingLayer: -3
-  m_SortingOrder: 0
+  m_SortingOrder: -4
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
     type: 3}
   m_Color: {r: 0.22352941, g: 0.22352941, b: 0.22352941, a: 1}

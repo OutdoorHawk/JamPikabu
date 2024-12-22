@@ -184,11 +184,14 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
         private void InitFreeUpgradeState(LootTypeId type)
         {
             ResetAll();
-
+            
             if (_lootCollectionService.CanUpgradeForFree(type) == false)
                 return;
 
             Init(type);
+            
+            if (_mapMenuService.MapBlockIsAvailable(_mapBlockData) == false)
+                return;
 
             if (_lootCollectionService.UpgradedForMaxLevel(type))
             {
@@ -364,7 +367,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
                 prefix = $"+1 {_localizationService["MAIN MENU/LVL"]}";
             else
             {
-                prefix = $"{_localizationService["MAIN MENU/NEW_INGREDIENT"]}";
+                prefix = string.Empty;
             }
 
             var parameters = new CurrencyAnimationParameters()

@@ -4,6 +4,7 @@ using Code.Gameplay.Features.HUD;
 using Code.Gameplay.Features.Loot.Behaviours;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.Features.Loot.Service;
+using Code.Gameplay.Features.Orders.Service;
 using Code.Gameplay.Sound;
 using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
@@ -27,17 +28,25 @@ namespace Code.Gameplay.Features.Loot.Systems
         private readonly IWindowService _windowService;
         private readonly IStaticDataService _staticData;
         private readonly ISoundService _soundService;
+        private readonly IOrdersService _ordersService;
         private readonly Camera _camera;
+        private readonly IGroup<GameEntity> _timers;
 
         public LootWithRatingPickupSystem(GameContext context, IGameplayLootService gameplayLootService,
-            IWindowService windowService, IStaticDataService staticData, ISoundService soundService)
+            IWindowService windowService, IStaticDataService staticData, ISoundService soundService, IOrdersService ordersService)
         {
             _context = context;
             _windowService = windowService;
             _staticData = staticData;
             _soundService = soundService;
+            _ordersService = ordersService;
             _gameplayLootService = gameplayLootService;
             _camera = Camera.main;
+            
+           _timers = context.GetGroup(GameMatcher.AllOf(
+                GameMatcher.RoundInProcess,
+                GameMatcher.RoundTimeLeft));
+
 
             _loot = context.GetGroup(GameMatcher
                 .AllOf(
@@ -54,6 +63,8 @@ namespace Code.Gameplay.Features.Loot.Systems
             {
                 SetLootCollected(loot);
 
+                TryCompleteTimerIfAllLootCollected();
+
                 DisableCollisions(loot);
 
                 PlayFlyAnimation(loot);
@@ -65,6 +76,17 @@ namespace Code.Gameplay.Features.Loot.Systems
             _gameplayLootService.AddCollectedLoot(loot.LootTypeId);
             loot.isCollected = true;
             loot.isBusy = true;
+        }
+
+        private void TryCompleteTimerIfAllLootCollected()
+        {
+            if (_ordersService.GetOrderProgress() >= 1)
+            {
+                foreach (var timer in _timers)
+                {
+                    timer.ReplaceRoundTimeLeft(0);
+                }
+            }
         }
 
         private static void DisableCollisions(GameEntity loot)

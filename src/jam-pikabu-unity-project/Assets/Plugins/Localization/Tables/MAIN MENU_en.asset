@@ -70,7 +70,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 16682504648085504
-    m_Localized: New ingredient unlocked
+    m_Localized: "New ingredient \nunlocked"
     m_Metadata:
       m_Items: []
   references:

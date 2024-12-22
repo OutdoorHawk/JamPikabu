@@ -65,6 +65,13 @@ namespace Code.Meta.Features.MainMenu.Service
             availableByStars |= CheckMapBlockIsAvailableByLevels(mapBlockData);
             return availableByStars;
         }
+        
+        public bool MapBlockIsAvailable(MapBlockData mapBlockData)
+        {
+            bool availableByStars = ChekMapBlockIsAvailableByStars(mapBlockData);
+            availableByStars |= CheckMapBlockIsAvailableByLevels(mapBlockData);
+            return availableByStars;
+        }
 
         public bool ChekMapBlockIsAvailableByStars(MapBlockData mapBlockData)
         {

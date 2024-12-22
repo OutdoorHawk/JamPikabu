@@ -150,7 +150,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
             _text.alpha = 1;
             float movePosY = _text.transform.localPosition.y - 30;
             _text.transform.DOLocalMoveY(movePosY, textFadeDuration*2);
-            await DelaySeconds(0.2f, _text.destroyCancellationToken);
+            await DelaySeconds(0.75f, _text.destroyCancellationToken);
             _text.DOFade(0, textFadeDuration);
         }
 
