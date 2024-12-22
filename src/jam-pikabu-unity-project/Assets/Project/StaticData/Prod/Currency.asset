@@ -15,7 +15,7 @@ MonoBehaviour:
   _configs:
   - CurrencyTypeId: 1
     Data:
-      Icon: {fileID: 21300000, guid: 960d9ea6b81ffd44c97fd99ad1de401a, type: 3}
+      Icon: {fileID: 21300000, guid: cdd679f587c85de41a1d24aa01c484db, type: 3}
   - CurrencyTypeId: 2
     Data:
       Icon: {fileID: 21300000, guid: 5b074747f25f41e41be0535484e4fdad, type: 3}
@@ -24,7 +24,7 @@ MonoBehaviour:
       Icon: {fileID: 21300000, guid: f983f0ae85d3d514da31e92451ff0cbf, type: 3}
   - CurrencyTypeId: 4
     Data:
-      Icon: {fileID: 21300000, guid: 4f7657dab082c6f46ac70904e4f35353, type: 3}
+      Icon: {fileID: 21300000, guid: 6d1e19b2e08c15343993a0ca8ce8ca71, type: 3}
   _currencyAnimationPrefab:
   - Name: Default
     Prefab: {fileID: 9005244342350799300, guid: ad3023e097a02a146a3d1a9f9a568fe3,

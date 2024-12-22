@@ -48,7 +48,7 @@ namespace Code.Gameplay.Common.World
                 selectedChild.gameObject.SetActive(true);
 
                 // Ожидаем 5 секунд, затем выключаем объект
-                yield return new WaitForSeconds(2.5f);
+                yield return new WaitForSeconds(3f);
                 selectedChild.gameObject.SetActive(false);
             }
         }

@@ -297,6 +297,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
 
         private async UniTaskVoid CollectNewIngredient()
         {
+            CancellationToken cancellationToken = destroyCancellationToken;
             _uiFactory.SetRaycastAvailable(false);
             MoveIngredientToShop(from: FlyToShopStartPosition.transform.position);
             _soundService.PlayOneShotSound(SoundTypeId.CollectIngredient);
@@ -307,9 +308,9 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
                 return;
             }
 
-            UnlockIngredientAnimator.WaitForAnimationCompleteAsync(AnimationParameter.Collect.AsHash(), destroyCancellationToken).Forget();
+            UnlockIngredientAnimator.WaitForAnimationCompleteAsync(AnimationParameter.Collect.AsHash(), cancellationToken).Forget();
 
-            await DelaySeconds(0.5f, destroyCancellationToken);
+            await DelaySeconds(0.5f, cancellationToken);
 
             BigFlyIcon.rectTransform
                 .DOScale(1, UnlockMoveDuration)
@@ -334,7 +335,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
                     .AsyncWaitForCompletion()
                 ;
 
-            await UniTask.Yield(destroyCancellationToken);
+            await UniTask.Yield(cancellationToken);
             UnlockIngredient();
             _uiFactory.SetRaycastAvailable(true);
         }
