@@ -1,5 +1,6 @@
 ﻿using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows;
+using Code.Infrastructure.Analytics;
 using Code.Infrastructure.States.GameStates;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
@@ -25,6 +26,7 @@ namespace Code.Meta.Features.MainMenu.Windows
         private IStaticDataService _staticDataService;
         private IDaysService _daysService;
         private ILootCollectionService _lootCollectionService;
+        private IAnalyticsService _analyticsService;
 
         [Inject]
         private void Construct
@@ -33,9 +35,11 @@ namespace Code.Meta.Features.MainMenu.Windows
             IMapMenuService mapMenuService,
             IStaticDataService staticDataService,
             IDaysService daysService,
-            ILootCollectionService lootCollectionService
+            ILootCollectionService lootCollectionService,
+            IAnalyticsService analyticsService
         )
         {
+            _analyticsService = analyticsService;
             _lootCollectionService = lootCollectionService;
             _daysService = daysService;
             _staticDataService = staticDataService;

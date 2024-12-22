@@ -1,6 +1,7 @@
 ﻿using Code.Common.Extensions;
 using Code.Gameplay.Features.Currency.Service;
 using Code.Gameplay.Features.Loot;
+using Code.Gameplay.Tutorial.Behaviours;
 using Code.Meta.Features.LootCollection.Configs;
 using Code.Meta.Features.LootCollection.Data;
 using Code.Meta.Features.LootCollection.Service;
@@ -14,6 +15,8 @@ namespace Code.Meta.UI.Shop.Behaviours
     {
         public GameObject Pin;
         public Button ShopButton;
+        public TutorialConditionComponent TutorialConditionComponent;
+        
         private IGameplayCurrencyService _currencyService;
         private ILootCollectionService _lootCollectionService;
 
@@ -27,6 +30,7 @@ namespace Code.Meta.UI.Shop.Behaviours
         private void Awake()
         {
             ShopButton.onClick.AddListener(DisablePin);
+            TutorialConditionComponent.ConditionChanged += RefreshPin;
         }
 
         private void Start()
@@ -37,6 +41,7 @@ namespace Code.Meta.UI.Shop.Behaviours
         private void OnDestroy()
         {
             ShopButton.onClick.RemoveListener(DisablePin);
+            TutorialConditionComponent.ConditionChanged -= RefreshPin;
         }
 
         private void DisablePin()
@@ -47,6 +52,9 @@ namespace Code.Meta.UI.Shop.Behaviours
         private void RefreshPin()
         {
             Pin.DisableElement();
+
+            if (TutorialConditionComponent.CurrentCondition == false)
+                return;
 
             foreach ((LootTypeId key, LootLevelsProgressionData value) in _lootCollectionService.LootLevels)
             {

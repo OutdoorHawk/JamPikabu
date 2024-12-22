@@ -43,7 +43,7 @@ namespace Code.Gameplay.Tutorial.Processors
             if (mapState == false)
                 return false;
 
-            if (_daysService.GetDaysProgress().Count < 1)
+            if (_daysService.GetDaysProgress().Count < 2)
                 return false;
 
             return true;

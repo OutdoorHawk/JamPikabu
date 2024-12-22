@@ -1,7 +1,6 @@
-using Code.Common.Entity;
-using Code.Common.Extensions;
 using Code.Gameplay.Common.MousePosition;
 using Code.Gameplay.StaticData;
+using Code.Infrastructure.Analytics;
 using Code.Infrastructure.States.GameStateHandler;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
@@ -17,17 +16,20 @@ namespace Code.Infrastructure.States.GameStates.Game
         private readonly IMousePositionService _mousePositionService;
         private readonly IGameStateHandlerService _gameStateHandlerService;
         private readonly IStaticDataService _staticDataService;
+        private readonly IAnalyticsService _analyticsService;
 
         public GameEnterState
         (
             IGameStateMachine stateMachine,
             IMousePositionService mousePositionService,
             IGameStateHandlerService gameStateHandlerService,
-            IStaticDataService staticDataService
+            IStaticDataService staticDataService,
+            IAnalyticsService analyticsService
         )
         {
             _gameStateHandlerService = gameStateHandlerService;
             _staticDataService = staticDataService;
+            _analyticsService = analyticsService;
             _mousePositionService = mousePositionService;
             _stateMachine = stateMachine;
         }
@@ -37,7 +39,6 @@ namespace Code.Infrastructure.States.GameStates.Game
             _mousePositionService.Initialize();
             _stateMachine.Enter<GameLoopState>();
             _gameStateHandlerService.OnEnterGameLoop();
-          
         }
     }
 }

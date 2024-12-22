@@ -23,7 +23,7 @@ namespace Code.Meta.Features.Days.Service
         void BeginDay();
         void RoundEnd();
         void EnterRoundPreparation();
-        void DayComplete();
+        void DayComplete(int starsReceived);
         float GetRoundDuration();
         bool CheckAllDaysComplete();
         bool CheckDayUnlocked(int dayId);

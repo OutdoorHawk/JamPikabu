@@ -61,6 +61,7 @@ namespace Code.Meta.Features.MainMenu.Behaviours
             Initialize();
             JumpToNextUncompletedSegment();
             UpdateButtonInteractivity();
+            UpdatePin();
         }
 
         private void Update()
@@ -226,6 +227,9 @@ namespace Code.Meta.Features.MainMenu.Behaviours
                 LootTypeId type = mapBlock.UnlockableIngredient.UnlocksIngredient;
 
                 if (_lootCollectionService.CanUpgradeForFree(type) == false)
+                    continue;
+
+                if (_lootCollectionService.LootFreeUpgrade.ContainsKey(type) == false)
                     continue;
 
                 if (_lootCollectionService.GetTimeLeftToFreeUpgrade(type) > 0)

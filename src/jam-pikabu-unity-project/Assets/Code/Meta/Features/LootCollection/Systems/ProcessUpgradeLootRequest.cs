@@ -1,11 +1,14 @@
+using Code.Infrastructure.Analytics;
 using Code.Meta.Features.LootCollection.Service;
 using Entitas;
+using static Code.Infrastructure.Analytics.AnalyticsEventTypes;
 
 namespace Code.Meta.Features.LootCollection.Systems
 {
     public class ProcessUpgradeLootRequest : IExecuteSystem
     {
         private readonly ILootCollectionService _lootCollectionService;
+        private readonly IAnalyticsService _analyticsService;
         private readonly IGroup<MetaEntity> _lootCollection;
         private readonly IGroup<MetaEntity> _requests;
         private readonly IGroup<MetaEntity> _storages;
@@ -13,10 +16,12 @@ namespace Code.Meta.Features.LootCollection.Systems
         public ProcessUpgradeLootRequest
         (
             MetaContext context,
-            ILootCollectionService lootCollectionService
+            ILootCollectionService lootCollectionService,
+            IAnalyticsService analyticsService
         )
         {
             _lootCollectionService = lootCollectionService;
+            _analyticsService = analyticsService;
 
             _requests = context.GetGroup(MetaMatcher.AllOf(
                 MetaMatcher.UpgradeLootRequest,
@@ -38,17 +43,19 @@ namespace Code.Meta.Features.LootCollection.Systems
             {
                 if (request.LootTypeId != loot.LootTypeId)
                     continue;
-                
+
                 request.isDestructed = true;
 
                 bool isFreeUpgrade = request.isFreeUpgradeRequest;
-                
+
                 if (isFreeUpgrade)
                 {
+                    _analyticsService.SendEvent(UpgradeLootTypeFree, request.LootTypeId.ToString());
                     UpgradeLevel(loot);
                     break;
                 }
 
+                _analyticsService.SendEvent(UpgradeLootType, loot.LootTypeId.ToString());
                 ProcessPaid(request, loot);
             }
         }
@@ -58,6 +65,7 @@ namespace Code.Meta.Features.LootCollection.Systems
             int newLevel = loot.Level + 1;
             loot.ReplaceLevel(newLevel);
             _lootCollectionService.LootUpgraded(loot.LootTypeId, newLevel: newLevel);
+            _analyticsService.SendEvent(LootUpgraded, $"{loot.LootTypeId.ToString()}_LEVEL_{loot.Level}");
         }
 
         private void ProcessPaid(MetaEntity request, MetaEntity loot)
@@ -68,10 +76,10 @@ namespace Code.Meta.Features.LootCollection.Systems
                     continue;
 
                 storage.ReplaceGold(storage.Gold - request.Gold);
-                
-                if (request.hasWithdraw) 
+
+                if (request.hasWithdraw)
                     storage.ReplaceWithdraw(storage.Withdraw + request.Withdraw);
-                
+
                 UpgradeLevel(loot);
             }
         }

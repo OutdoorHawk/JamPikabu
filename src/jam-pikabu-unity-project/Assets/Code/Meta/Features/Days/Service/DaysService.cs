@@ -6,10 +6,10 @@ using Code.Gameplay.Features.RoundState.Factory;
 using Code.Gameplay.Sound;
 using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
+using Code.Infrastructure.Analytics;
 using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Configs.Stars;
 using UnityEngine;
-using static Code.Meta.Features.Days.Configs.Stars.DayStarsStaticData;
 
 namespace Code.Meta.Features.Days.Service
 {
@@ -22,6 +22,7 @@ namespace Code.Meta.Features.Days.Service
         private readonly IRoundStateFactory _roundStateFactory;
         private readonly IStaticDataService _staticDataService;
         private readonly ISoundService _soundService;
+        private readonly IAnalyticsService _analyticsService;
 
         private List<DayData> _daysData;
         private DayData _currentDayData;
@@ -30,7 +31,7 @@ namespace Code.Meta.Features.Days.Service
 
         private readonly List<DayProgressData> _daysProgress = new();
         private readonly Dictionary<int, DayProgressData> _daysProgressByDayId = new();
-        
+
         public List<DayStarData> DayStarsData { get; } = new(3);
 
         public int CurrentDay => _currentDay;
@@ -42,12 +43,14 @@ namespace Code.Meta.Features.Days.Service
         (
             IRoundStateFactory roundStateFactory,
             IStaticDataService staticDataService,
-            ISoundService soundService
+            ISoundService soundService,
+            IAnalyticsService analyticsService
         )
         {
             _roundStateFactory = roundStateFactory;
             _staticDataService = staticDataService;
             _soundService = soundService;
+            _analyticsService = analyticsService;
         }
 
         public void InitializeDays(IEnumerable<DayProgressData> daysProgress)
@@ -103,11 +106,12 @@ namespace Code.Meta.Features.Days.Service
                 .AddRoundDuration(roundDuration)
                 ;
 
-            if (_currentDayData.IsBossDay) 
+            if (_currentDayData.IsBossDay)
                 _soundService.PlayMusic(SoundTypeId.SpecialGameplayMusic);
 
             InitStars();
 
+            _analyticsService.SendEvent(AnalyticsEventTypes.LevelStart, _currentDay.ToString());
             OnDayBegin?.Invoke();
         }
 
@@ -120,8 +124,10 @@ namespace Code.Meta.Features.Days.Service
             OnEnterRoundPreparation?.Invoke();
         }
 
-        public void DayComplete()
+        public void DayComplete(int starsReceived)
         {
+            _analyticsService.SendEvent(AnalyticsEventTypes.LevelEnd, _currentDay.ToString());
+            _analyticsService.SendEvent(AnalyticsEventTypes.StarsEarned, starsReceived.ToString());
             OnDayComplete?.Invoke();
         }
 
@@ -180,7 +186,7 @@ namespace Code.Meta.Features.Days.Service
         private void InitStars()
         {
             DayStarsData.Clear();
-            
+
             DayStarsSetup dayStarsSetup = DayStarsStaticData.GetDayStarsData(_currentDayData.Id);
             int ratingNeedAll = dayStarsSetup.RatingNeedAll;
             float[] starsFactorSetup = DayStarsStaticData.StarsFactorSetup;
@@ -191,8 +197,8 @@ namespace Code.Meta.Features.Days.Service
                 {
                     RatingAmountNeed = Mathf.RoundToInt(ratingNeedAll * starsFactorSetup[i])
                 };
-                
-                DayStarsData.Add(dayStarData); 
+
+                DayStarsData.Add(dayStarData);
             }
         }
     }

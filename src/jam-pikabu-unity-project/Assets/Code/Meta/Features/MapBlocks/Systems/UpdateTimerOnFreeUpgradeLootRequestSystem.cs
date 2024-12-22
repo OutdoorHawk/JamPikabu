@@ -14,6 +14,7 @@ namespace Code.Meta.Features.MapBlocks.Systems
         public UpdateTimerOnFreeUpgradeLootRequestSystem(MetaContext context, ILootCollectionService lootCollectionService)
         {
             _lootCollectionService = lootCollectionService;
+            
             _requests = context.GetGroup(MetaMatcher.AllOf(
                 MetaMatcher.UpgradeLootRequest,
                 MetaMatcher.LootTypeId,

@@ -26,6 +26,7 @@ using Code.Gameplay.Tutorial.Service;
 using Code.Gameplay.Windows.Factory;
 using Code.Gameplay.Windows.Service;
 using Code.Infrastructure.Ads.Service;
+using Code.Infrastructure.Analytics;
 using Code.Infrastructure.AssetManagement.AssetDownload;
 using Code.Infrastructure.AssetManagement.AssetProvider;
 using Code.Infrastructure.Common.CoroutineRunner;
@@ -218,6 +219,7 @@ namespace Code.Infrastructure.DI.Installers
         private void BindIntegrations()
         {
 #if GAME_PUSH
+            Container.BindInterfacesTo<GamePushAnalyticsService>().AsSingle();
             Container.BindInterfacesTo<GamePushIntegration>().AsSingle();
             Container.BindInterfacesTo<GamePushAdsService>().AsSingle();
             Container.BindInterfacesTo<GamePushProgressReadWrite>().AsSingle();

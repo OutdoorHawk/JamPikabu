@@ -51,7 +51,8 @@ namespace Code.Gameplay.Features.Days.Systems
             MetaEntity day = TryFindExistingDay() ?? CreateNewDayProgressEntity();
 
             UpdateStarsAmount(day, starsReceived);
-
+            
+            _daysService.DayComplete(starsReceived);
             _saveLoadService.SaveProgress();
         }
 
