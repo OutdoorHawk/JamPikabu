@@ -15,8 +15,8 @@ MonoBehaviour:
   Configs:
   - Id: 1
     Type: 1
-    SceneTypeId: 04000000
-    ResetTimeMinutes: 300
+    SceneTypeId: 05000000
+    FreePlayResetTimeMinutes: 300
     GoldFactorModifier: 3
     RoundTimeOverride: 30
     AvailableIngredients: 010000000100000001000000010000000e0000000f000000

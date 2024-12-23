@@ -37,6 +37,9 @@ namespace Code.Meta.Features.Days.Configs.Stars
                 
                 int ratingAmountNeed = (int)RoundToNearestFive(BaseRatingNeedAmount + StepFactor * Mathf.Pow(i, GrowthExponent) + BonusAdjustment);
 
+                if (DaysStaticData.Configs[i].IsBossDay) 
+                    ratingAmountNeed /= 2;
+
                 if (i >= Configs.Count)
                 {
                     var dayData = new DayStarsSetup()
