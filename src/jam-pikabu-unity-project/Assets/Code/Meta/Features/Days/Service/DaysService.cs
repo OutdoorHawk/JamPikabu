@@ -246,7 +246,7 @@ namespace Code.Meta.Features.Days.Service
             {
                 var dayStarData = new DayStarData
                 {
-                    RatingAmountNeed = Mathf.RoundToInt(ratingNeedAll * starsFactorSetup[i])
+                    RatingAmountNeed = Mathf.CeilToInt(ratingNeedAll * starsFactorSetup[i])
                 };
 
                 DayStarsData.Add(dayStarData);

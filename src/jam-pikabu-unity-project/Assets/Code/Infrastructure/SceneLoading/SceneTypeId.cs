@@ -7,5 +7,6 @@
         GameplayScene = 2,
         ConveyorGameplayScene = 3,
         NoGravityScene = 4,
+        BounceScene = 5,
     }
 }

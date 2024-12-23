@@ -83,7 +83,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours
 
         private void CreateItems(List<DayStarData> values)
         {
-            _maxRatingInDay = values[^1].RatingAmountNeed;
+            _maxRatingInDay = _daysService.GetDayStarData().RatingNeedAll;
             _items = Container.GetComponentsInChildren<RatingBarStarItem>();
             
             for (int i = 0; i < _items.Length; i++)

@@ -21,7 +21,6 @@ namespace Code.Gameplay.Sound.Behaviours
         {
             if (hasFocus == false)
             {
-                MusicSource.DisableElement();
                 foreach (AudioSource audioSource in SfxList)
                 {
                     audioSource.DisableElement();
@@ -29,8 +28,6 @@ namespace Code.Gameplay.Sound.Behaviours
             }
             else
             {
-                MusicSource.EnableElement();
-                
                 foreach (AudioSource audioSource in SfxList)
                 {
                     audioSource.EnableElement();

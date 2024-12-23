@@ -7,9 +7,9 @@ namespace Code.Meta.Features.Days.Configs
     [CreateAssetMenu(menuName = "StaticData/" + nameof(DaysStaticData), fileName = "Days")]
     public partial class DaysStaticData : BaseStaticData<DayData>
     {
-        public int StartGoldAmount = 0;
-        public float DefaultRoundDuration = 20;
-        public float BossRoundDuration = 40;
+        [TabGroup("Default")] public int StartGoldAmount = 0;
+        [TabGroup("Default")] public float DefaultRoundDuration = 20;
+        [TabGroup("Default")] public float BossRoundDuration = 40;
 
         public override void OnConfigInit()
         {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Code.Gameplay.Features.Orders.Config;
+using Code.Gameplay.StaticData.Data.Formulas;
 using RoyalGold.Sources.Scripts.Game.MVC.Utils;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -10,26 +11,24 @@ namespace Code.Meta.Features.Days.Configs
 {
     public partial class DaysStaticData
     {
-        [FoldoutGroup("Editor")] public OrdersStaticData OrdersData;
+        [TabGroup("Editor")] public OrdersStaticData OrdersData;
 
-        [FoldoutGroup("Editor")] [ReadOnly] public List<int> AverageGoldPerLevel;
-        [FoldoutGroup("Editor")] [ReadOnly] public int TotalGoldPerLevels;
+        [TabGroup("Editor")] [ReadOnly] public List<int> AverageGoldPerLevel;
+        [TabGroup("Editor")] [ReadOnly] public int TotalGoldPerLevels;
 
-        [FoldoutGroup("Editor")] [ReadOnly] public bool IgnoreBadIngredients;
+        [TabGroup("Editor")] [ReadOnly] public bool IgnoreBadIngredients;
 
-        [FoldoutGroup("Editor")] public int LevelsAmount = 18;
-        [FoldoutGroup("Editor")] public float BaseGoldFactor = 1;
-        [FoldoutGroup("Editor")] public float GrowthExponent = 1.5f;
-        [FoldoutGroup("Editor")] public float StepFactor = 2f;
-        [FoldoutGroup("Editor")] public int BonusAdjustment = 1;
+        [TabGroup("Editor")] public int LevelsAmount = 18;
+        [TabGroup("Editor")] public ExponentGrowthFormula GoldFormula = new(1, 0.62f, 0.11f, 0);
+        [TabGroup("Editor")] public List<DayOrderGroupEditor> OrdersRange;
 
-        [FoldoutGroup("Editor")]
+        [TabGroup("Editor")]
         [Button]
         private void CreateLevelsAndApplyFormula()
         {
             for (int i = 1; i < LevelsAmount; i++)
             {
-                float goldFactor = BaseGoldFactor + StepFactor * Mathf.Pow(i, GrowthExponent) + BonusAdjustment;
+                float goldFactor = GoldFormula.Calculate(i);
 
                 if (i >= Configs.Count)
                 {
@@ -47,7 +46,7 @@ namespace Code.Meta.Features.Days.Configs
             }
         }
 
-        [FoldoutGroup("Editor")]
+        [TabGroup("Editor")]
         [Button]
         public void CalculateAverageGoldPerLevel()
         {
@@ -71,6 +70,19 @@ namespace Code.Meta.Features.Days.Configs
             }
 
             TotalGoldPerLevels = AverageGoldPerLevel.Sum();
+        }
+
+        [TabGroup("Editor")]
+        [Button]
+        private void SetupOrdersRange()
+        {
+            foreach (DayData dayData in Configs)
+            {
+                DayOrderGroupEditor group = OrdersRange.Find(order => order.CanUse(dayData.Id));
+                dayData.AvailableOrderTags = group.OrderTag;
+                if (dayData.IsBossDay) 
+                    dayData.AvailableOrderTags |= OrderTag.Boss;
+            }
         }
     }
 }

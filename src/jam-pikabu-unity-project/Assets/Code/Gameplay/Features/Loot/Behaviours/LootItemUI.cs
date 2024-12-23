@@ -81,7 +81,6 @@ namespace Code.Gameplay.Features.Loot.Behaviours
             
             await LootAnimator.WaitForAnimationCompleteAsync(AnimationParameter.Fly.AsHash(), destroyCancellationToken);
             
-            
             await transform
                     .DOJump(flyEndPoint.position, Random.Range(1, 4), 1, FlyToVatDuration)
                     .SetLink(gameObject)

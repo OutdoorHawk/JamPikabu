@@ -56,10 +56,10 @@ namespace Code.Gameplay.Features.Customers.Service
 
         private void SetNewCustomer()
         {
+            _currentCustomerId++; 
+            
             if (_currentCustomerId >= _configs.Count)
                 _currentCustomerId = 0;
-
-            _currentCustomerId++;
         }
     }
 }

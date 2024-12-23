@@ -16,953 +16,961 @@ MonoBehaviour:
   - Id: 1
     Type: 6
     Levels:
-    - RatingBoostAmount: 1
-      Cost:
-        CurrencyType: 1
-        Amount: 3
-    - RatingBoostAmount: 7
-      Cost:
-        CurrencyType: 1
-        Amount: 9
-    - RatingBoostAmount: 10
-      Cost:
-        CurrencyType: 1
-        Amount: 12
-    - RatingBoostAmount: 13
-      Cost:
-        CurrencyType: 1
-        Amount: 15
-    - RatingBoostAmount: 15
-      Cost:
-        CurrencyType: 1
-        Amount: 17
-    - RatingBoostAmount: 17
-      Cost:
-        CurrencyType: 1
-        Amount: 19
-    - RatingBoostAmount: 20
-      Cost:
-        CurrencyType: 1
-        Amount: 22
-    - RatingBoostAmount: 22
-      Cost:
-        CurrencyType: 1
-        Amount: 24
-    - RatingBoostAmount: 24
-      Cost:
-        CurrencyType: 1
-        Amount: 26
-    - RatingBoostAmount: 26
-      Cost:
-        CurrencyType: 1
-        Amount: 28
-    - RatingBoostAmount: 28
-      Cost:
-        CurrencyType: 1
-        Amount: 30
-    - RatingBoostAmount: 30
-      Cost:
-        CurrencyType: 1
-        Amount: 32
-    - RatingBoostAmount: 32
-      Cost:
-        CurrencyType: 1
-        Amount: 34
-    - RatingBoostAmount: 34
-      Cost:
-        CurrencyType: 1
-        Amount: 36
-    - RatingBoostAmount: 36
-      Cost:
-        CurrencyType: 1
-        Amount: 38
-  - Id: 2
-    Type: 3
-    Levels:
-    - RatingBoostAmount: 1
-      Cost:
-        CurrencyType: 1
-        Amount: 3
-    - RatingBoostAmount: 7
-      Cost:
-        CurrencyType: 1
-        Amount: 9
-    - RatingBoostAmount: 10
-      Cost:
-        CurrencyType: 1
-        Amount: 12
-    - RatingBoostAmount: 13
-      Cost:
-        CurrencyType: 1
-        Amount: 15
-    - RatingBoostAmount: 15
-      Cost:
-        CurrencyType: 1
-        Amount: 17
-    - RatingBoostAmount: 17
-      Cost:
-        CurrencyType: 1
-        Amount: 19
-    - RatingBoostAmount: 20
-      Cost:
-        CurrencyType: 1
-        Amount: 22
-    - RatingBoostAmount: 22
-      Cost:
-        CurrencyType: 1
-        Amount: 24
-    - RatingBoostAmount: 24
-      Cost:
-        CurrencyType: 1
-        Amount: 26
-    - RatingBoostAmount: 26
-      Cost:
-        CurrencyType: 1
-        Amount: 28
-    - RatingBoostAmount: 28
-      Cost:
-        CurrencyType: 1
-        Amount: 30
-    - RatingBoostAmount: 30
-      Cost:
-        CurrencyType: 1
-        Amount: 32
-    - RatingBoostAmount: 32
-      Cost:
-        CurrencyType: 1
-        Amount: 34
-    - RatingBoostAmount: 34
-      Cost:
-        CurrencyType: 1
-        Amount: 36
-    - RatingBoostAmount: 36
-      Cost:
-        CurrencyType: 1
-        Amount: 38
-  - Id: 3
-    Type: 4
-    Levels:
-    - RatingBoostAmount: 1
-      Cost:
-        CurrencyType: 1
-        Amount: 3
-    - RatingBoostAmount: 7
-      Cost:
-        CurrencyType: 1
-        Amount: 9
-    - RatingBoostAmount: 10
-      Cost:
-        CurrencyType: 1
-        Amount: 12
-    - RatingBoostAmount: 13
-      Cost:
-        CurrencyType: 1
-        Amount: 15
-    - RatingBoostAmount: 15
-      Cost:
-        CurrencyType: 1
-        Amount: 17
-    - RatingBoostAmount: 17
-      Cost:
-        CurrencyType: 1
-        Amount: 19
-    - RatingBoostAmount: 20
-      Cost:
-        CurrencyType: 1
-        Amount: 22
-    - RatingBoostAmount: 22
-      Cost:
-        CurrencyType: 1
-        Amount: 24
-    - RatingBoostAmount: 24
-      Cost:
-        CurrencyType: 1
-        Amount: 26
-    - RatingBoostAmount: 26
-      Cost:
-        CurrencyType: 1
-        Amount: 28
-    - RatingBoostAmount: 28
-      Cost:
-        CurrencyType: 1
-        Amount: 30
-    - RatingBoostAmount: 30
-      Cost:
-        CurrencyType: 1
-        Amount: 32
-    - RatingBoostAmount: 32
-      Cost:
-        CurrencyType: 1
-        Amount: 34
-    - RatingBoostAmount: 34
-      Cost:
-        CurrencyType: 1
-        Amount: 36
-    - RatingBoostAmount: 36
-      Cost:
-        CurrencyType: 1
-        Amount: 38
-  - Id: 4
-    Type: 2
-    Levels:
-    - RatingBoostAmount: 1
-      Cost:
-        CurrencyType: 1
-        Amount: 3
-    - RatingBoostAmount: 7
-      Cost:
-        CurrencyType: 1
-        Amount: 9
-    - RatingBoostAmount: 10
-      Cost:
-        CurrencyType: 1
-        Amount: 12
-    - RatingBoostAmount: 13
-      Cost:
-        CurrencyType: 1
-        Amount: 15
-    - RatingBoostAmount: 15
-      Cost:
-        CurrencyType: 1
-        Amount: 17
-    - RatingBoostAmount: 17
-      Cost:
-        CurrencyType: 1
-        Amount: 19
-    - RatingBoostAmount: 20
-      Cost:
-        CurrencyType: 1
-        Amount: 22
-    - RatingBoostAmount: 22
-      Cost:
-        CurrencyType: 1
-        Amount: 24
-    - RatingBoostAmount: 24
-      Cost:
-        CurrencyType: 1
-        Amount: 26
-    - RatingBoostAmount: 26
-      Cost:
-        CurrencyType: 1
-        Amount: 28
-    - RatingBoostAmount: 28
-      Cost:
-        CurrencyType: 1
-        Amount: 30
-    - RatingBoostAmount: 30
-      Cost:
-        CurrencyType: 1
-        Amount: 32
-    - RatingBoostAmount: 32
-      Cost:
-        CurrencyType: 1
-        Amount: 34
-    - RatingBoostAmount: 34
-      Cost:
-        CurrencyType: 1
-        Amount: 36
-    - RatingBoostAmount: 36
-      Cost:
-        CurrencyType: 1
-        Amount: 38
-  - Id: 5
-    Type: 5
-    Levels:
-    - RatingBoostAmount: 15
-      Cost:
-        CurrencyType: 1
-        Amount: 8
-    - RatingBoostAmount: 21
-      Cost:
-        CurrencyType: 1
-        Amount: 14
-    - RatingBoostAmount: 24
-      Cost:
-        CurrencyType: 1
-        Amount: 17
-    - RatingBoostAmount: 27
-      Cost:
-        CurrencyType: 1
-        Amount: 20
-    - RatingBoostAmount: 29
-      Cost:
-        CurrencyType: 1
-        Amount: 22
-    - RatingBoostAmount: 31
-      Cost:
-        CurrencyType: 1
-        Amount: 24
-    - RatingBoostAmount: 34
-      Cost:
-        CurrencyType: 1
-        Amount: 27
-    - RatingBoostAmount: 36
-      Cost:
-        CurrencyType: 1
-        Amount: 29
-    - RatingBoostAmount: 38
-      Cost:
-        CurrencyType: 1
-        Amount: 31
-    - RatingBoostAmount: 40
-      Cost:
-        CurrencyType: 1
-        Amount: 33
-    - RatingBoostAmount: 42
-      Cost:
-        CurrencyType: 1
-        Amount: 35
-    - RatingBoostAmount: 44
-      Cost:
-        CurrencyType: 1
-        Amount: 37
-    - RatingBoostAmount: 46
-      Cost:
-        CurrencyType: 1
-        Amount: 39
-    - RatingBoostAmount: 48
-      Cost:
-        CurrencyType: 1
-        Amount: 41
-    - RatingBoostAmount: 50
-      Cost:
-        CurrencyType: 1
-        Amount: 43
-  - Id: 6
-    Type: 7
-    Levels:
-    - RatingBoostAmount: 3
-      Cost:
-        CurrencyType: 1
-        Amount: 1
-    - RatingBoostAmount: 9
-      Cost:
-        CurrencyType: 1
-        Amount: 7
-    - RatingBoostAmount: 12
+    - RatingBoostAmount: 0
       Cost:
         CurrencyType: 1
         Amount: 10
-    - RatingBoostAmount: 15
+    - RatingBoostAmount: 4
       Cost:
         CurrencyType: 1
         Amount: 13
-    - RatingBoostAmount: 17
-      Cost:
-        CurrencyType: 1
-        Amount: 15
-    - RatingBoostAmount: 19
-      Cost:
-        CurrencyType: 1
-        Amount: 17
-    - RatingBoostAmount: 22
-      Cost:
-        CurrencyType: 1
-        Amount: 20
-    - RatingBoostAmount: 24
-      Cost:
-        CurrencyType: 1
-        Amount: 22
-    - RatingBoostAmount: 26
-      Cost:
-        CurrencyType: 1
-        Amount: 24
-    - RatingBoostAmount: 28
-      Cost:
-        CurrencyType: 1
-        Amount: 26
-    - RatingBoostAmount: 30
-      Cost:
-        CurrencyType: 1
-        Amount: 28
-    - RatingBoostAmount: 32
-      Cost:
-        CurrencyType: 1
-        Amount: 30
-    - RatingBoostAmount: 34
-      Cost:
-        CurrencyType: 1
-        Amount: 32
-    - RatingBoostAmount: 36
-      Cost:
-        CurrencyType: 1
-        Amount: 34
-    - RatingBoostAmount: 38
-      Cost:
-        CurrencyType: 1
-        Amount: 36
-  - Id: 7
-    Type: 8
-    Levels:
-    - RatingBoostAmount: 18
-      Cost:
-        CurrencyType: 1
-        Amount: 12
-    - RatingBoostAmount: 24
-      Cost:
-        CurrencyType: 1
-        Amount: 18
-    - RatingBoostAmount: 27
-      Cost:
-        CurrencyType: 1
-        Amount: 21
-    - RatingBoostAmount: 30
-      Cost:
-        CurrencyType: 1
-        Amount: 24
-    - RatingBoostAmount: 32
-      Cost:
-        CurrencyType: 1
-        Amount: 26
-    - RatingBoostAmount: 34
-      Cost:
-        CurrencyType: 1
-        Amount: 28
-    - RatingBoostAmount: 37
-      Cost:
-        CurrencyType: 1
-        Amount: 31
-    - RatingBoostAmount: 39
-      Cost:
-        CurrencyType: 1
-        Amount: 33
-    - RatingBoostAmount: 41
-      Cost:
-        CurrencyType: 1
-        Amount: 35
-    - RatingBoostAmount: 43
-      Cost:
-        CurrencyType: 1
-        Amount: 37
-    - RatingBoostAmount: 45
-      Cost:
-        CurrencyType: 1
-        Amount: 39
-    - RatingBoostAmount: 47
-      Cost:
-        CurrencyType: 1
-        Amount: 41
-    - RatingBoostAmount: 49
-      Cost:
-        CurrencyType: 1
-        Amount: 43
-    - RatingBoostAmount: 51
-      Cost:
-        CurrencyType: 1
-        Amount: 45
-    - RatingBoostAmount: 53
-      Cost:
-        CurrencyType: 1
-        Amount: 47
-  - Id: 8
-    Type: 10
-    Levels:
-    - RatingBoostAmount: 26
+    - RatingBoostAmount: 5
       Cost:
         CurrencyType: 1
         Amount: 16
-    - RatingBoostAmount: 32
-      Cost:
-        CurrencyType: 1
-        Amount: 22
-    - RatingBoostAmount: 35
-      Cost:
-        CurrencyType: 1
-        Amount: 25
-    - RatingBoostAmount: 38
-      Cost:
-        CurrencyType: 1
-        Amount: 28
-    - RatingBoostAmount: 40
-      Cost:
-        CurrencyType: 1
-        Amount: 30
-    - RatingBoostAmount: 42
-      Cost:
-        CurrencyType: 1
-        Amount: 32
-    - RatingBoostAmount: 45
-      Cost:
-        CurrencyType: 1
-        Amount: 35
-    - RatingBoostAmount: 47
-      Cost:
-        CurrencyType: 1
-        Amount: 37
-    - RatingBoostAmount: 49
-      Cost:
-        CurrencyType: 1
-        Amount: 39
-    - RatingBoostAmount: 51
-      Cost:
-        CurrencyType: 1
-        Amount: 41
-    - RatingBoostAmount: 53
-      Cost:
-        CurrencyType: 1
-        Amount: 43
-    - RatingBoostAmount: 55
-      Cost:
-        CurrencyType: 1
-        Amount: 45
-    - RatingBoostAmount: 57
-      Cost:
-        CurrencyType: 1
-        Amount: 47
-    - RatingBoostAmount: 59
-      Cost:
-        CurrencyType: 1
-        Amount: 49
-    - RatingBoostAmount: 61
-      Cost:
-        CurrencyType: 1
-        Amount: 51
-  - Id: 9
-    Type: 9
-    Levels:
-    - RatingBoostAmount: 30
-      Cost:
-        CurrencyType: 1
-        Amount: 20
-    - RatingBoostAmount: 36
-      Cost:
-        CurrencyType: 1
-        Amount: 26
-    - RatingBoostAmount: 39
-      Cost:
-        CurrencyType: 1
-        Amount: 29
-    - RatingBoostAmount: 42
-      Cost:
-        CurrencyType: 1
-        Amount: 32
-    - RatingBoostAmount: 44
-      Cost:
-        CurrencyType: 1
-        Amount: 34
-    - RatingBoostAmount: 46
-      Cost:
-        CurrencyType: 1
-        Amount: 36
-    - RatingBoostAmount: 49
-      Cost:
-        CurrencyType: 1
-        Amount: 39
-    - RatingBoostAmount: 51
-      Cost:
-        CurrencyType: 1
-        Amount: 41
-    - RatingBoostAmount: 53
-      Cost:
-        CurrencyType: 1
-        Amount: 43
-    - RatingBoostAmount: 55
-      Cost:
-        CurrencyType: 1
-        Amount: 45
-    - RatingBoostAmount: 57
-      Cost:
-        CurrencyType: 1
-        Amount: 47
-    - RatingBoostAmount: 59
-      Cost:
-        CurrencyType: 1
-        Amount: 49
-    - RatingBoostAmount: 61
-      Cost:
-        CurrencyType: 1
-        Amount: 51
-    - RatingBoostAmount: 63
-      Cost:
-        CurrencyType: 1
-        Amount: 53
-    - RatingBoostAmount: 65
-      Cost:
-        CurrencyType: 1
-        Amount: 55
-  - Id: 10
-    Type: 11
-    Levels:
-    - RatingBoostAmount: 28
-      Cost:
-        CurrencyType: 1
-        Amount: 5
-    - RatingBoostAmount: 34
-      Cost:
-        CurrencyType: 1
-        Amount: 11
-    - RatingBoostAmount: 37
-      Cost:
-        CurrencyType: 1
-        Amount: 14
-    - RatingBoostAmount: 40
-      Cost:
-        CurrencyType: 1
-        Amount: 17
-    - RatingBoostAmount: 42
+    - RatingBoostAmount: 7
       Cost:
         CurrencyType: 1
         Amount: 19
-    - RatingBoostAmount: 44
+    - RatingBoostAmount: 8
       Cost:
         CurrencyType: 1
         Amount: 21
-    - RatingBoostAmount: 47
+    - RatingBoostAmount: 9
       Cost:
         CurrencyType: 1
         Amount: 24
-    - RatingBoostAmount: 49
+    - RatingBoostAmount: 10
       Cost:
         CurrencyType: 1
-        Amount: 26
-    - RatingBoostAmount: 51
-      Cost:
-        CurrencyType: 1
-        Amount: 28
-    - RatingBoostAmount: 53
+        Amount: 27
+    - RatingBoostAmount: 12
       Cost:
         CurrencyType: 1
         Amount: 30
-    - RatingBoostAmount: 55
+    - RatingBoostAmount: 13
       Cost:
         CurrencyType: 1
-        Amount: 32
-    - RatingBoostAmount: 57
+        Amount: 33
+    - RatingBoostAmount: 14
       Cost:
         CurrencyType: 1
-        Amount: 34
-    - RatingBoostAmount: 59
-      Cost:
-        CurrencyType: 1
-        Amount: 36
-    - RatingBoostAmount: 61
-      Cost:
-        CurrencyType: 1
-        Amount: 38
-    - RatingBoostAmount: 63
+        Amount: 37
+    - RatingBoostAmount: 15
       Cost:
         CurrencyType: 1
         Amount: 40
-  - Id: 11
-    Type: 12
-    Levels:
-    - RatingBoostAmount: 80
+    - RatingBoostAmount: 16
       Cost:
         CurrencyType: 1
-        Amount: 55
-    - RatingBoostAmount: 86
-      Cost:
-        CurrencyType: 1
-        Amount: 61
-    - RatingBoostAmount: 89
-      Cost:
-        CurrencyType: 1
-        Amount: 64
-    - RatingBoostAmount: 92
-      Cost:
-        CurrencyType: 1
-        Amount: 67
-    - RatingBoostAmount: 94
-      Cost:
-        CurrencyType: 1
-        Amount: 69
-    - RatingBoostAmount: 96
-      Cost:
-        CurrencyType: 1
-        Amount: 71
-    - RatingBoostAmount: 99
-      Cost:
-        CurrencyType: 1
-        Amount: 74
-    - RatingBoostAmount: 101
-      Cost:
-        CurrencyType: 1
-        Amount: 76
-    - RatingBoostAmount: 103
-      Cost:
-        CurrencyType: 1
-        Amount: 78
-    - RatingBoostAmount: 105
-      Cost:
-        CurrencyType: 1
-        Amount: 80
-    - RatingBoostAmount: 107
-      Cost:
-        CurrencyType: 1
-        Amount: 82
-    - RatingBoostAmount: 109
-      Cost:
-        CurrencyType: 1
-        Amount: 84
-    - RatingBoostAmount: 111
-      Cost:
-        CurrencyType: 1
-        Amount: 86
-    - RatingBoostAmount: 113
-      Cost:
-        CurrencyType: 1
-        Amount: 88
-    - RatingBoostAmount: 115
-      Cost:
-        CurrencyType: 1
-        Amount: 90
-  - Id: 12
-    Type: 13
-    Levels:
-    - RatingBoostAmount: 45
-      Cost:
-        CurrencyType: 1
-        Amount: 30
-    - RatingBoostAmount: 51
-      Cost:
-        CurrencyType: 1
-        Amount: 36
-    - RatingBoostAmount: 54
-      Cost:
-        CurrencyType: 1
-        Amount: 39
-    - RatingBoostAmount: 57
-      Cost:
-        CurrencyType: 1
-        Amount: 42
-    - RatingBoostAmount: 59
-      Cost:
-        CurrencyType: 1
-        Amount: 44
-    - RatingBoostAmount: 61
+        Amount: 43
+    - RatingBoostAmount: 18
       Cost:
         CurrencyType: 1
         Amount: 46
-    - RatingBoostAmount: 64
+    - RatingBoostAmount: 19
+      Cost:
+        CurrencyType: 1
+        Amount: 50
+    - RatingBoostAmount: 20
+      Cost:
+        CurrencyType: 1
+        Amount: 53
+  - Id: 2
+    Type: 3
+    Levels:
+    - RatingBoostAmount: 0
+      Cost:
+        CurrencyType: 1
+        Amount: 12
+    - RatingBoostAmount: 5
+      Cost:
+        CurrencyType: 1
+        Amount: 15
+    - RatingBoostAmount: 6
+      Cost:
+        CurrencyType: 1
+        Amount: 18
+    - RatingBoostAmount: 8
+      Cost:
+        CurrencyType: 1
+        Amount: 21
+    - RatingBoostAmount: 9
+      Cost:
+        CurrencyType: 1
+        Amount: 24
+    - RatingBoostAmount: 11
+      Cost:
+        CurrencyType: 1
+        Amount: 28
+    - RatingBoostAmount: 12
+      Cost:
+        CurrencyType: 1
+        Amount: 31
+    - RatingBoostAmount: 13
+      Cost:
+        CurrencyType: 1
+        Amount: 35
+    - RatingBoostAmount: 15
+      Cost:
+        CurrencyType: 1
+        Amount: 38
+    - RatingBoostAmount: 16
+      Cost:
+        CurrencyType: 1
+        Amount: 42
+    - RatingBoostAmount: 17
+      Cost:
+        CurrencyType: 1
+        Amount: 46
+    - RatingBoostAmount: 19
       Cost:
         CurrencyType: 1
         Amount: 49
-    - RatingBoostAmount: 66
-      Cost:
-        CurrencyType: 1
-        Amount: 51
-    - RatingBoostAmount: 68
+    - RatingBoostAmount: 20
       Cost:
         CurrencyType: 1
         Amount: 53
-    - RatingBoostAmount: 70
-      Cost:
-        CurrencyType: 1
-        Amount: 55
-    - RatingBoostAmount: 72
+    - RatingBoostAmount: 22
       Cost:
         CurrencyType: 1
         Amount: 57
-    - RatingBoostAmount: 74
-      Cost:
-        CurrencyType: 1
-        Amount: 59
-    - RatingBoostAmount: 76
+    - RatingBoostAmount: 23
       Cost:
         CurrencyType: 1
         Amount: 61
-    - RatingBoostAmount: 78
-      Cost:
-        CurrencyType: 1
-        Amount: 63
-    - RatingBoostAmount: 80
-      Cost:
-        CurrencyType: 1
-        Amount: 65
-  - Id: 13
-    Type: 16
+  - Id: 3
+    Type: 4
     Levels:
-    - RatingBoostAmount: 60
+    - RatingBoostAmount: 0
+      Cost:
+        CurrencyType: 1
+        Amount: 13
+    - RatingBoostAmount: 5
+      Cost:
+        CurrencyType: 1
+        Amount: 17
+    - RatingBoostAmount: 7
+      Cost:
+        CurrencyType: 1
+        Amount: 21
+    - RatingBoostAmount: 9
+      Cost:
+        CurrencyType: 1
+        Amount: 24
+    - RatingBoostAmount: 10
+      Cost:
+        CurrencyType: 1
+        Amount: 28
+    - RatingBoostAmount: 12
+      Cost:
+        CurrencyType: 1
+        Amount: 31
+    - RatingBoostAmount: 13
+      Cost:
+        CurrencyType: 1
+        Amount: 35
+    - RatingBoostAmount: 15
       Cost:
         CurrencyType: 1
         Amount: 39
-    - RatingBoostAmount: 66
+    - RatingBoostAmount: 17
       Cost:
         CurrencyType: 1
-        Amount: 45
-    - RatingBoostAmount: 69
+        Amount: 43
+    - RatingBoostAmount: 18
       Cost:
         CurrencyType: 1
-        Amount: 48
-    - RatingBoostAmount: 72
+        Amount: 47
+    - RatingBoostAmount: 20
       Cost:
         CurrencyType: 1
-        Amount: 51
-    - RatingBoostAmount: 74
+        Amount: 52
+    - RatingBoostAmount: 21
       Cost:
         CurrencyType: 1
-        Amount: 53
-    - RatingBoostAmount: 76
-      Cost:
-        CurrencyType: 1
-        Amount: 55
-    - RatingBoostAmount: 79
-      Cost:
-        CurrencyType: 1
-        Amount: 58
-    - RatingBoostAmount: 81
+        Amount: 56
+    - RatingBoostAmount: 23
       Cost:
         CurrencyType: 1
         Amount: 60
-    - RatingBoostAmount: 83
-      Cost:
-        CurrencyType: 1
-        Amount: 62
-    - RatingBoostAmount: 85
+    - RatingBoostAmount: 24
       Cost:
         CurrencyType: 1
         Amount: 64
-    - RatingBoostAmount: 87
+    - RatingBoostAmount: 26
       Cost:
         CurrencyType: 1
-        Amount: 66
-    - RatingBoostAmount: 89
+        Amount: 69
+  - Id: 4
+    Type: 2
+    Levels:
+    - RatingBoostAmount: 0
       Cost:
         CurrencyType: 1
-        Amount: 68
-    - RatingBoostAmount: 91
+        Amount: 15
+    - RatingBoostAmount: 6
       Cost:
         CurrencyType: 1
-        Amount: 70
-    - RatingBoostAmount: 93
+        Amount: 19
+    - RatingBoostAmount: 8
+      Cost:
+        CurrencyType: 1
+        Amount: 23
+    - RatingBoostAmount: 9
+      Cost:
+        CurrencyType: 1
+        Amount: 27
+    - RatingBoostAmount: 11
+      Cost:
+        CurrencyType: 1
+        Amount: 31
+    - RatingBoostAmount: 13
+      Cost:
+        CurrencyType: 1
+        Amount: 35
+    - RatingBoostAmount: 15
+      Cost:
+        CurrencyType: 1
+        Amount: 39
+    - RatingBoostAmount: 17
+      Cost:
+        CurrencyType: 1
+        Amount: 44
+    - RatingBoostAmount: 18
+      Cost:
+        CurrencyType: 1
+        Amount: 48
+    - RatingBoostAmount: 20
+      Cost:
+        CurrencyType: 1
+        Amount: 53
+    - RatingBoostAmount: 22
+      Cost:
+        CurrencyType: 1
+        Amount: 57
+    - RatingBoostAmount: 24
+      Cost:
+        CurrencyType: 1
+        Amount: 62
+    - RatingBoostAmount: 25
+      Cost:
+        CurrencyType: 1
+        Amount: 67
+    - RatingBoostAmount: 27
       Cost:
         CurrencyType: 1
         Amount: 72
-    - RatingBoostAmount: 95
+    - RatingBoostAmount: 29
+      Cost:
+        CurrencyType: 1
+        Amount: 77
+  - Id: 5
+    Type: 5
+    Levels:
+    - RatingBoostAmount: 0
+      Cost:
+        CurrencyType: 1
+        Amount: 16
+    - RatingBoostAmount: 6
+      Cost:
+        CurrencyType: 1
+        Amount: 21
+    - RatingBoostAmount: 8
+      Cost:
+        CurrencyType: 1
+        Amount: 25
+    - RatingBoostAmount: 10
+      Cost:
+        CurrencyType: 1
+        Amount: 29
+    - RatingBoostAmount: 12
+      Cost:
+        CurrencyType: 1
+        Amount: 34
+    - RatingBoostAmount: 14
+      Cost:
+        CurrencyType: 1
+        Amount: 38
+    - RatingBoostAmount: 16
+      Cost:
+        CurrencyType: 1
+        Amount: 43
+    - RatingBoostAmount: 18
+      Cost:
+        CurrencyType: 1
+        Amount: 48
+    - RatingBoostAmount: 20
+      Cost:
+        CurrencyType: 1
+        Amount: 53
+    - RatingBoostAmount: 22
+      Cost:
+        CurrencyType: 1
+        Amount: 58
+    - RatingBoostAmount: 24
+      Cost:
+        CurrencyType: 1
+        Amount: 63
+    - RatingBoostAmount: 26
+      Cost:
+        CurrencyType: 1
+        Amount: 69
+    - RatingBoostAmount: 28
       Cost:
         CurrencyType: 1
         Amount: 74
+    - RatingBoostAmount: 30
+      Cost:
+        CurrencyType: 1
+        Amount: 79
+    - RatingBoostAmount: 32
+      Cost:
+        CurrencyType: 1
+        Amount: 85
+  - Id: 6
+    Type: 7
+    Levels:
+    - RatingBoostAmount: 0
+      Cost:
+        CurrencyType: 1
+        Amount: 18
+    - RatingBoostAmount: 7
+      Cost:
+        CurrencyType: 1
+        Amount: 23
+    - RatingBoostAmount: 9
+      Cost:
+        CurrencyType: 1
+        Amount: 28
+    - RatingBoostAmount: 11
+      Cost:
+        CurrencyType: 1
+        Amount: 32
+    - RatingBoostAmount: 14
+      Cost:
+        CurrencyType: 1
+        Amount: 37
+    - RatingBoostAmount: 16
+      Cost:
+        CurrencyType: 1
+        Amount: 42
+    - RatingBoostAmount: 18
+      Cost:
+        CurrencyType: 1
+        Amount: 47
+    - RatingBoostAmount: 20
+      Cost:
+        CurrencyType: 1
+        Amount: 53
+    - RatingBoostAmount: 22
+      Cost:
+        CurrencyType: 1
+        Amount: 58
+    - RatingBoostAmount: 24
+      Cost:
+        CurrencyType: 1
+        Amount: 64
+    - RatingBoostAmount: 26
+      Cost:
+        CurrencyType: 1
+        Amount: 69
+    - RatingBoostAmount: 28
+      Cost:
+        CurrencyType: 1
+        Amount: 75
+    - RatingBoostAmount: 30
+      Cost:
+        CurrencyType: 1
+        Amount: 81
+    - RatingBoostAmount: 33
+      Cost:
+        CurrencyType: 1
+        Amount: 87
+    - RatingBoostAmount: 35
+      Cost:
+        CurrencyType: 1
+        Amount: 93
+  - Id: 7
+    Type: 8
+    Levels:
+    - RatingBoostAmount: 0
+      Cost:
+        CurrencyType: 1
+        Amount: 19
+    - RatingBoostAmount: 7
+      Cost:
+        CurrencyType: 1
+        Amount: 25
+    - RatingBoostAmount: 10
+      Cost:
+        CurrencyType: 1
+        Amount: 30
+    - RatingBoostAmount: 12
+      Cost:
+        CurrencyType: 1
+        Amount: 35
+    - RatingBoostAmount: 15
+      Cost:
+        CurrencyType: 1
+        Amount: 40
+    - RatingBoostAmount: 17
+      Cost:
+        CurrencyType: 1
+        Amount: 46
+    - RatingBoostAmount: 19
+      Cost:
+        CurrencyType: 1
+        Amount: 51
+    - RatingBoostAmount: 22
+      Cost:
+        CurrencyType: 1
+        Amount: 57
+    - RatingBoostAmount: 24
+      Cost:
+        CurrencyType: 1
+        Amount: 63
+    - RatingBoostAmount: 26
+      Cost:
+        CurrencyType: 1
+        Amount: 69
+    - RatingBoostAmount: 29
+      Cost:
+        CurrencyType: 1
+        Amount: 75
+    - RatingBoostAmount: 31
+      Cost:
+        CurrencyType: 1
+        Amount: 81
+    - RatingBoostAmount: 33
+      Cost:
+        CurrencyType: 1
+        Amount: 88
+    - RatingBoostAmount: 35
+      Cost:
+        CurrencyType: 1
+        Amount: 94
+    - RatingBoostAmount: 37
+      Cost:
+        CurrencyType: 1
+        Amount: 100
+  - Id: 8
+    Type: 10
+    Levels:
+    - RatingBoostAmount: 0
+      Cost:
+        CurrencyType: 1
+        Amount: 21
+    - RatingBoostAmount: 8
+      Cost:
+        CurrencyType: 1
+        Amount: 27
+    - RatingBoostAmount: 10
+      Cost:
+        CurrencyType: 1
+        Amount: 32
+    - RatingBoostAmount: 13
+      Cost:
+        CurrencyType: 1
+        Amount: 38
+    - RatingBoostAmount: 16
+      Cost:
+        CurrencyType: 1
+        Amount: 43
+    - RatingBoostAmount: 18
+      Cost:
+        CurrencyType: 1
+        Amount: 49
+    - RatingBoostAmount: 21
+      Cost:
+        CurrencyType: 1
+        Amount: 55
+    - RatingBoostAmount: 23
+      Cost:
+        CurrencyType: 1
+        Amount: 61
+    - RatingBoostAmount: 26
+      Cost:
+        CurrencyType: 1
+        Amount: 68
+    - RatingBoostAmount: 28
+      Cost:
+        CurrencyType: 1
+        Amount: 74
+    - RatingBoostAmount: 31
+      Cost:
+        CurrencyType: 1
+        Amount: 81
+    - RatingBoostAmount: 33
+      Cost:
+        CurrencyType: 1
+        Amount: 88
+    - RatingBoostAmount: 36
+      Cost:
+        CurrencyType: 1
+        Amount: 94
+    - RatingBoostAmount: 38
+      Cost:
+        CurrencyType: 1
+        Amount: 101
+    - RatingBoostAmount: 40
+      Cost:
+        CurrencyType: 1
+        Amount: 108
+  - Id: 9
+    Type: 9
+    Levels:
+    - RatingBoostAmount: 0
+      Cost:
+        CurrencyType: 1
+        Amount: 22
+    - RatingBoostAmount: 8
+      Cost:
+        CurrencyType: 1
+        Amount: 29
+    - RatingBoostAmount: 11
+      Cost:
+        CurrencyType: 1
+        Amount: 34
+    - RatingBoostAmount: 14
+      Cost:
+        CurrencyType: 1
+        Amount: 40
+    - RatingBoostAmount: 17
+      Cost:
+        CurrencyType: 1
+        Amount: 46
+    - RatingBoostAmount: 20
+      Cost:
+        CurrencyType: 1
+        Amount: 53
+    - RatingBoostAmount: 22
+      Cost:
+        CurrencyType: 1
+        Amount: 59
+    - RatingBoostAmount: 25
+      Cost:
+        CurrencyType: 1
+        Amount: 66
+    - RatingBoostAmount: 28
+      Cost:
+        CurrencyType: 1
+        Amount: 73
+    - RatingBoostAmount: 30
+      Cost:
+        CurrencyType: 1
+        Amount: 80
+    - RatingBoostAmount: 33
+      Cost:
+        CurrencyType: 1
+        Amount: 87
+    - RatingBoostAmount: 36
+      Cost:
+        CurrencyType: 1
+        Amount: 94
+    - RatingBoostAmount: 38
+      Cost:
+        CurrencyType: 1
+        Amount: 101
+    - RatingBoostAmount: 41
+      Cost:
+        CurrencyType: 1
+        Amount: 109
+    - RatingBoostAmount: 43
+      Cost:
+        CurrencyType: 1
+        Amount: 116
+  - Id: 10
+    Type: 11
+    Levels:
+    - RatingBoostAmount: 0
+      Cost:
+        CurrencyType: 1
+        Amount: 24
+    - RatingBoostAmount: 9
+      Cost:
+        CurrencyType: 1
+        Amount: 31
+    - RatingBoostAmount: 12
+      Cost:
+        CurrencyType: 1
+        Amount: 37
+    - RatingBoostAmount: 15
+      Cost:
+        CurrencyType: 1
+        Amount: 43
+    - RatingBoostAmount: 18
+      Cost:
+        CurrencyType: 1
+        Amount: 49
+    - RatingBoostAmount: 21
+      Cost:
+        CurrencyType: 1
+        Amount: 56
+    - RatingBoostAmount: 24
+      Cost:
+        CurrencyType: 1
+        Amount: 63
+    - RatingBoostAmount: 27
+      Cost:
+        CurrencyType: 1
+        Amount: 70
+    - RatingBoostAmount: 30
+      Cost:
+        CurrencyType: 1
+        Amount: 78
+    - RatingBoostAmount: 32
+      Cost:
+        CurrencyType: 1
+        Amount: 85
+    - RatingBoostAmount: 35
+      Cost:
+        CurrencyType: 1
+        Amount: 93
+    - RatingBoostAmount: 38
+      Cost:
+        CurrencyType: 1
+        Amount: 100
+    - RatingBoostAmount: 41
+      Cost:
+        CurrencyType: 1
+        Amount: 108
+    - RatingBoostAmount: 43
+      Cost:
+        CurrencyType: 1
+        Amount: 116
+    - RatingBoostAmount: 46
+      Cost:
+        CurrencyType: 1
+        Amount: 124
+  - Id: 11
+    Type: 12
+    Levels:
+    - RatingBoostAmount: 0
+      Cost:
+        CurrencyType: 1
+        Amount: 26
+    - RatingBoostAmount: 9
+      Cost:
+        CurrencyType: 1
+        Amount: 33
+    - RatingBoostAmount: 13
+      Cost:
+        CurrencyType: 1
+        Amount: 39
+    - RatingBoostAmount: 16
+      Cost:
+        CurrencyType: 1
+        Amount: 46
+    - RatingBoostAmount: 19
+      Cost:
+        CurrencyType: 1
+        Amount: 53
+    - RatingBoostAmount: 22
+      Cost:
+        CurrencyType: 1
+        Amount: 60
+    - RatingBoostAmount: 25
+      Cost:
+        CurrencyType: 1
+        Amount: 67
+    - RatingBoostAmount: 28
+      Cost:
+        CurrencyType: 1
+        Amount: 75
+    - RatingBoostAmount: 31
+      Cost:
+        CurrencyType: 1
+        Amount: 83
+    - RatingBoostAmount: 34
+      Cost:
+        CurrencyType: 1
+        Amount: 91
+    - RatingBoostAmount: 37
+      Cost:
+        CurrencyType: 1
+        Amount: 99
+    - RatingBoostAmount: 40
+      Cost:
+        CurrencyType: 1
+        Amount: 107
+    - RatingBoostAmount: 43
+      Cost:
+        CurrencyType: 1
+        Amount: 115
+    - RatingBoostAmount: 46
+      Cost:
+        CurrencyType: 1
+        Amount: 124
+    - RatingBoostAmount: 49
+      Cost:
+        CurrencyType: 1
+        Amount: 132
+  - Id: 12
+    Type: 13
+    Levels:
+    - RatingBoostAmount: 0
+      Cost:
+        CurrencyType: 1
+        Amount: 27
+    - RatingBoostAmount: 10
+      Cost:
+        CurrencyType: 1
+        Amount: 35
+    - RatingBoostAmount: 13
+      Cost:
+        CurrencyType: 1
+        Amount: 41
+    - RatingBoostAmount: 17
+      Cost:
+        CurrencyType: 1
+        Amount: 48
+    - RatingBoostAmount: 20
+      Cost:
+        CurrencyType: 1
+        Amount: 56
+    - RatingBoostAmount: 24
+      Cost:
+        CurrencyType: 1
+        Amount: 63
+    - RatingBoostAmount: 27
+      Cost:
+        CurrencyType: 1
+        Amount: 71
+    - RatingBoostAmount: 30
+      Cost:
+        CurrencyType: 1
+        Amount: 79
+    - RatingBoostAmount: 33
+      Cost:
+        CurrencyType: 1
+        Amount: 88
+    - RatingBoostAmount: 36
+      Cost:
+        CurrencyType: 1
+        Amount: 96
+    - RatingBoostAmount: 40
+      Cost:
+        CurrencyType: 1
+        Amount: 105
+    - RatingBoostAmount: 43
+      Cost:
+        CurrencyType: 1
+        Amount: 113
+    - RatingBoostAmount: 46
+      Cost:
+        CurrencyType: 1
+        Amount: 122
+    - RatingBoostAmount: 49
+      Cost:
+        CurrencyType: 1
+        Amount: 131
+    - RatingBoostAmount: 52
+      Cost:
+        CurrencyType: 1
+        Amount: 140
+  - Id: 13
+    Type: 16
+    Levels:
+    - RatingBoostAmount: 0
+      Cost:
+        CurrencyType: 1
+        Amount: 29
+    - RatingBoostAmount: 10
+      Cost:
+        CurrencyType: 1
+        Amount: 37
+    - RatingBoostAmount: 14
+      Cost:
+        CurrencyType: 1
+        Amount: 44
+    - RatingBoostAmount: 18
+      Cost:
+        CurrencyType: 1
+        Amount: 51
+    - RatingBoostAmount: 21
+      Cost:
+        CurrencyType: 1
+        Amount: 59
+    - RatingBoostAmount: 25
+      Cost:
+        CurrencyType: 1
+        Amount: 67
+    - RatingBoostAmount: 28
+      Cost:
+        CurrencyType: 1
+        Amount: 75
+    - RatingBoostAmount: 32
+      Cost:
+        CurrencyType: 1
+        Amount: 84
+    - RatingBoostAmount: 35
+      Cost:
+        CurrencyType: 1
+        Amount: 92
+    - RatingBoostAmount: 39
+      Cost:
+        CurrencyType: 1
+        Amount: 101
+    - RatingBoostAmount: 42
+      Cost:
+        CurrencyType: 1
+        Amount: 110
+    - RatingBoostAmount: 45
+      Cost:
+        CurrencyType: 1
+        Amount: 120
+    - RatingBoostAmount: 48
+      Cost:
+        CurrencyType: 1
+        Amount: 129
+    - RatingBoostAmount: 52
+      Cost:
+        CurrencyType: 1
+        Amount: 138
+    - RatingBoostAmount: 55
+      Cost:
+        CurrencyType: 1
+        Amount: 148
   StartGameUnlockedLoot: 06000000030000000400000002000000
   LevelsAmount: 15
-  GrowthExponent: 0.8
-  StepFactor: 4
-  BonusAdjustment: 2
-  FullUpgradeCost: 6870
+  IncreaseFactor: 0.15
+  RatingFormula:
+    BaseValue: 1
+    GrowthExponent: 0.93
+    StepFactor: 1.5
+    BonusAdjustment: 1
+  CostFormula:
+    BaseValue: 10
+    GrowthExponent: 1.15
+    StepFactor: 2
+    BonusAdjustment: 1
+  FullUpgradeCost: 11350
   ProgressionCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 1
-      value: 7
-      inSlope: 2.964405
-      outSlope: 2.964405
+      value: 3.5
+      inSlope: 1.357914
+      outSlope: 1.357914
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 2
-      value: 9.964405
-      inSlope: 2.8164496
-      outSlope: 2.8164496
+      value: 4.857914
+      inSlope: 1.3334546
+      outSlope: 1.3334546
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 3
-      value: 12.632899
-      inSlope: 2.5806637
-      outSlope: 2.5806637
+      value: 6.166909
+      inSlope: 1.2936006
+      outSlope: 1.2936006
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 4
-      value: 15.125732
-      inSlope: 2.4313474
-      outSlope: 2.4313474
+      value: 7.445115
+      inSlope: 1.2669969
+      outSlope: 1.2669969
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 5
-      value: 17.495594
-      inSlope: 2.323059
-      outSlope: 2.323059
+      value: 8.700903
+      inSlope: 1.2469983
+      outSlope: 1.2469983
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 6
-      value: 19.77185
-      inSlope: 2.2387562
-      outSlope: 2.2387562
+      value: 9.939112
+      inSlope: 1.2309933
+      outSlope: 1.2309933
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 7
-      value: 21.973106
-      inSlope: 2.1701384
-      outSlope: 2.1701384
+      value: 11.1628895
+      inSlope: 1.2176676
+      outSlope: 1.2176676
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 8
-      value: 24.112127
-      inSlope: 2.1125393
-      outSlope: 2.1125393
+      value: 12.374447
+      inSlope: 1.2062659
+      outSlope: 1.2062659
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 9
-      value: 26.198185
-      inSlope: 2.0630836
-      outSlope: 2.0630836
+      value: 13.575421
+      inSlope: 1.196312
+      outSlope: 1.196312
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 10
-      value: 28.238295
-      inSlope: 2.0198746
-      outSlope: 2.0198746
+      value: 14.767071
+      inSlope: 1.1874862
+      outSlope: 1.1874862
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 11
-      value: 30.237934
-      inSlope: 1.981597
-      outSlope: 1.981597
+      value: 15.950394
+      inSlope: 1.1795645
+      outSlope: 1.1795645
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 12
-      value: 32.20149
-      inSlope: 1.9473076
-      outSlope: 1.9473076
+      value: 17.1262
+      inSlope: 1.1723824
+      outSlope: 1.1723824
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 13
-      value: 34.13255
-      inSlope: 1.9163036
-      outSlope: 1.9163036
+      value: 18.295158
+      inSlope: 1.1658163
+      outSlope: 1.1658163
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 14
-      value: 36.034096
-      inSlope: 1.9015465
-      outSlope: 1.9015465
+      value: 19.457832
+      inSlope: 1.162674
+      outSlope: 1.162674
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334

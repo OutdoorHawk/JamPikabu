@@ -6,7 +6,7 @@ namespace Code.Gameplay.StaticData.Data
 {
     public abstract class BaseStaticData<TData> : BaseStaticData where TData : BaseData
     {
-        [PropertyOrder(99)] public List<TData> Configs;
+        [TabGroup("Default")] [PropertyOrder(99)] public List<TData> Configs;
 
         private Dictionary<int, TData> _uniqueIndex;
         private Dictionary<int, List<TData>> _nonUniqueIndex;
@@ -24,7 +24,7 @@ namespace Code.Gameplay.StaticData.Data
                 _uniqueIndex.TryAdd(key, item);
             }
         }
-        
+
         protected void AddNonUniqueIndex(Func<TData, int> keySelector)
         {
             if (Configs == null || keySelector == null)
@@ -35,7 +35,7 @@ namespace Code.Gameplay.StaticData.Data
             foreach (var item in Configs)
             {
                 int key = keySelector(item);
-                
+
                 if (_nonUniqueIndex.ContainsKey(key))
                     _nonUniqueIndex[key].Add(item);
                 else
@@ -48,7 +48,7 @@ namespace Code.Gameplay.StaticData.Data
             _uniqueIndex.TryGetValue(key, out var value);
             return value;
         }
-        
+
         protected List<TData> GetNonUniqueByKey(int key)
         {
             _nonUniqueIndex.TryGetValue(key, out var value);

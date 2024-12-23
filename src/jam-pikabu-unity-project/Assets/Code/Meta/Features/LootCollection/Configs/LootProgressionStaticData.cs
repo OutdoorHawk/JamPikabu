@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Code.Gameplay.Features.Loot;
 using Code.Gameplay.StaticData.Data;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Code.Meta.Features.LootCollection.Configs
@@ -8,8 +9,8 @@ namespace Code.Meta.Features.LootCollection.Configs
     [CreateAssetMenu(menuName = "StaticData/" + nameof(LootProgressionStaticData), fileName = "LootProgression")]
     public partial class LootProgressionStaticData : BaseStaticData<LootProgressionData>
     {
-        public List<LootTypeId> StartGameUnlockedLoot;
-        
+        [TabGroup("Default")] public List<LootTypeId> StartGameUnlockedLoot;
+
         public override void OnConfigInit()
         {
             base.OnConfigInit();

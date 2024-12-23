@@ -24,6 +24,7 @@ namespace Code.Meta.Features.Days.Configs.Stars
         [FoldoutGroup("Editor")] public float GrowthExponent = 1.5f;
         [FoldoutGroup("Editor")] public float StepFactor = 2f;
         [FoldoutGroup("Editor")] public int BonusAdjustment = 1;
+        [FoldoutGroup("Editor")] public int StartRatingDayFormula = 3;
 
         [FoldoutGroup("Editor")]
         [Button]
@@ -31,6 +32,9 @@ namespace Code.Meta.Features.Days.Configs.Stars
         {
             for (int i = 0; i < DaysStaticData.Configs.Count; i++)
             {
+                if (i < StartRatingDayFormula - 1)
+                    continue;
+                
                 int ratingAmountNeed = (int)RoundToNearestFive(BaseRatingNeedAmount + StepFactor * Mathf.Pow(i, GrowthExponent) + BonusAdjustment);
 
                 if (i >= Configs.Count)
@@ -65,6 +69,7 @@ namespace Code.Meta.Features.Days.Configs.Stars
                 MapBlockData dayLoot = DayLootSettings.GetMapBlockDataByDayId(dayData.Id);
                 List<LootTypeId> availableProducts = dayLoot.AvailableIngredients;
                 int ordersPerDay = dayData.OrdersAmount;
+                OrdersData.OnConfigInit();
                 DayLootSettings.OnConfigInit();
 
                 for (int i = 0; i < ordersPerDay; i++)
@@ -73,7 +78,7 @@ namespace Code.Meta.Features.Days.Configs.Stars
                     availableProducts.ShuffleList();
                     
                     int maxEachLootCount = orderSetup.MinMaxNeedAmount.y;
-                    int goodIngredientsCount = Mathf.Min(availableProducts.Count, orderSetup.MinMaxGoodIngredients.y) ;
+                    int goodIngredientsCount = orderSetup.MinMaxGoodIngredients.y;
                     int ingredientFactorMax = orderSetup.MinMaxIngredientsRatingFactor.y;
 
                     for (int j = 0; j < goodIngredientsCount; j++)
@@ -94,7 +99,7 @@ namespace Code.Meta.Features.Days.Configs.Stars
 
         private OrderSetup GetRandomOrderSetup(DayData dayData)
         {
-            List<OrderData> ordersDataConfigs = FindOrdersForDay(dayData);
+            List<OrderData> ordersDataConfigs = OrdersData.GetOrdersByTag(dayData.AvailableOrderTags);
             OrderData randomOrder = ordersDataConfigs[Random.Range(0, ordersDataConfigs.Count)];
             OrderSetup orderSetup = randomOrder.Setup;
             return orderSetup;
@@ -114,10 +119,10 @@ namespace Code.Meta.Features.Days.Configs.Stars
             List<OrderData> ordersDataConfigs = new List<OrderData>();
             foreach (var config in OrdersData.Configs)
             {
-                if (config.Setup.MinMaxDayToUnlock.y > 0 && dayData.Id > config.Setup.MinMaxDayToUnlock.y)
+                if (config.Setup.DaysRange.y > 0 && dayData.Id > config.Setup.DaysRange.y)
                     continue;
 
-                if (config.Setup.MinMaxDayToUnlock.x > 0 && dayData.Id < config.Setup.MinMaxDayToUnlock.x)
+                if (config.Setup.DaysRange.x > 0 && dayData.Id < config.Setup.DaysRange.x)
                     continue;
 
                 if (dayData.AvailableOrderTags is not OrderTag.None && dayData.AvailableOrderTags.HasFlag(config.Setup.Tag) == false)

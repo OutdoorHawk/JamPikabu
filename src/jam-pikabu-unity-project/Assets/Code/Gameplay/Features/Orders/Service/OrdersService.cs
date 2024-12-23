@@ -12,6 +12,7 @@ using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Service;
 using RoyalGold.Sources.Scripts.Game.MVC.Utils;
 using UnityEngine;
+using OrderIconData = Code.Gameplay.Features.Orders.Config.OrderIconData;
 using Random = UnityEngine.Random;
 
 namespace Code.Gameplay.Features.Orders.Service
@@ -27,12 +28,14 @@ namespace Code.Gameplay.Features.Orders.Service
 
         private OrdersStaticData _ordersData;
         private int _currentOrderIndex;
+        private int _currentIconIndex;
         private int _ordersCompleted;
 
         private (List<IngredientData> good, List<IngredientData> bad) _orderIngredients;
 
         private readonly Dictionary<LootTypeId, IngredientData> _orderIngredientCostDict = new();
         private readonly List<OrderData> _ordersBuffer = new();
+        private readonly List<OrderIconData> _iconsBuffer = new();
 
         public int OrdersCompleted => _ordersCompleted;
         public int MaxOrders => _daysService.GetDayData().OrdersAmount;
@@ -61,27 +64,6 @@ namespace Code.Gameplay.Features.Orders.Service
             _ordersBuffer.Clear();
 
             InitCurrentDayOrders(_daysService.CurrentDay);
-        }
-
-        private void InitCurrentDayOrders(int currentDay)
-        {
-            List<OrderData> ordersData = _ordersData.Configs;
-
-            foreach (var data in ordersData)
-            {
-                if (CheckMinDayToUnlock(data, currentDay))
-                    continue;
-
-                if (CheckMaxDayToUnlock(data, currentDay))
-                    continue;
-
-                if (CheckTag(data, currentDay) == false)
-                    continue;
-
-                _ordersBuffer.Add(data);
-            }
-
-            _ordersBuffer.ShuffleList();
         }
 
         public GameEntity CreateOrder()
@@ -184,6 +166,32 @@ namespace Code.Gameplay.Features.Orders.Service
             return new CostSetup(reward.CurrencyType, Mathf.RoundToInt(reward.Amount * _daysService.GetDayGoldFactor()));
         }
 
+        private void InitCurrentDayOrders(int currentDay)
+        {
+            DayData dayData = _daysService.GetDayData();
+            List<OrderData> ordersData = _ordersData.GetOrdersByTag(dayData.AvailableOrderTags);
+
+            foreach (var data in ordersData)
+            {
+                if (CheckMinDayToUnlock(data, currentDay))
+                    continue;
+
+                if (CheckMaxDayToUnlock(data, currentDay))
+                    continue;
+
+                _ordersBuffer.Add(data);
+            }
+
+            SetupIcons();
+        }
+        
+        private void SetupIcons()
+        {
+            _iconsBuffer.Clear();
+            _iconsBuffer.AddRange(_ordersData.IconsPool);
+            _iconsBuffer.ShuffleList();
+        }
+
         private void InitIngredientsDic(OrderData order)
         {
             GetIngredientsFromOrder(order);
@@ -229,6 +237,11 @@ namespace Code.Gameplay.Features.Orders.Service
                 IngredientTypeId.Bad,
                 _orderIngredients.good
             );
+            
+            if (orderSetup.OverrideIcon != null) 
+                orderSetup.OrderIcon = orderSetup.OverrideIcon;
+            else
+                orderSetup.OrderIcon = GetOrderIcon();
         }
 
         private static void FillIngredientsRandom
@@ -269,6 +282,16 @@ namespace Code.Gameplay.Features.Orders.Service
             }
         }
 
+        private Sprite GetOrderIcon()
+        {
+            _currentIconIndex++;
+            
+            if (_currentIconIndex >= _iconsBuffer.Count)
+                _currentIconIndex = 0;
+
+            return _iconsBuffer[_currentIconIndex].Icon;
+        }
+
         private void FillIngredients(List<IngredientData> ingredients)
         {
             foreach (IngredientData ingredientData in ingredients)
@@ -294,25 +317,12 @@ namespace Code.Gameplay.Features.Orders.Service
 
         private static bool CheckMinDayToUnlock(OrderData data, int currentDay)
         {
-            return data.Setup.MinMaxDayToUnlock.x > 0 && currentDay < data.Setup.MinMaxDayToUnlock.x;
+            return data.Setup.DaysRange.x > 0 && currentDay < data.Setup.DaysRange.x;
         }
 
         private static bool CheckMaxDayToUnlock(OrderData data, int currentDay)
         {
-            return data.Setup.MinMaxDayToUnlock.y > 0 && currentDay > data.Setup.MinMaxDayToUnlock.y;
-        }
-
-        private bool CheckTag(OrderData data, int currentDay)
-        {
-            DayData dayData = _daysService.GetDayData(currentDay);
-
-            if (dayData.AvailableOrderTags is OrderTag.None)
-                return true;
-            
-            if (dayData.AvailableOrderTags.HasFlag(data.Setup.Tag))
-                return true;
-
-            return false;
+            return data.Setup.DaysRange.y > 0 && currentDay > data.Setup.DaysRange.y;
         }
     }
 }

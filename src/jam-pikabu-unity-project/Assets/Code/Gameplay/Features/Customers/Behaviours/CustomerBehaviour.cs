@@ -44,6 +44,9 @@ namespace Code.Gameplay.Features.Customers.Behaviours
 
         private void Awake()
         {
+            if (_daysService.BonusLevelType is BonusLevelType.GoldenCoins)
+                return;
+            
             _ordersService.OnOrderUpdated += UpdateCustomer;
             _daysService.OnDayComplete += Hide;
             

@@ -8,6 +8,8 @@ namespace Code.Gameplay.Features.Orders.Config
     public class OrdersStaticData : BaseStaticData<OrderData>
     {
         public float BadIngredientPenaltyFactor = 0.5f;
+
+        public List<OrderIconData> IconsPool;
         
         public override void OnConfigInit()
         {

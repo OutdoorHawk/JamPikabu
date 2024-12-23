@@ -49,17 +49,17 @@ MonoBehaviour:
     StarsNeedToUnlock: 35
     ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
       type: 3}
-    UnlocksIngredient: 10
+    UnlocksIngredient: 9
     FreeUpgradeTimeMinutes: 70
-    AvailableIngredients: 07000000080000000a0000000200000005000000
+    AvailableIngredients: 0700000008000000090000000200000005000000
     ExtraLoot: 0100000011000000
   - Id: 6
     StarsNeedToUnlock: 43
     ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
       type: 3}
-    UnlocksIngredient: 9
+    UnlocksIngredient: 10
     FreeUpgradeTimeMinutes: 80
-    AvailableIngredients: 07000000080000000a0000000900000005000000
+    AvailableIngredients: 0700000008000000090000000a00000005000000
     ExtraLoot: 010000000f000000
   - Id: 7
     StarsNeedToUnlock: 51
@@ -67,7 +67,7 @@ MonoBehaviour:
       type: 3}
     UnlocksIngredient: 11
     FreeUpgradeTimeMinutes: 90
-    AvailableIngredients: 07000000080000000a000000090000000b000000
+    AvailableIngredients: 0700000008000000090000000a0000000b000000
     ExtraLoot: 010000000f000000
   - Id: 8
     StarsNeedToUnlock: 59
@@ -75,7 +75,7 @@ MonoBehaviour:
       type: 3}
     UnlocksIngredient: 12
     FreeUpgradeTimeMinutes: 100
-    AvailableIngredients: 0c000000080000000a000000090000000b000000
+    AvailableIngredients: 0c00000008000000090000000a0000000b000000
     ExtraLoot: 010000000f000000
   - Id: 9
     StarsNeedToUnlock: 67
@@ -83,7 +83,7 @@ MonoBehaviour:
       type: 3}
     UnlocksIngredient: 13
     FreeUpgradeTimeMinutes: 110
-    AvailableIngredients: 0c0000000d0000000a000000090000000b000000
+    AvailableIngredients: 0c0000000d000000090000000a0000000b000000
     ExtraLoot: 010000000f000000
   - Id: 10
     StarsNeedToUnlock: 75
@@ -91,7 +91,7 @@ MonoBehaviour:
       type: 3}
     UnlocksIngredient: 16
     FreeUpgradeTimeMinutes: 120
-    AvailableIngredients: 0c0000000d00000010000000090000000b000000
+    AvailableIngredients: 0c0000000d000000100000000a0000000b000000
     ExtraLoot: 010000000f000000
   BaseStars: 3
   DifficultyGrowth: 0.9
