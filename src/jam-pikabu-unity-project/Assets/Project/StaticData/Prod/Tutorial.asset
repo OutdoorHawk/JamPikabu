@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efbdc5b3f9904595801e6089b305bd29, type: 3}
   m_Name: Tutorial
   m_EditorClassIdentifier: 
-  DebugDisableSave: 1
+  DebugDisableSave: 0
   _configs:
   - Type: 1
     CompletedLevelsNeedToStart: 0
