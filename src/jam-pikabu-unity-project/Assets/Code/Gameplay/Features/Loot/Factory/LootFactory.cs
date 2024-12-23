@@ -61,7 +61,7 @@ namespace Code.Gameplay.Features.Loot.Factory
 
         private void CreateGold(GameEntity loot)
         {
-            loot.AddGold(_daysService.GetDayGoldFactor());
+            loot.AddGold(Mathf.CeilToInt(1*_daysService.GetDayGoldFactor()));
         }
 
         private static GameEntity CreateSingleSpawner()

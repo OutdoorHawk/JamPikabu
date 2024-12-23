@@ -35,6 +35,6 @@ namespace Code.Meta.Features.Days.Service
         DayData GetDayData(int currentDay);
         DayStarsSetup GetDayStarData();
         DayStarsSetup GetDayStarData(int currentDay);
-        int GetDayGoldFactor();
+        float GetDayGoldFactor();
     }
 }

@@ -213,15 +213,15 @@ namespace Code.Meta.Features.Days.Service
             return DayStarsStaticData.GetDayStarsData(currentDay);
         }
 
-        public int GetDayGoldFactor()
+        public float GetDayGoldFactor()
         {
             if (_currentDayData == null)
                 return 1;
 
             if (BonusLevelType == BonusLevelType.GoldenCoins)
-                return Mathf.CeilToInt(1 * _currentDayData.DayGoldFactor * _bonusLevelData.GoldFactorModifier);
+                return 1 * _currentDayData.DayGoldFactor * _bonusLevelData.GoldFactorModifier;
 
-            return Mathf.CeilToInt(1 * _currentDayData.DayGoldFactor);
+            return 1 * _currentDayData.DayGoldFactor;
         }
 
         private DayData GetDayDataInternal(int currentDay)
