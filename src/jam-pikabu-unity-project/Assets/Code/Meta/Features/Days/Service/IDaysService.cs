@@ -20,6 +20,7 @@ namespace Code.Meta.Features.Days.Service
         void InitializeDays(IEnumerable<DayProgressData> daysProgress);
         bool IsCompletedFirstLevel();
         void SetActiveDay(DayData selectedDayId);
+        void SetActiveDay(int dayId);
         List<DayProgressData> GetDaysProgress();
         bool TryGetDayProgress(int dayId, out DayProgressData dayProgress);
         int GetStarsEarnedForDay(int day);

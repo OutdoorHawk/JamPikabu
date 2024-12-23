@@ -90,6 +90,11 @@ namespace Code.Meta.Features.Days.Service
             _currentDayData = selectedDayId;
         }
 
+        public void SetActiveDay(int dayId)
+        {
+            _currentDayData = DaysStaticData.GetDayData(dayId);
+        }
+
         public List<DayProgressData> GetDaysProgress()
         {
             return _daysProgress;
