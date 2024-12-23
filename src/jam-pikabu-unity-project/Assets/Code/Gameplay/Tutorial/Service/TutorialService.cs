@@ -214,6 +214,7 @@ namespace Code.Gameplay.Tutorial.Service
         {
             _activeProcessor.source?.Cancel();
             _activeProcessor.source = new CancellationTokenSource();
+            _windowService.Close(WindowTypeId.Tutorial);
         }
 
         private void MarkTutorialCompleted(TutorialUserData tutorialSaveData)

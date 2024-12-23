@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Currency.Service;
+using Code.Meta.Features.BonusLevel.Config;
 using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Configs.Stars;
 using Code.Meta.Features.Days.Service;
@@ -70,6 +71,12 @@ namespace Code.Gameplay.Features.Currency.Behaviours
             List<DayStarData> values = _daysService.DayStarsData;
 
             if (values == null || values.Count == 0)
+            {
+                gameObject.DisableElement();
+                return;
+            }
+
+            if (_daysService.BonusLevelType == BonusLevelType.GoldenCoins)
             {
                 gameObject.DisableElement();
                 return;

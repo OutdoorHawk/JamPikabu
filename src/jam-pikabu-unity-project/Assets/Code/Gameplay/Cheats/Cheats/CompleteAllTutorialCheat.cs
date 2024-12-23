@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Code.Gameplay.Cheats.Cheats.Abstract;
+using Code.Gameplay.Tutorial.Config;
 using Code.Gameplay.Tutorial.Service;
 using Code.Infrastructure.DI.Installers;
 using Code.Infrastructure.States.GameStateHandler;
@@ -27,14 +28,14 @@ namespace Code.Gameplay.Cheats.Cheats
             List<TutorialUserData> tutorialUserDatas = _progressProvider.Progress.Tutorial.TutorialUserDatas;
             tutorialUserDatas.Clear();
             
-            /*foreach (var tutorials in _staticDataService.Data.Tutorials.Configs)
+            foreach (var tutorials in _staticDataService.GetStaticData<TutorialStaticData>().Configs)
             {
                 tutorialUserDatas.Add(new TutorialUserData
                 {
                     TypeInt = (int)tutorials.Type,
                     Completed = true
                 });
-            }*/
+            }
           
             _saveLoadService.SaveProgress();
             _tutorialService.Initialize();

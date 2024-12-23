@@ -317,7 +317,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
 
             UnlockIngredientAnimator.WaitForAnimationCompleteAsync(AnimationParameter.Collect.AsHash(), cancellationToken).Forget();
 
-            await DelaySeconds(0.5f, cancellationToken);
+            await DelaySeconds(1f, cancellationToken);
 
             BigFlyIcon.rectTransform
                 .DOScale(1, UnlockMoveDuration)

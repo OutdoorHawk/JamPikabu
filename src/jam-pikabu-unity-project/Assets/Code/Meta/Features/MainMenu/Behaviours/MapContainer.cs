@@ -112,7 +112,7 @@ namespace Code.Meta.Features.MainMenu.Behaviours
             }
             
             if (dayToSelect >= _buttonByDayIds.Count)
-                _buttonByDayIds.Last().Value.SelectLevel();
+                _levelButtons[^1].SelectLevel();
             else
                 _buttonByDayIds[dayToSelect].SelectLevel();
         }

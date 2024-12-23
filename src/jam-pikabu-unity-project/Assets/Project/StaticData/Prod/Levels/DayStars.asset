@@ -14,125 +14,125 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Configs:
   - Id: 1
-    RatingNeedAll: 8
-    AverageMinRatingPerDay: 18
-    AverageMaxRatingPerDay: 432
+    RatingNeedAll: 6
+    AverageMinRatingPerDay: 12
+    AverageMaxRatingPerDay: 312
   - Id: 2
-    RatingNeedAll: 10
-    AverageMinRatingPerDay: 18
-    AverageMaxRatingPerDay: 459
+    RatingNeedAll: 8
+    AverageMinRatingPerDay: 12
+    AverageMaxRatingPerDay: 306
   - Id: 3
     RatingNeedAll: 40
-    AverageMinRatingPerDay: 18
-    AverageMaxRatingPerDay: 468
+    AverageMinRatingPerDay: 12
+    AverageMaxRatingPerDay: 282
   - Id: 4
     RatingNeedAll: 85
     AverageMinRatingPerDay: 12
     AverageMaxRatingPerDay: 342
   - Id: 5
-    RatingNeedAll: 215
-    AverageMinRatingPerDay: 24
-    AverageMaxRatingPerDay: 648
+    RatingNeedAll: 205
+    AverageMinRatingPerDay: 16
+    AverageMaxRatingPerDay: 444
   - Id: 6
-    RatingNeedAll: 280
-    AverageMinRatingPerDay: 18
-    AverageMaxRatingPerDay: 450
+    RatingNeedAll: 260
+    AverageMinRatingPerDay: 12
+    AverageMaxRatingPerDay: 336
   - Id: 7
-    RatingNeedAll: 355
+    RatingNeedAll: 320
     AverageMinRatingPerDay: 18
-    AverageMaxRatingPerDay: 522
+    AverageMaxRatingPerDay: 372
   - Id: 8
-    RatingNeedAll: 435
+    RatingNeedAll: 385
     AverageMinRatingPerDay: 30
     AverageMaxRatingPerDay: 432
   - Id: 9
-    RatingNeedAll: 520
-    AverageMinRatingPerDay: 45
-    AverageMaxRatingPerDay: 621
+    RatingNeedAll: 455
+    AverageMinRatingPerDay: 12
+    AverageMaxRatingPerDay: 324
   - Id: 10
-    RatingNeedAll: 610
-    AverageMinRatingPerDay: 72
-    AverageMaxRatingPerDay: 852
+    RatingNeedAll: 525
+    AverageMinRatingPerDay: 38
+    AverageMaxRatingPerDay: 524
   - Id: 11
-    RatingNeedAll: 705
-    AverageMinRatingPerDay: 90
-    AverageMaxRatingPerDay: 981
+    RatingNeedAll: 605
+    AverageMinRatingPerDay: 51
+    AverageMaxRatingPerDay: 885
   - Id: 12
-    RatingNeedAll: 800
-    AverageMinRatingPerDay: 78
-    AverageMaxRatingPerDay: 1209
+    RatingNeedAll: 680
+    AverageMinRatingPerDay: 72
+    AverageMaxRatingPerDay: 1197
   - Id: 13
-    RatingNeedAll: 900
-    AverageMinRatingPerDay: 189
-    AverageMaxRatingPerDay: 1494
+    RatingNeedAll: 765
+    AverageMinRatingPerDay: 165
+    AverageMaxRatingPerDay: 1437
   - Id: 14
-    RatingNeedAll: 1005
-    AverageMinRatingPerDay: 135
-    AverageMaxRatingPerDay: 1110
-  - Id: 15
-    RatingNeedAll: 1110
-    AverageMinRatingPerDay: 120
-    AverageMaxRatingPerDay: 810
-  - Id: 16
-    RatingNeedAll: 1220
-    AverageMinRatingPerDay: 144
-    AverageMaxRatingPerDay: 864
-  - Id: 17
-    RatingNeedAll: 1335
+    RatingNeedAll: 850
     AverageMinRatingPerDay: 129
-    AverageMaxRatingPerDay: 1110
+    AverageMaxRatingPerDay: 1089
+  - Id: 15
+    RatingNeedAll: 935
+    AverageMinRatingPerDay: 48
+    AverageMaxRatingPerDay: 636
+  - Id: 16
+    RatingNeedAll: 1025
+    AverageMinRatingPerDay: 90
+    AverageMaxRatingPerDay: 750
+  - Id: 17
+    RatingNeedAll: 1115
+    AverageMinRatingPerDay: 135
+    AverageMaxRatingPerDay: 1119
   - Id: 18
-    RatingNeedAll: 1450
-    AverageMinRatingPerDay: 222
-    AverageMaxRatingPerDay: 1584
+    RatingNeedAll: 1210
+    AverageMinRatingPerDay: 234
+    AverageMaxRatingPerDay: 1614
   - Id: 19
-    RatingNeedAll: 1570
-    AverageMinRatingPerDay: 204
-    AverageMaxRatingPerDay: 1272
+    RatingNeedAll: 1310
+    AverageMinRatingPerDay: 198
+    AverageMaxRatingPerDay: 1257
   - Id: 20
-    RatingNeedAll: 1690
+    RatingNeedAll: 1405
     AverageMinRatingPerDay: 132
     AverageMaxRatingPerDay: 840
   - Id: 21
-    RatingNeedAll: 1815
-    AverageMinRatingPerDay: 800
-    AverageMaxRatingPerDay: 4704
+    RatingNeedAll: 1510
+    AverageMinRatingPerDay: 564
+    AverageMaxRatingPerDay: 3444
   - Id: 22
-    RatingNeedAll: 1940
-    AverageMinRatingPerDay: 1008
-    AverageMaxRatingPerDay: 5208
+    RatingNeedAll: 1610
+    AverageMinRatingPerDay: 720
+    AverageMaxRatingPerDay: 3816
   - Id: 23
-    RatingNeedAll: 2070
-    AverageMinRatingPerDay: 992
-    AverageMaxRatingPerDay: 5168
+    RatingNeedAll: 1715
+    AverageMinRatingPerDay: 732
+    AverageMaxRatingPerDay: 3846
   - Id: 24
-    RatingNeedAll: 2200
-    AverageMinRatingPerDay: 180
-    AverageMaxRatingPerDay: 954
+    RatingNeedAll: 1825
+    AverageMinRatingPerDay: 224
+    AverageMaxRatingPerDay: 1232
   - Id: 25
-    RatingNeedAll: 2335
-    AverageMinRatingPerDay: 1168
-    AverageMaxRatingPerDay: 5608
+    RatingNeedAll: 1930
+    AverageMinRatingPerDay: 864
+    AverageMaxRatingPerDay: 4176
   - Id: 26
-    RatingNeedAll: 2470
-    AverageMinRatingPerDay: 928
-    AverageMaxRatingPerDay: 4336
+    RatingNeedAll: 2045
+    AverageMinRatingPerDay: 636
+    AverageMaxRatingPerDay: 3102
   - Id: 27
-    RatingNeedAll: 2610
-    AverageMinRatingPerDay: 1200
-    AverageMaxRatingPerDay: 5688
+    RatingNeedAll: 2155
+    AverageMinRatingPerDay: 864
+    AverageMaxRatingPerDay: 4176
   - Id: 28
-    RatingNeedAll: 2750
-    AverageMinRatingPerDay: 228
-    AverageMaxRatingPerDay: 1074
+    RatingNeedAll: 2270
+    AverageMinRatingPerDay: 272
+    AverageMaxRatingPerDay: 1352
   - Id: 29
-    RatingNeedAll: 2890
-    AverageMinRatingPerDay: 1296
-    AverageMaxRatingPerDay: 5928
+    RatingNeedAll: 2385
+    AverageMinRatingPerDay: 1056
+    AverageMaxRatingPerDay: 4656
   - Id: 30
-    RatingNeedAll: 3035
-    AverageMinRatingPerDay: 1344
-    AverageMaxRatingPerDay: 6048
+    RatingNeedAll: 2505
+    AverageMinRatingPerDay: 840
+    AverageMaxRatingPerDay: 4116
   StarsFactorSetup:
   - 0.1
   - 0.5
@@ -144,6 +144,6 @@ MonoBehaviour:
   OrdersData: {fileID: 11400000, guid: cf868022c2d7cf349a5e0bd1ae7f42c9, type: 2}
   BaseRatingNeedAmount: 0
   GrowthExponent: 1.4
-  StepFactor: 27
-  BonusAdjustment: 25
+  StepFactor: 22
+  BonusAdjustment: 50
   StartRatingDayFormula: 5

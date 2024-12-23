@@ -227,11 +227,11 @@ namespace Code.Gameplay.Tutorial.Window
         {
             HideMessages();
 
+            ClearHighlights();
             _blackBackground.DisableElement();
             _arrow.DisableElement();
             _tapToContinueText.DisableElement();
 
-            ClearHighlights();
         }
 
         private Vector3 GetRotationVector(ArrowRotation handPosition)

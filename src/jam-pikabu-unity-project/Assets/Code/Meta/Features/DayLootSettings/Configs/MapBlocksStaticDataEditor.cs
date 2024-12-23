@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Code.Gameplay.Features.Loot;
+using Code.Gameplay.StaticData.Data.Formulas;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -7,8 +8,7 @@ namespace Code.Meta.Features.DayLootSettings.Configs
 {
     public partial class MapBlocksStaticData
     {
-        [FoldoutGroup("Editor")] public int BaseStars = 3;
-        [FoldoutGroup("Editor")] public float DifficultyGrowth = 0.25f;
+        [FoldoutGroup("Editor")] public ExponentGrowthFormula StarsFormula;
 
         [FoldoutGroup("Editor")]
         [Button]
@@ -29,7 +29,7 @@ namespace Code.Meta.Features.DayLootSettings.Configs
                 {
                     // Расчет требуемого количества звезд для текущего блока
                     int maxPreviousStars = cumulativeStars; // Максимум звезд, которые можно было заработать до текущего блока
-                    int requiredStars = Mathf.Clamp((int)(BaseStars + cumulativeStars * DifficultyGrowth), 0, maxPreviousStars);
+                    int requiredStars = Mathf.Clamp((int)StarsFormula.Calculate(i), 0, maxPreviousStars);
 
                     // Устанавливаем звезды для разблокировки текущего блока
                     mapBlockData.StarsNeedToUnlock = requiredStars;

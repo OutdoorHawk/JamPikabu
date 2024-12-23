@@ -96,14 +96,16 @@ namespace Code.Meta.Features.MainMenu.Behaviours
 
                 foreach (LevelButton levelButton in segment.LevelButtons)
                 {
+                    _currentSegment = Mathf.Clamp(i - 2, 0, _totalSegments - SEGMENTS_ON_SCREEN);
                     if (_daysService.TryGetDayProgress(levelButton.DayId, out _) == false)
                     {
-                        _currentSegment = Mathf.Clamp(i - 2, 0, _totalSegments - SEGMENTS_ON_SCREEN);
                         MainScroll.content.anchoredPosition = CalculateTargetPosition(_currentSegment);
                         return;
                     }
                 }
             }
+
+            MainScroll.content.anchoredPosition = CalculateTargetPosition(_currentSegment);
         }
 
         private void UpdateMoveValue()
