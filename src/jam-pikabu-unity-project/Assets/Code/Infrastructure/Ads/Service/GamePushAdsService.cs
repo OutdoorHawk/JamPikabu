@@ -5,6 +5,7 @@ using Code.Infrastructure.States.GameStateHandler.Handlers;
 using Code.Meta.Features.Days;
 using Code.Meta.Features.Days.Service;
 using GamePush;
+using UnityEngine;
 
 namespace Code.Infrastructure.Ads.Service
 {
@@ -34,7 +35,10 @@ namespace Code.Infrastructure.Ads.Service
         {
             List<DayProgressData> dayProgressData = _daysService.GetDaysProgress();
             
-            if (dayProgressData.Count < 1)
+            if (dayProgressData.Count < 2)
+                return;
+
+            if (CanShowInterstitial)
                 return;
             
             if (CanShowBanner) 
@@ -79,12 +83,14 @@ namespace Code.Infrastructure.Ads.Service
         private void Started()
         {
             _soundService.MuteVolume();
+            Time.timeScale = 0;
             NotifyStartedHandlers();
         }
 
         private void RewardedSuccess(string id)
         {
             NotifySuccessfulHandlers();
+            Time.timeScale = 1;
         }
 
         private void Finished(bool success)
@@ -93,6 +99,7 @@ namespace Code.Infrastructure.Ads.Service
                 NotifyErrorHandlers("");
             
             _soundService.ResetVolume();
+            Time.timeScale = 1;
         }
 
         private bool IsFullscreenAvailable()
