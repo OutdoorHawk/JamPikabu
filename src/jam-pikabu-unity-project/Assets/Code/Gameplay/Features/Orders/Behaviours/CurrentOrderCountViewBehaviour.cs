@@ -1,4 +1,6 @@
-﻿using Code.Gameplay.Features.Orders.Service;
+﻿using Code.Common.Extensions;
+using Code.Gameplay.Features.Orders.Service;
+using Code.Meta.Features.BonusLevel.Config;
 using Code.Meta.Features.Days.Service;
 using TMPro;
 using UnityEngine;
@@ -22,6 +24,11 @@ namespace Code.Gameplay.Features.Orders.Behaviours
 
         private void Start()
         {
+            if (_daysService.BonusLevelType is BonusLevelType.GoldenCoins)
+            {
+                gameObject.DisableElement();
+            }
+
             _daysService.OnDayBegin += InitText;
             _ordersService.OnOrderUpdated += UpdateText;
         }
@@ -39,7 +46,7 @@ namespace Code.Gameplay.Features.Orders.Behaviours
 
         private void UpdateText()
         {
-            _orderText.text = $"{_ordersService.OrdersCompleted+1}/{_ordersService.MaxOrders}";
+            _orderText.text = $"{_ordersService.OrdersCompleted + 1}/{_ordersService.MaxOrders}";
         }
     }
 }
