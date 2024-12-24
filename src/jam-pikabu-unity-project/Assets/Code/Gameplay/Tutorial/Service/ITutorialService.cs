@@ -8,5 +8,6 @@ namespace Code.Gameplay.Tutorial.Service
         void Initialize();
         void SkipCurrentTutorial();
         bool IsTutorialStartedOrCompleted(TutorialTypeId type);
+        bool HasActiveTutorial();
     }
 }

@@ -5,11 +5,12 @@ using Cysharp.Text;
 using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
 using Zenject;
 
 namespace Code.Gameplay.Common.Time.Behaviours
 {
-    public class UniversalTimer : MonoBehaviour
+    public class UniversalTimer : MonoBehaviour, ILocalizationHandler 
     {
         [SerializeField] private TMP_Text _timerText;
         [SerializeField] private TimeFormat _format;
@@ -38,10 +39,19 @@ namespace Code.Gameplay.Common.Time.Behaviours
 
         private void Awake()
         {
-            _localizedSeconds = _localizationService[$"COMMON/TIMER_SECONDS"];
-            _localizedMinutes = _localizationService[$"COMMON/TIMER_MINUTES"];
-            _localizedHour = _localizationService[$"COMMON/TIMER_HOURS"];
-            _localizedDay = _localizationService[$"COMMON/TIMER_DAYS"];
+            InitLocales();
+            _localizationService.RegisterHandler(this);
+        }
+        
+        private void OnDestroy()
+        {
+            _timerToken?.Cancel();
+            _localizationService.UnregisterHandler(this);
+        }
+
+        public void OnLanguageChanged(Locale locale)
+        {
+            InitLocales();
         }
 
         public void StartTimer(Func<double> getTimeFunc, Action onTimerEnd = null)
@@ -67,6 +77,14 @@ namespace Code.Gameplay.Common.Time.Behaviours
         {
             _timerToken?.Cancel();
             AddTimerEndCallback = null;
+        }
+
+        private void InitLocales()
+        {
+            _localizedSeconds = _localizationService["COMMON/TIMER_SECONDS"];
+            _localizedMinutes = _localizationService["COMMON/TIMER_MINUTES"];
+            _localizedHour = _localizationService["COMMON/TIMER_HOURS"];
+            _localizedDay = _localizationService["COMMON/TIMER_DAYS"];
         }
 
         private async UniTaskVoid StartTimerTickAsync(Func<double> getTime, Action onTimerEnd)
@@ -103,12 +121,7 @@ namespace Code.Gameplay.Common.Time.Behaviours
         {
             StopTimer();
         }
-
-        private void OnDestroy()
-        {
-            _timerToken?.Cancel();
-        }
-
+        
         private string FormatTime(int time)
         {
             return _format switch
@@ -118,7 +131,7 @@ namespace Code.Gameplay.Common.Time.Behaviours
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
-        
+
         private string GetTimeInMinutesAndSeconds(int time)
         {
             time = Mathf.Max(0, time);

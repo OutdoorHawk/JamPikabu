@@ -38,7 +38,7 @@ namespace Code.Gameplay.Tutorial.Service
 
         public event Action OnTutorialUpdate;
 
-        public OrderType OrderType => OrderType.Last;
+        public OrderType OrderType => OrderType.Tutorial;
 
         public TutorialService
         (
@@ -92,6 +92,14 @@ namespace Code.Gameplay.Tutorial.Service
                 return true;
 
             if (_activeProcessor.processor != null && _activeProcessor.processor.TypeId == type)
+                return true;
+
+            return false;
+        }
+
+        public bool HasActiveTutorial()
+        {
+            if (_activeProcessor.processor != null)
                 return true;
 
             return false;
@@ -195,6 +203,7 @@ namespace Code.Gameplay.Tutorial.Service
 
             _windowService.Close(WindowTypeId.Tutorial);
             _activeProcessor.source?.Cancel();
+            _activeProcessor.processor = null;
             tutorialProcessor.Finalization();
 
             MarkTutorialCompleted(tutorialSaveData);

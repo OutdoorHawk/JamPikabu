@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Code.Gameplay.Sound.Service;
+using Code.Gameplay.Tutorial.Service;
 using Code.Infrastructure.States.GameStateHandler;
 using Code.Infrastructure.States.GameStateHandler.Handlers;
 using Code.Meta.Features.Days;
@@ -22,10 +23,13 @@ namespace Code.Infrastructure.Ads.Service
 
         private readonly IDaysService _daysService;
         private readonly ISoundService _soundService;
+        private readonly ITutorialService _tutorialService;
 
-        public GamePushAdsService(IDaysService daysService, ISoundService soundService)
+        public GamePushAdsService(IDaysService daysService, 
+            ISoundService soundService, ITutorialService tutorialService)
         {
             _soundService = soundService;
+            _tutorialService = tutorialService;
             _daysService = daysService;
         }
 
@@ -34,21 +38,26 @@ namespace Code.Infrastructure.Ads.Service
         public void OnEnterMainMenu()
         {
             List<DayProgressData> dayProgressData = _daysService.GetDaysProgress();
-            
-            if (dayProgressData.Count < 2)
+
+            if (dayProgressData.Count < 1)
+                return;
+
+            if (_tutorialService.HasActiveTutorial())
                 return;
 
             if (CanShowInterstitial)
+            {
+                RequestInterstitial();
                 return;
-            
-            if (CanShowBanner) 
+            }
+
+            if (CanShowBanner)
                 RequestBanner();
         }
 
         public void OnExitGameLoop()
         {
-            if (CanShowInterstitial) 
-                RequestInterstitial();
+            
         }
 
         #endregion
@@ -58,7 +67,7 @@ namespace Code.Infrastructure.Ads.Service
         public override void RequestInterstitial()
         {
             base.RequestInterstitial();
-            
+
             GP_Ads.ShowFullscreen(onFullscreenStart: Started, onFullscreenClose: Finished);
         }
 
@@ -71,15 +80,15 @@ namespace Code.Infrastructure.Ads.Service
         public override void RequestBanner()
         {
             base.RequestBanner();
-            
+
             if (GP_Ads.IsStickyPlaying())
                 return;
-            
+
             GP_Ads.ShowSticky();
         }
 
         #endregion
-        
+
         private void Started()
         {
             _soundService.MuteVolume();
@@ -95,9 +104,9 @@ namespace Code.Infrastructure.Ads.Service
 
         private void Finished(bool success)
         {
-            if (success == false) 
+            if (success == false)
                 NotifyErrorHandlers("");
-            
+
             _soundService.ResetVolume();
             Time.timeScale = 1;
         }
@@ -106,28 +115,27 @@ namespace Code.Infrastructure.Ads.Service
         {
             if (GP_Ads.IsFullscreenPlaying())
                 return false;
-            
+
             bool result = GP_Ads.IsFullscreenAvailable();
             Logger.Log($"[AD] IsFullscreenAvailable: {result}");
             return result;
         }
-        
+
         private bool IsStickyAvailable()
         {
             bool result = GP_Ads.IsStickyAvailable();
             Logger.Log($"[AD] IsStickyAvailable: {result}");
             return result;
         }
-        
+
         private bool IsRewardedAvailable()
         {
             if (GP_Ads.IsRewardPlaying())
                 return false;
-            
+
             bool result = GP_Ads.IsRewardedAvailable();
             Logger.Log($"[AD] IsRewardedAvailable: {result}");
             return result;
         }
-        
     }
 }
