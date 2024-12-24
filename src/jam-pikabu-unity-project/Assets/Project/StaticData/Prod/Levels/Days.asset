@@ -29,181 +29,181 @@ MonoBehaviour:
     IsBossDay: 0
     AvailableOrderTags: 8
     OrdersAmount: 3
-    DayGoldFactor: 1.2522689
+    DayGoldFactor: 1.2505264
     SceneId: 2
   - Id: 4
     IsBossDay: 1
     AvailableOrderTags: 12
     OrdersAmount: 1
-    DayGoldFactor: 1.3419261
+    DayGoldFactor: 1.3381902
     SceneId: 3
   - Id: 5
     IsBossDay: 0
     AvailableOrderTags: 8
     OrdersAmount: 4
-    DayGoldFactor: 1.4242641
+    DayGoldFactor: 1.4184232
     SceneId: 2
   - Id: 6
     IsBossDay: 0
     AvailableOrderTags: 8
     OrdersAmount: 3
-    DayGoldFactor: 1.5015552
+    DayGoldFactor: 1.4935477
     SceneId: 2
   - Id: 7
     IsBossDay: 0
     AvailableOrderTags: 8
     OrdersAmount: 3
-    DayGoldFactor: 1.5750488
+    DayGoldFactor: 1.5648371
     SceneId: 2
   - Id: 8
     IsBossDay: 1
     AvailableOrderTags: 12
     OrdersAmount: 1
-    DayGoldFactor: 1.6455276
+    DayGoldFactor: 1.6330876
     SceneId: 4
   - Id: 9
     IsBossDay: 0
     AvailableOrderTags: 8
     OrdersAmount: 3
-    DayGoldFactor: 1.7135242
+    DayGoldFactor: 1.6988403
     SceneId: 2
   - Id: 10
     IsBossDay: 0
     AvailableOrderTags: 8
     OrdersAmount: 4
-    DayGoldFactor: 1.7794229
+    DayGoldFactor: 1.7624841
     SceneId: 2
   - Id: 11
     IsBossDay: 0
     AvailableOrderTags: 16
     OrdersAmount: 3
-    DayGoldFactor: 1.8435119
+    DayGoldFactor: 1.8243114
     SceneId: 2
   - Id: 12
     IsBossDay: 0
     AvailableOrderTags: 16
     OrdersAmount: 4
-    DayGoldFactor: 1.9060159
+    DayGoldFactor: 1.8845489
     SceneId: 3
   - Id: 13
     IsBossDay: 0
     AvailableOrderTags: 16
     OrdersAmount: 4
-    DayGoldFactor: 1.967113
+    DayGoldFactor: 1.9433773
     SceneId: 2
   - Id: 14
     IsBossDay: 0
     AvailableOrderTags: 16
     OrdersAmount: 3
-    DayGoldFactor: 2.0269487
+    DayGoldFactor: 2.0009432
     SceneId: 2
   - Id: 15
     IsBossDay: 1
     AvailableOrderTags: 20
     OrdersAmount: 1
-    DayGoldFactor: 2.0856438
+    DayGoldFactor: 2.0573676
     SceneId: 4
   - Id: 16
     IsBossDay: 1
     AvailableOrderTags: 20
     OrdersAmount: 1
-    DayGoldFactor: 2.1432986
+    DayGoldFactor: 2.1127532
     SceneId: 4
   - Id: 17
     IsBossDay: 0
     AvailableOrderTags: 16
     OrdersAmount: 3
-    DayGoldFactor: 2.2
+    DayGoldFactor: 2.167186
     SceneId: 2
   - Id: 18
     IsBossDay: 0
     AvailableOrderTags: 16
     OrdersAmount: 4
-    DayGoldFactor: 2.2558217
+    DayGoldFactor: 2.2207408
     SceneId: 2
   - Id: 19
     IsBossDay: 0
     AvailableOrderTags: 16
     OrdersAmount: 3
-    DayGoldFactor: 2.3108277
+    DayGoldFactor: 2.2734823
     SceneId: 2
   - Id: 20
     IsBossDay: 1
     AvailableOrderTags: 20
     OrdersAmount: 1
-    DayGoldFactor: 2.3650749
+    DayGoldFactor: 2.325467
     SceneId: 3
   - Id: 21
     IsBossDay: 0
     AvailableOrderTags: 32
     OrdersAmount: 4
-    DayGoldFactor: 2.4186125
+    DayGoldFactor: 2.376745
     SceneId: 2
   - Id: 22
     IsBossDay: 0
     AvailableOrderTags: 32
     OrdersAmount: 4
-    DayGoldFactor: 2.4714847
+    DayGoldFactor: 2.42736
     SceneId: 2
   - Id: 23
     IsBossDay: 0
     AvailableOrderTags: 32
     OrdersAmount: 4
-    DayGoldFactor: 2.523731
+    DayGoldFactor: 2.4773524
     SceneId: 2
   - Id: 24
     IsBossDay: 1
     AvailableOrderTags: 36
     OrdersAmount: 1
-    DayGoldFactor: 2.5753865
+    DayGoldFactor: 2.526757
     SceneId: 4
   - Id: 25
     IsBossDay: 0
     AvailableOrderTags: 32
     OrdersAmount: 4
-    DayGoldFactor: 2.6264837
+    DayGoldFactor: 2.5756059
     SceneId: 2
   - Id: 26
     IsBossDay: 0
     AvailableOrderTags: 32
     OrdersAmount: 3
-    DayGoldFactor: 2.677051
+    DayGoldFactor: 2.6239283
     SceneId: 2
   - Id: 27
     IsBossDay: 0
     AvailableOrderTags: 32
     OrdersAmount: 4
-    DayGoldFactor: 2.7271152
+    DayGoldFactor: 2.6717508
     SceneId: 2
   - Id: 28
     IsBossDay: 1
     AvailableOrderTags: 36
     OrdersAmount: 1
-    DayGoldFactor: 2.7767
+    DayGoldFactor: 2.7190974
     SceneId: 4
   - Id: 29
     IsBossDay: 0
     AvailableOrderTags: 32
     OrdersAmount: 4
-    DayGoldFactor: 2.8258276
+    DayGoldFactor: 2.76599
     SceneId: 2
   - Id: 30
     IsBossDay: 0
     AvailableOrderTags: 32
     OrdersAmount: 4
-    DayGoldFactor: 2.8745186
+    DayGoldFactor: 2.8124492
     SceneId: 2
   StartGoldAmount: 10
   DefaultRoundDuration: 30
   BossRoundDuration: 60
   OrdersData: {fileID: 11400000, guid: cf868022c2d7cf349a5e0bd1ae7f42c9, type: 2}
-  AverageGoldPerLevel: 32000000390000003f000000140000005c0000004c0000004f00000031000000770000007d0000004100000086000000a8000000790000000a0000002000000042000000b50000008b000000180000009d000000de000000a50000004d0000009d000000a0000000a400000053000000f0000000d7000000
-  TotalGoldPerLevels: 3310
+  AverageGoldPerLevel: 32000000280000002c000000280000005c0000004a0000005d000000310000005d0000009e00000064000000a100000074000000460000000a0000003f00000083000000900000009f00000046000000be000000da0000009400000026000000c100000076000000ad00000052000000f8000000a8000000
+  TotalGoldPerLevels: 3333
   IgnoreBadIngredients: 0
   LevelsAmount: 30
   GoldFormula:
     BaseValue: 1
-    GrowthExponent: 0.75
+    GrowthExponent: 0.74
     StepFactor: 0.15
     BonusAdjustment: 0
   OrdersRange:

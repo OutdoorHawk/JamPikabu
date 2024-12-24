@@ -17,6 +17,6 @@ MonoBehaviour:
     Type: 1
     SceneTypeId: 05000000
     FreePlayResetTimeMinutes: 300
-    GoldFactorModifier: 3
+    GoldFactorModifier: 3.85
     RoundTimeOverride: 30
     AvailableIngredients: 010000000100000001000000010000000e0000000f000000

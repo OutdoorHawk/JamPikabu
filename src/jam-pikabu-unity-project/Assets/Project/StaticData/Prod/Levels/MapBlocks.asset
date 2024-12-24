@@ -46,7 +46,7 @@ MonoBehaviour:
     AvailableIngredients: 0200000005000000070000000400000008000000
     ExtraLoot: 0100000011000000
   - Id: 5
-    StarsNeedToUnlock: 18
+    StarsNeedToUnlock: 19
     ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
       type: 3}
     UnlocksIngredient: 9
@@ -54,7 +54,7 @@ MonoBehaviour:
     AvailableIngredients: 0700000008000000090000000500000002000000
     ExtraLoot: 0100000011000000
   - Id: 6
-    StarsNeedToUnlock: 26
+    StarsNeedToUnlock: 27
     ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
       type: 3}
     UnlocksIngredient: 10
@@ -62,7 +62,7 @@ MonoBehaviour:
     AvailableIngredients: 070000000a000000080000000500000009000000
     ExtraLoot: 010000000f000000
   - Id: 7
-    StarsNeedToUnlock: 36
+    StarsNeedToUnlock: 37
     ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
       type: 3}
     UnlocksIngredient: 11
@@ -70,7 +70,7 @@ MonoBehaviour:
     AvailableIngredients: 0b00000008000000070000000a00000009000000
     ExtraLoot: 010000000f000000
   - Id: 8
-    StarsNeedToUnlock: 47
+    StarsNeedToUnlock: 49
     ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
       type: 3}
     UnlocksIngredient: 12
@@ -78,7 +78,7 @@ MonoBehaviour:
     AvailableIngredients: 08000000090000000c0000000b0000000a000000
     ExtraLoot: 010000000f000000
   - Id: 9
-    StarsNeedToUnlock: 60
+    StarsNeedToUnlock: 62
     ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
       type: 3}
     UnlocksIngredient: 13
@@ -86,7 +86,7 @@ MonoBehaviour:
     AvailableIngredients: 0d0000000a000000090000000b0000000c000000
     ExtraLoot: 010000000f000000
   - Id: 10
-    StarsNeedToUnlock: 74
+    StarsNeedToUnlock: 78
     ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
       type: 3}
     UnlocksIngredient: 16
@@ -95,6 +95,6 @@ MonoBehaviour:
     ExtraLoot: 010000000f000000
   StarsFormula:
     BaseValue: 3
-    GrowthExponent: 1.94
+    GrowthExponent: 1.96
     StepFactor: 1
     BonusAdjustment: 1
