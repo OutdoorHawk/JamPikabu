@@ -28,6 +28,8 @@ namespace Code.Infrastructure.Ads.Service
         private readonly ITutorialService _tutorialService;
         private readonly IStaticDataService _staticDataService;
 
+        private bool _firstEnter = true;
+
         public GamePushAdsService
         (
             IDaysService daysService,
@@ -46,6 +48,12 @@ namespace Code.Infrastructure.Ads.Service
 
         public void OnEnterMainMenu()
         {
+            if (_firstEnter)
+            {
+                _firstEnter = false;
+                return;
+            }
+            
             List<DayProgressData> dayProgressData = _daysService.GetDaysProgress();
             AdsStaticData adsStaticData = _staticDataService.GetStaticData<AdsStaticData>();
 
