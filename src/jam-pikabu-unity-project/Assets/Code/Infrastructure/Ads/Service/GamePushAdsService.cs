@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using Code.Gameplay.Sound.Service;
+using Code.Gameplay.StaticData;
 using Code.Gameplay.Tutorial.Service;
+using Code.Infrastructure.Ads.Config;
 using Code.Infrastructure.States.GameStateHandler;
 using Code.Infrastructure.States.GameStateHandler.Handlers;
 using Code.Meta.Features.Days;
@@ -24,10 +26,17 @@ namespace Code.Infrastructure.Ads.Service
         private readonly IDaysService _daysService;
         private readonly ISoundService _soundService;
         private readonly ITutorialService _tutorialService;
+        private readonly IStaticDataService _staticDataService;
 
-        public GamePushAdsService(IDaysService daysService, 
-            ISoundService soundService, ITutorialService tutorialService)
+        public GamePushAdsService
+        (
+            IDaysService daysService,
+            ISoundService soundService,
+            ITutorialService tutorialService,
+            IStaticDataService staticDataService
+        )
         {
+            _staticDataService = staticDataService;
             _soundService = soundService;
             _tutorialService = tutorialService;
             _daysService = daysService;
@@ -38,8 +47,9 @@ namespace Code.Infrastructure.Ads.Service
         public void OnEnterMainMenu()
         {
             List<DayProgressData> dayProgressData = _daysService.GetDaysProgress();
+            AdsStaticData adsStaticData = _staticDataService.GetStaticData<AdsStaticData>();
 
-            if (dayProgressData.Count < 1)
+            if (dayProgressData.Count < adsStaticData.LevelsPassedToStartAds)
                 return;
 
             if (_tutorialService.HasActiveTutorial())
@@ -57,7 +67,6 @@ namespace Code.Infrastructure.Ads.Service
 
         public void OnExitGameLoop()
         {
-            
         }
 
         #endregion

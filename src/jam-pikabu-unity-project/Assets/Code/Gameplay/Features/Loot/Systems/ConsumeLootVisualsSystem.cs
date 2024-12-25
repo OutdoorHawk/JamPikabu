@@ -58,7 +58,7 @@ namespace Code.Gameplay.Features.Loot.Systems
 
             await lootContainer.AnimateFlyToVat(_consumedLoot);
            // orderView.InitOrderFillProgress();
-            await DelaySeconds(0.25f, orderView.destroyCancellationToken);
+            await DelaySeconds(0, orderView.destroyCancellationToken);
 
             foreach (var loot in _consumedLoot)
                 loot.isDestructed = true;

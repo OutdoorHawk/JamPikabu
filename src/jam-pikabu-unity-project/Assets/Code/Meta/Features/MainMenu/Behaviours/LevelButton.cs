@@ -92,9 +92,9 @@ namespace Code.Meta.Features.MainMenu.Behaviours
         public void SelectLevel()
         {
             if (_mapMenuService.SelectedDayId == DayId)
-                _mapMenuService.SetDayDeselected(DayId);
-            else
-                _mapMenuService.SetDaySelected(DayId);
+                return;
+            
+            _mapMenuService.SetDaySelected(DayId);
         }
 
         private void Init()

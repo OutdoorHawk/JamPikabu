@@ -23,12 +23,12 @@ namespace Code.Gameplay.Tutorial.Processors.Abstract
         protected IInputService _inputService;
         protected IWindowService _windowService;
         protected IStaticDataService _staticData;
+        protected IDaysService _daysService;
         protected MetaContext _metaContext;
         protected GameContext _gameContext;
 
         private IGameStateMachine _gameStateMachine;
         private IProgressProvider _progressProvider;
-        private IDaysService _daysService;
 
         private readonly List<WindowTypeId> _openedWindowsCache = new();
 

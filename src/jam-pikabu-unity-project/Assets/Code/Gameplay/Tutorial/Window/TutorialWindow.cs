@@ -209,7 +209,7 @@ namespace Code.Gameplay.Tutorial.Window
                     .SetLink(_tapToContinueText.gameObject)
                 ;
 
-            await _tapToContinueButton.OnClickAsync(CreateLinkedTokenSource(token, destroyCancellationToken).Token);
+            await _tapToContinueButton.OnClickAsync(token);
             _tapToContinueButton.DisableElement();
             _tapToContinueText.DisableElement();
         }
@@ -231,7 +231,7 @@ namespace Code.Gameplay.Tutorial.Window
             _blackBackground.DisableElement();
             _arrow.DisableElement();
             _tapToContinueText.DisableElement();
-
+            _tapToContinueButton.DisableElement();
         }
 
         private Vector3 GetRotationVector(ArrowRotation handPosition)

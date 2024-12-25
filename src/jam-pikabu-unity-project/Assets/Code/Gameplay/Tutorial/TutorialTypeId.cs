@@ -7,5 +7,6 @@
         MetaShopBasics = 2,
         MetaUnlockIngredient = 3,
         BonusLevel = 4,
+        SecondLevelHint = 5,
     }
 }
