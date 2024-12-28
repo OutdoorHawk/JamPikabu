@@ -9,5 +9,16 @@
         public const string UpgradeLootType = "INGREDIENT_UPGRADE";
         public const string UpgradeLootTypeFree = "INGREDIENT_UPGRADE_FREE";
         public const string LootUpgraded = "INGREDIENT_UPGRADED";
+        public const string AdStarted = "ADS_START";
+        public const string AdRewardedSuccess = "ADS_REWARD_SUCCESS";
+    }
+
+    public enum AdsEventTypes
+    {
+        Unknown = 0,
+        Interstitial = 1,
+        Banner = 2,
+        Preload = 3,
+        Rewarded = 4,
     }
 }

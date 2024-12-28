@@ -6,11 +6,22 @@ namespace Code.Infrastructure.Analytics
     public abstract class BaseAnalyticsService : IAnalyticsService
     {
         private ILoggerService _logger;
+        protected AdsEventTypes _adsType;
 
         [Inject]
         private void Construct(ILoggerService logger)
         {
             _logger = logger;
+        }
+
+        public void SetAdsType(AdsEventTypes adsType)
+        {
+            _adsType = adsType;
+        }
+
+        public virtual void SendEventAds(string eventName)
+        {
+            _logger.Log($"[Analytics event ads] {eventName} {_adsType}");
         }
         
         public virtual void SendEvent(string eventName)

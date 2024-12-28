@@ -3,12 +3,14 @@ using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Tutorial.Service;
 using Code.Infrastructure.Ads.Config;
+using Code.Infrastructure.Analytics;
 using Code.Infrastructure.States.GameStateHandler;
 using Code.Infrastructure.States.GameStateHandler.Handlers;
 using Code.Meta.Features.Days;
 using Code.Meta.Features.Days.Service;
 using GamePush;
 using UnityEngine;
+using static Code.Infrastructure.Analytics.AnalyticsEventTypes;
 
 namespace Code.Infrastructure.Ads.Service
 {
@@ -27,6 +29,7 @@ namespace Code.Infrastructure.Ads.Service
         private readonly ISoundService _soundService;
         private readonly ITutorialService _tutorialService;
         private readonly IStaticDataService _staticDataService;
+        private readonly IAnalyticsService _analyticsService;
 
         private bool _firstEnter = true;
 
@@ -35,10 +38,12 @@ namespace Code.Infrastructure.Ads.Service
             IDaysService daysService,
             ISoundService soundService,
             ITutorialService tutorialService,
-            IStaticDataService staticDataService
+            IStaticDataService staticDataService,
+            IAnalyticsService analyticsService
         )
         {
             _staticDataService = staticDataService;
+            _analyticsService = analyticsService;
             _soundService = soundService;
             _tutorialService = tutorialService;
             _daysService = daysService;
@@ -84,13 +89,16 @@ namespace Code.Infrastructure.Ads.Service
         public override void RequestInterstitial()
         {
             base.RequestInterstitial();
-
+            
+            _analyticsService.SetAdsType(adsType: AdsEventTypes.Interstitial);
             GP_Ads.ShowFullscreen(onFullscreenStart: Started, onFullscreenClose: Finished);
         }
 
         public override void RequestRewardedAd()
         {
             base.RequestRewardedAd();
+            
+            _analyticsService.SetAdsType(adsType: AdsEventTypes.Rewarded);
             GP_Ads.ShowRewarded(_identifier, RewardedSuccess, Started, Finished);
         }
 
@@ -101,6 +109,8 @@ namespace Code.Infrastructure.Ads.Service
             if (GP_Ads.IsStickyPlaying())
                 return;
 
+            _analyticsService.SetAdsType(adsType: AdsEventTypes.Banner);
+            _analyticsService.SendEventAds(AdStarted);
             GP_Ads.ShowSticky();
         }
 
@@ -108,6 +118,7 @@ namespace Code.Infrastructure.Ads.Service
 
         private void Started()
         {
+            _analyticsService.SendEventAds(AdStarted);
             _soundService.MuteVolume();
             Time.timeScale = 0;
             NotifyStartedHandlers();
@@ -115,6 +126,7 @@ namespace Code.Infrastructure.Ads.Service
 
         private void RewardedSuccess(string id)
         {
+            _analyticsService.SendEvent(AdRewardedSuccess);
             NotifySuccessfulHandlers();
             Time.timeScale = 1;
         }

@@ -28,5 +28,12 @@ namespace Code.Infrastructure.Analytics
             base.SendEvent(eventName, value);
             GP_Analytics.Goal(eventName, value);
         }
+
+        public override void SendEventAds(string eventName)
+        {
+            base.SendEventAds(eventName);
+            GP_Analytics.Goal(eventName, _adsType.ToString());
+            _adsType = AdsEventTypes.Unknown;
+        }
     }
 }
