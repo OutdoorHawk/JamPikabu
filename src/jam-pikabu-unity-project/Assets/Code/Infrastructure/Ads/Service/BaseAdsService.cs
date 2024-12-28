@@ -21,6 +21,7 @@ namespace Code.Infrastructure.Ads.Service
         public virtual bool CanShowRewarded => true;
         public virtual bool CanShowInterstitial => true;
         public virtual bool CanShowBanner => true;
+        public virtual bool CanShowPreload => true;
 
         [Inject]
         private void Construct

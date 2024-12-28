@@ -32,6 +32,7 @@ using Code.Infrastructure.AssetManagement.AssetProvider;
 using Code.Infrastructure.Common.CoroutineRunner;
 using Code.Infrastructure.Common.GameIdentifier;
 using Code.Infrastructure.Integrations.GamePush;
+using Code.Infrastructure.Integrations.Service;
 using Code.Infrastructure.Localization;
 using Code.Infrastructure.SceneContext;
 using Code.Infrastructure.SceneLoading;
@@ -218,6 +219,7 @@ namespace Code.Infrastructure.DI.Installers
 
         private void BindIntegrations()
         {
+            Container.BindInterfacesTo<IntegrationsService>().AsSingle();
 #if GAME_PUSH
             Container.BindInterfacesTo<GamePushAnalyticsService>().AsSingle();
             Container.BindInterfacesTo<GamePushIntegration>().AsSingle();

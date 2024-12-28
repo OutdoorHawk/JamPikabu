@@ -4,6 +4,7 @@ using Code.Gameplay.StaticData;
 using Code.Gameplay.Tutorial.Service;
 using Code.Infrastructure.Ads.Config;
 using Code.Infrastructure.Analytics;
+using Code.Infrastructure.Integrations.Handler;
 using Code.Infrastructure.States.GameStateHandler;
 using Code.Infrastructure.States.GameStateHandler.Handlers;
 using Code.Meta.Features.Days;
@@ -14,14 +15,17 @@ using static Code.Infrastructure.Analytics.AnalyticsEventTypes;
 
 namespace Code.Infrastructure.Ads.Service
 {
-    public class GamePushAdsService : BaseAdsService, IExitGameLoopStateHandler, IEnterMainMenuStateHandler
+    public class GamePushAdsService : BaseAdsService,
+        IExitGameLoopStateHandler,
+        IEnterMainMenuStateHandler,
+        IIntegrationsInitCompleteHandler
     {
 #if !UNITY_EDITOR
         public override bool CanShowRewarded => IsRewardedAvailable();
 #endif
         public override bool CanShowInterstitial => IsFullscreenAvailable();
-
         public override bool CanShowBanner => IsStickyAvailable();
+        public override bool CanShowPreload => IsPreloadAvailable();
 
         public OrderType OrderType => OrderType.Last;
 
@@ -32,6 +36,7 @@ namespace Code.Infrastructure.Ads.Service
         private readonly IAnalyticsService _analyticsService;
 
         private bool _firstEnter = true;
+        private AdsStaticData AdsStaticData => _staticDataService.GetStaticData<AdsStaticData>();
 
         public GamePushAdsService
         (
@@ -49,6 +54,19 @@ namespace Code.Infrastructure.Ads.Service
             _daysService = daysService;
         }
 
+        #region IIntegrationsInitCompleteHandler
+
+        public void OnInitComplete()
+        {
+            if (CanShowPreload)
+            {
+                _analyticsService.SetAdsType(adsType: AdsEventTypes.Banner);
+                GP_Ads.ShowPreloader(Started, Finished);
+            }
+        }
+
+        #endregion
+
         #region IStateHandler
 
         public void OnEnterMainMenu()
@@ -58,14 +76,14 @@ namespace Code.Infrastructure.Ads.Service
                 _firstEnter = false;
                 return;
             }
-            
+
             List<DayProgressData> dayProgressData = _daysService.GetDaysProgress();
             AdsStaticData adsStaticData = _staticDataService.GetStaticData<AdsStaticData>();
 
             if (dayProgressData.Count < adsStaticData.LevelsPassedToStartAds)
                 return;
 
-            if (_tutorialService.HasActiveTutorial())
+            if (adsStaticData.TutorialBlockAds && _tutorialService.HasActiveTutorial())
                 return;
 
             if (CanShowInterstitial)
@@ -89,7 +107,7 @@ namespace Code.Infrastructure.Ads.Service
         public override void RequestInterstitial()
         {
             base.RequestInterstitial();
-            
+
             _analyticsService.SetAdsType(adsType: AdsEventTypes.Interstitial);
             GP_Ads.ShowFullscreen(onFullscreenStart: Started, onFullscreenClose: Finished);
         }
@@ -97,7 +115,7 @@ namespace Code.Infrastructure.Ads.Service
         public override void RequestRewardedAd()
         {
             base.RequestRewardedAd();
-            
+
             _analyticsService.SetAdsType(adsType: AdsEventTypes.Rewarded);
             GP_Ads.ShowRewarded(_identifier, RewardedSuccess, Started, Finished);
         }
@@ -154,6 +172,13 @@ namespace Code.Infrastructure.Ads.Service
         {
             bool result = GP_Ads.IsStickyAvailable();
             Logger.Log($"[AD] IsStickyAvailable: {result}");
+            return result;
+        }
+
+        private bool IsPreloadAvailable()
+        {
+            bool result = GP_Ads.IsPreloaderAvailable();
+            Logger.Log($"[AD] IsPreloaderAvailable: {result}");
             return result;
         }
 

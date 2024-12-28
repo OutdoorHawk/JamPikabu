@@ -7,5 +7,7 @@ namespace Code.Infrastructure.Ads.Config
     public class AdsStaticData : BaseStaticData
     {
         public int LevelsPassedToStartAds = 2;
+        
+        public bool TutorialBlockAds = false;
     }
 }

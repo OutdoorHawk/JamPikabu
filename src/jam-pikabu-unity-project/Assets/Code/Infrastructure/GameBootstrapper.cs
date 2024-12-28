@@ -1,7 +1,7 @@
 using Code.Common.Logger.Service;
-using Code.Infrastructure.AssetManagement;
 using Code.Infrastructure.AssetManagement.AssetDownload;
 using Code.Infrastructure.AssetManagement.Behaviours;
+using Code.Infrastructure.Integrations.Service;
 using Code.Infrastructure.States.GameStates;
 using Code.Infrastructure.States.StateMachine;
 using Cysharp.Threading.Tasks;
@@ -17,10 +17,18 @@ namespace Code.Infrastructure
         private IGameStateMachine _gameStateMachine;
         private ILoggerService _loggerService;
         private IAssetDownloadService _downloadService;
+        private IIntegrationsService _integrationsService;
 
         [Inject]
-        private void Construct(IGameStateMachine gameStateMachine, ILoggerService loggerService, IAssetDownloadService assetDownloadService)
+        private void Construct
+        (
+            IGameStateMachine gameStateMachine,
+            ILoggerService loggerService,
+            IAssetDownloadService assetDownloadService,
+            IIntegrationsService integrationsService
+        )
         {
+            _integrationsService = integrationsService;
             _downloadService = assetDownloadService;
             _loggerService = loggerService;
             _gameStateMachine = gameStateMachine;
@@ -35,6 +43,7 @@ namespace Code.Infrastructure
 
         private async UniTaskVoid Initialize()
         {
+            UniTask loadIntegrationsTask = _integrationsService.LoadIntegrations();
             await _downloadService.InitializeDownloadDataAsync();
             float downloadSize = _downloadService.GetDownloadSizeMb();
 
@@ -47,6 +56,7 @@ namespace Code.Infrastructure
                 _loaderBehaviour.Hide();
             }
 
+            await loadIntegrationsTask;
             _gameStateMachine.Enter<BootstrapState>();
             DontDestroyOnLoad(gameObject);
         }

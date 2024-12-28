@@ -6,6 +6,8 @@ namespace Code.Infrastructure.Ads.Service
     {
         bool CanShowRewarded { get; }
         bool CanShowInterstitial { get; }
+        bool CanShowBanner { get; }
+        bool CanShowPreload { get; }
         void SetupIdentifier(string id);
         void RegisterAdsHandler(IAdsHandler handler);
         void UnregisterAdsHandler(IAdsHandler handler);
