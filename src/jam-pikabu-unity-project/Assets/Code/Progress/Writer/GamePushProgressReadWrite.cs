@@ -7,6 +7,10 @@ namespace Code.Progress.Writer
 {
     public class GamePushProgressReadWrite : IProgressReadWrite
     {
+        private const float SyncInterval = 180;
+
+        private float _lastSyncTime;
+
         public bool HasSavedProgress()
         {
 #if !UNITY_EDITOR
@@ -21,15 +25,8 @@ namespace Code.Progress.Writer
 
         public void WriteProgress(string json)
         {
-            bool hasDiffs = json.Equals(PlayerPrefs.GetString(PROGRESS_KEY)) == false;
-            
             if (GP_Init.isReady)
-            {
-                GP_Player.Set(PROGRESS_KEY, json);
-
-                if (GP_Player.HasAnyCredentials() && hasDiffs)
-                    GP_Player.Sync();
-            }
+                TrySyncProgress(json);
 
             PlayerPrefs.SetString(PROGRESS_KEY, json);
             PlayerPrefs.Save();
@@ -58,6 +55,38 @@ namespace Code.Progress.Writer
 
             if (GP_Player.HasAnyCredentials())
                 GP_Player.Sync();
+        }
+
+        private void TrySyncProgress(string json)
+        {
+            GP_Player.Set(PROGRESS_KEY, json);
+
+            if (CheckCanSync(json))
+            {
+                GP_Player.Sync();
+                _lastSyncTime = Time.time;
+            }
+        }
+
+        private bool CheckCanSync(string json)
+        {
+            if (GP_Player.HasAnyCredentials() == false)
+                return false;
+
+            bool hasDiffs = json.Equals(PlayerPrefs.GetString(PROGRESS_KEY)) == false;
+
+            if (hasDiffs)
+                return false;
+
+            if (_lastSyncTime == 0)
+                return true;
+
+            float diff = Time.time - _lastSyncTime;
+
+            if (diff > SyncInterval)
+                return true;
+
+            return false;
         }
     }
 }
