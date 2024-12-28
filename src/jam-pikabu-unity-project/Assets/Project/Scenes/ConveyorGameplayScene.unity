@@ -1579,6 +1579,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 460449221}
     m_Modifications:
+    - target: {fileID: 971262248715464870, guid: 1c55f5ffc19a64547a15196800d61089,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.95353425
+      objectReference: {fileID: 0}
+    - target: {fileID: 971262248715464870, guid: 1c55f5ffc19a64547a15196800d61089,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.023232877
+      objectReference: {fileID: 0}
     - target: {fileID: 2064052549561419659, guid: 1c55f5ffc19a64547a15196800d61089,
         type: 3}
       propertyPath: m_IsLocked
@@ -1683,6 +1693,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PrimitiveBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 6372315805366809904, guid: 1c55f5ffc19a64547a15196800d61089,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.95071816
+      objectReference: {fileID: 0}
+    - target: {fileID: 6372315805366809904, guid: 1c55f5ffc19a64547a15196800d61089,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.024640903
       objectReference: {fileID: 0}
     - target: {fileID: 8447980682948690766, guid: 1c55f5ffc19a64547a15196800d61089,
         type: 3}

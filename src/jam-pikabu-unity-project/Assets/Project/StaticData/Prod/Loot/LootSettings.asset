@@ -303,7 +303,7 @@ MonoBehaviour:
     ColliderSize: 1
     BaseRatingValue: 1
   LootSpawnInterval: 0.0175
-  LootSpawnConveyorInterval: 0.5
+  LootSpawnConveyorInterval: 0.6
   LootSpawnStartDelay: 0.15
   DelayAfterLootSpawn: 0.4
   MaxLootAmount: 60
