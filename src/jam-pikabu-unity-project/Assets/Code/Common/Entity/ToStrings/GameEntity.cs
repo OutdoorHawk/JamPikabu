@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using Code.Common.Entity.ToStrings;
 using Code.Common.Extensions;
+using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.GameState;
 using Code.Gameplay.Features.GrapplingHook;
 using Code.Gameplay.Features.Loot;
@@ -41,7 +42,7 @@ public sealed partial class GameEntity : INamedEntity
                             .With(s => s.Append($"Id:{Id} "), when: hasId)
                             .ToString();
                     
-                    case nameof(Code.Gameplay.Features.Currency.Gold):
+                    case nameof(CurrencyStorage):
                         return new StringBuilder($"Gold Storage: ")
                             .With(s => s.Append($"Id:{Id} "), when: hasId)
                             .ToString();

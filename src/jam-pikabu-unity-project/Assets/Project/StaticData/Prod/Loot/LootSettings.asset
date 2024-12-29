@@ -15,7 +15,8 @@ MonoBehaviour:
   Configs:
   - Id: 1
     Type: 1
-    ViewPrefab: {fileID: 0}
+    ViewPrefab: {fileID: 5269418671204374274, guid: c68002c15aaf269429bacf8e8aabd408,
+      type: 3}
     Icon: {fileID: 21300000, guid: 960d9ea6b81ffd44c97fd99ad1de401a, type: 3}
     Size: 1
     CanBeUsedInOrders: 0
