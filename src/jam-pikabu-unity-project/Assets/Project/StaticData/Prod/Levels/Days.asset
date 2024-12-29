@@ -39,37 +39,37 @@ MonoBehaviour:
     SceneId: 3
   - Id: 5
     IsBossDay: 0
-    AvailableOrderTags: 8
+    AvailableOrderTags: 16
     OrdersAmount: 4
     DayGoldFactor: 1.4184232
     SceneId: 2
   - Id: 6
     IsBossDay: 0
-    AvailableOrderTags: 8
+    AvailableOrderTags: 16
     OrdersAmount: 3
     DayGoldFactor: 1.4935477
     SceneId: 2
   - Id: 7
     IsBossDay: 0
-    AvailableOrderTags: 8
+    AvailableOrderTags: 16
     OrdersAmount: 3
     DayGoldFactor: 1.5648371
     SceneId: 2
   - Id: 8
-    IsBossDay: 1
-    AvailableOrderTags: 12
-    OrdersAmount: 1
+    IsBossDay: 0
+    AvailableOrderTags: 16
+    OrdersAmount: 3
     DayGoldFactor: 1.6330876
     SceneId: 4
   - Id: 9
     IsBossDay: 0
-    AvailableOrderTags: 8
+    AvailableOrderTags: 16
     OrdersAmount: 3
     DayGoldFactor: 1.6988403
     SceneId: 2
   - Id: 10
     IsBossDay: 0
-    AvailableOrderTags: 8
+    AvailableOrderTags: 16
     OrdersAmount: 4
     DayGoldFactor: 1.7624841
     SceneId: 2
@@ -98,17 +98,17 @@ MonoBehaviour:
     DayGoldFactor: 2.0009432
     SceneId: 2
   - Id: 15
-    IsBossDay: 1
-    AvailableOrderTags: 20
-    OrdersAmount: 1
+    IsBossDay: 0
+    AvailableOrderTags: 16
+    OrdersAmount: 3
     DayGoldFactor: 2.0573676
     SceneId: 4
   - Id: 16
-    IsBossDay: 1
-    AvailableOrderTags: 20
-    OrdersAmount: 1
-    DayGoldFactor: 2.1127532
-    SceneId: 4
+    IsBossDay: 0
+    AvailableOrderTags: 16
+    OrdersAmount: 3
+    DayGoldFactor: 2.0009432
+    SceneId: 2
   - Id: 17
     IsBossDay: 0
     AvailableOrderTags: 16
@@ -152,9 +152,9 @@ MonoBehaviour:
     DayGoldFactor: 2.4773524
     SceneId: 2
   - Id: 24
-    IsBossDay: 1
-    AvailableOrderTags: 36
-    OrdersAmount: 1
+    IsBossDay: 0
+    AvailableOrderTags: 32
+    OrdersAmount: 3
     DayGoldFactor: 2.526757
     SceneId: 4
   - Id: 25
@@ -176,9 +176,9 @@ MonoBehaviour:
     DayGoldFactor: 2.6717508
     SceneId: 2
   - Id: 28
-    IsBossDay: 1
-    AvailableOrderTags: 36
-    OrdersAmount: 1
+    IsBossDay: 0
+    AvailableOrderTags: 32
+    OrdersAmount: 4
     DayGoldFactor: 2.7190974
     SceneId: 4
   - Id: 29
@@ -188,11 +188,11 @@ MonoBehaviour:
     DayGoldFactor: 2.76599
     SceneId: 2
   - Id: 30
-    IsBossDay: 0
-    AvailableOrderTags: 32
-    OrdersAmount: 4
+    IsBossDay: 1
+    AvailableOrderTags: 36
+    OrdersAmount: 1
     DayGoldFactor: 2.8124492
-    SceneId: 2
+    SceneId: 3
   StartGoldAmount: 10
   DefaultRoundDuration: 30
   BossRoundDuration: 60
