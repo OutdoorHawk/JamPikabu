@@ -13,6 +13,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
     {
         [SerializeField] private SpriteRenderer _sprite;
         [SerializeField] private SpriteRenderer _colliderRenderer;
+        [SerializeField] private bool _disableSpriteLoad;
 
         private IStaticDataService _staticData;
         private PolygonCollider2D _collider2D;
@@ -37,13 +38,17 @@ namespace Code.Gameplay.Features.Loot.Behaviours
 
         private void Start()
         {
+            InitDayType();
+            
+            if (_disableSpriteLoad)
+                return;
+            
             LootSetup lootSetup = _staticData.GetStaticData<LootSettingsStaticData>().GetConfig(Entity.LootTypeId);
             _sprite.sprite = lootSetup.Icon;
             _colliderRenderer.sprite = lootSetup.Icon;
             transform.localScale = Vector3.one * lootSetup.Size;
             CreateCollider(lootSetup);
             Destroy(_colliderRenderer);
-            InitDayType();
         }
 
         private void CreateCollider(LootSetup lootSetup)

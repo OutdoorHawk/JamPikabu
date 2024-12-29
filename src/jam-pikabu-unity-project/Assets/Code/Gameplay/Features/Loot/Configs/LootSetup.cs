@@ -11,7 +11,7 @@ namespace Code.Gameplay.Features.Loot.Configs
     public class LootSetup : BaseData
     {
         public LootTypeId Type;
-        [HideInInspector] public EntityView ViewPrefab;
+        public EntityView ViewPrefab;
         [PreviewField] public Sprite Icon;
         [FoldoutGroup("Data")] public float Size = 1;
         [FoldoutGroup("Data")] public bool CanBeUsedInOrders = true;
