@@ -63,6 +63,10 @@ MonoBehaviour:
     m_Key: NEW_INGREDIENT
     m_Metadata:
       m_Items: []
+  - m_Id: 19181258051637248
+    m_Key: FREE_UPGRADE
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

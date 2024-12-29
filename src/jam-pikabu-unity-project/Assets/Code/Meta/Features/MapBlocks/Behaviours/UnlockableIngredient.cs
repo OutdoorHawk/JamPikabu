@@ -39,6 +39,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
         public Image[] IngredientIcons;
         public RectTransform FlyToShopStartPosition;
         public TMP_Text ReadyToUnlockText;
+        public TMP_Text FreeUpgradeText;
         public Animator UnlockIngredientAnimator;
         public UniversalTimer UpgradeTimer;
         public float UnlockMoveDuration = 0.6f;
@@ -216,6 +217,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
             FreeUpgradeButton.DisableElement();
             UnlockButton.DisableElement();
             ReadyToUnlockText.DisableElement();
+            FreeUpgradeText.DisableElement();
             UpgradeTimer.TimerText.text = "00:00";
             UpgradeTimer.StopTimer();
             _fillToken?.Cancel();
@@ -247,6 +249,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
             UpgradeTimer.StopTimer();
             FreeUpgradeButton.EnableElement();
             FillIcon.fillAmount = 1;
+            FreeUpgradeText.EnableElement();
         }
 
         private void InitWaitUpgradeIdle()
@@ -255,6 +258,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
             FillIcon.EnableElement();
             UpgradeTimer.StartTimer(GetTimeFunc);
             UpdateFillAmountAsync().Forget();
+            FreeUpgradeText.EnableElement();
         }
 
         private async UniTaskVoid UpdateFillAmountAsync()
