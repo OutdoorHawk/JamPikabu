@@ -122,7 +122,8 @@ MonoBehaviour:
     BaseRatingValue: 1
   - Id: 7
     Type: 7
-    ViewPrefab: {fileID: 0}
+    ViewPrefab: {fileID: 4607764121607272213, guid: 7d6408051f7edb74ba489bcf513e8bbd,
+      type: 3}
     Icon: {fileID: 21300000, guid: 98ebdbe102f03834781e181dc0339c2a, type: 3}
     Size: 1
     CanBeUsedInOrders: 1
@@ -139,7 +140,8 @@ MonoBehaviour:
     BaseRatingValue: 4
   - Id: 8
     Type: 8
-    ViewPrefab: {fileID: 0}
+    ViewPrefab: {fileID: 5505315513054863998, guid: 5e25540141c57d2469d24eb10630057c,
+      type: 3}
     Icon: {fileID: 21300000, guid: 07a4266ed0b2aaa4398515eec554347b, type: 3}
     Size: 1
     CanBeUsedInOrders: 1
@@ -156,7 +158,8 @@ MonoBehaviour:
     BaseRatingValue: 6
   - Id: 9
     Type: 10
-    ViewPrefab: {fileID: 0}
+    ViewPrefab: {fileID: 3754467397912659312, guid: d1aa8594a4fbc6542b08b6a4e37e4b14,
+      type: 3}
     Icon: {fileID: 21300000, guid: bae58bcecadd88b4ebdf1b3541aec620, type: 3}
     Size: 1
     CanBeUsedInOrders: 1
@@ -173,7 +176,8 @@ MonoBehaviour:
     BaseRatingValue: 8
   - Id: 10
     Type: 9
-    ViewPrefab: {fileID: 0}
+    ViewPrefab: {fileID: 7569425527153441870, guid: 3500537cbec5c6843ab485a7e4e6056a,
+      type: 3}
     Icon: {fileID: 21300000, guid: 34820a12b2370804ca85637ec4d7cb55, type: 3}
     Size: 1
     CanBeUsedInOrders: 1
@@ -190,7 +194,8 @@ MonoBehaviour:
     BaseRatingValue: 10
   - Id: 11
     Type: 11
-    ViewPrefab: {fileID: 0}
+    ViewPrefab: {fileID: 1763830991255042230, guid: b2cc89246b338924e9c2027e8992f528,
+      type: 3}
     Icon: {fileID: 21300000, guid: 642e4b6c30234eb4885738900646712e, type: 3}
     Size: 1
     CanBeUsedInOrders: 1
@@ -207,7 +212,8 @@ MonoBehaviour:
     BaseRatingValue: 12
   - Id: 12
     Type: 12
-    ViewPrefab: {fileID: 0}
+    ViewPrefab: {fileID: 4082248375854956719, guid: 30edc69210cb2ea4390b70ebcd7a6809,
+      type: 3}
     Icon: {fileID: 21300000, guid: ec4f6a8de083b284c9954c4ac10c8a13, type: 3}
     Size: 1
     CanBeUsedInOrders: 1
@@ -224,7 +230,8 @@ MonoBehaviour:
     BaseRatingValue: 14
   - Id: 13
     Type: 13
-    ViewPrefab: {fileID: 0}
+    ViewPrefab: {fileID: 168960851586940954, guid: c247e3160612f214aa94ff1fa0380e32,
+      type: 3}
     Icon: {fileID: 21300000, guid: 7bc5706c486253a48a6c062bac70d4e5, type: 3}
     Size: 1
     CanBeUsedInOrders: 1
@@ -241,7 +248,8 @@ MonoBehaviour:
     BaseRatingValue: 16
   - Id: 14
     Type: 14
-    ViewPrefab: {fileID: 0}
+    ViewPrefab: {fileID: 2326069168832771833, guid: c699bcaea2c073e4691f1a712897af92,
+      type: 3}
     Icon: {fileID: 21300000, guid: a53148400a147fc4a86da08a6941ba67, type: 3}
     Size: 1
     CanBeUsedInOrders: 0
@@ -258,7 +266,8 @@ MonoBehaviour:
     BaseRatingValue: 1
   - Id: 15
     Type: 15
-    ViewPrefab: {fileID: 0}
+    ViewPrefab: {fileID: 5801108300233425260, guid: 592fd298a5e33cb4ea99eebdd5ac4943,
+      type: 3}
     Icon: {fileID: 21300000, guid: b9d6e0ca81572d34aae2f59bb41f1e70, type: 3}
     Size: 1
     CanBeUsedInOrders: 0
@@ -275,7 +284,8 @@ MonoBehaviour:
     BaseRatingValue: 1
   - Id: 16
     Type: 16
-    ViewPrefab: {fileID: 0}
+    ViewPrefab: {fileID: 2351187851481095984, guid: b7eba7cc19b15f748b7441185a99c1cb,
+      type: 3}
     Icon: {fileID: 21300000, guid: bc0eaf0bd736d2a44a0a0b3e4704224b, type: 3}
     Size: 1
     CanBeUsedInOrders: 1
@@ -292,7 +302,8 @@ MonoBehaviour:
     BaseRatingValue: 18
   - Id: 17
     Type: 17
-    ViewPrefab: {fileID: 0}
+    ViewPrefab: {fileID: 9099611467634955215, guid: e8275c0d45005f4488de79be3cd0b66a,
+      type: 3}
     Icon: {fileID: 21300000, guid: e61f33ab3dd737a4b83d5a709a9fdc8a, type: 3}
     Size: 1
     CanBeUsedInOrders: 0

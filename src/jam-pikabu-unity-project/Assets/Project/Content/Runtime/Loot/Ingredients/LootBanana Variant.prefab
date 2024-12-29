@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &7825805177711061354
+--- !u!1001 &5757015778209576889
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -15,18 +15,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4549577105378977622, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.75
+      propertyPath: m_LocalPosition.y
+      value: -0.035
       objectReference: {fileID: 0}
-    - target: {fileID: 4549577105378977622, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943,
+    - target: {fileID: 5996502358142260473, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943,
         type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.75
+      propertyPath: m_LocalPosition.x
+      value: -2.4
       objectReference: {fileID: 0}
-    - target: {fileID: 4549577105378977622, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943,
+    - target: {fileID: 5996502358142260473, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943,
         type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.75
+      propertyPath: m_LocalPosition.y
+      value: -1.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5996502358142260473, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5996502358142260473, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5996502358142260473, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5996502358142260473, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5996502358142260473, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5996502358142260473, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943,
         type: 3}
@@ -43,6 +68,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5996502358142260473, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7919534535617553518, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943,
         type: 3}
       propertyPath: m_Size.x
@@ -57,7 +87,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 10919e892d413804db97bc43fd8ccd5f,
+      objectReference: {fileID: 21300000, guid: 642e4b6c30234eb4885738900646712e,
         type: 3}
     - target: {fileID: 7919534535617553518, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943,
         type: 3}
@@ -82,7 +112,7 @@ PrefabInstance:
     - target: {fileID: 8363761853997677049, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943,
         type: 3}
       propertyPath: m_Name
-      value: LootBrokkoli Variant
+      value: LootBanana Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -91,21 +121,21 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8905411431984901083, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8722025886210060477}
+      addedObject: {fileID: 4298531468573080208}
   m_SourcePrefab: {fileID: 100100000, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943, type: 3}
---- !u!1 &1660905613678920369 stripped
+--- !u!1 &3779478700922870882 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8905411431984901083, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943,
     type: 3}
-  m_PrefabInstance: {fileID: 7825805177711061354}
+  m_PrefabInstance: {fileID: 5757015778209576889}
   m_PrefabAsset: {fileID: 0}
---- !u!60 &8722025886210060477
+--- !u!60 &4298531468573080208
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1660905613678920369}
+  m_GameObject: {fileID: 3779478700922870882}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -145,10 +175,9 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.2989275, y: 0.4018596}
-      - {x: -0.03883116, y: 0.4868223}
-      - {x: -0.43702468, y: 0.23670495}
-      - {x: 0.012477543, y: -0.5049677}
-      - {x: 0.44594595, y: -0.35683706}
-      - {x: 0.34541005, y: 0.046686202}
+    - - {x: 0.29063016, y: 0.4410799}
+      - {x: -0.3896855, y: -0.135046}
+      - {x: -0.21155918, y: -0.35087597}
+      - {x: 0.2274243, y: -0.2579257}
+      - {x: 0.43453187, y: 0.30571896}
   m_UseDelaunayMesh: 0
