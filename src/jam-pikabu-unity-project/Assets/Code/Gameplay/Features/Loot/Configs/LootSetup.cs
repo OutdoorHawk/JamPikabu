@@ -18,5 +18,6 @@ namespace Code.Gameplay.Features.Loot.Configs
         [FoldoutGroup("Data")] public LocalizedString LocalizedName;
         [FoldoutGroup("Data")] public float ColliderSize = 0.9f;
         [FoldoutGroup("Data")] public int BaseRatingValue = 1;
+        [FoldoutGroup("Data"), Range(0, 100)] public int SpawnChance = 100;
     }
 }

@@ -60,12 +60,29 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
                     _currentConfig = 0;
 
                 LootSetup lootSetup = _gameplayLootService.AvailableLoot[_currentConfig];
+                _currentConfig++;
+                
+                if (CheckCanSpawn(lootSetup) == false)
+                    continue;
+                
                 Transform spawn = GetSpawnPoint();
                 _lootFactory.CreateLootEntity(lootSetup.Type, _provider.Context.LootParent, spawn.position, spawn.rotation.eulerAngles);
-                _currentConfig++;
 
                 spawner.PutOnCooldown(spawner.LootSpawnInterval);
             }
+        }
+
+        private bool CheckCanSpawn(LootSetup lootSetup)
+        {
+            if (lootSetup.SpawnChance == 100)
+                return true;
+
+            int value = Random.Range(0, 101);
+            
+            if (lootSetup.SpawnChance >= value)
+                return true;
+
+            return false;
         }
 
         private Transform GetSpawnPoint()
