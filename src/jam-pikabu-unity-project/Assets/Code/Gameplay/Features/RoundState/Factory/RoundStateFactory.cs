@@ -16,7 +16,7 @@ namespace Code.Gameplay.Features.RoundState.Factory
 
         public GameEntity CreateRoundStateController()
         {
-            var staticData = _staticDataService.GetStaticData<DaysStaticData>();
+            var staticData = _staticDataService.Get<DaysStaticData>();
 
             return CreateGameEntity
                     .Empty()

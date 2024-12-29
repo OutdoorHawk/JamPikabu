@@ -102,8 +102,8 @@ namespace Code.Gameplay.Features.Currency.Service
 
         public void InitCurrency()
         {
-            var currencyConfig = _staticDataService.GetStaticData<CurrencyStaticData>();
-            var roundState = _staticDataService.GetStaticData<DaysStaticData>();
+            var currencyConfig = _staticDataService.Get<CurrencyStaticData>();
+            var roundState = _staticDataService.Get<DaysStaticData>();
 
             foreach (CurrencyConfig config in currencyConfig.Configs)
                 _currencies.Add(config.CurrencyTypeId, new CurrencyCount());

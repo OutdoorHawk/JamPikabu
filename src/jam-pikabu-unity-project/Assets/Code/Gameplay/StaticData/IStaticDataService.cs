@@ -5,7 +5,7 @@ namespace Code.Gameplay.StaticData
     public interface IStaticDataService
     {
         UniTask Load();
-        T GetStaticData<T>() where T : class;
+        T Get<T>() where T : class;
         void RegisterHandler(IConfigsInitHandler handler);
         void UnRegisterHandler(IConfigsInitHandler handler);
     }

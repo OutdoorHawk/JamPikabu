@@ -124,7 +124,7 @@ namespace Code.Gameplay.Features.Loot.Systems
                 return;
 
             loot.Retain(this);
-            var lootStaticData = _staticData.GetStaticData<LootSettingsStaticData>();
+            var lootStaticData = _staticData.Get<LootSettingsStaticData>();
             
             loot.Transform
                 .DORotate(Vector3.zero, lootStaticData.CollectFlyAnimationDuration)
@@ -157,7 +157,7 @@ namespace Code.Gameplay.Features.Loot.Systems
         private async UniTask FlyAnimation(GameEntity loot, Vector3 pos1)
         {
             UniTaskCompletionSource source = new UniTaskCompletionSource();
-            var lootStaticData = _staticData.GetStaticData<LootSettingsStaticData>();
+            var lootStaticData = _staticData.Get<LootSettingsStaticData>();
 
             float flyAnimationDuration = lootStaticData.CollectFlyAnimationDuration;
             float jumpPower = Random.Range(-1, 2);
@@ -173,7 +173,7 @@ namespace Code.Gameplay.Features.Loot.Systems
         
         private async UniTask FlyToVatAnimation(GameEntity loot, Vector3 pos1)
         {
-            var lootStaticData = _staticData.GetStaticData<LootSettingsStaticData>();
+            var lootStaticData = _staticData.Get<LootSettingsStaticData>();
 
             float flyAnimationDuration = lootStaticData.CollectFlyAnimationDuration;
             const float jumpPower = 5;

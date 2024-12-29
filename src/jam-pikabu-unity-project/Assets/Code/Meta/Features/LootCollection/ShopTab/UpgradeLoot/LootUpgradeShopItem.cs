@@ -53,8 +53,8 @@ namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
 
         public LootTypeId Type => TypeId;
         public bool MaxLevelReached { get; private set; }
-        private LootSettingsStaticData LootSettings => _staticData.GetStaticData<LootSettingsStaticData>();
-        private LootProgressionStaticData ProgressionStaticData => _staticData.GetStaticData<LootProgressionStaticData>();
+        private LootSettingsStaticData LootSettings => _staticData.Get<LootSettingsStaticData>();
+        private LootProgressionStaticData ProgressionStaticData => _staticData.Get<LootProgressionStaticData>();
 
         [Inject]
         private void Construct

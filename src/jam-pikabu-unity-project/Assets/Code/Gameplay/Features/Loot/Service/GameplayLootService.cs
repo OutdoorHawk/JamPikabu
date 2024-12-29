@@ -70,13 +70,13 @@ namespace Code.Gameplay.Features.Loot.Service
 
         private void InitLootBufferInternal()
         {
-            var staticData = _staticDataService.GetStaticData<LootSettingsStaticData>();
-            var dayLootSettingsStaticData = _staticDataService.GetStaticData<MapBlocksStaticData>();
+            var staticData = _staticDataService.Get<LootSettingsStaticData>();
+            var dayLootSettingsStaticData = _staticDataService.Get<MapBlocksStaticData>();
             var currentDay = _daysService.GetDayData();
 
             if (_daysService.BonusLevelType is BonusLevelType.GoldenCoins)
             {
-                BonusLevelData bonusLevelData = _staticDataService.GetStaticData<BonusLevelStaticData>().Configs[0];
+                BonusLevelData bonusLevelData = _staticDataService.Get<BonusLevelStaticData>().Configs[0];
                 foreach (LootTypeId typeId in bonusLevelData.AvailableIngredients)
                 {
                     _availableLoot.Add(staticData.GetConfig(typeId));

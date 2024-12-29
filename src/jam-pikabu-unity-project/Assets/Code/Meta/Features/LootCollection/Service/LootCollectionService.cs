@@ -23,8 +23,8 @@ namespace Code.Meta.Features.LootCollection.Service
         public Dictionary<LootTypeId, LootLevelsProgressionData> LootLevels { get; private set; } = new();
         public Dictionary<LootTypeId, LootFreeUpgradeTimerData> LootFreeUpgrade { get; private set; } = new();
 
-        public LootProgressionStaticData LootData => _staticData.GetStaticData<LootProgressionStaticData>();
-        private MapBlocksStaticData MapBlocksStaticData => _staticData.GetStaticData<MapBlocksStaticData>();
+        public LootProgressionStaticData LootData => _staticData.Get<LootProgressionStaticData>();
+        private MapBlocksStaticData MapBlocksStaticData => _staticData.Get<MapBlocksStaticData>();
 
         public LootCollectionService(ITimeService timeService,
             IStaticDataService staticData, ILootCollectionFactory factory)

@@ -36,9 +36,9 @@ namespace Code.Meta.Features.Days.Service
         public List<DayStarData> DayStarsData { get; } = new(3);
 
         public int CurrentDay => _currentDayData.Id;
-        public int MaxDays => _staticDataService.GetStaticData<DaysStaticData>().Configs.Count;
-        private DaysStaticData DaysStaticData => _staticDataService.GetStaticData<DaysStaticData>();
-        private DayStarsStaticData DayStarsStaticData => _staticDataService.GetStaticData<DayStarsStaticData>();
+        public int MaxDays => _staticDataService.Get<DaysStaticData>().Configs.Count;
+        private DaysStaticData DaysStaticData => _staticDataService.Get<DaysStaticData>();
+        private DayStarsStaticData DayStarsStaticData => _staticDataService.Get<DayStarsStaticData>();
 
         public DaysService
         (
@@ -119,7 +119,7 @@ namespace Code.Meta.Features.Days.Service
 
         public void BeginDay()
         {
-            var staticData = _staticDataService.GetStaticData<DaysStaticData>();
+            var staticData = _staticDataService.Get<DaysStaticData>();
 
             float roundDuration = GetRoundDuration();
 

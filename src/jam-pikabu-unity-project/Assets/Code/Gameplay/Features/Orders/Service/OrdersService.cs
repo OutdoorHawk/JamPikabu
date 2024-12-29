@@ -58,7 +58,7 @@ namespace Code.Gameplay.Features.Orders.Service
 
         public void InitDayBegin()
         {
-            _ordersData = _staticDataService.GetStaticData<OrdersStaticData>();
+            _ordersData = _staticDataService.Get<OrdersStaticData>();
             _currentOrderIndex = 0;
             _ordersCompleted = 0;
             _ordersBuffer.Clear();

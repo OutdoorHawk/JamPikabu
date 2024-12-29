@@ -13,7 +13,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
         public Image IconTemplate;
         private IStaticDataService _staticData;
 
-        private LootSettingsStaticData LootSettings => _staticData.GetStaticData<LootSettingsStaticData>();
+        private LootSettingsStaticData LootSettings => _staticData.Get<LootSettingsStaticData>();
 
         [Inject]
         private void Construct(IStaticDataService staticData)

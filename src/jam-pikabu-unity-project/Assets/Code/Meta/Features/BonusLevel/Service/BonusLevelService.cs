@@ -22,7 +22,7 @@ namespace Code.Meta.Features.BonusLevel.Service
 
         private int _nextBonusLevelAvailableTimeStamp;
 
-        private BonusLevelStaticData BonusLevelStaticData => _staticData.GetStaticData<BonusLevelStaticData>();
+        private BonusLevelStaticData BonusLevelStaticData => _staticData.Get<BonusLevelStaticData>();
 
         public BonusLevelService
         (

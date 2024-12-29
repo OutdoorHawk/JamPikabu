@@ -42,7 +42,7 @@ namespace Code.Gameplay.Windows.Factory
             if (UIRoot != null)
                 Object.Destroy(UIRoot.gameObject);
 
-            WindowsStaticData windows = _staticDataService.GetStaticData<WindowsStaticData>();
+            WindowsStaticData windows = _staticDataService.Get<WindowsStaticData>();
             GameObject uiRoot = _instantiator.InstantiatePrefab(windows.UIRoot.gameObject);
             uiRoot.transform.SetParent(null);
             _uiRoot = uiRoot.transform;
@@ -67,7 +67,7 @@ namespace Code.Gameplay.Windows.Factory
 
         private BaseWindow GetWindowPrefab(WindowTypeId type)
         {
-            WindowsStaticData windows = _staticDataService.GetStaticData<WindowsStaticData>();
+            WindowsStaticData windows = _staticDataService.Get<WindowsStaticData>();
             WindowConfig config = windows.GetWindow(type);
             BaseWindow windowPrefab = config.WindowPrefab;
             windowPrefab ??= _assetProvider.LoadAssetFromResources<BaseWindow>(PATH + config.WindowName);

@@ -12,7 +12,7 @@ namespace Code.Meta.Features.LootCollection.Factory
         private readonly ITimeService _timeService;
         private readonly IStaticDataService _staticData;
 
-        private LootProgressionStaticData LootData => _staticData.GetStaticData<LootProgressionStaticData>();
+        private LootProgressionStaticData LootData => _staticData.Get<LootProgressionStaticData>();
 
         public LootCollectionFactory(ITimeService timeService, IStaticDataService staticData)
         {

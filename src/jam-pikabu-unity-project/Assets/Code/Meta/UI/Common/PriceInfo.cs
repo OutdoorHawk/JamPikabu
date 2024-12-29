@@ -61,7 +61,7 @@ namespace Code.Meta.UI.Common
 
         private void SetupPriceInternal(int amount, CurrencyTypeId typeId, bool withAnimation)
         {
-            var staticData = _staticDataService.GetStaticData<CurrencyStaticData>();
+            var staticData = _staticDataService.Get<CurrencyStaticData>();
             CurrencyConfig currency = staticData.GetCurrencyConfig(typeId);
 
             if (currency == null)
@@ -97,7 +97,7 @@ namespace Code.Meta.UI.Common
 
         private void SetupIconInternal(CurrencyTypeId typeId)
         {
-            var staticData = _staticDataService.GetStaticData<CurrencyStaticData>();
+            var staticData = _staticDataService.Get<CurrencyStaticData>();
             CurrencyConfig currency = staticData.GetCurrencyConfig(typeId);
 
             if (currency == null)

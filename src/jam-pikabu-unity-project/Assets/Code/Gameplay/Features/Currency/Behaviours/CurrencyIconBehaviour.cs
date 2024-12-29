@@ -33,7 +33,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours
         public void OnConfigsInitInitComplete()
         {
             CurrencyConfig currencyConfig = _staticDataService
-                .GetStaticData<CurrencyStaticData>()
+                .Get<CurrencyStaticData>()
                 .GetCurrencyConfig(Type);
             
             GetComponent<Image>().sprite = currencyConfig.Data.Icon;

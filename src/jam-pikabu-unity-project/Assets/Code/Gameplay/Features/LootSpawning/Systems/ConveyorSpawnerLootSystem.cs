@@ -22,7 +22,7 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
 
         private int _currentConfig;
 
-        private LootSettingsStaticData LootStaticData => _staticDataService.GetStaticData<LootSettingsStaticData>();
+        private LootSettingsStaticData LootStaticData => _staticDataService.Get<LootSettingsStaticData>();
 
         public ConveyorSpawnerLootSystem(GameContext context, IStaticDataService staticDataService,
             ISceneContextProvider provider, IGameplayLootService gameplayLootService, ILootFactory lootFactory)

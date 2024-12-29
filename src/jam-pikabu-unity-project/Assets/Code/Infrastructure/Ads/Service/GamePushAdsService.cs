@@ -36,7 +36,7 @@ namespace Code.Infrastructure.Ads.Service
         private readonly IAnalyticsService _analyticsService;
 
         private bool _firstEnter = true;
-        private AdsStaticData AdsStaticData => _staticDataService.GetStaticData<AdsStaticData>();
+        private AdsStaticData AdsStaticData => _staticDataService.Get<AdsStaticData>();
 
         public GamePushAdsService
         (
@@ -78,7 +78,7 @@ namespace Code.Infrastructure.Ads.Service
             }
 
             List<DayProgressData> dayProgressData = _daysService.GetDaysProgress();
-            AdsStaticData adsStaticData = _staticDataService.GetStaticData<AdsStaticData>();
+            AdsStaticData adsStaticData = _staticDataService.Get<AdsStaticData>();
 
             if (dayProgressData.Count < adsStaticData.LevelsPassedToStartAds)
                 return;

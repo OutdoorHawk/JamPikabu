@@ -1,3 +1,4 @@
+using Code.Gameplay.StaticData;
 using Code.Infrastructure.Serialization;
 using GamePush;
 using UnityEngine;
@@ -7,9 +8,14 @@ namespace Code.Progress.Writer
 {
     public class GamePushProgressReadWrite : IProgressReadWrite
     {
-        private const float SyncInterval = 180;
-
+        private readonly IStaticDataService _staticData;
+        
         private float _lastSyncTime;
+
+        public GamePushProgressReadWrite(IStaticDataService staticData)
+        {
+            _staticData = staticData;
+        }
 
         public bool HasSavedProgress()
         {
@@ -37,7 +43,7 @@ namespace Code.Progress.Writer
             string progress = PlayerPrefs.GetString(PROGRESS_KEY);
 
 #if !UNITY_EDITOR
-            if (GP_Init.isReady && GP_Player.Has(PROGRESS_KEY))
+            if (GP_Init.isReady && GP_Player.HasAnyCredentials() && GP_Player.Has(PROGRESS_KEY))
             {
                 progress = GP_Player.GetString(PROGRESS_KEY);
             }
@@ -83,7 +89,9 @@ namespace Code.Progress.Writer
 
             float diff = Time.time - _lastSyncTime;
 
-            if (diff > SyncInterval)
+            var configStaticData = _staticData.Get<BuildConfigStaticData>();
+            
+            if (diff > configStaticData.SyncIntervalSeconds)
                 return true;
 
             return false;

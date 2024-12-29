@@ -78,7 +78,7 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
         private async UniTaskVoid SpawnLootAsync(GameEntity lootSpawner)
         {
             int lootSpawnerId = lootSpawner.Id;
-            var staticData = _staticDataService.GetStaticData<LootSettingsStaticData>();
+            var staticData = _staticDataService.Get<LootSettingsStaticData>();
 
             SceneContextComponent sceneContext = _provider.Context;
 

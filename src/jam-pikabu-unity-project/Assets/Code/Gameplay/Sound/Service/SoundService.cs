@@ -124,7 +124,7 @@ namespace Code.Gameplay.Sound.Service
 
         public void PlaySound(SoundTypeId typeId)
         {
-            SoundConfig soundSetup = _staticDataService.GetStaticData<SoundsStaticData>().GetSoundConfig(typeId);
+            SoundConfig soundSetup = _staticDataService.Get<SoundsStaticData>().GetSoundConfig(typeId);
 
             if (soundSetup == null)
             {
@@ -137,7 +137,7 @@ namespace Code.Gameplay.Sound.Service
 
         public void PlaySound(SoundTypeId typeId, AudioSource audioSource)
         {
-            var staticData = _staticDataService.GetStaticData<SoundsStaticData>();
+            var staticData = _staticDataService.Get<SoundsStaticData>();
             SoundConfig soundSetup = staticData.GetSoundConfig(typeId);
 
             if (soundSetup == null)
@@ -170,7 +170,7 @@ namespace Code.Gameplay.Sound.Service
 
         public void StopSound(SoundTypeId typeId)
         {
-            SoundConfig clip = _staticDataService.GetStaticData<SoundsStaticData>().GetSoundConfig(typeId);
+            SoundConfig clip = _staticDataService.Get<SoundsStaticData>().GetSoundConfig(typeId);
             StopClip(clip);
         }
 
@@ -188,7 +188,7 @@ namespace Code.Gameplay.Sound.Service
 
         private void InitSoundService()
         {
-            _staticData = _staticDataService.GetStaticData<SoundsStaticData>();
+            _staticData = _staticDataService.Get<SoundsStaticData>();
             var go = _assetProvider.LoadAssetFromResources<MainSoundContainer>(MAIN_SOUND_CONTAINER);
             _mainSoundContainer = Instantiate(go, transform).GetComponent<MainSoundContainer>();
 
@@ -380,7 +380,7 @@ namespace Code.Gameplay.Sound.Service
 
         private async UniTask PlayMusicAsync(SoundTypeId typeId)
         {
-            SoundConfig soundSetup = _staticDataService.GetStaticData<SoundsStaticData>().GetSoundConfig(typeId);
+            SoundConfig soundSetup = _staticDataService.Get<SoundsStaticData>().GetSoundConfig(typeId);
 
             if (soundSetup == null)
             {

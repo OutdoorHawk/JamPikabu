@@ -55,7 +55,7 @@ namespace Code.Gameplay.Features.Currency.Factory
 
         public void PlayCurrencyAnimation(in CurrencyAnimationParameters parameters)
         {
-            var currencyConfig = _staticDataService.GetStaticData<CurrencyStaticData>();
+            var currencyConfig = _staticDataService.Get<CurrencyStaticData>();
 
             CurrencyAnimation currencyAnimation = string.IsNullOrEmpty(parameters.AnimationName)
                 ? currencyConfig.GetCurrencyAnimation("Default")

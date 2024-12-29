@@ -23,7 +23,7 @@ namespace Code.Meta.UI.Common
 
         public void SetupPrice(CostSetup rating)
         {
-            CurrencyConfig currencyConfig = _staticDataService.GetStaticData<CurrencyStaticData>().GetCurrencyConfig(rating.CurrencyType);
+            CurrencyConfig currencyConfig = _staticDataService.Get<CurrencyStaticData>().GetCurrencyConfig(rating.CurrencyType);
             IconTemplate.sprite = currencyConfig.Data.Icon;
             IconBackTemplate.sprite = currencyConfig.Data.Icon;
 

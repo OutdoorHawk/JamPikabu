@@ -28,7 +28,7 @@ namespace Code.Gameplay.Cheats.Cheats
             List<TutorialUserData> tutorialUserDatas = _progressProvider.Progress.Tutorial.TutorialUserDatas;
             tutorialUserDatas.Clear();
             
-            foreach (var tutorials in _staticDataService.GetStaticData<TutorialStaticData>().Configs)
+            foreach (var tutorials in _staticDataService.Get<TutorialStaticData>().Configs)
             {
                 tutorialUserDatas.Add(new TutorialUserData
                 {

@@ -119,7 +119,7 @@ namespace Code.Gameplay.Tutorial.Service
             foreach (var processor in _processors)
                 _tutorialProcessors.Add(processor.TypeId, processor);
 
-            List<TutorialConfig> tutorialsConfigs = _staticData.GetStaticData<TutorialStaticData>().Configs;
+            List<TutorialConfig> tutorialsConfigs = _staticData.Get<TutorialStaticData>().Configs;
 
             _configs.AddRange(tutorialsConfigs);
             _configs.Sort((x, y) => x.Order.CompareTo(y.Order));
@@ -231,7 +231,7 @@ namespace Code.Gameplay.Tutorial.Service
             _logger.Log($"<b><color=cyan>[Tutorial]</b></color> Complete {tutorialSaveData.Type}");
             tutorialSaveData.Completed = true;
 
-            if (_staticData.GetStaticData<TutorialStaticData>().DebugDisableSave) 
+            if (_staticData.Get<TutorialStaticData>().DebugDisableSave) 
                 return;
             
             _saveLoadService.SaveProgress();

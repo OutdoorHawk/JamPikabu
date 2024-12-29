@@ -11,9 +11,9 @@ namespace Code.Meta.UI.Shop.WindowService
         public event Action OnSelectionChanged;
         public ShopTabTypeId SelectedTab { get; private set; }
 
-        private ShopStaticData DaysStaticData => _staticDataService.GetStaticData<ShopStaticData>();
+        private ShopStaticData DaysStaticData => _staticDataService.Get<ShopStaticData>();
         
-        private ShopItemTemplatesStaticData TemplatesStaticData => _staticDataService.GetStaticData<ShopItemTemplatesStaticData>();
+        private ShopItemTemplatesStaticData TemplatesStaticData => _staticDataService.Get<ShopItemTemplatesStaticData>();
 
         public ShopWindowService(IStaticDataService staticDataService)
         {

@@ -19,8 +19,8 @@ namespace Code.Meta.Features.MainMenu.Service
         public int SelectedDayId { get; private set; }
         public bool DayIsSelected { get; private set; }
 
-        private DaysStaticData DaysStaticData => _staticDataService.GetStaticData<DaysStaticData>();
-        private MapBlocksStaticData BlocksStaticData => _staticDataService.GetStaticData<MapBlocksStaticData>();
+        private DaysStaticData DaysStaticData => _staticDataService.Get<DaysStaticData>();
+        private MapBlocksStaticData BlocksStaticData => _staticDataService.Get<MapBlocksStaticData>();
 
         public MapMenuService(IStaticDataService staticDataService, IDaysService daysService, ILootCollectionService lootCollectionService)
         {

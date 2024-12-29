@@ -69,7 +69,7 @@ namespace Code.Gameplay.Features.Orders.Behaviours
         {
             _fillDelaySource?.Cancel();
             _fillDelaySource = CreateLinkedTokenSource(destroyCancellationToken);
-            float delay = _staticDataService.GetStaticData<LootSettingsStaticData>().CollectFlyAnimationDuration;
+            float delay = _staticDataService.Get<LootSettingsStaticData>().CollectFlyAnimationDuration;
 
             _tweener?.Kill();
             _tweener = _orderIconFilled

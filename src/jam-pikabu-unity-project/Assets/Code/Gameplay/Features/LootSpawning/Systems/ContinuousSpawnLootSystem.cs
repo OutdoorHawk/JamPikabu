@@ -23,7 +23,7 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
         private int _currentConfig;
         private int _spawnPointIndex;
 
-        private LootSettingsStaticData LootStaticData => _staticDataService.GetStaticData<LootSettingsStaticData>();
+        private LootSettingsStaticData LootStaticData => _staticDataService.Get<LootSettingsStaticData>();
 
         public ContinuousSpawnLootSystem(GameContext context, IStaticDataService staticDataService,
             ISceneContextProvider provider, IGameplayLootService gameplayLootService, ILootFactory lootFactory)

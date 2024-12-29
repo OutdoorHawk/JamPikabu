@@ -102,7 +102,7 @@ namespace Code.Infrastructure.States.GameStates
 
         private void CreateStorages()
         {
-            int startGoldAmount = _staticData.GetStaticData<DaysStaticData>().StartGoldAmount;
+            int startGoldAmount = _staticData.Get<DaysStaticData>().StartGoldAmount;
 
             CreateMetaEntity
                 .Empty()
@@ -113,7 +113,7 @@ namespace Code.Infrastructure.States.GameStates
 
         private void CreateLoot()
         {
-            List<LootTypeId> startGameUnlockedLoot = _staticData.GetStaticData<LootProgressionStaticData>().StartGameUnlockedLoot;
+            List<LootTypeId> startGameUnlockedLoot = _staticData.Get<LootProgressionStaticData>().StartGameUnlockedLoot;
 
             foreach (LootTypeId lootTypeId in startGameUnlockedLoot)
             {
@@ -143,7 +143,7 @@ namespace Code.Infrastructure.States.GameStates
 
         private void LoadFirstLevel()
         {
-            DayData dayData = _staticData.GetStaticData<DaysStaticData>().GetDayData(1);
+            DayData dayData = _staticData.Get<DaysStaticData>().GetDayData(1);
             _daysService.SetActiveDay(dayData);
             var parameters = new LoadLevelPayloadParameters(dayData.SceneId.ToString());
             _stateMachine.Enter<LoadLevelState, LoadLevelPayloadParameters>(parameters);

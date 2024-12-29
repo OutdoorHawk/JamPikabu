@@ -78,7 +78,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
             if (parameters.Sprite != null)
                 return parameters.Sprite;
             CurrencyConfig currencyConfig = _staticData
-                .GetStaticData<CurrencyStaticData>()
+                .Get<CurrencyStaticData>()
                 .GetCurrencyConfig(parameters.Type);
 
             Sprite sprite = currencyConfig.Data.Icon;

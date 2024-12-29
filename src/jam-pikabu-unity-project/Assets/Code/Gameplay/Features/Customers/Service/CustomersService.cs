@@ -19,7 +19,7 @@ namespace Code.Gameplay.Features.Customers.Service
         private readonly List<CustomerSetup> _buffer = new();
         private int _currentCustomerId;
 
-        private CustomerStaticData CustomerData => _staticDataService.GetStaticData<CustomerStaticData>();
+        private CustomerStaticData CustomerData => _staticDataService.Get<CustomerStaticData>();
 
         [Inject]
         private CustomersService(IStaticDataService staticDataService, IDaysService daysService, IOrdersService ordersService)

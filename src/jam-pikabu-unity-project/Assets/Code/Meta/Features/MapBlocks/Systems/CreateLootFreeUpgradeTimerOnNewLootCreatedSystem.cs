@@ -14,7 +14,7 @@ namespace Code.Meta.Features.MapBlocks.Systems
         private readonly ILootCollectionFactory _lootCollectionFactory;
         private readonly IGroup<MetaEntity> _request;
 
-        private MapBlocksStaticData BlocksStaticData => _staticDataService.GetStaticData<MapBlocksStaticData>();
+        private MapBlocksStaticData BlocksStaticData => _staticDataService.Get<MapBlocksStaticData>();
 
         public CreateLootFreeUpgradeTimerOnNewLootCreatedSystem
         (

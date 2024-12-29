@@ -72,7 +72,7 @@ namespace Code.Gameplay.StaticData
             NotifyHandlers();
         }
 
-        public T GetStaticData<T>() where T : class
+        public T Get<T>() where T : class
         {
             return _configs[typeof(T)] as T;
         }

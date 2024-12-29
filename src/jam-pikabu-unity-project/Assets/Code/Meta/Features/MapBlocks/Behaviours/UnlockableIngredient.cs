@@ -64,8 +64,8 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
         private Image BigFlyIcon => IngredientIcons[1];
         private Image GrayIcon => IngredientIcons[2];
 
-        private LootProgressionStaticData LootData => _staticData.GetStaticData<LootProgressionStaticData>();
-        private MapBlocksStaticData MapBlocksData => _staticData.GetStaticData<MapBlocksStaticData>();
+        private LootProgressionStaticData LootData => _staticData.Get<LootProgressionStaticData>();
+        private MapBlocksStaticData MapBlocksData => _staticData.Get<MapBlocksStaticData>();
 
         [Inject]
         private void Construct
@@ -228,7 +228,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
         {
             gameObject.EnableElement();
             UnlocksIngredient = unlocksIngredient;
-            var lootSettings = _staticData.GetStaticData<LootSettingsStaticData>();
+            var lootSettings = _staticData.Get<LootSettingsStaticData>();
             foreach (var icon in IngredientIcons)
                 icon.sprite = lootSettings.GetConfig(UnlocksIngredient).Icon;
         }

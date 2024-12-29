@@ -17,7 +17,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Factory
 
         public GameEntity CreateGrapplingHook(Transform parent)
         {
-            var config = _staticDataService.GetStaticData<GrapplingHookStaticData>();
+            var config = _staticDataService.Get<GrapplingHookStaticData>();
 
             return CreateGameEntity
                     .Empty()

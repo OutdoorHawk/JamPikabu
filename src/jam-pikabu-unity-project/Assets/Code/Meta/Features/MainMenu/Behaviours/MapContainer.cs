@@ -32,8 +32,8 @@ namespace Code.Meta.Features.MainMenu.Behaviours
         private IMapMenuFactory _mapMenuFactory;
         private ILootCollectionService _lootCollectionService;
 
-        private DaysStaticData DaysStaticData => _staticDataService.GetStaticData<DaysStaticData>();
-        private MapBlocksStaticData MapBlocksStaticData => _staticDataService.GetStaticData<MapBlocksStaticData>();
+        private DaysStaticData DaysStaticData => _staticDataService.Get<DaysStaticData>();
+        private MapBlocksStaticData MapBlocksStaticData => _staticDataService.Get<MapBlocksStaticData>();
 
         [Inject]
         private void Construct

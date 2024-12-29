@@ -33,7 +33,7 @@ namespace Code.Gameplay.Tutorial.Processors.Abstract
         private readonly List<WindowTypeId> _openedWindowsCache = new();
 
         protected PlayerProgress Progress => _progressProvider.Progress;
-        private TutorialStaticData TutorialStaticData => _staticData.GetStaticData<TutorialStaticData>();
+        private TutorialStaticData TutorialStaticData => _staticData.Get<TutorialStaticData>();
 
         [Inject]
         private void Construct
