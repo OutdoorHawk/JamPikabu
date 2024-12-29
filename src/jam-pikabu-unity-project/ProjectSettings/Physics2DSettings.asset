@@ -13,8 +13,8 @@ Physics2DSettings:
   m_MaxAngularCorrection: 6
   m_MaxTranslationSpeed: 4
   m_MaxRotationSpeed: 90
-  m_BaumgarteScale: 0.11
-  m_BaumgarteTimeOfImpactScale: 0.11
+  m_BaumgarteScale: 0.05
+  m_BaumgarteTimeOfImpactScale: 0.05
   m_TimeToSleep: 0.05
   m_LinearSleepTolerance: 0.025
   m_AngularSleepTolerance: 2
