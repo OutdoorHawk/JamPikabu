@@ -33,7 +33,7 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Loot.SingleSpawn singleSpawnComponent = new Code.Gameplay.Features.Loot.SingleSpawn();
+    static readonly Code.Gameplay.Features.LootSpawning.SingleSpawn singleSpawnComponent = new Code.Gameplay.Features.LootSpawning.SingleSpawn();
 
     public bool isSingleSpawn {
         get { return HasComponent(GameComponentsLookup.SingleSpawn); }

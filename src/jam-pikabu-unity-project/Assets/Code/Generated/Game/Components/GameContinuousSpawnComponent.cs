@@ -33,7 +33,7 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Loot.ContinuousSpawn continuousSpawnComponent = new Code.Gameplay.Features.Loot.ContinuousSpawn();
+    static readonly Code.Gameplay.Features.LootSpawning.ContinuousSpawn continuousSpawnComponent = new Code.Gameplay.Features.LootSpawning.ContinuousSpawn();
 
     public bool isContinuousSpawn {
         get { return HasComponent(GameComponentsLookup.ContinuousSpawn); }

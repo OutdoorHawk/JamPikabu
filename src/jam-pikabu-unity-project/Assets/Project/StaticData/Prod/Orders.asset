@@ -21,7 +21,7 @@ MonoBehaviour:
         CurrencyType: 1
         Amount: 5
       DaysRange: {x: 0, y: 0}
-      MinMaxNeedAmount: {x: 1, y: 2}
+      MinMaxNeedAmount: {x: 2, y: 3}
       MinMaxGoodIngredients: {x: 2, y: 2}
       MinMaxBadIngredients: {x: 1, y: 1}
       MinMaxIngredientsRatingFactor: {x: 1, y: 1}
@@ -45,7 +45,7 @@ MonoBehaviour:
         CurrencyType: 1
         Amount: 10
       DaysRange: {x: 0, y: 0}
-      MinMaxNeedAmount: {x: 2, y: 3}
+      MinMaxNeedAmount: {x: 2, y: 4}
       MinMaxGoodIngredients: {x: 2, y: 3}
       MinMaxBadIngredients: {x: 1, y: 2}
       MinMaxIngredientsRatingFactor: {x: 1, y: 1}

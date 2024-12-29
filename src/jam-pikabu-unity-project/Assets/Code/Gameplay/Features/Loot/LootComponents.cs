@@ -5,10 +5,6 @@ using Entitas;
 namespace Code.Gameplay.Features.Loot
 {
     [Game] public sealed class Loot : IComponent { }
-    [Game] public sealed class LootSpawner : IComponent { }
-    [Game] public sealed class SingleSpawn : IComponent { }
-    [Game] public sealed class ContinuousSpawn : IComponent { }
-    [Game] public sealed class ConveyorSpawner : IComponent { }
     [Game] public sealed class LootEffectsApplier : IComponent { }
     [Game] public sealed class LootTypeIdComponent : IComponent { public LootTypeId Value; }
     [Game] public sealed class BaseRating : IComponent { public int Value; }

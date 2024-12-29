@@ -1,13 +1,10 @@
-﻿using System;
-using Code.Common.Entity;
+﻿using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.StaticData;
 using Code.Infrastructure.SceneLoading;
 using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Service;
-using Code.Meta.Features.LootCollection;
-using Code.Meta.Features.LootCollection.Configs;
 using Code.Meta.Features.LootCollection.Service;
 using UnityEngine;
 
@@ -43,7 +40,6 @@ namespace Code.Gameplay.Features.Loot.Factory
 
         public GameEntity CreateLootEntity(LootTypeId typeId, Transform parent, Vector2 at, Vector3 spawnRotation)
         {
-            LootSetup lootSetup = GetLootSetup(typeId);
             GameEntity loot = CreateBaseLoot(typeId, parent, at, spawnRotation);
 
             switch (typeId)
@@ -61,24 +57,32 @@ namespace Code.Gameplay.Features.Loot.Factory
 
         private void CreateGold(GameEntity loot)
         {
-            loot.AddGold(Mathf.CeilToInt(1*_daysService.GetDayGoldFactor()));
+            loot.AddGold(Mathf.CeilToInt(1 * _daysService.GetDayGoldFactor()));
         }
 
-        private static GameEntity CreateSingleSpawner()
+        private GameEntity CreateSingleSpawner()
         {
+            var settings = _staticDataService.GetStaticData<LootSettingsStaticData>();
+
             return CreateGameEntity.Empty()
                     .With(x => x.isLootSpawner = true)
-                    .With(x => x.isSingleSpawn = true)
+                    .With(x => x.isContinuousSpawn = true)
+                    .With(x => x.isCooldownUp = true)
+                    .With(x => x.isComplete = true)
+                    .AddLootSpawnInterval(settings.LootSpawnInterval)
                 ;
         }
 
         private GameEntity CreateConveyorSpawner()
         {
+            var settings = _staticDataService.GetStaticData<LootSettingsStaticData>();
+            
             return CreateGameEntity.Empty()
                     .With(x => x.isLootSpawner = true)
                     .With(x => x.isConveyorSpawner = true)
                     .With(x => x.isCooldownUp = true)
                     .With(x => x.isComplete = true)
+                    .AddLootSpawnInterval(settings.LootSpawnConveyorInterval)
                 ;
         }
 
@@ -103,7 +107,7 @@ namespace Code.Gameplay.Features.Loot.Factory
         private void AddRating(GameEntity loot, LootTypeId typeId)
         {
             LootSetup lootSetup = GetLootSetup(typeId);
-            
+
             loot.AddBaseRating(lootSetup.BaseRatingValue)
                 .With(x => x.isConsumableIngredient = true);
 

@@ -33,7 +33,7 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Loot.ConveyorSpawner conveyorSpawnerComponent = new Code.Gameplay.Features.Loot.ConveyorSpawner();
+    static readonly Code.Gameplay.Features.LootSpawning.ConveyorSpawner conveyorSpawnerComponent = new Code.Gameplay.Features.LootSpawning.ConveyorSpawner();
 
     public bool isConveyorSpawner {
         get { return HasComponent(GameComponentsLookup.ConveyorSpawner); }

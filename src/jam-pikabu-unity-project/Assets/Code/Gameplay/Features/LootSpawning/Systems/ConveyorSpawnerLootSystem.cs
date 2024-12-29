@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.LootSpawning.Systems
 {
-    public class ContinuousSpawnLootSystem : IExecuteSystem
+    public class ConveyorSpawnerLootSystem : IExecuteSystem
     {
         private readonly IStaticDataService _staticDataService;
         private readonly ISceneContextProvider _provider;
@@ -21,11 +21,10 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
         private readonly List<GameEntity> _buffer = new(2);
 
         private int _currentConfig;
-        private int _spawnPointIndex;
 
         private LootSettingsStaticData LootStaticData => _staticDataService.GetStaticData<LootSettingsStaticData>();
 
-        public ContinuousSpawnLootSystem(GameContext context, IStaticDataService staticDataService,
+        public ConveyorSpawnerLootSystem(GameContext context, IStaticDataService staticDataService,
             ISceneContextProvider provider, IGameplayLootService gameplayLootService, ILootFactory lootFactory)
         {
             _staticDataService = staticDataService;
@@ -35,7 +34,7 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
 
             _entities = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.LootSpawner,
-                    GameMatcher.ContinuousSpawn,
+                    GameMatcher.ConveyorSpawner,
                     GameMatcher.LootSpawnInterval,
                     GameMatcher.CooldownUp
                 ));
@@ -51,10 +50,7 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
             foreach (var spawner in _entities.GetEntities(_buffer))
             {
                 if (_activeLoot.GetEntities().Length >= LootStaticData.MaxLootAmount)
-                {
-                    spawner.isDestructed = true;
                     continue;
-                }
 
                 if (_currentConfig >= _gameplayLootService.AvailableLoot.Count)
                     _currentConfig = 0;
@@ -70,8 +66,7 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
 
         private Transform GetSpawnPoint()
         {
-            Transform[] spawnPoints = _provider.Context.LootSpawnPoints;
-            var spawnPosition = spawnPoints[Random.Range(0, spawnPoints.Length)];
+            var spawnPosition = _provider.Context.LootSpawnPoints[0];
             return spawnPosition;
         }
     }
