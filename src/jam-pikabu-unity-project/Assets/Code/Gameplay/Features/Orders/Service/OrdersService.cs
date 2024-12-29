@@ -162,7 +162,6 @@ namespace Code.Gameplay.Features.Orders.Service
         public CostSetup GetRewardForOrder()
         {
             OrderData currentOrder = GetCurrentOrder();
-            DayData dayData = _daysService.GetDayData();
             CostSetup reward = currentOrder.Setup.GoldReward;
             return new CostSetup(reward.CurrencyType, Mathf.RoundToInt(reward.Amount * _daysService.GetDayGoldFactor()));
         }

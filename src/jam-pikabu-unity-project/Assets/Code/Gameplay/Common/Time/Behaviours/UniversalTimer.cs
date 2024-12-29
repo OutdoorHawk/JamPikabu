@@ -37,7 +37,7 @@ namespace Code.Gameplay.Common.Time.Behaviours
             _localizationService = localizationService;
         }
 
-        private void Awake()
+        private void Start()
         {
             InitLocales();
             _localizationService.RegisterHandler(this);
