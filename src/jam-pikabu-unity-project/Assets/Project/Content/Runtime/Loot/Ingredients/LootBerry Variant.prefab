@@ -81,7 +81,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8905411431984901083, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2755908596086385646}
+      addedObject: {fileID: 2159571014824903875}
   m_SourcePrefab: {fileID: 100100000, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943, type: 3}
 --- !u!1 &3084401731873449865 stripped
 GameObject:
@@ -89,8 +89,8 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5862454760153746514}
   m_PrefabAsset: {fileID: 0}
---- !u!58 &2755908596086385646
-CircleCollider2D:
+--- !u!60 &2159571014824903875
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -124,4 +124,20 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.28516543
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.03720355, y: 0.2851599}
+      - {x: -0.26544806, y: 0.048591897}
+      - {x: -0.18386072, y: -0.19515818}
+      - {x: 0.21043494, y: -0.21375975}
+      - {x: 0.24684662, y: 0.11502707}
+  m_UseDelaunayMesh: 0
