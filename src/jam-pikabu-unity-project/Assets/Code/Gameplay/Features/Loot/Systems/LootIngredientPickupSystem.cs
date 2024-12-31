@@ -9,6 +9,7 @@ using Code.Gameplay.Sound;
 using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows;
+using Code.Gameplay.Windows.Factory;
 using Code.Gameplay.Windows.Service;
 using Code.Infrastructure.View;
 using Cysharp.Threading.Tasks;
@@ -18,7 +19,7 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.Loot.Systems
 {
-    public class LootWithRatingPickupSystem : IExecuteSystem, ICleanupSystem
+    public class LootIngredientPickupSystem : IExecuteSystem, ICleanupSystem
     {
         private readonly GameContext _context;
         private readonly IGroup<GameEntity> _loot;
@@ -29,21 +30,28 @@ namespace Code.Gameplay.Features.Loot.Systems
         private readonly IStaticDataService _staticData;
         private readonly ISoundService _soundService;
         private readonly IOrdersService _ordersService;
-        private readonly Camera _camera;
+        private readonly IUIFactory _uiFactory;
         private readonly IGroup<GameEntity> _timers;
 
-        public LootWithRatingPickupSystem(GameContext context, IGameplayLootService gameplayLootService,
-            IWindowService windowService, IStaticDataService staticData, ISoundService soundService, IOrdersService ordersService)
+        public LootIngredientPickupSystem
+        (
+            GameContext context,
+            IGameplayLootService gameplayLootService,
+            IWindowService windowService, IStaticDataService staticData,
+            ISoundService soundService,
+            IOrdersService ordersService,
+            IUIFactory uiFactory
+        )
         {
             _context = context;
             _windowService = windowService;
             _staticData = staticData;
             _soundService = soundService;
             _ordersService = ordersService;
+            _uiFactory = uiFactory;
             _gameplayLootService = gameplayLootService;
-            _camera = Camera.main;
-            
-           _timers = context.GetGroup(GameMatcher.AllOf(
+
+            _timers = context.GetGroup(GameMatcher.AllOf(
                 GameMatcher.RoundInProcess,
                 GameMatcher.RoundTimeLeft));
 
@@ -125,16 +133,16 @@ namespace Code.Gameplay.Features.Loot.Systems
 
             loot.Retain(this);
             var lootStaticData = _staticData.Get<LootSettingsStaticData>();
-            
+
             loot.Transform
                 .DORotate(Vector3.zero, lootStaticData.CollectFlyAnimationDuration)
                 .SetLink(loot.Transform.gameObject)
                 ;
 
-            Vector3 worldPosition = GetWorldPositionFromScreenPosition(lootItemUI.transform.position);
+            Vector3 worldPosition = _uiFactory.GetWorldPositionFromScreenPosition(lootItemUI.transform.position);
 
             await FlyAnimation(loot, worldPosition);
-            
+
             loot.Release(this);
             RemoveLootView(loot);
             lootItemUI.AnimateCollected();
@@ -145,9 +153,9 @@ namespace Code.Gameplay.Features.Loot.Systems
             loot.Retain(this);
 
             _windowService.TryGetWindow(out PlayerHUDWindow hud);
-           
-            Vector3 pos2 = GetWorldPositionFromScreenPosition(hud.LootContainer.VatIcon.transform.position);
-            
+
+            Vector3 pos2 = _uiFactory.GetWorldPositionFromScreenPosition(hud.LootContainer.VatIcon.transform.position);
+
             await FlyToVatAnimation(loot, pos2);
 
             RemoveLootView(loot);
@@ -167,10 +175,10 @@ namespace Code.Gameplay.Features.Loot.Systems
                 .SetLink(loot.Transform.gameObject)
                 .OnComplete(() => source.TrySetResult())
                 ;
-            
+
             await source.Task;
         }
-        
+
         private async UniTask FlyToVatAnimation(GameEntity loot, Vector3 pos1)
         {
             var lootStaticData = _staticData.Get<LootSettingsStaticData>();
@@ -178,20 +186,11 @@ namespace Code.Gameplay.Features.Loot.Systems
             float flyAnimationDuration = lootStaticData.CollectFlyAnimationDuration;
             const float jumpPower = 5;
 
-           await loot.Transform
-                .DOJump(pos1, jumpPower, 1, flyAnimationDuration * 2)
-                .SetLink(loot.Transform.gameObject)
-                .AsyncWaitForCompletion()
+            await loot.Transform
+                    .DOJump(pos1, jumpPower, 1, flyAnimationDuration * 2)
+                    .SetLink(loot.Transform.gameObject)
+                    .AsyncWaitForCompletion()
                 ;
-        }
-
-        private Vector3 GetWorldPositionFromScreenPosition(Vector3 screenPos)
-        {
-            Vector3 screenPosition = RectTransformUtility.WorldToScreenPoint(_camera, screenPos);
-            screenPosition.z = Mathf.Abs(_camera.transform.position.z);
-            Vector3 worldPosition = _camera.ScreenToWorldPoint(screenPosition);
-            worldPosition.z = 0;
-            return worldPosition;
         }
 
         private void RemoveLootView(GameEntity loot)

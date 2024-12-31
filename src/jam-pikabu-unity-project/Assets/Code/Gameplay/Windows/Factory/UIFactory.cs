@@ -64,6 +64,16 @@ namespace Code.Gameplay.Windows.Factory
             typedWindow.SetWindowType(type);
             return new UniTask<T>(typedWindow);
         }
+        
+        public Vector3 GetWorldPositionForUI(Vector3 worldPos)
+        {
+            return GetWorldPositionForUIInternal(worldPos);
+        }
+        
+        public Vector3 GetWorldPositionFromScreenPosition(Vector3 screenPos)
+        {
+            return GetWorldPositionFromScreenPositionInternal(screenPos);
+        }
 
         private BaseWindow GetWindowPrefab(WindowTypeId type)
         {
@@ -72,6 +82,37 @@ namespace Code.Gameplay.Windows.Factory
             BaseWindow windowPrefab = config.WindowPrefab;
             windowPrefab ??= _assetProvider.LoadAssetFromResources<BaseWindow>(PATH + config.WindowName);
             return windowPrefab;
+        }
+
+        private Vector3 GetWorldPositionForUIInternal(Vector3 worldPos)
+        {
+            Camera camera = _canvas.worldCamera;
+            
+            // Преобразуем мировые координаты в экранные
+            Vector3 screenPosition = camera.WorldToScreenPoint(worldPos);
+
+            // Преобразуем экранные координаты обратно в мировые координаты с учетом Canvas
+            Canvas canvas = UIRoot.GetComponent<Canvas>();
+            RectTransform canvasRect = canvas.transform as RectTransform;
+
+            // Учитываем положение и размер Canvas
+            if (RectTransformUtility.ScreenPointToWorldPointInRectangle(canvasRect, screenPosition, camera, out Vector3 uiWorldPosition))
+            {
+                return uiWorldPosition;
+            }
+
+            Debug.LogWarning("Failed to convert world position to UI world position.");
+            return Vector3.zero;
+        }
+
+        private Vector3 GetWorldPositionFromScreenPositionInternal(Vector3 screenPos)
+        {
+            Camera camera = _canvas.worldCamera;
+            Vector3 screenPosition = RectTransformUtility.WorldToScreenPoint(camera, screenPos);
+            screenPosition.z = Mathf.Abs(camera.transform.position.z);
+            Vector3 worldPosition = camera.ScreenToWorldPoint(screenPosition);
+            worldPosition.z = 0;
+            return worldPosition;
         }
     }
 }

@@ -7,8 +7,9 @@ namespace Code.Gameplay.Features.Loot
     {
         public LootConsumeFeature(ISystemFactory systems)
         {
-            Add(systems.Create<LootWithRatingPickupSystem>());
+            Add(systems.Create<LootIngredientPickupSystem>());
             Add(systems.Create<GoldLootPickupSystem>());
+            Add(systems.Create<WoodLootPickupSystem>());
             
             Add(systems.Create<ConsumeLootValueSystem>());
             Add(systems.Create<ConsumeLootVisualsSystem>());

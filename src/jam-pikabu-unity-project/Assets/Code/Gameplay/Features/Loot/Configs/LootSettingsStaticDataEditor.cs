@@ -24,7 +24,7 @@ namespace Code.Gameplay.Features.Loot.Configs
                 var loot = Instantiate(LootItem, parent).GetComponent<LootItem>();
                 loot.transform.position += loot.transform.position.SetX(1 * i);
                 loot.Sprite.sprite = config.Icon;
-                loot.Sprite.transform.localScale = Vector3.one * config.Size;
+                loot.Sprite.transform.localScale = Vector3.one;
                 loot.Sprite.gameObject.AddComponent<PolygonCollider2D>();
             }
         }

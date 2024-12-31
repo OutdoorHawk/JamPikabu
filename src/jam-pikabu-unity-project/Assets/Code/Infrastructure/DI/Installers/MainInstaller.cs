@@ -16,6 +16,7 @@ using Code.Gameplay.Features.GrapplingHook.Factory;
 using Code.Gameplay.Features.Loot.Factory;
 using Code.Gameplay.Features.Loot.Service;
 using Code.Gameplay.Features.Loot.UIFactory;
+using Code.Gameplay.Features.LootSpawning.Factory;
 using Code.Gameplay.Features.Orders.Factory;
 using Code.Gameplay.Features.Orders.Service;
 using Code.Gameplay.Features.RoundState.Factory;
@@ -183,6 +184,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.Bind<IGrapplingHookFactory>().To<GrapplingHookFactory>().AsSingle();
             Container.Bind<ICurrencyFactory>().To<CurrencyFactory>().AsSingle();
             Container.Bind<ILootFactory>().To<LootFactory>().AsSingle();
+            Container.Bind<ILootSpawnerFactory>().To<LootSpawnerFactory>().AsSingle();
             Container.BindInterfacesTo<LootItemUIFactory>().AsSingle();
             Container.BindInterfacesTo<RoundStateFactory>().AsSingle();
             Container.BindInterfacesTo<OrdersFactory>().AsSingle();

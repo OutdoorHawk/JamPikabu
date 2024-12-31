@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Loot.Configs;
-using Code.Gameplay.Features.Loot.Factory;
-using Code.Gameplay.Features.Orders;
+using Code.Gameplay.Features.LootSpawning.Factory;
 using Code.Gameplay.StaticData;
 using Code.Meta.Features.BonusLevel.Config;
 using Code.Meta.Features.DayLootSettings.Configs;
@@ -17,7 +16,7 @@ namespace Code.Gameplay.Features.Loot.Service
     {
         private readonly IStaticDataService _staticDataService;
         private readonly IDaysService _daysService;
-        private readonly ILootFactory _lootFactory;
+        private readonly ILootSpawnerFactory _lootFactory;
         public event Action OnLootUpdate;
 
         private readonly List<LootTypeId> _collectedLootItems = new();
@@ -28,8 +27,12 @@ namespace Code.Gameplay.Features.Loot.Service
         public IReadOnlyList<LootTypeId> CollectedLootItems => _collectedLootItems;
         public IReadOnlyList<LootSetup> AvailableLoot => _availableLoot;
 
-        public GameplayLootService(IStaticDataService staticDataService, IDaysService daysService,
-            ILootFactory lootFactory)
+        public GameplayLootService
+        (
+            IStaticDataService staticDataService,
+            IDaysService daysService,
+            ILootSpawnerFactory lootFactory
+        )
         {
             _staticDataService = staticDataService;
             _daysService = daysService;
@@ -86,11 +89,12 @@ namespace Code.Gameplay.Features.Loot.Service
             else
             {
                 MapBlockData mapBlock = dayLootSettingsStaticData.GetMapBlockDataByDayId(currentDay.Id);
-                
+
                 foreach (LootTypeId lootTypeId in mapBlock.AvailableIngredients)
                 {
                     _availableLoot.Add(staticData.GetConfig(lootTypeId));
                 }
+
                 foreach (LootTypeId lootTypeId in mapBlock.ExtraLoot)
                 {
                     _availableLoot.Add(staticData.GetConfig(lootTypeId));
@@ -104,9 +108,9 @@ namespace Code.Gameplay.Features.Loot.Service
         {
             if (_availableLoot.Count != 0)
                 return;
-            
+
             List<LootTypeId> lootTypes = new List<LootTypeId>();
-            
+
             for (LootTypeId i = 0; i < LootTypeId.Count; i++)
                 lootTypes.Add(i);
 

@@ -11,5 +11,7 @@ namespace Code.Gameplay.Windows.Factory
         void CreateUiRoot();
         void SetRaycastAvailable(bool available);
         UniTask<T> CreateWindow<T>(WindowTypeId type) where T : BaseWindow;
+        Vector3 GetWorldPositionForUI(Vector3 worldPos);
+        Vector3 GetWorldPositionFromScreenPosition(Vector3 screenPos);
     }
 }

@@ -2,8 +2,6 @@
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.StaticData;
-using Code.Infrastructure.SceneLoading;
-using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Service;
 using Code.Meta.Features.LootCollection.Service;
 using UnityEngine;
@@ -23,21 +21,6 @@ namespace Code.Gameplay.Features.Loot.Factory
             _lootCollectionService = lootCollectionService;
         }
 
-        public GameEntity CreateLootSpawner()
-        {
-            DayData dayData = _daysService.GetDayData();
-
-            switch (dayData.SceneId)
-            {
-                case SceneTypeId.GameplayScene:
-                    return CreateSingleSpawner();
-                case SceneTypeId.ConveyorGameplayScene:
-                    return CreateConveyorSpawner();
-                default:
-                    return CreateSingleSpawner();
-            }
-        }
-
         public GameEntity CreateLootEntity(LootTypeId typeId, Transform parent, Vector2 at, Vector3 spawnRotation)
         {
             GameEntity loot = CreateBaseLoot(typeId, parent, at, spawnRotation);
@@ -46,6 +29,9 @@ namespace Code.Gameplay.Features.Loot.Factory
             {
                 case LootTypeId.GoldCoin:
                     CreateGold(loot);
+                    break;
+                case LootTypeId.Wood:
+                    CreateWood(loot);
                     break;
                 default:
                     AddRating(loot, typeId);
@@ -60,29 +46,13 @@ namespace Code.Gameplay.Features.Loot.Factory
             loot.AddGold(Mathf.CeilToInt(1 * _daysService.GetDayGoldFactor()));
         }
 
-        private GameEntity CreateSingleSpawner()
+        private void CreateWood(GameEntity loot)
         {
-            var settings = _staticDataService.Get<LootSettingsStaticData>();
-
-            return CreateGameEntity.Empty()
-                    .With(x => x.isLootSpawner = true)
-                    .With(x => x.isContinuousSpawn = true)
-                    .With(x => x.isCooldownUp = true)
-                    .With(x => x.isComplete = true)
-                    .AddLootSpawnInterval(settings.LootSpawnInterval)
-                ;
-        }
-
-        private GameEntity CreateConveyorSpawner()
-        {
-            var settings = _staticDataService.Get<LootSettingsStaticData>();
+            LootSetup lootSetup = GetLootSetup(loot.LootTypeId);
             
-            return CreateGameEntity.Empty()
-                    .With(x => x.isLootSpawner = true)
-                    .With(x => x.isConveyorSpawner = true)
-                    .With(x => x.isCooldownUp = true)
-                    .With(x => x.isComplete = true)
-                    .AddLootSpawnInterval(settings.LootSpawnConveyorInterval)
+            loot
+                .With(x => x.isWood = true)
+                .AddTimerRefillAmount((int)lootSetup.EffectValue)
                 ;
         }
 
