@@ -6,6 +6,7 @@ using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 using Zenject;
 
 namespace Code.Gameplay.Common.Time.Behaviours
@@ -39,7 +40,7 @@ namespace Code.Gameplay.Common.Time.Behaviours
 
         private void Start()
         {
-            InitLocales();
+            InitLocalesAsync().Forget();
             _localizationService.RegisterHandler(this);
         }
         
@@ -51,7 +52,7 @@ namespace Code.Gameplay.Common.Time.Behaviours
 
         public void OnLanguageChanged(Locale locale)
         {
-            InitLocales();
+            InitLocalesAsync().Forget();
         }
 
         public void StartTimer(Func<double> getTimeFunc, Action onTimerEnd = null)
@@ -79,8 +80,9 @@ namespace Code.Gameplay.Common.Time.Behaviours
             AddTimerEndCallback = null;
         }
 
-        private void InitLocales()
+        private async UniTask InitLocalesAsync()
         {
+            await LocalizationSettings.InitializationOperation.Task;
             _localizedSeconds = _localizationService["COMMON/TIMER_SECONDS"];
             _localizedMinutes = _localizationService["COMMON/TIMER_MINUTES"];
             _localizedHour = _localizationService["COMMON/TIMER_HOURS"];

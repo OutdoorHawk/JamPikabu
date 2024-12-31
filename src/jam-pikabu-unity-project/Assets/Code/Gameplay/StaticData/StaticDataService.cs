@@ -57,6 +57,8 @@ namespace Code.Gameplay.StaticData
                 _loggerService.LogError($"Error loading data by label: {label}");
                 return;
             }
+            
+            _configs[buildConfig.GetType()] = buildConfig;
 
             foreach (var config in result)
             {

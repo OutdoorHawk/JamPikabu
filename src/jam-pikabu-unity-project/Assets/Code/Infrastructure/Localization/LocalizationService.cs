@@ -9,6 +9,7 @@ using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using UnityEngine.Localization.SmartFormat.PersistentVariables;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using Zenject;
 
 namespace Code.Infrastructure.Localization
@@ -19,7 +20,6 @@ namespace Code.Infrastructure.Localization
 
         public string this[string path] => GetLocalizedString(path);
         public string this[string path, params string[] additional] => GetLocalizedString(path, additional);
-
         public string this[string path, string variable1] => GetLocalizedString(path, variable1);
 
         private StringVariable _stringVariable;
@@ -45,8 +45,11 @@ namespace Code.Infrastructure.Localization
 
         public async UniTask Initialize()
         {
-            await LocalizationSettings.InitializationOperation.Task;
             LocalizationSettings.SelectedLocaleChanged += NotifyLocaleChanged;
+            UniTaskCompletionSource source = new UniTaskCompletionSource();
+            var operation = LocalizationSettings.InitializationOperation;
+            operation.Completed += _ => { source.TrySetResult(); };
+            await source.Task;
         }
 
         public void InitLanguageSettings()

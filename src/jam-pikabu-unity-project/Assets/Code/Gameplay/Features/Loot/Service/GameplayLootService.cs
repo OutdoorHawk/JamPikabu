@@ -73,6 +73,7 @@ namespace Code.Gameplay.Features.Loot.Service
             var staticData = _staticDataService.Get<LootSettingsStaticData>();
             var dayLootSettingsStaticData = _staticDataService.Get<MapBlocksStaticData>();
             var currentDay = _daysService.GetDayData();
+            _availableLoot.Clear();
 
             if (_daysService.BonusLevelType is BonusLevelType.GoldenCoins)
             {
@@ -85,8 +86,7 @@ namespace Code.Gameplay.Features.Loot.Service
             else
             {
                 MapBlockData mapBlock = dayLootSettingsStaticData.GetMapBlockDataByDayId(currentDay.Id);
-
-                _availableLoot.Clear();
+                
                 foreach (LootTypeId lootTypeId in mapBlock.AvailableIngredients)
                 {
                     _availableLoot.Add(staticData.GetConfig(lootTypeId));
