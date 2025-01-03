@@ -93,6 +93,7 @@ namespace Code.Meta.Features.BonusLevel.Behaviours
             {
                 Button.interactable = true;
                 Button.onClick.AddListener(AskAd);
+                Shiny.Play();
                 Ad.EnableElement();
                 return;
             }

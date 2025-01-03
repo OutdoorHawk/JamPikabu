@@ -1,5 +1,4 @@
-﻿using Code.Gameplay.Sound;
-using Code.Gameplay.Sound.Service;
+﻿using Code.Gameplay.Sound.Service;
 using Code.Gameplay.Windows;
 using Code.Progress.SaveLoadService;
 using Zenject;
@@ -9,7 +8,7 @@ namespace Code.Meta.UI.Shop.Window
     public class ShopWindow : BaseWindow
     {
         public ShopTabsContainer TabsContainer;
-        
+
         private ISaveLoadService _saveLoadService;
         private ISoundService _soundService;
 
@@ -19,12 +18,11 @@ namespace Code.Meta.UI.Shop.Window
             _soundService = soundService;
             _saveLoadService = saveLoadService;
         }
-        
+
         protected override void Initialize()
         {
             base.Initialize();
             TabsContainer.Init();
-            _soundService.PlayOneShotSound(SoundTypeId.OpenShop);
         }
 
         protected override void Cleanup()
@@ -32,6 +30,5 @@ namespace Code.Meta.UI.Shop.Window
             base.Cleanup();
             _saveLoadService.SaveProgress();
         }
-        
     }
 }
