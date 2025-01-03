@@ -265,6 +265,7 @@ GameObject:
   - component: {fileID: 4904656779146998763}
   - component: {fileID: 2448841959703437924}
   - component: {fileID: 2951034494317162960}
+  - component: {fileID: 4714033171518981965}
   - component: {fileID: 175255480592907087}
   m_Layer: 7
   m_Name: LootBase
@@ -304,8 +305,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EntityView: {fileID: 0}
   _sprite: {fileID: 7919534535617553518}
-  _colliderRenderer: {fileID: 0}
-  _disableSpriteLoad: 0
 --- !u!114 &2211379259733548205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,6 +374,20 @@ MonoBehaviour:
   _audioSource: {fileID: 74886839470192886}
   _minSpeed: 4
   _rb: {fileID: 175255480592907087}
+--- !u!114 &4714033171518981965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8363761853997677049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fa62be4c8554d4b957f469809bdb97e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EntityView: {fileID: 0}
+  _spriteRenderer: {fileID: 7919534535617553518}
 --- !u!50 &175255480592907087
 Rigidbody2D:
   serializedVersion: 5

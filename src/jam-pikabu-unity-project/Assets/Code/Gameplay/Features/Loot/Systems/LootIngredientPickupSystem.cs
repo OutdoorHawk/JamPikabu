@@ -55,7 +55,6 @@ namespace Code.Gameplay.Features.Loot.Systems
                 GameMatcher.RoundInProcess,
                 GameMatcher.RoundTimeLeft));
 
-
             _loot = context.GetGroup(GameMatcher
                 .AllOf(
                     GameMatcher.Loot,
@@ -76,6 +75,14 @@ namespace Code.Gameplay.Features.Loot.Systems
                 DisableCollisions(loot);
 
                 PlayFlyAnimation(loot);
+            }
+        }
+
+        public void Cleanup()
+        {
+            foreach (var loot in _loot.GetEntities(_buffer))
+            {
+                loot.isCollectLootRequest = false;
             }
         }
 
@@ -201,14 +208,6 @@ namespace Code.Gameplay.Features.Loot.Systems
             loot.RemoveView();
             loot.RemoveViewPrefab();
             loot.isBusy = false;
-        }
-
-        public void Cleanup()
-        {
-            foreach (var loot in _loot.GetEntities(_buffer))
-            {
-                loot.isCollectLootRequest = false;
-            }
         }
     }
 }

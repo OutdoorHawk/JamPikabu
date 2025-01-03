@@ -1,4 +1,6 @@
-﻿using Code.Gameplay.Features.HUD;
+﻿using System.Collections.Generic;
+using Code.Common;
+using Code.Gameplay.Features.HUD;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows.Factory;
@@ -18,6 +20,8 @@ namespace Code.Gameplay.Features.Loot
 
         private readonly IGroup<GameEntity> _woods;
         private readonly IGroup<GameEntity> _roundTimers;
+        private readonly GameContext _context;
+        private readonly List<GameEntity> _buffer = new(8);
 
         public WoodLootPickupSystem
         (
@@ -27,12 +31,15 @@ namespace Code.Gameplay.Features.Loot
             IWindowService windowService
         )
         {
+            _context = context;
             _staticData = staticData;
             _uiFactory = uiFactory;
             _windowService = windowService;
+
             _woods = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.Wood,
                     GameMatcher.CollectLootRequest,
+                    GameMatcher.SpriteRenderer,
                     GameMatcher.TimerRefillAmount
                 ));
 
@@ -53,6 +60,11 @@ namespace Code.Gameplay.Features.Loot
 
                 ProcessConsumeVisuals(wood).Forget();
             }
+
+            foreach (var wood in _woods.GetEntities(_buffer))
+            {
+                wood.isCollectLootRequest = false;
+            }
         }
 
         private async UniTaskVoid ProcessConsumeVisuals(GameEntity wood)
@@ -60,12 +72,30 @@ namespace Code.Gameplay.Features.Loot
             if (_windowService.TryGetWindow(out PlayerHUDWindow hud) == false)
                 return;
 
+            int woodId = wood.Id;
+
+            Vector3 bonfirePos = _uiFactory.GetWorldPositionFromScreenPosition(hud.BonfirePoint.position);
+            ChangeLayer(wood);
+
+            wood.isCollected = true;
             wood.isBusy = true;
             wood.Retain(this);
-           // await FlyAnimation(wood.Transform,)
+
+            await FlyAnimation(wood.Transform, bonfirePos);
+
+            GameEntity woodRetained = _context.GetEntityWithId(woodId);
+
+            if (woodRetained.IsNullOrDestructed())
+                return;
+
             wood.Release(this);
-            wood.isBusy = false;
-            wood.isDestructed = true;
+            woodRetained.isBusy = false;
+            woodRetained.isDestructed = true;
+        }
+
+        private void ChangeLayer(GameEntity wood)
+        {
+            wood.SpriteRenderer.sortingLayerName = "Default";
         }
 
         private async UniTask FlyAnimation(Transform transform, Vector3 endPos)
@@ -75,8 +105,13 @@ namespace Code.Gameplay.Features.Loot
             float flyAnimationDuration = lootStaticData.CollectFlyAnimationDuration;
             float jumpPower = Random.Range(-1, 2);
 
+            transform
+                .DOScale(0, flyAnimationDuration)
+                .SetDelay(flyAnimationDuration)
+                .SetLink(transform.gameObject);
+
             await transform
-                    .DOJump(endPos, jumpPower, 1, flyAnimationDuration)
+                    .DOJump(endPos, jumpPower, 1, flyAnimationDuration * 2)
                     .SetLink(transform.gameObject)
                     .AsyncWaitForCompletion()
                 ;

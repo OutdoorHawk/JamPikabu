@@ -18,7 +18,6 @@ MonoBehaviour:
     ViewPrefab: {fileID: 5269418671204374274, guid: c68002c15aaf269429bacf8e8aabd408,
       type: 3}
     Icon: {fileID: 21300000, guid: 960d9ea6b81ffd44c97fd99ad1de401a, type: 3}
-    Size: 1
     CanBeUsedInOrders: 0
     LocalizedName:
       m_TableReference:
@@ -29,15 +28,14 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    ColliderSize: 1
     BaseRatingValue: 0
+    EffectValue: 0
     SpawnChance: 60
   - Id: 2
     Type: 6
     ViewPrefab: {fileID: 71186951003066812, guid: e1af85bb4c965f84589b754ede63aafe,
       type: 3}
     Icon: {fileID: 21300000, guid: a642067d57e6ffb41a26fd53e0e68dba, type: 3}
-    Size: 1
     CanBeUsedInOrders: 1
     LocalizedName:
       m_TableReference:
@@ -48,15 +46,14 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    ColliderSize: 1
     BaseRatingValue: 1
+    EffectValue: 0
     SpawnChance: 100
   - Id: 3
     Type: 2
     ViewPrefab: {fileID: 8809441727103396223, guid: 9fbb1caeb16c9924ab1109b853a4f609,
       type: 3}
     Icon: {fileID: 21300000, guid: d5484a6d66e6c6d4985b79523eb5e8af, type: 3}
-    Size: 1
     CanBeUsedInOrders: 1
     LocalizedName:
       m_TableReference:
@@ -67,15 +64,14 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    ColliderSize: 1
     BaseRatingValue: 1
+    EffectValue: 0
     SpawnChance: 100
   - Id: 4
     Type: 3
     ViewPrefab: {fileID: 4253014267885102693, guid: 80b92e2860604af4ca6378ed344d1cb4,
       type: 3}
     Icon: {fileID: 21300000, guid: 10919e892d413804db97bc43fd8ccd5f, type: 3}
-    Size: 1
     CanBeUsedInOrders: 1
     LocalizedName:
       m_TableReference:
@@ -86,15 +82,14 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    ColliderSize: 1
     BaseRatingValue: 1
+    EffectValue: 0
     SpawnChance: 100
   - Id: 5
     Type: 4
     ViewPrefab: {fileID: 487789687454810973, guid: a7177973e6cacd04592d8b6f965b1d7c,
       type: 3}
     Icon: {fileID: 21300000, guid: ace03efe7af3e944d83bec45293fa8c6, type: 3}
-    Size: 1
     CanBeUsedInOrders: 1
     LocalizedName:
       m_TableReference:
@@ -105,15 +100,14 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    ColliderSize: 1
     BaseRatingValue: 1
+    EffectValue: 0
     SpawnChance: 100
   - Id: 6
     Type: 5
     ViewPrefab: {fileID: 4591311052267808771, guid: 1e7dc01b1bd4f65448d158d6fcc13794,
       type: 3}
     Icon: {fileID: 21300000, guid: 69746f6467c274345a907904316a96f4, type: 3}
-    Size: 1
     CanBeUsedInOrders: 1
     LocalizedName:
       m_TableReference:
@@ -124,15 +118,14 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    ColliderSize: 1
     BaseRatingValue: 1
+    EffectValue: 0
     SpawnChance: 100
   - Id: 7
     Type: 7
     ViewPrefab: {fileID: 4607764121607272213, guid: 7d6408051f7edb74ba489bcf513e8bbd,
       type: 3}
     Icon: {fileID: 21300000, guid: 98ebdbe102f03834781e181dc0339c2a, type: 3}
-    Size: 1
     CanBeUsedInOrders: 1
     LocalizedName:
       m_TableReference:
@@ -143,15 +136,14 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    ColliderSize: 1
     BaseRatingValue: 4
+    EffectValue: 0
     SpawnChance: 100
   - Id: 8
     Type: 8
     ViewPrefab: {fileID: 5505315513054863998, guid: 5e25540141c57d2469d24eb10630057c,
       type: 3}
     Icon: {fileID: 21300000, guid: 07a4266ed0b2aaa4398515eec554347b, type: 3}
-    Size: 1
     CanBeUsedInOrders: 1
     LocalizedName:
       m_TableReference:
@@ -162,15 +154,14 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    ColliderSize: 1
     BaseRatingValue: 6
+    EffectValue: 0
     SpawnChance: 100
   - Id: 9
     Type: 10
     ViewPrefab: {fileID: 3754467397912659312, guid: d1aa8594a4fbc6542b08b6a4e37e4b14,
       type: 3}
     Icon: {fileID: 21300000, guid: bae58bcecadd88b4ebdf1b3541aec620, type: 3}
-    Size: 1
     CanBeUsedInOrders: 1
     LocalizedName:
       m_TableReference:
@@ -181,15 +172,14 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    ColliderSize: 1
     BaseRatingValue: 8
+    EffectValue: 0
     SpawnChance: 100
   - Id: 10
     Type: 9
     ViewPrefab: {fileID: 7569425527153441870, guid: 3500537cbec5c6843ab485a7e4e6056a,
       type: 3}
     Icon: {fileID: 21300000, guid: 34820a12b2370804ca85637ec4d7cb55, type: 3}
-    Size: 1
     CanBeUsedInOrders: 1
     LocalizedName:
       m_TableReference:
@@ -200,15 +190,14 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    ColliderSize: 1
     BaseRatingValue: 10
+    EffectValue: 0
     SpawnChance: 100
   - Id: 11
     Type: 11
     ViewPrefab: {fileID: 1763830991255042230, guid: b2cc89246b338924e9c2027e8992f528,
       type: 3}
     Icon: {fileID: 21300000, guid: 642e4b6c30234eb4885738900646712e, type: 3}
-    Size: 1
     CanBeUsedInOrders: 1
     LocalizedName:
       m_TableReference:
@@ -219,15 +208,14 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    ColliderSize: 1
     BaseRatingValue: 12
+    EffectValue: 0
     SpawnChance: 100
   - Id: 12
     Type: 12
     ViewPrefab: {fileID: 4082248375854956719, guid: 30edc69210cb2ea4390b70ebcd7a6809,
       type: 3}
     Icon: {fileID: 21300000, guid: ec4f6a8de083b284c9954c4ac10c8a13, type: 3}
-    Size: 1
     CanBeUsedInOrders: 1
     LocalizedName:
       m_TableReference:
@@ -238,15 +226,14 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    ColliderSize: 1
     BaseRatingValue: 14
+    EffectValue: 0
     SpawnChance: 100
   - Id: 13
     Type: 13
     ViewPrefab: {fileID: 168960851586940954, guid: c247e3160612f214aa94ff1fa0380e32,
       type: 3}
     Icon: {fileID: 21300000, guid: 7bc5706c486253a48a6c062bac70d4e5, type: 3}
-    Size: 1
     CanBeUsedInOrders: 1
     LocalizedName:
       m_TableReference:
@@ -257,15 +244,14 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    ColliderSize: 1
     BaseRatingValue: 16
+    EffectValue: 0
     SpawnChance: 100
   - Id: 14
     Type: 14
     ViewPrefab: {fileID: 2326069168832771833, guid: c699bcaea2c073e4691f1a712897af92,
       type: 3}
     Icon: {fileID: 21300000, guid: a53148400a147fc4a86da08a6941ba67, type: 3}
-    Size: 1
     CanBeUsedInOrders: 0
     LocalizedName:
       m_TableReference:
@@ -276,15 +262,14 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    ColliderSize: 1
     BaseRatingValue: 1
+    EffectValue: 5
     SpawnChance: 100
   - Id: 15
     Type: 15
     ViewPrefab: {fileID: 5801108300233425260, guid: 592fd298a5e33cb4ea99eebdd5ac4943,
       type: 3}
     Icon: {fileID: 21300000, guid: b9d6e0ca81572d34aae2f59bb41f1e70, type: 3}
-    Size: 1
     CanBeUsedInOrders: 0
     LocalizedName:
       m_TableReference:
@@ -295,15 +280,14 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    ColliderSize: 1
     BaseRatingValue: 1
+    EffectValue: 0
     SpawnChance: 100
   - Id: 16
     Type: 16
     ViewPrefab: {fileID: 2351187851481095984, guid: b7eba7cc19b15f748b7441185a99c1cb,
       type: 3}
     Icon: {fileID: 21300000, guid: bc0eaf0bd736d2a44a0a0b3e4704224b, type: 3}
-    Size: 1
     CanBeUsedInOrders: 1
     LocalizedName:
       m_TableReference:
@@ -314,15 +298,14 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    ColliderSize: 1
     BaseRatingValue: 18
+    EffectValue: 0
     SpawnChance: 100
   - Id: 17
     Type: 17
     ViewPrefab: {fileID: 9099611467634955215, guid: e8275c0d45005f4488de79be3cd0b66a,
       type: 3}
     Icon: {fileID: 21300000, guid: e61f33ab3dd737a4b83d5a709a9fdc8a, type: 3}
-    Size: 1
     CanBeUsedInOrders: 0
     LocalizedName:
       m_TableReference:
@@ -333,8 +316,8 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    ColliderSize: 1
     BaseRatingValue: 1
+    EffectValue: 0
     SpawnChance: 100
   LootSpawnInterval: 0.03
   LootSpawnConveyorInterval: 0.6

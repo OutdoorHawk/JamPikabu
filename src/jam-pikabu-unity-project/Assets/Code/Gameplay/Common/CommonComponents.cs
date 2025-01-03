@@ -15,5 +15,6 @@ namespace Code.Gameplay.Common
   [Game] public sealed class StartRotation : IComponent { public Vector3 Value; }
  
   [Game] public sealed class TransformComponent : IComponent { public Transform Value; }
+  [Game] public sealed class SpriteRendererComponent : IComponent { public SpriteRenderer Value; }
 
 }

@@ -12,6 +12,7 @@ namespace Code.Gameplay.Features.HUD
         public CurrencyHolder CurrencyHolder;
         public GameplayLootContainer LootContainer;
         public Transform LootPoint;
+        public Transform BonfirePoint;
         public Transform HookPoint;
     }
 }
