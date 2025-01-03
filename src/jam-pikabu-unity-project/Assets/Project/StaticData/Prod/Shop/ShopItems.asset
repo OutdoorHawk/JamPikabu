@@ -12,7 +12,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a18003660246b3a5d94d97b10106bf, type: 3}
   m_Name: ShopItems
   m_EditorClassIdentifier: 
-  Configs: []
+  Configs:
+  - Id: 1
+    Kind: 2
+    Icon: {fileID: 0}
+    LayoutOrder: 0
+    NameLocale:
+      m_TableReference:
+        m_TableCollectionName: GUID:257c2cea6ea3f7644b70dd1457151e70
+      m_TableEntryReference:
+        m_KeyId: 63096544395743232
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    DescriptionLocale:
+      m_TableReference:
+        m_TableCollectionName: GUID:257c2cea6ea3f7644b70dd1457151e70
+      m_TableEntryReference:
+        m_KeyId: 63096704760762368
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    Cost:
+      CurrencyType: 1
+      Amount: 50
+    LootType: 14
+    MinutesDuration: 10
   references:
     version: 2
     RefIds: []

@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
 using Code.Common.Extensions;
-using Code.Gameplay.StaticData;
 using Code.Meta.Features.LootCollection.Data;
 using Code.Meta.Features.LootCollection.Service;
 using Code.Meta.UI.Shop.Configs;
 using Code.Meta.UI.Shop.Templates;
-using Code.Meta.UI.Shop.WindowService;
 using UnityEngine.UI;
 using Zenject;
 
@@ -17,34 +15,25 @@ namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
 
         private readonly List<LootUpgradeShopItem> _items = new();
 
-        private IShopWindowService _shopWindowService;
-        private IStaticDataService _staticDataService;
         private ILootCollectionService _lootCollectionService;
-        private IInstantiator _instantiator;
 
         public IReadOnlyList<LootUpgradeShopItem> Items => _items;
 
         [Inject]
         private void Construct
         (
-            IShopWindowService shopWindowService,
-            IStaticDataService staticDataService,
-            ILootCollectionService lootCollectionService,
-            IInstantiator instantiator
+            ILootCollectionService lootCollectionService
         )
         {
-            _instantiator = instantiator;
             _lootCollectionService = lootCollectionService;
-            _staticDataService = staticDataService;
-            _shopWindowService = shopWindowService;
         }
 
-        private void Awake()
+        private void OnEnable()
         {
             _lootCollectionService.OnUpgraded += Refresh;
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             _lootCollectionService.OnUpgraded -= Refresh;
         }

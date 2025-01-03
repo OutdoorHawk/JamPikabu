@@ -3,6 +3,7 @@
     public enum ShopTabTypeId
     {
         Unknown = 0,
-        LootUpgrade = 1
+        LootUpgrade = 1,
+        Consumables = 2
     }
 }

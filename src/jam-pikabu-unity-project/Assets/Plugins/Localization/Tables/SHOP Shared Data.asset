@@ -27,6 +27,22 @@ MonoBehaviour:
     m_Key: S_COMING_SOON
     m_Metadata:
       m_Items: []
+  - m_Id: 63094027070951424
+    m_Key: S_CONSUMABLES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63096544395743232
+    m_Key: S_WOOD_CONSUMABLE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63096704760762368
+    m_Key: S_WOOD_CONSUMABLE_DESCRIPTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63097343020584960
+    m_Key: S_DURATION
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

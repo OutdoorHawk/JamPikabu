@@ -16,3 +16,7 @@ MonoBehaviour:
   - Id: 1
     Kind: 1
     Prefab: {fileID: 395331835504254809, guid: 83e86a6375ea84e419b989ecf238d474, type: 3}
+  - Id: 2
+    Kind: 2
+    Prefab: {fileID: 3484525672217451543, guid: f2b1f3b7c5b9e7040b13444499461b4f,
+      type: 3}

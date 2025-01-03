@@ -32,6 +32,22 @@ MonoBehaviour:
       Soon'
     m_Metadata:
       m_Items: []
+  - m_Id: 63094027070951424
+    m_Localized: Consumables
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63096544395743232
+    m_Localized: Wood
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63096704760762368
+    m_Localized: "Add time to the timer \non pickup"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63097343020584960
+    m_Localized: Duration
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

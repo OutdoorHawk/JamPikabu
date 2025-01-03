@@ -4,5 +4,6 @@
     {
         Unknown = 0,
         UpgradeIngredient = 1,
+        Consumable = 2,
     }
 }

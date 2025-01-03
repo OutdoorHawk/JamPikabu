@@ -19,7 +19,7 @@ MonoBehaviour:
       type: 3}
     UnlocksIngredient: 0
     FreeUpgradeTimeMinutes: 10
-    AvailableIngredients: 030000000600000004000000020000000e000000
+    AvailableIngredients: 03000000060000000400000002000000
     ExtraLoot: 
   - Id: 2
     StarsNeedToUnlock: 5

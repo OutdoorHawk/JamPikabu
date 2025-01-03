@@ -15,6 +15,7 @@ using Code.Gameplay.Windows.Service;
 using Code.Meta.Features.LootCollection.Configs;
 using Code.Meta.Features.LootCollection.Data;
 using Code.Meta.UI.Common;
+using Code.Meta.UI.Shop.Common;
 using Coffee.UIExtensions;
 using TMPro;
 using UnityEngine;
@@ -31,9 +32,9 @@ namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
         public TMP_Text Name;
         public Button UpgradeButton;
         public UIShiny UpgradeButtonShiny;
-        public PriceInfo UpgradePrice;
         public PriceInfo RatingFrom;
         public PriceInfo RatingTo;
+        public PriceInfo UpgradePrice;
         public TMP_Text MaxReached;
         public LootTypeId TypeId;
 

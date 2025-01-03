@@ -12,11 +12,13 @@ namespace Code.Meta.UI.Shop.Configs
     public class ShopItemData : BaseData
     {
         public ShopItemKind Kind;
-        [FoldoutGroup("Common")] public Sprite Icon;
-        [FoldoutGroup("Common")] public int LayoutOrder;
-        [FoldoutGroup("Common")] public LocalizedString NameLocale;
-        [FoldoutGroup("Common")] public LocalizedString DescriptionLocale;
-        [FoldoutGroup("Common")] public CostSetup Cost;
-        [FoldoutGroup("Ingredient")] public LootTypeId IngredientType;
+        [FoldoutGroup("Data")] public Sprite Icon;
+        [FoldoutGroup("Data")] public int LayoutOrder;
+        [FoldoutGroup("Data")] public LocalizedString NameLocale;
+        [FoldoutGroup("Data")] public LocalizedString DescriptionLocale;
+        [FoldoutGroup("Data")] public CostSetup Cost;
+        
+        [FoldoutGroup("Data")] public LootTypeId LootType;
+        [FoldoutGroup("Data")] public int MinutesDuration;
     }
 }
