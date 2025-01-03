@@ -263,8 +263,8 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
     BaseRatingValue: 1
-    EffectValue: 5
-    SpawnChance: 100
+    EffectValue: 3
+    SpawnChance: 40
   - Id: 15
     Type: 15
     ViewPrefab: {fileID: 5801108300233425260, guid: 592fd298a5e33cb4ea99eebdd5ac4943,

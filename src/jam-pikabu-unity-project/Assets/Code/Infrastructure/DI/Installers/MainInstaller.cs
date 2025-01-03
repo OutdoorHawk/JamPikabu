@@ -20,6 +20,7 @@ using Code.Gameplay.Features.LootSpawning.Factory;
 using Code.Gameplay.Features.Orders.Factory;
 using Code.Gameplay.Features.Orders.Service;
 using Code.Gameplay.Features.RoundState.Factory;
+using Code.Gameplay.Features.TextNotification.Service;
 using Code.Gameplay.Input.Service;
 using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
@@ -151,6 +152,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.BindInterfacesTo<GameStateService>().AsSingle();
             Container.BindInterfacesTo<MapMenuService>().AsSingle();
             Container.BindInterfacesTo<BonusLevelService>().AsSingle();
+            Container.BindInterfacesTo<NotificationTextService>().AsSingle();
             Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
             Container.Bind<IMousePositionService>().To<MousePositionService>().AsSingle();
             Container.Bind<ICameraProvider>().To<CameraProvider>().AsSingle();

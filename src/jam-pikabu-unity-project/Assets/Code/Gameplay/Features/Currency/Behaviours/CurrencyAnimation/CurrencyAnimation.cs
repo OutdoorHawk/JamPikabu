@@ -26,7 +26,6 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
         private IStaticDataService _staticData;
         private ISoundService _soundService;
         private bool _firstObject = true;
-        private Action StartReplenishCallback;
 
         [Inject]
         private void Construct(IStaticDataService staticDataService, ISoundService soundService)
@@ -37,7 +36,6 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
 
         public void Initialize(in CurrencyAnimationParameters parameters)
         {
-            StartReplenishCallback = parameters.StartReplenishCallback;
             InitIcons(parameters);
             PlayAnimation(parameters);
             

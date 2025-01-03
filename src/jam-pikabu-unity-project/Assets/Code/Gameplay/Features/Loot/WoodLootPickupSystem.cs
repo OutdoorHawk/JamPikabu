@@ -2,9 +2,12 @@
 using Code.Common;
 using Code.Gameplay.Features.HUD;
 using Code.Gameplay.Features.Loot.Configs;
+using Code.Gameplay.Features.TextNotification;
+using Code.Gameplay.Features.TextNotification.Service;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows.Factory;
 using Code.Gameplay.Windows.Service;
+using Code.Infrastructure.Localization;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Entitas;
@@ -17,6 +20,8 @@ namespace Code.Gameplay.Features.Loot
         private readonly IStaticDataService _staticData;
         private readonly IUIFactory _uiFactory;
         private readonly IWindowService _windowService;
+        private readonly INotificationTextService _notificationTextService;
+        private readonly ILocalizationService _localizationService;
 
         private readonly IGroup<GameEntity> _woods;
         private readonly IGroup<GameEntity> _roundTimers;
@@ -28,13 +33,17 @@ namespace Code.Gameplay.Features.Loot
             GameContext context,
             IStaticDataService staticData,
             IUIFactory uiFactory,
-            IWindowService windowService
+            IWindowService windowService,
+            INotificationTextService notificationTextService,
+            ILocalizationService localizationService
         )
         {
             _context = context;
             _staticData = staticData;
             _uiFactory = uiFactory;
             _windowService = windowService;
+            _notificationTextService = notificationTextService;
+            _localizationService = localizationService;
 
             _woods = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.Wood,
@@ -58,6 +67,7 @@ namespace Code.Gameplay.Features.Loot
                 foreach (var timer in _roundTimers)
                     timer.ReplaceRoundTimeLeft(timer.RoundTimeLeft + wood.TimerRefillAmount);
 
+                NotifyText(wood);
                 ProcessConsumeVisuals(wood).Forget();
             }
 
@@ -65,6 +75,17 @@ namespace Code.Gameplay.Features.Loot
             {
                 wood.isCollectLootRequest = false;
             }
+        }
+
+        private void NotifyText(GameEntity wood)
+        {
+            var notificationTextParameters = new NotificationTextParameters()
+            {
+                Text = $"+{wood.TimerRefillAmount} сек",
+                StartPosition = _uiFactory.GetWorldPositionForUI(wood.Transform.position)
+            };
+
+            _notificationTextService.ShowNotificationText(notificationTextParameters);
         }
 
         private async UniTaskVoid ProcessConsumeVisuals(GameEntity wood)
