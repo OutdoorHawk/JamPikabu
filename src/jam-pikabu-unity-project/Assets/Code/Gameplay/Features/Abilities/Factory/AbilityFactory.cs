@@ -2,6 +2,7 @@
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Abilities.Config;
 using Code.Gameplay.StaticData;
+using UnityEngine;
 
 namespace Code.Gameplay.Features.Abilities.Factory
 {
@@ -20,7 +21,7 @@ namespace Code.Gameplay.Features.Abilities.Factory
         {
             if (typeId == AbilityTypeId.None)
                 return null;
-            
+
             GameEntity ability = CreateBaseAbility(typeId, targetId);
 
             switch (typeId)
@@ -41,7 +42,7 @@ namespace Code.Gameplay.Features.Abilities.Factory
                     .AddAbilityType(typeId)
                     .AddTarget(targetId)
                 ;
-            
+
             return ability;
         }
 
@@ -53,7 +54,7 @@ namespace Code.Gameplay.Features.Abilities.Factory
                 .With(x => x.isBouncyAbility = true)
                 .AddBounceStrength(staticData.Value)
                 .AddCooldown(staticData.Cooldown)
-                .AddCooldownLeft(staticData.Cooldown)
+                .AddCooldownLeft(Random.Range(1, staticData.Cooldown + 1))
                 ;
         }
     }

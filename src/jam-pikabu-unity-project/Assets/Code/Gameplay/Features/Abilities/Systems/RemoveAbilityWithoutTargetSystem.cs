@@ -24,7 +24,11 @@ namespace Code.Gameplay.Features.Abilities.Systems
                 GameEntity target = ability.Target();
                 
                 if (target.IsNullOrDestructed())
+                {
+                    ability.isAbility = false;
+                    ability.RemoveTarget();
                     ability.Destroy();
+                }
             }
         }
     }

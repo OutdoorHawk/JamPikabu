@@ -15,5 +15,5 @@ MonoBehaviour:
   Configs:
   - Id: 1
     Type: 1
-    Value: 5
-    Cooldown: 5
+    Value: 1.05
+    Cooldown: 4

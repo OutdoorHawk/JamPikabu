@@ -14,6 +14,7 @@ namespace Code.Gameplay.Features.Abilities.Systems
         {
             _abilities = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.BouncyAbility,
+                    GameMatcher.Ability,
                     GameMatcher.Target,
                     GameMatcher.CooldownUp
                 ));
