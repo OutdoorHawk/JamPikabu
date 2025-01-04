@@ -1046,6 +1046,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConsumableLootTab
       objectReference: {fileID: 0}
+    - target: {fileID: 628824594955367942, guid: a8bde13ddf116ef478d694f14670eb3f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2429744133272959305, guid: a8bde13ddf116ef478d694f14670eb3f,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1977,6 +1982,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8736157187794522202, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 29.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Code.Gameplay.Common.Time;
-using Code.Infrastructure.Common.Time;
 using Entitas;
 
 namespace Code.Gameplay.Features.Cooldowns.Systems

@@ -1,4 +1,5 @@
 ﻿using Code.Common.Destruct;
+using Code.Gameplay.Features.Abilities;
 using Code.Gameplay.Features.Cooldowns.Systems;
 using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Systems;
@@ -35,6 +36,8 @@ namespace Code.Gameplay.Features
 
             Add(systems.Create<LootSpawningFeature>());
             Add(systems.Create<LootConsumeFeature>());
+            
+            Add(systems.Create<AbilityFeature>());
             
             Add(systems.Create<OrdersFeature>());
 

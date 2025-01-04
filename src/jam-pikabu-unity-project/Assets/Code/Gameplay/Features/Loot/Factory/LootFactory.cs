@@ -1,5 +1,6 @@
 ﻿using Code.Common.Entity;
 using Code.Common.Extensions;
+using Code.Gameplay.Features.Abilities.Factory;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.StaticData;
 using Code.Meta.Features.Days.Service;
@@ -13,17 +14,28 @@ namespace Code.Gameplay.Features.Loot.Factory
         private readonly IStaticDataService _staticDataService;
         private readonly IDaysService _daysService;
         private readonly ILootCollectionService _lootCollectionService;
+        private readonly IAbilityFactory _abilityFactory;
 
-        public LootFactory(IStaticDataService staticDataService, IDaysService daysService, ILootCollectionService lootCollectionService)
+        public LootFactory
+        (
+            IStaticDataService staticDataService,
+            IDaysService daysService,
+            ILootCollectionService lootCollectionService,
+            IAbilityFactory abilityFactory
+        )
         {
             _staticDataService = staticDataService;
             _daysService = daysService;
             _lootCollectionService = lootCollectionService;
+            _abilityFactory = abilityFactory;
         }
 
         public GameEntity CreateLootEntity(LootTypeId typeId, Transform parent, Vector2 at, Vector3 spawnRotation)
         {
             GameEntity loot = CreateBaseLoot(typeId, parent, at, spawnRotation);
+            LootSetup lootSetup = GetLootSetup(loot.LootTypeId);
+
+            loot.With(x => AddRating(x, typeId), when: lootSetup.CanBeUsedInOrders);
 
             switch (typeId)
             {
@@ -33,11 +45,9 @@ namespace Code.Gameplay.Features.Loot.Factory
                 case LootTypeId.Wood:
                     CreateWood(loot);
                     break;
-                default:
-                    AddRating(loot, typeId);
-                    break;
             }
 
+            _abilityFactory.CreateAbility(lootSetup.AbilityType);
             return loot;
         }
 
@@ -49,7 +59,7 @@ namespace Code.Gameplay.Features.Loot.Factory
         private void CreateWood(GameEntity loot)
         {
             LootSetup lootSetup = GetLootSetup(loot.LootTypeId);
-            
+
             loot
                 .With(x => x.isWood = true)
                 .AddTimerRefillAmount((int)lootSetup.EffectValue)

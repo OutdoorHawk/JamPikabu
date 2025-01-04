@@ -1,4 +1,5 @@
 ﻿using System;
+using Code.Gameplay.Features.Abilities;
 using Code.Gameplay.StaticData.Data;
 using Code.Infrastructure.View;
 using Sirenix.OdinInspector;
@@ -18,5 +19,6 @@ namespace Code.Gameplay.Features.Loot.Configs
         [FoldoutGroup("Data")] public int BaseRatingValue = 1;
         [FoldoutGroup("Data")] public float EffectValue;
         [FoldoutGroup("Data"), Range(0, 100)] public int SpawnChance = 100;
+        [FoldoutGroup("Data")] public AbilityTypeId AbilityType;
     }
 }

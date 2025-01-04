@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using Code.Common.Entity.ToStrings;
 using Code.Common.Extensions;
+using Code.Gameplay.Features.Abilities;
 using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.GameState;
 using Code.Gameplay.Features.GrapplingHook;
@@ -64,6 +65,11 @@ public sealed partial class GameEntity : INamedEntity
                     
                     case nameof(GameState):
                         return new StringBuilder($"GameState: ")
+                            .With(s => s.Append($"Id:{Id} "), when: hasId)
+                            .ToString();
+                    
+                    case nameof(Ability):
+                        return new StringBuilder($"Ability: ")
                             .With(s => s.Append($"Id:{Id} "), when: hasId)
                             .ToString();
              

@@ -111,6 +111,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - ProdStaticData
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f6dbb42d7de64e04cb9311037e73094c
+    m_Address: Ability
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ProdStaticData
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8c977aa4f64b21b42892fe1ca41dafc7, type: 2}
   m_SchemaSet:

@@ -6,6 +6,7 @@ using Code.Gameplay.Common.EntityIndices;
 using Code.Gameplay.Common.MousePosition;
 using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Common.Time;
+using Code.Gameplay.Features.Abilities.Factory;
 using Code.Gameplay.Features.Currency.Factory;
 using Code.Gameplay.Features.Currency.Service;
 using Code.Gameplay.Features.Customers.Service;
@@ -194,6 +195,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.BindInterfacesTo<DaysFactory>().AsSingle();
             Container.BindInterfacesTo<LootCollectionFactory>().AsSingle();
             Container.BindInterfacesTo<MapMenuFactory>().AsSingle();
+            Container.BindInterfacesTo<AbilityFactory>().AsSingle();
         }
 
         private void BindGameplayFactories()
