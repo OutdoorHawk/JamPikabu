@@ -37,7 +37,8 @@ namespace Code.Gameplay.Features.Loot.Systems
         (
             GameContext context,
             IGameplayLootService gameplayLootService,
-            IWindowService windowService, IStaticDataService staticData,
+            IWindowService windowService, 
+            IStaticDataService staticData,
             ISoundService soundService,
             IOrdersService ordersService,
             IUIFactory uiFactory
@@ -58,6 +59,7 @@ namespace Code.Gameplay.Features.Loot.Systems
             _loot = context.GetGroup(GameMatcher
                 .AllOf(
                     GameMatcher.Loot,
+                    GameMatcher.View,
                     GameMatcher.LootTypeId,
                     GameMatcher.CollectLootRequest
                 ));

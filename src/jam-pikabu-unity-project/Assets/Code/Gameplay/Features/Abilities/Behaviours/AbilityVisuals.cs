@@ -1,44 +1,95 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Code.Gameplay.Features.Abilities.Behaviours
 {
     public class AbilityVisuals : MonoBehaviour
     {
         public Rigidbody2D Rigidbody;
+
         public float SwapDuration = 0.25f;
+
+        public float ChangeSizeDuration = 0.5f;
+        public float BigSize = 1.25f;
+        public float SmallSize = 0.75f;
+
+        private Tween _tween;
+
+        private void OnDestroy()
+        {
+            ResetTween();
+        }
 
         public void PlaySwap(Vector3 newPosition)
         {
             PlaySwapAsync(newPosition).Forget();
         }
 
+        public void ChangeSize()
+        {
+            bool isBigSize = Mathf.Approximately(transform.localScale.x, BigSize);
+            bool isSmallSize = Mathf.Approximately(transform.localScale.x, SmallSize);
+            ResetTween();
+
+            if (isBigSize || isSmallSize)
+            {
+                _tween = transform
+                    .DOScale(1, ChangeSizeDuration)
+                    .SetEase(Ease.OutBounce)
+                    .SetLink(gameObject);
+
+                return;
+            }
+
+            if (Random.Range(0, 2) == 0)
+            {
+                _tween = transform
+                    .DOScale(SmallSize, ChangeSizeDuration)
+                    .SetEase(Ease.OutBounce)
+                    .SetLink(gameObject);
+            }
+            else
+            {
+                _tween = transform
+                    .DOScale(BigSize, ChangeSizeDuration)
+                    .SetEase(Ease.OutBounce)
+                    .SetLink(gameObject);
+            }
+        }
+
         private async UniTaskVoid PlaySwapAsync(Vector3 newPosition)
         {
-            await transform
-                    .DOScale(1.2f, SwapDuration / 3)
-                    .SetLink(gameObject)
-                    .AsyncWaitForCompletion()
-                ;
+            ResetTween();
 
-            await transform
-                    .DOScale(0, SwapDuration)
-                    .SetLink(gameObject)
-                    .AsyncWaitForCompletion()
-                ;
+            _tween = transform
+                .DOScale(1.2f, SwapDuration / 3)
+                .SetLink(gameObject);
+
+            await _tween.AsyncWaitForCompletion();
+
+            _tween = transform
+                .DOScale(0, SwapDuration)
+                .SetLink(gameObject);
+
+            await _tween.AsyncWaitForCompletion();
 
             if (Rigidbody == null)
                 return;
 
             Rigidbody.position = newPosition;
 
-            await transform
-                    .DOScale(1, SwapDuration)
-                    .SetLink(gameObject)
-                    .SetEase(Ease.OutBounce)
-                    .AsyncWaitForCompletion()
-                ;
+            _tween = transform
+                .DOScale(1, SwapDuration)
+                .SetLink(gameObject)
+                .SetEase(Ease.OutBounce);
+        }
+
+        private void ResetTween()
+        {
+            _tween?.Kill();
         }
     }
 }

@@ -33,6 +33,9 @@ namespace Code.Gameplay.Features.Abilities.Factory
                 case AbilityTypeId.SwapPositions:
                     CreateSwapPositionsAbility(ability, typeId);
                     break;
+                case AbilityTypeId.ChangeSizes:
+                    CreateChangeSizesAbility(ability, typeId);
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(typeId), typeId, null);
             }
@@ -70,6 +73,17 @@ namespace Code.Gameplay.Features.Abilities.Factory
 
             ability
                 .With(x => x.isSwapPositionsAbility = true)
+                .AddCooldown(staticData.Cooldown)
+                .AddCooldownLeft(Random.Range(1, staticData.Cooldown + 1))
+                ;
+        }
+
+        private void CreateChangeSizesAbility(GameEntity ability, AbilityTypeId typeId)
+        {
+            AbilityData staticData = AbilityStaticData.GetDataByType(typeId);
+
+            ability
+                .With(x => x.isChangeSizesAbility = true)
                 .AddCooldown(staticData.Cooldown)
                 .AddCooldownLeft(Random.Range(1, staticData.Cooldown + 1))
                 ;

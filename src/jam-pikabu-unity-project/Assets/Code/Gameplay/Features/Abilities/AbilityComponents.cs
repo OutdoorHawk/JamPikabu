@@ -12,5 +12,7 @@ namespace Code.Gameplay.Features.Abilities
     
     [Game] public sealed class SwapPositionsAbility : IComponent { }
     
+    [Game] public sealed class ChangeSizesAbility : IComponent { }
+    
     
 }

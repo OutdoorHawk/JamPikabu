@@ -11,6 +11,7 @@ namespace Code.Gameplay.Features.Abilities
 
             Add(systems.Create<BouncyAbilitySystem>());
             Add(systems.Create<SwapPositionsAbilitySystem>());
+            Add(systems.Create<ChangeSizesAbilitySystem>());
         }
     }
 }
