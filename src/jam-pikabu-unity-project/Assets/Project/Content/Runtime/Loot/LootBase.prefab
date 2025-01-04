@@ -266,6 +266,8 @@ GameObject:
   - component: {fileID: 2448841959703437924}
   - component: {fileID: 2951034494317162960}
   - component: {fileID: 4714033171518981965}
+  - component: {fileID: 5509373722384553370}
+  - component: {fileID: 3202784660252494495}
   - component: {fileID: 175255480592907087}
   m_Layer: 7
   m_Name: LootBase
@@ -388,6 +390,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EntityView: {fileID: 0}
   _spriteRenderer: {fileID: 7919534535617553518}
+--- !u!114 &5509373722384553370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8363761853997677049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a5cdce8eeb441a1883d9d6e74780c5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rigidbody: {fileID: 175255480592907087}
+  SwapDuration: 0.35
+--- !u!114 &3202784660252494495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8363761853997677049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10b6326ace694ae1af36d3f5ca98ee06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EntityView: {fileID: 0}
+  _abilityVisuals: {fileID: 5509373722384553370}
 --- !u!50 &175255480592907087
 Rigidbody2D:
   serializedVersion: 5

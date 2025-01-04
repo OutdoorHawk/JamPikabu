@@ -8,8 +8,9 @@ namespace Code.Gameplay.Features.Abilities
         public AbilityFeature(ISystemFactory systems)
         {
             Add(systems.Create<RemoveAbilityWithoutTargetSystem>());
-            
+
             Add(systems.Create<BouncyAbilitySystem>());
+            Add(systems.Create<SwapPositionsAbilitySystem>());
         }
     }
 }

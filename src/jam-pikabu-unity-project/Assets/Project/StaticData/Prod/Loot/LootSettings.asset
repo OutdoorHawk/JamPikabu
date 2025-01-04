@@ -164,7 +164,7 @@ MonoBehaviour:
     BaseRatingValue: 6
     EffectValue: 0
     SpawnChance: 100
-    AbilityType: 0
+    AbilityType: 2
   - Id: 9
     Type: 10
     ViewPrefab: {fileID: 3754467397912659312, guid: d1aa8594a4fbc6542b08b6a4e37e4b14,

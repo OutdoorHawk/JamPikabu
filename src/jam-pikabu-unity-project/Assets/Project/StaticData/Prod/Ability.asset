@@ -17,3 +17,7 @@ MonoBehaviour:
     Type: 1
     Value: 1.05
     Cooldown: 4
+  - Id: 2
+    Type: 2
+    Value: 0
+    Cooldown: 8

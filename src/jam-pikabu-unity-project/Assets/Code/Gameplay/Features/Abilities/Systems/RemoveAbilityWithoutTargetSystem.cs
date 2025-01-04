@@ -13,7 +13,7 @@ namespace Code.Gameplay.Features.Abilities.Systems
         {
             _abilities = game.GetGroup(GameMatcher
                 .AllOf(
-                    GameMatcher.Effect,
+                    GameMatcher.Ability,
                     GameMatcher.Target));
         }
 

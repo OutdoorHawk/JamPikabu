@@ -1,8 +1,9 @@
-﻿using Code.Common.Entity;
+﻿using System;
+using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Abilities.Config;
 using Code.Gameplay.StaticData;
-using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Code.Gameplay.Features.Abilities.Factory
 {
@@ -29,6 +30,11 @@ namespace Code.Gameplay.Features.Abilities.Factory
                 case AbilityTypeId.Bouncy:
                     CreateBouncyAbility(ability, typeId);
                     break;
+                case AbilityTypeId.SwapPositions:
+                    CreateSwapPositionsAbility(ability, typeId);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(typeId), typeId, null);
             }
 
             return ability;
@@ -53,6 +59,17 @@ namespace Code.Gameplay.Features.Abilities.Factory
             ability
                 .With(x => x.isBouncyAbility = true)
                 .AddBounceStrength(staticData.Value)
+                .AddCooldown(staticData.Cooldown)
+                .AddCooldownLeft(Random.Range(1, staticData.Cooldown + 1))
+                ;
+        }
+
+        private void CreateSwapPositionsAbility(GameEntity ability, AbilityTypeId typeId)
+        {
+            AbilityData staticData = AbilityStaticData.GetDataByType(typeId);
+
+            ability
+                .With(x => x.isSwapPositionsAbility = true)
                 .AddCooldown(staticData.Cooldown)
                 .AddCooldownLeft(Random.Range(1, staticData.Cooldown + 1))
                 ;

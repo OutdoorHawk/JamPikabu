@@ -4,5 +4,6 @@
     {
         None = 0,
         Bouncy = 1,
+        SwapPositions = 2,
     }
 }
