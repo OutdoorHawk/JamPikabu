@@ -59,8 +59,7 @@ namespace Code.Gameplay.Features.Loot.Systems
                 .AllOf(
                     GameMatcher.Loot,
                     GameMatcher.LootTypeId,
-                    GameMatcher.CollectLootRequest,
-                    GameMatcher.Rating
+                    GameMatcher.CollectLootRequest
                 ));
         }
 
