@@ -16,15 +16,12 @@ namespace Code.Gameplay.Features.Abilities.Factory
             _staticData = staticData;
         }
 
-        public GameEntity CreateAbility(AbilityTypeId typeId)
+        public GameEntity CreateAbility(AbilityTypeId typeId, int targetId)
         {
             if (typeId == AbilityTypeId.None)
                 return null;
             
-            var ability = CreateGameEntity
-                    .Empty()
-                    .With(x => x.isAbility = true)
-                ;
+            GameEntity ability = CreateBaseAbility(typeId, targetId);
 
             switch (typeId)
             {
@@ -33,6 +30,18 @@ namespace Code.Gameplay.Features.Abilities.Factory
                     break;
             }
 
+            return ability;
+        }
+
+        private GameEntity CreateBaseAbility(AbilityTypeId typeId, int targetId)
+        {
+            var ability = CreateGameEntity
+                    .Empty()
+                    .With(x => x.isAbility = true)
+                    .AddAbilityType(typeId)
+                    .AddTarget(targetId)
+                ;
+            
             return ability;
         }
 

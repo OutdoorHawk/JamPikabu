@@ -71,6 +71,7 @@ public sealed partial class GameEntity : INamedEntity
                     case nameof(Ability):
                         return new StringBuilder($"Ability: ")
                             .With(s => s.Append($"Id:{Id} "), when: hasId)
+                            .With(s => s.Append($"Type:{AbilityType} "), when: hasAbilityType)
                             .ToString();
              
                 }

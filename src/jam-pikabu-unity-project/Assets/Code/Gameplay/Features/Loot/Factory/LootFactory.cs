@@ -47,7 +47,7 @@ namespace Code.Gameplay.Features.Loot.Factory
                     break;
             }
 
-            _abilityFactory.CreateAbility(lootSetup.AbilityType);
+            _abilityFactory.CreateAbility(lootSetup.AbilityType, loot.Id);
             return loot;
         }
 

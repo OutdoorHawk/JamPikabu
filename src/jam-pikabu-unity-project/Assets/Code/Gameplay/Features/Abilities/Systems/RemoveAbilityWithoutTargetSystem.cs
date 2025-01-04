@@ -6,12 +6,12 @@ namespace Code.Gameplay.Features.Abilities.Systems
 {
     public class RemoveAbilityWithoutTargetSystem : IExecuteSystem
     {
-        private readonly IGroup<GameEntity> _effects;
+        private readonly IGroup<GameEntity> _abilities;
         private readonly List<GameEntity> _buffer = new(128);
 
         public RemoveAbilityWithoutTargetSystem(GameContext game)
         {
-            _effects = game.GetGroup(GameMatcher
+            _abilities = game.GetGroup(GameMatcher
                 .AllOf(
                     GameMatcher.Effect,
                     GameMatcher.Target));
@@ -19,12 +19,12 @@ namespace Code.Gameplay.Features.Abilities.Systems
 
         public void Execute()
         {
-            foreach (GameEntity effect in _effects.GetEntities(_buffer))
+            foreach (GameEntity ability in _abilities.GetEntities(_buffer))
             {
-                GameEntity target = effect.Target();
+                GameEntity target = ability.Target();
                 
                 if (target.IsNullOrDestructed())
-                    effect.Destroy();
+                    ability.Destroy();
             }
         }
     }
