@@ -58,5 +58,6 @@
         StarLoose = 43,
         CollectIngredient = 44,
         LootFly = 45,
+        Sticky = 46,
     }
 }

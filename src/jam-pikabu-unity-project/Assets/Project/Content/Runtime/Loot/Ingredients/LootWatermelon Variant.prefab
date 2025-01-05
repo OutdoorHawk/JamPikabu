@@ -109,6 +109,11 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8241262475435910954, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943,
+        type: 3}
+      propertyPath: _stickLayerMask.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 8363761853997677049, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943,
         type: 3}
       propertyPath: m_Name
@@ -118,6 +123,10 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8363761853997677049, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 286794795793416065}
     - targetCorrespondingSourceObject: {fileID: 8905411431984901083, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943,
         type: 3}
       insertIndex: -1
@@ -176,8 +185,29 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 0.10953814, y: 0.35566026}
-      - {x: -0.3555168, y: -0.066708565}
-      - {x: -0.054385543, y: -0.32695782}
-      - {x: 0.36751428, y: -0.23059052}
-      - {x: 0.24660605, y: 0.3364702}
+      - {x: -0.3271941, y: -0.050973654}
+      - {x: -0.044944644, y: -0.31751704}
+      - {x: 0.34863248, y: -0.22114974}
+      - {x: 0.24031204, y: 0.3364702}
   m_UseDelaunayMesh: 0
+--- !u!1 &5368687505873537720 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8363761853997677049, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943,
+    type: 3}
+  m_PrefabInstance: {fileID: 4509059528390996801}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &286794795793416065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5368687505873537720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33b9a6046f804d68a9ce5ba05db5bd35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stickLayerMask:
+    serializedVersion: 2
+    m_Bits: 64

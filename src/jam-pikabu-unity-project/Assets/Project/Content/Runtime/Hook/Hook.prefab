@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2401499186109056635}
   - component: {fileID: 1932358218601228967}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Grappler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3581896514360610594}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ClawRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -531,7 +531,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3101524189061549069}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PivotOffset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -563,7 +563,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4564249333671314180}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PivotOffset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -595,7 +595,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7799951034168320465}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ClawLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -627,7 +627,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6969615634435395765}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -659,7 +659,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5236996962784744397}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RotatePivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -692,7 +692,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3878269204706465735}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -725,7 +725,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5159611160977885565}
   - component: {fileID: 2021293028700899008}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -780,7 +780,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3186202938037613119}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Claws
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -816,7 +816,7 @@ GameObject:
   - component: {fileID: 4445905731949100625}
   - component: {fileID: 1611298379625447894}
   - component: {fileID: 7197538333997527880}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Damper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -909,7 +909,7 @@ GameObject:
   - component: {fileID: 6435694416827113444}
   - component: {fileID: 735089653608966166}
   - component: {fileID: 3189160936382281905}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Hook
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1039,7 +1039,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7171356328979767336}
   - component: {fileID: 3606983065437898869}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rope
   m_TagString: Untagged
   m_Icon: {fileID: 0}

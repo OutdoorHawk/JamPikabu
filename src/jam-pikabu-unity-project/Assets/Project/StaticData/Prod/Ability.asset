@@ -25,3 +25,7 @@ MonoBehaviour:
     Type: 3
     Value: 0
     Cooldown: 10
+  - Id: 4
+    Type: 4
+    Value: 4
+    Cooldown: 0

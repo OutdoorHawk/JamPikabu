@@ -6,6 +6,7 @@
         Bouncy = 1,
         SwapPositions = 2,
         ChangeSizes = 3,
-       
+        StickyToHook = 4,
+        
     }
 }
