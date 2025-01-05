@@ -366,6 +366,39 @@
                 },
                 {
                     "name": "",
+                    "id": "3bb81018-c0f3-4468-ad93-82012b978dd4",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fe64b1af-d8d4-40b4-bf24-2131b8c2e104",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6a4f68f1-5dc7-463f-8699-f5bc601189e8",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "0cdf6d4c-2aa0-4170-9633-b559825f574e",
                     "path": "<Keyboard>/shift",
                     "interactions": "",
