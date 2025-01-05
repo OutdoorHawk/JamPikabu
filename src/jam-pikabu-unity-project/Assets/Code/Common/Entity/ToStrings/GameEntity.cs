@@ -51,6 +51,7 @@ public sealed partial class GameEntity : INamedEntity
                     case nameof(Loot):
                         return new StringBuilder($"Loot: ")
                             .With(s => s.Append($"Id:{Id} "), when: hasId)
+                            .With(s => s.Append($"Type:{LootTypeId} "), when: hasLootTypeId)
                             .ToString();
                     
                     case nameof(RoundStateController):
