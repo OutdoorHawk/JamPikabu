@@ -226,6 +226,7 @@ namespace Code.Infrastructure.DI.Installers
         private void BindIntegrations()
         {
             Container.BindInterfacesTo<IntegrationsService>().AsSingle();
+            
 #if GAME_PUSH
             Container.BindInterfacesTo<GamePushAnalyticsService>().AsSingle();
             Container.BindInterfacesTo<GamePushIntegration>().AsSingle();
@@ -233,7 +234,8 @@ namespace Code.Infrastructure.DI.Installers
             Container.BindInterfacesTo<GamePushProgressReadWrite>().AsSingle();
 #else
             Container.Bind<IProgressReadWrite>().To<DefaultFileProgressReadWrite>().AsSingle();
-            Container.BindInterfacesTo<Ads.Service.FakeAdsService>().AsSingle();
+            Container.BindInterfacesTo<FakeAdsService>().AsSingle();
+            Container.BindInterfacesTo<FakeAnalyticsService>().AsSingle();
 #endif
         }
     }
