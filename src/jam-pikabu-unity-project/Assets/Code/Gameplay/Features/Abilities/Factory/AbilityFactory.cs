@@ -36,6 +36,9 @@ namespace Code.Gameplay.Features.Abilities.Factory
                 case AbilityTypeId.ChangeSizes:
                     CreateChangeSizesAbility(ability, typeId);
                     break;
+                case AbilityTypeId.HookSpeedChange:
+                    CreateHookSpeedChangeAbility(ability, typeId);
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(typeId), typeId, null);
             }
@@ -86,6 +89,18 @@ namespace Code.Gameplay.Features.Abilities.Factory
                 .With(x => x.isChangeSizesAbility = true)
                 .AddCooldown(staticData.Cooldown)
                 .AddCooldownLeft(Random.Range(1, staticData.Cooldown + 1))
+                ;
+        }
+
+        private void CreateHookSpeedChangeAbility(GameEntity ability, AbilityTypeId typeId)
+        {
+            AbilityData staticData = AbilityStaticData.GetDataByType(typeId);
+
+            ability
+                .With(x => x.isHookSpeedChangeAbility = true)
+                .AddAbilityDuration(staticData.Cooldown)
+                .AddSpeedChangeAmount(staticData.Value)
+                .AddActivationChance(staticData.ActivationChance)
                 ;
         }
     }

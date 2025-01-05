@@ -29,104 +29,109 @@ public static class GameComponentsLookup {
     public const int Transform = 18;
     public const int WorldPosition = 19;
     public const int Ability = 20;
-    public const int AbilityType = 21;
-    public const int AbilityVisuals = 22;
-    public const int BounceStrength = 23;
-    public const int BouncyAbility = 24;
-    public const int ChangeSizesAbility = 25;
-    public const int SwapPositionsAbility = 26;
-    public const int CollidedBy = 27;
-    public const int Collider = 28;
-    public const int Collision = 29;
-    public const int TriggerCollider = 30;
-    public const int TriggeredBy = 31;
-    public const int Cooldown = 32;
-    public const int CooldownLeft = 33;
-    public const int CooldownUp = 34;
-    public const int AddCurrencyRequest = 35;
-    public const int CurrencyStorage = 36;
-    public const int CurrencyTypeId = 37;
-    public const int Gold = 38;
-    public const int Minus = 39;
-    public const int Plus = 40;
-    public const int Withdraw = 41;
-    public const int CustomerBehaviour = 42;
-    public const int BeginDay = 43;
-    public const int EndDay = 44;
-    public const int GameState = 45;
-    public const int GameStateTypeId = 46;
-    public const int RoundCompletion = 47;
-    public const int RoundLoop = 48;
-    public const int RoundPreparation = 49;
-    public const int StateProcessingAvailable = 50;
-    public const int SwitchGameStateRequest = 51;
-    public const int Ascending = 52;
-    public const int AscentAvailable = 53;
-    public const int AscentRequested = 54;
-    public const int Busy = 55;
-    public const int ClosingClaws = 56;
-    public const int CollectingLoot = 57;
-    public const int CollectLootPieceInterval = 58;
-    public const int CollectLootRaycastRadius = 59;
-    public const int CollectLootRequest = 60;
-    public const int Descending = 61;
-    public const int DescentAvailable = 62;
-    public const int DescentRequested = 63;
-    public const int GrapplingHook = 64;
-    public const int GrapplingHookBehaviour = 65;
-    public const int StopMovementRaycastRadius = 66;
-    public const int XAxisMoveDirection = 67;
-    public const int XAxisMovementAvailable = 68;
-    public const int XAxisSpeed = 69;
-    public const int XMovementLimits = 70;
-    public const int YAxisDownSpeed = 71;
-    public const int YAxisUpSpeed = 72;
-    public const int Applied = 73;
-    public const int Available = 74;
-    public const int BaseRating = 75;
-    public const int Collected = 76;
-    public const int ConsumableIngredient = 77;
-    public const int Consumed = 78;
-    public const int Effect = 79;
-    public const int EffectTargetsLoot = 80;
-    public const int EffectValue = 81;
-    public const int IncreaseValueEffect = 82;
-    public const int Loot = 83;
-    public const int LootEffectsApplier = 84;
-    public const int LootItem = 85;
-    public const int LootItemUI = 86;
-    public const int LootTypeId = 87;
-    public const int Rating = 88;
-    public const int TimerRefillAmount = 89;
-    public const int Wood = 90;
-    public const int ContinuousSpawn = 91;
-    public const int ConveyorSpawner = 92;
-    public const int LootSpawner = 93;
-    public const int LootSpawnInterval = 94;
-    public const int SingleSpawn = 95;
-    public const int BossOrder = 96;
-    public const int Complete = 97;
-    public const int NextOrderRequest = 98;
-    public const int Order = 99;
-    public const int OrderData = 100;
-    public const int OrderReward = 101;
-    public const int Reject = 102;
-    public const int ResultProcessed = 103;
-    public const int DayCompleteRequest = 104;
-    public const int GameOver = 105;
-    public const int Round = 106;
-    public const int RoundComplete = 107;
-    public const int RoundDuration = 108;
-    public const int RoundInProcess = 109;
-    public const int RoundOver = 110;
-    public const int RoundStartAvailable = 111;
-    public const int RoundStartRequest = 112;
-    public const int RoundStateController = 113;
-    public const int RoundStateViewBehaviour = 114;
-    public const int RoundTimeLeft = 115;
-    public const int AudioSourceBehaviour = 116;
+    public const int AbilityDuration = 21;
+    public const int AbilityType = 22;
+    public const int AbilityVisuals = 23;
+    public const int ActivationChance = 24;
+    public const int BounceStrength = 25;
+    public const int BouncyAbility = 26;
+    public const int ChangeSizesAbility = 27;
+    public const int HookSpeedChangeAbility = 28;
+    public const int SpeedChangeAmount = 29;
+    public const int SwapPositionsAbility = 30;
+    public const int CollidedBy = 31;
+    public const int Collider = 32;
+    public const int Collision = 33;
+    public const int TriggerCollider = 34;
+    public const int TriggeredBy = 35;
+    public const int Cooldown = 36;
+    public const int CooldownLeft = 37;
+    public const int CooldownUp = 38;
+    public const int AddCurrencyRequest = 39;
+    public const int CurrencyStorage = 40;
+    public const int CurrencyTypeId = 41;
+    public const int Gold = 42;
+    public const int Minus = 43;
+    public const int Plus = 44;
+    public const int Withdraw = 45;
+    public const int CustomerBehaviour = 46;
+    public const int BeginDay = 47;
+    public const int EndDay = 48;
+    public const int GameState = 49;
+    public const int GameStateTypeId = 50;
+    public const int RoundCompletion = 51;
+    public const int RoundLoop = 52;
+    public const int RoundPreparation = 53;
+    public const int StateProcessingAvailable = 54;
+    public const int SwitchGameStateRequest = 55;
+    public const int Ascending = 56;
+    public const int AscentAvailable = 57;
+    public const int AscentRequested = 58;
+    public const int Busy = 59;
+    public const int ClosingClaws = 60;
+    public const int CollectingLoot = 61;
+    public const int CollectLootPieceInterval = 62;
+    public const int CollectLootRaycastRadius = 63;
+    public const int CollectLootRequest = 64;
+    public const int Descending = 65;
+    public const int DescentAvailable = 66;
+    public const int DescentRequested = 67;
+    public const int GrapplingHook = 68;
+    public const int GrapplingHookBehaviour = 69;
+    public const int HookSpeedModifier = 70;
+    public const int StopMovementRaycastRadius = 71;
+    public const int XAxisMoveDirection = 72;
+    public const int XAxisMovementAvailable = 73;
+    public const int XAxisSpeed = 74;
+    public const int XMovementLimits = 75;
+    public const int YAxisDownSpeed = 76;
+    public const int YAxisUpSpeed = 77;
+    public const int Applied = 78;
+    public const int Available = 79;
+    public const int BaseRating = 80;
+    public const int Collected = 81;
+    public const int ConsumableIngredient = 82;
+    public const int Consumed = 83;
+    public const int Effect = 84;
+    public const int EffectTargetsLoot = 85;
+    public const int EffectValue = 86;
+    public const int IncreaseValueEffect = 87;
+    public const int Loot = 88;
+    public const int LootEffectsApplier = 89;
+    public const int LootItem = 90;
+    public const int LootItemUI = 91;
+    public const int LootTypeId = 92;
+    public const int Rating = 93;
+    public const int TimerRefillAmount = 94;
+    public const int Wood = 95;
+    public const int ContinuousSpawn = 96;
+    public const int ConveyorSpawner = 97;
+    public const int LootSpawner = 98;
+    public const int LootSpawnInterval = 99;
+    public const int SingleSpawn = 100;
+    public const int BossOrder = 101;
+    public const int Complete = 102;
+    public const int NextOrderRequest = 103;
+    public const int Order = 104;
+    public const int OrderData = 105;
+    public const int OrderReward = 106;
+    public const int Reject = 107;
+    public const int ResultProcessed = 108;
+    public const int DayCompleteRequest = 109;
+    public const int GameOver = 110;
+    public const int Round = 111;
+    public const int RoundComplete = 112;
+    public const int RoundDuration = 113;
+    public const int RoundInProcess = 114;
+    public const int RoundOver = 115;
+    public const int RoundStartAvailable = 116;
+    public const int RoundStartRequest = 117;
+    public const int RoundStateController = 118;
+    public const int RoundStateViewBehaviour = 119;
+    public const int RoundTimeLeft = 120;
+    public const int AudioSourceBehaviour = 121;
 
-    public const int TotalComponents = 117;
+    public const int TotalComponents = 122;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -150,11 +155,15 @@ public static class GameComponentsLookup {
         "Transform",
         "WorldPosition",
         "Ability",
+        "AbilityDuration",
         "AbilityType",
         "AbilityVisuals",
+        "ActivationChance",
         "BounceStrength",
         "BouncyAbility",
         "ChangeSizesAbility",
+        "HookSpeedChangeAbility",
+        "SpeedChangeAmount",
         "SwapPositionsAbility",
         "CollidedBy",
         "Collider",
@@ -195,6 +204,7 @@ public static class GameComponentsLookup {
         "DescentRequested",
         "GrapplingHook",
         "GrapplingHookBehaviour",
+        "HookSpeedModifier",
         "StopMovementRaycastRadius",
         "XAxisMoveDirection",
         "XAxisMovementAvailable",
@@ -270,11 +280,15 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Common.TransformComponent),
         typeof(Code.Gameplay.Common.WorldPosition),
         typeof(Code.Gameplay.Features.Abilities.Ability),
+        typeof(Code.Gameplay.Features.Abilities.AbilityDuration),
         typeof(Code.Gameplay.Features.Abilities.AbilityType),
         typeof(Code.Gameplay.Features.Abilities.AbilityVisualsComponent),
+        typeof(Code.Gameplay.Features.Abilities.ActivationChance),
         typeof(Code.Gameplay.Features.Abilities.BounceStrength),
         typeof(Code.Gameplay.Features.Abilities.BouncyAbility),
         typeof(Code.Gameplay.Features.Abilities.ChangeSizesAbility),
+        typeof(Code.Gameplay.Features.Abilities.HookSpeedChangeAbility),
+        typeof(Code.Gameplay.Features.Abilities.SpeedChangeAmount),
         typeof(Code.Gameplay.Features.Abilities.SwapPositionsAbility),
         typeof(Code.Gameplay.Features.CollidingView.CollidedByComponent),
         typeof(Code.Gameplay.Features.CollidingView.ColliderComponent),
@@ -315,6 +329,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.GrapplingHook.DescentRequested),
         typeof(Code.Gameplay.Features.GrapplingHook.GrapplingHook),
         typeof(Code.Gameplay.Features.GrapplingHook.GrapplingHookBehaviourComponent),
+        typeof(Code.Gameplay.Features.GrapplingHook.HookSpeedModifier),
         typeof(Code.Gameplay.Features.GrapplingHook.StopMovementRaycastRadius),
         typeof(Code.Gameplay.Features.GrapplingHook.XAxisMoveDirection),
         typeof(Code.Gameplay.Features.GrapplingHook.XAxisMovementAvailable),

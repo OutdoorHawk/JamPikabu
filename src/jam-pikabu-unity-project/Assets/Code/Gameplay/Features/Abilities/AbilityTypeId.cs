@@ -7,6 +7,6 @@
         SwapPositions = 2,
         ChangeSizes = 3,
         StickyToHook = 4,
-        
+        HookSpeedChange = 5,
     }
 }

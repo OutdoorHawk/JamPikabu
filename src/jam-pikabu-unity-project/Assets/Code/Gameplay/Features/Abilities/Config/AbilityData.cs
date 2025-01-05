@@ -9,5 +9,6 @@ namespace Code.Gameplay.Features.Abilities.Config
         public AbilityTypeId Type;
         public float Value;
         public float Cooldown;
+        public int ActivationChance = 100;
     }
 }

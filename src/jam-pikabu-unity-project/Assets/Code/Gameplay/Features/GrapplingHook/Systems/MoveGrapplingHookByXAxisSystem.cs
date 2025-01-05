@@ -27,7 +27,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
                 Rigidbody2D hookRigidbody2D = hook.Rigidbody2D;
                 Vector2 currentPosition = hookRigidbody2D.position;
                 Vector2 newPosition = currentPosition;
-                newPosition.x += hook.XAxisMoveDirection * hook.XAxisSpeed * _time.FixedDeltaTime;
+                newPosition.x += hook.XAxisMoveDirection * hook.XAxisSpeed * _time.FixedDeltaTime * hook.HookSpeedModifier;
                 
                 Transform parent = hookRigidbody2D.transform.parent;
                 float minWorldX = parent.TransformPoint(new Vector3(hook.XMovementLimits.x, 0, 0)).x;

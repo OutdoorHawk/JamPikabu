@@ -21,6 +21,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Behaviours
 
         private ISoundService _soundService;
         private CancellationTokenSource _movementBlendSource;
+        private CancellationTokenSource _speedModificationSource;
         private float _lastMoveDirection;
 
         [Inject]
@@ -69,6 +70,11 @@ namespace Code.Gameplay.Features.GrapplingHook.Behaviours
             _soundService.PlayOneShotSound(SoundTypeId.HookDescend);
         }
 
+        public void ApplySpeedChange(float factor, float duration)
+        {
+            ApplySpeedChangeAsync(factor, duration).Forget();
+        }
+
         private async UniTaskVoid CloseAndAscentAsync()
         {
             Entity.isClosingClaws = true;
@@ -82,6 +88,23 @@ namespace Code.Gameplay.Features.GrapplingHook.Behaviours
 
             if (Entity != null)
                 Entity.isClosingClaws = false;
+        }
+
+        private async UniTaskVoid ApplySpeedChangeAsync(float factor, float duration)
+        {
+            _speedModificationSource?.Cancel();
+            _speedModificationSource = CreateLinkedTokenSource(destroyCancellationToken);
+            
+            bool flip = Random.value < 0.5f;
+
+            if (flip)
+                factor *= -1;
+
+            Entity.ReplaceHookSpeedModifier(1 + factor);
+            
+            await DelaySeconds(duration, _speedModificationSource.Token);
+            
+            Entity.ReplaceHookSpeedModifier(1);
         }
     }
 }

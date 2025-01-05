@@ -33,7 +33,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
                 const float moveUpDirection = 1;
                 const float yLimit = 0;
 
-                newPosition.y += moveUpDirection * hook.YAxisUpSpeed * _time.FixedDeltaTime;
+                newPosition.y += moveUpDirection * hook.YAxisUpSpeed * _time.FixedDeltaTime * hook.HookSpeedModifier;
 
                 Transform parent = hookRigidbody2D.transform.parent;
                 float maxWorldY = parent.TransformPoint(new Vector3(0, yLimit, 0)).y;
