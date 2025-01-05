@@ -39,6 +39,9 @@ namespace Code.Gameplay.Features.Abilities.Factory
                 case AbilityTypeId.HookSpeedChange:
                     CreateHookSpeedChangeAbility(ability, typeId);
                     break;
+                case AbilityTypeId.PickupRandomLoot:
+                    CreatePickupRandomLootAbility(ability, typeId);
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(typeId), typeId, null);
             }
@@ -101,6 +104,15 @@ namespace Code.Gameplay.Features.Abilities.Factory
                 .AddAbilityDuration(staticData.Cooldown)
                 .AddSpeedChangeAmount(staticData.Value)
                 .AddActivationChance(staticData.ActivationChance)
+                ;
+        }
+
+        private void CreatePickupRandomLootAbility(GameEntity ability, AbilityTypeId typeId)
+        {
+            AbilityData staticData = AbilityStaticData.GetDataByType(typeId);
+
+            ability
+                .With(x => x.isPickupRandomLootAbility = true)
                 ;
         }
     }

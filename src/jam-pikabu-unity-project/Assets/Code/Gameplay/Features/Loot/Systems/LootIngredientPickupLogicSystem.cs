@@ -56,7 +56,6 @@ namespace Code.Gameplay.Features.Loot.Systems
             {
                 _gameplayLootService.AddCollectedLoot(loot.LootTypeId);
                 loot.isCollected = true;
-                loot.isBusy = true;
             }
 
             private void TryCompleteTimerIfAllLootCollected()

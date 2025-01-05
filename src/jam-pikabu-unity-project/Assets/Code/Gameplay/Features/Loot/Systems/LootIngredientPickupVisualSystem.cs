@@ -53,15 +53,16 @@ namespace Code.Gameplay.Features.Loot.Systems
                         GameMatcher.Loot,
                         GameMatcher.View,
                         GameMatcher.LootTypeId,
-                        GameMatcher.Collected,
-                        GameMatcher.CollectLootRequest
-                    ));
+                        GameMatcher.CollectLootRequest)
+                    .NoneOf(
+                        GameMatcher.Busy));
             }
 
             public void Execute()
             {
                 foreach (var loot in _collectedLoot.GetEntities(_buffer))
                 {
+                    loot.isBusy = true;
                     PlayFlyAnimation(loot);
                 }
 

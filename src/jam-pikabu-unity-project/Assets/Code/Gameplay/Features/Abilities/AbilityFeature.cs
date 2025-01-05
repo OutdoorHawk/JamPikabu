@@ -13,6 +13,7 @@ namespace Code.Gameplay.Features.Abilities
             Add(systems.Create<SwapPositionsAbilitySystem>());
             Add(systems.Create<ChangeSizesAbilitySystem>());
             Add(systems.Create<HookSpeedChangeAbilitySystem>());
+            Add(systems.Create<PickupRandomLootAbilitySystem>());
         }
     }
 }

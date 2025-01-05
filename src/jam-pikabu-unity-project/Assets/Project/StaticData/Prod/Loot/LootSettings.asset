@@ -145,7 +145,7 @@ MonoBehaviour:
     BaseRatingValue: 4
     EffectValue: 0
     SpawnChance: 100
-    AbilityType: 0
+    AbilityType: 5
   - Id: 8
     Type: 8
     ViewPrefab: {fileID: 5505315513054863998, guid: 5e25540141c57d2469d24eb10630057c,
@@ -221,7 +221,7 @@ MonoBehaviour:
     BaseRatingValue: 12
     EffectValue: 0
     SpawnChance: 100
-    AbilityType: 0
+    AbilityType: 6
   - Id: 12
     Type: 12
     ViewPrefab: {fileID: 4082248375854956719, guid: 30edc69210cb2ea4390b70ebcd7a6809,
@@ -341,7 +341,7 @@ MonoBehaviour:
   LootSpawnStartDelay: 0.15
   DelayAfterLootSpawn: 0.4
   MaxLootAmount: 40
-  CollectFlyAnimationDuration: 0.5
+  CollectFlyAnimationDuration: 0.8
   LootItemUI: {fileID: 6122044623407222926, guid: 17a9554d4999c3b43a5c2052ad4cdf08,
     type: 3}
   LootItem: {fileID: 6313876982729068303, guid: 6ff8dfc2cf30dc34cb0e3f68f57ff943,

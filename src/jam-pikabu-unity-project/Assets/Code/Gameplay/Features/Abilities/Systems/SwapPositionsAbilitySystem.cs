@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Code.Common;
 using Code.Gameplay.Features.Abilities.Behaviours;
 using Code.Gameplay.Features.Cooldowns;
 using Entitas;
 using RoyalGold.Sources.Scripts.Game.MVC.Utils;
-using UnityEngine;
+using static Code.Gameplay.Features.Abilities.AbilityExtensions;
 
 namespace Code.Gameplay.Features.Abilities.Systems
 {
@@ -43,12 +42,14 @@ namespace Code.Gameplay.Features.Abilities.Systems
 
                 if (target.hasAbilityVisuals == false)
                     continue;
+
+                _loot.GetEntities(_lootBuffer);
                 
-                GameEntity randomLoot = GetRandomLoot(target);
-                
+                GameEntity randomLoot = GetRandomLoot(target, _lootBuffer, Match);
+
                 if (randomLoot.IsNullOrDestructed())
                     continue;
-                
+
                 AbilityVisuals targetVisuals = target.AbilityVisuals;
                 AbilityVisuals randomLootVisuals = randomLoot.AbilityVisuals;
 
@@ -57,24 +58,12 @@ namespace Code.Gameplay.Features.Abilities.Systems
             }
         }
 
-        private GameEntity GetRandomLoot(GameEntity target)
+        private bool Match(GameEntity loot)
         {
-            _loot.GetEntities(_lootBuffer);
-            _lootBuffer.ShuffleList();
-            _lootBuffer.Remove(target);
-            
-            foreach (GameEntity loot in _lootBuffer)
-            {
-                if (loot.IsNullOrDestructed())
-                    continue;
+            if (loot.hasAbilityVisuals == false)
+                return false;
 
-                if (loot.hasAbilityVisuals == false)
-                    continue;
-
-                return loot;
-            }
-            
-            return null;
+            return true;
         }
     }
 }

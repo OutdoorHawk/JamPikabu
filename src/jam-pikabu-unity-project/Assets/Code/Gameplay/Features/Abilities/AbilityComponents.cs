@@ -19,5 +19,6 @@ namespace Code.Gameplay.Features.Abilities
     [Game] public sealed class HookSpeedChangeAbility : IComponent { }
     [Game] public sealed class SpeedChangeAmount : IComponent { public float Value; }
     
+    [Game] public sealed class PickupRandomLootAbility : IComponent { }
     
 }

@@ -14,6 +14,7 @@ namespace Code.Gameplay.Features.Loot.Systems
             _loot = context.GetGroup(
                 GameMatcher.AllOf(
                     GameMatcher.Loot,
+                    GameMatcher.Collected,
                     GameMatcher.CollectLootRequest
                 ));
         }

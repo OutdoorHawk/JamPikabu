@@ -11,8 +11,6 @@ namespace Code.Gameplay.Features.Abilities.Systems
         private readonly IGroup<GameEntity> _collectingLoot;
         private readonly IGroup<GameEntity> _hook;
         
-        private readonly List<GameEntity> _buffer = new(64);
-
         public HookSpeedChangeAbilitySystem(GameContext context)
         {
             _abilities = context.GetGroup(GameMatcher
@@ -35,7 +33,7 @@ namespace Code.Gameplay.Features.Abilities.Systems
         public void Execute()
         {
             foreach (var loot in _collectingLoot)
-            foreach (var ability in _abilities.GetEntities(_buffer))
+            foreach (var ability in _abilities)
             {
                 if (loot.Id != ability.Target)
                     continue;

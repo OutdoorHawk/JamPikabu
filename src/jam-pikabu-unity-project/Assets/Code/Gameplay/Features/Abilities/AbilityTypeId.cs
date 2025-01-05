@@ -8,5 +8,6 @@
         ChangeSizes = 3,
         StickyToHook = 4,
         HookSpeedChange = 5,
+        PickupRandomLoot = 6,
     }
 }
