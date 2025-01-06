@@ -16,7 +16,7 @@ MonoBehaviour:
   - Id: 1
     Type: 1
     Value: 1.05
-    Cooldown: 4
+    Cooldown: 5
     ActivationChance: 100
   - Id: 2
     Type: 2

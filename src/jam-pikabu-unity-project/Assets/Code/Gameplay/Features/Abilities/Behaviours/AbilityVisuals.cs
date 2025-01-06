@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
@@ -63,18 +64,26 @@ namespace Code.Gameplay.Features.Abilities.Behaviours
         private async UniTaskVoid PlaySwapAsync(Vector3 newPosition)
         {
             ResetTween();
+            
+            CancellationToken cts = gameObject.GetCancellationTokenOnDestroy();
 
             _tween = transform
                 .DOScale(1.2f, SwapDuration / 3)
-                .SetLink(gameObject);
+                .SetLink(gameObject,  LinkBehaviour.KillOnDestroy);
 
             await _tween.AsyncWaitForCompletion();
+
+            if (cts.IsCancellationRequested)
+                return;
 
             _tween = transform
                 .DOScale(0, SwapDuration)
-                .SetLink(gameObject);
+                .SetLink(gameObject, LinkBehaviour.KillOnDestroy);
 
             await _tween.AsyncWaitForCompletion();
+            
+            if (cts.IsCancellationRequested)
+                return;
 
             if (Rigidbody == null)
                 return;
@@ -83,7 +92,7 @@ namespace Code.Gameplay.Features.Abilities.Behaviours
 
             _tween = transform
                 .DOScale(1, SwapDuration)
-                .SetLink(gameObject)
+                .SetLink(gameObject,  LinkBehaviour.KillOnDestroy)
                 .SetEase(Ease.OutBounce);
         }
 
