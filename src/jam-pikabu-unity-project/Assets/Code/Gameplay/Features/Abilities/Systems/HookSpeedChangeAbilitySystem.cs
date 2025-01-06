@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Code.Gameplay.Features.Cooldowns;
-using Entitas;
+﻿using Entitas;
 using UnityEngine;
 
 namespace Code.Gameplay.Features.Abilities.Systems
@@ -10,7 +8,7 @@ namespace Code.Gameplay.Features.Abilities.Systems
         private readonly IGroup<GameEntity> _abilities;
         private readonly IGroup<GameEntity> _collectingLoot;
         private readonly IGroup<GameEntity> _hook;
-        
+
         public HookSpeedChangeAbilitySystem(GameContext context)
         {
             _abilities = context.GetGroup(GameMatcher
@@ -18,12 +16,12 @@ namespace Code.Gameplay.Features.Abilities.Systems
                     GameMatcher.Ability,
                     GameMatcher.Target
                 ));
-            
+
             _collectingLoot = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.Loot,
                     GameMatcher.CollectLootRequest
                 ));
-            
+
             _hook = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.GrapplingHook,
                     GameMatcher.GrapplingHookBehaviour

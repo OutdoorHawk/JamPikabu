@@ -42,6 +42,9 @@ namespace Code.Gameplay.Features.Abilities.Factory
                 case AbilityTypeId.PickupRandomLoot:
                     CreatePickupRandomLootAbility(ability, typeId);
                     break;
+                case AbilityTypeId.SinglePickup:
+                    CreateSinglePickupAbility(ability, typeId);
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(typeId), typeId, null);
             }
@@ -113,6 +116,13 @@ namespace Code.Gameplay.Features.Abilities.Factory
 
             ability
                 .With(x => x.isPickupRandomLootAbility = true)
+                ;
+        }
+
+        private void CreateSinglePickupAbility(GameEntity ability, AbilityTypeId typeId)
+        {
+            ability
+                .With(x => x.isSinglePickupAbility = true)
                 ;
         }
     }

@@ -21,4 +21,6 @@ namespace Code.Gameplay.Features.Abilities
     
     [Game] public sealed class PickupRandomLootAbility : IComponent { }
     
+    [Game] public sealed class SinglePickupAbility : IComponent { }
+    
 }

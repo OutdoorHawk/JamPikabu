@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
@@ -10,12 +9,16 @@ namespace Code.Gameplay.Features.Abilities.Behaviours
     public class AbilityVisuals : MonoBehaviour
     {
         public Rigidbody2D Rigidbody;
+        public SpriteRenderer SpriteRenderer;
+        public Color WrongPickupColor;
 
         public float SwapDuration = 0.25f;
 
         public float ChangeSizeDuration = 0.5f;
         public float BigSize = 1.25f;
         public float SmallSize = 0.75f;
+
+        public float ColorChangeDuration = 0.25f;
 
         private Tween _tween;
 
@@ -27,6 +30,11 @@ namespace Code.Gameplay.Features.Abilities.Behaviours
         public void PlaySwap(Vector3 newPosition)
         {
             PlaySwapAsync(newPosition).Forget();
+        }
+
+        public void PlayWrongCollection()
+        {
+            PlayWrongCollectionAsync().Forget();
         }
 
         public void ChangeSize()
@@ -64,12 +72,12 @@ namespace Code.Gameplay.Features.Abilities.Behaviours
         private async UniTaskVoid PlaySwapAsync(Vector3 newPosition)
         {
             ResetTween();
-            
+
             CancellationToken cts = gameObject.GetCancellationTokenOnDestroy();
 
             _tween = transform
                 .DOScale(1.2f, SwapDuration / 3)
-                .SetLink(gameObject,  LinkBehaviour.KillOnDestroy);
+                .SetLink(gameObject, LinkBehaviour.KillOnDestroy);
 
             await _tween.AsyncWaitForCompletion();
 
@@ -81,7 +89,7 @@ namespace Code.Gameplay.Features.Abilities.Behaviours
                 .SetLink(gameObject, LinkBehaviour.KillOnDestroy);
 
             await _tween.AsyncWaitForCompletion();
-            
+
             if (cts.IsCancellationRequested)
                 return;
 
@@ -92,8 +100,31 @@ namespace Code.Gameplay.Features.Abilities.Behaviours
 
             _tween = transform
                 .DOScale(1, SwapDuration)
-                .SetLink(gameObject,  LinkBehaviour.KillOnDestroy)
+                .SetLink(gameObject, LinkBehaviour.KillOnDestroy)
                 .SetEase(Ease.OutBounce);
+        }
+
+        private async UniTask PlayWrongCollectionAsync()
+        {
+            ResetTween();
+            CancellationToken token = gameObject.GetCancellationTokenOnDestroy();
+
+            _tween = SpriteRenderer
+                    .DOColor(WrongPickupColor, ColorChangeDuration)
+                    .SetLink(gameObject)
+                ;
+
+            await _tween.AsyncWaitForCompletion();
+
+            if (token.IsCancellationRequested)
+                return;
+
+            Rigidbody.AddForce(new Vector2(0, -1.25f), ForceMode2D.Impulse);
+
+            _tween = SpriteRenderer
+                    .DOColor(Color.white, ColorChangeDuration)
+                    .SetLink(gameObject)
+                ;
         }
 
         private void ResetTween()

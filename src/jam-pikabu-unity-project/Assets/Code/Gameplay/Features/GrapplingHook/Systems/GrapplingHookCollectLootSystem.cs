@@ -43,6 +43,11 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
             }
         }
 
+        public void TearDown()
+        {
+            _tearDownToken?.Cancel();
+        }
+
         private async UniTaskVoid CollectLootAsync(GameEntity hook)
         {
             hook.Retain(this);
@@ -72,6 +77,14 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
                     if (loot.IsNullOrDestructed())
                         continue;
 
+                    loot.isMarkedForPickup = true;
+                }
+
+                foreach (var loot in _buffer)
+                {
+                    if (loot.IsNullOrDestructed())
+                        continue;
+
                     loot.isCollectLootRequest = true;
                     loot.Release(this);
                     await DelaySeconds(hook.CollectLootPieceInterval, _tearDownToken.Token);
@@ -81,11 +94,6 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
             hook.isCollectingLoot = false;
             hook.GrapplingHookBehaviour.OpenClaws();
             hook.Release(this);
-        }
-
-        public void TearDown()
-        {
-            _tearDownToken?.Cancel();
         }
     }
 }

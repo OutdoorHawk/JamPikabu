@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Code.Gameplay.Features.Loot;
 using Entitas;
-using UnityEngine;
 using static Code.Gameplay.Features.Abilities.AbilityExtensions;
 
 namespace Code.Gameplay.Features.Abilities.Systems

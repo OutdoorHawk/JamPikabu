@@ -12,6 +12,7 @@ namespace Code.Gameplay.Features.Loot
     [Game] public sealed class LootItemUIComponent : IComponent { public LootItemUI Value; }
     [Game] public sealed class LootItemComponent : IComponent { public LootItem Value; }
     [Game] public sealed class Collected : IComponent { }
+    [Game] public sealed class MarkedForPickup : IComponent { }
     
     [Game] public sealed class EffectTargetsLoot : IComponent { public List<LootTypeId> Value; }
     [Game] public sealed class Applied : IComponent { }

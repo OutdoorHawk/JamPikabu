@@ -34,10 +34,10 @@ namespace Code.Gameplay.Features
             Add(systems.Create<RoundStartFeature>());
             Add(systems.Create<ActiveRoundProcessingFeature>());
 
+            Add(systems.Create<AbilityFeature>());
+            
             Add(systems.Create<LootSpawningFeature>());
             Add(systems.Create<LootConsumeFeature>());
-            
-            Add(systems.Create<AbilityFeature>());
             
             Add(systems.Create<OrdersFeature>());
 

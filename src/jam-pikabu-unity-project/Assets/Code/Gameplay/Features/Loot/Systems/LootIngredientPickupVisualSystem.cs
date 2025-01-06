@@ -178,6 +178,7 @@ namespace Code.Gameplay.Features.Loot.Systems
                 }
 
                 loot.isBusy = false;
+                loot.isMarkedForPickup = false;
             }
         }
     }
