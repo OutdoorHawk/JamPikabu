@@ -23,4 +23,6 @@ namespace Code.Gameplay.Features.Abilities
     
     [Game] public sealed class SinglePickupAbility : IComponent { }
     
+    [Game] public sealed class MultiPickupAbility : IComponent { }
+    
 }

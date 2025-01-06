@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Entitas;
-using UnityEngine;
 
 namespace Code.Gameplay.Features.Abilities.Systems
 {
@@ -16,7 +15,7 @@ namespace Code.Gameplay.Features.Abilities.Systems
                     GameMatcher.Ability,
                     GameMatcher.Target
                 ));
-            
+
             _markedForPickupLoot = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.MarkedForPickup,
                     GameMatcher.Loot,

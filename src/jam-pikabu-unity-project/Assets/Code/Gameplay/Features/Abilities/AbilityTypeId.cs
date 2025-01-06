@@ -9,6 +9,7 @@
         StickyToHook = 4,
         HookSpeedChange = 5,
         PickupRandomLoot = 6,
-        SinglePickup = 7,
+        SinglePickup = 7, 
+        MultiPickup = 8,
     }
 }
