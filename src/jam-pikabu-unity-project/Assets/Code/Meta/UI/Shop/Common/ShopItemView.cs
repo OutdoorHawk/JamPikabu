@@ -2,7 +2,6 @@
 using Code.Meta.UI.Shop.Configs;
 using Code.Meta.UI.Shop.Service;
 using TMPro;
-using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
