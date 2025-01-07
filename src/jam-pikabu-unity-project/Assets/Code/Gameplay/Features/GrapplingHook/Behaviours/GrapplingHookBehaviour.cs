@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using Code.Common.Extensions;
 using Code.Common.Extensions.Animations;
 using Code.Gameplay.Sound;
 using Code.Gameplay.Sound.Service;
@@ -22,6 +23,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Behaviours
         [SerializeField] private float _collectAnimationDelay = 1f;
         [SerializeField] private Color _slowerColor;
         [SerializeField] private Color _fasterColor;
+        [SerializeField] private LayerMask _triggerMask;
 
         private ISoundService _soundService;
         private CancellationTokenSource _movementBlendSource;
@@ -31,6 +33,8 @@ namespace Code.Gameplay.Features.GrapplingHook.Behaviours
 
         private Tween[] _colorTweens;
         private Material[] _materials;
+
+        public bool Triggered { get; private set; }
 
         [Inject]
         private void Construct(ISoundService soundService)
@@ -47,6 +51,14 @@ namespace Code.Gameplay.Features.GrapplingHook.Behaviours
 
             for (int i = 0; i < renderers.Length; i++)
                 _materials[i] = renderers[i].material;
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.layer.Matches(_triggerMask) == false)
+                return;
+            
+            Triggered = true;
         }
 
         public void SetupXMovement(float moveDirection)
@@ -86,6 +98,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Behaviours
             if (Entity.isClosingClaws)
                 return;
 
+            Triggered = false;
             _soundService.PlayOneShotSound(SoundTypeId.HookDescend);
         }
 

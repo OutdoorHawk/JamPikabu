@@ -18,6 +18,7 @@ MonoBehaviour:
   StopMovementRaycastRadius: 0.18
   CollectLootRaycastRadius: 1.65
   CollectLootPieceInterval: 0.1
+  TriggerMovementThreshold: 0.55
   XMovementLimits: {x: -5.4, y: 4.15}
   ViewPrefab: {fileID: 6435023142707515542, guid: 4d7c5494a46212041a040d26156fb0b4,
     type: 3}

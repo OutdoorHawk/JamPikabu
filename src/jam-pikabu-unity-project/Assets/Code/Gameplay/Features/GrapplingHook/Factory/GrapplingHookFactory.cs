@@ -32,6 +32,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Factory
                     .AddCollectLootRaycastRadius(config.CollectLootRaycastRadius)
                     .AddCollectLootPieceInterval(config.CollectLootPieceInterval)
                     .AddXMovementLimits(config.XMovementLimits)
+                    .AddTriggerMovementThreshold(config.TriggerMovementThreshold)
                 ;
         }
     }

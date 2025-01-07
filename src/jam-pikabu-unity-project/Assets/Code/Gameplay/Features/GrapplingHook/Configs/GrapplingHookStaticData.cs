@@ -13,6 +13,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Configs
         public float StopMovementRaycastRadius = 2;
         public float CollectLootRaycastRadius = 1;
         public float CollectLootPieceInterval = 0.15f;
+        public float TriggerMovementThreshold = 0.5f;
       
         public Vector2 XMovementLimits = new(3.5f, 3.5f);
         
