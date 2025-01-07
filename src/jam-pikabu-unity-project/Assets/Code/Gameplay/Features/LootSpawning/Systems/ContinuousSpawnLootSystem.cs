@@ -59,7 +59,7 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
                 if (_currentConfig >= _gameplayLootService.AvailableLoot.Count)
                     _currentConfig = 0;
 
-                LootSetup lootSetup = _gameplayLootService.AvailableLoot[_currentConfig];
+                LootSettingsData lootSetup = _gameplayLootService.AvailableLoot[_currentConfig];
                 _currentConfig++;
                 
                 if (CheckCanSpawn(lootSetup) == false)
@@ -72,7 +72,7 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
             }
         }
 
-        private bool CheckCanSpawn(LootSetup lootSetup)
+        private bool CheckCanSpawn(LootSettingsData lootSetup)
         {
             if (lootSetup.SpawnChance == 100)
                 return true;

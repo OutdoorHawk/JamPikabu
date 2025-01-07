@@ -83,6 +83,50 @@ MonoBehaviour:
     m_Key: PEPPER
     m_Metadata:
       m_Items: []
+  - m_Id: 66631371069804544
+    m_Key: I_LOOT_UNLOCKED_TITLE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66631457187254272
+    m_Key: I_LOOT_UNLOCKED_TAP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66639152598437888
+    m_Key: I_BOUNCY_DESCRIPTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66639209800355840
+    m_Key: I_PEA_DESCRIPTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66639306068021248
+    m_Key: I_SWAP_POSITIONS_DESCRIPTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66639324669759488
+    m_Key: I_CHANGE_SIZES_DESCRIPTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66639354151522304
+    m_Key: I_STICKY_TO_HOOK_DESCRIPTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66639387328466944
+    m_Key: I_PICK_RANDOM_LOOT_DESCRIPTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66639411454103552
+    m_Key: I_SINGLE_PICKUP_DESCRIPTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66639448628219904
+    m_Key: I_STRAWBERRY_DESCRIPTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66641465232805888
+    m_Key: I_MULTI_PICKUP_DESCRIPTION
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

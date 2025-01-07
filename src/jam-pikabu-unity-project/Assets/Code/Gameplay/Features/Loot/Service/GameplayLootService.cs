@@ -20,11 +20,11 @@ namespace Code.Gameplay.Features.Loot.Service
         public event Action OnLootUpdate;
 
         private readonly List<LootTypeId> _collectedLootItems = new();
-        private readonly List<LootSetup> _availableLoot = new();
+        private readonly List<LootSettingsData> _availableLoot = new();
 
         public bool LootIsBusy { get; private set; }
         public IReadOnlyList<LootTypeId> CollectedLootItems => _collectedLootItems;
-        public IReadOnlyList<LootSetup> AvailableLoot => _availableLoot;
+        public IReadOnlyList<LootSettingsData> AvailableLoot => _availableLoot;
 
         public GameplayLootService
         (

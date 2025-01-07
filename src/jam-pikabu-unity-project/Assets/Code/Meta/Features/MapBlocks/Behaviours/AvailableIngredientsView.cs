@@ -25,7 +25,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
         {
             foreach (var type in mapBlockData.AvailableIngredients)
             {
-                LootSetup lootSetup = LootSettings.GetConfig(type);
+                LootSettingsData lootSetup = LootSettings.GetConfig(type);
                 
                 if (lootSetup.CanBeUsedInOrders== false)
                     continue;

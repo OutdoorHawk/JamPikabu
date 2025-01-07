@@ -1,12 +1,11 @@
 ﻿using Code.Gameplay.StaticData.Data;
 using Code.Infrastructure.View;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Code.Gameplay.Features.Loot.Configs
 {
     [CreateAssetMenu(menuName = "StaticData/" + nameof(LootSettingsStaticData), fileName = "LootSettings")]
-    public partial class LootSettingsStaticData : BaseStaticData<LootSetup>
+    public partial class LootSettingsStaticData : BaseStaticData<LootSettingsData>
     {
         public float LootSpawnInterval = 0.02f;
         public float LootSpawnConveyorInterval = 0.5f;
@@ -14,7 +13,7 @@ namespace Code.Gameplay.Features.Loot.Configs
         public float DelayAfterLootSpawn = 0.4f;
         public float MaxLootAmount = 50;
         public float CollectFlyAnimationDuration = 0.5f;
-     
+
         public EntityView LootItemUI;
         public EntityView LootItem;
 
@@ -25,7 +24,7 @@ namespace Code.Gameplay.Features.Loot.Configs
             AddIndex(setup => (int)setup.Type);
         }
 
-        public LootSetup GetConfig(LootTypeId typeId)
+        public LootSettingsData GetConfig(LootTypeId typeId)
         {
             return GetByKey((int)typeId);
         }

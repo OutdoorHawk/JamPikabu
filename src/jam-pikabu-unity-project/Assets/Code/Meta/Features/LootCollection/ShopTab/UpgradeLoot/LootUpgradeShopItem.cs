@@ -115,14 +115,14 @@ namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
 
         private void InitCurrentLevel(in LootLevelsProgressionData item)
         {
-            LootSetup lootSetup = LootSettings.GetConfig(item.Type);
+            LootSettingsData lootSetup = LootSettings.GetConfig(item.Type);
             LootLevelData currentLevel = GetCurrentLevel(item);
             RatingFrom.SetupPrice(lootSetup.BaseRatingValue + currentLevel.RatingBoostAmount, _ratingCurrency, withAnimation: _firstInitComplete);
         }
 
         private void InitNextLevel(in LootLevelsProgressionData item)
         {
-            LootSetup lootSetup = LootSettings.GetConfig(item.Type);
+            LootSettingsData lootSetup = LootSettings.GetConfig(item.Type);
             List<LootLevelData> levels = ProgressionStaticData.GetConfig(item.Type).Levels;
 
             if (item.Level + 1 >= levels.Count)

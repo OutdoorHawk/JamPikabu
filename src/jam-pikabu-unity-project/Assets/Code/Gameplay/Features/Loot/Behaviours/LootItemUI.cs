@@ -51,7 +51,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
            // CanvasGroup.alpha = 0;
         }
 
-        public void InitType(LootSetup setup)
+        public void InitType(LootSettingsData setup)
         {
             Icon.sprite = setup.Icon;
             Type = setup.Type;

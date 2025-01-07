@@ -204,7 +204,7 @@ namespace Code.Gameplay.Features.Orders.Service
         {
             _orderIngredients.good = new List<IngredientData>();
             _orderIngredients.bad = new List<IngredientData>();
-            List<LootSetup> availableLoot = new List<LootSetup>(_gameplayLootService.AvailableLoot);
+            List<LootSettingsData> availableLoot = new List<LootSettingsData>(_gameplayLootService.AvailableLoot);
 
             availableLoot.ShuffleList();
             availableLoot.RemoveAll(setup => setup.CanBeUsedInOrders == false);
@@ -246,7 +246,7 @@ namespace Code.Gameplay.Features.Orders.Service
 
         private static void FillIngredientsRandom
         (
-            List<LootSetup> availableLoot,
+            List<LootSettingsData> availableLoot,
             int countToCreate,
             List<IngredientData> listToFill,
             Vector2Int minMaxRatingFactor,

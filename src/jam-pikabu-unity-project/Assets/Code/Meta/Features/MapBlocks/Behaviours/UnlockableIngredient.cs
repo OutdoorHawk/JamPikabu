@@ -11,6 +11,7 @@ using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.Sound;
 using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
+using Code.Gameplay.Windows;
 using Code.Gameplay.Windows.Factory;
 using Code.Gameplay.Windows.Service;
 using Code.Infrastructure.Localization;
@@ -18,6 +19,7 @@ using Code.Meta.Features.DayLootSettings.Configs;
 using Code.Meta.Features.Days.Service;
 using Code.Meta.Features.LootCollection.Configs;
 using Code.Meta.Features.LootCollection.Service;
+using Code.Meta.Features.LootCollection.Windows;
 using Code.Meta.Features.MainMenu.Service;
 using Code.Meta.Features.MainMenu.Windows;
 using Code.Meta.UI.Common.Replenish;
@@ -308,8 +310,21 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
 
         private async UniTaskVoid CollectNewIngredient()
         {
-            CancellationToken cancellationToken = destroyCancellationToken;
+            CancellationToken token = destroyCancellationToken;
+            
             _uiFactory.SetRaycastAvailable(false);
+            
+            var lootUnlockedWindow = await _windowService.OpenWindow<LootUnlockedWindow>(WindowTypeId.LootUnlockedWindow);
+            
+            _uiFactory.SetRaycastAvailable(true);
+            lootUnlockedWindow.Init(UnlocksIngredient);
+            
+            await UniTask.WaitWhile(() => _windowService.TryGetWindow(out LootUnlockedWindow _), cancellationToken: token);
+            
+            _uiFactory.SetRaycastAvailable(false);
+
+            await DelaySeconds(0.25f, token);
+            
             MoveIngredientToShop(from: FlyToShopStartPosition.transform.position, firstUnlock: true);
             _soundService.PlayOneShotSound(SoundTypeId.CollectIngredient);
 
@@ -319,9 +334,9 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
                 return;
             }
 
-            UnlockIngredientAnimator.WaitForAnimationCompleteAsync(AnimationParameter.Collect.AsHash(), cancellationToken).Forget();
+            UnlockIngredientAnimator.WaitForAnimationCompleteAsync(AnimationParameter.Collect.AsHash(), token).Forget();
 
-            await DelaySeconds(1f, cancellationToken);
+            await DelaySeconds(1f, token);
 
             BigFlyIcon.rectTransform
                 .DOScale(1, UnlockMoveDuration)
@@ -346,7 +361,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
                     .AsyncWaitForCompletion()
                 ;
 
-            await UniTask.Yield(cancellationToken);
+            await UniTask.Yield(token);
             UnlockIngredient();
             _uiFactory.SetRaycastAvailable(true);
         }

@@ -9,7 +9,7 @@ namespace Code.Gameplay.Features.Loot.Service
         event Action OnLootUpdate;
         bool LootIsBusy { get; }
         IReadOnlyList<LootTypeId> CollectedLootItems { get; }
-        IReadOnlyList<LootSetup> AvailableLoot { get; }
+        IReadOnlyList<LootSettingsData> AvailableLoot { get; }
         void CreateLootSpawner();
         void AddCollectedLoot(LootTypeId lootType);
         void SetLootIsConsumingState(bool state);

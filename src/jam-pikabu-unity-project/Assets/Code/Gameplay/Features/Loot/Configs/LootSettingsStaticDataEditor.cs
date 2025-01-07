@@ -20,7 +20,7 @@ namespace Code.Gameplay.Features.Loot.Configs
 
             for (int i = 0; i < Configs.Count; i++)
             {
-                LootSetup config = Configs[i];
+                LootSettingsData config = Configs[i];
                 var loot = Instantiate(LootItem, parent).GetComponent<LootItem>();
                 loot.transform.position += loot.transform.position.SetX(1 * i);
                 loot.Sprite.sprite = config.Icon;

@@ -33,7 +33,7 @@ namespace Code.Gameplay.Features.Loot.Factory
         public GameEntity CreateLootEntity(LootTypeId typeId, Transform parent, Vector2 at, Vector3 spawnRotation)
         {
             GameEntity loot = CreateBaseLoot(typeId, parent, at, spawnRotation);
-            LootSetup lootSetup = GetLootSetup(loot.LootTypeId);
+            LootSettingsData lootSetup = GetLootSetup(loot.LootTypeId);
 
             loot.With(x => AddRating(x, typeId), when: lootSetup.CanBeUsedInOrders);
 
@@ -58,7 +58,7 @@ namespace Code.Gameplay.Features.Loot.Factory
 
         private void CreateWood(GameEntity loot)
         {
-            LootSetup lootSetup = GetLootSetup(loot.LootTypeId);
+            LootSettingsData lootSetup = GetLootSetup(loot.LootTypeId);
 
             loot
                 .With(x => x.isWood = true)
@@ -68,7 +68,7 @@ namespace Code.Gameplay.Features.Loot.Factory
 
         private GameEntity CreateBaseLoot(LootTypeId typeId, Transform parent, Vector2 at, Vector3 spawnRotation)
         {
-            LootSetup lootSetup = GetLootSetup(typeId);
+            LootSettingsData lootSetup = GetLootSetup(typeId);
             var staticData = _staticDataService.Get<LootSettingsStaticData>();
 
             GameEntity loot = CreateGameEntity.Empty()
@@ -86,7 +86,7 @@ namespace Code.Gameplay.Features.Loot.Factory
 
         private void AddRating(GameEntity loot, LootTypeId typeId)
         {
-            LootSetup lootSetup = GetLootSetup(typeId);
+            LootSettingsData lootSetup = GetLootSetup(typeId);
 
             loot.AddBaseRating(lootSetup.BaseRatingValue)
                 .With(x => x.isConsumableIngredient = true);
@@ -99,7 +99,7 @@ namespace Code.Gameplay.Features.Loot.Factory
             }
         }
 
-        private LootSetup GetLootSetup(LootTypeId typeId)
+        private LootSettingsData GetLootSetup(LootTypeId typeId)
         {
             var staticData = _staticDataService.Get<LootSettingsStaticData>();
             var lootSetup = staticData.GetConfig(typeId);

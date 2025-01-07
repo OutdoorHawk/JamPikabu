@@ -14,6 +14,7 @@
         OrderWindow = 13,
         ShopWindow = 14,
         Settings = 15,
+        LootUnlockedWindow = 16,
         
         Count
     }

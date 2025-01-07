@@ -55,7 +55,7 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
                 if (_currentConfig >= _gameplayLootService.AvailableLoot.Count)
                     _currentConfig = 0;
 
-                LootSetup lootSetup = _gameplayLootService.AvailableLoot[_currentConfig];
+                LootSettingsData lootSetup = _gameplayLootService.AvailableLoot[_currentConfig];
                 Transform spawn = GetSpawnPoint();
                 _lootFactory.CreateLootEntity(lootSetup.Type, _provider.Context.LootParent, spawn.position, spawn.rotation.eulerAngles);
                 _currentConfig++;
