@@ -450,9 +450,9 @@ MonoBehaviour:
       m_LocalVariables: []
     LocalizedDescription:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 66641465232805888
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0

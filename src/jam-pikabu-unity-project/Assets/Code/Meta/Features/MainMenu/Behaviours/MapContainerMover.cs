@@ -97,6 +97,7 @@ namespace Code.Meta.Features.MainMenu.Behaviours
                 foreach (LevelButton levelButton in segment.LevelButtons)
                 {
                     _currentSegment = Mathf.Clamp(i - 2, 0, _totalSegments - SEGMENTS_ON_SCREEN);
+                    
                     if (_daysService.TryGetDayProgress(levelButton.DayId, out _) == false)
                     {
                         MainScroll.content.anchoredPosition = CalculateTargetPosition(_currentSegment);
@@ -197,7 +198,7 @@ namespace Code.Meta.Features.MainMenu.Behaviours
                 bool allLevelsCompletedInSegment = true;
 
                 // Проверяем все уровни предыдущего сегмента
-                MapBlock previousSegment = _segments[_currentSegment + SEGMENTS_ON_SCREEN - 2];
+                MapBlock previousSegment = _segments[_currentSegment + SEGMENTS_ON_SCREEN - 3];
                 foreach (LevelButton levelButton in previousSegment.LevelButtons)
                 {
                     if (_daysService.TryGetDayProgress(levelButton.DayId, out _) == false)

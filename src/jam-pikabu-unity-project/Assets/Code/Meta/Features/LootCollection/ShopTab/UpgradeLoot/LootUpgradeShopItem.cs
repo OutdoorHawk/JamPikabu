@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Code.Common.Entity;
 using Code.Common.Extensions;
+using Code.Gameplay.Features.Abilities;
 using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation;
 using Code.Gameplay.Features.Currency.Config;
@@ -11,11 +12,11 @@ using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.Sound;
 using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
-using Code.Gameplay.Windows.Service;
 using Code.Meta.Features.LootCollection.Configs;
 using Code.Meta.Features.LootCollection.Data;
 using Code.Meta.UI.Common;
-using Code.Meta.UI.Shop.Common;
+using Code.Meta.UI.PreviewItem;
+using Code.Meta.UI.PreviewItem.Service;
 using Coffee.UIExtensions;
 using TMPro;
 using UnityEngine;
@@ -27,6 +28,7 @@ namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
 {
     public class LootUpgradeShopItem : MonoBehaviour
     {
+        public LootTypeId TypeId;
         public Image Icon;
         public Image RatingArrow;
         public TMP_Text Name;
@@ -36,7 +38,8 @@ namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
         public PriceInfo RatingTo;
         public PriceInfo UpgradePrice;
         public TMP_Text MaxReached;
-        public LootTypeId TypeId;
+        public Button IconButton;
+        public GameObject InfoPin;
 
         public Image AvailableButton;
         public Image NotAvailableButton;
@@ -46,11 +49,12 @@ namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
         private IStaticDataService _staticData;
         private IGameplayCurrencyService _gameplayCurrencyService;
         private ICurrencyFactory _currencyFactory;
+        private ISoundService _soundService;
+        private IPreviewWindowService _previewWindowService;
 
         private bool _firstInitComplete;
         private CostSetup _upgradePrice;
         private CurrencyTypeId _ratingCurrency;
-        private ISoundService _soundService;
 
         public LootTypeId Type => TypeId;
         public bool MaxLevelReached { get; private set; }
@@ -63,10 +67,11 @@ namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
             IStaticDataService staticData,
             IGameplayCurrencyService gameplayCurrencyService,
             ICurrencyFactory currencyFactory,
-            IWindowService windowService,
-            ISoundService soundService
+            ISoundService soundService,
+            IPreviewWindowService previewWindowService
         )
         {
+            _previewWindowService = previewWindowService;
             _soundService = soundService;
             _currencyFactory = currencyFactory;
             _gameplayCurrencyService = gameplayCurrencyService;
@@ -77,12 +82,14 @@ namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
         {
             _gameplayCurrencyService.CurrencyChanged += RefreshState;
             UpgradeButton.onClick.AddListener(PurchaseUpgrade);
+            IconButton.onClick.AddListener(OpenPreviewWindow);
         }
 
         private void OnDestroy()
         {
             _gameplayCurrencyService.CurrencyChanged -= RefreshState;
             UpgradeButton.onClick.RemoveListener(PurchaseUpgrade);
+            IconButton.onClick.RemoveListener(OpenPreviewWindow);
         }
 
         public void Init(in LootLevelsProgressionData item)
@@ -101,6 +108,7 @@ namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
             InitCurrentLevel(in item);
             InitNextLevel(in item);
             InitUpgradePrice(in item);
+            InitInfoButton(in item);
             UpdateAvailable();
             _firstInitComplete = true;
         }
@@ -160,6 +168,21 @@ namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
             return levels[item.Level];
         }
 
+        private void InitInfoButton(in LootLevelsProgressionData item)
+        {
+            LootSettingsData lootSetup = LootSettings.GetConfig(item.Type);
+
+            if (lootSetup.AbilityType == AbilityTypeId.None)
+            {
+                IconButton.enabled = false;
+                InfoPin.DisableElement();
+                return;
+            }
+
+            IconButton.enabled = true;
+            InfoPin.EnableElement();
+        }
+
         private void UpdateAvailable()
         {
             ResetAll();
@@ -173,7 +196,7 @@ namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
                 return;
             }
 
-            int goldAmount = _gameplayCurrencyService.GetCurrencyOfType(_upgradePrice.CurrencyType,false);
+            int goldAmount = _gameplayCurrencyService.GetCurrencyOfType(_upgradePrice.CurrencyType, false);
 
             if (goldAmount >= _upgradePrice.Amount)
                 SetCanUpgrade();
@@ -235,6 +258,20 @@ namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
             _soundService.PlayOneShotSound(SoundTypeId.PurchasedQuota);
         }
 
+        private void OpenPreviewWindow()
+        {
+            LootSettingsData lootSetup = LootSettings.GetConfig(Type);
+
+            var parameters = new PreviewItemWindowParameters()
+            {
+                Icon = lootSetup.Icon,
+                Name = lootSetup.LocalizedName,
+                Description = lootSetup.LocalizedDescription
+            };
+
+            _previewWindowService.ShowWindow(parameters);
+        }
+
         private void PlayAnimation()
         {
             int upgradePriceAmount = _upgradePrice.Amount;
@@ -267,7 +304,7 @@ namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
             NotAvailableButton.DisableElement();
             UpgradePrice.AmountText.color = AvailableColor;
         }
-        
+
         private void SetNotAvailableButtonColors()
         {
             AvailableButton.DisableElement();

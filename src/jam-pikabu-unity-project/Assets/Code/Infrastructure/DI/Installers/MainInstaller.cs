@@ -54,6 +54,7 @@ using Code.Meta.Features.LootCollection.Service;
 using Code.Meta.Features.MainMenu.Service;
 using Code.Meta.Features.MainMenu.UIFactory;
 using Code.Meta.UI.HardCurrencyHolder.Service;
+using Code.Meta.UI.PreviewItem.Service;
 using Code.Meta.UI.Shop.Factory;
 using Code.Meta.UI.Shop.Service;
 using Code.Meta.UI.Shop.WindowService;
@@ -154,6 +155,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.BindInterfacesTo<MapMenuService>().AsSingle();
             Container.BindInterfacesTo<BonusLevelService>().AsSingle();
             Container.BindInterfacesTo<NotificationTextService>().AsSingle();
+            Container.BindInterfacesTo<PreviewWindowService>().AsSingle();
             Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
             Container.Bind<IMousePositionService>().To<MousePositionService>().AsSingle();
             Container.Bind<ICameraProvider>().To<CameraProvider>().AsSingle();
