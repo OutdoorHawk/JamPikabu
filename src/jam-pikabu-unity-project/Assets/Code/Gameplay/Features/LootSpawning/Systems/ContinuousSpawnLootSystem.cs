@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Code.Gameplay.Features.Cooldowns;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.Features.Loot.Factory;
@@ -50,7 +51,7 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
         {
             foreach (var spawner in _entities.GetEntities(_buffer))
             {
-                if (_activeLoot.GetEntities().Length >= LootStaticData.MaxLootAmount)
+                if (_activeLoot.count >= LootStaticData.MaxLootAmount)
                 {
                     spawner.isDestructed = true;
                     continue;
@@ -62,7 +63,10 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
                 LootSettingsData lootSetup = _gameplayLootService.AvailableLoot[_currentConfig];
                 _currentConfig++;
                 
-                if (CheckCanSpawn(lootSetup) == false)
+                if (CheckSpawnChance(lootSetup) == false)
+                    continue;
+                
+                if (CheckTypeMaxAmountReached(lootSetup))
                     continue;
                 
                 Transform spawn = GetSpawnPoint();
@@ -72,7 +76,7 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
             }
         }
 
-        private bool CheckCanSpawn(LootSettingsData lootSetup)
+        private bool CheckSpawnChance(LootSettingsData lootSetup)
         {
             if (lootSetup.SpawnChance == 100)
                 return true;
@@ -80,6 +84,21 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
             int value = Random.Range(0, 101);
             
             if (lootSetup.SpawnChance >= value)
+                return true;
+
+            return false;
+        }
+        
+        private bool CheckTypeMaxAmountReached(LootSettingsData lootSetup)
+        {
+            float typeMaxAmount = LootStaticData.MaxLootAmount / _gameplayLootService.AvailableLoot.Count;
+
+            List<GameEntity> typedLoot = _activeLoot
+                .GetEntities()
+                .ToList()
+                .FindAll(x => x.LootTypeId == lootSetup.Type);
+
+            if (typedLoot.Count >= typeMaxAmount)
                 return true;
 
             return false;

@@ -44,6 +44,7 @@ namespace Code.Gameplay.Features.Abilities.Systems
                 if (_markedForPickupLoot.count == 1)
                 {
                     loot.isCollectLootRequest = false;
+                    loot.isMarkedForPickup = false;
                     loot.AbilityVisuals.PlayWrongCollection();
                 }
             }
