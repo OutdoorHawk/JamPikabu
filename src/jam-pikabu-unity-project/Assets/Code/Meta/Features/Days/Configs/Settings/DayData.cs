@@ -15,6 +15,6 @@ namespace Code.Meta.Features.Days.Configs
         public OrderTag AvailableOrderTags;
         [FoldoutGroup("Data")] public int OrdersAmount = 3;
         [FoldoutGroup("Data")] public float DayGoldFactor = 1;
-        [FoldoutGroup("Data")] public SceneTypeId SceneId = SceneTypeId.GameplayScene;
+        [FoldoutGroup("Data")] public SceneTypeId SceneId = SceneTypeId.DefaultGameplayScene;
     }
 }

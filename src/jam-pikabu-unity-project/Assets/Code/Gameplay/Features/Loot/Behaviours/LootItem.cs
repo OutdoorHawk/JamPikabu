@@ -37,7 +37,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
 
         private void InitDayType()
         {
-            if (_daysService.GetDayData().SceneId is SceneTypeId.NoGravityScene)
+            if (_daysService.GetDayData().SceneId is SceneTypeId.NoGravityGameplayScene)
             {
                 Entity.Rigidbody2D.gravityScale = 0;
             }

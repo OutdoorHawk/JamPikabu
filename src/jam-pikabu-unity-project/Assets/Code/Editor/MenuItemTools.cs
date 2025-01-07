@@ -24,7 +24,7 @@ namespace Code.Editor
         [MenuItem("Tools/Scenes/Open Gameplay Scene", false, 2)]
         public static void OpenGameplayScene()
         {
-            EditorSceneManager.OpenScene($"Assets/Project/Scenes/{SceneTypeId.GameplayScene}.unity", OpenSceneMode.Single);
+            EditorSceneManager.OpenScene($"Assets/Project/Scenes/Gameplay/{SceneTypeId.DefaultGameplayScene}.unity", OpenSceneMode.Single);
         }
         
         [MenuItem("Tools/Scenes/Open Loot Setup", false, 2)]

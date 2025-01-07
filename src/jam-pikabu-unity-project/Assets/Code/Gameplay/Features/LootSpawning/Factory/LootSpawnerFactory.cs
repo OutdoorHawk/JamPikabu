@@ -25,7 +25,7 @@ namespace Code.Gameplay.Features.LootSpawning.Factory
 
             switch (dayData.SceneId)
             {
-                case SceneTypeId.GameplayScene:
+                case SceneTypeId.DefaultGameplayScene:
                     return CreateSingleSpawner();
                 case SceneTypeId.ConveyorGameplayScene:
                     return CreateConveyorSpawner();
