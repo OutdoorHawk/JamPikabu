@@ -11,5 +11,6 @@
         PickupRandomLoot = 6,
         SinglePickup = 7, 
         MultiPickup = 8,
+        HeavyObject = 9,
     }
 }
