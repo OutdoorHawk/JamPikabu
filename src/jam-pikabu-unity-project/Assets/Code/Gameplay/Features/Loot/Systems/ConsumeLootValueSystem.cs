@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Factory;
 using Code.Gameplay.Features.Orders.Config;
 using Code.Gameplay.Features.Orders.Service;
@@ -37,16 +38,31 @@ namespace Code.Gameplay.Features.Loot.Systems
         public void Execute()
         {
             foreach (var _ in _lootApplier)
-            foreach (var loot in _readyLoot.GetEntities(_buffer))
             {
-                loot.isConsumed = true;
+                ApplyOrderRatingFactors();
+                
+                foreach (var loot in _readyLoot.GetEntities(_buffer))
+                {
+                    loot.isConsumed = true;
 
-                if (_ordersService.TryGetIngredientData(loot.LootTypeId, out IngredientData data) == false)
-                    continue;
+                    if (_ordersService.TryGetIngredientData(loot.LootTypeId, out IngredientData data) == false)
+                        continue;
 
-                int ratingAmount = loot.Rating * data.RatingFactor;
-                _currencyFactory.CreateAddCurrencyRequest(data.RatingType, ratingAmount, ratingAmount);
+                    int ratingAmount = loot.Rating * data.RatingFactor;
+                    _currencyFactory.CreateAddCurrencyRequest(data.RatingType, ratingAmount, ratingAmount);
+                }
             }
+        }
+
+        private void ApplyOrderRatingFactors()
+        {
+            if (_readyLoot.count == 0)
+                return;
+            
+            if (_ordersService.TryGetBonusRating(out int ratingAmount) == false)
+                return;
+            
+            _currencyFactory.CreateAddCurrencyRequest(CurrencyTypeId.Plus, ratingAmount, ratingAmount);
         }
     }
 }

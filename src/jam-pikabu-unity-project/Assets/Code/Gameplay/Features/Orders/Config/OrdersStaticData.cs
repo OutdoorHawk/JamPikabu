@@ -8,6 +8,8 @@ namespace Code.Gameplay.Features.Orders.Config
     public class OrdersStaticData : BaseStaticData<OrderData>
     {
         public float BadIngredientPenaltyFactor = 0.5f;
+        public float OrderCompletedRatingBonusFactor = 0.15f;
+        public float PerfectOrderRatingBonusFactor = 0.25f;
 
         public List<OrderIconData> IconsPool;
         

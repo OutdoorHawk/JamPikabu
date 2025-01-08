@@ -41,6 +41,7 @@ namespace Code.Gameplay.Features.Orders.Service
         public int MaxOrders => _daysService.GetDayData().OrdersAmount;
 
         public (List<IngredientData> good, List<IngredientData> bad) OrderIngredients => _orderIngredients;
+        public OrdersStaticData OrdersData => _ordersData;
 
         public OrdersService
         (
@@ -73,11 +74,6 @@ namespace Code.Gameplay.Features.Orders.Service
             OnOrderUpdated?.Invoke();
             _gameplayLootService.CreateLootSpawner();
             return _ordersFactory.CreateOrder(order);
-        }
-
-        public IngredientData GetIngredientData(LootTypeId lootTypeId)
-        {
-            return _orderIngredientCostDict.GetValueOrDefault(lootTypeId);
         }
 
         public bool TryGetIngredientData(LootTypeId lootTypeId, out IngredientData ingredientData)
@@ -121,10 +117,10 @@ namespace Code.Gameplay.Features.Orders.Service
         public float GetPenaltyFactor()
         {
             (List<IngredientData> good, List<IngredientData> bad) = OrderIngredients;
-            
+
             if (good == null)
                 return 0;
-            
+
             int total = good.Sum(data => data.Amount);
 
             float penaltyFactor = ApplyPenaltyFactor(bad, total);
@@ -166,6 +162,49 @@ namespace Code.Gameplay.Features.Orders.Service
             return new CostSetup(reward.CurrencyType, Mathf.RoundToInt(reward.Amount * _daysService.GetDayGoldFactor()));
         }
 
+        public bool TryGetBonusRating(out int bonusRatingAmount)
+        {
+            int goodRatingSum = 0;
+            bonusRatingAmount = 0;
+
+            foreach (var lootData in _gameplayLootService.CollectedLoot)
+            {
+                if (TryGetIngredientData(lootData.Type, out IngredientData data) == false)
+                    continue;
+
+                if (data.IngredientType != IngredientTypeId.Good)
+                    continue;
+
+                int ratingAmount = lootData.RatingAmount * data.RatingFactor;
+                goodRatingSum += ratingAmount;
+            }
+
+            if (goodRatingSum == 0)
+                return false;
+
+            if (CanApplyOrderCompletedFactor() == false)
+                return false;
+
+            bonusRatingAmount += Mathf.RoundToInt(goodRatingSum * OrdersData.OrderCompletedRatingBonusFactor);
+
+            if (CanApplyPerfectOrderFactor())
+            {
+                bonusRatingAmount += Mathf.RoundToInt(goodRatingSum * OrdersData.PerfectOrderRatingBonusFactor);
+            }
+
+            return true;
+        }
+
+        public bool CanApplyOrderCompletedFactor()
+        {
+            return GetOrderProgress() >= 1;
+        }
+
+        public bool CanApplyPerfectOrderFactor()
+        {
+            return GetOrderProgress() >= 1 && GetPenaltyFactor() >= 1;
+        }
+
         private void InitCurrentDayOrders(int currentDay)
         {
             DayData dayData = _daysService.GetDayData();
@@ -184,7 +223,7 @@ namespace Code.Gameplay.Features.Orders.Service
 
             SetupIcons();
         }
-        
+
         private void SetupIcons()
         {
             _iconsBuffer.Clear();
@@ -237,8 +276,8 @@ namespace Code.Gameplay.Features.Orders.Service
                 IngredientTypeId.Bad,
                 _orderIngredients.good
             );
-            
-            if (orderSetup.OverrideIcon != null) 
+
+            if (orderSetup.OverrideIcon != null)
                 orderSetup.OrderIcon = orderSetup.OverrideIcon;
             else
                 orderSetup.OrderIcon = GetOrderIcon();
@@ -285,7 +324,7 @@ namespace Code.Gameplay.Features.Orders.Service
         private Sprite GetOrderIcon()
         {
             _currentIconIndex++;
-            
+
             if (_currentIconIndex >= _iconsBuffer.Count)
                 _currentIconIndex = 0;
 

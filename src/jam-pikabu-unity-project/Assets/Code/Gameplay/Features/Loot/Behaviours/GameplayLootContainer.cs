@@ -12,9 +12,12 @@ using Code.Gameplay.Features.Loot.UIFactory;
 using Code.Gameplay.Features.Orders;
 using Code.Gameplay.Features.Orders.Config;
 using Code.Gameplay.Features.Orders.Service;
+using Code.Gameplay.Features.TextNotification;
+using Code.Gameplay.Features.TextNotification.Service;
 using Code.Gameplay.Sound;
 using Code.Gameplay.Sound.Service;
 using Code.Gameplay.Windows.Service;
+using Code.Infrastructure.Localization;
 using Cysharp.Threading.Tasks;
 using Entitas;
 using UnityEngine;
@@ -28,7 +31,8 @@ namespace Code.Gameplay.Features.Loot.Behaviours
     public class GameplayLootContainer : MonoBehaviour
     {
         public GridLayoutGroup LootGrid;
-        public Image VatIcon;
+        public RectTransform VatIcon;
+        public RectTransform SpecialTextPosition;
         public float StartFlyToVatAnimationDelay = 0.5f;
 
         private IGameplayLootService _gameplayLootService;
@@ -36,13 +40,15 @@ namespace Code.Gameplay.Features.Loot.Behaviours
         private IOrdersService _ordersService;
         private IWindowService _windowService;
         private ICurrencyFactory _currencyFactory;
+        private ISoundService _soundService;
+        private INotificationTextService _notificationText;
+        private ILocalizationService _localizationService;
 
         public readonly Dictionary<LootTypeId, LootItemUI> ItemsByLootType = new();
 
         private readonly List<UniTask> _tasksBuffer = new(16);
-        
+
         private CancellationTokenSource _refreshSource = new();
-        private ISoundService _soundService;
 
         [Inject]
         private void Construct
@@ -52,9 +58,13 @@ namespace Code.Gameplay.Features.Loot.Behaviours
             IOrdersService ordersService,
             IWindowService windowService,
             ICurrencyFactory currencyFactory,
-            ISoundService soundService
+            ISoundService soundService,
+            INotificationTextService notificationText,
+            ILocalizationService localizationService
         )
         {
+            _localizationService = localizationService;
+            _notificationText = notificationText;
             _soundService = soundService;
             _currencyFactory = currencyFactory;
             _windowService = windowService;
@@ -75,7 +85,10 @@ namespace Code.Gameplay.Features.Loot.Behaviours
 
         public async UniTask AnimateFlyToVat(IGroup<GameEntity> consumedLoot)
         {
-            await ProcessAnimation(consumedLoot);
+            await ProcessLootAnimation(consumedLoot);
+            await PlayBonusRatingAnimationAsync();
+            await DelaySeconds(0.4f, _refreshSource.Token);
+            //await UniTask.WhenAll(_tasksBuffer);
         }
 
         private void RefreshCurrentOrder()
@@ -146,15 +159,15 @@ namespace Code.Gameplay.Features.Loot.Behaviours
             });
         }
 
-        private async UniTask ProcessAnimation(IGroup<GameEntity> consumedLoot)
+        private async UniTask ProcessLootAnimation(IGroup<GameEntity> consumedLoot)
         {
             const float interval = 0.25f;
             _tasksBuffer.Clear();
 
             ResetToken();
-            
+
             await DelaySeconds(StartFlyToVatAnimationDelay, _refreshSource.Token);
-            
+
             foreach (var lootItemUI in ItemsByLootType.Values)
             {
                 PlayCurrencyAnimation(lootItemUI, consumedLoot);
@@ -171,8 +184,6 @@ namespace Code.Gameplay.Features.Loot.Behaviours
                     _tasksBuffer.Add(task);
                 }
             }
-
-            await UniTask.WhenAll(_tasksBuffer);
         }
 
         private void PlayCurrencyAnimation(LootItemUI lootItemUI, IGroup<GameEntity> consumedLoot)
@@ -198,8 +209,8 @@ namespace Code.Gameplay.Features.Loot.Behaviours
             {
                 Type = data.RatingType,
                 Count = countRating,
-                TextPrefix = data.IngredientType == IngredientTypeId.Good 
-                    ? "+" 
+                TextPrefix = data.IngredientType == IngredientTypeId.Good
+                    ? "+"
                     : "-",
                 StartPosition = lootItemUI.transform.position,
                 EndPosition = progressBar.RatingFlyPos.transform.position,
@@ -208,6 +219,51 @@ namespace Code.Gameplay.Features.Loot.Behaviours
 
             _soundService.PlaySound(SoundTypeId.Soft_Currency_Collect);
             _currencyFactory.PlayCurrencyAnimation(parameters);
+        }
+
+        private async UniTask PlayBonusRatingAnimationAsync()
+        {
+            if (_ordersService.TryGetBonusRating(out int ratingAmount) == false)
+                return;
+            
+            await DelaySeconds(0.25f, _refreshSource.Token);
+
+            OrdersStaticData ordersData = _ordersService.OrdersData;
+
+            _windowService.TryGetWindow(out PlayerHUDWindow window);
+            var progressBar = window.GetComponentInChildren<RatingProgressBar>();
+
+            string notificationText = "";
+
+            if (_ordersService.CanApplyPerfectOrderFactor())
+            {
+                notificationText = _localizationService["GAMEPLAY/PERFECT_ORDER", (ordersData.PerfectOrderRatingBonusFactor * 100).ToString("##")];
+            }
+            else if (_ordersService.CanApplyOrderCompletedFactor())
+            {
+                notificationText = _localizationService["GAMEPLAY/COMPLETED_ORDER", (ordersData.OrderCompletedRatingBonusFactor * 100).ToString("##")];
+            }
+            
+            var parameters = new CurrencyAnimationParameters
+            {
+                Type = CurrencyTypeId.Plus,
+                Count = ratingAmount,
+                OverrideText = true,
+                TextPrefix = string.Empty,
+                StartPosition = SpecialTextPosition.position,
+                EndPosition = progressBar.RatingFlyPos.transform.position,
+                StartReplenishCallback = () => _currencyFactory.CreateAddCurrencyRequest(CurrencyTypeId.Plus, 0, -ratingAmount)
+            };
+            
+            var notificationTextParameters = new NotificationTextParameters()
+            {
+                StartPosition = SpecialTextPosition.position,
+                Text = notificationText
+            };
+
+            _soundService.PlaySound(SoundTypeId.Soft_Currency_Collect);
+            _currencyFactory.PlayCurrencyAnimation(parameters);
+            _notificationText.ShowNotificationText(notificationTextParameters);
         }
 
         private void ResetToken()

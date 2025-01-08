@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Loot.Configs;
+using Code.Gameplay.Features.Loot.Data;
 using Code.Gameplay.Features.LootSpawning.Factory;
 using Code.Gameplay.StaticData;
 using Code.Meta.Features.BonusLevel.Config;
@@ -20,11 +21,13 @@ namespace Code.Gameplay.Features.Loot.Service
         public event Action OnLootUpdate;
 
         private readonly List<LootTypeId> _collectedLootItems = new();
+        private readonly List<CollectedLootData> _collectedLoot = new();
         private readonly List<LootSettingsData> _availableLoot = new();
 
         public bool LootIsBusy { get; private set; }
         public IReadOnlyList<LootTypeId> CollectedLootItems => _collectedLootItems;
         public IReadOnlyList<LootSettingsData> AvailableLoot => _availableLoot;
+        public IReadOnlyList<CollectedLootData> CollectedLoot => _collectedLoot;
 
         public GameplayLootService
         (
@@ -44,9 +47,10 @@ namespace Code.Gameplay.Features.Loot.Service
             _lootFactory.CreateLootSpawner();
         }
 
-        public void AddCollectedLoot(LootTypeId lootType)
+        public void AddCollectedLoot(LootTypeId lootType, int ratingAmount)
         {
             _collectedLootItems.Add(lootType);
+            _collectedLoot.Add(new CollectedLootData { Type = lootType, RatingAmount = ratingAmount });
             NotifyLootUpdated();
         }
 
@@ -58,6 +62,7 @@ namespace Code.Gameplay.Features.Loot.Service
         public void ClearCollectedLoot()
         {
             _collectedLootItems.Clear();
+            _collectedLoot.Clear();
             NotifyLootUpdated();
         }
 

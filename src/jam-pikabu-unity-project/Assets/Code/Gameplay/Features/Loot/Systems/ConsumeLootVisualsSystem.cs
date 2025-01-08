@@ -19,6 +19,7 @@ namespace Code.Gameplay.Features.Loot.Systems
         {
             _windowService = windowService;
             _gameplayLootService = gameplayLootService;
+            
             _consumedLoot = context.GetGroup(
                 GameMatcher.AllOf(
                     GameMatcher.Loot,
@@ -54,11 +55,8 @@ namespace Code.Gameplay.Features.Loot.Systems
 
             _windowService.TryGetWindow<PlayerHUDWindow>(out var hud);
             var lootContainer = hud.GetComponentInChildren<GameplayLootContainer>();
-            var orderView = hud.OrderViewBehaviour;
 
             await lootContainer.AnimateFlyToVat(_consumedLoot);
-           // orderView.InitOrderFillProgress();
-            await DelaySeconds(0, orderView.destroyCancellationToken);
 
             foreach (var loot in _consumedLoot)
                 loot.isDestructed = true;

@@ -12,9 +12,9 @@ namespace Code.Gameplay.Features.Orders.Service
         int OrdersCompleted { get; }
         int MaxOrders { get; }
         (List<IngredientData> good, List<IngredientData> bad) OrderIngredients { get; }
+        OrdersStaticData OrdersData { get; }
         void InitDayBegin();
         GameEntity CreateOrder();
-        IngredientData GetIngredientData(LootTypeId lootTypeId);
         bool TryGetIngredientData(LootTypeId lootTypeId, out IngredientData ingredientData);
         OrderData GetCurrentOrder();
         bool CheckAllOrdersCompleted();
@@ -24,5 +24,8 @@ namespace Code.Gameplay.Features.Orders.Service
         void GameOver();
         bool OrderPassesConditions();
         CostSetup GetRewardForOrder();
+        bool TryGetBonusRating(out int bonusRatingAmount);
+        bool CanApplyOrderCompletedFactor();
+        bool CanApplyPerfectOrderFactor();
     }
 }

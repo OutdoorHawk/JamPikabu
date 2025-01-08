@@ -19,6 +19,14 @@ MonoBehaviour:
     m_Key: ORDER
     m_Metadata:
       m_Items: []
+  - m_Id: 67078442042216448
+    m_Key: PERFECT_ORDER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67078469858840576
+    m_Key: COMPLETED_ORDER
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
