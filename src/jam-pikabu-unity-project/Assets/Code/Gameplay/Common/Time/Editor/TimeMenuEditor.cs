@@ -10,12 +10,13 @@ namespace Code.Gameplay.Common.Time.Editor
         private float _timeScale;
         private ITimeService _timeService;
 
+        /*
         [MenuItem("Tools/TimeMenu")]
         public static void ShowWindow()
         {
             var window = GetWindow<TimeMenuEditor>(false, "Time Menu", true);
             window.minSize = new Vector2(300, 100);
-        }
+        }*/
 
         private void OnEnable()
         {

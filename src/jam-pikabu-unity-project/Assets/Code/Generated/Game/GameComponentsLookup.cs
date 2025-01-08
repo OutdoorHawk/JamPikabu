@@ -58,85 +58,88 @@ public static class GameComponentsLookup {
     public const int Plus = 47;
     public const int Withdraw = 48;
     public const int CustomerBehaviour = 49;
-    public const int BeginDay = 50;
-    public const int EndDay = 51;
-    public const int GameState = 52;
-    public const int GameStateTypeId = 53;
-    public const int RoundCompletion = 54;
-    public const int RoundLoop = 55;
-    public const int RoundPreparation = 56;
-    public const int StateProcessingAvailable = 57;
-    public const int SwitchGameStateRequest = 58;
-    public const int Ascending = 59;
-    public const int AscentAvailable = 60;
-    public const int AscentRequested = 61;
-    public const int Busy = 62;
-    public const int ClosingClaws = 63;
-    public const int CollectingLoot = 64;
-    public const int CollectLootPieceInterval = 65;
-    public const int CollectLootRaycastRadius = 66;
-    public const int CollectLootRequest = 67;
-    public const int Descending = 68;
-    public const int DescentAvailable = 69;
-    public const int DescentRequested = 70;
-    public const int GrapplingHook = 71;
-    public const int GrapplingHookBehaviour = 72;
-    public const int HookSpeedModifier = 73;
-    public const int StopMovementRaycastRadius = 74;
-    public const int TriggerMovementThreshold = 75;
-    public const int XAxisMoveDirection = 76;
-    public const int XAxisMovementAvailable = 77;
-    public const int XAxisSpeed = 78;
-    public const int XMovementLimits = 79;
-    public const int YAxisDownSpeed = 80;
-    public const int YAxisUpSpeed = 81;
-    public const int Applied = 82;
-    public const int Available = 83;
-    public const int BaseRating = 84;
-    public const int Collected = 85;
-    public const int ConsumableIngredient = 86;
-    public const int Consumed = 87;
-    public const int Effect = 88;
-    public const int EffectTargetsLoot = 89;
-    public const int EffectValue = 90;
-    public const int IncreaseValueEffect = 91;
-    public const int Loot = 92;
-    public const int LootEffectsApplier = 93;
-    public const int LootItem = 94;
-    public const int LootItemUI = 95;
-    public const int LootTypeId = 96;
-    public const int MarkedForPickup = 97;
-    public const int Rating = 98;
-    public const int TimerRefillAmount = 99;
-    public const int Wood = 100;
-    public const int ContinuousSpawn = 101;
-    public const int ConveyorSpawner = 102;
-    public const int LootSpawner = 103;
-    public const int LootSpawnInterval = 104;
-    public const int SingleSpawn = 105;
-    public const int BossOrder = 106;
-    public const int Complete = 107;
-    public const int NextOrderRequest = 108;
-    public const int Order = 109;
-    public const int OrderData = 110;
-    public const int OrderReward = 111;
-    public const int Reject = 112;
-    public const int ResultProcessed = 113;
-    public const int DayCompleteRequest = 114;
-    public const int GameOver = 115;
-    public const int Round = 116;
-    public const int RoundComplete = 117;
-    public const int RoundDuration = 118;
-    public const int RoundInProcess = 119;
-    public const int RoundOver = 120;
-    public const int RoundStartAvailable = 121;
-    public const int RoundStartRequest = 122;
-    public const int RoundStateController = 123;
-    public const int RoundStateViewBehaviour = 124;
-    public const int RoundTimeLeft = 125;
-    public const int AudioSourceBehaviour = 126;
+    public const int Bee = 50;
+    public const int DistractionObject = 51;
+    public const int DistractionObjectTypeId = 52;
+    public const int BeginDay = 53;
+    public const int EndDay = 54;
+    public const int GameState = 55;
+    public const int GameStateTypeId = 56;
+    public const int RoundCompletion = 57;
+    public const int RoundLoop = 58;
+    public const int RoundPreparation = 59;
+    public const int StateProcessingAvailable = 60;
+    public const int SwitchGameStateRequest = 61;
+    public const int Ascending = 62;
+    public const int AscentAvailable = 63;
+    public const int AscentRequested = 64;
+    public const int Busy = 65;
+    public const int ClosingClaws = 66;
+    public const int CollectingLoot = 67;
+    public const int CollectLootPieceInterval = 68;
+    public const int CollectLootRaycastRadius = 69;
+    public const int CollectLootRequest = 70;
+    public const int Descending = 71;
+    public const int DescentAvailable = 72;
+    public const int DescentRequested = 73;
+    public const int GrapplingHook = 74;
+    public const int GrapplingHookBehaviour = 75;
+    public const int HookSpeedModifier = 76;
+    public const int StopMovementRaycastRadius = 77;
+    public const int TriggerMovementThreshold = 78;
+    public const int XAxisMoveDirection = 79;
+    public const int XAxisMovementAvailable = 80;
+    public const int XAxisSpeed = 81;
+    public const int XMovementLimits = 82;
+    public const int YAxisDownSpeed = 83;
+    public const int YAxisUpSpeed = 84;
+    public const int Applied = 85;
+    public const int Available = 86;
+    public const int BaseRating = 87;
+    public const int Collected = 88;
+    public const int ConsumableIngredient = 89;
+    public const int Consumed = 90;
+    public const int Effect = 91;
+    public const int EffectTargetsLoot = 92;
+    public const int EffectValue = 93;
+    public const int IncreaseValueEffect = 94;
+    public const int Loot = 95;
+    public const int LootEffectsApplier = 96;
+    public const int LootItem = 97;
+    public const int LootItemUI = 98;
+    public const int LootTypeId = 99;
+    public const int MarkedForPickup = 100;
+    public const int Rating = 101;
+    public const int TimerRefillAmount = 102;
+    public const int Wood = 103;
+    public const int ContinuousSpawn = 104;
+    public const int ConveyorSpawner = 105;
+    public const int LootSpawner = 106;
+    public const int LootSpawnInterval = 107;
+    public const int SingleSpawn = 108;
+    public const int BossOrder = 109;
+    public const int Complete = 110;
+    public const int NextOrderRequest = 111;
+    public const int Order = 112;
+    public const int OrderData = 113;
+    public const int OrderReward = 114;
+    public const int Reject = 115;
+    public const int ResultProcessed = 116;
+    public const int DayCompleteRequest = 117;
+    public const int GameOver = 118;
+    public const int Round = 119;
+    public const int RoundComplete = 120;
+    public const int RoundDuration = 121;
+    public const int RoundInProcess = 122;
+    public const int RoundOver = 123;
+    public const int RoundStartAvailable = 124;
+    public const int RoundStartRequest = 125;
+    public const int RoundStateController = 126;
+    public const int RoundStateViewBehaviour = 127;
+    public const int RoundTimeLeft = 128;
+    public const int AudioSourceBehaviour = 129;
 
-    public const int TotalComponents = 127;
+    public const int TotalComponents = 130;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -189,6 +192,9 @@ public static class GameComponentsLookup {
         "Plus",
         "Withdraw",
         "CustomerBehaviour",
+        "Bee",
+        "DistractionObject",
+        "DistractionObjectTypeId",
         "BeginDay",
         "EndDay",
         "GameState",
@@ -319,6 +325,9 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Currency.Plus),
         typeof(Code.Gameplay.Features.Currency.Withdraw),
         typeof(Code.Gameplay.Features.Customers.CustomerBehaviourComponent),
+        typeof(Code.Gameplay.Features.Distraction.Bee),
+        typeof(Code.Gameplay.Features.Distraction.DistractionObject),
+        typeof(Code.Gameplay.Features.Distraction.DistractionObjectTypeIdComponent),
         typeof(Code.Gameplay.Features.GameState.BeginDay),
         typeof(Code.Gameplay.Features.GameState.EndDay),
         typeof(Code.Gameplay.Features.GameState.GameState),

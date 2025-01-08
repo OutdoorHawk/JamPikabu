@@ -10,6 +10,7 @@ using Code.Gameplay.Features.Abilities.Factory;
 using Code.Gameplay.Features.Currency.Factory;
 using Code.Gameplay.Features.Currency.Service;
 using Code.Gameplay.Features.Customers.Service;
+using Code.Gameplay.Features.Distraction.Factory;
 using Code.Gameplay.Features.GameOver.Service;
 using Code.Gameplay.Features.GameState.Factory;
 using Code.Gameplay.Features.GameState.Service;
@@ -198,6 +199,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.BindInterfacesTo<LootCollectionFactory>().AsSingle();
             Container.BindInterfacesTo<MapMenuFactory>().AsSingle();
             Container.BindInterfacesTo<AbilityFactory>().AsSingle();
+            Container.BindInterfacesTo<DistractionObjectsFactory>().AsSingle();
         }
 
         private void BindGameplayFactories()

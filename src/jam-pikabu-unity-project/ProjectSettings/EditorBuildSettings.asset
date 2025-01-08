@@ -15,16 +15,16 @@ EditorBuildSettings:
     path: Assets/Project/Scenes/MapMenu.unity
     guid: e0662486c9807ba4896af58d06960786
   - enabled: 1
-    path: Assets/Project/Scenes/DefaultGameplayScene.unity
+    path: Assets/Project/Scenes/Gameplay/DefaultGameplayScene.unity
     guid: b30628fdb00c3fc41ae4535236c84ab5
   - enabled: 1
-    path: Assets/Project/Scenes/ConveyorGameplayScene.unity
+    path: Assets/Project/Scenes/Gameplay/ConveyorGameplayScene.unity
     guid: ac484919a38cee84696743994f9f7e26
   - enabled: 1
-    path: Assets/Project/Scenes/NoGravityScene.unity
+    path: Assets/Project/Scenes/Gameplay/NoGravityScene.unity
     guid: c96659066359e5748b6e2e72bdb2cd4b
   - enabled: 1
-    path: Assets/Project/Scenes/BounceScene.unity
+    path: Assets/Project/Scenes/Gameplay/BounceScene.unity
     guid: e4ef49d30f19f8641894d98badd1760f
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 827504018c15cfa4bb33028905121b1d,

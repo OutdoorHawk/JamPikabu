@@ -8,6 +8,7 @@ namespace Code.Gameplay.StaticData.Data
     {
         [TabGroup("Default")] [PropertyOrder(99)] public List<TData> Configs;
 
+        private Dictionary<int, Dictionary<int, TData>> _uniqueIndexes = new();
         private Dictionary<int, TData> _uniqueIndex;
         private Dictionary<int, List<TData>> _nonUniqueIndex;
 
@@ -22,6 +23,22 @@ namespace Code.Gameplay.StaticData.Data
             {
                 int key = keySelector(item);
                 _uniqueIndex.TryAdd(key, item);
+            }
+        }
+        
+        protected void AddIndex(Func<TData, int> keySelector, int indexId)
+        {
+            if (Configs == null || keySelector == null)
+                throw new ArgumentNullException();
+
+            var index = new Dictionary<int, TData>();
+            
+            _uniqueIndexes[indexId] = index;
+
+            foreach (var item in Configs)
+            {
+                int key = keySelector(item);
+                index.TryAdd(key, item);
             }
         }
 
@@ -46,6 +63,13 @@ namespace Code.Gameplay.StaticData.Data
         protected TData GetByKey(int key)
         {
             _uniqueIndex.TryGetValue(key, out var value);
+            return value;
+        }
+        
+        protected TData GetByKey(int key, int indexId)
+        {
+            Dictionary<int, TData> index = _uniqueIndexes[indexId];
+            index.TryGetValue(key, out var value);
             return value;
         }
 
