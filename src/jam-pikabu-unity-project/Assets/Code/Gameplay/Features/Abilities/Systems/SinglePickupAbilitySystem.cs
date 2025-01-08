@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Entitas;
 
 namespace Code.Gameplay.Features.Abilities.Systems
@@ -25,7 +26,7 @@ namespace Code.Gameplay.Features.Abilities.Systems
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
-            return context.CreateCollector(GameMatcher.CollectLootRequest.Added());
+            return context.CreateCollector(GameMatcher.MarkedForPickup.Added());
         }
 
         protected override bool Filter(GameEntity entity)
@@ -41,11 +42,22 @@ namespace Code.Gameplay.Features.Abilities.Systems
                 if (loot.Id != ability.Target)
                     continue;
 
-                if (_markedForPickupLoot.count > 1)
+                if (_markedForPickupLoot.count < 1)
+                    continue;
+
+                List<GameEntity> sameTypeIngredients = _markedForPickupLoot
+                    .GetEntities()
+                    .ToList()
+                    .FindAll(x => x.LootTypeId == loot.LootTypeId);
+
+                if (sameTypeIngredients.Count > 1)
                 {
-                    loot.isCollectLootRequest = false;
-                    loot.isMarkedForPickup = false;
-                    loot.AbilityVisuals.PlayWrongCollection();
+                    foreach (var sameType in sameTypeIngredients)
+                    {
+                        sameType.isCollectLootRequest = false;
+                        sameType.isMarkedForPickup = false;
+                        sameType.AbilityVisuals.PlayWrongCollection();
+                    }
                 }
             }
         }

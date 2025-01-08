@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Project/Scenes/Gameplay/ConveyorGameplayScene.unity
     guid: ac484919a38cee84696743994f9f7e26
   - enabled: 1
-    path: Assets/Project/Scenes/Gameplay/NoGravityScene.unity
+    path: Assets/Project/Scenes/Gameplay/NoGravityGameplayScene.unity
     guid: c96659066359e5748b6e2e72bdb2cd4b
   - enabled: 1
     path: Assets/Project/Scenes/Gameplay/BounceScene.unity

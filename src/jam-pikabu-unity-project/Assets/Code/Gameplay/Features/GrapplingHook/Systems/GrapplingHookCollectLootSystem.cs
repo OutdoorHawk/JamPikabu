@@ -69,14 +69,6 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
                     if (loot.IsNullOrDestructed())
                         continue;
 
-                    loot.Retain(this);
-                }
-
-                foreach (var loot in _buffer)
-                {
-                    if (loot.IsNullOrDestructed())
-                        continue;
-
                     loot.isMarkedForPickup = true;
                 }
 
@@ -84,10 +76,14 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
                 {
                     if (loot.IsNullOrDestructed())
                         continue;
+                    
+                    if (loot.isMarkedForPickup == false)
+                        continue;
 
                     loot.isCollectLootRequest = true;
-                    loot.Release(this);
+                    loot.Retain(this);
                     await DelaySeconds(hook.CollectLootPieceInterval, _tearDownToken.Token);
+                    loot.Release(this);
                 }
             }
 

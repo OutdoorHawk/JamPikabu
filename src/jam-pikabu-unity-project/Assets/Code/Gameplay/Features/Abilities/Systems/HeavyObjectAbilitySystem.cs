@@ -34,7 +34,7 @@ namespace Code.Gameplay.Features.Abilities.Systems
                     GameMatcher.HookSpeedModifier,
                     GameMatcher.View
                 ));
-            
+
             _stats = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.StatChange,
                     GameMatcher.EffectValue,
@@ -51,6 +51,9 @@ namespace Code.Gameplay.Features.Abilities.Systems
                 GameEntity target = ability.Target();
 
                 if (target.Id != loot.Id)
+                    continue;
+
+                if (loot.Rigidbody2D.gravityScale <= 0)
                     continue;
 
                 foreach (GameEntity hook in _hook)
