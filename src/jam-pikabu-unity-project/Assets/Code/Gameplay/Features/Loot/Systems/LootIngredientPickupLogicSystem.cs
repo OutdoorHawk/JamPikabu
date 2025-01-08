@@ -54,7 +54,7 @@ namespace Code.Gameplay.Features.Loot.Systems
 
             private void SetLootCollected(GameEntity loot)
             {
-                _gameplayLootService.AddCollectedLoot(loot.LootTypeId, ratingAmount: loot.Rating);
+                _gameplayLootService.AddCollectedLoot(loot.LootTypeId, ratingAmount: loot.hasRating ? loot.Rating : 0);
                 loot.isCollected = true;
             }
 
