@@ -1,4 +1,6 @@
-﻿using Code.Gameplay.Features.Loot;
+﻿using Code.Gameplay.Features.Abilities;
+using Code.Gameplay.Features.Abilities.Config;
+using Code.Gameplay.Features.Loot;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows;
@@ -13,7 +15,7 @@ namespace Code.Meta.Features.LootCollection.Windows
         public TMP_Text Name;
         public TMP_Text Description;
         public Image Icon;
-        
+
         private IStaticDataService _staticData;
 
         [Inject]
@@ -26,8 +28,13 @@ namespace Code.Meta.Features.LootCollection.Windows
         {
             LootSettingsData data = _staticData.Get<LootSettingsStaticData>().GetConfig(lootTypeId);
             Icon.sprite = data.Icon;
-            Description.text = data.LocalizedDescription.GetLocalizedString();
             Name.text = data.LocalizedName.GetLocalizedString();
+            
+            if (data.AbilityType != AbilityTypeId.None)
+            {
+                AbilityData abilityData = _staticData.Get<AbilityStaticData>().GetDataByType(data.AbilityType);
+                Description.text = abilityData.LocalizedDescription.GetLocalizedString();
+            }
         }
     }
 }

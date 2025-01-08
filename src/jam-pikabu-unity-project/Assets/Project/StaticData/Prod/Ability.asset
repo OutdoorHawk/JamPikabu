@@ -18,33 +18,101 @@ MonoBehaviour:
     Value: 1.05
     Cooldown: 5
     ActivationChance: 100
+    LocalizedDescription:
+      m_TableReference:
+        m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+      m_TableEntryReference:
+        m_KeyId: 66639152598437888
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   - Id: 2
     Type: 2
     Value: 0
     Cooldown: 10
     ActivationChance: 100
+    LocalizedDescription:
+      m_TableReference:
+        m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+      m_TableEntryReference:
+        m_KeyId: 66639306068021248
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   - Id: 3
     Type: 3
     Value: 0
     Cooldown: 10
     ActivationChance: 100
+    LocalizedDescription:
+      m_TableReference:
+        m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+      m_TableEntryReference:
+        m_KeyId: 66639324669759488
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   - Id: 4
     Type: 4
     Value: 2.75
     Cooldown: 0
     ActivationChance: 100
+    LocalizedDescription:
+      m_TableReference:
+        m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+      m_TableEntryReference:
+        m_KeyId: 66639354151522304
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   - Id: 5
     Type: 5
     Value: 0.5
     Cooldown: 3
     ActivationChance: 50
+    LocalizedDescription:
+      m_TableReference:
+        m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+      m_TableEntryReference:
+        m_KeyId: 66639209800355840
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   - Id: 6
     Type: 6
     Value: 0
     Cooldown: 0
     ActivationChance: 100
+    LocalizedDescription:
+      m_TableReference:
+        m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+      m_TableEntryReference:
+        m_KeyId: 66639387328466944
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   - Id: 7
     Type: 9
     Value: -0.25
     Cooldown: 0
     ActivationChance: 100
+    LocalizedDescription:
+      m_TableReference:
+        m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+      m_TableEntryReference:
+        m_KeyId: 66639448628219904
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  lootSettingsStaticData: {fileID: 11400000, guid: d1c851350d7d8b345b3c20ef3cde1e87,
+    type: 2}
+  references:
+    version: 2
+    RefIds: []

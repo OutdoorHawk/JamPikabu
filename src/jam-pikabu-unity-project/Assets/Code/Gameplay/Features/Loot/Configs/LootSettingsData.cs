@@ -16,7 +16,6 @@ namespace Code.Gameplay.Features.Loot.Configs
         [PreviewField] public Sprite Icon;
         [FoldoutGroup("Data")] public bool CanBeUsedInOrders = true;
         [FoldoutGroup("Data")] public LocalizedString LocalizedName;
-        [FoldoutGroup("Data")] public LocalizedString LocalizedDescription;
         [FoldoutGroup("Data")] public int BaseRatingValue = 1;
         [FoldoutGroup("Data")] public float EffectValue;
         [FoldoutGroup("Data"), Range(0, 100)] public int SpawnChance = 100;

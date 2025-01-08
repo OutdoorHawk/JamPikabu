@@ -96,7 +96,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 66639209800355840
-    m_Key: I_PEA_DESCRIPTION
+    m_Key: I_HOOK_SPEED_DESCRIPTION
     m_Metadata:
       m_Items: []
   - m_Id: 66639306068021248
@@ -120,7 +120,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 66639448628219904
-    m_Key: I_STRAWBERRY_DESCRIPTION
+    m_Key: I_HEAVY_DESCRIPTION
     m_Metadata:
       m_Items: []
   - m_Id: 66641465232805888

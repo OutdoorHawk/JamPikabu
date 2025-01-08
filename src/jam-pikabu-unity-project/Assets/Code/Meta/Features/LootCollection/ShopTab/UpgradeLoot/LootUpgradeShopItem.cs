@@ -2,6 +2,7 @@
 using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Abilities;
+using Code.Gameplay.Features.Abilities.Config;
 using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation;
 using Code.Gameplay.Features.Currency.Config;
@@ -261,12 +262,15 @@ namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
         private void OpenPreviewWindow()
         {
             LootSettingsData lootSetup = LootSettings.GetConfig(Type);
+            
+            AbilityData abilityData = _staticData.Get<AbilityStaticData>().GetDataByType(lootSetup.AbilityType);
+            LocalizedString text = abilityData.LocalizedDescription;
 
             var parameters = new PreviewItemWindowParameters()
             {
                 Icon = lootSetup.Icon,
                 Name = lootSetup.LocalizedName,
-                Description = lootSetup.LocalizedDescription
+                Description = text
             };
 
             _previewWindowService.ShowWindow(parameters);
