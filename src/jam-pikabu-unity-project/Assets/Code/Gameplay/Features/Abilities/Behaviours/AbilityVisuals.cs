@@ -1,7 +1,10 @@
 ﻿using System.Threading;
+using Code.Gameplay.Sound;
+using Code.Gameplay.Sound.Service;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
+using Zenject;
 using Random = UnityEngine.Random;
 
 namespace Code.Gameplay.Features.Abilities.Behaviours
@@ -21,7 +24,14 @@ namespace Code.Gameplay.Features.Abilities.Behaviours
 
         public float ColorChangeDuration = 0.25f;
 
+        private ISoundService _soundService;
         private Tween _tween;
+
+        [Inject]
+        private void Construct(ISoundService soundService)
+        {
+            _soundService = soundService;
+        }
 
         private void OnDestroy()
         {
@@ -47,6 +57,8 @@ namespace Code.Gameplay.Features.Abilities.Behaviours
         {
             bool isBigSize = Mathf.Approximately(transform.localScale.x, BigSize);
             bool isSmallSize = Mathf.Approximately(transform.localScale.x, SmallSize);
+            
+            _soundService.PlaySound(SoundTypeId.SizeChangeAbility);
             ResetTween();
 
             if (isBigSize || isSmallSize)

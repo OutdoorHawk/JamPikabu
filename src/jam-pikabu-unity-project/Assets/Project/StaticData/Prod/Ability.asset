@@ -30,7 +30,7 @@ MonoBehaviour:
   - Id: 2
     Type: 2
     Value: 0
-    Cooldown: 10
+    Cooldown: 12
     ActivationChance: 100
     LocalizedDescription:
       m_TableReference:
@@ -44,7 +44,7 @@ MonoBehaviour:
   - Id: 3
     Type: 3
     Value: 0
-    Cooldown: 10
+    Cooldown: 12
     ActivationChance: 100
     LocalizedDescription:
       m_TableReference:
@@ -57,7 +57,7 @@ MonoBehaviour:
       m_LocalVariables: []
   - Id: 4
     Type: 4
-    Value: 2.75
+    Value: 2.5
     Cooldown: 0
     ActivationChance: 100
     LocalizedDescription:
@@ -111,8 +111,34 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  lootSettingsStaticData: {fileID: 11400000, guid: d1c851350d7d8b345b3c20ef3cde1e87,
-    type: 2}
+  - Id: 8
+    Type: 7
+    Value: 0
+    Cooldown: 0
+    ActivationChance: 100
+    LocalizedDescription:
+      m_TableReference:
+        m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+      m_TableEntryReference:
+        m_KeyId: 66639411454103552
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - Id: 9
+    Type: 8
+    Value: 0
+    Cooldown: 0
+    ActivationChance: 100
+    LocalizedDescription:
+      m_TableReference:
+        m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+      m_TableEntryReference:
+        m_KeyId: 66641465232805888
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   references:
     version: 2
     RefIds: []

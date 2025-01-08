@@ -410,7 +410,7 @@ MonoBehaviour:
   ChangeSizeDuration: 0.5
   BigSize: 1.5
   SmallSize: 0.5
-  ColorChangeDuration: 0.25
+  ColorChangeDuration: 0.4
 --- !u!114 &3202784660252494495
 MonoBehaviour:
   m_ObjectHideFlags: 0

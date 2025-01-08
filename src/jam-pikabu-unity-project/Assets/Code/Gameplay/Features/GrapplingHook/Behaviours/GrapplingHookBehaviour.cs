@@ -147,10 +147,12 @@ namespace Code.Gameplay.Features.GrapplingHook.Behaviours
             {
                 ApplyColor(_slowerColor, 0.25f);
                 factor *= -1;
+                _soundService.PlaySound(SoundTypeId.FreezeHookAbility);
             }
             else
             {
                 ApplyColor(_fasterColor, 0.25f);
+                _soundService.PlaySound(SoundTypeId.BoostHookAbility);
             }
 
             Entity.ReplaceHookSpeedModifier(1 + factor);

@@ -2,6 +2,8 @@
 using Code.Common;
 using Code.Gameplay.Features.Abilities.Behaviours;
 using Code.Gameplay.Features.Cooldowns;
+using Code.Gameplay.Sound;
+using Code.Gameplay.Sound.Service;
 using Entitas;
 using static Code.Gameplay.Features.Abilities.AbilityExtensions;
 
@@ -9,13 +11,15 @@ namespace Code.Gameplay.Features.Abilities.Systems
 {
     public class SwapPositionsAbilitySystem : IExecuteSystem
     {
+        private readonly ISoundService _soundService;
         private readonly IGroup<GameEntity> _abilities;
         private readonly List<GameEntity> _buffer = new(64);
         private readonly List<GameEntity> _lootBuffer = new(64);
         private readonly IGroup<GameEntity> _loot;
 
-        public SwapPositionsAbilitySystem(GameContext context)
+        public SwapPositionsAbilitySystem(GameContext context, ISoundService soundService)
         {
+            _soundService = soundService;
             _abilities = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.SwapPositionsAbility,
                     GameMatcher.Ability,
@@ -54,6 +58,8 @@ namespace Code.Gameplay.Features.Abilities.Systems
 
                 targetVisuals.PlaySwap(newPosition: randomLootVisuals.transform.position);
                 randomLootVisuals.PlaySwap(newPosition: targetVisuals.transform.position);
+                
+                _soundService.PlaySound(SoundTypeId.PositionChangeAbility);
             }
         }
 

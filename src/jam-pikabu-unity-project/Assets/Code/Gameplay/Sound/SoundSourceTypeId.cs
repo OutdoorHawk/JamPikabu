@@ -58,6 +58,10 @@
         StarLoose = 43,
         CollectIngredient = 44,
         LootFly = 45,
-        Sticky = 46,
+        StickyAbility = 46,
+        FreezeHookAbility = 47,
+        BoostHookAbility = 48,
+        SizeChangeAbility = 49,
+        PositionChangeAbility = 50,
     }
 }

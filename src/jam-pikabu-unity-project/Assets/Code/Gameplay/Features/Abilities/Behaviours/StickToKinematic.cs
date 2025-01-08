@@ -78,7 +78,7 @@ namespace Code.Gameplay.Features.Abilities.Behaviours
             _rb.bodyType = RigidbodyType2D.Kinematic;
             _rb.linearVelocity = Vector2.zero;
             _rb.angularVelocity = 0f;
-            _soundService.PlaySound(SoundTypeId.Sticky);
+            _soundService.PlaySound(SoundTypeId.StickyAbility);
         }
 
         private void DisableSticky()
