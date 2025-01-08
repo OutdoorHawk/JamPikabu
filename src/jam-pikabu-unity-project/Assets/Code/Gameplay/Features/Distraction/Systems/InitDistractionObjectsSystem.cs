@@ -31,7 +31,7 @@ namespace Code.Gameplay.Features.Distraction.Systems
                 if (spawnIndex >= lootSpawnPoints.Length) 
                     spawnIndex = 0;
                 
-                _distractionObjectsFactory.CreateDistractionObject(typeId, lootSpawnPoints[spawnIndex].position);
+                _distractionObjectsFactory.CreateDistractionObject(typeId, lootSpawnPoints[0].parent);
                 spawnIndex++;
             }
         }

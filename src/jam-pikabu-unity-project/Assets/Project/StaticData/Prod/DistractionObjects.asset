@@ -15,4 +15,5 @@ MonoBehaviour:
   Configs:
   - Id: 1
     TypeId: 1
-    ViewPrefab: {fileID: 0}
+    ViewPrefab: {fileID: 2453276000317353949, guid: b7b56785954833e41bef01a0a47f9087,
+      type: 3}

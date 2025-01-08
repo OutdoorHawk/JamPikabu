@@ -16,7 +16,7 @@ namespace Code.Gameplay.Features.Distraction.Factory
             _staticData = staticData;
         }
 
-        public void CreateDistractionObject(DistractionObjectTypeId typeId, Vector3 at)
+        public void CreateDistractionObject(DistractionObjectTypeId typeId, Transform at)
         {
             DistractionObjectData data = _staticData.Get<DistractionObjectsStaticData>().GetDataByTypeId(typeId);
 
@@ -25,6 +25,8 @@ namespace Code.Gameplay.Features.Distraction.Factory
                     .With(x => x.isDistractionObject = true)
                     .AddDistractionObjectTypeId(typeId)
                     .AddViewPrefab(data.ViewPrefab)
+                    .AddStartWorldPosition(at.position)
+                    .AddTargetParent(at)
                 ;
 
             switch (typeId)

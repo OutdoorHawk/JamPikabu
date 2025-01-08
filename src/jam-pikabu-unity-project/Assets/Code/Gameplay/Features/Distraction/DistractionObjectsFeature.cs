@@ -8,6 +8,7 @@ namespace Code.Gameplay.Features.Distraction
         public DistractionObjectsFeature(ISystemFactory systems)
         {
             Add(systems.Create<InitDistractionObjectsSystem>());
+            Add(systems.Create<BeeDisableColliderOnCollectSystem>());
         }
     }
 }

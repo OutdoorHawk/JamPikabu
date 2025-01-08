@@ -36,7 +36,7 @@ namespace Code.Infrastructure.View.Factory
                 entity.ViewPrefab,
                 position: GetStartPosition(entity),
                 rotation: GetStartRotation(entity),
-                parentTransform: null);
+                parentTransform: entity.hasTargetParent ? entity.TargetParent : null);
             
             EntityView viewComponent = view.GetComponent<EntityView>();
             viewComponent.SetEntity(entity);

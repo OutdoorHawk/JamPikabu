@@ -4,6 +4,6 @@ namespace Code.Gameplay.Features.Distraction.Factory
 {
     public interface IDistractionObjectsFactory
     {
-        void CreateDistractionObject(DistractionObjectTypeId typeId, Vector3 at);
+        void CreateDistractionObject(DistractionObjectTypeId typeId, Transform at);
     }
 }
