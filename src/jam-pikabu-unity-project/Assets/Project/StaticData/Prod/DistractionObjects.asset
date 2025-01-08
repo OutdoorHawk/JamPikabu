@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09fde008e2a84f55b9d48c45d57bfe39, type: 3}
   m_Name: DistractionObjects
   m_EditorClassIdentifier: 
-  Configs: []
+  Configs:
+  - Id: 1
+    TypeId: 1
+    ViewPrefab: {fileID: 0}

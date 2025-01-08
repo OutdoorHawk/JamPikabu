@@ -81,6 +81,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - ProdStaticData
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cd149881adb10164288cec0be6aa3a0f
+    m_Address: DistractionObjects
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ProdStaticData
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cf868022c2d7cf349a5e0bd1ae7f42c9
     m_Address: Orders
     m_ReadOnly: 0
