@@ -48,6 +48,12 @@ namespace Code.Gameplay.Features.Abilities.Systems
                 _otherLoot.GetEntities(_otherLootBuffer);
                 GameEntity randomLoot = GetRandomLoot(loot, _otherLootBuffer, x => Match(x, loot.LootTypeId));
                 randomLoot.isCollectLootRequest = true;
+
+                if (loot.hasAbilityVisuals)
+                    loot.AbilityVisuals.PlayRandomPickup();
+
+                if (randomLoot.hasAbilityVisuals)
+                    randomLoot.AbilityVisuals.PlayRandomPickup();
             }
         }
 

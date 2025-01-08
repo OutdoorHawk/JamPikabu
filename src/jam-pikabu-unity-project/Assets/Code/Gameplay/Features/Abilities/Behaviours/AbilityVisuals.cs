@@ -11,6 +11,7 @@ namespace Code.Gameplay.Features.Abilities.Behaviours
         public Rigidbody2D Rigidbody;
         public SpriteRenderer SpriteRenderer;
         public Color WrongPickupColor;
+        public Color RandomPickupColor;
 
         public float SwapDuration = 0.25f;
 
@@ -35,6 +36,11 @@ namespace Code.Gameplay.Features.Abilities.Behaviours
         public void PlayWrongCollection()
         {
             PlayWrongCollectionAsync().Forget();
+        }
+
+        public void PlayRandomPickup()
+        {
+            PlayRandomPickupAsync().Forget();
         }
 
         public void ChangeSize()
@@ -121,6 +127,27 @@ namespace Code.Gameplay.Features.Abilities.Behaviours
 
             Rigidbody.AddForce(new Vector2(0, -1.25f), ForceMode2D.Impulse);
 
+            _tween = SpriteRenderer
+                    .DOColor(Color.white, ColorChangeDuration)
+                    .SetLink(gameObject)
+                ;
+        } 
+        
+        private async UniTask PlayRandomPickupAsync()
+        {
+            ResetTween();
+            CancellationToken token = gameObject.GetCancellationTokenOnDestroy();
+
+            _tween = SpriteRenderer
+                    .DOColor(RandomPickupColor, ColorChangeDuration)
+                    .SetLink(gameObject)
+                ;
+
+            await _tween.AsyncWaitForCompletion();
+
+            if (token.IsCancellationRequested)
+                return;
+            
             _tween = SpriteRenderer
                     .DOColor(Color.white, ColorChangeDuration)
                     .SetLink(gameObject)
