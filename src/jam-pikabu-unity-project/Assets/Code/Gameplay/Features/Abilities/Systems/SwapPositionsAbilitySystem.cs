@@ -3,7 +3,6 @@ using Code.Common;
 using Code.Gameplay.Features.Abilities.Behaviours;
 using Code.Gameplay.Features.Cooldowns;
 using Entitas;
-using RoyalGold.Sources.Scripts.Game.MVC.Utils;
 using static Code.Gameplay.Features.Abilities.AbilityExtensions;
 
 namespace Code.Gameplay.Features.Abilities.Systems
@@ -44,7 +43,7 @@ namespace Code.Gameplay.Features.Abilities.Systems
                     continue;
 
                 _loot.GetEntities(_lootBuffer);
-                
+
                 GameEntity randomLoot = GetRandomLoot(target, _lootBuffer, Match);
 
                 if (randomLoot.IsNullOrDestructed())

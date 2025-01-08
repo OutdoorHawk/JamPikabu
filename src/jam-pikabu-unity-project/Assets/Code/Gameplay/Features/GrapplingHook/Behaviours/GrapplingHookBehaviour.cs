@@ -17,6 +17,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Behaviours
     public class GrapplingHookBehaviour : EntityDependant
     {
         [SerializeField] private Animator _animator;
+        [SerializeField] private Transform _hookCenter;
         [SerializeField] private float _moveAngleDuration = 0.25f;
         [SerializeField] private float _ascentDelay = 0.25f;
         [SerializeField] private float _openClawsDelay = 0.2f;
@@ -35,6 +36,8 @@ namespace Code.Gameplay.Features.GrapplingHook.Behaviours
         private Material[] _materials;
 
         public bool Triggered { get; private set; }
+
+        public Transform HookCenter => _hookCenter;
 
         [Inject]
         private void Construct(ISoundService soundService)

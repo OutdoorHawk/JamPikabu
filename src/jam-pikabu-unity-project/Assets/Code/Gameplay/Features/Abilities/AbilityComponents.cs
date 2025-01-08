@@ -25,4 +25,7 @@ namespace Code.Gameplay.Features.Abilities
     
     [Game] public sealed class MultiPickupAbility : IComponent { }
     
+    [Game] public sealed class HeavyObjectAbility : IComponent { }
+    [Game] public sealed class HeavyObjectSpeedFactor : IComponent { public float Value; }
+    
 }

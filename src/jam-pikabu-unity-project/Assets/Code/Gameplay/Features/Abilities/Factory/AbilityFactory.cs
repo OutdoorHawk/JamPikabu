@@ -48,6 +48,9 @@ namespace Code.Gameplay.Features.Abilities.Factory
                 case AbilityTypeId.MultiPickup:
                     CreateMultiPickupAbility(ability, typeId);
                     break;
+                case AbilityTypeId.HeavyObject:
+                    CreateHeavyObjectAbility(ability, typeId);
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(typeId), typeId, null);
             }
@@ -131,6 +134,16 @@ namespace Code.Gameplay.Features.Abilities.Factory
         {
             ability
                 .With(x => x.isMultiPickupAbility = true)
+                ;
+        }
+
+        private void CreateHeavyObjectAbility(GameEntity ability, AbilityTypeId typeId)
+        {
+            AbilityData staticData = AbilityStaticData.GetDataByType(typeId);
+
+            ability
+                .With(x => x.isHeavyObjectAbility = true)
+                .AddHeavyObjectSpeedFactor(staticData.Value)
                 ;
         }
     }

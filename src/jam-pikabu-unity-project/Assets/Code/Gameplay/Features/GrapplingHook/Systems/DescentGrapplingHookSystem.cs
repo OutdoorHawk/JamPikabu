@@ -66,6 +66,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
         private bool CheckCollidedWithLoot(Rigidbody2D hookRigidbody2D, GameEntity hook)
         {
             Vector2 offset = new Vector2(0, 0.75f);
+            
             int hitCount = _physics2DService.CircleCastNonAlloc
             (
                 hookRigidbody2D.position - offset,

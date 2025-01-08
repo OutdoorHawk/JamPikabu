@@ -16,6 +16,7 @@ namespace Code.Gameplay.Features.Abilities
             Add(systems.Create<PickupRandomLootAbilitySystem>());
             Add(systems.Create<SinglePickupAbilitySystem>());
             Add(systems.Create<MultiPickupAbilitySystem>());
+            Add(systems.Create<HeavyObjectAbilitySystem>());
         }
     }
 }

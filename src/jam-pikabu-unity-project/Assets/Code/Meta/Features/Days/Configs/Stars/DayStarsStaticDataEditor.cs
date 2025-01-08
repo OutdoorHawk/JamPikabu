@@ -14,19 +14,19 @@ namespace Code.Meta.Features.Days.Configs.Stars
 {
     public partial class DayStarsStaticData
     {
-        [FoldoutGroup("Editor")] public DaysStaticData DaysStaticData;
-        [FoldoutGroup("Editor")] public LootProgressionStaticData LootProgression;
-        [FoldoutGroup("Editor")] public LootSettingsStaticData LootSettings;
-        [FoldoutGroup("Editor")] public MapBlocksStaticData DayLootSettings;
-        [FoldoutGroup("Editor")] public OrdersStaticData OrdersData;
+        [TabGroup("Editor")] public DaysStaticData DaysStaticData;
+        [TabGroup("Editor")] public LootProgressionStaticData LootProgression;
+        [TabGroup("Editor")] public LootSettingsStaticData LootSettings;
+        [TabGroup("Editor")] public MapBlocksStaticData DayLootSettings;
+        [TabGroup("Editor")] public OrdersStaticData OrdersData;
 
-        [FoldoutGroup("Editor")] public float BaseRatingNeedAmount = 1;
-        [FoldoutGroup("Editor")] public float GrowthExponent = 1.5f;
-        [FoldoutGroup("Editor")] public float StepFactor = 2f;
-        [FoldoutGroup("Editor")] public int BonusAdjustment = 1;
-        [FoldoutGroup("Editor")] public int StartRatingDayFormula = 3;
+        [TabGroup("Editor")] public float BaseRatingNeedAmount = 1;
+        [TabGroup("Editor")] public float GrowthExponent = 1.5f;
+        [TabGroup("Editor")] public float StepFactor = 2f;
+        [TabGroup("Editor")] public int BonusAdjustment = 1;
+        [TabGroup("Editor")] public int StartRatingDayFormula = 3;
 
-        [FoldoutGroup("Editor")]
+        [TabGroup("Editor")]
         [Button]
         private void CreateLevelsAndApplyNeedStarsFormula()
         {
@@ -60,7 +60,7 @@ namespace Code.Meta.Features.Days.Configs.Stars
             return Mathf.Round(value / 5) * 5;
         }
 
-        [FoldoutGroup("Editor")]
+        [TabGroup("Editor")]
         [Button]
         private void CalculateAverageRatingPerDay()
         {
