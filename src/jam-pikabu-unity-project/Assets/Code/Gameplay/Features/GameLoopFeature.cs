@@ -1,5 +1,6 @@
 ﻿using Code.Common.Destruct;
 using Code.Gameplay.Features.Abilities;
+using Code.Gameplay.Features.CharacterStats;
 using Code.Gameplay.Features.Cooldowns.Systems;
 using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Systems;
@@ -34,6 +35,8 @@ namespace Code.Gameplay.Features
 
             Add(systems.Create<RoundStartFeature>());
             Add(systems.Create<ActiveRoundProcessingFeature>());
+            
+            Add(systems.Create<GrapplingHookFeature>());
 
             Add(systems.Create<AbilityFeature>());
             Add(systems.Create<DistractionObjectsFeature>());
@@ -43,6 +46,8 @@ namespace Code.Gameplay.Features
             
             Add(systems.Create<OrdersFeature>());
 
+            Add(systems.Create<StatsFeature>());
+            
             Add(systems.Create<CurrencyFeature>());
 
             Add(systems.Create<GameStateFeature>());

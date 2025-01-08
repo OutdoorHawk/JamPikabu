@@ -51,6 +51,9 @@ namespace Code.Gameplay.Features.Abilities.Factory
                 case AbilityTypeId.HeavyObject:
                     CreateHeavyObjectAbility(ability, typeId);
                     break;
+                case AbilityTypeId.StickyToHook:
+                    CreateStickyToHookAbility(ability, typeId);
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(typeId), typeId, null);
             }
@@ -144,6 +147,13 @@ namespace Code.Gameplay.Features.Abilities.Factory
             ability
                 .With(x => x.isHeavyObjectAbility = true)
                 .AddHeavyObjectSpeedFactor(staticData.Value)
+                ;
+        }
+
+        private void CreateStickyToHookAbility(GameEntity ability, AbilityTypeId typeId)
+        {
+            ability
+                .With(x => x.isStickyToHookAbility = true)
                 ;
         }
     }

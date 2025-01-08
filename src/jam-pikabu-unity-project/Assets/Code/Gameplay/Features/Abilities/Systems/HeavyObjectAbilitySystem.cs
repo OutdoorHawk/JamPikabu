@@ -1,16 +1,18 @@
 ﻿using System.Collections.Generic;
-using Code.Gameplay.Features.Cooldowns;
+using Code.Common.Entity;
+using Code.Gameplay.Features.CharacterStats;
 using Entitas;
-using UnityEngine;
 
 namespace Code.Gameplay.Features.Abilities.Systems
 {
-    public class HeavyObjectAbilitySystem : IExecuteSystem
+    public class HeavyObjectAbilitySystem : IExecuteSystem, ICleanupSystem
     {
         private readonly IGroup<GameEntity> _abilities;
         private readonly IGroup<GameEntity> _lootInsideHook;
-        private readonly List<GameEntity> _buffer = new(32);
         private readonly IGroup<GameEntity> _hook;
+
+        private readonly List<GameEntity> _buffer = new(32);
+        private readonly IGroup<GameEntity> _stats;
 
         public HeavyObjectAbilitySystem(GameContext context)
         {
@@ -20,17 +22,24 @@ namespace Code.Gameplay.Features.Abilities.Systems
                     GameMatcher.Target,
                     GameMatcher.HeavyObjectSpeedFactor
                 ));
-            
+
             _lootInsideHook = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.Loot,
                     GameMatcher.InsideHook,
                     GameMatcher.Rigidbody2D
                 ));
-            
+
             _hook = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.GrapplingHook,
                     GameMatcher.HookSpeedModifier,
                     GameMatcher.View
+                ));
+            
+            _stats = context.GetGroup(GameMatcher
+                .AllOf(GameMatcher.StatChange,
+                    GameMatcher.EffectValue,
+                    GameMatcher.Target,
+                    GameMatcher.Producer
                 ));
         }
 
@@ -46,8 +55,27 @@ namespace Code.Gameplay.Features.Abilities.Systems
 
                 foreach (GameEntity hook in _hook)
                 {
-                    //hook.ReplaceHookSpeedModifier();
+                    CreateGameEntity.Empty()
+                        .AddStatChange(Stats.Speed)
+                        .AddEffectValue(ability.HeavyObjectSpeedFactor)
+                        .AddTarget(hook.Id)
+                        .AddProducer(ability.Id)
+                        ;
+
+                    hook.GrapplingHookBehaviour.ShowHeavyParticles();
                 }
+            }
+        }
+
+        public void Cleanup()
+        {
+            foreach (GameEntity stat in _stats)
+            foreach (GameEntity ability in _abilities)
+            {
+                if (stat.Producer != ability.Id)
+                    continue;
+
+                stat.isDestructed = true;
             }
         }
     }

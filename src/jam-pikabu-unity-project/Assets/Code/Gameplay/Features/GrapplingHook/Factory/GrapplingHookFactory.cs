@@ -1,5 +1,7 @@
-﻿using Code.Common.Entity;
+﻿using System.Collections.Generic;
+using Code.Common.Entity;
 using Code.Common.Extensions;
+using Code.Gameplay.Features.CharacterStats;
 using Code.Gameplay.Features.GrapplingHook.Configs;
 using Code.Gameplay.StaticData;
 using UnityEngine;
@@ -18,6 +20,9 @@ namespace Code.Gameplay.Features.GrapplingHook.Factory
         public GameEntity CreateGrapplingHook(Transform parent)
         {
             var config = _staticDataService.Get<GrapplingHookStaticData>();
+            
+            Dictionary<Stats,float> baseStats = InitStats.EmptyStatDictionary()
+                .With(x => x[Stats.Speed] = 1);
 
             return CreateGameEntity
                     .Empty()
@@ -27,12 +32,15 @@ namespace Code.Gameplay.Features.GrapplingHook.Factory
                     .AddXAxisSpeed(config.XAxisSpeed)
                     .AddYAxisDownSpeed(config.YAxisDownSpeed)
                     .AddYAxisUpSpeed(config.YAxisUpSpeed)
+                    .AddSpeed(baseStats[Stats.Speed])
                     .AddHookSpeedModifier(1)
                     .AddStopMovementRaycastRadius(config.StopMovementRaycastRadius)
                     .AddCollectLootRaycastRadius(config.CollectLootRaycastRadius)
                     .AddCollectLootPieceInterval(config.CollectLootPieceInterval)
                     .AddXMovementLimits(config.XMovementLimits)
                     .AddTriggerMovementThreshold(config.TriggerMovementThreshold)
+                    .AddBaseStats(baseStats)
+                    .AddStatModifiers(InitStats.EmptyStatDictionary())
                 ;
         }
     }

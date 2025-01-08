@@ -348,7 +348,7 @@ MonoBehaviour:
     BaseRatingValue: 14
     EffectValue: 0
     SpawnChance: 100
-    AbilityType: 7
+    AbilityType: 9
   - Id: 13
     Type: 13
     ViewPrefab: {fileID: 168960851586940954, guid: c247e3160612f214aa94ff1fa0380e32,
@@ -376,7 +376,7 @@ MonoBehaviour:
     BaseRatingValue: 16
     EffectValue: 0
     SpawnChance: 100
-    AbilityType: 0
+    AbilityType: 7
   - Id: 14
     Type: 14
     ViewPrefab: {fileID: 2326069168832771833, guid: c699bcaea2c073e4691f1a712897af92,

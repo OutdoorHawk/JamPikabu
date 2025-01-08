@@ -17,6 +17,7 @@ namespace Code.Gameplay.Features.Abilities
             Add(systems.Create<SinglePickupAbilitySystem>());
             Add(systems.Create<MultiPickupAbilitySystem>());
             Add(systems.Create<HeavyObjectAbilitySystem>());
+            Add(systems.Create<StickyToHookAbilitySystem>());
         }
     }
 }

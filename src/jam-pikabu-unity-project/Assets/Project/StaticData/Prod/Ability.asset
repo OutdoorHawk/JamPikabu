@@ -30,7 +30,7 @@ MonoBehaviour:
     ActivationChance: 100
   - Id: 4
     Type: 4
-    Value: 4
+    Value: 2.75
     Cooldown: 0
     ActivationChance: 100
   - Id: 5
@@ -41,5 +41,10 @@ MonoBehaviour:
   - Id: 6
     Type: 6
     Value: 0
+    Cooldown: 0
+    ActivationChance: 100
+  - Id: 7
+    Type: 9
+    Value: -0.25
     Cooldown: 0
     ActivationChance: 100

@@ -5,11 +5,10 @@ using Entitas;
 
 namespace Code.Gameplay.Features.GrapplingHook.Systems
 {
-    public class MarkLootAscendingInsideHookSystem : IExecuteSystem, ICleanupSystem
+    public class MarkLootAscendingInsideHookSystem : IExecuteSystem
     {
         private readonly IGroup<GameEntity> _hooks;
-        private readonly IGroup<GameEntity> _lootInHook;
-        
+
         private readonly IPhysics2DService _physics2DService;
         
         private readonly GameEntity[] _raycastBuffer = new GameEntity[16];
@@ -18,16 +17,12 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
         public MarkLootAscendingInsideHookSystem(GameContext gameContext, IPhysics2DService physics2DService)
         {
             _physics2DService = physics2DService;
+            
             _hooks = gameContext.GetGroup(GameMatcher
                 .AllOf(GameMatcher.GrapplingHook,
                     GameMatcher.Ascending,
                     GameMatcher.Rigidbody2D,
                     GameMatcher.GrapplingHookBehaviour
-                ));
-
-            _lootInHook = gameContext.GetGroup(GameMatcher
-                .AllOf(GameMatcher.Loot,
-                    GameMatcher.InsideHook
                 ));
         }
 
@@ -57,14 +52,6 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
                     
                     _raycastBuffer[i].isInsideHook = true;
                 }
-            }
-        }
-
-        public void Cleanup()
-        {
-            foreach (GameEntity gameEntity in _lootInHook.GetEntities(_buffer))
-            {
-                gameEntity.isInsideHook = false;
             }
         }
     }

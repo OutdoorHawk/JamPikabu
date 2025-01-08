@@ -18,7 +18,8 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
                 .AllOf(GameMatcher.GrapplingHook,
                     GameMatcher.Ascending,
                     GameMatcher.Rigidbody2D,
-                    GameMatcher.GrapplingHookBehaviour
+                    GameMatcher.GrapplingHookBehaviour,
+                    GameMatcher.Speed
                 ));
         }
 
@@ -33,7 +34,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
                 const float moveUpDirection = 1;
                 const float yLimit = 0;
 
-                newPosition.y += moveUpDirection * hook.YAxisUpSpeed * _time.FixedDeltaTime * hook.HookSpeedModifier;
+                newPosition.y += moveUpDirection * hook.YAxisUpSpeed * _time.FixedDeltaTime * hook.HookSpeedModifier * hook.Speed;
 
                 Transform parent = hookRigidbody2D.transform.parent;
                 float maxWorldY = parent.TransformPoint(new Vector3(0, yLimit, 0)).y;

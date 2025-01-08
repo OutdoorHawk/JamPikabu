@@ -15,7 +15,7 @@ namespace Code.Gameplay.Features.Abilities.Behaviours
     [RequireComponent(typeof(Rigidbody2D))]
     public class StickToKinematic : MonoBehaviour
     {
-        [SerializeField] private LayerMask _stickLayerMask;
+        public LayerMask StickLayerMask;
 
         private IStaticDataService _staticData;
         private ISoundService _soundService;
@@ -33,7 +33,7 @@ namespace Code.Gameplay.Features.Abilities.Behaviours
             _staticData = staticData;
         }
 
-        private void Awake()
+        private void Start()
         {
             _rb = GetComponent<Rigidbody2D>();
             _originParent = transform.parent;
@@ -43,7 +43,7 @@ namespace Code.Gameplay.Features.Abilities.Behaviours
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (!collision.gameObject.layer.Matches(_stickLayerMask))
+            if (!collision.gameObject.layer.Matches(StickLayerMask))
                 return;
 
             var otherRb = collision.gameObject.GetComponent<Rigidbody2D>();

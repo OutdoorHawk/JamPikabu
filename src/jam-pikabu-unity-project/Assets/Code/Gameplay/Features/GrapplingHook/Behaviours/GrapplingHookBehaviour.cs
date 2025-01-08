@@ -18,6 +18,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Behaviours
     {
         [SerializeField] private Animator _animator;
         [SerializeField] private Transform _hookCenter;
+        [SerializeField] private GameObject _heavyParticles;
         [SerializeField] private float _moveAngleDuration = 0.25f;
         [SerializeField] private float _ascentDelay = 0.25f;
         [SerializeField] private float _openClawsDelay = 0.2f;
@@ -54,6 +55,8 @@ namespace Code.Gameplay.Features.GrapplingHook.Behaviours
 
             for (int i = 0; i < renderers.Length; i++)
                 _materials[i] = renderers[i].material;
+            
+            _heavyParticles.DisableElement();
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -110,6 +113,14 @@ namespace Code.Gameplay.Features.GrapplingHook.Behaviours
             ApplySpeedChangeAsync(factor, duration).Forget();
         }
 
+        public void ShowHeavyParticles()
+        {
+            if (_heavyParticles.activeSelf)
+                return;
+            
+            ShowHeavyParticlesAsync().Forget();
+        }
+
         private async UniTaskVoid CloseAndAscentAsync()
         {
             Entity.isClosingClaws = true;
@@ -148,6 +159,13 @@ namespace Code.Gameplay.Features.GrapplingHook.Behaviours
 
             Entity.ReplaceHookSpeedModifier(1);
             ApplyColor(Color.white, 0.25f);
+        }
+
+        private async UniTaskVoid ShowHeavyParticlesAsync()
+        {
+            _heavyParticles.EnableElement();
+            await DelaySeconds(1, destroyCancellationToken);
+            _heavyParticles.DisableElement();
         }
 
         private void ApplyColor(Color newColor, float duration)
