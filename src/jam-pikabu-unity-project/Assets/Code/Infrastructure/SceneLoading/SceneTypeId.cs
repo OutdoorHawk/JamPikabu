@@ -8,5 +8,6 @@
         ConveyorGameplayScene = 3,
         NoGravityGameplayScene = 4,
         BounceGameplayScene = 5,
+        TriangleGameplayScene = 6,
     }
 }

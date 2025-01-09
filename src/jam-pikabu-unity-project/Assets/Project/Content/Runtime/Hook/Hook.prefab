@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4810028033126078153
 Transform:
   m_ObjectHideFlags: 0
@@ -5364,7 +5364,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6873764892106255685}
-  - component: {fileID: 3253295048282112804}
+  - component: {fileID: 1421871252434939596}
   m_Layer: 6
   m_Name: CollisionDetectTrigger
   m_TagString: Untagged
@@ -5381,14 +5381,14 @@ Transform:
   m_GameObject: {fileID: 2910530837113127285}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.028, y: -0.887, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3186202938037613119}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &3253295048282112804
-CircleCollider2D:
+--- !u!70 &1421871252434939596
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5421,8 +5421,9 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.5488185}
-  m_Radius: 1.283598
+  m_Offset: {x: -0.000000011070495, y: -0.09286605}
+  m_Size: {x: 4.045454, y: 1.18574}
+  m_Direction: 1
 --- !u!1 &3680361773883108435
 GameObject:
   m_ObjectHideFlags: 0
