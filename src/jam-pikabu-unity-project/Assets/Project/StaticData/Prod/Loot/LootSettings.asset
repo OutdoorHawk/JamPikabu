@@ -142,7 +142,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    BaseRatingValue: 4
+    BaseRatingValue: 1
     EffectValue: 0
     SpawnChance: 100
     AbilityType: 5
@@ -161,7 +161,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    BaseRatingValue: 6
+    BaseRatingValue: 1
     EffectValue: 0
     SpawnChance: 100
     AbilityType: 2
@@ -180,7 +180,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    BaseRatingValue: 8
+    BaseRatingValue: 1
     EffectValue: 0
     SpawnChance: 100
     AbilityType: 3
@@ -199,7 +199,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    BaseRatingValue: 10
+    BaseRatingValue: 1
     EffectValue: 0
     SpawnChance: 100
     AbilityType: 4
@@ -218,7 +218,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    BaseRatingValue: 12
+    BaseRatingValue: 1
     EffectValue: 0
     SpawnChance: 100
     AbilityType: 6
@@ -237,7 +237,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    BaseRatingValue: 14
+    BaseRatingValue: 1
     EffectValue: 0
     SpawnChance: 100
     AbilityType: 9
@@ -256,7 +256,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    BaseRatingValue: 16
+    BaseRatingValue: 1
     EffectValue: 0
     SpawnChance: 100
     AbilityType: 7
@@ -313,7 +313,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    BaseRatingValue: 18
+    BaseRatingValue: 1
     EffectValue: 0
     SpawnChance: 100
     AbilityType: 8
