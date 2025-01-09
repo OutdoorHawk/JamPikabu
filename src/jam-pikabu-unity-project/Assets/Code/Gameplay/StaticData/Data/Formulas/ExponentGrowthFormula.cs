@@ -7,8 +7,8 @@ namespace Code.Gameplay.StaticData.Data.Formulas
     public class ExponentGrowthFormula
     {
         public float BaseValue = 1;
-        public float GrowthExponent = 1.5f;
         public float StepFactor = 2f;
+        public float GrowthExponent = 1.5f;
         public int BonusAdjustment = 1;
 
         public ExponentGrowthFormula(float baseValue, float growthExponent, float stepFactor, int bonusAdjustment)
