@@ -7,7 +7,8 @@ namespace Code.Gameplay.Features.Orders.Config
     [CreateAssetMenu(menuName = "StaticData/" + nameof(OrdersStaticData), fileName = "Orders")]
     public class OrdersStaticData : BaseStaticData<OrderData>
     {
-        public float BadIngredientPenaltyFactor = 0.5f;
+        public float BadIngredientGoldPenaltyFactor = 0.5f;
+        public float BadIngredientRatingPenaltyFactor = 0.05f;
         public float OrderCompletedRatingBonusFactor = 0.15f;
         public float PerfectOrderRatingBonusFactor = 0.25f;
 

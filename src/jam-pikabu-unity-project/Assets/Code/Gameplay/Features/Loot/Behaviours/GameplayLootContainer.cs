@@ -200,7 +200,12 @@ namespace Code.Gameplay.Features.Loot.Behaviours
             _windowService.TryGetWindow(out PlayerHUDWindow window);
             var progressBar = window.GetComponentInChildren<RatingProgressBar>();
 
-            int countRating = consumed.Sum(loot => loot.Rating * data.RatingFactor);
+            int countRating = data.IngredientType switch
+            {
+                IngredientTypeId.Good => consumed.Sum(loot => loot.Rating * data.RatingFactor),
+                IngredientTypeId.Bad => consumed.Sum(_ => _ordersService.GetRatingPenalty() * data.RatingFactor),
+                _ => 0
+            };
 
             if (countRating == 0)
                 return;

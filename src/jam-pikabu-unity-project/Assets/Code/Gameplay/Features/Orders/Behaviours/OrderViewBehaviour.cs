@@ -77,7 +77,7 @@ namespace Code.Gameplay.Features.Orders.Behaviours
                 .SetDelay(delay)
                 .SetLink(gameObject)
                 .OnComplete(() =>  _orderIconPenaltyFilled
-                    .DOFillAmount(1-_ordersService.GetPenaltyFactor(), 0.5f)
+                    .DOFillAmount(1-_ordersService.GetGoldPenaltyFactor(), 0.5f)
                     .SetLink(gameObject))
                 ;
         }

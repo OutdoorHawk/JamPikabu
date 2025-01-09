@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Factory;
+using Code.Gameplay.Features.Orders;
 using Code.Gameplay.Features.Orders.Config;
 using Code.Gameplay.Features.Orders.Service;
 using Entitas;
@@ -48,7 +49,17 @@ namespace Code.Gameplay.Features.Loot.Systems
                     if (_ordersService.TryGetIngredientData(loot.LootTypeId, out IngredientData data) == false)
                         continue;
 
-                    int ratingAmount = loot.Rating * data.RatingFactor;
+                    int ratingAmount = 0;
+                    
+                    if (data.IngredientType == IngredientTypeId.Good) 
+                        ratingAmount = loot.Rating * data.RatingFactor;
+
+                    if (data.IngredientType == IngredientTypeId.Bad) 
+                        ratingAmount = _ordersService.GetRatingPenalty() * data.RatingFactor;
+
+                    if (ratingAmount == 0)
+                        continue;
+              
                     _currencyFactory.CreateAddCurrencyRequest(data.RatingType, ratingAmount, ratingAmount);
                 }
             }

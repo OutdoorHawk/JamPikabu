@@ -114,7 +114,7 @@ namespace Code.Gameplay.Features.Orders.Service
             return progress;
         }
 
-        public float GetPenaltyFactor()
+        public float GetGoldPenaltyFactor()
         {
             (List<IngredientData> good, List<IngredientData> bad) = OrderIngredients;
 
@@ -125,6 +125,12 @@ namespace Code.Gameplay.Features.Orders.Service
 
             float penaltyFactor = ApplyPenaltyFactor(bad, total);
             return penaltyFactor;
+        }
+
+        public int GetRatingPenalty()
+        {
+            float ratingForBadIngredient = OrdersData.BadIngredientRatingPenaltyFactor * _daysService.GetDayStarData().RatingNeedAll;
+            return (int)Mathf.Max(1, ratingForBadIngredient);
         }
 
         public void GoToNextOrder()
@@ -202,7 +208,7 @@ namespace Code.Gameplay.Features.Orders.Service
 
         public bool CanApplyPerfectOrderFactor()
         {
-            return GetOrderProgress() >= 1 && GetPenaltyFactor() >= 1;
+            return GetOrderProgress() >= 1 && GetGoldPenaltyFactor() >= 1;
         }
 
         private void InitCurrentDayOrders(int currentDay)
@@ -349,7 +355,7 @@ namespace Code.Gameplay.Features.Orders.Service
                 collectedBad += collectedTypes;
             }
 
-            float badCollected = collectedBad * _ordersData.BadIngredientPenaltyFactor;
+            float badCollected = collectedBad * _ordersData.BadIngredientGoldPenaltyFactor;
             float penaltyFactor = 1 - badCollected / total;
             return penaltyFactor;
         }
