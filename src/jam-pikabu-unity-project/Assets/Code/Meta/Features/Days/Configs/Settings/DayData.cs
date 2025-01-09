@@ -17,6 +17,6 @@ namespace Code.Meta.Features.Days.Configs
         [FoldoutGroup("Data")] public int OrdersAmount = 3;
         [FoldoutGroup("Data")] public float DayGoldFactor = 1;
         [FoldoutGroup("Data")] public SceneTypeId SceneId = SceneTypeId.DefaultGameplayScene;
-        [FoldoutGroup("Data")] public List<DistractionObjectTypeId> DistractionObjects;
+        [FoldoutGroup("Data")] public List<DistractionObjectTypeId> DistractionObjects = new();
     }
 }

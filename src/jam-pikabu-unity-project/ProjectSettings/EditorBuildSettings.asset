@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Project/Scenes/Gameplay/NoGravityGameplayScene.unity
     guid: c96659066359e5748b6e2e72bdb2cd4b
   - enabled: 1
-    path: Assets/Project/Scenes/Gameplay/BounceScene.unity
+    path: Assets/Project/Scenes/Gameplay/BounceGameplayScene.unity
     guid: e4ef49d30f19f8641894d98badd1760f
   - enabled: 1
     path: Assets/Project/Scenes/Gameplay/TriangleGameplayScene.unity
