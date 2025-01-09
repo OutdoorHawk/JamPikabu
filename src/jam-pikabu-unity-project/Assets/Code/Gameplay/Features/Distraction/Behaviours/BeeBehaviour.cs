@@ -3,7 +3,6 @@ using System.Threading;
 using Code.Common.Extensions;
 using DG.Tweening;
 using UnityEngine;
-using static System.Threading.CancellationTokenSource;
 
 namespace Code.Gameplay.Features.Distraction.Behaviours
 {
@@ -11,6 +10,7 @@ namespace Code.Gameplay.Features.Distraction.Behaviours
     {
         public Collider2D Collider;
         public Rigidbody2D Rigidbody;
+        public SpriteRenderer Renderer;
 
         [Header("Movement Settings")] public float MovementRadius = 4f;
         public float Speed = 6f;
@@ -35,7 +35,7 @@ namespace Code.Gameplay.Features.Distraction.Behaviours
         {
             if (!_isMoving)
                 return;
-            
+
             Vector2 currentPosition = Rigidbody.position;
 
             float oscillation = Mathf.Sin(Time.fixedTime * OscillationFrequency) * OscillationAmplitude;
@@ -43,6 +43,13 @@ namespace Code.Gameplay.Features.Distraction.Behaviours
 
             Vector2 nextPosition = Vector2.MoveTowards(currentPosition, _targetPosition, Speed * Time.fixedDeltaTime);
             nextPosition += oscillationOffset;
+            
+            Vector2 direction = _targetPosition - currentPosition;
+            
+            if (direction.x != 0) 
+            {
+                Renderer.flipX = direction.x > 0;
+            }
 
             Rigidbody.MovePosition(nextPosition);
 
@@ -57,7 +64,7 @@ namespace Code.Gameplay.Features.Distraction.Behaviours
                 StartCoroutine(PauseAndFindNewTarget());
                 return;
             }
-            
+
             _moveTimeoutTimer -= Time.fixedDeltaTime;
         }
 
