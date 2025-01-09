@@ -43,6 +43,14 @@ MonoBehaviour:
     m_Key: S_DURATION
     m_Metadata:
       m_Items: []
+  - m_Id: 65276334343147520
+    m_Key: S_ACTIVE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 65276403544969216
+    m_Key: S_TIME_LEFT
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
