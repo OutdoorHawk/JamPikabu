@@ -224,7 +224,7 @@ MonoBehaviour:
     SceneId: 3
     DistractionObjects: 
   StartGoldAmount: 10
-  DefaultRoundDuration: 20
+  DefaultRoundDuration: 25
   BossRoundDuration: 50
   OrdersData: {fileID: 11400000, guid: cf868022c2d7cf349a5e0bd1ae7f42c9, type: 2}
   AverageGoldPerLevel: 32000000280000002c000000280000005c0000004a0000005d000000310000005d0000009e00000064000000a100000074000000460000000a0000003f00000083000000900000009f00000046000000be000000da0000009400000026000000c100000076000000ad00000052000000f8000000a8000000
@@ -233,8 +233,8 @@ MonoBehaviour:
   LevelsAmount: 30
   GoldFormula:
     BaseValue: 1
-    GrowthExponent: 0.74
     StepFactor: 0.15
+    GrowthExponent: 0.74
     BonusAdjustment: 0
   OrdersRange:
   - Range: {x: 1, y: 10}

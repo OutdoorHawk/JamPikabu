@@ -72,8 +72,8 @@ MonoBehaviour:
   - Id: 5
     Type: 5
     Value: 0.25
-    Cooldown: 2
-    ActivationChance: 50
+    Cooldown: 2.5
+    ActivationChance: 75
     LocalizedDescription:
       m_TableReference:
         m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43

@@ -108,9 +108,9 @@ namespace Code.Gameplay.Features.GrapplingHook.Behaviours
             _soundService.PlayOneShotSound(SoundTypeId.HookDescend);
         }
 
-        public void ApplySpeedChange(float factor, float duration)
+        public void ApplySpeedChange(float factor, float duration, int speedUpChance)
         {
-            ApplySpeedChangeAsync(factor, duration).Forget();
+            ApplySpeedChangeAsync(factor, duration, speedUpChance).Forget();
         }
 
         public void ShowHeavyParticles()
@@ -136,14 +136,14 @@ namespace Code.Gameplay.Features.GrapplingHook.Behaviours
                 Entity.isClosingClaws = false;
         }
 
-        private async UniTaskVoid ApplySpeedChangeAsync(float factor, float duration)
+        private async UniTaskVoid ApplySpeedChangeAsync(float factor, float duration, int speedUpChance)
         {
             _speedModificationSource?.Cancel();
             _speedModificationSource = CreateLinkedTokenSource(destroyCancellationToken);
 
-            bool flip = Random.value < 0.5f;
+            bool speedUp = speedUpChance > Random.Range(0, 101);
 
-            if (flip)
+            if (speedUp)
             {
                 ApplyColor(_slowerColor, 0.25f);
                 factor *= -1;

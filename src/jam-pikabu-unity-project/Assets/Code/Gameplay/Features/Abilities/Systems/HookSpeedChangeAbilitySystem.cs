@@ -35,13 +35,10 @@ namespace Code.Gameplay.Features.Abilities.Systems
             {
                 if (loot.Id != ability.Target)
                     continue;
-
-                if (Random.Range(0, 101) > ability.ActivationChance)
-                    continue;
-
+                
                 foreach (GameEntity hook in _hook)
                 {
-                    hook.GrapplingHookBehaviour.ApplySpeedChange(factor: ability.SpeedChangeAmount, duration: ability.AbilityDuration);
+                    hook.GrapplingHookBehaviour.ApplySpeedChange(factor: ability.SpeedChangeAmount, duration: ability.AbilityDuration, ability.ActivationChance);
                 }
             }
         }
