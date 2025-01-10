@@ -16,7 +16,7 @@ MonoBehaviour:
   - Id: 1
     Type: 1
     Value: 1.05
-    Cooldown: 5
+    Cooldown: 9
     ActivationChance: 100
     LocalizedDescription:
       m_TableReference:
@@ -71,8 +71,8 @@ MonoBehaviour:
       m_LocalVariables: []
   - Id: 5
     Type: 5
-    Value: 0.5
-    Cooldown: 3
+    Value: 0.25
+    Cooldown: 2
     ActivationChance: 50
     LocalizedDescription:
       m_TableReference:

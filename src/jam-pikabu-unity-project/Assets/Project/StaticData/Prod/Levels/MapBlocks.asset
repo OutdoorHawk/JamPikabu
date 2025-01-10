@@ -95,6 +95,6 @@ MonoBehaviour:
     ExtraLoot: 010000000f000000
   StarsFormula:
     BaseValue: 3
-    GrowthExponent: 1.96
     StepFactor: 1
+    GrowthExponent: 1.96
     BonusAdjustment: 1

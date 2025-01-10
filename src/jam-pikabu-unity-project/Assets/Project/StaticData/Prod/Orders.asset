@@ -23,7 +23,7 @@ MonoBehaviour:
       DaysRange: {x: 0, y: 0}
       MinMaxNeedAmount: {x: 2, y: 3}
       MinMaxGoodIngredients: {x: 2, y: 2}
-      MinMaxBadIngredients: {x: 1, y: 1}
+      MinMaxBadIngredients: {x: 0, y: 0}
       MinMaxIngredientsRatingFactor: {x: 1, y: 1}
   - Id: 2
     Setup:
@@ -45,7 +45,7 @@ MonoBehaviour:
         CurrencyType: 1
         Amount: 10
       DaysRange: {x: 0, y: 0}
-      MinMaxNeedAmount: {x: 2, y: 4}
+      MinMaxNeedAmount: {x: 2, y: 3}
       MinMaxGoodIngredients: {x: 2, y: 3}
       MinMaxBadIngredients: {x: 1, y: 2}
       MinMaxIngredientsRatingFactor: {x: 1, y: 1}
@@ -69,7 +69,7 @@ MonoBehaviour:
         CurrencyType: 1
         Amount: 15
       DaysRange: {x: 0, y: 0}
-      MinMaxNeedAmount: {x: 2, y: 4}
+      MinMaxNeedAmount: {x: 2, y: 3}
       MinMaxGoodIngredients: {x: 3, y: 3}
       MinMaxBadIngredients: {x: 2, y: 2}
       MinMaxIngredientsRatingFactor: {x: 1, y: 2}
@@ -85,7 +85,10 @@ MonoBehaviour:
       MinMaxGoodIngredients: {x: 3, y: 3}
       MinMaxBadIngredients: {x: 2, y: 2}
       MinMaxIngredientsRatingFactor: {x: 1, y: 1}
-  BadIngredientPenaltyFactor: 0.5
+  BadIngredientGoldPenaltyFactor: 0.5
+  BadIngredientRatingPenaltyFactor: 0.05
+  OrderCompletedRatingBonusFactor: 0.15
+  PerfectOrderRatingBonusFactor: 0.25
   IconsPool:
   - Icon: {fileID: 21300000, guid: df7171ad2ac32604991f46bf9d08aecb, type: 3}
   - Icon: {fileID: 21300000, guid: def3b3bfc0b969c4896fa4901b7c7692, type: 3}
