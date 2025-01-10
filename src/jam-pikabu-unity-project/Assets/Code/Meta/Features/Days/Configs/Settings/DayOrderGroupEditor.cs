@@ -9,7 +9,7 @@ namespace Code.Meta.Features.Days.Configs
     [Serializable]
     public class DayOrderGroupEditor
     {
-        [MinMaxSlider(1, 30, showFields: true)] public Vector2Int Range = Vector2Int.one;
+        [MinMaxSlider(1, 99, showFields: true)] public Vector2Int Range = Vector2Int.one;
         public OrderTag OrderTag;
 
         public bool CanUse(int dayId)

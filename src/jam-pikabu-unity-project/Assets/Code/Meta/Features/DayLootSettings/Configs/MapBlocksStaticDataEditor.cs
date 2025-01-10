@@ -81,5 +81,19 @@ namespace Code.Meta.Features.DayLootSettings.Configs
                 }
             }
         }
+        
+        private void SetupUnlocks()
+        {
+            int j = 1;
+            for (var i = 1; i < Configs.Count; i++)
+            {
+                if ((LootTypeId)j is LootTypeId.GoldCoin or LootTypeId.Wood or LootTypeId.Spoon or LootTypeId.Sock)
+                    continue;
+                
+                Configs[i].UnlocksIngredient = (LootTypeId)j;
+                i++;
+                j++;
+            }
+        }
     }
 }
