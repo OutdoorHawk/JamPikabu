@@ -1,4 +1,5 @@
 ﻿#if UNITY_EDITOR
+using System;
 using System.Collections.Generic;
 using Code.Gameplay.Features.Loot;
 using Code.Gameplay.Features.Loot.Configs;
@@ -19,11 +20,8 @@ namespace Code.Meta.Features.Days.Configs.Stars
         [TabGroup("Editor")] public LootSettingsStaticData LootSettings;
         [TabGroup("Editor")] public MapBlocksStaticData DayLootSettings;
         [TabGroup("Editor")] public OrdersStaticData OrdersData;
-
-        [TabGroup("Editor")] public float BaseRatingNeedAmount = 1;
-        [TabGroup("Editor")] public float GrowthExponent = 1.5f;
+        
         [TabGroup("Editor")] public float StepFactor = 2f;
-        [TabGroup("Editor")] public int BonusAdjustment = 1;
         [TabGroup("Editor")] public int StartRatingDayFormula = 3;
 
         [TabGroup("Editor")]
@@ -34,11 +32,11 @@ namespace Code.Meta.Features.Days.Configs.Stars
             {
                 if (i < StartRatingDayFormula - 1)
                     continue;
-                
-                int ratingAmountNeed = (int)RoundToNearestFive(BaseRatingNeedAmount + StepFactor * Mathf.Pow(i, GrowthExponent) + BonusAdjustment);
+
+                int ratingAmountNeed = (int)RoundToNearestFive(Configs[i - 1].RatingNeedAll + StepFactor);
 
                 if (DaysStaticData.Configs[i].IsBossDay) 
-                    ratingAmountNeed /= 2;
+                    ratingAmountNeed = (int)RoundToNearestFive(ratingAmountNeed / 1.5f);
 
                 if (i >= Configs.Count)
                 {
@@ -51,7 +49,7 @@ namespace Code.Meta.Features.Days.Configs.Stars
                     continue;
                 }
 
-                Configs[i].RatingNeedAll = ratingAmountNeed;
+                Configs[i].RatingNeedAll = Math.Min(ratingAmountNeed, 125);
             }
         }
 

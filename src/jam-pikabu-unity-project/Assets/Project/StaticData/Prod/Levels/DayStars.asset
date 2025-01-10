@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Configs:
   - Id: 1
-    RatingNeedAll: 6
+    RatingNeedAll: 10
     AverageMinRatingPerDay: 12
     AverageMaxRatingPerDay: 312
   - Id: 2
-    RatingNeedAll: 8
+    RatingNeedAll: 10
     AverageMinRatingPerDay: 12
     AverageMaxRatingPerDay: 330
   - Id: 3
-    RatingNeedAll: 10
+    RatingNeedAll: 12
     AverageMinRatingPerDay: 12
     AverageMaxRatingPerDay: 276
   - Id: 4
@@ -50,67 +50,67 @@ MonoBehaviour:
     AverageMinRatingPerDay: 18
     AverageMaxRatingPerDay: 342
   - Id: 10
-    RatingNeedAll: 25
+    RatingNeedAll: 30
     AverageMinRatingPerDay: 52
     AverageMaxRatingPerDay: 564
   - Id: 11
-    RatingNeedAll: 30
+    RatingNeedAll: 40
     AverageMinRatingPerDay: 51
     AverageMaxRatingPerDay: 867
   - Id: 12
-    RatingNeedAll: 35
+    RatingNeedAll: 50
     AverageMinRatingPerDay: 114
     AverageMaxRatingPerDay: 1281
   - Id: 13
-    RatingNeedAll: 40
+    RatingNeedAll: 60
     AverageMinRatingPerDay: 144
     AverageMaxRatingPerDay: 1380
   - Id: 14
-    RatingNeedAll: 45
+    RatingNeedAll: 70
     AverageMinRatingPerDay: 99
     AverageMaxRatingPerDay: 1023
   - Id: 15
-    RatingNeedAll: 50
+    RatingNeedAll: 80
     AverageMinRatingPerDay: 102
     AverageMaxRatingPerDay: 756
   - Id: 16
-    RatingNeedAll: 60
+    RatingNeedAll: 90
     AverageMinRatingPerDay: 114
     AverageMaxRatingPerDay: 804
   - Id: 17
-    RatingNeedAll: 65
+    RatingNeedAll: 100
     AverageMinRatingPerDay: 147
     AverageMaxRatingPerDay: 1146
   - Id: 18
-    RatingNeedAll: 70
+    RatingNeedAll: 110
     AverageMinRatingPerDay: 180
     AverageMaxRatingPerDay: 1494
   - Id: 19
-    RatingNeedAll: 75
+    RatingNeedAll: 120
     AverageMinRatingPerDay: 216
     AverageMaxRatingPerDay: 1305
   - Id: 20
-    RatingNeedAll: 42
+    RatingNeedAll: 85
     AverageMinRatingPerDay: 144
     AverageMaxRatingPerDay: 864
   - Id: 21
-    RatingNeedAll: 90
+    RatingNeedAll: 95
     AverageMinRatingPerDay: 552
     AverageMaxRatingPerDay: 3414
   - Id: 22
-    RatingNeedAll: 95
+    RatingNeedAll: 105
     AverageMinRatingPerDay: 768
     AverageMaxRatingPerDay: 3936
   - Id: 23
-    RatingNeedAll: 105
+    RatingNeedAll: 115
     AverageMinRatingPerDay: 780
     AverageMaxRatingPerDay: 3966
   - Id: 24
-    RatingNeedAll: 110
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 240
     AverageMaxRatingPerDay: 1440
   - Id: 25
-    RatingNeedAll: 120
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 888
     AverageMaxRatingPerDay: 4236
   - Id: 26
@@ -118,139 +118,139 @@ MonoBehaviour:
     AverageMinRatingPerDay: 720
     AverageMaxRatingPerDay: 3312
   - Id: 27
-    RatingNeedAll: 135
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 876
     AverageMaxRatingPerDay: 4206
   - Id: 28
-    RatingNeedAll: 140
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 380
     AverageMaxRatingPerDay: 1790
   - Id: 29
-    RatingNeedAll: 150
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 924
     AverageMaxRatingPerDay: 4326
   - Id: 30
-    RatingNeedAll: 77
+    RatingNeedAll: 90
     AverageMinRatingPerDay: 1068
     AverageMaxRatingPerDay: 4686
   - Id: 31
-    RatingNeedAll: 0
+    RatingNeedAll: 100
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 32
-    RatingNeedAll: 0
+    RatingNeedAll: 110
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 33
-    RatingNeedAll: 0
+    RatingNeedAll: 120
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 34
-    RatingNeedAll: 0
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 35
-    RatingNeedAll: 0
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 36
-    RatingNeedAll: 0
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 37
-    RatingNeedAll: 0
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 38
-    RatingNeedAll: 0
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 39
-    RatingNeedAll: 0
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 40
-    RatingNeedAll: 0
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 41
-    RatingNeedAll: 0
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 42
-    RatingNeedAll: 0
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 43
-    RatingNeedAll: 0
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 44
-    RatingNeedAll: 0
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 45
-    RatingNeedAll: 0
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 46
-    RatingNeedAll: 0
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 47
-    RatingNeedAll: 0
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 48
-    RatingNeedAll: 0
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 49
-    RatingNeedAll: 0
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 50
-    RatingNeedAll: 0
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 51
-    RatingNeedAll: 0
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 52
-    RatingNeedAll: 0
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 53
-    RatingNeedAll: 0
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 54
-    RatingNeedAll: 0
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 55
-    RatingNeedAll: 0
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 56
-    RatingNeedAll: 0
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 57
-    RatingNeedAll: 0
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 58
-    RatingNeedAll: 0
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 59
-    RatingNeedAll: 0
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   - Id: 60
-    RatingNeedAll: 0
+    RatingNeedAll: 125
     AverageMinRatingPerDay: 0
     AverageMaxRatingPerDay: 0
   StarsFactorSetup:
@@ -262,8 +262,5 @@ MonoBehaviour:
   LootSettings: {fileID: 11400000, guid: d1c851350d7d8b345b3c20ef3cde1e87, type: 2}
   DayLootSettings: {fileID: 11400000, guid: d2e09ade8284fce4a9fa79fc48f90a6e, type: 2}
   OrdersData: {fileID: 11400000, guid: cf868022c2d7cf349a5e0bd1ae7f42c9, type: 2}
-  BaseRatingNeedAmount: 0
-  GrowthExponent: 1.5
-  StepFactor: 1
-  BonusAdjustment: 0
+  StepFactor: 10
   StartRatingDayFormula: 10
