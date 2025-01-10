@@ -63,6 +63,9 @@ namespace Code.Gameplay.Features.GrapplingHook.Behaviours
         {
             if (other.gameObject.layer.Matches(_triggerMask) == false)
                 return;
+
+            if (other.isTrigger)
+                return;
             
             Triggered = true;
         }
