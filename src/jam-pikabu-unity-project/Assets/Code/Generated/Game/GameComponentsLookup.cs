@@ -120,36 +120,37 @@ public static class GameComponentsLookup {
     public const int LootTypeId = 109;
     public const int MarkedForPickup = 110;
     public const int Rating = 111;
-    public const int TimerRefillAmount = 112;
-    public const int Wood = 113;
-    public const int ContinuousSpawn = 114;
-    public const int ConveyorSpawner = 115;
-    public const int LootSpawner = 116;
-    public const int LootSpawnInterval = 117;
-    public const int SingleSpawn = 118;
-    public const int BossOrder = 119;
-    public const int Complete = 120;
-    public const int NextOrderRequest = 121;
-    public const int Order = 122;
-    public const int OrderData = 123;
-    public const int OrderReward = 124;
-    public const int Reject = 125;
-    public const int ResultProcessed = 126;
-    public const int DayCompleteRequest = 127;
-    public const int GameOver = 128;
-    public const int Round = 129;
-    public const int RoundComplete = 130;
-    public const int RoundDuration = 131;
-    public const int RoundInProcess = 132;
-    public const int RoundOver = 133;
-    public const int RoundStartAvailable = 134;
-    public const int RoundStartRequest = 135;
-    public const int RoundStateController = 136;
-    public const int RoundStateViewBehaviour = 137;
-    public const int RoundTimeLeft = 138;
-    public const int AudioSourceBehaviour = 139;
+    public const int Spoon = 112;
+    public const int TimerRefillAmount = 113;
+    public const int Wood = 114;
+    public const int ContinuousSpawn = 115;
+    public const int ConveyorSpawner = 116;
+    public const int LootSpawner = 117;
+    public const int LootSpawnInterval = 118;
+    public const int SingleSpawn = 119;
+    public const int BossOrder = 120;
+    public const int Complete = 121;
+    public const int NextOrderRequest = 122;
+    public const int Order = 123;
+    public const int OrderData = 124;
+    public const int OrderReward = 125;
+    public const int Reject = 126;
+    public const int ResultProcessed = 127;
+    public const int DayCompleteRequest = 128;
+    public const int GameOver = 129;
+    public const int Round = 130;
+    public const int RoundComplete = 131;
+    public const int RoundDuration = 132;
+    public const int RoundInProcess = 133;
+    public const int RoundOver = 134;
+    public const int RoundStartAvailable = 135;
+    public const int RoundStartRequest = 136;
+    public const int RoundStateController = 137;
+    public const int RoundStateViewBehaviour = 138;
+    public const int RoundTimeLeft = 139;
+    public const int AudioSourceBehaviour = 140;
 
-    public const int TotalComponents = 140;
+    public const int TotalComponents = 141;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -264,6 +265,7 @@ public static class GameComponentsLookup {
         "LootTypeId",
         "MarkedForPickup",
         "Rating",
+        "Spoon",
         "TimerRefillAmount",
         "Wood",
         "ContinuousSpawn",
@@ -407,6 +409,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Loot.LootTypeIdComponent),
         typeof(Code.Gameplay.Features.Loot.MarkedForPickup),
         typeof(Code.Gameplay.Features.Loot.Rating),
+        typeof(Code.Gameplay.Features.Loot.Spoon),
         typeof(Code.Gameplay.Features.Loot.TimerRefillAmount),
         typeof(Code.Gameplay.Features.Loot.Wood),
         typeof(Code.Gameplay.Features.LootSpawning.ContinuousSpawn),

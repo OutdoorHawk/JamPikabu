@@ -24,4 +24,5 @@ namespace Code.Gameplay.Features.Loot
     [Game] public sealed class ConsumableIngredient : IComponent { }
     [Game] public sealed class Wood : IComponent { }
     [Game] public sealed class TimerRefillAmount : IComponent { public int Value; }
+    [Game] public sealed class Spoon : IComponent { }
 }
