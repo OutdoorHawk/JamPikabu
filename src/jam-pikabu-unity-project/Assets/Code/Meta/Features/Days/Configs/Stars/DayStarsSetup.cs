@@ -1,6 +1,7 @@
 ﻿using System;
 using Code.Gameplay.StaticData.Data;
 using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace Code.Meta.Features.Days.Configs.Stars
 {
@@ -10,8 +11,8 @@ namespace Code.Meta.Features.Days.Configs.Stars
         public int RatingNeedAll;
 
 #if UNITY_EDITOR
-        [ReadOnly] public float AverageMinRatingPerDay;
-        [ ReadOnly] public float AverageMaxRatingPerDay;
+        [ReadOnly, HideInInspector] public float AverageMinRatingPerDay;
+        [ ReadOnly, HideInInspector] public float AverageMaxRatingPerDay;
 #endif
     }
 }
