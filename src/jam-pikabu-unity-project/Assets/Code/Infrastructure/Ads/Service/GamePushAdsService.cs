@@ -17,7 +17,7 @@ namespace Code.Infrastructure.Ads.Service
 {
     public class GamePushAdsService : BaseAdsService,
         IExitGameLoopStateHandler,
-        IEnterMainMenuStateHandler,
+        IMainMenuStateHandler,
         IIntegrationsInitCompleteHandler
     {
 #if !UNITY_EDITOR
@@ -94,6 +94,11 @@ namespace Code.Infrastructure.Ads.Service
 
             if (CanShowBanner)
                 RequestBanner();
+        }
+
+        public void OnExitMainMenu()
+        {
+            
         }
 
         public void OnExitGameLoop()

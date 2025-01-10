@@ -15,7 +15,7 @@ MonoBehaviour:
   Configs:
   - Id: 1
     IsBossDay: 0
-    AvailableOrderTags: 8
+    AvailableOrderTags: 1
     OrdersAmount: 3
     DayGoldFactor: 1
     SceneId: 2

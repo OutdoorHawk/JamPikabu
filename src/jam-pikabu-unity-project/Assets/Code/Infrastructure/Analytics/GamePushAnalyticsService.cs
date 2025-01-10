@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Code.Infrastructure.Analytics
 {
-    public class GamePushAnalyticsService : BaseAnalyticsService, IEnterMainMenuStateHandler, ILoadProgressStateHandler
+    public class GamePushAnalyticsService : BaseAnalyticsService, IMainMenuStateHandler, ILoadProgressStateHandler
     {
         public OrderType OrderType => OrderType.Last;
 
@@ -21,6 +21,11 @@ namespace Code.Infrastructure.Analytics
         public void OnEnterMainMenu()
         {
             SendEvent(AnalyticsEventTypes.MainMenuEnter, string.Empty);
+        }
+
+        public void OnExitMainMenu()
+        {
+            
         }
 
         public override void SendEvent(string eventName, string value)

@@ -58,9 +58,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 112043459408289792
-    m_Localized: "Here\u2019s the order recipe. Green highlights the necessary ingredients,
-      \nwhile red marks the ones that can ruin the dish and lower the restaurant's
-      rating."
+    m_Localized: "Here\u2019s the order recipe. \nGreen highlights the necessary
+      ingredients.\n"
     m_Metadata:
       m_Items: []
   - m_Id: 112046629740077056
@@ -74,8 +73,7 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 112046682332454912
     m_Localized: "Here, you'll find all your available ingredients. \nEach one shows
-      how much rating it adds when used correctly \nand how much it subtracts if
-      added incorrectly."
+      how much rating it adds when used correctly."
     m_Metadata:
       m_Items: []
   - m_Id: 112046708009984000
@@ -95,11 +93,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 112046761378308096
-    m_Localized: Let's remove the old weapon.
+    m_Localized: "Ingredients marked in <color=#E55848>red</color> are the ones \nthat
+      can ruin the dish and lower the restaurant's rating."
     m_Metadata:
       m_Items: []
   - m_Id: 112046771423666176
-    m_Localized: Now equip the new weapon.
+    m_Localized: "So, try to avoid them\u2014let's go!"
     m_Metadata:
       m_Items: []
   - m_Id: 114916295274876928

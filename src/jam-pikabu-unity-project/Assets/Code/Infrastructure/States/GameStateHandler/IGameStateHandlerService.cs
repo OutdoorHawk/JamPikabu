@@ -9,6 +9,7 @@ namespace Code.Infrastructure.States.GameStateHandler
         void OnEnterLoadProgressState();
         void OnExitLoadProgressState();
         void OnEnterMainMenu();
+        void OnExitMainMenu();
         void OnEnterLoadLevel();
         void OnExitLoadLevel();
         void OnEnterGameLoop();

@@ -30,3 +30,7 @@ MonoBehaviour:
     CompletedLevelsNeedToStart: 1
     Order: 0
     DisableTutorial: 0
+  - Type: 6
+    CompletedLevelsNeedToStart: 1
+    Order: 0
+    DisableTutorial: 0

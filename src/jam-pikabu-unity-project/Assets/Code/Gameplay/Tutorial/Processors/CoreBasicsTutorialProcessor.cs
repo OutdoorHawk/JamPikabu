@@ -45,10 +45,13 @@ namespace Code.Gameplay.Tutorial.Processors
         {
             bool isGameLoopState = CheckCurrentGameState<GameLoopState>();
 
-            if (isGameLoopState)
-                return true;
+            if (isGameLoopState == false)
+                return false;
 
-            return false;
+            if (_daysService.GetDayData().Id > 1)
+                return false;
+
+            return true;
         }
 
         public override bool CanSkipTutorial()
@@ -121,8 +124,7 @@ namespace Code.Gameplay.Tutorial.Processors
                     .ShowArrow(hud.OrderViewBehaviour.transform, -200, -170, ArrowRotation.Left)
                     .AwaitForTapAnywhere(token, 1f)
                 ;
-
-
+            
             var lootRect = hud.LootContainer.LootGrid.gameObject; //todo
 
             await tutorialWindow

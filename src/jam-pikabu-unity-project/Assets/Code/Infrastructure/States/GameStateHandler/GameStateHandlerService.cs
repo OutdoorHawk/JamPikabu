@@ -7,7 +7,7 @@ namespace Code.Infrastructure.States.GameStateHandler
     {
         private readonly List<IEnterBootstrapStateHandler> _enterBoostrtapStateHandlers;
         private readonly List<ILoadProgressStateHandler> _enterLoadProgressStateHandlers;
-        private readonly List<IEnterMainMenuStateHandler> _mainMenuStateHandlers;
+        private readonly List<IMainMenuStateHandler> _mainMenuStateHandlers;
         private readonly List<IEnterGameLoopStateHandler> _enterGameLoopStateHandlers;
         private readonly List<IExitGameLoopStateHandler> _exitGameLoopStateHandlers;
         private readonly List<ILoadLevelStateHandler> _loadLevelStateHandlers;
@@ -16,7 +16,7 @@ namespace Code.Infrastructure.States.GameStateHandler
         (
             List<IEnterBootstrapStateHandler> enterBoostrtapStateHandlers,
             List<ILoadProgressStateHandler> enterLoadProgressStateHandlers,
-            List<IEnterMainMenuStateHandler> mainMenuStateHandlers,
+            List<IMainMenuStateHandler> mainMenuStateHandlers,
             List<IEnterGameLoopStateHandler> enterGameLoopStateHandlers,
             List<IExitGameLoopStateHandler> exitGameLoopStateHandlers,
             List<ILoadLevelStateHandler> loadLevelStateHandlers
@@ -50,7 +50,7 @@ namespace Code.Infrastructure.States.GameStateHandler
                 case IExitGameLoopStateHandler stateHandler:
                     _exitGameLoopStateHandlers.Add(stateHandler);
                     break;
-                case IEnterMainMenuStateHandler stateHandler:
+                case IMainMenuStateHandler stateHandler:
                     _mainMenuStateHandlers.Add(stateHandler);
                     break;
                 case ILoadLevelStateHandler stateHandler:
@@ -81,6 +81,12 @@ namespace Code.Infrastructure.States.GameStateHandler
         {
             foreach (var handler in _mainMenuStateHandlers) 
                 handler.OnEnterMainMenu();
+        }
+        
+        public void OnExitMainMenu()
+        {
+            foreach (var handler in _mainMenuStateHandlers) 
+                handler.OnExitMainMenu();
         }
 
         public void OnEnterLoadLevel()

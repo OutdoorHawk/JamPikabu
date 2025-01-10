@@ -21,7 +21,7 @@ namespace Code.Gameplay.Sound.Service
 {
     public class SoundService : MonoBehaviour,
         ISoundService,
-        IEnterMainMenuStateHandler,
+        IMainMenuStateHandler,
         ILoadProgressStateHandler
     {
         private IStaticDataService _staticDataService;
@@ -118,6 +118,11 @@ namespace Code.Gameplay.Sound.Service
         public void OnEnterMainMenu()
         {
             PlayCurrentSong().Forget();
+        }
+
+        public void OnExitMainMenu()
+        {
+            
         }
 
         #endregion
@@ -395,15 +400,6 @@ namespace Code.Gameplay.Sound.Service
 
         private async UniTask FadeToClip(AudioSource soundSource, AudioClip newClip)
         {
-            const float fadeDuration = 0.2f;
-            const string channelType = nameof(SoundVolumeTypeId.MusicAndAmbientVolume);
-
-            _fadeTween?.Kill();
-            _fadeTween = _mainSoundContainer.Mixer.DOSetFloat(channelType, MIN_MIXER_VOLUME, fadeDuration);
-            await DelaySeconds(fadeDuration, soundSource.GetCancellationTokenOnDestroy());
-            float currentVolume = GetCurrentVolumeValueInternal(SoundVolumeTypeId.MusicAndAmbientVolume);
-            _fadeTween?.Kill();
-            _fadeTween = _mainSoundContainer.Mixer.DOSetFloat(channelType, currentVolume, fadeDuration);
             soundSource.clip = newClip;
             soundSource.Play();
         }

@@ -59,6 +59,8 @@ namespace Code.Infrastructure.States.GameStates
 
             _mapMenuFeature.Cleanup();
             _mapMenuFeature.TearDown();
+            
+            _gameStateHandlerService.OnExitMainMenu();
         }
     }
 }

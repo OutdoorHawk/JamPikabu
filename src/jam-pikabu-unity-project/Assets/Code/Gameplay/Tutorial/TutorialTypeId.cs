@@ -8,5 +8,6 @@
         MetaUnlockIngredient = 3,
         BonusLevel = 4,
         SecondLevelHint = 5,
+        BadIngredients = 6,
     }
 }

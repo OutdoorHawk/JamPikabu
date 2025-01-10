@@ -18,7 +18,7 @@ using UnityEngine;
 namespace Code.Gameplay.Tutorial.Service
 {
     public class TutorialService : ITutorialService,
-        IEnterMainMenuStateHandler,
+        IMainMenuStateHandler,
         IEnterGameLoopStateHandler,
         IExitGameLoopStateHandler
     {
@@ -66,6 +66,11 @@ namespace Code.Gameplay.Tutorial.Service
         public void OnEnterMainMenu()
         {
             TryStartTutorial();
+        }
+
+        public void OnExitMainMenu()
+        {
+            ResetTutorialToken();
         }
 
         public void OnEnterGameLoop()
@@ -127,11 +132,13 @@ namespace Code.Gameplay.Tutorial.Service
 
         private void TryStartTutorial()
         {
+            ResetTutorialToken();
+            
             foreach (TutorialConfig config in _configs)
             {
                 if (CheckCanStartTutorial(config) == false)
                     continue;
-
+                
                 StartTutorial(config).Forget();
                 break;
             }
@@ -182,9 +189,9 @@ namespace Code.Gameplay.Tutorial.Service
             TutorialTypeId tutorialTypeId = config.Type;
             ITutorialProcessor tutorialProcessor = _tutorialProcessors[tutorialTypeId];
             TutorialUserData tutorialSaveData = _tutorialUserData[tutorialTypeId];
-
-            ResetTutorialToken();
+            
             _activeProcessor.processor = tutorialProcessor;
+            _activeProcessor.source = new CancellationTokenSource();
 
             _logger.Log($"<b><color=cyan>[Tutorial]</b></color> Start step {tutorialTypeId}");
 
@@ -202,12 +209,8 @@ namespace Code.Gameplay.Tutorial.Service
             }
 
             _windowService.Close(WindowTypeId.Tutorial);
-            _activeProcessor.source?.Cancel();
-            _activeProcessor.processor = null;
             tutorialProcessor.Finalization();
-
             MarkTutorialCompleted(tutorialSaveData);
-            TryStartTutorial();
         }
 
         private TutorialUserData CreateNewTutorialUserData(TutorialTypeId typeId)
@@ -221,8 +224,9 @@ namespace Code.Gameplay.Tutorial.Service
 
         private void ResetTutorialToken()
         {
+            _logger.Log($"<b><color=cyan>[Tutorial]</b></color> ResetTutorialToken {_activeProcessor.processor?.TypeId}");
             _activeProcessor.source?.Cancel();
-            _activeProcessor.source = new CancellationTokenSource();
+            _activeProcessor.source = null;
             _windowService.Close(WindowTypeId.Tutorial);
         }
 
