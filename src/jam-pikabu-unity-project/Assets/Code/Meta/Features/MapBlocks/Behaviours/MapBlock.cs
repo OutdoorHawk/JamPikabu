@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Code.Common.Extensions;
+using Code.Gameplay.StaticData;
 using Code.Infrastructure.Localization;
 using Code.Meta.Features.DayLootSettings.Configs;
 using Code.Meta.Features.Days.Service;
@@ -9,6 +10,7 @@ using Code.Meta.Features.MainMenu.Service;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization;
+using UnityEngine.UI;
 using Zenject;
 
 namespace Code.Meta.Features.MapBlocks.Behaviours
@@ -22,12 +24,15 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
         public GameObject LockedContent;
         public TMP_Text LockedByStarsText;
         public TMP_Text LockedByLevelsText;
+        public Image Background;
+        public Image LockedBackground;
 
         private IDaysService _daysService;
         private ILootCollectionService _lootCollectionService;
         private IMapMenuService _mapMenuService;
         private MapBlockData _mapBlockData;
         private ILocalizationService _localizationService;
+        private IStaticDataService _staticData;
 
         public List<LevelButton> LevelButtons { get; private set; } = new();
 
@@ -39,9 +44,11 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
             IDaysService daysService,
             ILootCollectionService lootCollectionService,
             IMapMenuService mapMenuService,
-            ILocalizationService localizationService
+            ILocalizationService localizationService,
+            IStaticDataService staticData
         )
         {
+            _staticData = staticData;
             _localizationService = localizationService;
             _mapMenuService = mapMenuService;
             _lootCollectionService = lootCollectionService;
@@ -66,9 +73,12 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
         public void InitData(MapBlockData mapBlockData)
         {
             _mapBlockData = mapBlockData;
+            Sprite backgroundSprite = _staticData.Get<MapBlocksStaticData>().MapBlockBackgrounds.GetCurrent();
+            Background.sprite = backgroundSprite;
+            LockedBackground.sprite = Background.sprite;
             LevelButtons.RefreshList(LevelsParent.GetComponentsInChildren<LevelButton>());
             InitStarsAmount();
-            UnlockableIngredient.Initialize(mapBlockData);
+            UnlockableIngredient.Initialize(mapBlockData, backgroundSprite);
             AvailableIngredients.Init(mapBlockData);
             InitLockedState();
         }

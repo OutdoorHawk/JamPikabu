@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Code.Infrastructure.Common
 {
+    [Serializable]
     public class CircularList<T> : IEnumerable<T>
     {
-        private readonly List<T> _list = new();
+        [SerializeField] private List<T> _list = new();
+        
         private int _currentIndex = 0;
 
         public T this[int index]
@@ -46,9 +49,9 @@ namespace Code.Infrastructure.Common
         public T GetCurrent()
         {
             if (_list.Count == 0)
-               return default;
+                return default;
 
-            if (_currentIndex >= _list.Count) 
+            if (_currentIndex >= _list.Count)
                 _currentIndex = 0;
 
             T currentItem = _list[_currentIndex];

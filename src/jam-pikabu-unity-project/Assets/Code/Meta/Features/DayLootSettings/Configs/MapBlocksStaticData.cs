@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using Code.Gameplay.Features.Loot;
 using Code.Gameplay.StaticData.Data;
+using Code.Infrastructure.Common;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Code.Meta.Features.DayLootSettings.Configs
@@ -9,6 +11,8 @@ namespace Code.Meta.Features.DayLootSettings.Configs
     public partial class MapBlocksStaticData : BaseStaticData<MapBlockData>
     {
         public const int DAYS_IN_BLOCK = 3;
+
+        [TabGroup("Default")] public CircularList<Sprite> MapBlockBackgrounds = new();
 
         private readonly Dictionary<LootTypeId, MapBlockData> _linkedIngredientIndex = new();
 
