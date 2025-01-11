@@ -595,6 +595,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ComingSoon (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2707011789127762984, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7665893785900686657, guid: dbc347dae19183a42a4979866b34351c,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1573,7 +1578,7 @@ PrefabInstance:
     - target: {fileID: 8388250964520481860, guid: 1cd0a684622912746a1f8ca85a5ac110,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1986,7 +1991,7 @@ PrefabInstance:
     - target: {fileID: 8736157187794522202, guid: dbc347dae19183a42a4979866b34351c,
         type: 3}
       propertyPath: m_fontSize
-      value: 29.5
+      value: 36
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

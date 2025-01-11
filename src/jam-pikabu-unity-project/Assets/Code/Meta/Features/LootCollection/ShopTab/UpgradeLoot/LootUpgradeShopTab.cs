@@ -3,7 +3,7 @@ using Code.Common.Extensions;
 using Code.Meta.Features.LootCollection.Data;
 using Code.Meta.Features.LootCollection.Service;
 using Code.Meta.UI.Shop.Configs;
-using Code.Meta.UI.Shop.Templates;
+using Code.Meta.UI.Shop.Tabs;
 using UnityEngine.UI;
 using Zenject;
 
@@ -46,8 +46,6 @@ namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
         public override void ActivateTab()
         {
             base.ActivateTab();
-
-            gameObject.EnableElement();
         }
 
         private void CreateItems()

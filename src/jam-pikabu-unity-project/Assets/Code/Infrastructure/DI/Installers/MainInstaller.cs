@@ -6,6 +6,7 @@ using Code.Gameplay.Common.EntityIndices;
 using Code.Gameplay.Common.MousePosition;
 using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Common.Time;
+using Code.Gameplay.Common.Time.Service;
 using Code.Gameplay.Features.Abilities.Factory;
 using Code.Gameplay.Features.Currency.Factory;
 using Code.Gameplay.Features.Currency.Service;
@@ -48,6 +49,7 @@ using Code.Infrastructure.States.StateMachine;
 using Code.Infrastructure.Systems;
 using Code.Infrastructure.View.Factory;
 using Code.Meta.Features.BonusLevel.Service;
+using Code.Meta.Features.Consumables.Service;
 using Code.Meta.Features.Days.Factory;
 using Code.Meta.Features.Days.Service;
 using Code.Meta.Features.LootCollection.Factory;
@@ -137,7 +139,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.Bind<IIdentifierService>().To<GameIdentifierService>().AsSingle();
             Container.Bind<ISceneContextProvider>().To<SceneContextProvider>().AsSingle();
             Container.Bind<IGameStateHandlerService>().To<GameStateHandlerService>().AsSingle();
-            Container.BindInterfacesTo<LocalizationService>().AsSingle();
+            Container.BindInterfacesTo<LocalizationService>().AsSingle().NonLazy();
             Container.BindInterfacesTo<TutorialService>().AsSingle();
             // Container.BindInterfacesTo<AssetDownloadService>().AsSingle();
             Container.BindInterfacesTo<LabeledAssetDownloadService>().AsSingle();
@@ -157,6 +159,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.BindInterfacesTo<BonusLevelService>().AsSingle();
             Container.BindInterfacesTo<NotificationTextService>().AsSingle();
             Container.BindInterfacesTo<PreviewWindowService>().AsSingle();
+            Container.BindInterfacesTo<LocalizedTimeService>().AsSingle();
             Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
             Container.Bind<IMousePositionService>().To<MousePositionService>().AsSingle();
             Container.Bind<ICameraProvider>().To<CameraProvider>().AsSingle();
@@ -220,6 +223,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.BindInterfacesTo<GameplayLootService>().AsSingle();
             Container.BindInterfacesTo<ShopWindowService>().AsSingle();
             Container.BindInterfacesTo<LootCollectionService>().AsSingle();
+            Container.BindInterfacesTo<ConsumablesUIService>().AsSingle();
         }
 
         private void BindUIFactories()

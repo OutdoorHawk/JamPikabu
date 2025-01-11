@@ -1,10 +1,11 @@
-﻿using Code.Gameplay.StaticData;
+﻿using Code.Common.Extensions;
+using Code.Gameplay.StaticData;
 using Code.Meta.UI.Shop.Window;
 using Code.Meta.UI.Shop.WindowService;
 using UnityEngine;
 using Zenject;
 
-namespace Code.Meta.UI.Shop.Templates
+namespace Code.Meta.UI.Shop.Tabs
 {
     public class BaseShopTab : MonoBehaviour
     {
@@ -29,10 +30,12 @@ namespace Code.Meta.UI.Shop.Templates
 
         public virtual void ActivateTab()
         {
+            gameObject.EnableElement();
         }
 
         public virtual void DeactivateTab()
         {
+            gameObject.DisableElement();
         }
     }
 }

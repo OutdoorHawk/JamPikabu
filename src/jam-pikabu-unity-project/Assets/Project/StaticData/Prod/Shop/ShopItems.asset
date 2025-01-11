@@ -15,7 +15,7 @@ MonoBehaviour:
   Configs:
   - Id: 1
     Kind: 2
-    Icon: {fileID: 0}
+    Icon: {fileID: 21300000, guid: a53148400a147fc4a86da08a6941ba67, type: 3}
     LayoutOrder: 0
     NameLocale:
       m_TableReference:

@@ -13,7 +13,6 @@ using Code.Meta.Features.Days.Service;
 using Code.Meta.Features.LootCollection.Service;
 using Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot;
 using Code.Meta.Features.MainMenu.Windows;
-using Code.Meta.UI.Shop.Templates;
 using Code.Meta.UI.Shop.Window;
 using Cysharp.Threading.Tasks;
 using UnityEngine;

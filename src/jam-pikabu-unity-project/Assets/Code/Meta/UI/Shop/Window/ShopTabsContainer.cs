@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Code.Meta.UI.Shop.Templates;
+using Code.Meta.UI.Shop.Tabs;
 using Code.Meta.UI.Shop.WindowService;
 using UnityEngine;
 using Zenject;
@@ -36,7 +36,7 @@ namespace Code.Meta.UI.Shop.Window
         {
             _tabsDictionary.Clear();
 
-            foreach (var tab in TabsParent.GetComponentsInChildren<BaseShopTab>())
+            foreach (var tab in TabsParent.GetComponentsInChildren<BaseShopTab>(true))
                 _tabsDictionary[tab.TypeId] = tab;
 
             _shopWindowService.SetTabSelected(ShopTabTypeId.LootUpgrade);

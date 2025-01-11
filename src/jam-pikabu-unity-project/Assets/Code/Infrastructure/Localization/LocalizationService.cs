@@ -63,6 +63,8 @@ namespace Code.Infrastructure.Localization
 
             savedLanguage = LocalizationSettings.SelectedLocale.LocaleName;
             _saveLoadService.SaveProgress();
+            
+            NotifyLocaleChanged(LocalizationSettings.SelectedLocale);
         }
 
         public void RegisterHandler(ILocalizationHandler handler)

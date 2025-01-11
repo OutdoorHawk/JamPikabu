@@ -18,14 +18,6 @@ MonoBehaviour:
     CompletedLevelsNeedToStart: 0
     Order: 0
     DisableTutorial: 0
-  - Type: 2
-    CompletedLevelsNeedToStart: 2
-    Order: 1
-    DisableTutorial: 0
-  - Type: 4
-    CompletedLevelsNeedToStart: 4
-    Order: 2
-    DisableTutorial: 0
   - Type: 5
     CompletedLevelsNeedToStart: 1
     Order: 0
@@ -33,4 +25,12 @@ MonoBehaviour:
   - Type: 6
     CompletedLevelsNeedToStart: 1
     Order: 0
+    DisableTutorial: 0
+  - Type: 2
+    CompletedLevelsNeedToStart: 2
+    Order: 1
+    DisableTutorial: 0
+  - Type: 4
+    CompletedLevelsNeedToStart: 4
+    Order: 2
     DisableTutorial: 0

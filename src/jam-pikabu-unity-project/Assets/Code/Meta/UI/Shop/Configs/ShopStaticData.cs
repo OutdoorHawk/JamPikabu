@@ -1,4 +1,5 @@
-﻿using Code.Gameplay.StaticData.Data;
+﻿using System.Collections.Generic;
+using Code.Gameplay.StaticData.Data;
 using UnityEngine;
 
 namespace Code.Meta.UI.Shop.Configs
@@ -10,12 +11,12 @@ namespace Code.Meta.UI.Shop.Configs
         {
             base.OnConfigInit();
 
-            AddIndex(data => (int)data.Kind);
+            AddNonUniqueIndex(data => (int)data.Kind);
         }
 
-        public ShopItemData GetByItemKind(ShopItemKind kind)
+        public List<ShopItemData> GetByItemKind(ShopItemKind kind)
         {
-            return GetByKey((int)kind);
+            return GetNonUniqueByKey((int)kind);
         }
     }
 }
