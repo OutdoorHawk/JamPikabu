@@ -42,7 +42,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 63096704760762368
-    m_Localized: "Add time to the timer \non pickup"
+    m_Localized: When picked up, adds bonus time.
     m_Metadata:
       m_Items: []
   - m_Id: 63097343020584960
@@ -58,6 +58,10 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 8134989886593433685
+  - m_Id: 65931200052809728
+    m_Localized: "When picked up, \nshuffles all the ingredients in the pile."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

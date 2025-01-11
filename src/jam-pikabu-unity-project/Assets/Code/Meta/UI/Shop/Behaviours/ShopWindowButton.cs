@@ -1,10 +1,12 @@
 ﻿using Code.Common.Extensions;
 using Code.Gameplay.Features.Currency.Service;
 using Code.Gameplay.Features.Loot;
+using Code.Gameplay.StaticData;
 using Code.Gameplay.Tutorial.Behaviours;
 using Code.Meta.Features.LootCollection.Configs;
 using Code.Meta.Features.LootCollection.Data;
 using Code.Meta.Features.LootCollection.Service;
+using Code.Meta.UI.Shop.Configs;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -19,10 +21,12 @@ namespace Code.Meta.UI.Shop.Behaviours
         
         private IGameplayCurrencyService _currencyService;
         private ILootCollectionService _lootCollectionService;
+        private IStaticDataService _staticData;
 
         [Inject]
-        private void Construct(IGameplayCurrencyService currencyService, ILootCollectionService lootCollectionService)
+        private void Construct(IGameplayCurrencyService currencyService, ILootCollectionService lootCollectionService, IStaticDataService staticData)
         {
+            _staticData = staticData;
             _lootCollectionService = lootCollectionService;
             _currencyService = currencyService;
         }
@@ -72,6 +76,15 @@ namespace Code.Meta.UI.Shop.Behaviours
                 int amount = _currencyService.GetCurrencyOfType(level.Cost.CurrencyType);
 
                 if (amount >= level.Cost.Amount)
+                {
+                    Pin.EnableElement();
+                    return;
+                }
+            }
+
+            foreach (var data in _staticData.Get<ShopStaticData>().Configs)
+            {
+                if (_currencyService.GetCurrencyOfType(data.Cost.CurrencyType, false) >= data.Cost.Amount)
                 {
                     Pin.EnableElement();
                     return;

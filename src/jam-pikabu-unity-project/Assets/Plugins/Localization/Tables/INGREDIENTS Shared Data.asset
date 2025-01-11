@@ -127,6 +127,10 @@ MonoBehaviour:
     m_Key: I_MULTI_PICKUP_DESCRIPTION
     m_Metadata:
       m_Items: []
+  - m_Id: 68075398726111232
+    m_Key: 
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

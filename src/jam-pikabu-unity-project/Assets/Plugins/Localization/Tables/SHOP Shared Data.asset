@@ -51,6 +51,10 @@ MonoBehaviour:
     m_Key: S_TIME_LEFT
     m_Metadata:
       m_Items: []
+  - m_Id: 65931200052809728
+    m_Key: S_SPOON_CONSUMABLE_DESCRIPTION
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
