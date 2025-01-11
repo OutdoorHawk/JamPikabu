@@ -94,6 +94,41 @@ MonoBehaviour:
     m_Localized: Tap to continue!
     m_Metadata:
       m_Items: []
+  - m_Id: 66639152598437888
+    m_Localized: Has increased bounciness.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66639209800355840
+    m_Localized: "When picked up, it speeds up or \nslows down the hook for a short
+      time."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66639306068021248
+    m_Localized: "Periodically swaps places with \nanother random ingredient.\n\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66639324669759488
+    m_Localized: Periodically changes its size.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66639354151522304
+    m_Localized: "Sticks to the hook from any side \nfor a short time."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66639387328466944
+    m_Localized: "When added to a dish, \nit picks up another random ingredient."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66639411454103552
+    m_Localized: "Can only be added separately \nfrom another of the same ingredient."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66639448628219904
+    m_Localized: 'Very heavy, slows down
+
+      the hook when lifted.'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
