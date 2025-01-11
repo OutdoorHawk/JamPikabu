@@ -61,6 +61,11 @@ namespace Code.Meta.UI.Shop.Service
                 ;
         }
 
+        public void NotifyPurchase()
+        {
+            ShopChanged?.Invoke();
+        }
+
         public void Cleanup()
         {
             _purchasedItems.Clear();

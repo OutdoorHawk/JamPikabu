@@ -7,7 +7,7 @@ namespace Code.Infrastructure.Systems
     public abstract class TimerExecuteSystem : IExecuteSystem
     {
         private readonly float _executeIntervalSeconds;
-        private readonly ITimeService _time;
+        protected readonly ITimeService _time;
         private float _timeToExecute;
 
         protected TimerExecuteSystem(float executeIntervalSeconds, ITimeService time)

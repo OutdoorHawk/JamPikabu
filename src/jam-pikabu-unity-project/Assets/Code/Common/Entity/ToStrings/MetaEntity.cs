@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using Code.Common.Entity.ToStrings;
 using Code.Common.Extensions;
+using Code.Meta.Features.Consumables;
 using Code.Meta.Features.LootCollection;
 using Code.Meta.Features.MapBlocks;
 using Code.Meta.UI.Shop;
@@ -43,6 +44,8 @@ public sealed partial class MetaEntity : INamedEntity
                         return PrintLootFreeUpgradeTimer();
                     case nameof(LootProgression):
                         return PrintLootProgression();
+                    case nameof(ActiveExtraLoot):
+                        return PrintActiveExtraLoot();
                 }
             }
         }
@@ -79,6 +82,13 @@ public sealed partial class MetaEntity : INamedEntity
     private string PrintLootProgression()
     {
         return new StringBuilder($"LootProgression ")
+            .With(s => s.Append($" Type: {LootTypeId.ToString()} "))
+            .ToString();
+    }
+
+    private string PrintActiveExtraLoot()
+    {
+        return new StringBuilder($"ActiveExtraLoot ")
             .With(s => s.Append($" Type: {LootTypeId.ToString()} "))
             .ToString();
     }

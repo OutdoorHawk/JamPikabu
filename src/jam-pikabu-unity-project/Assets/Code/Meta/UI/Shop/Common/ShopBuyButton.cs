@@ -43,11 +43,13 @@ namespace Code.Meta.UI.Shop.Common
         private void OnEnable()
         {
             _shopUIService.ShopChanged += Refresh;
+            _currency.CurrencyChanged += Refresh;
         }
 
         private void OnDisable()
         {
             _shopUIService.ShopChanged -= Refresh;
+            _currency.CurrencyChanged -= Refresh;
         }
 
         public void InitUpgradePrice(CostSetup cost)
@@ -58,7 +60,7 @@ namespace Code.Meta.UI.Shop.Common
             Refresh();
         }
 
-        private void Refresh()
+        public void Refresh()
         {
             if (_currentPrice == null)
                 return;

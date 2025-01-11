@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Code.Meta.UI.Shop.Factory;
+using Code.Meta.UI.Shop.Service;
 using Code.Progress.SaveLoadService;
 using Entitas;
 
@@ -9,11 +10,13 @@ namespace Code.Meta.UI.Shop.Systems
     {
         private readonly IShopItemFactory _shopItemFactory;
         private readonly ISaveLoadService _saveLoadService;
+        private readonly IShopUIService _shopUIService;
 
         public ProcessBoughtItemsSystem(MetaContext meta, IShopItemFactory shopItemFactory,
-            ISaveLoadService saveLoadService) : base(meta)
+            ISaveLoadService saveLoadService, IShopUIService shopUIService) : base(meta)
         {
             _saveLoadService = saveLoadService;
+            _shopUIService = shopUIService;
             _shopItemFactory = shopItemFactory;
         }
 
@@ -25,9 +28,15 @@ namespace Code.Meta.UI.Shop.Systems
         protected override void Execute(List<MetaEntity> purchases)
         {
             foreach (MetaEntity purchase in purchases)
+            {
                 _shopItemFactory.CreateShopItem(purchase.ShopItemId, purchase.isForAd);
 
-            _saveLoadService.SaveProgress();
+                if (purchase.isConsumable)
+                    purchase.isDestructed = true;
+            }
+            
+            _shopUIService.NotifyPurchase();
+            //_saveLoadService.SaveProgress();
         }
     }
 }

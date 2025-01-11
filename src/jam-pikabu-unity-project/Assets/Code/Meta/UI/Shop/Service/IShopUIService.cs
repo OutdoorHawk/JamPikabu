@@ -13,6 +13,7 @@ namespace Code.Meta.UI.Shop.Service
         void UpdatePurchasedItem(int shopItemId);
         bool IsItemPurchased(int shopItemId);
         void CreateBuyRequest(int shopItemId, bool forAd = false);
+        void NotifyPurchase();
         void Cleanup();
     }
 }

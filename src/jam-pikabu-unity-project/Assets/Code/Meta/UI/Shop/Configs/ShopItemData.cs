@@ -18,6 +18,7 @@ namespace Code.Meta.UI.Shop.Configs
         [FoldoutGroup("Data")] public LocalizedString DescriptionLocale;
         [FoldoutGroup("Data")] public CostSetup Cost;
         
+        [FoldoutGroup("Data")] public bool Consumable;
         [FoldoutGroup("Data")] public LootTypeId LootType;
         [FoldoutGroup("Data")] public int MinutesDuration;
     }

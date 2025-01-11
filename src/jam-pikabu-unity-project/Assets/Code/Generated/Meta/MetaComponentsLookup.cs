@@ -12,35 +12,42 @@ public static class MetaComponentsLookup {
     public const int Id = 1;
     public const int BonusLevelAvailableTime = 2;
     public const int BonusLevelAvailableTimer = 3;
-    public const int Day = 4;
-    public const int StarsAmount = 5;
-    public const int Level = 6;
-    public const int LootProgression = 7;
-    public const int LootTypeId = 8;
-    public const int UnlockLootRequest = 9;
-    public const int UpgradeLootRequest = 10;
-    public const int FreeUpgradeRequest = 11;
-    public const int LootFreeUpgradeTimer = 12;
-    public const int NextFreeUpgradeTime = 13;
-    public const int ReadyToFreeUpgrade = 14;
-    public const int AddCurrencyToStorageRequest = 15;
-    public const int Gold = 16;
-    public const int Storage = 17;
-    public const int Withdraw = 18;
-    public const int ForAd = 19;
-    public const int BuyRequest = 20;
-    public const int Purchased = 21;
-    public const int ShopItemId = 22;
+    public const int ActiveExtraLoot = 4;
+    public const int Day = 5;
+    public const int StarsAmount = 6;
+    public const int ExpirationTime = 7;
+    public const int Expired = 8;
+    public const int Level = 9;
+    public const int LootProgression = 10;
+    public const int LootTypeId = 11;
+    public const int UnlockLootRequest = 12;
+    public const int UpgradeLootRequest = 13;
+    public const int FreeUpgradeRequest = 14;
+    public const int LootFreeUpgradeTimer = 15;
+    public const int NextFreeUpgradeTime = 16;
+    public const int ReadyToFreeUpgrade = 17;
+    public const int AddCurrencyToStorageRequest = 18;
+    public const int Gold = 19;
+    public const int Storage = 20;
+    public const int Withdraw = 21;
+    public const int ForAd = 22;
+    public const int BuyRequest = 23;
+    public const int Consumable = 24;
+    public const int Purchased = 25;
+    public const int ShopItemId = 26;
 
-    public const int TotalComponents = 23;
+    public const int TotalComponents = 27;
 
     public static readonly string[] componentNames = {
         "Destructed",
         "Id",
         "BonusLevelAvailableTime",
         "BonusLevelAvailableTimer",
+        "ActiveExtraLoot",
         "Day",
         "StarsAmount",
+        "ExpirationTime",
+        "Expired",
         "Level",
         "LootProgression",
         "LootTypeId",
@@ -56,6 +63,7 @@ public static class MetaComponentsLookup {
         "Withdraw",
         "ForAd",
         "BuyRequest",
+        "Consumable",
         "Purchased",
         "ShopItemId"
     };
@@ -65,8 +73,11 @@ public static class MetaComponentsLookup {
         typeof(Code.Gameplay.Common.Id),
         typeof(Code.Meta.Features.BonusLevel.BonusLevelAvailableTime),
         typeof(Code.Meta.Features.BonusLevel.BonusLevelAvailableTimer),
+        typeof(Code.Meta.Features.Consumables.ActiveExtraLoot),
         typeof(Code.Meta.Features.Days.Day),
         typeof(Code.Meta.Features.Days.StarsAmount),
+        typeof(Code.Meta.Features.ExpirationTimer.ExpirationTime),
+        typeof(Code.Meta.Features.ExpirationTimer.Expired),
         typeof(Code.Meta.Features.LootCollection.Level),
         typeof(Code.Meta.Features.LootCollection.LootProgression),
         typeof(Code.Meta.Features.LootCollection.LootTypeIdComponent),
@@ -82,6 +93,7 @@ public static class MetaComponentsLookup {
         typeof(Code.Meta.Features.Storage.Withdraw),
         typeof(Code.Meta.UI.Common.ForAd),
         typeof(Code.Meta.UI.Shop.BuyRequestComponent),
+        typeof(Code.Meta.UI.Shop.Consumable),
         typeof(Code.Meta.UI.Shop.Purchased),
         typeof(Code.Meta.UI.Shop.ShopItemId)
     };

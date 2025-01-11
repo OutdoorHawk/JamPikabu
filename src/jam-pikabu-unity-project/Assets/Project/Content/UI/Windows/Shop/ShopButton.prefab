@@ -157,7 +157,7 @@ PrefabInstance:
     - target: {fileID: 4283437290661693999, guid: a1321f7c3c4e27340bf725c10179a593,
         type: 3}
       propertyPath: _overrideSound
-      value: 41
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6714446974779947133, guid: a1321f7c3c4e27340bf725c10179a593,
         type: 3}

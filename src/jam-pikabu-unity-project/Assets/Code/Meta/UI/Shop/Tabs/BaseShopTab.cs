@@ -1,4 +1,6 @@
 ﻿using Code.Common.Extensions;
+using Code.Gameplay.Sound;
+using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
 using Code.Meta.UI.Shop.Window;
 using Code.Meta.UI.Shop.WindowService;
@@ -14,15 +16,18 @@ namespace Code.Meta.UI.Shop.Tabs
         protected IInstantiator _instantiator;
         protected IStaticDataService _staticData;
         protected IShopWindowService _shopWindowService;
+        protected ISoundService _soundService;
 
         [Inject]
         private void Construct
         (
             IInstantiator instantiator,
             IStaticDataService staticDataService,
-            IShopWindowService shopWindowService
+            IShopWindowService shopWindowService,
+            ISoundService soundService
         )
         {
+            _soundService = soundService;
             _instantiator = instantiator;
             _staticData = staticDataService;
             _shopWindowService = shopWindowService;
@@ -31,6 +36,7 @@ namespace Code.Meta.UI.Shop.Tabs
         public virtual void ActivateTab()
         {
             gameObject.EnableElement();
+            _soundService.PlaySound(SoundTypeId.OpenShop);
         }
 
         public virtual void DeactivateTab()

@@ -306,6 +306,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShopItemView: {fileID: 2659152469930310223}
   ShopBuyButton: {fileID: 8472058546297749031}
+  ActiveGO: {fileID: 4880692426845022611}
+  ActiveDurationTimer: {fileID: 7459818319428406664}
+  DurationGO: {fileID: 8743665025414655419}
   DurationText: {fileID: 9148560208641560627}
 --- !u!114 &2659152469930310223
 MonoBehaviour:
@@ -339,7 +342,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8752849693269311314
 RectTransform:
   m_ObjectHideFlags: 0
@@ -585,6 +588,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1892255176772655217}
   - component: {fileID: 7637150003297448674}
+  - component: {fileID: 7459818319428406664}
   - component: {fileID: 9009268972948188068}
   m_Layer: 5
   m_Name: Time
@@ -620,6 +624,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7330154137931475410}
   m_CullTransparentMesh: 1
+--- !u!114 &7459818319428406664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7330154137931475410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30361a0dfbda440fa300e4c3d5cc2cb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timerText: {fileID: 9009268972948188068}
+  _format: 0
 --- !u!114 &9009268972948188068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -640,7 +658,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u041E\u0441\u0442\u0430\u043B\u043E\u0441\u044C\n5\u043C 35\u0441"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e0b7b1bfdb6e69445808e5f2093d1487, type: 2}
   m_sharedMaterial: {fileID: -5343447789192355002, guid: e0b7b1bfdb6e69445808e5f2093d1487,
@@ -668,12 +686,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
+  m_fontSize: 40
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 20
-  m_fontSizeMax: 30
+  m_fontSizeMax: 40
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512

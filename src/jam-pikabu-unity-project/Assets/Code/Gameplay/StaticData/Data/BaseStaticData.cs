@@ -12,6 +12,18 @@ namespace Code.Gameplay.StaticData.Data
         private Dictionary<int, TData> _uniqueIndex;
         private Dictionary<int, List<TData>> _nonUniqueIndex;
 
+        public override void OnConfigPreInit()
+        {
+            base.OnConfigPreInit();
+            
+            AddIndex(-1, data => data.Id);
+        }
+        
+        public TData GetById(int id)
+        {
+            return GetByKey(id, -1);
+        }
+
         protected void AddIndex(Func<TData, int> keySelector)
         {
             if (Configs == null || keySelector == null)
@@ -26,7 +38,7 @@ namespace Code.Gameplay.StaticData.Data
             }
         }
         
-        protected void AddIndex(Func<TData, int> keySelector, int indexId)
+        protected void AddIndex(int indexId, Func<TData, int> keySelector)
         {
             if (Configs == null || keySelector == null)
                 throw new ArgumentNullException();

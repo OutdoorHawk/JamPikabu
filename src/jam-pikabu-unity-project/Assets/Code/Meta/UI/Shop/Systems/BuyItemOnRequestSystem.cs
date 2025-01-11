@@ -1,4 +1,8 @@
+using Code.Common.Entity;
+using Code.Common.Extensions;
+using Code.Gameplay.Features.Currency;
 using Code.Gameplay.StaticData;
+using Code.Meta.UI.Shop.Configs;
 using Code.Meta.UI.Shop.Service;
 using Entitas;
 
@@ -7,7 +11,7 @@ namespace Code.Meta.UI.Shop.Systems
     public class BuyItemOnRequestSystem : IExecuteSystem
     {
         private readonly IGroup<MetaEntity> _shopItemPurchaseRequests;
-        private readonly IGroup<MetaEntity> _storages;
+        private readonly IGroup<MetaEntity> _goldStorages;
         private readonly IStaticDataService _staticDataService;
         private readonly IShopUIService _shopUIService;
 
@@ -21,7 +25,7 @@ namespace Code.Meta.UI.Shop.Systems
             _shopUIService = shopUIService;
             _staticDataService = staticDataService;
 
-            _storages = meta.GetGroup(MetaMatcher
+            _goldStorages = meta.GetGroup(MetaMatcher
                 .AllOf(
                     MetaMatcher.Storage,
                     MetaMatcher.Gold));
@@ -34,23 +38,42 @@ namespace Code.Meta.UI.Shop.Systems
 
         public void Execute()
         {
-            foreach (MetaEntity storage in _storages)
             foreach (MetaEntity request in _shopItemPurchaseRequests)
             {
                 request.isDestructed = true;
 
-                if (_shopUIService.IsItemPurchased(request.ShopItemId))
-                    continue;
+                ShopItemData data = _staticDataService.Get<ShopStaticData>().GetById(request.ShopItemId);
 
-                /*ShopItemConfig config = _staticDataService.GetShopItemConfig(request.ShopItemId);
-                ShopItemSetup shopItemSetup = config.Data;
+                if (TryPurchase(data) == false)
+                    continue;
 
                 CreateMetaEntity.Empty()
                     .AddShopItemId(request.ShopItemId)
+                    .With(x => x.isConsumable = true, when: data.Consumable)
                     .isPurchased = true;
-
-                _shopUIService.UpdatePurchasedItem(request.ShopItemId);*/
             }
+        }
+
+        private bool TryPurchase(ShopItemData data)
+        {
+            switch (data.Cost.CurrencyType)
+            {
+                case CurrencyTypeId.Gold:
+                {
+                    foreach (MetaEntity storage in _goldStorages)
+                    {
+                        if (storage.Gold < data.Cost.Amount)
+                            continue;
+
+                        storage.ReplaceGold(storage.Gold - data.Cost.Amount);
+                        return true;
+                    }
+
+                    break;
+                }
+            }
+
+            return false;
         }
     }
 }

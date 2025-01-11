@@ -10,7 +10,7 @@ namespace Code.Gameplay.Features.Distraction.Config
         {
             base.OnConfigInit();
             
-            AddIndex(data => (int)data.TypeId, 0);
+            AddIndex(0, data => (int)data.TypeId);
         }
 
         public DistractionObjectData GetDataByTypeId(DistractionObjectTypeId typeId)
