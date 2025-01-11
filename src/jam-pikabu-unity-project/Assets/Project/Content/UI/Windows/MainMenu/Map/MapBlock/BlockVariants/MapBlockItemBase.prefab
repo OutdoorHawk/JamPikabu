@@ -1240,11 +1240,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelButton Type 3
       objectReference: {fileID: 0}
-    - target: {fileID: 7048336605470943666, guid: 9240606dc546e344ab30d56a383b8737,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 2100000, guid: 9dc7e810a87b444ab96919f3215c2fe5, type: 2}
     - target: {fileID: 8475810177304596399, guid: 9240606dc546e344ab30d56a383b8737,
         type: 3}
       propertyPath: m_Material
@@ -1474,20 +1469,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 1736262225144378216, guid: 4ccb303b032b8fc4dbae95c370eb020e,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 2100000, guid: 9dc7e810a87b444ab96919f3215c2fe5, type: 2}
     - target: {fileID: 2353931278089836499, guid: 4ccb303b032b8fc4dbae95c370eb020e,
         type: 3}
       propertyPath: m_Name
       value: LevelButton Type 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4261556970262743599, guid: 4ccb303b032b8fc4dbae95c370eb020e,
-        type: 3}
-      propertyPath: m_Material
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4977019473555724625, guid: 4ccb303b032b8fc4dbae95c370eb020e,
         type: 3}
@@ -1528,11 +1513,6 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 4808031291958033310, guid: c11310987f9803747b674053c9dde9b4,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 2100000, guid: 9dc7e810a87b444ab96919f3215c2fe5, type: 2}
     - target: {fileID: 6253554038651297155, guid: c11310987f9803747b674053c9dde9b4,
         type: 3}
       propertyPath: m_Material
@@ -1676,6 +1656,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1593955131924674742, guid: 1938d357be68b174f9755b8fc03dc461,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 21.5
       objectReference: {fileID: 0}
     - target: {fileID: 4732437637818540671, guid: 1938d357be68b174f9755b8fc03dc461,
         type: 3}
