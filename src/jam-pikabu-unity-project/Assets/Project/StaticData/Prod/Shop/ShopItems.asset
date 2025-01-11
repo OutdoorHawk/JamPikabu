@@ -37,7 +37,7 @@ MonoBehaviour:
       m_LocalVariables: []
     Cost:
       CurrencyType: 1
-      Amount: 50
+      Amount: 40
     Consumable: 1
     LootType: 17
     MinutesDuration: 10
