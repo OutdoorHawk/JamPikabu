@@ -7,6 +7,7 @@ using Code.Gameplay.Features.Loot.Data;
 using Code.Gameplay.Features.LootSpawning.Factory;
 using Code.Gameplay.StaticData;
 using Code.Meta.Features.BonusLevel.Config;
+using Code.Meta.Features.Consumables.Service;
 using Code.Meta.Features.DayLootSettings.Configs;
 using Code.Meta.Features.Days.Service;
 using RoyalGold.Sources.Scripts.Game.MVC.Utils;
@@ -18,6 +19,7 @@ namespace Code.Gameplay.Features.Loot.Service
         private readonly IStaticDataService _staticDataService;
         private readonly IDaysService _daysService;
         private readonly ILootSpawnerFactory _lootFactory;
+        private readonly IConsumablesUIService _extraLootService;
         public event Action OnLootUpdate;
 
         private readonly List<LootTypeId> _collectedLootItems = new();
@@ -33,12 +35,14 @@ namespace Code.Gameplay.Features.Loot.Service
         (
             IStaticDataService staticDataService,
             IDaysService daysService,
-            ILootSpawnerFactory lootFactory
+            ILootSpawnerFactory lootFactory,
+            IConsumablesUIService extraLootService
         )
         {
             _staticDataService = staticDataService;
             _daysService = daysService;
             _lootFactory = lootFactory;
+            _extraLootService = extraLootService;
         }
 
         public void CreateLootSpawner()
@@ -103,6 +107,11 @@ namespace Code.Gameplay.Features.Loot.Service
                 {
                     _availableLoot.Add(staticData.GetConfig(lootTypeId));
                 }
+            }
+
+            foreach (var data in _extraLootService.GetActiveConsumables())
+            {
+                _availableLoot.Add(staticData.GetConfig(data.Type));
             }
 
             FallbackRandom(staticData);

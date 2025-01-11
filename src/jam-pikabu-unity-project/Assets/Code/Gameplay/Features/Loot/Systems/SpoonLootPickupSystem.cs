@@ -47,7 +47,7 @@ namespace Code.Gameplay.Features.Loot.Systems
                 var rigidbody = loot.Rigidbody2D;
 
                 Vector2 randomDirection = Random.insideUnitCircle.normalized;
-                float forceMagnitude = Random.Range(3f, 4f);
+                float forceMagnitude = Random.Range(1f, 2.5f);
                 rigidbody.AddForce(randomDirection * forceMagnitude, ForceMode2D.Impulse);
 
                 float randomTorque = Random.Range(-5f, 5f);
