@@ -48,10 +48,13 @@ namespace Code.Meta.Features.Consumables.Behaviours
             ShopItemView.Initialize(shopItemData);
 
             DurationText.text = _localizedTimeService.GetLocalizedTime(shopItemData.MinutesDuration * 60);
+            
+            ShopBuyButton.InitUpgradePrice(shopItemData.Cost);
         }
 
         private void Refresh()
         {
+            
         }
     }
 }

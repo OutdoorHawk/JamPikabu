@@ -1,9 +1,12 @@
 ﻿using Code.Common.Extensions;
 using Code.Gameplay.Features.Currency.Config;
+using Code.Gameplay.Features.Currency.Service;
 using Code.Meta.UI.Common;
+using Code.Meta.UI.Shop.Service;
 using Coffee.UIExtensions;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Code.Meta.UI.Shop.Common
 {
@@ -18,37 +21,71 @@ namespace Code.Meta.UI.Shop.Common
         public Color AvailableColor;
         public Color NotAvailableColor;
 
-        private CostSetup _upgradePrice;
+        private IGameplayCurrencyService _currency;
+        private IShopUIService _shopUIService;
+
+        private CostSetup _currentPrice;
         private bool _firstInitComplete;
 
         public Button Button => BuyButton;
 
+        [Inject]
+        private void Construct
+        (
+            IGameplayCurrencyService currency,
+            IShopUIService shopUIService
+        )
+        {
+            _shopUIService = shopUIService;
+            _currency = currency;
+        }
+
+        private void OnEnable()
+        {
+            _shopUIService.ShopChanged += Refresh;
+        }
+
+        private void OnDisable()
+        {
+            _shopUIService.ShopChanged -= Refresh;
+        }
+
         public void InitUpgradePrice(CostSetup cost)
         {
             PurchasePrice.SetupPrice(cost, withAnimation: _firstInitComplete);
-            _upgradePrice = null;
-            _upgradePrice = cost;
+            _currentPrice = cost;
+
+            Refresh();
         }
 
-        public void ResetAll()
+        private void Refresh()
         {
-            PurchasePrice.DisableElement();
+            if (_currentPrice == null)
+                return;
+
+            ResetAll();
+
+            int amount = _currency.GetCurrencyOfType(_currentPrice.CurrencyType, false);
+            bool canBuy = amount >= _currentPrice.Amount;
+
+            if (canBuy)
+                SetAvailablePurchase();
+            else
+                SetNoMoney();
+        }
+
+        private void ResetAll()
+        {
             Button.enabled = false;
         }
 
-        public void SetMaxLevelReached()
-        {
-            Shiny.Stop();
-            SetAvailableButtonColors();
-        }
-
-        public void SetNoMoneyForUpgrade()
+        private void SetNoMoney()
         {
             PurchasePrice.EnableElement();
             SetNotAvailableButtonColors();
         }
 
-        public void SetCanUpgrade()
+        private void SetAvailablePurchase()
         {
             PurchasePrice.EnableElement();
             Button.enabled = true;
