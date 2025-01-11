@@ -98,16 +98,16 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
 
         private async UniTask ProcessLootSpawn(LootSettingsStaticData staticData, SceneContextComponent sceneContext)
         {
-            float lootSpawnAmount = staticData.MaxLootAmount;
+            float lootSpawnAmount = staticData.MaxIngredientLootAmount;
 
-            if (lootSpawnAmount == 0 || _gameplayLootService.AvailableLoot == null)
+            if (lootSpawnAmount == 0 || _gameplayLootService.AvailableIngredients == null)
                 return;
 
-            for (int i = 0; i < lootSpawnAmount / _gameplayLootService.AvailableLoot.Count; i++)
+            for (int i = 0; i < lootSpawnAmount / _gameplayLootService.AvailableIngredients.Count; i++)
             {
                 Transform spawn = GetSpawnPoint(sceneContext);
 
-                foreach (var lootSetup in _gameplayLootService.AvailableLoot)
+                foreach (var lootSetup in _gameplayLootService.AvailableIngredients)
                 {
                     _lootFactory.CreateLootEntity(lootSetup.Type, sceneContext.LootParent, spawn.position, spawn.rotation.eulerAngles);
                     await DelaySeconds(staticData.LootSpawnInterval, _exitGameSource.Token);

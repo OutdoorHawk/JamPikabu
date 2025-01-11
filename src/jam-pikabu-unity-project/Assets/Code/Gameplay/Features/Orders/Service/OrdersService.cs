@@ -249,7 +249,7 @@ namespace Code.Gameplay.Features.Orders.Service
         {
             _orderIngredients.good = new List<IngredientData>();
             _orderIngredients.bad = new List<IngredientData>();
-            List<LootSettingsData> availableLoot = new List<LootSettingsData>(_gameplayLootService.AvailableLoot);
+            List<LootSettingsData> availableLoot = new List<LootSettingsData>(_gameplayLootService.AvailableIngredients);
 
             availableLoot.ShuffleList();
             availableLoot.RemoveAll(setup => setup.CanBeUsedInOrders == false);

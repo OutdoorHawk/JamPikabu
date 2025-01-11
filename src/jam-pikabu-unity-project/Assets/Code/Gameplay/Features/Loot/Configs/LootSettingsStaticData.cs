@@ -11,11 +11,13 @@ namespace Code.Gameplay.Features.Loot.Configs
         public float LootSpawnConveyorInterval = 0.5f;
         public float LootSpawnStartDelay = 0.15f;
         public float DelayAfterLootSpawn = 0.4f;
-        public float MaxLootAmount = 50;
+        public int MaxIngredientLootAmount = 42;
+        public int MaxLootAmount = 50;
         public float CollectFlyAnimationDuration = 0.5f;
 
         public EntityView LootItemUI;
         public EntityView LootItem;
+        public int MaxExtraLootAmount => MaxLootAmount - MaxIngredientLootAmount;
 
         public override void OnConfigInit()
         {
