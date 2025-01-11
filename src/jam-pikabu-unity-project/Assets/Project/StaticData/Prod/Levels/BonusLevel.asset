@@ -19,4 +19,4 @@ MonoBehaviour:
     FreePlayResetTimeMinutes: 300
     GoldFactorModifier: 3.85
     RoundTimeOverride: 25
-    AvailableIngredients: 010000000100000001000000110000000f000000
+    AvailableIngredients: 0100000001000000110000000f000000

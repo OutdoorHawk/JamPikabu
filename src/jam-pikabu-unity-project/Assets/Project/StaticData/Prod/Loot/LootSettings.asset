@@ -30,7 +30,7 @@ MonoBehaviour:
       m_LocalVariables: []
     BaseRatingValue: 0
     EffectValue: 0
-    SpawnChance: 60
+    SpawnChance: 55
     AbilityType: 0
   - Id: 2
     Type: 6
@@ -334,7 +334,7 @@ MonoBehaviour:
       m_LocalVariables: []
     BaseRatingValue: 1
     EffectValue: 0
-    SpawnChance: 100
+    SpawnChance: 25
     AbilityType: 0
   LootSpawnInterval: 0.03
   LootSpawnConveyorInterval: 0.6

@@ -91,6 +91,9 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
         
         private bool CheckTypeMaxAmountReached(LootSettingsData lootSetup)
         {
+            if (lootSetup.SpawnChance != 100)
+                return false;
+            
             float typeMaxAmount = LootStaticData.MaxLootAmount / _gameplayLootService.AvailableLoot.Count;
 
             List<GameEntity> typedLoot = _activeLoot

@@ -917,7 +917,7 @@ MonoBehaviour:
     play: 0
     initialPlayDelay: 0
     duration: 1
-    loop: 0
+    loop: 1
     loopDelay: 4
     updateMode: 0
   m_Play: 0
