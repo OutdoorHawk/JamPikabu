@@ -8,7 +8,6 @@ using Code.Meta.Features.DayLootSettings.Configs;
 using Code.Meta.Features.LootCollection.Configs;
 using Code.Meta.Features.LootCollection.Data;
 using Code.Meta.Features.LootCollection.Factory;
-using Code.Meta.Features.MapBlocks.Behaviours;
 
 namespace Code.Meta.Features.LootCollection.Service
 {
@@ -155,7 +154,7 @@ namespace Code.Meta.Features.LootCollection.Service
         {
             FreeUpgradeTimerUpdated(type, 0);
         }
-        
+
         private void FreeUpgradeTimerUpdated(LootTypeId type, int nextTime)
         {
             if (LootFreeUpgrade.TryGetValue(type, out var currentData))

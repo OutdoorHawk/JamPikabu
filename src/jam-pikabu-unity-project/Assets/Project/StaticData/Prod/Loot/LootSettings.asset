@@ -340,7 +340,7 @@ MonoBehaviour:
   LootSpawnConveyorInterval: 0.6
   LootSpawnStartDelay: 0.15
   DelayAfterLootSpawn: 0.4
-  MaxIngredientLootAmount: 42
+  MaxIngredientLootAmount: 40
   MaxLootAmount: 50
   CollectFlyAnimationDuration: 0.75
   LootItemUI: {fileID: 6122044623407222926, guid: 17a9554d4999c3b43a5c2052ad4cdf08,

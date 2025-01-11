@@ -7,20 +7,20 @@ using Entitas;
 
 namespace Code.Gameplay.Features.LootSpawning.Systems
 {
-    public class ContinuousSpawnLootSystem : IExecuteSystem
+    public class BonusLevelSpawnLootSystem : IExecuteSystem
     {
         private readonly IStaticDataService _staticDataService;
         private readonly IGameplayLootService _gameplayLootService;
 
         private readonly IGroup<GameEntity> _entities;
-        private readonly IGroup<GameEntity> _ingredientLoot;
+        private readonly IGroup<GameEntity> _allLoot;
         private readonly IGroup<GameEntity> _extraLoot;
 
         private readonly List<GameEntity> _buffer = new(2);
 
         private LootSettingsStaticData LootStaticData => _staticDataService.Get<LootSettingsStaticData>();
 
-        public ContinuousSpawnLootSystem(GameContext context, IStaticDataService staticDataService,
+        public BonusLevelSpawnLootSystem(GameContext context, IStaticDataService staticDataService,
             IGameplayLootService gameplayLootService)
         {
             _staticDataService = staticDataService;
@@ -28,15 +28,14 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
 
             _entities = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.LootSpawner,
-                    GameMatcher.ContinuousSpawn,
+                    GameMatcher.BonusLevelSpawn,
                     GameMatcher.LootSpawnInterval,
                     GameMatcher.CooldownUp
                 ));
 
-            _ingredientLoot = context.GetGroup(GameMatcher
+            _allLoot = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.Loot,
-                    GameMatcher.View,
-                    GameMatcher.Rating
+                    GameMatcher.View
                 ));
 
             _extraLoot = context.GetGroup(GameMatcher
@@ -50,7 +49,7 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
         {
             foreach (var spawner in _entities.GetEntities(_buffer))
             {
-                if (_ingredientLoot.count >= LootStaticData.MaxIngredientLootAmount)
+                if (_allLoot.count >= LootStaticData.MaxIngredientLootAmount)
                 {
                     spawner.isDestructed = true;
                     continue;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Loot.Configs;
@@ -13,6 +14,8 @@ using Code.Meta.Features.BonusLevel.Config;
 using Code.Meta.Features.Consumables.Service;
 using Code.Meta.Features.DayLootSettings.Configs;
 using Code.Meta.Features.Days.Service;
+using Code.Meta.Features.LootCollection.Data;
+using Code.Meta.Features.LootCollection.Service;
 using RoyalGold.Sources.Scripts.Game.MVC.Utils;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -27,6 +30,7 @@ namespace Code.Gameplay.Features.Loot.Service
         private readonly IConsumablesUIService _extraLootService;
         private readonly ILootFactory _lootFactory;
         private readonly ISceneContextProvider _provider;
+        private readonly ILootCollectionService _lootCollection;
         public event Action OnLootUpdate;
 
         private readonly List<LootTypeId> _collectedLootItems = new();
@@ -35,6 +39,7 @@ namespace Code.Gameplay.Features.Loot.Service
         private readonly CircularList<LootSettingsData> _availableExtraLoot = new();
 
         public bool LootIsBusy { get; private set; }
+        public int MaxExtraLootAmount => _availableExtraLoot.Count * _staticDataService.Get<LootSettingsStaticData>().MaxEachExtraLootAmount;
         public IReadOnlyList<LootTypeId> CollectedLootItems => _collectedLootItems;
         public CircularList<LootSettingsData> AvailableIngredients => _availableIngredients;
         public CircularList<LootSettingsData> AvailableExtraLoot => _availableExtraLoot;
@@ -47,7 +52,8 @@ namespace Code.Gameplay.Features.Loot.Service
             ILootSpawnerFactory lootSpawnerFactory,
             IConsumablesUIService extraLootService,
             ILootFactory lootFactory,
-            ISceneContextProvider provider
+            ISceneContextProvider provider,
+            ILootCollectionService lootCollection
         )
         {
             _staticDataService = staticDataService;
@@ -56,6 +62,7 @@ namespace Code.Gameplay.Features.Loot.Service
             _extraLootService = extraLootService;
             _lootFactory = lootFactory;
             _provider = provider;
+            _lootCollection = lootCollection;
         }
 
         public void CreateLootSpawner()
@@ -124,6 +131,14 @@ namespace Code.Gameplay.Features.Loot.Service
                 foreach (LootTypeId typeId in bonusLevelData.AvailableIngredients)
                 {
                     _availableIngredients.Add(staticData.GetConfig(typeId));
+                }
+
+                var lootLevels = _lootCollection.LootLevels.Values.ToList();
+                
+                if (lootLevels.Count > 0)
+                {
+                    LootTypeId lootTypeId = lootLevels[Random.Range(0, lootLevels.Count)].Type;
+                    _availableIngredients.Add(staticData.GetConfig(lootTypeId));
                 }
             }
             else

@@ -10,6 +10,7 @@ namespace Code.Gameplay.Features.Loot.Service
     {
         event Action OnLootUpdate;
         bool LootIsBusy { get; }
+        int MaxExtraLootAmount { get; }
         IReadOnlyList<LootTypeId> CollectedLootItems { get; }
         CircularList<LootSettingsData> AvailableIngredients { get; }
         CircularList<LootSettingsData> AvailableExtraLoot { get; }
