@@ -8,16 +8,48 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 520899847431747951, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 11.2
+      objectReference: {fileID: 0}
     - target: {fileID: 2707011789127762984, guid: dbc347dae19183a42a4979866b34351c,
         type: 3}
       propertyPath: m_Name
       value: UpgradeLootTabButton Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5522425663342527054, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 36eb2f5520992d649bd05e671e4a9e35,
+        type: 3}
     - target: {fileID: 5873466380088909571, guid: dbc347dae19183a42a4979866b34351c,
         type: 3}
       propertyPath: TabType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5887996225853176184, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 114
+      objectReference: {fileID: 0}
+    - target: {fileID: 5887996225853176184, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5887996225853176184, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -2.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5978853173801096190, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 36eb2f5520992d649bd05e671e4a9e35,
+        type: 3}
     - target: {fileID: 7665893785900686657, guid: dbc347dae19183a42a4979866b34351c,
         type: 3}
       propertyPath: m_Pivot.x
@@ -122,6 +154,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontSize
       value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 9079756668409501422, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9079756668409501422, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 16.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

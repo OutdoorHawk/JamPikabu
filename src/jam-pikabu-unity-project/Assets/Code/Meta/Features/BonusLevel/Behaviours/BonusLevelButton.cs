@@ -73,7 +73,7 @@ namespace Code.Meta.Features.BonusLevel.Behaviours
             Pin.DisableElement();
             Shiny.Stop();
             Button.interactable = false;
-            Timer.TimerText.text = "";
+            Timer.TimerText.text = "00:00";
             
             if (TutorialConditionComponent.CurrentCondition == false)
                 return;
