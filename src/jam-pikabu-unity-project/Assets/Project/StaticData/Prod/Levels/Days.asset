@@ -40,7 +40,7 @@ MonoBehaviour:
     OrdersAmount: 1
     DayGoldFactor: 1.2157669
     SceneId: 3
-    DistractionObjects: 
+    DistractionObjects: 01000000
   - Id: 5
     IsBossDay: 0
     AvailableOrderTags: 16
@@ -91,8 +91,8 @@ MonoBehaviour:
     SceneId: 2
     DistractionObjects: 
   - Id: 12
-    IsBossDay: 0
-    AvailableOrderTags: 16
+    IsBossDay: 1
+    AvailableOrderTags: 12
     OrdersAmount: 4
     DayGoldFactor: 1.5357656
     SceneId: 3
@@ -102,15 +102,15 @@ MonoBehaviour:
     AvailableOrderTags: 16
     OrdersAmount: 4
     DayGoldFactor: 1.5694124
-    SceneId: 2
-    DistractionObjects: 
+    SceneId: 5
+    DistractionObjects: 0100000001000000
   - Id: 14
     IsBossDay: 0
     AvailableOrderTags: 16
     OrdersAmount: 3
     DayGoldFactor: 1.6022272
     SceneId: 2
-    DistractionObjects: 
+    DistractionObjects: 01000000
   - Id: 15
     IsBossDay: 0
     AvailableOrderTags: 16
@@ -130,8 +130,8 @@ MonoBehaviour:
     AvailableOrderTags: 16
     OrdersAmount: 3
     DayGoldFactor: 1.6964405
-    SceneId: 2
-    DistractionObjects: 
+    SceneId: 6
+    DistractionObjects: 01000000
   - Id: 18
     IsBossDay: 0
     AvailableOrderTags: 16
@@ -145,7 +145,7 @@ MonoBehaviour:
     OrdersAmount: 3
     DayGoldFactor: 1.7562941
     SceneId: 2
-    DistractionObjects: 
+    DistractionObjects: 01000000
   - Id: 20
     IsBossDay: 1
     AvailableOrderTags: 20
@@ -159,14 +159,14 @@ MonoBehaviour:
     OrdersAmount: 4
     DayGoldFactor: 1.8141811
     SceneId: 2
-    DistractionObjects: 
+    DistractionObjects: 0100000001000000
   - Id: 22
     IsBossDay: 0
     AvailableOrderTags: 32
     OrdersAmount: 4
     DayGoldFactor: 1.8424681
-    SceneId: 2
-    DistractionObjects: 
+    SceneId: 6
+    DistractionObjects: 01000000
   - Id: 23
     IsBossDay: 0
     AvailableOrderTags: 32
@@ -186,7 +186,7 @@ MonoBehaviour:
     AvailableOrderTags: 32
     OrdersAmount: 4
     DayGoldFactor: 1.9250131
-    SceneId: 2
+    SceneId: 4
     DistractionObjects: 
   - Id: 26
     IsBossDay: 0
@@ -200,8 +200,8 @@ MonoBehaviour:
     AvailableOrderTags: 32
     OrdersAmount: 4
     DayGoldFactor: 1.978321
-    SceneId: 2
-    DistractionObjects: 
+    SceneId: 6
+    DistractionObjects: 01000000
   - Id: 28
     IsBossDay: 0
     AvailableOrderTags: 32
@@ -218,144 +218,144 @@ MonoBehaviour:
     DistractionObjects: 
   - Id: 30
     IsBossDay: 1
-    AvailableOrderTags: 36
+    AvailableOrderTags: 20
     OrdersAmount: 1
     DayGoldFactor: 2.0560355
     SceneId: 3
     DistractionObjects: 
   - Id: 31
     IsBossDay: 0
-    AvailableOrderTags: 0
+    AvailableOrderTags: 32
     OrdersAmount: 4
     DayGoldFactor: 2.0813963
     SceneId: 2
-    DistractionObjects: 
+    DistractionObjects: 01000000
   - Id: 32
     IsBossDay: 0
-    AvailableOrderTags: 0
+    AvailableOrderTags: 32
     OrdersAmount: 3
     DayGoldFactor: 2.1065044
-    SceneId: 2
+    SceneId: 5
     DistractionObjects: 
   - Id: 33
     IsBossDay: 0
-    AvailableOrderTags: 0
+    AvailableOrderTags: 32
     OrdersAmount: 3
     DayGoldFactor: 2.1313708
     SceneId: 2
-    DistractionObjects: 
+    DistractionObjects: 01000000
   - Id: 34
     IsBossDay: 0
-    AvailableOrderTags: 0
+    AvailableOrderTags: 32
     OrdersAmount: 3
     DayGoldFactor: 2.1560051
     SceneId: 2
-    DistractionObjects: 
+    DistractionObjects: 01000000
   - Id: 35
     IsBossDay: 0
-    AvailableOrderTags: 0
+    AvailableOrderTags: 32
     OrdersAmount: 4
     DayGoldFactor: 2.1804163
     SceneId: 2
     DistractionObjects: 
   - Id: 36
     IsBossDay: 0
-    AvailableOrderTags: 0
+    AvailableOrderTags: 32
     OrdersAmount: 3
     DayGoldFactor: 2.2046132
-    SceneId: 2
-    DistractionObjects: 
+    SceneId: 5
+    DistractionObjects: 01000000
   - Id: 37
     IsBossDay: 0
-    AvailableOrderTags: 0
+    AvailableOrderTags: 32
     OrdersAmount: 4
     DayGoldFactor: 2.2286034
     SceneId: 2
     DistractionObjects: 
   - Id: 38
     IsBossDay: 0
-    AvailableOrderTags: 0
+    AvailableOrderTags: 32
     OrdersAmount: 3
     DayGoldFactor: 2.2523947
     SceneId: 2
     DistractionObjects: 
   - Id: 39
     IsBossDay: 0
-    AvailableOrderTags: 0
+    AvailableOrderTags: 32
     OrdersAmount: 3
     DayGoldFactor: 2.2759936
-    SceneId: 2
-    DistractionObjects: 
+    SceneId: 6
+    DistractionObjects: 01000000
   - Id: 40
-    IsBossDay: 0
-    AvailableOrderTags: 0
+    IsBossDay: 1
+    AvailableOrderTags: 36
     OrdersAmount: 3
     DayGoldFactor: 2.299407
     SceneId: 2
     DistractionObjects: 
   - Id: 41
     IsBossDay: 0
-    AvailableOrderTags: 0
+    AvailableOrderTags: 32
     OrdersAmount: 4
     DayGoldFactor: 2.322641
     SceneId: 2
-    DistractionObjects: 
+    DistractionObjects: 0100000001000000
   - Id: 42
     IsBossDay: 0
-    AvailableOrderTags: 0
+    AvailableOrderTags: 32
     OrdersAmount: 4
     DayGoldFactor: 2.3457012
-    SceneId: 2
-    DistractionObjects: 
+    SceneId: 5
+    DistractionObjects: 01000000
   - Id: 43
     IsBossDay: 0
-    AvailableOrderTags: 0
+    AvailableOrderTags: 32
     OrdersAmount: 4
     DayGoldFactor: 2.3685935
     SceneId: 2
     DistractionObjects: 
   - Id: 44
     IsBossDay: 0
-    AvailableOrderTags: 0
+    AvailableOrderTags: 32
     OrdersAmount: 4
     DayGoldFactor: 2.3913229
     SceneId: 2
-    DistractionObjects: 
+    DistractionObjects: 01000000
   - Id: 45
     IsBossDay: 0
-    AvailableOrderTags: 0
+    AvailableOrderTags: 32
     OrdersAmount: 4
     DayGoldFactor: 2.413894
-    SceneId: 2
+    SceneId: 4
     DistractionObjects: 
   - Id: 46
     IsBossDay: 0
-    AvailableOrderTags: 0
+    AvailableOrderTags: 32
     OrdersAmount: 3
     DayGoldFactor: 2.4363117
     SceneId: 2
     DistractionObjects: 
   - Id: 47
     IsBossDay: 0
-    AvailableOrderTags: 0
+    AvailableOrderTags: 32
     OrdersAmount: 3
     DayGoldFactor: 2.4585807
-    SceneId: 2
-    DistractionObjects: 
+    SceneId: 6
+    DistractionObjects: 01000000
   - Id: 48
     IsBossDay: 0
-    AvailableOrderTags: 0
+    AvailableOrderTags: 32
     OrdersAmount: 4
     DayGoldFactor: 2.4807048
     SceneId: 2
     DistractionObjects: 
   - Id: 49
     IsBossDay: 0
-    AvailableOrderTags: 0
+    AvailableOrderTags: 32
     OrdersAmount: 4
     DayGoldFactor: 2.5026882
     SceneId: 2
-    DistractionObjects: 
+    DistractionObjects: 01000000
   - Id: 50
     IsBossDay: 0
     AvailableOrderTags: 0
@@ -365,74 +365,74 @@ MonoBehaviour:
     DistractionObjects: 
   - Id: 51
     IsBossDay: 0
-    AvailableOrderTags: 0
+    AvailableOrderTags: 32
     OrdersAmount: 3
     DayGoldFactor: 2.5462475
-    SceneId: 2
+    SceneId: 5
     DistractionObjects: 
   - Id: 52
     IsBossDay: 0
-    AvailableOrderTags: 0
+    AvailableOrderTags: 32
     OrdersAmount: 3
     DayGoldFactor: 2.5678306
     SceneId: 2
-    DistractionObjects: 
+    DistractionObjects: 01000000
   - Id: 53
     IsBossDay: 0
-    AvailableOrderTags: 0
+    AvailableOrderTags: 32
     OrdersAmount: 3
     DayGoldFactor: 2.589287
     SceneId: 2
     DistractionObjects: 
   - Id: 54
     IsBossDay: 0
-    AvailableOrderTags: 0
+    AvailableOrderTags: 32
     OrdersAmount: 3
     DayGoldFactor: 2.61062
-    SceneId: 2
-    DistractionObjects: 
+    SceneId: 6
+    DistractionObjects: 01000000
   - Id: 55
-    IsBossDay: 0
-    AvailableOrderTags: 0
+    IsBossDay: 1
+    AvailableOrderTags: 36
     OrdersAmount: 3
     DayGoldFactor: 2.6318328
     SceneId: 2
     DistractionObjects: 
   - Id: 56
     IsBossDay: 0
-    AvailableOrderTags: 0
+    AvailableOrderTags: 32
     OrdersAmount: 3
     DayGoldFactor: 2.6529279
     SceneId: 2
-    DistractionObjects: 
+    DistractionObjects: 0100000001000000
   - Id: 57
     IsBossDay: 0
-    AvailableOrderTags: 0
+    AvailableOrderTags: 32
     OrdersAmount: 3
     DayGoldFactor: 2.673908
     SceneId: 2
     DistractionObjects: 
   - Id: 58
     IsBossDay: 0
-    AvailableOrderTags: 0
+    AvailableOrderTags: 32
     OrdersAmount: 4
     DayGoldFactor: 2.6947763
-    SceneId: 2
-    DistractionObjects: 
+    SceneId: 5
+    DistractionObjects: 01000000
   - Id: 59
     IsBossDay: 0
-    AvailableOrderTags: 0
+    AvailableOrderTags: 32
     OrdersAmount: 3
     DayGoldFactor: 2.715535
-    SceneId: 2
+    SceneId: 6
     DistractionObjects: 
   - Id: 60
     IsBossDay: 0
-    AvailableOrderTags: 0
+    AvailableOrderTags: 32
     OrdersAmount: 3
     DayGoldFactor: 2.7361867
     SceneId: 2
-    DistractionObjects: 
+    DistractionObjects: 010000000100000001000000
   StartGoldAmount: 10
   DefaultRoundDuration: 25
   BossRoundDuration: 50
