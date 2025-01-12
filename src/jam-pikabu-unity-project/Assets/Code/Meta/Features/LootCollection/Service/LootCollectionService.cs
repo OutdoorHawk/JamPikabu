@@ -16,9 +16,11 @@ namespace Code.Meta.Features.LootCollection.Service
         private readonly ITimeService _timeService;
         private readonly IStaticDataService _staticData;
         private readonly ILootCollectionFactory _factory;
+        
         public event Action OnUpgraded;
         public event Action OnFreeUpgradeTimeEnd;
         public event Action OnNewLootUnlocked;
+        
         public Dictionary<LootTypeId, LootLevelsProgressionData> LootLevels { get; private set; } = new();
         public Dictionary<LootTypeId, LootFreeUpgradeTimerData> LootFreeUpgrade { get; private set; } = new();
 

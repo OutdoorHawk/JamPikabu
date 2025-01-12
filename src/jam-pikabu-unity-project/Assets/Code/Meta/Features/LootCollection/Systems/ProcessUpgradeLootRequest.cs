@@ -1,4 +1,6 @@
 using Code.Infrastructure.Analytics;
+using Code.Meta.Features.LootCollection.Configs;
+using Code.Meta.Features.LootCollection.Data;
 using Code.Meta.Features.LootCollection.Service;
 using Entitas;
 using static Code.Infrastructure.Analytics.AnalyticsEventTypes;
@@ -62,6 +64,11 @@ namespace Code.Meta.Features.LootCollection.Systems
 
         private void UpgradeLevel(MetaEntity loot)
         {
+            LootProgressionData lootProgressionData = _lootCollectionService.LootData.GetConfig(loot.LootTypeId);
+
+            if (lootProgressionData != null && loot.Level > lootProgressionData.Levels.Count)
+                return;
+            
             int newLevel = loot.Level + 1;
             loot.ReplaceLevel(newLevel);
             _lootCollectionService.LootUpgraded(loot.LootTypeId, newLevel: newLevel);
