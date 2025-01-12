@@ -39,11 +39,12 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
         public Button UnlockButton;
         public Button FreeUpgradeButton;
         public Image[] IngredientIcons;
-        public RectTransform FlyToShopStartPosition;
+        public RectTransform UnlockIngredientStartPosition;
         public TMP_Text ReadyToUnlockText;
         public TMP_Text FreeUpgradeText;
         public Animator UnlockIngredientAnimator;
         public UniversalTimer UpgradeTimer;
+        public Image LockedBack;
         public float UnlockMoveDuration = 0.6f;
 
         public LootTypeId UnlocksIngredient { get; private set; }
@@ -111,9 +112,10 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
             _fillToken?.Cancel();
         }
 
-        public void Initialize(MapBlockData mapBlockData)
+        public void Initialize(MapBlockData mapBlockData, Sprite backgroundSprite)
         {
             _mapBlockData = mapBlockData;
+            LockedBack.sprite = backgroundSprite;
             InitializeState();
         }
 
@@ -325,7 +327,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
 
             await DelaySeconds(0.25f, token);
             
-            MoveIngredientToShop(from: FlyToShopStartPosition.transform.position, firstUnlock: true);
+            MoveIngredientToShop(from: UnlockIngredientStartPosition.transform.position, firstUnlock: true);
             _soundService.PlayOneShotSound(SoundTypeId.CollectIngredient);
 
             if (_lootCollectionService.CanUpgradeForFree(UnlocksIngredient) == false)

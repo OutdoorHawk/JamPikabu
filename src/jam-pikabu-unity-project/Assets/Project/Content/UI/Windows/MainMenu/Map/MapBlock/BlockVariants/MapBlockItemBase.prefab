@@ -418,6 +418,8 @@ MonoBehaviour:
   LockedContent: {fileID: 2630590622908968845}
   LockedByStarsText: {fileID: 183492968574160052}
   LockedByLevelsText: {fileID: 3104568948560744209}
+  Background: {fileID: 6699172989457800326}
+  LockedBackground: {fileID: 7110664281414710389}
 --- !u!1 &5688183724921920573
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,7 +522,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 23d1998047b246248bc870140fffc090, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -774,7 +776,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 23d1998047b246248bc870140fffc090, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1228,6 +1230,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4822474473817723125, guid: 9240606dc546e344ab30d56a383b8737,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6440729664937479433, guid: 9240606dc546e344ab30d56a383b8737,
         type: 3}
       propertyPath: m_Name
@@ -1611,6 +1618,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7027278753737720537, guid: c11310987f9803747b674053c9dde9b4,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8794166341160394533, guid: c11310987f9803747b674053c9dde9b4,
         type: 3}
       propertyPath: m_Name
@@ -1644,6 +1656,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1593955131924674742, guid: 1938d357be68b174f9755b8fc03dc461,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 21.5
       objectReference: {fileID: 0}
     - target: {fileID: 4732437637818540671, guid: 1938d357be68b174f9755b8fc03dc461,
         type: 3}

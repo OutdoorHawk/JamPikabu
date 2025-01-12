@@ -45,7 +45,7 @@ MonoBehaviour:
         CurrencyType: 1
         Amount: 15
       DaysRange: {x: 0, y: 0}
-      MinMaxNeedAmount: {x: 5, y: 6}
+      MinMaxNeedAmount: {x: 6, y: 6}
       MinMaxGoodIngredients: {x: 2, y: 2}
       MinMaxBadIngredients: {x: 1, y: 1}
       MinMaxIngredientsRatingFactor: {x: 1, y: 1}
@@ -98,7 +98,7 @@ MonoBehaviour:
       MinMaxBadIngredients: {x: 2, y: 2}
       MinMaxIngredientsRatingFactor: {x: 1, y: 1}
   BadIngredientGoldPenaltyFactor: 0.5
-  BadIngredientRatingPenaltyFactor: 0.05
+  BadIngredientRatingPenaltyFactor: 0.04
   OrderCompletedRatingBonusFactor: 0.15
   PerfectOrderRatingBonusFactor: 0.25
   IconsPool:

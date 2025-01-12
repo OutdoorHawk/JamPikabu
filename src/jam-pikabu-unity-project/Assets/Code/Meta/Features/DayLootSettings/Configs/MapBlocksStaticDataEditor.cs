@@ -8,9 +8,9 @@ namespace Code.Meta.Features.DayLootSettings.Configs
 {
     public partial class MapBlocksStaticData
     {
-        [FoldoutGroup("Editor")] public ExponentGrowthFormula StarsFormula;
+        [TabGroup("Editor")] public ExponentGrowthFormula StarsFormula;
 
-        [FoldoutGroup("Editor")]
+        [TabGroup("Editor")]
         [Button]
         private void SetupStarsNeedToUnlock()
         {
@@ -40,7 +40,7 @@ namespace Code.Meta.Features.DayLootSettings.Configs
             }
         }
 
-        [FoldoutGroup("Editor")]
+        [TabGroup("Editor")]
         [Button]
         private void SetupTimeToFreeUpgrade()
         {
@@ -50,7 +50,7 @@ namespace Code.Meta.Features.DayLootSettings.Configs
             }
         }
         
-        [FoldoutGroup("Editor")]
+        [TabGroup("Editor")]
         [Button]
         private void SetupAvailableIngredients()
         {

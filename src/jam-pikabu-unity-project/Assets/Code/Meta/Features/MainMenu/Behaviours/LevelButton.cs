@@ -1,10 +1,9 @@
 ﻿using Code.Common.Extensions;
-using Code.Gameplay.Features.Currency;
-using Code.Gameplay.Features.Currency.Config;
 using Code.Gameplay.StaticData;
 using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Service;
 using Code.Meta.Features.MainMenu.Service;
+using Coffee.UIExtensions;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -17,6 +16,7 @@ namespace Code.Meta.Features.MainMenu.Behaviours
     {
         public Button Button;
         public Image SelectedBg;
+        public UIShiny SelectedShiny;
         public TMP_Text LevelNumber;
         public Transform StarsParent;
         public Image[] Stars;
@@ -76,11 +76,13 @@ namespace Code.Meta.Features.MainMenu.Behaviours
         public void SetSelectedView()
         {
             SelectedBg.EnableElement();
+            SelectedShiny.enabled = true;
         }
 
         public void SetDeselectedView()
         {
             SelectedBg.DisableElement();
+            SelectedShiny.enabled = false;
         }
 
         public void SetLevelLocked()
@@ -93,7 +95,7 @@ namespace Code.Meta.Features.MainMenu.Behaviours
         {
             if (_mapMenuService.SelectedDayId == DayId)
                 return;
-            
+
             _mapMenuService.SetDaySelected(DayId);
         }
 
@@ -116,10 +118,10 @@ namespace Code.Meta.Features.MainMenu.Behaviours
                 .GetStaticData<CurrencyStaticData>()
                 .GetCurrencyConfig(CurrencyTypeId.Star);
 
-            foreach (var star in _starIcons) 
+            foreach (var star in _starIcons)
                 star.sprite = config.Data.Icon;*/
 
-            foreach (var star in Stars) 
+            foreach (var star in Stars)
                 star.DisableElement();
 
             if (_daysService.TryGetDayProgress(DayId, out var progress) == false)

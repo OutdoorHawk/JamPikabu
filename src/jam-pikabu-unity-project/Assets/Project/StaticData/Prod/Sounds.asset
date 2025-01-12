@@ -16,11 +16,13 @@ MonoBehaviour:
   - SoundType: 1
     Data:
       Clips:
-      - {fileID: 8300000, guid: 5b9798429a44a0d49ab34b4ebc8cc858, type: 3}
       - {fileID: 8300000, guid: 2f616f391b5c7e548a0a900435e8e8e2, type: 3}
-      - {fileID: 8300000, guid: aa09743e7d7591243a230b11129af81b, type: 3}
-      - {fileID: 8300000, guid: e86bbfed77b0f174b9dbf3331b379c11, type: 3}
-      - {fileID: 8300000, guid: 7aced60845defd34daa519d91f9242d7, type: 3}
+      - {fileID: 8300000, guid: f711bafdf49503c4886a02487024b6a8, type: 3}
+      - {fileID: 8300000, guid: 8a849814be0db2a43a4475be5e1423d2, type: 3}
+      - {fileID: 8300000, guid: 9a2d975c2b1e281488453b856f981c5d, type: 3}
+      - {fileID: 8300000, guid: 958b105235e3b9c458ed314e34012dd0, type: 3}
+      - {fileID: 8300000, guid: 5b9798429a44a0d49ab34b4ebc8cc858, type: 3}
+      - {fileID: 8300000, guid: 885e2c899011ab44a8fb2c492076afc1, type: 3}
       SourceType: 1
       Volume: 1
       RandomizePitch: 0
@@ -38,7 +40,7 @@ MonoBehaviour:
     Data:
       Clips:
       - {fileID: 8300000, guid: a4cc5ed135b1a9a4d9e0866ebc042ab6, type: 3}
-      - {fileID: 8300000, guid: 9dbefce6e41697a4eae51fbb1bf9151f, type: 3}
+      - {fileID: 8300000, guid: e8ffe2a4005b1a24590815b7178393df, type: 3}
       SourceType: 2
       Volume: 1
       RandomizePitch: 0

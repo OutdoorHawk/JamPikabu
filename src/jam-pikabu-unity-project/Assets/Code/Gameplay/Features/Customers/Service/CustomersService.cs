@@ -68,7 +68,10 @@ namespace Code.Gameplay.Features.Customers.Service
             }
 
             if (dayData.IsBossDay)
+            {
                 _buffer.Add(_configs.Find(setup => setup.IsBossCustomer));
+                return;
+            }
 
             List<CustomerSetup> configsWithoutBoss = _configs.FindAll(setup => setup.IsBossCustomer == false);
             _buffer.AddRange(configsWithoutBoss);
