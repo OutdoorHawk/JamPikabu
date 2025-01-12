@@ -4,6 +4,7 @@ using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Gameplay.Common.Time;
 using Code.Gameplay.Features.Loot;
+using Code.Infrastructure.Analytics;
 using Code.Meta.Features.Consumables.Data;
 using Code.Meta.UI.Shop.Configs;
 
@@ -12,12 +13,14 @@ namespace Code.Meta.Features.Consumables.Service
     public class ConsumablesUIService : IConsumablesUIService
     {
         private readonly ITimeService _timeService;
+        private readonly IAnalyticsService _analyticsService;
 
         private readonly Dictionary<LootTypeId, PurchasedConsumableData> _purchasedItems = new();
 
-        public ConsumablesUIService(ITimeService timeService)
+        public ConsumablesUIService(ITimeService timeService, IAnalyticsService analyticsService)
         {
             _timeService = timeService;
+            _analyticsService = analyticsService;
         }
 
         public void InitPurchasedConsumables(IEnumerable<PurchasedConsumableData> purchasedConsumables)
@@ -49,6 +52,7 @@ namespace Code.Meta.Features.Consumables.Service
                 ;
 
             _purchasedItems.Add(itemData.Type, itemData);
+            _analyticsService.SendEvent(AnalyticsEventTypes.Purchase, itemData.Type.ToString());
         }
 
         public IReadOnlyList<PurchasedConsumableData> GetActiveConsumables()

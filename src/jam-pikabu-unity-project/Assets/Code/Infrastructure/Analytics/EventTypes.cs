@@ -11,6 +11,7 @@
         public const string LootUpgraded = "INGREDIENT_UPGRADED";
         public const string AdStarted = "ADS_START";
         public const string AdRewardedSuccess = "ADS_REWARD_SUCCESS";
+        public const string Purchase = "PURCHASE_CONSUMABLE";
     }
 
     public enum AdsEventTypes
