@@ -8,5 +8,6 @@ namespace Code.Progress.Data.Tutorial
     public class TutorialProgress
     {
         [SerializeField] public List<TutorialUserData> TutorialUserDatas = new();
+        [SerializeField] public bool ConsumablesPinSeen;
     }
 }

@@ -7,6 +7,7 @@ using Code.Meta.Features.LootCollection.Configs;
 using Code.Meta.Features.LootCollection.Data;
 using Code.Meta.Features.LootCollection.Service;
 using Code.Meta.UI.Shop.Configs;
+using Code.Progress.Provider;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -18,14 +19,17 @@ namespace Code.Meta.UI.Shop.Behaviours
         public GameObject Pin;
         public Button ShopButton;
         public TutorialConditionComponent TutorialConditionComponent;
-        
+
         private IGameplayCurrencyService _currencyService;
         private ILootCollectionService _lootCollectionService;
         private IStaticDataService _staticData;
+        private IProgressProvider _progress;
 
         [Inject]
-        private void Construct(IGameplayCurrencyService currencyService, ILootCollectionService lootCollectionService, IStaticDataService staticData)
+        private void Construct(IGameplayCurrencyService currencyService, ILootCollectionService lootCollectionService, IStaticDataService staticData,
+            IProgressProvider progress)
         {
+            _progress = progress;
             _staticData = staticData;
             _lootCollectionService = lootCollectionService;
             _currencyService = currencyService;
@@ -89,6 +93,12 @@ namespace Code.Meta.UI.Shop.Behaviours
                     Pin.EnableElement();
                     return;
                 }
+            }
+
+            if (_progress.Progress.Tutorial.ConsumablesPinSeen == false)
+            {
+                Pin.EnableElement();
+                return;
             }
         }
     }
