@@ -49,7 +49,7 @@ namespace Code.Meta.Features.Days.Configs.Stars
                     continue;
                 }
 
-                Configs[i].RatingNeedAll = Math.Min(ratingAmountNeed, 125);
+                Configs[i].RatingNeedAll = Math.Min(ratingAmountNeed, 150);
             }
         }
 
