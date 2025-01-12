@@ -40,7 +40,6 @@ MonoBehaviour:
     Data:
       Clips:
       - {fileID: 8300000, guid: a4cc5ed135b1a9a4d9e0866ebc042ab6, type: 3}
-      - {fileID: 8300000, guid: e8ffe2a4005b1a24590815b7178393df, type: 3}
       SourceType: 2
       Volume: 1
       RandomizePitch: 0
