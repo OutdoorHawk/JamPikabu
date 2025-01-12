@@ -129,6 +129,10 @@ MonoBehaviour:
       the hook when lifted.'
     m_Metadata:
       m_Items: []
+  - m_Id: 66641465232805888
+    m_Localized: "\u0421an only be added together\nwith other ingredients."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

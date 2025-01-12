@@ -31,7 +31,8 @@ namespace Code.Gameplay.Features.Abilities.Systems
                 .AllOf(GameMatcher.Loot,
                     GameMatcher.View)
                 .NoneOf(GameMatcher.CollectLootRequest,
-                    GameMatcher.Collected));
+                    GameMatcher.Collected,
+                    GameMatcher.MarkedForPickup));
         }
 
         public void Execute()

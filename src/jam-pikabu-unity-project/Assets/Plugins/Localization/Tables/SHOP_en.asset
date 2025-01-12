@@ -59,7 +59,7 @@ MonoBehaviour:
       m_Items:
       - rid: 8134989886593433685
   - m_Id: 65931200052809728
-    m_Localized: "When picked up, \nshuffles all the ingredients in the pile."
+    m_Localized: "When picked up, shuffles \nall the ingredients in the pile."
     m_Metadata:
       m_Items: []
   references:

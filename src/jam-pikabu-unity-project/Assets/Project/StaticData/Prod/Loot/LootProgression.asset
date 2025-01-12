@@ -20,22 +20,22 @@ MonoBehaviour:
       Cost:
         CurrencyType: 1
         Amount: 10
-    - RatingBoostAmount: 3
+    - RatingBoostAmount: 1
       Cost:
         CurrencyType: 1
         Amount: 23
+    - RatingBoostAmount: 2
+      Cost:
+        CurrencyType: 1
+        Amount: 65
+    - RatingBoostAmount: 3
+      Cost:
+        CurrencyType: 1
+        Amount: 139
     - RatingBoostAmount: 4
       Cost:
         CurrencyType: 1
-        Amount: 59
-    - RatingBoostAmount: 5
-      Cost:
-        CurrencyType: 1
-        Amount: 119
-    - RatingBoostAmount: 6
-      Cost:
-        CurrencyType: 1
-        Amount: 203
+        Amount: 248
   - Id: 2
     Type: 3
     Levels:
@@ -43,22 +43,22 @@ MonoBehaviour:
       Cost:
         CurrencyType: 1
         Amount: 10
-    - RatingBoostAmount: 3
+    - RatingBoostAmount: 1
       Cost:
         CurrencyType: 1
         Amount: 23
+    - RatingBoostAmount: 2
+      Cost:
+        CurrencyType: 1
+        Amount: 65
+    - RatingBoostAmount: 3
+      Cost:
+        CurrencyType: 1
+        Amount: 139
     - RatingBoostAmount: 4
       Cost:
         CurrencyType: 1
-        Amount: 59
-    - RatingBoostAmount: 5
-      Cost:
-        CurrencyType: 1
-        Amount: 119
-    - RatingBoostAmount: 6
-      Cost:
-        CurrencyType: 1
-        Amount: 203
+        Amount: 248
   - Id: 3
     Type: 4
     Levels:
@@ -66,22 +66,22 @@ MonoBehaviour:
       Cost:
         CurrencyType: 1
         Amount: 10
-    - RatingBoostAmount: 3
+    - RatingBoostAmount: 1
       Cost:
         CurrencyType: 1
         Amount: 23
+    - RatingBoostAmount: 2
+      Cost:
+        CurrencyType: 1
+        Amount: 65
+    - RatingBoostAmount: 3
+      Cost:
+        CurrencyType: 1
+        Amount: 139
     - RatingBoostAmount: 4
       Cost:
         CurrencyType: 1
-        Amount: 59
-    - RatingBoostAmount: 5
-      Cost:
-        CurrencyType: 1
-        Amount: 119
-    - RatingBoostAmount: 6
-      Cost:
-        CurrencyType: 1
-        Amount: 203
+        Amount: 248
   - Id: 4
     Type: 2
     Levels:
@@ -89,22 +89,22 @@ MonoBehaviour:
       Cost:
         CurrencyType: 1
         Amount: 10
-    - RatingBoostAmount: 3
+    - RatingBoostAmount: 1
       Cost:
         CurrencyType: 1
         Amount: 23
+    - RatingBoostAmount: 2
+      Cost:
+        CurrencyType: 1
+        Amount: 65
+    - RatingBoostAmount: 3
+      Cost:
+        CurrencyType: 1
+        Amount: 139
     - RatingBoostAmount: 4
       Cost:
         CurrencyType: 1
-        Amount: 59
-    - RatingBoostAmount: 5
-      Cost:
-        CurrencyType: 1
-        Amount: 119
-    - RatingBoostAmount: 6
-      Cost:
-        CurrencyType: 1
-        Amount: 203
+        Amount: 248
   - Id: 5
     Type: 5
     Levels:
@@ -112,22 +112,22 @@ MonoBehaviour:
       Cost:
         CurrencyType: 1
         Amount: 10
-    - RatingBoostAmount: 3
+    - RatingBoostAmount: 1
       Cost:
         CurrencyType: 1
         Amount: 23
+    - RatingBoostAmount: 2
+      Cost:
+        CurrencyType: 1
+        Amount: 65
+    - RatingBoostAmount: 3
+      Cost:
+        CurrencyType: 1
+        Amount: 139
     - RatingBoostAmount: 4
       Cost:
         CurrencyType: 1
-        Amount: 59
-    - RatingBoostAmount: 5
-      Cost:
-        CurrencyType: 1
-        Amount: 119
-    - RatingBoostAmount: 6
-      Cost:
-        CurrencyType: 1
-        Amount: 203
+        Amount: 248
   - Id: 6
     Type: 7
     Levels:
@@ -135,22 +135,22 @@ MonoBehaviour:
       Cost:
         CurrencyType: 1
         Amount: 10
-    - RatingBoostAmount: 3
+    - RatingBoostAmount: 1
       Cost:
         CurrencyType: 1
         Amount: 23
+    - RatingBoostAmount: 2
+      Cost:
+        CurrencyType: 1
+        Amount: 65
+    - RatingBoostAmount: 3
+      Cost:
+        CurrencyType: 1
+        Amount: 139
     - RatingBoostAmount: 4
       Cost:
         CurrencyType: 1
-        Amount: 59
-    - RatingBoostAmount: 5
-      Cost:
-        CurrencyType: 1
-        Amount: 119
-    - RatingBoostAmount: 6
-      Cost:
-        CurrencyType: 1
-        Amount: 203
+        Amount: 248
   - Id: 7
     Type: 8
     Levels:
@@ -158,22 +158,22 @@ MonoBehaviour:
       Cost:
         CurrencyType: 1
         Amount: 10
-    - RatingBoostAmount: 3
+    - RatingBoostAmount: 1
       Cost:
         CurrencyType: 1
         Amount: 23
+    - RatingBoostAmount: 2
+      Cost:
+        CurrencyType: 1
+        Amount: 65
+    - RatingBoostAmount: 3
+      Cost:
+        CurrencyType: 1
+        Amount: 139
     - RatingBoostAmount: 4
       Cost:
         CurrencyType: 1
-        Amount: 59
-    - RatingBoostAmount: 5
-      Cost:
-        CurrencyType: 1
-        Amount: 119
-    - RatingBoostAmount: 6
-      Cost:
-        CurrencyType: 1
-        Amount: 203
+        Amount: 248
   - Id: 8
     Type: 10
     Levels:
@@ -181,22 +181,22 @@ MonoBehaviour:
       Cost:
         CurrencyType: 1
         Amount: 10
-    - RatingBoostAmount: 3
+    - RatingBoostAmount: 1
       Cost:
         CurrencyType: 1
         Amount: 23
+    - RatingBoostAmount: 2
+      Cost:
+        CurrencyType: 1
+        Amount: 65
+    - RatingBoostAmount: 3
+      Cost:
+        CurrencyType: 1
+        Amount: 139
     - RatingBoostAmount: 4
       Cost:
         CurrencyType: 1
-        Amount: 59
-    - RatingBoostAmount: 5
-      Cost:
-        CurrencyType: 1
-        Amount: 119
-    - RatingBoostAmount: 6
-      Cost:
-        CurrencyType: 1
-        Amount: 203
+        Amount: 248
   - Id: 9
     Type: 9
     Levels:
@@ -204,22 +204,22 @@ MonoBehaviour:
       Cost:
         CurrencyType: 1
         Amount: 10
-    - RatingBoostAmount: 3
+    - RatingBoostAmount: 1
       Cost:
         CurrencyType: 1
         Amount: 23
+    - RatingBoostAmount: 2
+      Cost:
+        CurrencyType: 1
+        Amount: 65
+    - RatingBoostAmount: 3
+      Cost:
+        CurrencyType: 1
+        Amount: 139
     - RatingBoostAmount: 4
       Cost:
         CurrencyType: 1
-        Amount: 59
-    - RatingBoostAmount: 5
-      Cost:
-        CurrencyType: 1
-        Amount: 119
-    - RatingBoostAmount: 6
-      Cost:
-        CurrencyType: 1
-        Amount: 203
+        Amount: 248
   - Id: 10
     Type: 11
     Levels:
@@ -227,22 +227,22 @@ MonoBehaviour:
       Cost:
         CurrencyType: 1
         Amount: 10
-    - RatingBoostAmount: 3
+    - RatingBoostAmount: 1
       Cost:
         CurrencyType: 1
         Amount: 23
+    - RatingBoostAmount: 2
+      Cost:
+        CurrencyType: 1
+        Amount: 65
+    - RatingBoostAmount: 3
+      Cost:
+        CurrencyType: 1
+        Amount: 139
     - RatingBoostAmount: 4
       Cost:
         CurrencyType: 1
-        Amount: 59
-    - RatingBoostAmount: 5
-      Cost:
-        CurrencyType: 1
-        Amount: 119
-    - RatingBoostAmount: 6
-      Cost:
-        CurrencyType: 1
-        Amount: 203
+        Amount: 248
   - Id: 11
     Type: 12
     Levels:
@@ -250,22 +250,22 @@ MonoBehaviour:
       Cost:
         CurrencyType: 1
         Amount: 10
-    - RatingBoostAmount: 3
+    - RatingBoostAmount: 1
       Cost:
         CurrencyType: 1
         Amount: 23
+    - RatingBoostAmount: 2
+      Cost:
+        CurrencyType: 1
+        Amount: 65
+    - RatingBoostAmount: 3
+      Cost:
+        CurrencyType: 1
+        Amount: 139
     - RatingBoostAmount: 4
       Cost:
         CurrencyType: 1
-        Amount: 59
-    - RatingBoostAmount: 5
-      Cost:
-        CurrencyType: 1
-        Amount: 119
-    - RatingBoostAmount: 6
-      Cost:
-        CurrencyType: 1
-        Amount: 203
+        Amount: 248
   - Id: 12
     Type: 13
     Levels:
@@ -273,22 +273,22 @@ MonoBehaviour:
       Cost:
         CurrencyType: 1
         Amount: 10
-    - RatingBoostAmount: 3
+    - RatingBoostAmount: 1
       Cost:
         CurrencyType: 1
         Amount: 23
+    - RatingBoostAmount: 2
+      Cost:
+        CurrencyType: 1
+        Amount: 65
+    - RatingBoostAmount: 3
+      Cost:
+        CurrencyType: 1
+        Amount: 139
     - RatingBoostAmount: 4
       Cost:
         CurrencyType: 1
-        Amount: 59
-    - RatingBoostAmount: 5
-      Cost:
-        CurrencyType: 1
-        Amount: 119
-    - RatingBoostAmount: 6
-      Cost:
-        CurrencyType: 1
-        Amount: 203
+        Amount: 248
   - Id: 13
     Type: 16
     Levels:
@@ -296,42 +296,42 @@ MonoBehaviour:
       Cost:
         CurrencyType: 1
         Amount: 10
-    - RatingBoostAmount: 3
+    - RatingBoostAmount: 1
       Cost:
         CurrencyType: 1
         Amount: 23
+    - RatingBoostAmount: 2
+      Cost:
+        CurrencyType: 1
+        Amount: 65
+    - RatingBoostAmount: 3
+      Cost:
+        CurrencyType: 1
+        Amount: 139
     - RatingBoostAmount: 4
       Cost:
         CurrencyType: 1
-        Amount: 59
-    - RatingBoostAmount: 5
-      Cost:
-        CurrencyType: 1
-        Amount: 119
-    - RatingBoostAmount: 6
-      Cost:
-        CurrencyType: 1
-        Amount: 203
+        Amount: 248
   StartGameUnlockedLoot: 06000000030000000400000002000000
   LevelsAmount: 5
   IncreaseFactor: 0
   RatingFormula:
-    BaseValue: 1
+    BaseValue: 0
     StepFactor: 1
     GrowthExponent: 0.93
-    BonusAdjustment: 1
+    BonusAdjustment: 0
   CostFormula:
     BaseValue: 10
     StepFactor: 12
-    GrowthExponent: 2
+    GrowthExponent: 2.15
     BonusAdjustment: 1
-  FullUpgradeCost: 5382
+  FullUpgradeCost: 6305
   ProgressionCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 1
-      value: 3
+      value: 1
       inSlope: 0.90527606
       outSlope: 0.90527606
       tangentMode: 0
@@ -340,7 +340,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 2
-      value: 3.905276
+      value: 1.9052761
       inSlope: 0.88896966
       outSlope: 0.88896966
       tangentMode: 0
@@ -349,18 +349,18 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 3
-      value: 4.7779393
-      inSlope: 0.8624002
-      outSlope: 0.8624002
+      value: 2.7779393
+      inSlope: 0.8624003
+      outSlope: 0.8624003
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 4
-      value: 5.6300764
-      inSlope: 0.8521371
-      outSlope: 0.8521371
+      value: 3.6300766
+      inSlope: 0.8521373
+      outSlope: 0.8521373
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334

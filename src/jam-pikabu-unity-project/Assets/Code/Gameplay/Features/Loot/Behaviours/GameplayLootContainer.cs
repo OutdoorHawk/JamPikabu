@@ -242,7 +242,7 @@ namespace Code.Gameplay.Features.Loot.Behaviours
 
             if (_ordersService.CanApplyPerfectOrderFactor())
             {
-                notificationText = _localizationService["GAMEPLAY/PERFECT_ORDER", (ordersData.PerfectOrderRatingBonusFactor * 100).ToString("##")];
+                notificationText = _localizationService["GAMEPLAY/PERFECT_ORDER", (ordersData.OrderCompletedRatingBonusFactor*100+ordersData.PerfectOrderRatingBonusFactor * 100).ToString("##")];
             }
             else if (_ordersService.CanApplyOrderCompletedFactor())
             {
