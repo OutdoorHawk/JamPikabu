@@ -46,7 +46,7 @@ MonoBehaviour:
     AvailableOrderTags: 16
     OrdersAmount: 4
     DayGoldFactor: 1.2639016
-    SceneId: 2
+    SceneId: 6
     DistractionObjects: 
   - Id: 6
     IsBossDay: 0
