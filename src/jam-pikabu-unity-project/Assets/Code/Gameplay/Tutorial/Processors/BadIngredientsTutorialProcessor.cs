@@ -39,7 +39,7 @@ namespace Code.Gameplay.Tutorial.Processors
 
         public override bool CanSkipTutorial()
         {
-            return false;
+            return _daysService.GetDaysProgress().Count > 3;
         }
 
         public override void Finalization()

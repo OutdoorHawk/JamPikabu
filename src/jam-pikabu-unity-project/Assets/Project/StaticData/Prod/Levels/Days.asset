@@ -33,14 +33,14 @@ MonoBehaviour:
     OrdersAmount: 3
     DayGoldFactor: 1.1505247
     SceneId: 2
-    DistractionObjects: 01000000
+    DistractionObjects: 
   - Id: 4
     IsBossDay: 1
     AvailableOrderTags: 12
     OrdersAmount: 1
     DayGoldFactor: 1.191206
     SceneId: 3
-    DistractionObjects: 01000000
+    DistractionObjects: 
   - Id: 5
     IsBossDay: 0
     AvailableOrderTags: 16
@@ -54,7 +54,7 @@ MonoBehaviour:
     OrdersAmount: 3
     DayGoldFactor: 1.2584593
     SceneId: 2
-    DistractionObjects: 
+    DistractionObjects: 01000000
   - Id: 7
     IsBossDay: 0
     AvailableOrderTags: 16
@@ -75,7 +75,7 @@ MonoBehaviour:
     OrdersAmount: 3
     DayGoldFactor: 1.341054
     SceneId: 2
-    DistractionObjects: 
+    DistractionObjects: 01000000
   - Id: 10
     IsBossDay: 0
     AvailableOrderTags: 16
@@ -96,7 +96,7 @@ MonoBehaviour:
     OrdersAmount: 4
     DayGoldFactor: 1.4115491
     SceneId: 3
-    DistractionObjects: 
+    DistractionObjects: 01000000
   - Id: 13
     IsBossDay: 0
     AvailableOrderTags: 16
