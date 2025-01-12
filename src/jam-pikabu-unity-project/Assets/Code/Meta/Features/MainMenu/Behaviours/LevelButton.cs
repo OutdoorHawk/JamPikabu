@@ -76,7 +76,7 @@ namespace Code.Meta.Features.MainMenu.Behaviours
         public void SetSelectedView()
         {
             SelectedBg.EnableElement();
-            SelectedShiny.enabled = true;
+            //SelectedShiny.enabled = true;
         }
 
         public void SetDeselectedView()

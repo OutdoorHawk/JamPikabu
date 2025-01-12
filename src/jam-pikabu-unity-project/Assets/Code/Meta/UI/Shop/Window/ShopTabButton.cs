@@ -9,6 +9,8 @@ namespace Code.Meta.UI.Shop.Window
     {
         public ShopTabTypeId TabType;
         public Button Button;
+        public GameObject OpenedTabIcon;
+        public GameObject ClosedTabIcon;
 
         private IShopWindowService _shopWindowService;
 
@@ -21,16 +23,25 @@ namespace Code.Meta.UI.Shop.Window
         private void Start()
         {
             Button.onClick.AddListener(SelectTab);
+            _shopWindowService.OnSelectionChanged += Refresh;
+            Refresh();
         }
 
         private void OnDestroy()
         {
             Button.onClick.RemoveListener(SelectTab);
+            _shopWindowService.OnSelectionChanged -= Refresh;
         }
 
         private void SelectTab()
         {
             _shopWindowService.SetTabSelected(TabType);
+        }
+
+        private void Refresh()
+        {
+            OpenedTabIcon.SetActive(_shopWindowService.SelectedTab == TabType);
+            ClosedTabIcon.SetActive(_shopWindowService.SelectedTab != TabType);
         }
     }
 }

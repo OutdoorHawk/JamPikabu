@@ -1,0 +1,161 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &9185791766376079645
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 520899847431747951, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 102
+      objectReference: {fileID: 0}
+    - target: {fileID: 520899847431747951, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 95
+      objectReference: {fileID: 0}
+    - target: {fileID: 520899847431747951, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -10.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2707011789127762984, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_Name
+      value: ConsumableLootTabButton Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4425899993417875547, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e9b65e829aa909e479277d1bc1b383cc,
+        type: 3}
+    - target: {fileID: 5873466380088909571, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: TabType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5887996225853176184, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 135
+      objectReference: {fileID: 0}
+    - target: {fileID: 5887996225853176184, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -10.7229
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665893785900686657, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665893785900686657, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665893785900686657, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665893785900686657, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665893785900686657, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665893785900686657, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665893785900686657, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 159.2774
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665893785900686657, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 104.8262
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665893785900686657, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665893785900686657, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665893785900686657, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665893785900686657, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665893785900686657, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665893785900686657, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665893785900686657, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.70710677
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665893785900686657, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 712
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665893785900686657, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 139
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665893785900686657, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665893785900686657, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665893785900686657, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8736157187794522202, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dbc347dae19183a42a4979866b34351c, type: 3}

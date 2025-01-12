@@ -30,7 +30,7 @@ MonoBehaviour:
       m_LocalVariables: []
     BaseRatingValue: 0
     EffectValue: 0
-    SpawnChance: 55
+    SpawnChance: 40
     AbilityType: 0
   - Id: 2
     Type: 6
@@ -341,7 +341,7 @@ MonoBehaviour:
   LootSpawnStartDelay: 0.15
   DelayAfterLootSpawn: 0.4
   MaxIngredientLootAmount: 40
-  MaxLootAmount: 50
+  MaxEachExtraLootAmount: 2
   CollectFlyAnimationDuration: 0.75
   LootItemUI: {fileID: 6122044623407222926, guid: 17a9554d4999c3b43a5c2052ad4cdf08,
     type: 3}
