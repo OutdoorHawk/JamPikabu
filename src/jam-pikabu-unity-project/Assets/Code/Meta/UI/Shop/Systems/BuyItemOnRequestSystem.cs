@@ -3,7 +3,6 @@ using Code.Common.Extensions;
 using Code.Gameplay.Features.Currency;
 using Code.Gameplay.StaticData;
 using Code.Meta.UI.Shop.Configs;
-using Code.Meta.UI.Shop.Service;
 using Entitas;
 
 namespace Code.Meta.UI.Shop.Systems
@@ -13,16 +12,13 @@ namespace Code.Meta.UI.Shop.Systems
         private readonly IGroup<MetaEntity> _shopItemPurchaseRequests;
         private readonly IGroup<MetaEntity> _goldStorages;
         private readonly IStaticDataService _staticDataService;
-        private readonly IShopUIService _shopUIService;
 
         public BuyItemOnRequestSystem
         (
             MetaContext meta,
-            IStaticDataService staticDataService,
-            IShopUIService shopUIService
+            IStaticDataService staticDataService
         )
         {
-            _shopUIService = shopUIService;
             _staticDataService = staticDataService;
 
             _goldStorages = meta.GetGroup(MetaMatcher

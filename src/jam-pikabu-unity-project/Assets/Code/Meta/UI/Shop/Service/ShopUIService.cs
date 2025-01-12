@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Code.Common.Entity;
 using Code.Common.Extensions;
-using Code.Gameplay.StaticData;
 using Code.Meta.UI.HardCurrencyHolder.Service;
 using Code.Meta.UI.Shop.Configs;
 
@@ -13,16 +12,7 @@ namespace Code.Meta.UI.Shop.Service
         private readonly List<int> _purchasedItems = new();
         private readonly Dictionary<int, ShopItemData> _availableItems = new();
 
-        private readonly IStaticDataService _staticData;
-        private readonly IStorageUIService _storageUIService;
-
         public event Action ShopChanged;
-
-        public ShopUIService(IStaticDataService staticData, IStorageUIService storageUIService)
-        {
-            _staticData = staticData;
-            _storageUIService = storageUIService;
-        }
 
         public void UpdatePurchasedItems(IEnumerable<int> purchasedItems)
         {
@@ -51,7 +41,7 @@ namespace Code.Meta.UI.Shop.Service
         {
             return _purchasedItems.Contains(shopItemId);
         }
-
+ 
         public void CreateBuyRequest(int shopItemId, bool forAd = false)
         {
             CreateMetaEntity.Empty()

@@ -3,6 +3,7 @@ using Code.Meta.UI.Shop.Factory;
 using Code.Meta.UI.Shop.Service;
 using Code.Progress.SaveLoadService;
 using Entitas;
+using Zenject;
 
 namespace Code.Meta.UI.Shop.Systems
 {
@@ -10,10 +11,10 @@ namespace Code.Meta.UI.Shop.Systems
     {
         private readonly IShopItemFactory _shopItemFactory;
         private readonly ISaveLoadService _saveLoadService;
-        private readonly IShopUIService _shopUIService;
+        private readonly LazyInject<IShopUIService> _shopUIService;
 
         public ProcessBoughtItemsSystem(MetaContext meta, IShopItemFactory shopItemFactory,
-            ISaveLoadService saveLoadService, IShopUIService shopUIService) : base(meta)
+            ISaveLoadService saveLoadService, LazyInject<IShopUIService> shopUIService) : base(meta)
         {
             _saveLoadService = saveLoadService;
             _shopUIService = shopUIService;
@@ -35,7 +36,7 @@ namespace Code.Meta.UI.Shop.Systems
                     purchase.isDestructed = true;
             }
             
-            _shopUIService.NotifyPurchase();
+            _shopUIService.Value.NotifyPurchase();
             //_saveLoadService.SaveProgress();
         }
     }

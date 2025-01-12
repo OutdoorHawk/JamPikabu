@@ -277,7 +277,7 @@ MonoBehaviour:
       m_LocalVariables: []
     BaseRatingValue: 1
     EffectValue: 3
-    SpawnChance: 30
+    SpawnChance: 25
     AbilityType: 0
   - Id: 15
     Type: 15
