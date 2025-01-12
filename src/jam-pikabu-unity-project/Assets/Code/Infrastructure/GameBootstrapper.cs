@@ -53,10 +53,10 @@ namespace Code.Infrastructure
             {
                 _loaderBehaviour.Init();
                 await _downloadService.UpdateContentAsync();
-                _loaderBehaviour.Hide();
             }
-
+            
             await loadIntegrationsTask;
+            _loaderBehaviour.Hide();
             _gameStateMachine.Enter<BootstrapState>();
             DontDestroyOnLoad(gameObject);
         }
