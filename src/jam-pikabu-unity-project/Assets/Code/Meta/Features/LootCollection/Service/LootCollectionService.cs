@@ -79,7 +79,7 @@ namespace Code.Meta.Features.LootCollection.Service
             if (progressionData == null)
                 return false;
 
-            bool result = progression.Level >= progressionData.Levels.Count;
+            bool result = progression.Level >= progressionData.Levels.Count - 1;
             return result;
         }
 
