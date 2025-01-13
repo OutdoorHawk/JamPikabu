@@ -169,6 +169,7 @@ MonoBehaviour:
   HookSpawnPoint: {fileID: 367896165}
   BoxSpawnPoint: {fileID: 460449221}
   LootParent: {fileID: 1472564075}
+  BeeSpawnPoint: {fileID: 799576802}
   LootSpawnPoints:
   - {fileID: 351755881}
   - {fileID: 470450750}
@@ -2104,6 +2105,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 138569451}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &799576801
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 799576802}
+  m_Layer: 0
+  m_Name: BeeSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &799576802
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799576801}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.19000006, y: -0.97, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1472564075}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &831707761
 GameObject:
   m_ObjectHideFlags: 0
@@ -2393,6 +2425,7 @@ Transform:
   m_Children:
   - {fileID: 351755881}
   - {fileID: 470450750}
+  - {fileID: 799576802}
   m_Father: {fileID: 1020954752}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1837720984

@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Threading;
 using Code.Common.Extensions;
+using Code.Infrastructure.SceneContext;
 using DG.Tweening;
 using UnityEngine;
+using Zenject;
 
 namespace Code.Gameplay.Features.Distraction.Behaviours
 {
@@ -25,6 +27,17 @@ namespace Code.Gameplay.Features.Distraction.Behaviours
         private bool _isMoving = true;
         private Tween _hoverTween;
         private CancellationTokenSource _beeSource;
+        
+        private ISceneContextProvider _provider;
+
+        [Inject]
+        private void Construct
+        (
+            ISceneContextProvider provider
+        )
+        {
+            _provider = provider;
+        }
 
         private void Start()
         {
@@ -43,10 +56,10 @@ namespace Code.Gameplay.Features.Distraction.Behaviours
 
             Vector2 nextPosition = Vector2.MoveTowards(currentPosition, _targetPosition, Speed * Time.fixedDeltaTime);
             nextPosition += oscillationOffset;
-            
+
             Vector2 direction = _targetPosition - currentPosition;
-            
-            if (direction.x != 0) 
+
+            if (direction.x != 0)
             {
                 Renderer.flipX = direction.x > 0;
             }
@@ -85,7 +98,7 @@ namespace Code.Gameplay.Features.Distraction.Behaviours
         {
             _moveTimeoutTimer = MoveTimeout;
             Vector2 randomDirection = Random.insideUnitCircle.normalized;
-            _targetPosition = (Vector2)transform.parent.position + randomDirection * Random.Range(0, MovementRadius) + new Vector2(0, -0.2f);
+            _targetPosition = (Vector2)_provider.Context.BeeSpawnPoint.position + randomDirection * Random.Range(0, MovementRadius);
         }
 
         private IEnumerator PauseAndFindNewTarget()

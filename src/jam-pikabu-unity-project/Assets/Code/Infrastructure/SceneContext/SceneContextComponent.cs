@@ -8,6 +8,7 @@ namespace Code.Infrastructure.SceneContext
         public Transform HookSpawnPoint;
         public Transform BoxSpawnPoint;
         public Transform LootParent;
+        public Transform BeeSpawnPoint;
         public Transform[] LootSpawnPoints;
 
         [Inject]
