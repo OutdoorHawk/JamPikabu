@@ -52,7 +52,7 @@ MonoBehaviour:
   Collider: {fileID: 1253363068870380611}
   Rigidbody: {fileID: 2544990695251059695}
   Renderer: {fileID: 4465197053820144388}
-  MovementRadius: 5
+  MovementRadius: 5.4
   Speed: 6
   MoveTimeout: 2.5
   StopDuration: 0.5

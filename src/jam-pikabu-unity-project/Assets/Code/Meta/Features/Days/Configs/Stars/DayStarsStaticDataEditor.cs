@@ -23,7 +23,7 @@ namespace Code.Meta.Features.Days.Configs.Stars
         
         [TabGroup("Editor")] public float StepFactor = 2f;
         [TabGroup("Editor")] public int StartRatingDayFormula = 3;
-
+        
         [TabGroup("Editor")]
         [Button]
         private void CreateLevelsAndApplyNeedStarsFormula()

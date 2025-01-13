@@ -239,7 +239,8 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
 
         private void InitMaxLevelReached()
         {
-            GrayIcon.EnableElement();
+            GrayIcon.DisableElement();
+            FillIcon.EnableElement();
             UpgradeTimer.TimerText.text = "Max";
             FillIcon.fillAmount = 1;
         }

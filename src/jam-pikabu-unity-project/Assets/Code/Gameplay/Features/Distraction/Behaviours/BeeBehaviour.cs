@@ -85,7 +85,7 @@ namespace Code.Gameplay.Features.Distraction.Behaviours
         {
             _moveTimeoutTimer = MoveTimeout;
             Vector2 randomDirection = Random.insideUnitCircle.normalized;
-            _targetPosition = (Vector2)transform.parent.parent.position + randomDirection * Random.Range(0, MovementRadius);
+            _targetPosition = (Vector2)transform.parent.position + randomDirection * Random.Range(0, MovementRadius) + new Vector2(0, -0.2f);
         }
 
         private IEnumerator PauseAndFindNewTarget()

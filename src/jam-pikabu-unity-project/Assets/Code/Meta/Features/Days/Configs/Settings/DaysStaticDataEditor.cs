@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Code.Gameplay.Features.Orders.Config;
 using Code.Gameplay.StaticData.Data.Formulas;
+using Code.Infrastructure.SceneLoading;
 using RoyalGold.Sources.Scripts.Game.MVC.Utils;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -21,6 +22,32 @@ namespace Code.Meta.Features.Days.Configs
         [TabGroup("Editor")] public int LevelsAmount = 18;
         [TabGroup("Editor")] public ExponentGrowthFormula GoldFormula = new(1, 0.62f, 0.11f, 0);
         [TabGroup("Editor")] public List<DayOrderGroupEditor> OrdersRange;
+        
+        [TabGroup("Editor")]
+        [Button]
+        private void SetupDays()
+        {
+            foreach (DayData dayStarsSetup in Configs)
+            {
+                if (  dayStarsSetup.IsBossDay)
+                {
+                    dayStarsSetup.OrdersAmount = 1;
+                }
+                else
+                {
+                    dayStarsSetup.OrdersAmount = 3;
+                }
+            }
+
+            foreach (var VARIABLE in Configs)
+            {
+                if (VARIABLE.IsBossDay && VARIABLE.SceneId != SceneTypeId.ConveyorGameplayScene)
+                {
+                    
+                    Debug.LogError(VARIABLE.Id);
+                }
+            }
+        }
 
         [TabGroup("Editor")]
         [Button]
@@ -35,7 +62,7 @@ namespace Code.Meta.Features.Days.Configs
                     var dayData = new DayData
                     {
                         DayGoldFactor = goldFactor,
-                        OrdersAmount = Random.Range(3, 5),
+                        OrdersAmount = 3,
                     };
 
                     Configs.Add(dayData);
