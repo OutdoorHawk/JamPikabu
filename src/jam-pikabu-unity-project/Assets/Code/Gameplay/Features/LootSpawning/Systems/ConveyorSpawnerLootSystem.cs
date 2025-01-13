@@ -52,7 +52,7 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
             {
                 spawner.PutOnCooldown(spawner.LootSpawnInterval);
 
-                if (_ingredientLoot.count >= LootStaticData.MaxIngredientLootAmount)
+                if (_ingredientLoot.count >= LootStaticData.MaxIngredientLootAmount - 5)
                     continue;
 
                 _gameplayLootService.TrySpawnIngredientLoot();
