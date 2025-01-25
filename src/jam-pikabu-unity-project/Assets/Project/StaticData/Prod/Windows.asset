@@ -37,14 +37,6 @@ MonoBehaviour:
     WindowName: InfoWindow
     WindowPrefab: {fileID: 2456781102709060495, guid: bf72d04ba0e6b0f458a192d5c6932e8c,
       type: 3}
-  - Type: 8
-    WindowName: 
-    WindowPrefab: {fileID: 1983114483713502493, guid: e969de76507f579458801d9518a32a97,
-      type: 3}
-  - Type: 9
-    WindowName: 
-    WindowPrefab: {fileID: 500684334685123049, guid: b1f1c63cbe650de4f85e6cce44fa1542,
-      type: 3}
   - Type: 14
     WindowName: 
     WindowPrefab: {fileID: 8988717871522706021, guid: b4ca9cf07a2d85b40a96de14f3507c92,
