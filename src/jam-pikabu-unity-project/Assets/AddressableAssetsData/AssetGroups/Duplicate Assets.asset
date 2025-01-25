@@ -63,6 +63,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - default
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: afdfb3caa39e99b4898cd4bd9a4b4a8c
+    m_Address: MainSoundContainer
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bbbed041bedeeda4886a33870a8307de
     m_Address: 'Buff '
     m_ReadOnly: 0

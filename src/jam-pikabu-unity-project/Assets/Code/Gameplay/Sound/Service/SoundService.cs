@@ -15,6 +15,7 @@ using DG.Tweening;
 using UnityEngine;
 using Zenject;
 using static Code.Common.Extensions.AsyncGameplayExtensions;
+using static Code.Gameplay.Sound.SoundExtensions;
 using Random = UnityEngine.Random;
 
 namespace Code.Gameplay.Sound.Service
@@ -39,7 +40,7 @@ namespace Code.Gameplay.Sound.Service
 
         private const int MIN_MIXER_VOLUME = -60;
         private const int MAX_MIXER_VOLUME = 5;
-        private const string MAIN_SOUND_CONTAINER = "Sound/MainSoundContainer";
+        private const string MAIN_SOUND_CONTAINER = "MainSoundContainer";
 
         public event Action OnSongUpdated;
 
@@ -106,9 +107,7 @@ namespace Code.Gameplay.Sound.Service
         public void OnEnterLoadProgress()
         {
             InitSoundService();
-            SoundConfig soundSetup = GetSoundConfig(SoundTypeId.GameplayMusic);
-            PlayerPrefs.SetInt(SoundExtensions.CurrentMusicClipIndex, Random.Range(0, soundSetup.Data.Clips.Length));
-            PlayCurrentSong().Forget();
+            
         }
 
         public void OnExitLoadProgress()
@@ -191,13 +190,23 @@ namespace Code.Gameplay.Sound.Service
 
         #region Private Methods
 
-        private void InitSoundService()
+        private async UniTaskVoid InitSoundService()
         {
             _staticData = _staticDataService.Get<SoundsStaticData>();
-            var go = _assetProvider.LoadAssetFromResources<MainSoundContainer>(MAIN_SOUND_CONTAINER);
+            var go = await _assetProvider.LoadAssetAsync<GameObject>(MAIN_SOUND_CONTAINER);
             _mainSoundContainer = Instantiate(go, transform).GetComponent<MainSoundContainer>();
 
             ResetVolume();
+            
+            SoundConfig soundSetup = GetSoundConfig(SoundTypeId.GameplayMusic);
+            
+            int clipIndex = PlayerPrefs.HasKey(CurrentMusicClipIndex) 
+                ? Random.Range(0, soundSetup.Data.Clips.Length) 
+                : 0;
+            
+            PlayerPrefs.SetInt(CurrentMusicClipIndex, clipIndex);
+
+            PlayCurrentSong().Forget();
         }
 
         public void ResetVolume()
@@ -350,13 +359,13 @@ namespace Code.Gameplay.Sound.Service
             SoundConfig soundSetup = GetSoundConfig(SoundTypeId.GameplayMusic);
             AudioClip[] musicClips = soundSetup.Data.Clips;
 
-            int currentSongIndex = PlayerPrefs.GetInt(SoundExtensions.CurrentMusicClipIndex, -1);
+            int currentSongIndex = PlayerPrefs.GetInt(CurrentMusicClipIndex, -1);
             currentSongIndex++;
 
             if (currentSongIndex >= musicClips.Length)
                 currentSongIndex = 0;
 
-            PlayerPrefs.SetInt(SoundExtensions.CurrentMusicClipIndex, currentSongIndex);
+            PlayerPrefs.SetInt(CurrentMusicClipIndex, currentSongIndex);
             PlayerPrefs.Save();
         }
 
@@ -365,19 +374,19 @@ namespace Code.Gameplay.Sound.Service
             SoundConfig soundSetup = GetSoundConfig(SoundTypeId.GameplayMusic);
             AudioClip[] musicClips = soundSetup.Data.Clips;
 
-            int currentSongIndex = PlayerPrefs.GetInt(SoundExtensions.CurrentMusicClipIndex, 0);
+            int currentSongIndex = PlayerPrefs.GetInt(CurrentMusicClipIndex, 0);
             currentSongIndex--;
 
             if (currentSongIndex < 0)
                 currentSongIndex = musicClips.Length - 1;
 
-            PlayerPrefs.SetInt(SoundExtensions.CurrentMusicClipIndex, currentSongIndex);
+            PlayerPrefs.SetInt(CurrentMusicClipIndex, currentSongIndex);
             PlayerPrefs.Save();
         }
 
         private AudioClip GetCurrentMusicClipInternal()
         {
-            int currentSongIndex = PlayerPrefs.GetInt(SoundExtensions.CurrentMusicClipIndex, 0);
+            int currentSongIndex = PlayerPrefs.GetInt(CurrentMusicClipIndex, 0);
             SoundConfig soundSetup = GetSoundConfig(SoundTypeId.GameplayMusic);
             AudioClip currentClip = soundSetup.Data.Clips[currentSongIndex];
             return currentClip;
