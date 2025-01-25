@@ -48,14 +48,26 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Sky
+    uniqueID: 2236347579
+    locked: 0
+  - name: Clouds
+    uniqueID: 1744250403
+    locked: 0
   - name: Back
     uniqueID: 2941070991
     locked: 0
-  - name: HUD
-    uniqueID: 392414517
+  - name: Wall
+    uniqueID: 1389725567
     locked: 0
   - name: Loot
     uniqueID: 780278883
+    locked: 0
+  - name: Foreground
+    uniqueID: 411923921
+    locked: 0
+  - name: HUD
+    uniqueID: 392414517
     locked: 0
   - name: Default
     uniqueID: 0
