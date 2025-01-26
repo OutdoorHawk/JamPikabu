@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f8a88c95c574c72b236f41de5d48163, type: 3}
   m_Name: Ads
   m_EditorClassIdentifier: 
-  LevelsPassedToStartAds: 2
+  LevelsPassedToStartProfitAds: 3
+  LevelsPassedToStartInterstitialAds: 6
+  DoubleProfitMinGold: 10
+  DoubleProfitIntervalSeconds: 160
+  TutorialBlockAds: 0

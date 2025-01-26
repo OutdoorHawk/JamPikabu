@@ -80,7 +80,7 @@ namespace Code.Infrastructure.Ads.Service
             List<DayProgressData> dayProgressData = _daysService.GetDaysProgress();
             AdsStaticData adsStaticData = _staticDataService.Get<AdsStaticData>();
 
-            if (dayProgressData.Count < adsStaticData.LevelsPassedToStartAds)
+            if (dayProgressData.Count < adsStaticData.LevelsPassedToStartInterstitialAds)
                 return;
 
             if (adsStaticData.TutorialBlockAds && _tutorialService.HasActiveTutorial())
