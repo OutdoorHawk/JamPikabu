@@ -15,6 +15,7 @@
         ShopWindow = 14,
         Settings = 15,
         LootUnlockedWindow = 16,
+        ProfitAdsWindow = 17,
         
         Count
     }

@@ -33,6 +33,7 @@ namespace Code.Gameplay.Features.Currency.Factory
                 .With(x => x.isCurrencyStorage = true)
                 .AddCurrencyTypeId(CurrencyTypeId.Gold)
                 .AddGold(goldGold)
+                .AddEarnedInDay(0)
                 .AddWithdraw(0)
                 ;
 

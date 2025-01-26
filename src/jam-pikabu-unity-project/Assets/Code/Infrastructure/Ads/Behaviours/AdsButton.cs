@@ -17,6 +17,8 @@ namespace Code.Infrastructure.Ads.Behaviours
             
         private IAdsService _adsService;
 
+        public Button Button => _button;
+
         [Inject]
         private void Construct(IAdsService adsService)
         {
@@ -30,13 +32,13 @@ namespace Code.Infrastructure.Ads.Behaviours
 
         private void Start()
         {
-            _button.onClick.AddListener(TryWatchAd);
+            Button.onClick.AddListener(TryWatchAd);
         }
 
         private void OnDestroy()
         {
             _adsService.UnregisterAdsHandler(this);
-            _button.onClick.RemoveListener(TryWatchAd);
+            Button.onClick.RemoveListener(TryWatchAd);
         }
 
         private void TryWatchAd()

@@ -1,13 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
+using Code.Common.Entity;
+using Code.Common.Extensions;
 using Code.Gameplay.Features.Loot.Service;
+using Code.Gameplay.Features.ProfitAds.Service;
 using Code.Infrastructure.States.GameStates;
 using Code.Infrastructure.States.GameStates.Game;
 using Code.Infrastructure.States.StateMachine;
 using Code.Meta.Features.Days.Service;
 using Cysharp.Threading.Tasks;
 using Entitas;
-using UnityEngine;
 using static Code.Common.Extensions.AsyncGameplayExtensions;
 
 namespace Code.Gameplay.Features.GameState.Systems
@@ -17,6 +19,7 @@ namespace Code.Gameplay.Features.GameState.Systems
         private readonly IDaysService _roundService;
         private readonly IGameplayLootService _gameplayLootService;
         private readonly IGameStateMachine _stateMachine;
+        private readonly IProfitAdsWindowService _profitAdsWindowService;
 
         private readonly IGroup<GameEntity> _gameState;
         private readonly List<GameEntity> _buffer = new();
@@ -28,12 +31,13 @@ namespace Code.Gameplay.Features.GameState.Systems
             IDaysService roundService,
             IGameplayLootService gameplayLootService,
             IGameStateMachine stateMachine,
-            MetaContext metaContext
+            IProfitAdsWindowService profitAdsWindowService
         )
         {
             _roundService = roundService;
             _gameplayLootService = gameplayLootService;
             _stateMachine = stateMachine;
+            _profitAdsWindowService = profitAdsWindowService;
 
             _gameState = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.GameState,
@@ -48,15 +52,21 @@ namespace Code.Gameplay.Features.GameState.Systems
             {
                 gameState.isStateProcessingAvailable = false;
 
-                IncreaseDayAndLoadMap(gameState).Forget();
+                IncreaseDayAndLoadMap().Forget();
                 _gameplayLootService.ClearCollectedLoot();
             }
         }
 
-        private async UniTaskVoid IncreaseDayAndLoadMap(GameEntity state)
+        private async UniTaskVoid IncreaseDayAndLoadMap()
         {
-            await DelaySeconds(0.75f, _tearDownSource.Token);
+            await _profitAdsWindowService.TryShowProfitWindow();
+            
+            CreateGameEntity.Empty()
+                .With(x => x.isSyncMetaStorageRequest = true)
+                .AddGold(0);
 
+            await DelaySeconds(0.5f, _tearDownSource.Token);
+            
             _stateMachine.Enter<GameOverState>();
             await UniTask.Yield();
             _stateMachine.Enter<LoadMapMenuState>();

@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using Code.Gameplay.Features.GameOver.Service;
 using Code.Gameplay.Features.GameState.Service;
-using Code.Gameplay.Features.Loot.Service;
 using Code.Gameplay.Features.Orders.Service;
+using Code.Gameplay.Features.ProfitAds.Service;
 using Entitas;
 
 namespace Code.Gameplay.Features.GameState.Systems
@@ -11,8 +10,7 @@ namespace Code.Gameplay.Features.GameState.Systems
     {
         private readonly IGameStateService _gameStateService;
         private readonly IOrdersService _ordersService;
-        private readonly IGameOverService _gameOverService;
-        private readonly IGameplayLootService _gameplayLootService;
+        private readonly IProfitAdsWindowService _profitAdsWindowService;
         private readonly IGroup<GameEntity> _entities;
         private readonly IGroup<GameEntity> _activeOrders;
         private readonly List<GameEntity> _buffer = new();
@@ -22,14 +20,12 @@ namespace Code.Gameplay.Features.GameState.Systems
             GameContext context,
             IGameStateService gameStateService,
             IOrdersService ordersService,
-            IGameOverService gameOverService,
-            IGameplayLootService gameplayLootService
+            IProfitAdsWindowService profitAdsWindowService
         )
         {
             _gameStateService = gameStateService;
             _ordersService = ordersService;
-            _gameOverService = gameOverService;
-            _gameplayLootService = gameplayLootService;
+            _profitAdsWindowService = profitAdsWindowService;
 
             _entities = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.GameState,
@@ -56,7 +52,7 @@ namespace Code.Gameplay.Features.GameState.Systems
         private void CheckDayEndConditions(GameEntity order)
         {
             order.isDestructed = true;
-            
+
             if (_ordersService.CheckAllOrdersCompleted() == false)
             {
                 GoToNextOrder();

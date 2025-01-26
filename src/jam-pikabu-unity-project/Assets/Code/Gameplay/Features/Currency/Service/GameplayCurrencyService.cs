@@ -18,8 +18,8 @@ namespace Code.Gameplay.Features.Currency.Service
 
         public event Action CurrencyChanged;
 
-        private int _collectedGoldInLevel;
-        
+        public int CollectedGoldInLevel { get; private set; }
+
         public CurrencyHolder Holder { get; private set; }
 
         private readonly Dictionary<CurrencyTypeId, CurrencyCount> _currencies = new();
@@ -88,6 +88,11 @@ namespace Code.Gameplay.Features.Currency.Service
 
             if (changed)
                 CurrencyChanged?.Invoke();
+        }
+
+        public void UpdateEarnedGoldInDay(int goldInDay)
+        {
+            CollectedGoldInLevel = goldInDay;
         }
 
         private CurrencyCount GetCurrencyOfTypeInternal(CurrencyTypeId typeId)

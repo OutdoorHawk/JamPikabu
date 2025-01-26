@@ -24,6 +24,7 @@ namespace Code.Gameplay.Features.Currency.Systems
             foreach (var entity in _storages)
             {
                 _gameplayCurrencyService.UpdateCurrencyAmount(entity.Gold, entity.Withdraw, CurrencyTypeId.Gold);
+                _gameplayCurrencyService.UpdateEarnedGoldInDay(entity.EarnedInDay);
             }
         }
     }

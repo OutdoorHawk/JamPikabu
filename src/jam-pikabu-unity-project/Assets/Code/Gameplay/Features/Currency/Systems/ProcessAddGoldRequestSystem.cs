@@ -34,7 +34,7 @@ namespace Code.Gameplay.Features.Currency.Systems
                 if (request.hasWithdraw)
                     storage.ReplaceWithdraw(storage.Withdraw + request.Withdraw);
 
-                storage.ReplaceGoldPerDay(storage.GoldPerDay + request.Gold);
+                storage.ReplaceEarnedInDay(storage.EarnedInDay + request.Gold);
             }
         }
     }

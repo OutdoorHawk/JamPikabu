@@ -90,8 +90,8 @@ namespace Code.Gameplay.Features.Orders.Systems
                 StartReplenishCallback = () => _currencyFactory.CreateAddCurrencyRequest(orderReward.CurrencyType, 0, -orderReward.Amount)
             };
 
-            const float delayToFinishOtherAnimations = 0.75f;
-            const float goldAnimationDelay = 0.75f;
+            const float delayToFinishOtherAnimations = 0.6f;
+            const float goldAnimationDelay = 0.3f;
             await DelaySeconds(delayToFinishOtherAnimations, hud.destroyCancellationToken);
             _soundService.PlaySound(SoundTypeId.Order_Completed);
             _currencyFactory.PlayCurrencyAnimation(parameters);

@@ -6,12 +6,14 @@ namespace Code.Gameplay.Features.Currency.Service
     public interface IGameplayCurrencyService
     {
         event Action CurrencyChanged;
+        int CollectedGoldInLevel { get; }
         CurrencyHolder Holder { get; }
         void OnConfigsInitInitComplete();
         void RegisterHolder(CurrencyHolder currencyHolder);
         void UnregisterHolder(CurrencyHolder currencyHolder);
         int GetCurrencyOfType(CurrencyTypeId typeId, bool applyWithdraw = true);
         void UpdateCurrencyAmount(int newAmount, int withdraw, CurrencyTypeId typeId);
+        void UpdateEarnedGoldInDay(int goldInDay);
         void Cleanup();
         void InitCurrency();
     }

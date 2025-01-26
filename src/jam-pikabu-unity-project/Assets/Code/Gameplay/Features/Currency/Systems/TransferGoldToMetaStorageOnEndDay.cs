@@ -27,17 +27,20 @@ namespace Code.Gameplay.Features.Currency.Systems
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
             return context.CreateCollector(GameMatcher.AllOf(
-                GameMatcher.GameState,
-                GameMatcher.EndDay).Added());
+                GameMatcher.SyncMetaStorageRequest,
+                GameMatcher.Gold).Added());
         }
 
         protected override bool Filter(GameEntity entity)
         {
-            return entity.isGameState && entity.isEndDay;
+            return entity.isSyncMetaStorageRequest && entity.hasGold;
         }
 
-        protected override void Execute(List<GameEntity> entities)
+        protected override void Execute(List<GameEntity> requests)
         {
+            foreach (GameEntity request in requests) 
+                request.isDestructed = true;
+
             foreach (var metaStorage in _metaGold)
             foreach (var gold in _gold)
             {
