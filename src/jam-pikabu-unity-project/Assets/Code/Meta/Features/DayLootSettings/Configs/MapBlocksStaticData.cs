@@ -13,6 +13,7 @@ namespace Code.Meta.Features.DayLootSettings.Configs
         public const int DAYS_IN_BLOCK = 3;
 
         [TabGroup("Default")] public CircularList<Sprite> MapBlockBackgrounds = new();
+        [TabGroup("Default")] public bool EnableBackgroundsRandom = true;
 
         private readonly Dictionary<LootTypeId, MapBlockData> _linkedIngredientIndex = new();
 

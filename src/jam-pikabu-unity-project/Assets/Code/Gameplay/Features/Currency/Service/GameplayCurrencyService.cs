@@ -18,7 +18,8 @@ namespace Code.Gameplay.Features.Currency.Service
 
         public event Action CurrencyChanged;
 
-        private int _currentTurnCostGold;
+        private int _collectedGoldInLevel;
+        
         public CurrencyHolder Holder { get; private set; }
 
         private readonly Dictionary<CurrencyTypeId, CurrencyCount> _currencies = new();

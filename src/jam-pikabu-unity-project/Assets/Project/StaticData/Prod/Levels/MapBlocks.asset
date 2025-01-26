@@ -178,6 +178,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: bfdf95783f9863d499fc170dbcb4c7f0, type: 3}
     - {fileID: 21300000, guid: 42a4a43537495bf40bc3bac07808a51e, type: 3}
     - {fileID: 21300000, guid: 23d1998047b246248bc870140fffc090, type: 3}
+  EnableBackgroundsRandom: 0
   StarsFormula:
     BaseValue: 3
     StepFactor: 1

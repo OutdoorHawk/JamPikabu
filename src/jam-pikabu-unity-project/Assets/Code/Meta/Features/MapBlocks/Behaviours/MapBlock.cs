@@ -73,12 +73,18 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
         public void InitData(MapBlockData mapBlockData)
         {
             _mapBlockData = mapBlockData;
-            Sprite backgroundSprite = _staticData.Get<MapBlocksStaticData>().MapBlockBackgrounds.GetCurrent();
-            Background.sprite = backgroundSprite;
+            var staticData = _staticData.Get<MapBlocksStaticData>();
+
+            if (staticData.EnableBackgroundsRandom)
+            {
+                Sprite backgroundSprite = staticData.MapBlockBackgrounds.GetCurrent();
+                Background.sprite = backgroundSprite;
+            }
+
             LockedBackground.sprite = Background.sprite;
             LevelButtons.RefreshList(LevelsParent.GetComponentsInChildren<LevelButton>());
             InitStarsAmount();
-            UnlockableIngredient.Initialize(mapBlockData, backgroundSprite);
+            UnlockableIngredient.Initialize(mapBlockData, Background.sprite);
             AvailableIngredients.Init(mapBlockData);
             InitLockedState();
         }
@@ -123,7 +129,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
         {
             if (_mapBlockData == null)
                 return;
-            
+
             int diff = _mapBlockData.StarsNeedToUnlock - _daysService.GetAllEarnedStars();
             LockedByStarsText.text = _localizationService["MAIN MENU/STARS_NEED_TO_UNLOCK", diff.ToString()];
         }

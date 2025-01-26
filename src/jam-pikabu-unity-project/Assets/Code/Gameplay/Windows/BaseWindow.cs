@@ -36,6 +36,8 @@ namespace Code.Gameplay.Windows
 
         private void Awake()
         {
+            _isClosing = false;
+            _canvasGroup ??= GetComponent<CanvasGroup>();
             OnAwake();
         }
 
@@ -81,8 +83,7 @@ namespace Code.Gameplay.Windows
 
         protected virtual void Initialize()
         {
-            _isClosing = false;
-            _canvasGroup ??= GetComponent<CanvasGroup>();
+           
         }
 
         protected virtual void OnAwake()
