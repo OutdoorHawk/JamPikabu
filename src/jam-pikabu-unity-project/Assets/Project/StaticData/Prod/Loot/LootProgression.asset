@@ -23,19 +23,19 @@ MonoBehaviour:
     - RatingBoostAmount: 1
       Cost:
         CurrencyType: 1
-        Amount: 23
+        Amount: 25
     - RatingBoostAmount: 2
       Cost:
         CurrencyType: 1
-        Amount: 65
+        Amount: 74
     - RatingBoostAmount: 3
       Cost:
         CurrencyType: 1
-        Amount: 139
+        Amount: 160
     - RatingBoostAmount: 4
       Cost:
         CurrencyType: 1
-        Amount: 248
+        Amount: 287
   - Id: 2
     Type: 3
     Levels:
@@ -46,19 +46,19 @@ MonoBehaviour:
     - RatingBoostAmount: 1
       Cost:
         CurrencyType: 1
-        Amount: 23
+        Amount: 25
     - RatingBoostAmount: 2
       Cost:
         CurrencyType: 1
-        Amount: 65
+        Amount: 74
     - RatingBoostAmount: 3
       Cost:
         CurrencyType: 1
-        Amount: 139
+        Amount: 160
     - RatingBoostAmount: 4
       Cost:
         CurrencyType: 1
-        Amount: 248
+        Amount: 287
   - Id: 3
     Type: 4
     Levels:
@@ -69,19 +69,19 @@ MonoBehaviour:
     - RatingBoostAmount: 1
       Cost:
         CurrencyType: 1
-        Amount: 23
+        Amount: 25
     - RatingBoostAmount: 2
       Cost:
         CurrencyType: 1
-        Amount: 65
+        Amount: 74
     - RatingBoostAmount: 3
       Cost:
         CurrencyType: 1
-        Amount: 139
+        Amount: 160
     - RatingBoostAmount: 4
       Cost:
         CurrencyType: 1
-        Amount: 248
+        Amount: 287
   - Id: 4
     Type: 2
     Levels:
@@ -92,19 +92,19 @@ MonoBehaviour:
     - RatingBoostAmount: 1
       Cost:
         CurrencyType: 1
-        Amount: 23
+        Amount: 25
     - RatingBoostAmount: 2
       Cost:
         CurrencyType: 1
-        Amount: 65
+        Amount: 74
     - RatingBoostAmount: 3
       Cost:
         CurrencyType: 1
-        Amount: 139
+        Amount: 160
     - RatingBoostAmount: 4
       Cost:
         CurrencyType: 1
-        Amount: 248
+        Amount: 287
   - Id: 5
     Type: 5
     Levels:
@@ -115,19 +115,19 @@ MonoBehaviour:
     - RatingBoostAmount: 1
       Cost:
         CurrencyType: 1
-        Amount: 23
+        Amount: 25
     - RatingBoostAmount: 2
       Cost:
         CurrencyType: 1
-        Amount: 65
+        Amount: 74
     - RatingBoostAmount: 3
       Cost:
         CurrencyType: 1
-        Amount: 139
+        Amount: 160
     - RatingBoostAmount: 4
       Cost:
         CurrencyType: 1
-        Amount: 248
+        Amount: 287
   - Id: 6
     Type: 7
     Levels:
@@ -138,19 +138,19 @@ MonoBehaviour:
     - RatingBoostAmount: 1
       Cost:
         CurrencyType: 1
-        Amount: 23
+        Amount: 25
     - RatingBoostAmount: 2
       Cost:
         CurrencyType: 1
-        Amount: 65
+        Amount: 74
     - RatingBoostAmount: 3
       Cost:
         CurrencyType: 1
-        Amount: 139
+        Amount: 160
     - RatingBoostAmount: 4
       Cost:
         CurrencyType: 1
-        Amount: 248
+        Amount: 287
   - Id: 7
     Type: 8
     Levels:
@@ -161,19 +161,19 @@ MonoBehaviour:
     - RatingBoostAmount: 1
       Cost:
         CurrencyType: 1
-        Amount: 23
+        Amount: 25
     - RatingBoostAmount: 2
       Cost:
         CurrencyType: 1
-        Amount: 65
+        Amount: 74
     - RatingBoostAmount: 3
       Cost:
         CurrencyType: 1
-        Amount: 139
+        Amount: 160
     - RatingBoostAmount: 4
       Cost:
         CurrencyType: 1
-        Amount: 248
+        Amount: 287
   - Id: 8
     Type: 10
     Levels:
@@ -184,19 +184,19 @@ MonoBehaviour:
     - RatingBoostAmount: 1
       Cost:
         CurrencyType: 1
-        Amount: 23
+        Amount: 25
     - RatingBoostAmount: 2
       Cost:
         CurrencyType: 1
-        Amount: 65
+        Amount: 74
     - RatingBoostAmount: 3
       Cost:
         CurrencyType: 1
-        Amount: 139
+        Amount: 160
     - RatingBoostAmount: 4
       Cost:
         CurrencyType: 1
-        Amount: 248
+        Amount: 287
   - Id: 9
     Type: 9
     Levels:
@@ -207,19 +207,19 @@ MonoBehaviour:
     - RatingBoostAmount: 1
       Cost:
         CurrencyType: 1
-        Amount: 23
+        Amount: 25
     - RatingBoostAmount: 2
       Cost:
         CurrencyType: 1
-        Amount: 65
+        Amount: 74
     - RatingBoostAmount: 3
       Cost:
         CurrencyType: 1
-        Amount: 139
+        Amount: 160
     - RatingBoostAmount: 4
       Cost:
         CurrencyType: 1
-        Amount: 248
+        Amount: 287
   - Id: 10
     Type: 11
     Levels:
@@ -230,19 +230,19 @@ MonoBehaviour:
     - RatingBoostAmount: 1
       Cost:
         CurrencyType: 1
-        Amount: 23
+        Amount: 25
     - RatingBoostAmount: 2
       Cost:
         CurrencyType: 1
-        Amount: 65
+        Amount: 74
     - RatingBoostAmount: 3
       Cost:
         CurrencyType: 1
-        Amount: 139
+        Amount: 160
     - RatingBoostAmount: 4
       Cost:
         CurrencyType: 1
-        Amount: 248
+        Amount: 287
   - Id: 11
     Type: 12
     Levels:
@@ -253,19 +253,19 @@ MonoBehaviour:
     - RatingBoostAmount: 1
       Cost:
         CurrencyType: 1
-        Amount: 23
+        Amount: 25
     - RatingBoostAmount: 2
       Cost:
         CurrencyType: 1
-        Amount: 65
+        Amount: 74
     - RatingBoostAmount: 3
       Cost:
         CurrencyType: 1
-        Amount: 139
+        Amount: 160
     - RatingBoostAmount: 4
       Cost:
         CurrencyType: 1
-        Amount: 248
+        Amount: 287
   - Id: 12
     Type: 13
     Levels:
@@ -276,19 +276,19 @@ MonoBehaviour:
     - RatingBoostAmount: 1
       Cost:
         CurrencyType: 1
-        Amount: 23
+        Amount: 25
     - RatingBoostAmount: 2
       Cost:
         CurrencyType: 1
-        Amount: 65
+        Amount: 74
     - RatingBoostAmount: 3
       Cost:
         CurrencyType: 1
-        Amount: 139
+        Amount: 160
     - RatingBoostAmount: 4
       Cost:
         CurrencyType: 1
-        Amount: 248
+        Amount: 287
   - Id: 13
     Type: 16
     Levels:
@@ -299,19 +299,19 @@ MonoBehaviour:
     - RatingBoostAmount: 1
       Cost:
         CurrencyType: 1
-        Amount: 23
+        Amount: 25
     - RatingBoostAmount: 2
       Cost:
         CurrencyType: 1
-        Amount: 65
+        Amount: 74
     - RatingBoostAmount: 3
       Cost:
         CurrencyType: 1
-        Amount: 139
+        Amount: 160
     - RatingBoostAmount: 4
       Cost:
         CurrencyType: 1
-        Amount: 248
+        Amount: 287
   StartGameUnlockedLoot: 06000000030000000400000002000000
   LevelsAmount: 5
   IncreaseFactor: 0
@@ -322,10 +322,10 @@ MonoBehaviour:
     BonusAdjustment: 0
   CostFormula:
     BaseValue: 10
-    StepFactor: 12
+    StepFactor: 14
     GrowthExponent: 2.15
     BonusAdjustment: 1
-  FullUpgradeCost: 6305
+  FullUpgradeCost: 7228
   ProgressionCurve:
     serializedVersion: 2
     m_Curve:
