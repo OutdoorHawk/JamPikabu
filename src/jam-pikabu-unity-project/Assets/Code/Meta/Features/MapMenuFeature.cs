@@ -17,6 +17,7 @@ namespace Code.Meta.Features
         public MapMenuFeature(ISystemFactory systems)
         {
             Add(systems.Create<InitializeDaySystem>());
+            Add(systems.Create<SyncDayStarsSeenSystem>());
             
             Add(systems.Create<ExpirationTimerSystem>(1f));
             

@@ -23,5 +23,6 @@
         Upgrade = 18,
         Locked = 19,
         Reset  = 20,
+        Selected  = 21,
     }
 }
