@@ -530,9 +530,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2135892200025313058}
-  - {fileID: 5178047218191326156}
-  - {fileID: 5222892286747895408}
   - {fileID: 6297190242659369039}
+  - {fileID: 5222892286747895408}
+  - {fileID: 5178047218191326156}
   - {fileID: 109209404625891224}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1717,6 +1717,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayButton
       objectReference: {fileID: 0}
+    - target: {fileID: 5314742580164435777, guid: 9b5f609e93b0e724bbc291ba762a981c,
+        type: 3}
+      propertyPath: m_EffectFactor
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5857519937606551959, guid: 9b5f609e93b0e724bbc291ba762a981c,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1816,6 +1821,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6989663478508837516, guid: 9b5f609e93b0e724bbc291ba762a981c,
+        type: 3}
+      propertyPath: m_Material
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

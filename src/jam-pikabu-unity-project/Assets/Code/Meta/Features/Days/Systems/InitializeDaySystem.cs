@@ -20,8 +20,17 @@ namespace Code.Meta.Features.Days.Systems
         public void Initialize()
         {
             MetaEntity[] metaEntities = _days.GetEntities();
-            IEnumerable<DayProgressData> dayProgressData = metaEntities.Select(x => new DayProgressData(x.Day, x.StarsAmount));
+            IEnumerable<DayProgressData> dayProgressData = metaEntities.Select(CreateProgressData);
             _daysService.InitializeDays(dayProgressData);
+        }
+
+        private DayProgressData CreateProgressData(MetaEntity x)
+        {
+            if (x.hasStarsAmountSeen == false) 
+                x.AddStarsAmountSeen(x.StarsAmount);
+            
+            var data = new DayProgressData(x.Day, x.StarsAmount, x.StarsAmountSeen);
+            return data;
         }
     }
 }

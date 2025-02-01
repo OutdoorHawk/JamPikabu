@@ -15,28 +15,30 @@ public static class MetaComponentsLookup {
     public const int ActiveExtraLoot = 4;
     public const int Day = 5;
     public const int StarsAmount = 6;
-    public const int ExpirationTime = 7;
-    public const int Expired = 8;
-    public const int Level = 9;
-    public const int LootProgression = 10;
-    public const int LootTypeId = 11;
-    public const int UnlockLootRequest = 12;
-    public const int UpgradeLootRequest = 13;
-    public const int FreeUpgradeRequest = 14;
-    public const int LootFreeUpgradeTimer = 15;
-    public const int NextFreeUpgradeTime = 16;
-    public const int ReadyToFreeUpgrade = 17;
-    public const int AddCurrencyToStorageRequest = 18;
-    public const int Gold = 19;
-    public const int Storage = 20;
-    public const int Withdraw = 21;
-    public const int ForAd = 22;
-    public const int BuyRequest = 23;
-    public const int Consumable = 24;
-    public const int Purchased = 25;
-    public const int ShopItemId = 26;
+    public const int StarsAmountSeen = 7;
+    public const int SyncSeenStarsRequest = 8;
+    public const int ExpirationTime = 9;
+    public const int Expired = 10;
+    public const int Level = 11;
+    public const int LootProgression = 12;
+    public const int LootTypeId = 13;
+    public const int UnlockLootRequest = 14;
+    public const int UpgradeLootRequest = 15;
+    public const int FreeUpgradeRequest = 16;
+    public const int LootFreeUpgradeTimer = 17;
+    public const int NextFreeUpgradeTime = 18;
+    public const int ReadyToFreeUpgrade = 19;
+    public const int AddCurrencyToStorageRequest = 20;
+    public const int Gold = 21;
+    public const int Storage = 22;
+    public const int Withdraw = 23;
+    public const int ForAd = 24;
+    public const int BuyRequest = 25;
+    public const int Consumable = 26;
+    public const int Purchased = 27;
+    public const int ShopItemId = 28;
 
-    public const int TotalComponents = 27;
+    public const int TotalComponents = 29;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -46,6 +48,8 @@ public static class MetaComponentsLookup {
         "ActiveExtraLoot",
         "Day",
         "StarsAmount",
+        "StarsAmountSeen",
+        "SyncSeenStarsRequest",
         "ExpirationTime",
         "Expired",
         "Level",
@@ -76,6 +80,8 @@ public static class MetaComponentsLookup {
         typeof(Code.Meta.Features.Consumables.ActiveExtraLoot),
         typeof(Code.Meta.Features.Days.Day),
         typeof(Code.Meta.Features.Days.StarsAmount),
+        typeof(Code.Meta.Features.Days.StarsAmountSeen),
+        typeof(Code.Meta.Features.Days.SyncSeenStarsRequest),
         typeof(Code.Meta.Features.ExpirationTimer.ExpirationTime),
         typeof(Code.Meta.Features.ExpirationTimer.Expired),
         typeof(Code.Meta.Features.LootCollection.Level),

@@ -2,13 +2,15 @@
 {
     public struct DayProgressData
     {
-        public int DayId;
-        public int StarsEarned;
+        public readonly int DayId;
+        public readonly int StarsEarned;
+        public readonly int StarsEarnedSeen;
 
-        public DayProgressData(int dayId, int starsEarned)
+        public DayProgressData(int dayId, int starsEarned, int starsEarnedSeen)
         {
             DayId = dayId;
             StarsEarned = starsEarned;
+            StarsEarnedSeen = starsEarnedSeen;
         }
     }
 }

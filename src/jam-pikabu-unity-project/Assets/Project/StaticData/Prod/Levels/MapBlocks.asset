@@ -15,7 +15,7 @@ MonoBehaviour:
   Configs:
   - Id: 1
     StarsNeedToUnlock: 0
-    ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
+    ViewPrefab: {fileID: 1305543404588351487, guid: 1376b93db3e47284aab4ec177c8d2978,
       type: 3}
     UnlocksIngredient: 0
     FreeUpgradeTimeMinutes: 0
@@ -23,7 +23,7 @@ MonoBehaviour:
     ExtraLoot: 
   - Id: 2
     StarsNeedToUnlock: 5
-    ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
+    ViewPrefab: {fileID: 6081295883156704302, guid: f7e715fda7d9a674ab0ffc31d0dc3a1a,
       type: 3}
     UnlocksIngredient: 0
     FreeUpgradeTimeMinutes: 0
@@ -31,7 +31,7 @@ MonoBehaviour:
     ExtraLoot: 
   - Id: 3
     StarsNeedToUnlock: 7
-    ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
+    ViewPrefab: {fileID: 7000308649259404004, guid: 57be7fef7048f3a4795d0392637c2072,
       type: 3}
     UnlocksIngredient: 5
     FreeUpgradeTimeMinutes: 15
@@ -39,7 +39,7 @@ MonoBehaviour:
     ExtraLoot: 
   - Id: 4
     StarsNeedToUnlock: 12
-    ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
+    ViewPrefab: {fileID: 8596132663339009137, guid: 3de6c79b5285a4a48ba07d4afe21273a,
       type: 3}
     UnlocksIngredient: 0
     FreeUpgradeTimeMinutes: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
     ExtraLoot: 01000000
   - Id: 5
     StarsNeedToUnlock: 17
-    ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
+    ViewPrefab: {fileID: 1482046864033611317, guid: 4f834ad5794d1d646aaf7a68755beb1c,
       type: 3}
     UnlocksIngredient: 7
     FreeUpgradeTimeMinutes: 30
@@ -55,7 +55,7 @@ MonoBehaviour:
     ExtraLoot: 01000000
   - Id: 6
     StarsNeedToUnlock: 25
-    ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
+    ViewPrefab: {fileID: 5141764853266234693, guid: 6c44d7fd22e958a438a085ca392ee974,
       type: 3}
     UnlocksIngredient: 0
     FreeUpgradeTimeMinutes: 0
@@ -63,7 +63,7 @@ MonoBehaviour:
     ExtraLoot: 01000000
   - Id: 7
     StarsNeedToUnlock: 34
-    ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
+    ViewPrefab: {fileID: 8776015731076324019, guid: bfc85cff00d431a419eb2c4d7e2a213a,
       type: 3}
     UnlocksIngredient: 8
     FreeUpgradeTimeMinutes: 45
@@ -71,7 +71,7 @@ MonoBehaviour:
     ExtraLoot: 01000000
   - Id: 8
     StarsNeedToUnlock: 44
-    ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
+    ViewPrefab: {fileID: 4770303048303561462, guid: dfeb44210baf2e843a603984a211602a,
       type: 3}
     UnlocksIngredient: 0
     FreeUpgradeTimeMinutes: 0
@@ -79,7 +79,7 @@ MonoBehaviour:
     ExtraLoot: 010000000f000000
   - Id: 9
     StarsNeedToUnlock: 55
-    ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
+    ViewPrefab: {fileID: 6758891895113481594, guid: fd786e56d18d71e48b376e0e3509bcad,
       type: 3}
     UnlocksIngredient: 9
     FreeUpgradeTimeMinutes: 60
@@ -87,7 +87,7 @@ MonoBehaviour:
     ExtraLoot: 01000000
   - Id: 10
     StarsNeedToUnlock: 69
-    ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
+    ViewPrefab: {fileID: 1995146885554711217, guid: 26c9cd1595973e443a4a636aed155886,
       type: 3}
     UnlocksIngredient: 0
     FreeUpgradeTimeMinutes: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
     ExtraLoot: 010000000f000000
   - Id: 11
     StarsNeedToUnlock: 83
-    ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
+    ViewPrefab: {fileID: 3459576317666674529, guid: f5f6f5bcabb4ac747a7aa84d12e81e0e,
       type: 3}
     UnlocksIngredient: 10
     FreeUpgradeTimeMinutes: 60
@@ -103,7 +103,7 @@ MonoBehaviour:
     ExtraLoot: 01000000
   - Id: 12
     StarsNeedToUnlock: 99
-    ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
+    ViewPrefab: {fileID: 4680098725044770376, guid: 4e476087ed42c7847a397d46d5e632d6,
       type: 3}
     UnlocksIngredient: 0
     FreeUpgradeTimeMinutes: 0
@@ -111,7 +111,7 @@ MonoBehaviour:
     ExtraLoot: 010000000f000000
   - Id: 13
     StarsNeedToUnlock: 108
-    ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
+    ViewPrefab: {fileID: 7383108189519669727, guid: 00c5ce6208448b749998839633a3e9d5,
       type: 3}
     UnlocksIngredient: 11
     FreeUpgradeTimeMinutes: 60
@@ -119,7 +119,7 @@ MonoBehaviour:
     ExtraLoot: 01000000
   - Id: 14
     StarsNeedToUnlock: 117
-    ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
+    ViewPrefab: {fileID: 2172811426564872767, guid: a2415e0761cee5a4bb34e187677e0892,
       type: 3}
     UnlocksIngredient: 0
     FreeUpgradeTimeMinutes: 0
@@ -127,7 +127,7 @@ MonoBehaviour:
     ExtraLoot: 010000000f000000
   - Id: 15
     StarsNeedToUnlock: 126
-    ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
+    ViewPrefab: {fileID: 8954871070856215259, guid: 1f9f1fb2633eaf141ae18d62da05a42a,
       type: 3}
     UnlocksIngredient: 12
     FreeUpgradeTimeMinutes: 60
@@ -135,7 +135,7 @@ MonoBehaviour:
     ExtraLoot: 01000000
   - Id: 16
     StarsNeedToUnlock: 135
-    ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
+    ViewPrefab: {fileID: 1327155021837358746, guid: 04a031cd715769541b401992b41504be,
       type: 3}
     UnlocksIngredient: 0
     FreeUpgradeTimeMinutes: 0
@@ -143,7 +143,7 @@ MonoBehaviour:
     ExtraLoot: 010000000f000000
   - Id: 17
     StarsNeedToUnlock: 144
-    ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
+    ViewPrefab: {fileID: 4148540492865212028, guid: 11c743d22c2fe674fb1e3bc20b56a481,
       type: 3}
     UnlocksIngredient: 13
     FreeUpgradeTimeMinutes: 60
@@ -151,7 +151,7 @@ MonoBehaviour:
     ExtraLoot: 01000000
   - Id: 18
     StarsNeedToUnlock: 153
-    ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
+    ViewPrefab: {fileID: 7771906355005189890, guid: b9992460c505c694e8bf96d878e1db4a,
       type: 3}
     UnlocksIngredient: 0
     FreeUpgradeTimeMinutes: 0
@@ -159,7 +159,7 @@ MonoBehaviour:
     ExtraLoot: 010000000f000000
   - Id: 19
     StarsNeedToUnlock: 162
-    ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
+    ViewPrefab: {fileID: 2078974503734977356, guid: 9b6820617858a714d881372e5c88da4c,
       type: 3}
     UnlocksIngredient: 16
     FreeUpgradeTimeMinutes: 60
@@ -167,7 +167,7 @@ MonoBehaviour:
     ExtraLoot: 01000000
   - Id: 20
     StarsNeedToUnlock: 171
-    ViewPrefab: {fileID: 3672960233091212803, guid: ab987f24c5f43c44f9b9bac06740b919,
+    ViewPrefab: {fileID: 8729954628165993938, guid: d485d130abc08b94699eacf13cd82d2b,
       type: 3}
     UnlocksIngredient: 0
     FreeUpgradeTimeMinutes: 0

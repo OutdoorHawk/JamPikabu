@@ -25,7 +25,9 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
         public TMP_Text LockedByStarsText;
         public TMP_Text LockedByLevelsText;
         public Image Background;
+        public Image DecorForeground;
         public Image LockedBackground;
+        public Image LockedBackground2;
 
         private IDaysService _daysService;
         private ILootCollectionService _lootCollectionService;
@@ -82,6 +84,8 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
             }
 
             LockedBackground.sprite = Background.sprite;
+            LockedBackground2.sprite = Background.sprite;
+            DecorForeground.sprite = Background.sprite;
             LevelButtons.RefreshList(LevelsParent.GetComponentsInChildren<LevelButton>());
             InitStarsAmount();
             UnlockableIngredient.Initialize(mapBlockData, Background.sprite);
@@ -107,12 +111,17 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
         private void InitLockedState()
         {
             LockedContent.DisableElement();
+            LockedBackground2.DisableElement();
             LockedByLevelsText.DisableElement();
             LockedByStarsText.DisableElement();
 
             if (_mapMenuService.ChekMapBlockIsAvailableByStars(_mapBlockData) == false)
             {
-                LockedContent.EnableElement();
+                if (UnlockableIngredient.gameObject.activeSelf == false) 
+                    LockedContent.EnableElement();
+                else
+                    LockedBackground2.EnableElement();
+            
                 LockedByStarsText.EnableElement();
                 UpdateLockedStarsText();
                 return;
@@ -120,7 +129,11 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
 
             if (_mapMenuService.CheckMapBlockIsAvailableByLevels(_mapBlockData) == false)
             {
-                LockedContent.EnableElement();
+                if (UnlockableIngredient.gameObject.activeSelf == false) 
+                    LockedContent.EnableElement();
+                else
+                    LockedBackground2.EnableElement();
+                
                 LockedByLevelsText.EnableElement();
             }
         }

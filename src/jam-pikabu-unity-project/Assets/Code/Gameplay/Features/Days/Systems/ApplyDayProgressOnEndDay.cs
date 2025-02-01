@@ -82,7 +82,9 @@ namespace Code.Gameplay.Features.Days.Systems
         {
             return CreateMetaEntity.Empty()
                 .With(x => x.AddDay(_daysService.CurrentDay))
-                .AddStarsAmount(0);
+                .AddStarsAmount(0)
+                .AddStarsAmountSeen(0)
+                ;
         }
 
         private void UpdateStarsAmount(MetaEntity day, int starsReceived)

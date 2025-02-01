@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.RoundState.Factory;
 using Code.Gameplay.Sound;
@@ -227,6 +228,17 @@ namespace Code.Meta.Features.Days.Service
                 return 1 * _currentDayData.DayGoldFactor * _bonusLevelData.GoldFactorModifier;
 
             return 1 * _currentDayData.DayGoldFactor;
+        }
+
+        public void SyncStarsSeen(int dayId)
+        {
+            if (_daysProgressByDayId.TryGetValue(dayId, out DayProgressData dayProgressData) == false)
+                return;
+
+            _daysProgressByDayId[dayId] = new DayProgressData(dayProgressData.DayId, dayProgressData.StarsEarned, dayProgressData.StarsEarned);
+
+            CreateMetaEntity.Empty()
+                .With(x => x.isSyncSeenStarsRequest = true);
         }
 
         private DayData GetDayDataInternal(int currentDay)

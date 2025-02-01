@@ -37,5 +37,6 @@ namespace Code.Meta.Features.Days.Service
         DayStarsSetup GetDayStarData();
         DayStarsSetup GetDayStarData(int currentDay);
         float GetDayGoldFactor();
+        void SyncStarsSeen(int dayId);
     }
 }
