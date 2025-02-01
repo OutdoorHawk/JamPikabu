@@ -1,5 +1,7 @@
 ﻿using Code.Common.Extensions;
 using Code.Common.Extensions.Animations;
+using Code.Gameplay.Sound;
+using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
 using Code.Meta.Features.Days;
 using Code.Meta.Features.Days.Configs;
@@ -35,15 +37,18 @@ namespace Code.Meta.Features.MainMenu.Behaviours
         private IMapMenuService _mapMenuService;
         private IDaysService _daysService;
         private IStaticDataService _staticDataService;
+        private ISoundService _soundService;
 
         [Inject]
         private void Construct
         (
             IMapMenuService mapMenuService,
             IDaysService daysService,
-            IStaticDataService staticDataService
+            IStaticDataService staticDataService,
+            ISoundService soundService
         )
         {
+            _soundService = soundService;
             _staticDataService = staticDataService;
             _daysService = daysService;
             _mapMenuService = mapMenuService;
@@ -161,6 +166,7 @@ namespace Code.Meta.Features.MainMenu.Behaviours
             {
                 Stars[i].EnableElement();
                 StarAnimators[i].SetTrigger(AnimationParameter.Open.AsHash());
+                _soundService.PlayOneShotSound(SoundTypeId.StarReceive);
                 await DelaySeconds(0.25f, destroyCancellationToken);
             }
         }
