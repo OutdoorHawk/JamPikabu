@@ -7,6 +7,7 @@ using Code.Gameplay.Sound;
 using Code.Gameplay.Windows;
 using Code.Gameplay.Windows.Service;
 using Code.Infrastructure.Ads.Behaviours;
+using Code.Infrastructure.Analytics;
 using Code.Meta.UI.Common;
 using Cysharp.Threading.Tasks;
 using Zenject;
@@ -22,6 +23,7 @@ namespace Code.Gameplay.Features.ProfitAds.Window
         private ICurrencyFactory _currencyFactory;
         private IWindowService _windowService;
         private IGameplayCurrencyService _gameplayCurrencyService;
+        private IAnalyticsService _analyticsService;
 
         private int _goldAmount;
 
@@ -30,9 +32,11 @@ namespace Code.Gameplay.Features.ProfitAds.Window
         (
             ICurrencyFactory currencyFactory,
             IWindowService windowService,
-            IGameplayCurrencyService gameplayCurrencyService
+            IGameplayCurrencyService gameplayCurrencyService,
+            IAnalyticsService analyticsService
         )
         {
+            _analyticsService = analyticsService;
             _gameplayCurrencyService = gameplayCurrencyService;
             _windowService = windowService;
             _currencyFactory = currencyFactory;
@@ -59,6 +63,7 @@ namespace Code.Gameplay.Features.ProfitAds.Window
 
         private void GiveReward()
         {
+            _analyticsService.SendEvent(AnalyticsEventTypes.DoubleProfitReward);
             WatchAdsButton.Button.enabled = false;
 
             int rewardAmount = _goldAmount;
