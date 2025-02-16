@@ -174,7 +174,7 @@ namespace Code.Meta.Features.MainMenu.Behaviours
         private void InitBoss()
         {
             bool isBossDay = _daysService.GetDayData(DayId).IsBossDay;
-            BossIcon.gameObject.SetActive(false);
+            BossIcon.gameObject.SetActive(isBossDay);
         }
     }
 }

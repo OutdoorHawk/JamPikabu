@@ -238,7 +238,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.BindInterfacesTo<IntegrationsService>().AsSingle();
             
 #if GAME_PUSH
-            Container.BindInterfacesTo<GamePushAnalyticsService>().AsSingle();
+            Container.BindInterfacesTo<AppMetricaAnalyticsService>().AsSingle();
             Container.BindInterfacesTo<GamePushIntegration>().AsSingle();
             Container.BindInterfacesTo<GamePushAdsService>().AsSingle();
             Container.BindInterfacesTo<GamePushProgressReadWrite>().AsSingle();
