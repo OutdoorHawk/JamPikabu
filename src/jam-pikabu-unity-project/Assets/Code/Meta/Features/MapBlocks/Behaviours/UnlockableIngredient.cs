@@ -172,6 +172,7 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
             UnlockButton.EnableElement();
             UnlockButton.interactable = false;
             BigFlyIcon.EnableElement();
+            ReadyToUnlockText.EnableElement();
         }
 
         private void InitReadyToUnlock(LootTypeId unlocksIngredient)

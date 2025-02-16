@@ -52,7 +52,7 @@ MonoBehaviour:
       m_Items:
       - rid: 2194680340899692627
   - m_Id: 15858980064808960
-    m_Localized: New ingredient!
+    m_Localized: New ingredient
     m_Metadata:
       m_Items: []
   - m_Id: 16157142335836160
