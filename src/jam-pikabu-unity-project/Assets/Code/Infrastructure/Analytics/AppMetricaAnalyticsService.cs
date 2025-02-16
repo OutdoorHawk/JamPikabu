@@ -14,19 +14,21 @@ namespace Code.Infrastructure.Analytics
         public OrderType OrderType => OrderType.Last;
 
         private const string API_KEY = "ea54dbaf-6823-4663-8ebf-a6ca3166983b";
+        private const string FIRST_LAUNCH_KEY = "first_launch";
 
         public void OnEnterBootstrap()
         {
             AppMetrica.Activate(new AppMetricaConfig(API_KEY)
             {
                 Logs = true,
-                SessionTimeout = 60
+                SessionTimeout = 60,
+                FirstActivationAsUpdate = !IsFirstLaunch()
             });
 
             AppMetrica.SetUserProfileID(GP_Player.GetID().ToString());
             GP_Analytics.Hit(Application.absoluteURL);
         }
-        
+
         public void OnEnterMainMenu()
         {
             SendEvent(AnalyticsEventTypes.MainMenuEnter, string.Empty);
@@ -73,6 +75,16 @@ namespace Code.Infrastructure.Analytics
                     .WithDelta(1));
 
             AppMetrica.ReportUserProfile(userProfile);
+        }
+
+        private static bool IsFirstLaunch()
+        {
+            if (PlayerPrefs.HasKey(FIRST_LAUNCH_KEY))
+                return false;
+
+            PlayerPrefs.SetInt(FIRST_LAUNCH_KEY, 1);
+            PlayerPrefs.Save();
+            return true;
         }
     }
 }
