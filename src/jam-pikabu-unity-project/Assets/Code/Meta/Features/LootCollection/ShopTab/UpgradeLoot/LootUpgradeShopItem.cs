@@ -253,7 +253,7 @@ namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
                 .AddGold(_upgradePrice.Amount)
                 ;
 
-            PlayAnimation();
+            //PlayAnimation();
             RefreshState();
             _soundService.PlayOneShotSound(SoundTypeId.PurchasedQuota);
         }
