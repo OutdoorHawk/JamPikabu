@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Threading;
 using Code.Common.Extensions;
+using Code.Gameplay.Tutorial.Components;
 using Code.Gameplay.Windows;
 using Code.Gameplay.Windows.Factory;
-using Code.Gameplay.Windows.Service;
 using Code.Infrastructure.Localization;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
@@ -23,9 +23,9 @@ namespace Code.Gameplay.Tutorial.Window
         [SerializeField] private CanvasGroup _tapToContinueText;
         [SerializeField] private Button _tapToContinueButton;
         [SerializeField] private RectTransform _arrow;
+        [SerializeField] private TutorialMobileInputComponent _mobileInputTutorial;
 
         private ILocalizationService _localizationService;
-        private IWindowService _windowService;
         private Tween _textTween;
 
         private Transform _uiRoot;
@@ -42,11 +42,9 @@ namespace Code.Gameplay.Tutorial.Window
         private void Construct
         (
             IUIFactory uiFactory,
-            ILocalizationService localizationService,
-            IWindowService windowService
+            ILocalizationService localizationService
         )
         {
-            _windowService = windowService;
             _localizationService = localizationService;
             _uiRoot = uiFactory.UIRoot;
         }
@@ -212,6 +210,17 @@ namespace Code.Gameplay.Tutorial.Window
             await _tapToContinueButton.OnClickAsync(token);
             _tapToContinueButton.DisableElement();
             _tapToContinueText.DisableElement();
+        }
+        
+        public TutorialMobileInputComponent ShowMobileInputTutorial()
+        {
+            _mobileInputTutorial.EnableElement();
+            return _mobileInputTutorial;
+        }
+        
+        public void HideMobileInputTutorial()
+        {
+            _mobileInputTutorial.DisableElement();
         }
 
         private string GetLocalizedText(int locale, string arg1 = null)

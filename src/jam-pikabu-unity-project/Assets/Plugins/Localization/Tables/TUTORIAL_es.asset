@@ -92,10 +92,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 112046792042864640
-    m_Localized: 'Controla la cantidad de <color="yellow">repuestos</color>.
-
-      Sin
-      ellos, no puedes construir.'
+    m_Localized: 
     m_Metadata:
       m_Items: []
   - m_Id: 114916295274876928
@@ -104,7 +101,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 112046809080127488
-    m_Localized: Y no te olvides de tu <color="red">salud</color>.
+    m_Localized: 
     m_Metadata:
       m_Items: []
   references:

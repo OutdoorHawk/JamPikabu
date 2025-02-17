@@ -47,6 +47,11 @@ namespace Code.Gameplay.Input.Service
             UnsubscribeActionEmit();
         }
 
+        public bool IsMobile()
+        {
+            return IsMobileDevice();
+        }
+
         private void FillBindingsDictionary()
         {
             foreach (InputAction action in _playerInput.Player.Get().actions)
@@ -144,6 +149,26 @@ namespace Code.Gameplay.Input.Service
 
             Debug.LogError($"Input component index not found for {context.action.name} action!");
             return false;
+        }
+
+        private static bool IsMobileDevice()
+        {
+#if UNITY_EDITOR
+            return true;
+            return UnityEngine.Input.touchSupported && Screen.width < 1024;
+#endif
+#if CRAZY_GAMES
+            string deviceType = CrazyGames.CrazySDK.User.SystemInfo.device.type;
+            return deviceType.Contains("mobile") || deviceType.Contains("tablet");
+#endif
+#if GAME_PUSH
+            return GamePush.GP_Device.IsMobile();
+#endif
+#if UNITY_ANDROID
+            return true;
+#else
+            return UnityEngine.Input.touchSupported && Screen.width < 1024;
+#endif
         }
     }
 }

@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Default Assets
   m_GUID: 55c0cd711e904aa429b1960e3228158c
   m_SerializeEntries:
+  - m_GUID: 17e72d931d2b8dc4780bfdc070cf779d
+    m_Address: Assets/Project/Content/UI/Windows/Tutorial/MobileTutorial/ControlHelp.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fc784ead82121f142a38939eb21b77b7
     m_Address: BuildConfig
     m_ReadOnly: 0

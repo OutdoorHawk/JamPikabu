@@ -13,5 +13,6 @@ namespace Code.Gameplay.Input.Service
         void RagdollStateInput();
         void PauseStateInput();
         void CleanupEcsBindings();
+        bool IsMobile();
     }
 }
