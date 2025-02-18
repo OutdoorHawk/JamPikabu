@@ -162,7 +162,8 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
                 parameters.StartReplenishCallback?.Invoke();
                 _firstObject = false;
             }
-
+            
+            parameters.EachReplenishCallback?.Invoke();
             rect.DisableSafe();
         }
 

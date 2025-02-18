@@ -251,10 +251,9 @@ namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
                 .With(x => x.isUpgradeLootRequest = true)
                 .AddLootTypeId(Type)
                 .AddGold(_upgradePrice.Amount)
-                .AddWithdraw(-_upgradePrice.Amount)
                 ;
 
-            PlayAnimation();
+            //PlayAnimation();
             RefreshState();
             _soundService.PlayOneShotSound(SoundTypeId.PurchasedQuota);
         }
@@ -284,22 +283,12 @@ namespace Code.Meta.Features.LootCollection.ShopTab.UpgradeLoot
                 TextPrefix = "-",
                 Type = CurrencyTypeId.Gold,
                 Count = upgradePriceAmount,
-                StartPosition = UpgradePrice.CurrencyIcon.transform.position,
-                EndPosition = _gameplayCurrencyService.Holder.PlayerCurrentGold.CurrencyIcon.transform.position,
-                StartReplenishCallback = () => RemoveWithdraw(upgradePriceAmount)
+                StartPosition = _gameplayCurrencyService.Holder.PlayerCurrentGold.CurrencyIcon.transform.position,
+                EndPosition = UpgradePrice.CurrencyIcon.transform.position,
+                EachReplenishCallback = UpgradePrice.PlayReplenish
             };
 
             _currencyFactory.PlayCurrencyAnimation(parameters);
-        }
-
-        private void RemoveWithdraw(int upgradePriceAmount)
-        {
-            CreateMetaEntity
-                .Empty()
-                .With(x => x.isAddCurrencyToStorageRequest = true)
-                .AddGold(0)
-                .AddWithdraw(upgradePriceAmount)
-                ;
         }
 
         private void SetAvailableButtonColors()

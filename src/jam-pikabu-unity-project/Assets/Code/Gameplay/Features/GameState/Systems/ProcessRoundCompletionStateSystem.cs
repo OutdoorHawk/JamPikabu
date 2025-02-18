@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Code.Gameplay.Features.GameState.Service;
 using Code.Gameplay.Features.Orders.Service;
-using Code.Gameplay.Features.ProfitAds.Service;
 using Entitas;
 
 namespace Code.Gameplay.Features.GameState.Systems
@@ -10,7 +9,6 @@ namespace Code.Gameplay.Features.GameState.Systems
     {
         private readonly IGameStateService _gameStateService;
         private readonly IOrdersService _ordersService;
-        private readonly IProfitAdsWindowService _profitAdsWindowService;
         private readonly IGroup<GameEntity> _entities;
         private readonly IGroup<GameEntity> _activeOrders;
         private readonly List<GameEntity> _buffer = new();
@@ -19,13 +17,11 @@ namespace Code.Gameplay.Features.GameState.Systems
         (
             GameContext context,
             IGameStateService gameStateService,
-            IOrdersService ordersService,
-            IProfitAdsWindowService profitAdsWindowService
+            IOrdersService ordersService
         )
         {
             _gameStateService = gameStateService;
             _ordersService = ordersService;
-            _profitAdsWindowService = profitAdsWindowService;
 
             _entities = context.GetGroup(GameMatcher
                 .AllOf(GameMatcher.GameState,

@@ -111,14 +111,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 112046792042864640
-    m_Localized: 'Keep track of the <color="yellow">spare parts</color>.
-
-      You
-      can''t build without them.'
+    m_Localized: "Control the claw by holding your finger \non the left or right
+      side of the screen."
     m_Metadata:
       m_Items: []
   - m_Id: 112046809080127488
-    m_Localized: And don't forget about your <color="red">health</color>.
+    m_Localized: "Lower the claw by swiping \ndown anywhere on the screen."
     m_Metadata:
       m_Items: []
   - m_Id: 127669633619808256

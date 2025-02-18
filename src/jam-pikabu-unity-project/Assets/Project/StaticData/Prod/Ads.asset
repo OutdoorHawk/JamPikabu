@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ads
   m_EditorClassIdentifier: 
   LevelsPassedToStartProfitAds: 3
-  LevelsPassedToStartInterstitialAds: 6
+  LevelsPassedToStartInterstitialAds: 5
   DoubleProfitMinGold: 10
   DoubleProfitIntervalSeconds: 160
   TutorialBlockAds: 0

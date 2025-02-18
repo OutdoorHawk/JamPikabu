@@ -18,5 +18,6 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
         public SoundTypeId BeginAnimationSound;
         public SoundTypeId StartReplenishSound;
         public Action StartReplenishCallback;
+        public Action EachReplenishCallback;
     }
 }

@@ -1,8 +1,11 @@
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
+using Code.Common.Extensions;
 using Code.Gameplay.Features.GameState;
 using Code.Gameplay.Features.GameState.Service;
 using Code.Gameplay.Features.HUD;
+using Code.Gameplay.Tutorial.Components;
 using Code.Gameplay.Tutorial.Processors.Abstract;
 using Code.Gameplay.Tutorial.Window;
 using Code.Gameplay.Windows;
@@ -20,7 +23,6 @@ namespace Code.Gameplay.Tutorial.Processors
     public class CoreBasicsTutorialProcessor : BaseTutorialProcessor
     {
         private IGameStateService _gameStateService;
-        private IDaysService _daysService;
 
         public override TutorialTypeId TypeId => TutorialTypeId.CoreBasics;
 
@@ -31,13 +33,14 @@ namespace Code.Gameplay.Tutorial.Processors
         private const int MESSAGE_5 = 5;
         private const int MESSAGE_6 = 6;
         private const int MESSAGE_7 = 7;
+        private const int MESSAGE_MOBILE_1 = 17;
+        private const int MESSAGE_MOBILE_2 = 18;
 
         private CancellationTokenSource _destroyGameStateSource = new();
 
         [Inject]
-        private void Construct(IGameStateService gameStateService, IDaysService daysService)
+        private void Construct(IGameStateService gameStateService)
         {
-            _daysService = daysService;
             _gameStateService = gameStateService;
         }
 
@@ -109,6 +112,8 @@ namespace Code.Gameplay.Tutorial.Processors
             tutorialWindow
                 .HideMessages()
                 .HideArrow();
+            
+            await PlayMobileTutorial(tutorialWindow, token);
 
             StopDestroyGameState();
             _gameStateService.AskToSwitchState(GameStateTypeId.RoundPreparation);
@@ -157,6 +162,34 @@ namespace Code.Gameplay.Tutorial.Processors
             await WaitForGameState(GameStateTypeId.RoundLoop, token);
 
             tutorialWindow.Close();
+        }
+
+        private async UniTask PlayMobileTutorial(TutorialWindow tutorialWindow, CancellationToken token)
+        {
+            if (_inputService.IsMobile() == false)
+                return;
+
+            TutorialMobileInputComponent mobileInput = tutorialWindow.ShowMobileInputTutorial();
+            
+            mobileInput.RightInput.EnableElement();
+            mobileInput.LeftInput.EnableElement();
+            mobileInput.SlideInput.DisableElement();
+
+            await tutorialWindow
+                    .ShowMessage(MESSAGE_MOBILE_1)
+                    .AwaitForTapAnywhere(token, 1f)
+                ;
+            
+            mobileInput.RightInput.DisableElement();
+            mobileInput.LeftInput.DisableElement();
+            mobileInput.SlideInput.EnableElement();
+
+            await tutorialWindow
+                    .ShowMessage(MESSAGE_MOBILE_2)
+                    .AwaitForTapAnywhere(token, 1f)
+                ;
+            
+            tutorialWindow.HideMobileInputTutorial();
         }
 
         private void StartDestroyGameState(CancellationToken token)
