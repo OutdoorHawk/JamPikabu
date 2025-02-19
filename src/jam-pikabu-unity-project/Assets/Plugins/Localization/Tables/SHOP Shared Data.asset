@@ -55,6 +55,10 @@ MonoBehaviour:
     m_Key: S_SPOON_CONSUMABLE_DESCRIPTION
     m_Metadata:
       m_Items: []
+  - m_Id: 80130073319133184
+    m_Key: CONSUMABLES_AMOUNT
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

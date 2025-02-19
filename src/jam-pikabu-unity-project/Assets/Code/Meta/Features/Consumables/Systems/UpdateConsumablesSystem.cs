@@ -14,7 +14,9 @@ namespace Code.Meta.Features.Consumables.Systems
                 .AllOf(
                     MetaMatcher.ConsumableTypeId,
                     MetaMatcher.Amount
-                ));
+                )
+                .NoneOf(
+                    MetaMatcher.UpdateConsumableRequest));
 
             _updateRequests = context.GetGroup(MetaMatcher
                 .AllOf(
@@ -28,20 +30,23 @@ namespace Code.Meta.Features.Consumables.Systems
         {
             foreach (MetaEntity updateRequest in _updateRequests)
             {
-                if (TryFindExistingConsumable(updateRequest, _purchasedConsumables, out MetaEntity existingConsumable))
+                if (TryFindExistingConsumable(updateRequest, _purchasedConsumables, out MetaEntity consumable))
                 {
-                    existingConsumable.ReplaceAmount(updateRequest.Amount);
-                    existingConsumable.ReplaceExpirationTime(updateRequest.ExpirationTime);
+                    consumable.ReplaceAmount(updateRequest.Amount);
                 }
                 else
                 {
-                    CreateMetaEntity
+                    consumable = CreateMetaEntity
                         .Empty()
                         .AddConsumableTypeId(updateRequest.ConsumableTypeId)
                         .AddAmount(updateRequest.Amount)
-                        .AddExpirationTime(updateRequest.ExpirationTime)
                         ;
                 }
+
+                if (updateRequest.hasExpirationTime) 
+                    consumable.AddExpirationTime(updateRequest.ExpirationTime);
+
+                updateRequest.isDestructed = true;
             }
         }
 

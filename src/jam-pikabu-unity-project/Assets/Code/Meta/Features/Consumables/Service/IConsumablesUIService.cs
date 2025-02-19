@@ -12,5 +12,6 @@ namespace Code.Meta.Features.Consumables.Service
         void RemoveConsumable(ConsumableTypeId value);
         bool IsActive(ConsumableTypeId lootType);
         int GetActiveTimeLeft(ConsumableTypeId lootType);
+        int GetConsumableAmount(ConsumableTypeId lootType);
     }
 }

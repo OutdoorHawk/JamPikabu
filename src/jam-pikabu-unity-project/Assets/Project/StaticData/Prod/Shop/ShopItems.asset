@@ -38,9 +38,8 @@ MonoBehaviour:
     Cost:
       CurrencyType: 1
       Amount: 50
-    Consumable: 1
-    LootType: 17
-    MinutesDuration: 10
+    ConsumableType: 2
+    MinutesDuration: 0
   - Id: 2
     Kind: 2
     Icon: {fileID: 21300000, guid: a53148400a147fc4a86da08a6941ba67, type: 3}
@@ -66,9 +65,8 @@ MonoBehaviour:
     Cost:
       CurrencyType: 1
       Amount: 75
-    Consumable: 1
-    LootType: 14
-    MinutesDuration: 10
+    ConsumableType: 1
+    MinutesDuration: 0
   references:
     version: 2
     RefIds: []

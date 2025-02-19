@@ -62,6 +62,10 @@ MonoBehaviour:
     m_Localized: "When picked up, shuffles \nall the ingredients in the pile."
     m_Metadata:
       m_Items: []
+  - m_Id: 80130073319133184
+    m_Localized: 'At stock:'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

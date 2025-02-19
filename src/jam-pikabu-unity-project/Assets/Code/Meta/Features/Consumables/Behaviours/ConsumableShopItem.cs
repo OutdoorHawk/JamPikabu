@@ -1,7 +1,7 @@
 ﻿using Code.Common.Extensions;
 using Code.Gameplay.Common.Time.Behaviours;
 using Code.Gameplay.Common.Time.Service;
-using Code.Gameplay.Features.Loot;
+using Code.Infrastructure.Localization;
 using Code.Meta.Features.Consumables.Service;
 using Code.Meta.UI.Shop.Common;
 using Code.Meta.UI.Shop.Configs;
@@ -22,10 +22,12 @@ namespace Code.Meta.Features.Consumables.Behaviours
 
         public GameObject DurationGO;
         public TMP_Text DurationText;
+        public TMP_Text AmountText;
 
         private IShopUIService _shopUIService;
         private ILocalizedTimeService _localizedTimeService;
         private IConsumablesUIService _consumablesUIService;
+        private ILocalizationService _localizationService;
         private ShopItemData _shopItemData;
 
         public ConsumableTypeId ConsumableType { get; private set; }
@@ -35,9 +37,11 @@ namespace Code.Meta.Features.Consumables.Behaviours
         (
             IShopUIService shopUIService,
             ILocalizedTimeService localizedTimeService,
-            IConsumablesUIService consumablesUIService
+            IConsumablesUIService consumablesUIService,
+            ILocalizationService localizationService
         )
         {
+            _localizationService = localizationService;
             _consumablesUIService = consumablesUIService;
             _localizedTimeService = localizedTimeService;
             _shopUIService = shopUIService;
@@ -57,11 +61,18 @@ namespace Code.Meta.Features.Consumables.Behaviours
         {
             _shopItemData = shopItemData;
             ConsumableType = shopItemData.ConsumableType;
-            
+
             ShopItemView.Initialize(shopItemData);
             ShopBuyButton.InitUpgradePrice(shopItemData.Cost);
 
             Refresh();
+        }
+
+        private void Refresh()
+        {
+            InitDuration();
+            InitBuyButton();
+            InitAmount();
         }
 
         private void InitDuration()
@@ -81,9 +92,9 @@ namespace Code.Meta.Features.Consumables.Behaviours
         {
             if (_consumablesUIService.IsActive(ConsumableType))
             {
-               ShopBuyButton.DisableElement();
-               ActiveGO.EnableElement();
-               ActiveDurationTimer.StartTimer(() => _consumablesUIService.GetActiveTimeLeft(ConsumableType) + 1, Refresh);
+                ShopBuyButton.DisableElement();
+                ActiveGO.EnableElement();
+                ActiveDurationTimer.StartTimer(() => _consumablesUIService.GetActiveTimeLeft(ConsumableType) + 1, Refresh);
             }
             else
             {
@@ -93,10 +104,18 @@ namespace Code.Meta.Features.Consumables.Behaviours
             }
         }
 
-        private void Refresh()
+        private void InitAmount()
         {
-            InitDuration();
-            InitBuyButton();
+            if (_shopItemData.MinutesDuration > 0)
+            {
+                AmountText.DisableElement();
+            }
+            else
+            {
+                AmountText.EnableElement();
+                string text = $"{_localizationService["SHOP/CONSUMABLES_AMOUNT"]} {_consumablesUIService.GetConsumableAmount(ConsumableType).ToString()}";
+                AmountText.text = text;
+            }
         }
     }
 }

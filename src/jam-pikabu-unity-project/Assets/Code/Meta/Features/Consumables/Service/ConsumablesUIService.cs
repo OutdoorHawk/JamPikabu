@@ -42,7 +42,7 @@ namespace Code.Meta.Features.Consumables.Service
                 .With(x => x.isUpdateConsumableRequest = true)
                 .AddConsumableTypeId(purchasedConsumable.Type)
                 .AddAmount(purchasedConsumable.Amount)
-                .AddExpirationTime(purchasedConsumable.ExpirationTime)
+                .With(x => x.AddExpirationTime(purchasedConsumable.ExpirationTime), purchasedConsumable.ExpirationTime > 0)
                 ;
 
             _purchasedItems[data.ConsumableType] = purchasedConsumable;
@@ -70,6 +70,11 @@ namespace Code.Meta.Features.Consumables.Service
                 return 0;
 
             return item.ExpirationTime - _timeService.TimeStamp;
+        }
+
+        public int GetConsumableAmount(ConsumableTypeId lootType)
+        {
+            return _purchasedItems.TryGetValue(lootType, out PurchasedConsumableData item) ? item.Amount : 0;
         }
 
         private PurchasedConsumableData GetNewConsumable(ShopItemData data)
