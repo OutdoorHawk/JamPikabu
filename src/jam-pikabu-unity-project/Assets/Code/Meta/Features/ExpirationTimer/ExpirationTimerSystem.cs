@@ -6,9 +6,10 @@ using Entitas;
 
 namespace Code.Meta.Features.ExpirationTimer
 {
-    public class ExpirationTimerSystem : TimerExecuteSystem
+    public class ExpirationTimerSystem : TimerExecuteSystem, ICleanupSystem
     {
         private readonly IGroup<MetaEntity> _entities;
+        private readonly IGroup<MetaEntity> _expired;
         private readonly List<MetaEntity> _buffer = new(32);
 
         public ExpirationTimerSystem(float executeIntervalSeconds, ITimeService time, MetaContext context) : base(executeIntervalSeconds, time)
@@ -17,6 +18,10 @@ namespace Code.Meta.Features.ExpirationTimer
                 .AllOf(
                     MetaMatcher.ExpirationTime)
                 .NoneOf(
+                    MetaMatcher.Expired));
+            
+            _expired = context.GetGroup(MetaMatcher
+                .AllOf(
                     MetaMatcher.Expired));
         }
 
@@ -30,6 +35,14 @@ namespace Code.Meta.Features.ExpirationTimer
                 {
                     entity.isExpired = true;
                 }
+            }
+        }
+
+        public void Cleanup()
+        {
+            foreach (MetaEntity expired in _expired)
+            {
+                expired.isDestructed = true;
             }
         }
     }

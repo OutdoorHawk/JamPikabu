@@ -156,11 +156,6 @@ namespace Code.Gameplay.Features.Loot.Service
                 }
             }
 
-            foreach (var data in _extraLootService.GetActiveConsumables())
-            {
-                _availableExtraLoot.Add(staticData.GetConfig(data.Type));
-            }
-
             FallbackRandom(staticData);
         }
 

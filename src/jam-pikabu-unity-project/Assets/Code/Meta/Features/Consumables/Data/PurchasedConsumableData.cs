@@ -1,10 +1,21 @@
-﻿using Code.Gameplay.Features.Loot;
-
-namespace Code.Meta.Features.Consumables.Data
+﻿namespace Code.Meta.Features.Consumables.Data
 {
-    public struct PurchasedConsumableData
+    public readonly struct PurchasedConsumableData
     {
-        public LootTypeId Type;
-        public int ExpirationTime;
+        public readonly ConsumableTypeId Type;
+        public readonly int Amount;
+        public readonly int ExpirationTime;
+
+        public PurchasedConsumableData
+        (
+            ConsumableTypeId type,
+            int amount = 0,
+            int expirationTime = 0
+        )
+        {
+            Type = type;
+            Amount = amount;
+            ExpirationTime = expirationTime;
+        }
     }
 }

@@ -3,17 +3,18 @@ using Entitas;
 
 namespace Code.Meta.Features.Consumables.Systems
 {
-    public class ClearExpiredActiveExtraLootSystem : IExecuteSystem
+    public class ClearExpiredConsumablesSystem : IExecuteSystem
     {
         private readonly IConsumablesUIService _consumablesUIService;
         private readonly IGroup<MetaEntity> _entities;
 
-        public ClearExpiredActiveExtraLootSystem(MetaContext context, IConsumablesUIService consumablesUIService)
+        public ClearExpiredConsumablesSystem(MetaContext context, IConsumablesUIService consumablesUIService)
         {
             _consumablesUIService = consumablesUIService;
+
             _entities = context.GetGroup(MetaMatcher
                 .AllOf(
-                    MetaMatcher.ActiveExtraLoot,
+                    MetaMatcher.ConsumableTypeId,
                     MetaMatcher.Expired
                 ));
         }
@@ -22,9 +23,7 @@ namespace Code.Meta.Features.Consumables.Systems
         {
             foreach (var entity in _entities)
             {
-                entity.isDestructed = true;
-                
-                _consumablesUIService.RemoveActiveExtraLoot(entity.lootTypeId.Value);
+                _consumablesUIService.RemoveConsumable(entity.ConsumableTypeId);
             }
         }
     }

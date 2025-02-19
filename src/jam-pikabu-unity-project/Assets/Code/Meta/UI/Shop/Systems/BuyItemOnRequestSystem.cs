@@ -45,7 +45,7 @@ namespace Code.Meta.UI.Shop.Systems
 
                 CreateMetaEntity.Empty()
                     .AddShopItemId(request.ShopItemId)
-                    .With(x => x.isConsumable = true, when: data.Consumable)
+                    .With(x => x.isConsumable = true, when: data.Kind is ShopItemKind.Consumable)
                     .isPurchased = true;
             }
         }

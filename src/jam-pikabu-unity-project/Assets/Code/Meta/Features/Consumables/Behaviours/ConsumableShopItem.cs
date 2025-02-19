@@ -28,7 +28,7 @@ namespace Code.Meta.Features.Consumables.Behaviours
         private IConsumablesUIService _consumablesUIService;
         private ShopItemData _shopItemData;
 
-        public LootTypeId LootType { get; private set; }
+        public ConsumableTypeId ConsumableType { get; private set; }
 
         [Inject]
         private void Construct
@@ -56,7 +56,7 @@ namespace Code.Meta.Features.Consumables.Behaviours
         public void Initialize(ShopItemData shopItemData)
         {
             _shopItemData = shopItemData;
-            LootType = shopItemData.LootType;
+            ConsumableType = shopItemData.ConsumableType;
             
             ShopItemView.Initialize(shopItemData);
             ShopBuyButton.InitUpgradePrice(shopItemData.Cost);
@@ -66,7 +66,7 @@ namespace Code.Meta.Features.Consumables.Behaviours
 
         private void InitDuration()
         {
-            if (_consumablesUIService.IsActive(LootType))
+            if (_consumablesUIService.IsActive(ConsumableType))
             {
                 DurationGO.DisableElement();
             }
@@ -79,11 +79,11 @@ namespace Code.Meta.Features.Consumables.Behaviours
 
         private void InitBuyButton()
         {
-            if (_consumablesUIService.IsActive(LootType))
+            if (_consumablesUIService.IsActive(ConsumableType))
             {
                ShopBuyButton.DisableElement();
                ActiveGO.EnableElement();
-               ActiveDurationTimer.StartTimer(() => _consumablesUIService.GetActiveTimeLeft(LootType) + 1, Refresh);
+               ActiveDurationTimer.StartTimer(() => _consumablesUIService.GetActiveTimeLeft(ConsumableType) + 1, Refresh);
             }
             else
             {

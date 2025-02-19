@@ -7,9 +7,10 @@ namespace Code.Meta.Features.Consumables
     {
         public ExtraLootConsumablesFeature(ISystemFactory systems)
         {
-            Add(systems.Create<InitActiveExtraLootSystem>());
+            Add(systems.Create<InitConsumablesSystem>());
+            Add(systems.Create<UpdateConsumablesSystem>());
             
-            Add(systems.Create<ClearExpiredActiveExtraLootSystem>());
+            Add(systems.Create<ClearExpiredConsumablesSystem>());
         }
     }
 }

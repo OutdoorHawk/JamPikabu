@@ -36,8 +36,8 @@ namespace Code.Meta.UI.Shop.Tabs
 
         private void CreateConsumables()
         {
-            List<ShopItemData> items = ShopStaticData.GetByItemKind(ShopItemKind.ExtraLoot);
-            ShopItemTemplateData template = _shopWindowService.GetTemplate(ShopItemKind.ExtraLoot);
+            List<ShopItemData> items = ShopStaticData.GetByItemKind(ShopItemKind.Consumable);
+            ShopItemTemplateData template = _shopWindowService.GetTemplate(ShopItemKind.Consumable);
 
             items.Sort((x, y) => x.LayoutOrder.CompareTo(y.LayoutOrder));
 

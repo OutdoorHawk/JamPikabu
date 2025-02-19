@@ -6,27 +6,27 @@ using Entitas;
 
 namespace Code.Meta.Features.Consumables.Systems
 {
-    public class InitActiveExtraLootSystem : IInitializeSystem
+    public class InitConsumablesSystem : IInitializeSystem
     {
-        private readonly IGroup<MetaEntity> _purchasedExtraLoot;
+        private readonly IGroup<MetaEntity> _purchasedConsumables;
         private readonly IConsumablesUIService _consumablesUIService;
 
-        public InitActiveExtraLootSystem(MetaContext context, IConsumablesUIService consumablesUIService)
+        public InitConsumablesSystem(MetaContext context, IConsumablesUIService consumablesUIService)
         {
             _consumablesUIService = consumablesUIService;
 
-            _purchasedExtraLoot = context.GetGroup(MetaMatcher
+            _purchasedConsumables = context.GetGroup(MetaMatcher
                 .AllOf(
-                    MetaMatcher.ActiveExtraLoot,
-                    MetaMatcher.LootTypeId
-                    )
+                    MetaMatcher.ConsumableTypeId,
+                    MetaMatcher.Amount
+                )
                 .NoneOf(
                     MetaMatcher.Expired));
         }
 
         public void Initialize()
         {
-            IEnumerable<PurchasedConsumableData> purchasedConsumables = _purchasedExtraLoot
+            IEnumerable<PurchasedConsumableData> purchasedConsumables = _purchasedConsumables
                 .GetEntities()
                 .ToList()
                 .Select(Selector);
@@ -36,15 +36,12 @@ namespace Code.Meta.Features.Consumables.Systems
 
         private static PurchasedConsumableData Selector(MetaEntity x)
         {
-            var data = new PurchasedConsumableData
-            {
-                Type = x.LootTypeId 
-            };
-            
-            if (x.hasExpirationTime)
-                data.ExpirationTime = x.ExpirationTime;
-            
-            return data;
+            return new PurchasedConsumableData
+            (
+                x.ConsumableTypeId,
+                x.Amount,
+                x.hasExpirationTime ? x.ExpirationTime : 0
+            );
         }
     }
 }

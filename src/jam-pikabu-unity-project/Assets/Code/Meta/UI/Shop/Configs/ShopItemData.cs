@@ -1,7 +1,7 @@
 using System;
 using Code.Gameplay.Features.Currency.Config;
-using Code.Gameplay.Features.Loot;
 using Code.Gameplay.StaticData.Data;
+using Code.Meta.Features.Consumables;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Localization;
@@ -17,9 +17,8 @@ namespace Code.Meta.UI.Shop.Configs
         [FoldoutGroup("Data")] public LocalizedString NameLocale;
         [FoldoutGroup("Data")] public LocalizedString DescriptionLocale;
         [FoldoutGroup("Data")] public CostSetup Cost;
-        
-        [FoldoutGroup("Data")] public bool Consumable;
-        [FoldoutGroup("Data")] public LootTypeId LootType;
+
+        [FoldoutGroup("Data")] public ConsumableTypeId ConsumableType;
         [FoldoutGroup("Data")] public int MinutesDuration;
     }
 }

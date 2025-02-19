@@ -29,7 +29,7 @@ namespace Code.Meta.UI.Shop.Factory
                 case ShopItemKind.Unknown:
                     break;
                 case ShopItemKind.UpgradeIngredient:
-                case ShopItemKind.ExtraLoot:
+                case ShopItemKind.Consumable:
                     _consumablesUIService.PurchaseConsumableExtraLoot(data);
                     break;
                 default:

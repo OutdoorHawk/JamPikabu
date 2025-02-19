@@ -4,6 +4,6 @@
     {
         Unknown = 0,
         UpgradeIngredient = 1,
-        ExtraLoot = 2,
+        Consumable = 2,
     }
 }
