@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Code.Common.Entity;
 using Code.Common.Extensions;
@@ -6,6 +7,7 @@ using Code.Gameplay.Common.Time;
 using Code.Infrastructure.Analytics;
 using Code.Meta.Features.Consumables.Data;
 using Code.Meta.UI.Shop.Configs;
+using UnityEngine;
 
 namespace Code.Meta.Features.Consumables.Service
 {
@@ -15,6 +17,8 @@ namespace Code.Meta.Features.Consumables.Service
         private readonly IAnalyticsService _analyticsService;
 
         private readonly Dictionary<ConsumableTypeId, PurchasedConsumableData> _purchasedItems = new();
+
+        public event Action OnConsumablesUpdated;
 
         public ConsumablesUIService(ITimeService timeService, IAnalyticsService analyticsService)
         {
@@ -47,6 +51,20 @@ namespace Code.Meta.Features.Consumables.Service
 
             _purchasedItems[data.ConsumableType] = purchasedConsumable;
             _analyticsService.SendEvent(AnalyticsEventTypes.Purchase, purchasedConsumable.Type.ToString());
+            NotifyUpdated();
+        }
+
+        public void ConsumableSpend(ConsumableTypeId type)
+        {
+            if (_purchasedItems.TryGetValue(type, out PurchasedConsumableData purchasedConsumable) == false)
+                return;
+
+            int newAmount = Mathf.Max(0, purchasedConsumable.Amount - 1);
+            _purchasedItems[type] = purchasedConsumable.SetAmount(newAmount);
+
+            CreateUpdateRequest(type);
+            NotifyUpdated();
+            _analyticsService.SendEvent(AnalyticsEventTypes.SpendConsumable, type.ToString());
         }
 
         public IReadOnlyList<PurchasedConsumableData> GetActiveConsumables()
@@ -98,6 +116,24 @@ namespace Code.Meta.Features.Consumables.Service
                 type: data.ConsumableType,
                 amount: purchasedConsumable.Amount + 1
             );
+        }
+
+        private void NotifyUpdated()
+        {
+            OnConsumablesUpdated?.Invoke();
+        }
+
+        private void CreateUpdateRequest(ConsumableTypeId type)
+        {
+            PurchasedConsumableData consumableData = _purchasedItems[type];
+            
+            CreateMetaEntity
+                .Empty()
+                .With(x => x.isUpdateConsumableRequest = true)
+                .AddConsumableTypeId(consumableData.Type)
+                .AddAmount(consumableData.Amount)
+                .With(x => x.AddExpirationTime(consumableData.ExpirationTime), consumableData.ExpirationTime > 0)
+                ;
         }
     }
 }

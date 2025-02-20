@@ -17,5 +17,10 @@
             Amount = amount;
             ExpirationTime = expirationTime;
         }
+        
+        public PurchasedConsumableData SetAmount(int newAmount)
+        {
+            return new PurchasedConsumableData(Type, newAmount, ExpirationTime);
+        }
     }
 }

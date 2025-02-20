@@ -33,7 +33,7 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Loot.Spoon spoonComponent = new Code.Gameplay.Features.Loot.Spoon();
+    static readonly Code.Gameplay.Features.Consumables.Spoon spoonComponent = new Code.Gameplay.Features.Consumables.Spoon();
 
     public bool isSpoon {
         get { return HasComponent(GameComponentsLookup.Spoon); }

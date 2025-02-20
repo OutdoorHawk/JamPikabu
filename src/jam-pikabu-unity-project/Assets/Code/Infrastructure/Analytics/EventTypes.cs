@@ -13,6 +13,7 @@
         public const string AdRewardedSuccess = "ADS_REWARD_SUCCESS";
         public const string Purchase = "PURCHASE_CONSUMABLE";
         public const string DoubleProfitReward = "DOUBLE_PROFIT";
+        public const string SpendConsumable = "SPEND_CONSUMABLE";
     }
 
     public enum AdsEventTypes

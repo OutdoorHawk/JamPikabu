@@ -33,7 +33,7 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Loot.Wood woodComponent = new Code.Gameplay.Features.Loot.Wood();
+    static readonly Code.Gameplay.Features.Consumables.Wood woodComponent = new Code.Gameplay.Features.Consumables.Wood();
 
     public bool isWood {
         get { return HasComponent(GameComponentsLookup.Wood); }

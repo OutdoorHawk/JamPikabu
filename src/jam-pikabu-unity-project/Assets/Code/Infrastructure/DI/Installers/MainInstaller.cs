@@ -8,6 +8,7 @@ using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Common.Time;
 using Code.Gameplay.Common.Time.Service;
 using Code.Gameplay.Features.Abilities.Factory;
+using Code.Gameplay.Features.Consumables.Factory;
 using Code.Gameplay.Features.Currency.Factory;
 using Code.Gameplay.Features.Currency.Service;
 using Code.Gameplay.Features.Customers.Service;
@@ -205,6 +206,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.BindInterfacesTo<MapMenuFactory>().AsSingle();
             Container.BindInterfacesTo<AbilityFactory>().AsSingle();
             Container.BindInterfacesTo<DistractionObjectsFactory>().AsSingle();
+            Container.BindInterfacesTo<ConsumablesFactory>().AsSingle();
         }
 
         private void BindGameplayFactories()

@@ -8,7 +8,7 @@ namespace Code.Gameplay.StaticData.Data
     {
         [TabGroup("Default")] [PropertyOrder(99)] public List<TData> Configs;
 
-        private Dictionary<int, Dictionary<int, TData>> _uniqueIndexes = new();
+        private readonly Dictionary<int, Dictionary<int, TData>> _uniqueIndexes = new();
         private Dictionary<int, TData> _uniqueIndex;
         private Dictionary<int, List<TData>> _nonUniqueIndex;
 

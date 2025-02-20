@@ -1,4 +1,5 @@
-﻿using Code.Gameplay.Features.GameState.Factory;
+﻿using System;
+using Code.Gameplay.Features.GameState.Factory;
 using Code.Gameplay.Features.Loot.Service;
 using Code.Gameplay.Features.Orders.Service;
 using Code.Infrastructure.States.StateMachine;
@@ -14,6 +15,10 @@ namespace Code.Gameplay.Features.GameState.Service
         private readonly IOrdersService _ordersService;
         private readonly IGameplayLootService _gameplayLootService;
         private readonly IDaysService _daysService;
+
+        public GameStateTypeId CurrentState { get; private set; }
+
+        public event Action OnStateSwitched;
 
         public GameStateService
         (
@@ -56,6 +61,14 @@ namespace Code.Gameplay.Features.GameState.Service
                 case GameStateTypeId.EndDay:
                     break;
             }
+
+            NotifyStateSwitched(newState);
+        }
+
+        private void NotifyStateSwitched(GameStateTypeId newState)
+        {
+            CurrentState = newState;
+            OnStateSwitched?.Invoke();
         }
 
         private void EnterBeginDay()
