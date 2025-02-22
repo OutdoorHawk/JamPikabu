@@ -177,6 +177,9 @@ namespace Code.Gameplay.Tutorial.Service
             
             if (processor.CheckLevelsPassedNeeds() == false)
                 return false;
+            
+            if (processor.CheckGameStateNeed() == false)
+                return false;
 
             if (processor.CanStartTutorial() == false)
                 return false;
@@ -209,8 +212,8 @@ namespace Code.Gameplay.Tutorial.Service
             }
 
             _windowService.Close(WindowTypeId.Tutorial);
-            tutorialProcessor.Finalization();
             MarkTutorialCompleted(tutorialSaveData);
+            tutorialProcessor.Finalization();
         }
 
         private TutorialUserData CreateNewTutorialUserData(TutorialTypeId typeId)

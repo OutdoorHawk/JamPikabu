@@ -27,16 +27,6 @@ namespace Code.Gameplay.Tutorial.Processors
             _uiFactory = uiFactory;
         }
 
-        public override bool CanStartTutorial()
-        {
-            bool mapState = CheckCurrentGameState<MapMenuState>();
-
-            if (mapState == false)
-                return false;
-
-            return true;
-        }
-
         public override bool CanSkipTutorial()
         {
             return false;
@@ -48,7 +38,7 @@ namespace Code.Gameplay.Tutorial.Processors
 
         protected override async UniTask ProcessInternal(CancellationToken token)
         {
-            var menu = await WaitForWindowToOpen<MainMenuWindow>(token, 999);
+            var menu = await FindWindow<MainMenuWindow>(token, 999);
 
             await DelaySeconds(0.15f, token);
 

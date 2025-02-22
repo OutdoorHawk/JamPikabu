@@ -15,16 +15,6 @@ namespace Code.Gameplay.Tutorial.Processors
     {
         public override TutorialTypeId TypeId => TutorialTypeId.SecondLevelHint;
 
-        public override bool CanStartTutorial()
-        {
-            bool isState = CheckCurrentGameState<MapMenuState>();
-
-            if (isState)
-                return true;
-
-            return false;
-        }
-
         public override bool CanSkipTutorial()
         {
             return _daysService.GetDaysProgress().Count > 3;
@@ -43,7 +33,7 @@ namespace Code.Gameplay.Tutorial.Processors
             
             await _windowService.OpenWindow<TutorialWindow>(WindowTypeId.Tutorial);
 
-            var menu = await WaitForWindowToOpen<MainMenuWindow>(token);
+            var menu = await FindWindow<MainMenuWindow>(token);
 
             HideArrowTask(token, menu).Forget();
 

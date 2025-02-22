@@ -7,9 +7,7 @@ using Code.Gameplay.Tutorial.Window;
 using Code.Gameplay.Windows;
 using Code.Infrastructure.DI.Installers;
 using Code.Infrastructure.States.GameStates.Game;
-using Code.Meta.Features.Days.Service;
 using Cysharp.Threading.Tasks;
-using Zenject;
 using static Code.Common.Extensions.AsyncGameplayExtensions;
 
 namespace Code.Gameplay.Tutorial.Processors
@@ -26,11 +24,6 @@ namespace Code.Gameplay.Tutorial.Processors
 
         public override bool CanStartTutorial()
         {
-            bool isGameLoopState = CheckCurrentGameState<GameLoopState>();
-
-            if (isGameLoopState == false)
-                return false;
-
             if (_daysService.GetDayData().Id <= 1)
                 return false;
 
@@ -53,16 +46,16 @@ namespace Code.Gameplay.Tutorial.Processors
             _inputService.PlayerInput.Disable();
 
             var tutorialWindow = await _windowService.OpenWindow<TutorialWindow>(WindowTypeId.Tutorial);
-            
+
             await WaitForGameState(GameStateTypeId.RoundPreparation, token);
-            
+
             StartDestroyGameState(token);
-            
-            var hud = await WaitForWindowToOpen<PlayerHUDWindow>(token);
+
+            var hud = await FindWindow<PlayerHUDWindow>(token);
 
             await DelaySeconds(1.5f, token);
-            
-            var lootRect = hud.LootContainer.LootGrid.gameObject; 
+
+            var lootRect = hud.LootContainer.LootGrid.gameObject;
 
             await tutorialWindow
                     .ClearHighlights()
@@ -83,7 +76,7 @@ namespace Code.Gameplay.Tutorial.Processors
                 ;
 
             _inputService.PlayerInput.Enable();
-            
+
             tutorialWindow.Close();
         }
 

@@ -15,22 +15,32 @@ MonoBehaviour:
   DebugDisableSave: 0
   _configs:
   - Type: 1
+    GameStateType: 1
     CompletedLevelsNeedToStart: 0
     Order: 0
     DisableTutorial: 0
   - Type: 5
+    GameStateType: 2
     CompletedLevelsNeedToStart: 1
     Order: 0
     DisableTutorial: 0
   - Type: 6
+    GameStateType: 1
     CompletedLevelsNeedToStart: 1
     Order: 0
     DisableTutorial: 0
   - Type: 2
+    GameStateType: 2
     CompletedLevelsNeedToStart: 2
     Order: 1
     DisableTutorial: 0
   - Type: 4
+    GameStateType: 2
     CompletedLevelsNeedToStart: 4
     Order: 2
+    DisableTutorial: 0
+  - Type: 7
+    GameStateType: 1
+    CompletedLevelsNeedToStart: 5
+    Order: 3
     DisableTutorial: 0

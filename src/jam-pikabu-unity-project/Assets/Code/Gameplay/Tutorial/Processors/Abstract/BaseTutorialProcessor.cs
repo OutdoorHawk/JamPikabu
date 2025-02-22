@@ -7,6 +7,8 @@ using Code.Gameplay.Tutorial.Config;
 using Code.Gameplay.Tutorial.Window;
 using Code.Gameplay.Windows;
 using Code.Gameplay.Windows.Service;
+using Code.Infrastructure.States.GameStates;
+using Code.Infrastructure.States.GameStates.Game;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
 using Code.Meta.Features.Days.Service;
@@ -33,7 +35,7 @@ namespace Code.Gameplay.Tutorial.Processors.Abstract
         private readonly List<WindowTypeId> _openedWindowsCache = new();
 
         protected PlayerProgress Progress => _progressProvider.Progress;
-        private TutorialStaticData TutorialStaticData => _staticData.Get<TutorialStaticData>();
+        protected TutorialStaticData TutorialStaticData => _staticData.Get<TutorialStaticData>();
 
         [Inject]
         private void Construct
@@ -60,7 +62,8 @@ namespace Code.Gameplay.Tutorial.Processors.Abstract
         }
 
         public abstract TutorialTypeId TypeId { get; }
-        public abstract bool CanStartTutorial();
+
+        public virtual bool CanStartTutorial() => true;
         public abstract bool CanSkipTutorial();
 
         async UniTask ITutorialProcessor.Process(CancellationToken token)
@@ -79,6 +82,22 @@ namespace Code.Gameplay.Tutorial.Processors.Abstract
                 return false;
 
             return true;
+        }
+
+        public bool CheckGameStateNeed()
+        {
+            TutorialConfig config = TutorialStaticData.Configs.Find(x => x.Type == TypeId);
+            
+            switch (config.GameStateType)
+            {
+                case GameStateTypeId.GameLoop when CheckCurrentGameState<GameLoopState>():
+                case GameStateTypeId.MapMenuState when CheckCurrentGameState<MapMenuState>():
+                    return true;
+                case GameStateTypeId.Unknown:
+                    return true;
+                default:
+                    return false;
+            }
         }
 
         protected abstract UniTask ProcessInternal(CancellationToken token);
@@ -106,7 +125,7 @@ namespace Code.Gameplay.Tutorial.Processors.Abstract
             return tutorialWindow;
         }
 
-        protected async UniTask<T> WaitForWindowToOpen<T>(CancellationToken token, int maxFrames = 240) where T : BaseWindow
+        protected async UniTask<T> FindWindow<T>(CancellationToken token, int maxFrames = 240) where T : BaseWindow
         {
             while (maxFrames > 0)
             {
@@ -152,7 +171,7 @@ namespace Code.Gameplay.Tutorial.Processors.Abstract
 
             _openedWindowsCache.Clear();
         }
-        
+
         protected void ResetAll()
         {
             GetCurrentWindow()

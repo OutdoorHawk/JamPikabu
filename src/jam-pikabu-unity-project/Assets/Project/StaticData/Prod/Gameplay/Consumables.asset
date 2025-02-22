@@ -18,7 +18,7 @@ MonoBehaviour:
     LootTypeId: 17
     CooldownSeconds: 5
     Value: 0
-    OrderSpawnChance: 10
+    OrderSpawnChance: 50
   - Id: 2
     TypeId: 1
     LootTypeId: 14

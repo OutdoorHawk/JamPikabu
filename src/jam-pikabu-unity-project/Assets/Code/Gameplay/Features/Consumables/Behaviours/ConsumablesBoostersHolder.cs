@@ -21,8 +21,10 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
         private IGameStateService _gameStateService;
 
         private readonly List<ConsumableBoosterButton> _buttons = new();
+        private readonly Dictionary<ConsumableTypeId, ConsumableBoosterButton> _buttonsDict = new();
 
         public List<ConsumableBoosterButton> Buttons => _buttons;
+        public IReadOnlyDictionary<ConsumableTypeId, ConsumableBoosterButton> ButtonsDict => _buttonsDict;
 
         [Inject]
         private void Construct
@@ -67,6 +69,7 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
             var button = _instantiator.InstantiatePrefabForComponent<ConsumableBoosterButton>(ButtonTemplate, ConsumablesBoostersGrid.transform);
             button.Init(typeId);
             _buttons.Add(button);
+            _buttonsDict.Add(typeId, button);
         }
 
         private void RefreshButtons()

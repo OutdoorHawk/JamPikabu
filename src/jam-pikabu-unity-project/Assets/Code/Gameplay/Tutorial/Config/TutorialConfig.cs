@@ -1,4 +1,5 @@
 ﻿using System;
+using Code.Infrastructure.States.GameStates;
 
 namespace Code.Gameplay.Tutorial.Config
 {
@@ -6,6 +7,7 @@ namespace Code.Gameplay.Tutorial.Config
     public class TutorialConfig
     {
         public TutorialTypeId Type;
+        public GameStateTypeId GameStateType;
         public int CompletedLevelsNeedToStart;
         public int Order;
         public bool DisableTutorial;

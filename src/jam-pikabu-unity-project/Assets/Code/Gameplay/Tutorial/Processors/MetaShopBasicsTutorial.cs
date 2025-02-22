@@ -34,17 +34,7 @@ namespace Code.Gameplay.Tutorial.Processors
             _uiFactory = uiFactory;
             _lootCollectionService = lootCollectionService;
         }
-
-        public override bool CanStartTutorial()
-        {
-            bool mapState = CheckCurrentGameState<MapMenuState>();
-
-            if (mapState == false)
-                return false;
-            
-            return true;
-        }
-
+        
         public override bool CanSkipTutorial()
         {
             return _lootCollectionService.LootLevels.Values.Any(data => data.Level > 0);
@@ -62,7 +52,7 @@ namespace Code.Gameplay.Tutorial.Processors
         {
             await _windowService.OpenWindow<TutorialWindow>(WindowTypeId.Tutorial);
 
-            var menu = await WaitForWindowToOpen<MainMenuWindow>(token);
+            var menu = await FindWindow<MainMenuWindow>(token);
 
             TutorialWindow tutorialWindow = GetCurrentWindow();
             CurrencyHolder currencyHolder = menu.GetComponentInChildren<CurrencyHolder>();
@@ -86,7 +76,7 @@ namespace Code.Gameplay.Tutorial.Processors
 
             ResetAll();
             
-            var shop = await WaitForWindowToOpen<ShopWindow>(token);
+            var shop = await FindWindow<ShopWindow>(token);
             shop.BlockClosing = true;
 
             await DelaySeconds(0.4f, token);
@@ -110,12 +100,9 @@ namespace Code.Gameplay.Tutorial.Processors
             
             await UniTask.Yield(token);
             await UniTask.Yield(token);
-
-            tutorialWindow.ClearHighlights();
-            GameObject currency = _uiFactory.UIRoot.GetComponentInChildren<CurrencyAnimation>().gameObject;
-            tutorialWindow.HighlightObject(currency);
             
             await tutorialWindow
+                    .ClearHighlights()
                     .HideArrow()
                     .HideDarkBackground()
                     .ShowMessage(12, anchorType: TutorialMessageAnchorType.Bottom)

@@ -44,19 +44,6 @@ namespace Code.Gameplay.Tutorial.Processors
             _gameStateService = gameStateService;
         }
 
-        public override bool CanStartTutorial()
-        {
-            bool isGameLoopState = CheckCurrentGameState<GameLoopState>();
-
-            if (isGameLoopState == false)
-                return false;
-
-            if (_daysService.GetDayData().Id > 1)
-                return false;
-
-            return true;
-        }
-
         public override bool CanSkipTutorial()
         {
             return _daysService.GetDaysProgress().Count > 0;
@@ -94,7 +81,7 @@ namespace Code.Gameplay.Tutorial.Processors
 
             await UniTask.WaitUntil(() => GetGameEntitiesGroup(GameMatcher.LootSpawner).Length == 0, cancellationToken: token);
 
-            var hud = await WaitForWindowToOpen<PlayerHUDWindow>(token);
+            var hud = await FindWindow<PlayerHUDWindow>(token);
 
             await tutorialWindow
                     .ShowMessage(MESSAGE_3)

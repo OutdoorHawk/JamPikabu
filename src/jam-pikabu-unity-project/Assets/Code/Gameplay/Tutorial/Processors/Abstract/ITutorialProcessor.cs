@@ -11,6 +11,7 @@ namespace Code.Gameplay.Tutorial.Processors.Abstract
         void Finalization();
         UniTask Process(CancellationToken token);
         bool CheckLevelsPassedNeeds();
+        bool CheckGameStateNeed();
     }
     
 }
