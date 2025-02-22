@@ -942,6 +942,7 @@ MonoBehaviour:
   OrderViewBehaviour: {fileID: 6442048413776369884}
   CurrencyHolder: {fileID: 796113368859894653}
   LootContainer: {fileID: 6020138444633489550}
+  ConsumablesHolder: {fileID: 8287336493058929035}
   LootPoint: {fileID: 8736314549124401974}
   BonfirePoint: {fileID: 5193718002623343694}
   HookPoint: {fileID: 2575312276155018442}
@@ -3507,6 +3508,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4509437631709863032}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8287336493058929035 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5590714276914458099, guid: e43efff8cdba71043b14f65856029c9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 4509437631709863032}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fd8a4b10d4c42eda17344dd9cb50952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8479339591709060440
 PrefabInstance:
   m_ObjectHideFlags: 0

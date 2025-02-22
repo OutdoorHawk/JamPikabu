@@ -4,6 +4,7 @@ using System.Linq;
 using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Gameplay.Common.Time;
+using Code.Gameplay.StaticData;
 using Code.Infrastructure.Analytics;
 using Code.Meta.Features.Consumables.Data;
 using Code.Meta.UI.Shop.Configs;
@@ -15,15 +16,21 @@ namespace Code.Meta.Features.Consumables.Service
     {
         private readonly ITimeService _timeService;
         private readonly IAnalyticsService _analyticsService;
+        private readonly IStaticDataService _staticDataService;
 
         private readonly Dictionary<ConsumableTypeId, PurchasedConsumableData> _purchasedItems = new();
 
         public event Action OnConsumablesUpdated;
+        
+        private ShopStaticData ShopStaticData => _staticDataService.Get<ShopStaticData>();
 
-        public ConsumablesUIService(ITimeService timeService, IAnalyticsService analyticsService)
+        public ConsumablesUIService(ITimeService timeService, 
+            IAnalyticsService analyticsService, 
+            IStaticDataService staticDataService)
         {
             _timeService = timeService;
             _analyticsService = analyticsService;
+            _staticDataService = staticDataService;
         }
 
         public void InitPurchasedConsumables(IEnumerable<PurchasedConsumableData> purchasedConsumables)
@@ -32,6 +39,12 @@ namespace Code.Meta.Features.Consumables.Service
 
             foreach (var purchasedConsumable in purchasedConsumables)
                 _purchasedItems[purchasedConsumable.Type] = purchasedConsumable;
+        }
+
+        public void AddConsumable(ConsumableTypeId typeId)
+        {
+            ShopItemData data = ShopStaticData.GetByConsumableType(typeId);
+            AddConsumable(data);
         }
 
         public void AddConsumable(ShopItemData data)
@@ -90,7 +103,7 @@ namespace Code.Meta.Features.Consumables.Service
             return item.ExpirationTime - _timeService.TimeStamp;
         }
 
-        public bool HasConsumable(ConsumableTypeId lootType)
+        public bool ConsumableExist(ConsumableTypeId lootType)
         {
             return _purchasedItems.ContainsKey(lootType);
         }

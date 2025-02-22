@@ -11,8 +11,9 @@ namespace Code.Gameplay.Features.Loot
             Add(systems.Create<LootIngredientPickupLogicSystem>());
             
             Add(systems.Create<GoldLootPickupSystem>());
-            Add(systems.Create<WoodLootPickupSystem>());
-            Add(systems.Create<SpoonLootPickupSystem>());
+            Add(systems.Create<WoodChipLootPickupSystem>());
+         
+            Add(systems.Create<ConsumableLootPickupSystem>());
             
             Add(systems.Create<LootIngredientPickupVisualSystem>());
             

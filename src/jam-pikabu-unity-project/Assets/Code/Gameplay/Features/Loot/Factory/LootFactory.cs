@@ -3,6 +3,7 @@ using Code.Common.Extensions;
 using Code.Gameplay.Features.Abilities.Factory;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.StaticData;
+using Code.Meta.Features.Consumables;
 using Code.Meta.Features.Days.Service;
 using Code.Meta.Features.LootCollection.Service;
 using UnityEngine;
@@ -68,6 +69,7 @@ namespace Code.Gameplay.Features.Loot.Factory
 
             loot
                 .With(x => x.isWood = true)
+                .AddConsumableTypeId(ConsumableTypeId.Wood)
                 ;
         }
         
@@ -87,6 +89,7 @@ namespace Code.Gameplay.Features.Loot.Factory
 
             loot
                 .With(x => x.isSpoon = true)
+                .AddConsumableTypeId(ConsumableTypeId.Spoon)
                 ;
         }
 

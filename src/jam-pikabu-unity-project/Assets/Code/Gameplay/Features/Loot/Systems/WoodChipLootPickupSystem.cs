@@ -15,7 +15,7 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.Loot.Systems
 {
-    public class WoodLootPickupSystem : IExecuteSystem
+    public class WoodChipLootPickupSystem : IExecuteSystem
     {
         private readonly IStaticDataService _staticData;
         private readonly IUIFactory _uiFactory;
@@ -28,7 +28,7 @@ namespace Code.Gameplay.Features.Loot.Systems
         private readonly GameContext _context;
         private readonly List<GameEntity> _buffer = new(8);
 
-        public WoodLootPickupSystem
+        public WoodChipLootPickupSystem
         (
             GameContext context,
             IStaticDataService staticData,
@@ -62,18 +62,15 @@ namespace Code.Gameplay.Features.Loot.Systems
 
         public void Execute()
         {
-            foreach (var wood in _woods)
+            foreach (var wood in _woods.GetEntities(_buffer))
             {
+                wood.isCollectLootRequest = false;
+                
                 foreach (var timer in _roundTimers)
                     timer.ReplaceRoundTimeLeft(timer.RoundTimeLeft + wood.TimerRefillAmount);
 
                 NotifyText(wood);
                 ProcessConsumeVisuals(wood).Forget();
-            }
-
-            foreach (var wood in _woods.GetEntities(_buffer))
-            {
-                wood.isCollectLootRequest = false;
             }
         }
 
@@ -109,7 +106,7 @@ namespace Code.Gameplay.Features.Loot.Systems
             if (woodRetained.IsNullOrDestructed())
                 return;
 
-            wood.Release(this);
+            woodRetained.Release(this);
             woodRetained.isBusy = false;
             woodRetained.isDestructed = true;
         }

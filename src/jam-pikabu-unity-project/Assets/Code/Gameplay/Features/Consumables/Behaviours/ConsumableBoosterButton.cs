@@ -65,20 +65,20 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
             _cooldownRoutine = null;
         }
 
-        public void Init(in PurchasedConsumableData data)
+        public void Init(ConsumableTypeId typeId)
         {
-            Type = data.Type;
+            Type = typeId;
 
             ShopItemData shopData = _staticDataService
                 .Get<ShopStaticData>()
-                .GetByConsumableType(data.Type);
+                .GetByConsumableType(typeId);
             
             IconBack.sprite = shopData.Icon;
 
             Refresh();
         }
 
-        private void Refresh()
+        public void Refresh()
         {
             RefreshState();
             RefreshButton();
@@ -92,7 +92,7 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
 
         private void RefreshState()
         {
-            if (_consumablesUIService.HasConsumable(Type) == false)
+            if (_consumablesUIService.ConsumableExist(Type) == false)
             {
                 gameObject.DisableElement();
                 return;

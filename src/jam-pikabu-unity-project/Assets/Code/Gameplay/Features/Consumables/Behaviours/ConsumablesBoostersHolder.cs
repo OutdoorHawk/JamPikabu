@@ -22,6 +22,8 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
 
         private readonly List<ConsumableBoosterButton> _buttons = new();
 
+        public List<ConsumableBoosterButton> Buttons => _buttons;
+
         [Inject]
         private void Construct
         (
@@ -39,7 +41,7 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
 
         private void Awake()
         {
-            _daysService.OnDayBegin += RefreshButtons;
+            _daysService.OnDayBegin += InitButtons;
             _consumablesUIService.OnConsumablesUpdated += RefreshButtons;
             _gameStateService.OnStateSwitched += RefreshButtons;
         }
@@ -51,40 +53,28 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
             _gameStateService.OnStateSwitched -= RefreshButtons;
         }
 
-        private void RefreshButtons()
+        private void InitButtons()
         {
-            IReadOnlyList<PurchasedConsumableData> purchased = _consumablesUIService.GetActiveConsumables();
-
-            foreach (PurchasedConsumableData data in purchased)
+            for (ConsumableTypeId i = 0; i < ConsumableTypeId.Count; i++)
             {
-                switch (data.Type)
-                {
-                    case ConsumableTypeId.None:
-                        break;
-                    case ConsumableTypeId.Wood:
-                        UpdateButton(in data);
-                        break;
-                    case ConsumableTypeId.Spoon:
-                        UpdateButton(in data);
-                        break;
-                }
+                if (i is not ConsumableTypeId.None) 
+                    CreateButton(i);
             }
         }
-        
-        private void UpdateButton(in PurchasedConsumableData data)
+
+        private void CreateButton(ConsumableTypeId typeId)
         {
-            ConsumableTypeId type = data.Type;
-            ConsumableBoosterButton button = _buttons.Find(boosterButton => boosterButton.Type == type);
-
-            if (button != null)
-            {
-                button.Init(data);
-                return;
-            }
-
-            button = _instantiator.InstantiatePrefabForComponent<ConsumableBoosterButton>(ButtonTemplate, ConsumablesBoostersGrid.transform);
-            button.Init(in data);
+            var button = _instantiator.InstantiatePrefabForComponent<ConsumableBoosterButton>(ButtonTemplate, ConsumablesBoostersGrid.transform);
+            button.Init(typeId);
             _buttons.Add(button);
+        }
+
+        private void RefreshButtons()
+        {
+            foreach (ConsumableBoosterButton button in _buttons)
+            {
+                button.Refresh();
+            }
         }
     }
 }
