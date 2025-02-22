@@ -7,5 +7,6 @@ namespace Code.Gameplay.Features.Consumables
     [Game] public sealed class ConsumableTypeIdComponent : IComponent { public ConsumableTypeId Value; }
     [Game] public sealed class Spoon : IComponent {  }
     [Game] public sealed class Wood : IComponent {  }
+    [Game] public sealed class WoodChip : IComponent {  }
     [Game] public sealed class Processed : IComponent {  }
 }

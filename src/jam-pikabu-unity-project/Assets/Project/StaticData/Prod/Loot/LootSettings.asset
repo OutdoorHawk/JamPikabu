@@ -280,6 +280,25 @@ MonoBehaviour:
     SpawnChance: 25
     AbilityType: 0
   - Id: 15
+    Type: 18
+    ViewPrefab: {fileID: 712137049766581249, guid: 59c735d2499544b4bad5f91edd29134b,
+      type: 3}
+    Icon: {fileID: 0}
+    CanBeUsedInOrders: 0
+    LocalizedName:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    BaseRatingValue: 1
+    EffectValue: 2
+    SpawnChance: 0
+    AbilityType: 0
+  - Id: 16
     Type: 15
     ViewPrefab: {fileID: 5801108300233425260, guid: 592fd298a5e33cb4ea99eebdd5ac4943,
       type: 3}
@@ -298,7 +317,7 @@ MonoBehaviour:
     EffectValue: 0
     SpawnChance: 100
     AbilityType: 0
-  - Id: 16
+  - Id: 17
     Type: 16
     ViewPrefab: {fileID: 2351187851481095984, guid: b7eba7cc19b15f748b7441185a99c1cb,
       type: 3}
@@ -317,7 +336,7 @@ MonoBehaviour:
     EffectValue: 0
     SpawnChance: 100
     AbilityType: 8
-  - Id: 17
+  - Id: 18
     Type: 17
     ViewPrefab: {fileID: 9099611467634955215, guid: e8275c0d45005f4488de79be3cd0b66a,
       type: 3}

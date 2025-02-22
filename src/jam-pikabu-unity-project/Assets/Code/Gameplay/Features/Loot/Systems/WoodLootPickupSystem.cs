@@ -46,7 +46,7 @@ namespace Code.Gameplay.Features.Loot.Systems
             _localizationService = localizationService;
 
             _woods = context.GetGroup(GameMatcher
-                .AllOf(GameMatcher.Wood,
+                .AllOf(GameMatcher.WoodChip,
                     GameMatcher.CollectLootRequest,
                     GameMatcher.SpriteRenderer,
                     GameMatcher.TimerRefillAmount

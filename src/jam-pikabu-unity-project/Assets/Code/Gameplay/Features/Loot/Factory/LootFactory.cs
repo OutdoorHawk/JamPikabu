@@ -45,6 +45,9 @@ namespace Code.Gameplay.Features.Loot.Factory
                 case LootTypeId.Wood:
                     CreateWood(loot);
                     break;
+                case LootTypeId.WoodChip:
+                    CreateWoodChip(loot);
+                    break;
                 case LootTypeId.Spoon:
                     CreateSpoon(loot);
                     break;
@@ -65,6 +68,15 @@ namespace Code.Gameplay.Features.Loot.Factory
 
             loot
                 .With(x => x.isWood = true)
+                ;
+        }
+        
+        private void CreateWoodChip(GameEntity loot)
+        {
+            LootSettingsData lootSetup = GetLootSetup(loot.LootTypeId);
+
+            loot
+                .With(x => x.isWoodChip = true)
                 .AddTimerRefillAmount((int)lootSetup.EffectValue)
                 ;
         }
