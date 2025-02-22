@@ -16,6 +16,7 @@ namespace Code.Gameplay.Features.Loot.Service
         CircularList<LootSettingsData> AvailableExtraLoot { get; }
         IReadOnlyList<CollectedLootData> CollectedLoot { get; }
         void CreateLootSpawner();
+        void OrderUpdated();
         void TrySpawnIngredientLoot();
         void TrySpawnExtraLoot();
         void SpawnLoot(LootTypeId type);
@@ -23,5 +24,7 @@ namespace Code.Gameplay.Features.Loot.Service
         void SetLootIsConsumingState(bool state);
         void ClearCollectedLoot();
         void CreateLootConsumer();
+        void TrySpawnConsumableLoot();
+        void DayEnd();
     }
 }

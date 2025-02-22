@@ -15,9 +15,13 @@ MonoBehaviour:
   Configs:
   - Id: 1
     TypeId: 2
+    LootTypeId: 17
     CooldownSeconds: 5
     Value: 0
+    OrderSpawnChance: 10
   - Id: 2
     TypeId: 1
+    LootTypeId: 14
     CooldownSeconds: 12
     Value: 3
+    OrderSpawnChance: 5

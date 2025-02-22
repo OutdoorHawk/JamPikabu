@@ -59,6 +59,7 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
                 spawner.PutOnCooldown(spawner.LootSpawnInterval);
 
                 _gameplayLootService.TrySpawnIngredientLoot();
+                _gameplayLootService.TrySpawnConsumableLoot();
 
                 if (_extraLoot.count >= _gameplayLootService.MaxExtraLootAmount)
                     continue;

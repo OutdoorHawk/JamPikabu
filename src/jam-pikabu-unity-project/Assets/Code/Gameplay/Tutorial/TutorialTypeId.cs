@@ -9,5 +9,6 @@
         BonusLevel = 4,
         SecondLevelHint = 5,
         BadIngredients = 6,
+        ActiveConsumables = 7,
     }
 }

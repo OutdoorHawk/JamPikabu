@@ -13,6 +13,7 @@ namespace Code.Gameplay.Features.Loot.Configs
         public float DelayAfterLootSpawn = 0.4f;
         public int MaxIngredientLootAmount = 35;
         public int MaxEachExtraLootAmount = 2;
+        public int MaxConsumablesLootPerLevel = 2;
         public float CollectFlyAnimationDuration = 0.5f;
 
         public EntityView LootItemUI;

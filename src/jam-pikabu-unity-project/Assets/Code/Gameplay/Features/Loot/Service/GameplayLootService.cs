@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Code.Common.Entity;
 using Code.Common.Extensions;
+using Code.Gameplay.Features.Consumables.Config;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.Features.Loot.Data;
 using Code.Gameplay.Features.Loot.Factory;
@@ -11,6 +12,8 @@ using Code.Gameplay.StaticData;
 using Code.Infrastructure.Common;
 using Code.Infrastructure.SceneContext;
 using Code.Meta.Features.BonusLevel.Config;
+using Code.Meta.Features.Consumables;
+using Code.Meta.Features.Consumables.Data;
 using Code.Meta.Features.Consumables.Service;
 using Code.Meta.Features.DayLootSettings.Configs;
 using Code.Meta.Features.Days.Service;
@@ -26,7 +29,7 @@ namespace Code.Gameplay.Features.Loot.Service
         private readonly IStaticDataService _staticDataService;
         private readonly IDaysService _daysService;
         private readonly ILootSpawnerFactory _lootSpawnerFactory;
-        private readonly IConsumablesUIService _extraLootService;
+        private readonly IConsumablesUIService _consumablesUIService;
         private readonly ILootFactory _lootFactory;
         private readonly ISceneContextProvider _provider;
         private readonly ILootCollectionService _lootCollection;
@@ -36,20 +39,22 @@ namespace Code.Gameplay.Features.Loot.Service
         private readonly List<CollectedLootData> _collectedLoot = new();
         private readonly CircularList<LootSettingsData> _availableIngredients = new();
         private readonly CircularList<LootSettingsData> _availableExtraLoot = new();
+        private readonly Queue<ConsumablesData> _consumablesToSpawn = new();
 
         public bool LootIsBusy { get; private set; }
-        public int MaxExtraLootAmount => _availableExtraLoot.Count * _staticDataService.Get<LootSettingsStaticData>().MaxEachExtraLootAmount;
+        public int MaxExtraLootAmount => _availableExtraLoot.Count * LootSettings.MaxEachExtraLootAmount;
         public IReadOnlyList<LootTypeId> CollectedLootItems => _collectedLootItems;
         public CircularList<LootSettingsData> AvailableIngredients => _availableIngredients;
         public CircularList<LootSettingsData> AvailableExtraLoot => _availableExtraLoot;
         public IReadOnlyList<CollectedLootData> CollectedLoot => _collectedLoot;
+        private LootSettingsStaticData LootSettings => _staticDataService.Get<LootSettingsStaticData>();
 
         public GameplayLootService
         (
             IStaticDataService staticDataService,
             IDaysService daysService,
             ILootSpawnerFactory lootSpawnerFactory,
-            IConsumablesUIService extraLootService,
+            IConsumablesUIService consumablesUIService,
             ILootFactory lootFactory,
             ISceneContextProvider provider,
             ILootCollectionService lootCollection
@@ -58,16 +63,21 @@ namespace Code.Gameplay.Features.Loot.Service
             _staticDataService = staticDataService;
             _daysService = daysService;
             _lootSpawnerFactory = lootSpawnerFactory;
-            _extraLootService = extraLootService;
+            _consumablesUIService = consumablesUIService;
             _lootFactory = lootFactory;
             _provider = provider;
-            _lootCollection = lootCollection;
+            _lootCollection = lootCollection; ;
         }
 
         public void CreateLootSpawner()
         {
             InitLootBufferInternal();
             _lootSpawnerFactory.CreateLootSpawner();
+        }
+
+        public void OrderUpdated()
+        {
+            RecalculateLootChances();
         }
 
         public void TrySpawnIngredientLoot()
@@ -83,7 +93,7 @@ namespace Code.Gameplay.Features.Loot.Service
             if (lootSetup == null)
                 return;
 
-            if (CheckSpawnChance(lootSetup) == false)
+            if (CheckSpawnChance(lootSetup.SpawnChance) == false)
                 return;
 
             CreateLoot(lootSetup);
@@ -91,7 +101,7 @@ namespace Code.Gameplay.Features.Loot.Service
 
         public void SpawnLoot(LootTypeId type)
         {
-            LootSettingsData lootSetup = _staticDataService.Get<LootSettingsStaticData>().GetConfig(type);
+            LootSettingsData lootSetup = LootSettings.GetConfig(type);
             CreateLoot(lootSetup);
         }
 
@@ -111,6 +121,7 @@ namespace Code.Gameplay.Features.Loot.Service
         {
             _collectedLootItems.Clear();
             _collectedLoot.Clear();
+          
             NotifyLootUpdated();
         }
 
@@ -121,6 +132,38 @@ namespace Code.Gameplay.Features.Loot.Service
                 .With(x => x.isLootEffectsApplier = true)
                 .With(x => x.isAvailable = true)
                 ;
+        }
+
+        public void TrySpawnConsumableLoot()
+        {
+            if (_consumablesToSpawn.Count == 0)
+                return;
+         
+            ConsumablesData data = _consumablesToSpawn.Dequeue();
+            SpawnLoot(data.LootTypeId);
+        }
+
+        public void DayEnd()
+        {
+            _consumablesToSpawn.Clear();
+        }
+
+        private void RecalculateLootChances()
+        {
+            var staticData = _staticDataService.Get<ConsumablesStaticData>();
+
+            foreach (PurchasedConsumableData unlockedConsumable in _consumablesUIService.GetActiveConsumables())
+            {
+                ConsumablesData data = staticData.GetConsumableData(unlockedConsumable.Type);
+
+                if (data == null)
+                    continue;
+
+                if (CheckSpawnChance(data.OrderSpawnChance) == false)
+                    continue;
+                
+                _consumablesToSpawn.Enqueue(data);
+            }
         }
 
         private void InitLootBufferInternal()
@@ -182,19 +225,6 @@ namespace Code.Gameplay.Features.Loot.Service
             }
         }
 
-        private bool CheckSpawnChance(LootSettingsData lootSetup)
-        {
-            if (lootSetup.SpawnChance == 100)
-                return true;
-
-            int value = Random.Range(0, 101);
-
-            if (lootSetup.SpawnChance >= value)
-                return true;
-
-            return false;
-        }
-
         private void CreateLoot(LootSettingsData lootSetup)
         {
             Transform spawn = GetSpawnPoint();
@@ -211,6 +241,19 @@ namespace Code.Gameplay.Features.Loot.Service
         private void NotifyLootUpdated()
         {
             OnLootUpdate?.Invoke();
+        }
+
+        private static bool CheckSpawnChance(int spawnChance)
+        {
+            if (spawnChance == 100)
+                return true;
+
+            int value = Random.Range(0, 101);
+
+            if (spawnChance >= value)
+                return true;
+
+            return false;
         }
     }
 }

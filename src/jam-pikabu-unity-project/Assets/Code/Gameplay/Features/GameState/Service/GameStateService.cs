@@ -59,6 +59,7 @@ namespace Code.Gameplay.Features.GameState.Service
                     EnterRoundCompletion();
                     break;
                 case GameStateTypeId.EndDay:
+                    EnterEndDay();
                     break;
             }
 
@@ -122,6 +123,11 @@ namespace Code.Gameplay.Features.GameState.Service
                     _gameplayLootService.CreateLootConsumer();
                     break;
             }
+        }
+
+        private void EnterEndDay()
+        {
+            _gameplayLootService.DayEnd();
         }
     }
 }
