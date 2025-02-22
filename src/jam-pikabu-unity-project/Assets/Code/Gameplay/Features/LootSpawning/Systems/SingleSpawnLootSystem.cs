@@ -39,14 +39,13 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
 
             _completedSpawners = context.GetGroup(GameMatcher.AllOf(
                 GameMatcher.LootSpawner,
-                GameMatcher.SingleSpawn,GameMatcher.Complete));
+               GameMatcher.Complete));
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
             return context.CreateCollector(GameMatcher.AllOf(
-                GameMatcher.LootSpawner,
-                GameMatcher.SingleSpawn).Added());
+                GameMatcher.LootSpawner).Added());
         }
 
         protected override bool Filter(GameEntity entity)

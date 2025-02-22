@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26caa0f138a04deea538e73a1c4ebe27, type: 3}
+  m_Name: GrapplingHook
+  m_EditorClassIdentifier: 
+  XAxisSpeed: 4
+  YAxisDownSpeed: 15
+  YAxisUpSpeed: 4.25
+  StopMovementRaycastRadius: 0.18
+  CollectLootRaycastRadius: 1.65
+  CollectLootPieceInterval: 0.1
+  TriggerMovementThreshold: 0.55
+  XMovementLimits: {x: -5.4, y: 4.15}
+  ViewPrefab: {fileID: 6435023142707515542, guid: 4d7c5494a46212041a040d26156fb0b4,
+    type: 3}

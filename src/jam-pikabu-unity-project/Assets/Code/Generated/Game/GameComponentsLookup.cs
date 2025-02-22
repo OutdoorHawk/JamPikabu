@@ -133,30 +133,31 @@ public static class GameComponentsLookup {
     public const int ConveyorSpawner = 122;
     public const int LootSpawner = 123;
     public const int LootSpawnInterval = 124;
-    public const int SingleSpawn = 125;
-    public const int BossOrder = 126;
-    public const int Complete = 127;
-    public const int NextOrderRequest = 128;
-    public const int Order = 129;
-    public const int OrderData = 130;
-    public const int OrderReward = 131;
-    public const int Reject = 132;
-    public const int ResultProcessed = 133;
-    public const int DayCompleteRequest = 134;
-    public const int GameOver = 135;
-    public const int Round = 136;
-    public const int RoundComplete = 137;
-    public const int RoundDuration = 138;
-    public const int RoundInProcess = 139;
-    public const int RoundOver = 140;
-    public const int RoundStartAvailable = 141;
-    public const int RoundStartRequest = 142;
-    public const int RoundStateController = 143;
-    public const int RoundStateViewBehaviour = 144;
-    public const int RoundTimeLeft = 145;
-    public const int AudioSourceBehaviour = 146;
+    public const int LootToSpawn = 125;
+    public const int OneTimeSpawn = 126;
+    public const int BossOrder = 127;
+    public const int Complete = 128;
+    public const int NextOrderRequest = 129;
+    public const int Order = 130;
+    public const int OrderData = 131;
+    public const int OrderReward = 132;
+    public const int Reject = 133;
+    public const int ResultProcessed = 134;
+    public const int DayCompleteRequest = 135;
+    public const int GameOver = 136;
+    public const int Round = 137;
+    public const int RoundComplete = 138;
+    public const int RoundDuration = 139;
+    public const int RoundInProcess = 140;
+    public const int RoundOver = 141;
+    public const int RoundStartAvailable = 142;
+    public const int RoundStartRequest = 143;
+    public const int RoundStateController = 144;
+    public const int RoundStateViewBehaviour = 145;
+    public const int RoundTimeLeft = 146;
+    public const int AudioSourceBehaviour = 147;
 
-    public const int TotalComponents = 147;
+    public const int TotalComponents = 148;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -284,7 +285,8 @@ public static class GameComponentsLookup {
         "ConveyorSpawner",
         "LootSpawner",
         "LootSpawnInterval",
-        "SingleSpawn",
+        "LootToSpawn",
+        "OneTimeSpawn",
         "BossOrder",
         "Complete",
         "NextOrderRequest",
@@ -434,7 +436,8 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.LootSpawning.ConveyorSpawner),
         typeof(Code.Gameplay.Features.LootSpawning.LootSpawner),
         typeof(Code.Gameplay.Features.LootSpawning.LootSpawnInterval),
-        typeof(Code.Gameplay.Features.LootSpawning.SingleSpawn),
+        typeof(Code.Gameplay.Features.LootSpawning.LootToSpawn),
+        typeof(Code.Gameplay.Features.LootSpawning.OneTimeSpawner),
         typeof(Code.Gameplay.Features.Orders.BossOrder),
         typeof(Code.Gameplay.Features.Orders.Complete),
         typeof(Code.Gameplay.Features.Orders.NextOrderRequest),

@@ -34,10 +34,10 @@ namespace Code.Meta.Features.Consumables.Service
                 _purchasedItems[purchasedConsumable.Type] = purchasedConsumable;
         }
 
-        public void PurchaseConsumableExtraLoot(ShopItemData data)
+        public void AddConsumable(ShopItemData data)
         {
             if (_purchasedItems.TryGetValue(data.ConsumableType, out PurchasedConsumableData purchasedConsumable) == false)
-                purchasedConsumable = GetNewConsumable(data);
+                purchasedConsumable = CreateNewConsumable(data);
             else
                 purchasedConsumable = GetStackedConsumable(data, purchasedConsumable);
 
@@ -54,7 +54,7 @@ namespace Code.Meta.Features.Consumables.Service
             NotifyUpdated();
         }
 
-        public void ConsumableSpend(ConsumableTypeId type)
+        public void SpendConsumable(ConsumableTypeId type)
         {
             if (_purchasedItems.TryGetValue(type, out PurchasedConsumableData purchasedConsumable) == false)
                 return;
@@ -90,12 +90,17 @@ namespace Code.Meta.Features.Consumables.Service
             return item.ExpirationTime - _timeService.TimeStamp;
         }
 
+        public bool HasConsumable(ConsumableTypeId lootType)
+        {
+            return _purchasedItems.ContainsKey(lootType);
+        }
+
         public int GetConsumableAmount(ConsumableTypeId lootType)
         {
             return _purchasedItems.TryGetValue(lootType, out PurchasedConsumableData item) ? item.Amount : 0;
         }
 
-        private PurchasedConsumableData GetNewConsumable(ShopItemData data)
+        private PurchasedConsumableData CreateNewConsumable(ShopItemData data)
         {
             int expirationTime = data.MinutesDuration > 0
                 ? _timeService.TimeStamp + data.MinutesDuration * 60

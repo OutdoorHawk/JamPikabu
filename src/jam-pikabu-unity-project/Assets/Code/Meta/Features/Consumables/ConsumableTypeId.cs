@@ -4,6 +4,8 @@
     {
         None = 0,
         Wood = 1,
-        Spoon = 2
+        Spoon = 2,
+        
+        Count,
     }
 }

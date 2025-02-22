@@ -14,7 +14,6 @@ using Code.Meta.Features.BonusLevel.Config;
 using Code.Meta.Features.Consumables.Service;
 using Code.Meta.Features.DayLootSettings.Configs;
 using Code.Meta.Features.Days.Service;
-using Code.Meta.Features.LootCollection.Data;
 using Code.Meta.Features.LootCollection.Service;
 using RoyalGold.Sources.Scripts.Game.MVC.Utils;
 using UnityEngine;
@@ -90,6 +89,12 @@ namespace Code.Gameplay.Features.Loot.Service
             CreateLoot(lootSetup);
         }
 
+        public void SpawnLoot(LootTypeId type)
+        {
+            LootSettingsData lootSetup = _staticDataService.Get<LootSettingsStaticData>().GetConfig(type);
+            CreateLoot(lootSetup);
+        }
+
         public void AddCollectedLoot(LootTypeId lootType, int ratingAmount)
         {
             _collectedLootItems.Add(lootType);
@@ -134,7 +139,7 @@ namespace Code.Gameplay.Features.Loot.Service
                 }
 
                 var lootLevels = _lootCollection.LootLevels.Values.ToList();
-                
+
                 if (lootLevels.Count > 0)
                 {
                     LootTypeId lootTypeId = lootLevels[Random.Range(0, lootLevels.Count)].Type;

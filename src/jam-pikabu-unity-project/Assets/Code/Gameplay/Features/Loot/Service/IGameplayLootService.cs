@@ -18,6 +18,7 @@ namespace Code.Gameplay.Features.Loot.Service
         void CreateLootSpawner();
         void TrySpawnIngredientLoot();
         void TrySpawnExtraLoot();
+        void SpawnLoot(LootTypeId type);
         void AddCollectedLoot(LootTypeId lootType, int ratingAmount);
         void SetLootIsConsumingState(bool state);
         void ClearCollectedLoot();

@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Code.Gameplay.Features.GameState.Service;
 using Code.Meta.Features.Consumables;
 using Code.Meta.Features.Consumables.Data;
 using Code.Meta.Features.Consumables.Service;
@@ -14,10 +14,11 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
     {
         public GridLayoutGroup ConsumablesBoostersGrid;
         public ConsumableBoosterButton ButtonTemplate;
-        
+
         private IDaysService _daysService;
         private IInstantiator _instantiator;
         private IConsumablesUIService _consumablesUIService;
+        private IGameStateService _gameStateService;
 
         private readonly List<ConsumableBoosterButton> _buttons = new();
 
@@ -26,9 +27,11 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
         (
             IDaysService daysService,
             IConsumablesUIService consumablesUIService,
-            IInstantiator instantiator
+            IInstantiator instantiator,
+            IGameStateService gameStateService
         )
         {
+            _gameStateService = gameStateService;
             _instantiator = instantiator;
             _consumablesUIService = consumablesUIService;
             _daysService = daysService;
@@ -36,18 +39,22 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
 
         private void Awake()
         {
-            _daysService.OnDayBegin += InitButtons;
+            _daysService.OnDayBegin += RefreshButtons;
+            _consumablesUIService.OnConsumablesUpdated += RefreshButtons;
+            _gameStateService.OnStateSwitched += RefreshButtons;
         }
 
         private void OnDestroy()
         {
-            _daysService.OnDayBegin -= InitButtons;
+            _daysService.OnDayBegin -= RefreshButtons;
+            _consumablesUIService.OnConsumablesUpdated -= RefreshButtons;
+            _gameStateService.OnStateSwitched -= RefreshButtons;
         }
 
-        private void InitButtons()
+        private void RefreshButtons()
         {
             IReadOnlyList<PurchasedConsumableData> purchased = _consumablesUIService.GetActiveConsumables();
-            
+
             foreach (PurchasedConsumableData data in purchased)
             {
                 switch (data.Type)
@@ -55,19 +62,29 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
                     case ConsumableTypeId.None:
                         break;
                     case ConsumableTypeId.Wood:
-                        CreateButton(in data);
+                        UpdateButton(in data);
                         break;
                     case ConsumableTypeId.Spoon:
-                        CreateButton(in data);
+                        UpdateButton(in data);
                         break;
                 }
             }
         }
-
-        private void CreateButton(in PurchasedConsumableData data)
+        
+        private void UpdateButton(in PurchasedConsumableData data)
         {
-            var button = _instantiator.InstantiatePrefabForComponent<ConsumableBoosterButton>(ButtonTemplate, ConsumablesBoostersGrid.transform);
+            ConsumableTypeId type = data.Type;
+            ConsumableBoosterButton button = _buttons.Find(boosterButton => boosterButton.Type == type);
+
+            if (button != null)
+            {
+                button.Init(data);
+                return;
+            }
+
+            button = _instantiator.InstantiatePrefabForComponent<ConsumableBoosterButton>(ButtonTemplate, ConsumablesBoostersGrid.transform);
             button.Init(in data);
+            _buttons.Add(button);
         }
     }
 }

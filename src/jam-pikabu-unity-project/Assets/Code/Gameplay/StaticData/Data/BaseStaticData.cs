@@ -21,7 +21,7 @@ namespace Code.Gameplay.StaticData.Data
         
         public TData GetById(int id)
         {
-            return GetByKey(id, -1);
+            return GetByKey(-1, id);
         }
 
         protected void AddIndex(Func<TData, int> keySelector)
@@ -78,7 +78,7 @@ namespace Code.Gameplay.StaticData.Data
             return value;
         }
         
-        protected TData GetByKey(int key, int indexId)
+        protected TData GetByKey(int indexId, int key)
         {
             Dictionary<int, TData> index = _uniqueIndexes[indexId];
             index.TryGetValue(key, out var value);

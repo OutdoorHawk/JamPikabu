@@ -20,6 +20,7 @@
         Sock = 15,
         Pepper = 16,
         Spoon = 17,
+        WoodChip = 18,
 
         Count,
     }

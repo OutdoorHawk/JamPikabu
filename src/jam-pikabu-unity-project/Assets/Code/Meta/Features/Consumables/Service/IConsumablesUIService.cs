@@ -9,12 +9,13 @@ namespace Code.Meta.Features.Consumables.Service
     {
         event Action OnConsumablesUpdated;
         void InitPurchasedConsumables(IEnumerable<PurchasedConsumableData> purchasedConsumables);
-        void PurchaseConsumableExtraLoot(ShopItemData data);
-        void ConsumableSpend(ConsumableTypeId type);
+        void AddConsumable(ShopItemData data);
+        void SpendConsumable(ConsumableTypeId type);
         IReadOnlyList<PurchasedConsumableData> GetActiveConsumables();
         void RemoveConsumable(ConsumableTypeId value);
         bool IsActive(ConsumableTypeId lootType);
         int GetActiveTimeLeft(ConsumableTypeId lootType);
+        bool HasConsumable(ConsumableTypeId lootType);
         int GetConsumableAmount(ConsumableTypeId lootType);
     }
 }

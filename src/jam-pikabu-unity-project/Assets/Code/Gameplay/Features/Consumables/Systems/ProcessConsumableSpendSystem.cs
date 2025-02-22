@@ -24,7 +24,7 @@ namespace Code.Gameplay.Features.Consumables.Systems
         {
             foreach (var entity in _processedConsumables)
             {
-                _consumablesUIService.ConsumableSpend(entity.ConsumableTypeId);
+                _consumablesUIService.SpendConsumable(entity.ConsumableTypeId);
             }
         }
     }

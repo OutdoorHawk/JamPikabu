@@ -15,7 +15,7 @@ namespace Code.Gameplay.Features.Distraction.Config
 
         public DistractionObjectData GetDataByTypeId(DistractionObjectTypeId typeId)
         {
-            return GetByKey((int)typeId, 0);
+            return GetByKey(0, (int)typeId);
         }
     }
 }

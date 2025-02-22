@@ -30,7 +30,7 @@ namespace Code.Meta.UI.Shop.Factory
                     break;
                 case ShopItemKind.UpgradeIngredient:
                 case ShopItemKind.Consumable:
-                    _consumablesUIService.PurchaseConsumableExtraLoot(data);
+                    _consumablesUIService.AddConsumable(data);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

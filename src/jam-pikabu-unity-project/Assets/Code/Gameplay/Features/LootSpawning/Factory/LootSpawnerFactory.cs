@@ -1,5 +1,7 @@
-﻿using Code.Common.Entity;
+﻿using System.Collections.Generic;
+using Code.Common.Entity;
 using Code.Common.Extensions;
+using Code.Gameplay.Features.Loot;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.StaticData;
 using Code.Infrastructure.SceneLoading;
@@ -35,6 +37,19 @@ namespace Code.Gameplay.Features.LootSpawning.Factory
                 default:
                     return CreateDefaultSpawner();
             }
+        }
+
+        public GameEntity CreateOneTimeSpawner(List<LootTypeId> lootToSpawn)
+        {
+            var settings = _staticDataService.Get<LootSettingsStaticData>();
+            
+            return CreateGameEntity.Empty()
+                .With(x => x.isLootSpawner = true)
+                .With(x => x.isOneTimeSpawner = true)
+                .With(x => x.isCooldownUp = true)
+                .AddLootToSpawn(lootToSpawn)
+                .AddLootSpawnInterval(settings.LootSpawnInterval)
+                ;
         }
 
         private GameEntity CreateDefaultSpawner()
