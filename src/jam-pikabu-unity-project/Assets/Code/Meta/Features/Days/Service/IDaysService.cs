@@ -30,6 +30,7 @@ namespace Code.Meta.Features.Days.Service
         void EnterRoundPreparation();
         void StarsRecieved(int starsReceived);
         void DayComplete();
+        bool CanShowTimer();
         float GetRoundDuration();
         bool CheckDayUnlocked(int dayId);
         DayData GetDayData();

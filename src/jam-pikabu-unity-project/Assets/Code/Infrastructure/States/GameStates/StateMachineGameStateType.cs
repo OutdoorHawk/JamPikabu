@@ -1,6 +1,6 @@
 ﻿namespace Code.Infrastructure.States.GameStates
 {
-    public enum GameStateTypeId
+    public enum StateMachineGameStateType
     {
         Unknown = 0,
         GameLoop = 1,

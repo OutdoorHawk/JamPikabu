@@ -158,20 +158,5 @@ namespace Code.Gameplay.Tutorial.Processors
         {
             await UniTask.WaitUntil(() => _consumablesUIService.GetActiveConsumables().Count > 0, cancellationToken: token);
         }
-
-        private async UniTask WaitForGameState(GameStateTypeId state, CancellationToken token)
-        {
-            while (true)
-            {
-                GameEntity[] gameState = GetGameEntitiesGroup(GameMatcher
-                    .AllOf(GameMatcher.GameState,
-                        GameMatcher.GameStateTypeId));
-
-                if (gameState.Any(x => x.GameStateTypeId == state))
-                    return;
-
-                await UniTask.Yield(token);
-            }
-        }
     }
 }

@@ -193,11 +193,15 @@ namespace Code.Gameplay.Tutorial.Window
             return this;
         }
 
-        public async UniTask AwaitForTapAnywhere(CancellationToken token, float delay = 0)
+        public async UniTask AwaitForTapAnywhere(CancellationToken token, float delay = 0, float yOffset = 0)
         {
             _tapToContinueText.EnableElement();
             _tapToContinueButton.EnableElement();
             _tapToContinueText.alpha = 0;
+            
+            var textRect = (RectTransform)_tapToContinueText.transform;
+            Vector2 anchoredPosition = textRect.anchoredPosition;
+            textRect.anchoredPosition = anchoredPosition.SetY(anchoredPosition.y + yOffset);
             
             await DelaySeconds(delay, token);
             

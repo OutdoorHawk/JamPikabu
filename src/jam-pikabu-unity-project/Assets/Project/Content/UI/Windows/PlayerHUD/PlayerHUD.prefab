@@ -946,6 +946,7 @@ MonoBehaviour:
   LootPoint: {fileID: 8736314549124401974}
   BonfirePoint: {fileID: 5193718002623343694}
   HookPoint: {fileID: 2575312276155018442}
+  TimerButton: {fileID: 3680369612170481906}
 --- !u!1 &5101285647940333425
 GameObject:
   m_ObjectHideFlags: 0

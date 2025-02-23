@@ -1,5 +1,4 @@
-﻿using Code.Gameplay.StaticData;
-using Code.Infrastructure.View;
+﻿using Code.Common.Extensions;
 using Code.Meta.Features.Days.Service;
 using TMPro;
 using UnityEngine;
@@ -12,14 +11,12 @@ namespace Code.Gameplay.Features.RoundState.Behaviours
         public TMP_Text RoundTimerText;
 
         private int _currentTime;
-        private IStaticDataService _staticDataService;
         private IDaysService _daysService;
 
         [Inject]
-        private void Construct(IStaticDataService staticDataService, IDaysService daysService)
+        private void Construct(IDaysService daysService)
         {
             _daysService = daysService;
-            _staticDataService = staticDataService;
         }
 
         private void Awake()
@@ -36,6 +33,12 @@ namespace Code.Gameplay.Features.RoundState.Behaviours
 
         private void ResetTimer()
         {
+            if (_daysService.CanShowTimer() == false)
+            {
+                RoundTimerText.gameObject.DisableElement();
+                return;
+            }
+
             float roundDuration = _daysService.GetRoundDuration();
             _currentTime = Mathf.RoundToInt(roundDuration);
             RoundTimerText.text = _currentTime.ToString();

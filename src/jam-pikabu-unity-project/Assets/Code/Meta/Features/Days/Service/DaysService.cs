@@ -174,10 +174,19 @@ namespace Code.Meta.Features.Days.Service
             OnDayComplete?.Invoke();
         }
 
+        public bool CanShowTimer()
+        {
+            bool result = _currentDayData.Id >= DaysStaticData.DayToStartTimer;
+            return result;
+        }
+
         public float GetRoundDuration()
         {
             if (BonusLevelType is BonusLevelType.GoldenCoins)
                 return _bonusLevelData.RoundTimeOverride;
+
+            if (CanShowTimer() == false)
+                return DaysStaticData.DisabledTimerRoundDuration;
 
             float roundDuration = _currentDayData.IsBossDay
                 ? DaysStaticData.BossRoundDuration

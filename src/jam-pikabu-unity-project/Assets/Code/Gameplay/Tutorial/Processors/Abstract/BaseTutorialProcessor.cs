@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Code.Gameplay.Input.Service;
 using Code.Gameplay.StaticData;
@@ -90,10 +91,10 @@ namespace Code.Gameplay.Tutorial.Processors.Abstract
             
             switch (config.GameStateType)
             {
-                case GameStateTypeId.GameLoop when CheckCurrentGameState<GameLoopState>():
-                case GameStateTypeId.MapMenuState when CheckCurrentGameState<MapMenuState>():
+                case StateMachineGameStateType.GameLoop when CheckCurrentGameState<GameLoopState>():
+                case StateMachineGameStateType.MapMenuState when CheckCurrentGameState<MapMenuState>():
                     return true;
-                case GameStateTypeId.Unknown:
+                case StateMachineGameStateType.Unknown:
                     return true;
                 default:
                     return false;
@@ -170,6 +171,21 @@ namespace Code.Gameplay.Tutorial.Processors.Abstract
             }
 
             _openedWindowsCache.Clear();
+        }
+        
+        protected async UniTask WaitForGameState(Features.GameState.GameStateTypeId state, CancellationToken token)
+        {
+            while (true)
+            {
+                GameEntity[] gameState = GetGameEntitiesGroup(GameMatcher
+                    .AllOf(GameMatcher.GameState,
+                        GameMatcher.GameStateTypeId));
+
+                if (gameState.Any(x => x.GameStateTypeId == state))
+                    return;
+
+                await UniTask.Yield(token);
+            }
         }
 
         protected void ResetAll()

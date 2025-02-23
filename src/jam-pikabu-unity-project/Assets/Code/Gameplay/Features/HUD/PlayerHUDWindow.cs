@@ -4,6 +4,7 @@ using Code.Gameplay.Features.Loot.Behaviours;
 using Code.Gameplay.Features.Orders.Behaviours;
 using Code.Gameplay.Windows;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Code.Gameplay.Features.HUD
 {
@@ -16,5 +17,6 @@ namespace Code.Gameplay.Features.HUD
         public Transform LootPoint;
         public Transform BonfirePoint;
         public Transform HookPoint;
+        public Button TimerButton;
     }
 }

@@ -11,5 +11,6 @@
         BadIngredients = 6,
         ActiveConsumables = 7,
         ActiveConsumablesShop = 8,
+        Timer = 9,
     }
 }
