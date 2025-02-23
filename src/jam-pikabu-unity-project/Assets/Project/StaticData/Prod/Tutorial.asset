@@ -31,21 +31,21 @@ MonoBehaviour:
     DisableTutorial: 0
   - Type: 2
     GameStateType: 2
-    CompletedLevelsNeedToStart: 2
+    CompletedLevelsNeedToStart: 3
     Order: 1
-    DisableTutorial: 0
-  - Type: 4
-    GameStateType: 2
-    CompletedLevelsNeedToStart: 4
-    Order: 2
     DisableTutorial: 0
   - Type: 7
     GameStateType: 1
-    CompletedLevelsNeedToStart: 5
+    CompletedLevelsNeedToStart: 4
     Order: 3
     DisableTutorial: 0
   - Type: 8
     GameStateType: 2
-    CompletedLevelsNeedToStart: 5
+    CompletedLevelsNeedToStart: 4
     Order: 4
+    DisableTutorial: 0
+  - Type: 4
+    GameStateType: 2
+    CompletedLevelsNeedToStart: 6
+    Order: 2
     DisableTutorial: 0

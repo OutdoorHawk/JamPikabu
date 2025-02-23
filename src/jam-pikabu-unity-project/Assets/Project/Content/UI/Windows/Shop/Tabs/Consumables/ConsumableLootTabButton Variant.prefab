@@ -189,5 +189,54 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2707011789127762984, guid: dbc347dae19183a42a4979866b34351c,
+        type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 8365036934397741274}
   m_SourcePrefab: {fileID: 100100000, guid: dbc347dae19183a42a4979866b34351c, type: 3}
+--- !u!114 &3090584795253298162 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6168113508405097199, guid: dbc347dae19183a42a4979866b34351c,
+    type: 3}
+  m_PrefabInstance: {fileID: 9185791766376079645}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6551400521784927541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &3726720706992433803 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5534224985552161686, guid: dbc347dae19183a42a4979866b34351c,
+    type: 3}
+  m_PrefabInstance: {fileID: 9185791766376079645}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5465682559472318720 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3792169034874148893, guid: dbc347dae19183a42a4979866b34351c,
+    type: 3}
+  m_PrefabInstance: {fileID: 9185791766376079645}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6551400521784927541 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2707011789127762984, guid: dbc347dae19183a42a4979866b34351c,
+    type: 3}
+  m_PrefabInstance: {fileID: 9185791766376079645}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8365036934397741274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6551400521784927541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d670ee4b9897438386c293c84c9f284d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LockedButton: {fileID: 5465682559472318720}
+  UnlockedButton: {fileID: 3726720706992433803}
+  OpenTabButton: {fileID: 3090584795253298162}

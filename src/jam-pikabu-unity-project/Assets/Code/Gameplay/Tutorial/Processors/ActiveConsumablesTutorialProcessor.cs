@@ -5,6 +5,7 @@ using Code.Gameplay.Features.GameState;
 using Code.Gameplay.Features.HUD;
 using Code.Gameplay.Features.Loot;
 using Code.Gameplay.Features.Loot.Service;
+using Code.Gameplay.Tutorial.Config;
 using Code.Gameplay.Tutorial.Processors.Abstract;
 using Code.Gameplay.Tutorial.Window;
 using Code.Gameplay.Windows;
@@ -48,6 +49,16 @@ namespace Code.Gameplay.Tutorial.Processors
             _saveLoadService = saveLoadService;
             _gameplayLootService = gameplayLootService;
             _consumablesUIService = consumablesUIService;
+        }
+
+        public override bool CanStartTutorial()
+        {
+            TutorialConfig config = TutorialStaticData.Configs.Find(x => x.Type == TypeId);
+            
+            if (_daysService.GetDayData().Id <= config.CompletedLevelsNeedToStart)
+                return false;
+            
+            return base.CanStartTutorial();
         }
 
         public override bool CanSkipTutorial()
