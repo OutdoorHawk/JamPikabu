@@ -12,7 +12,7 @@ namespace Code.Gameplay.Windows
         public Button CloseButton;
         public Button[] CloseButtons;
 
-        [SerializeField] private bool _useAnimation;
+        [SerializeField] private bool _useAnimation = true;
         [SerializeField] private bool _canCloseByBack;
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private float _animationDuration = 0.15f;
