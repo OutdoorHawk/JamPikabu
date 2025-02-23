@@ -68,7 +68,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 112046672849133568
-    m_Localized: Click on the ledger to open the upgrade menu.
+    m_Localized: Click on the shop button to open the upgrade menu.
     m_Metadata:
       m_Items: []
   - m_Id: 112046682332454912
@@ -101,15 +101,6 @@ MonoBehaviour:
     m_Localized: "So, try to avoid them\u2014let's go!"
     m_Metadata:
       m_Items: []
-  - m_Id: 114916295274876928
-    m_Localized: 'Press the <color="yellow">turret icon</color>
-
-      or <color="yellow">R
-      CLICK</color>
-
-      to cancel the building process.'
-    m_Metadata:
-      m_Items: []
   - m_Id: 112046792042864640
     m_Localized: "Control the claw by holding your finger \non the left or right
       side of the screen."
@@ -121,6 +112,20 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 127669633619808256
     m_Localized: "TAP ANYWHERE \nTO CONTINUE"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148628449903464448
+    m_Localized: "You found a spoon \u2013 \na handy tool that helps you refresh
+      ingredients. \nLet\u2019s try it out!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148646146850639872
+    m_Localized: "Great! Look for other useful items in the levels \u2013 \nthey\u2019ll
+      help you handle different challenges."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 150737940253986816
+    m_Localized: "You\u2019ve opened the consumables tab in the ledger! "
     m_Metadata:
       m_Items: []
   references:

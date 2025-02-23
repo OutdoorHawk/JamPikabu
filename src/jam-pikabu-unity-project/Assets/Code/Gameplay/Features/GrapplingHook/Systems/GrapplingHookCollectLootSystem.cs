@@ -15,7 +15,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
         private readonly IGroup<GameEntity> _hooks;
 
         private readonly GameEntity[] _buffer = new GameEntity[32];
-        private readonly List<GameEntity> _bufferEntity = new(2);
+        private readonly List<GameEntity> _bufferEntity = new(1);
 
         private readonly CancellationTokenSource _tearDownToken = new();
 

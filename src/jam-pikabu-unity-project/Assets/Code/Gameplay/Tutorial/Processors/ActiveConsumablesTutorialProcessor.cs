@@ -27,10 +27,13 @@ namespace Code.Gameplay.Tutorial.Processors
         private IGameplayLootService _gameplayLootService;
         private ISaveLoadService _saveLoadService;
 
-        private const int MESSAGE_1 = 15;
-        private const int MESSAGE_2 = 16;
+        private const int MESSAGE_1 = 20;
+        private const int MESSAGE_2 = 21;
 
-        private bool _success = false;
+        private CancellationTokenSource _timerTokenSource;
+        
+        private bool _success;
+        private float _currentTime;
 
         public override TutorialTypeId TypeId => TutorialTypeId.ActiveConsumables;
 
@@ -61,19 +64,30 @@ namespace Code.Gameplay.Tutorial.Processors
                 userData.Completed = false;
                 _saveLoadService.SaveProgress();
             }
+            
+            _inputService.PlayerInput.Enable();
+            _timerTokenSource?.Cancel();
         }
 
         protected override async UniTask ProcessInternal(CancellationToken token)
         {
+            _timerTokenSource?.Cancel();
+            _timerTokenSource = new CancellationTokenSource();
+            
             await WaitForGameState(GameStateTypeId.BeginDay, token);
 
-            await DelaySeconds(1, token);
-
             _gameplayLootService.SpawnLoot(LootTypeId.Spoon);
+            
+            await DelaySeconds(1, token);
+            
             _gameplayLootService.SpawnLoot(LootTypeId.Spoon);
 
             await WaitForCollectConsumable(token);
 
+            DisableTimer(token).Forget();
+            
+            _inputService.PlayerInput.Disable();
+           
             var tutorialWindow = await _windowService.OpenWindow<TutorialWindow>(WindowTypeId.Tutorial);
             var hud = await FindWindow<PlayerHUDWindow>(token);
 
@@ -87,7 +101,7 @@ namespace Code.Gameplay.Tutorial.Processors
                 .ShowMessage(MESSAGE_1, anchorType: TutorialMessageAnchorType.Bottom)
                 .ShowDarkBackground()
                 .HighlightObject(buttonTransform.gameObject)
-                .ShowArrow(buttonTransform.transform, -175, 0, ArrowRotation.Right)
+                .ShowArrow(buttonTransform.transform, 175, 0, ArrowRotation.Right)
                 ;
 
             await consumableButton.OnClickAsync(token);
@@ -103,6 +117,30 @@ namespace Code.Gameplay.Tutorial.Processors
 
             tutorialWindow.Close();
             _success = true;
+            _inputService.PlayerInput.Enable();
+        }
+
+        private async UniTaskVoid DisableTimer(CancellationToken token)
+        {
+            GameEntity[] timers = GetGameEntitiesGroup(GameMatcher
+                .AllOf(GameMatcher.RoundInProcess,
+                    GameMatcher.RoundStateController
+                ));
+            
+            foreach (GameEntity timer in timers)
+            {
+                _currentTime = timer.RoundTimeLeft;
+            }
+
+            while (_timerTokenSource.Token.IsCancellationRequested == false)
+            {
+                await UniTask.Yield(token);
+                
+                foreach (GameEntity timer in timers)
+                {
+                    timer.ReplaceRoundTimeLeft(_currentTime);
+                }
+            }
         }
 
         private async UniTask WaitForCollectConsumable(CancellationToken token)

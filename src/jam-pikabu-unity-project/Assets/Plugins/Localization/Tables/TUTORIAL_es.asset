@@ -95,11 +95,6 @@ MonoBehaviour:
     m_Localized: 
     m_Metadata:
       m_Items: []
-  - m_Id: 114916295274876928
-    m_Localized: "Presiona la <color=\"yellow\">icono de la torreta</color>\no <color=\"yellow\">R
-      CLIC</color>\npara cancelar la construcci\xF3n."
-    m_Metadata:
-      m_Items: []
   - m_Id: 112046809080127488
     m_Localized: 
     m_Metadata:

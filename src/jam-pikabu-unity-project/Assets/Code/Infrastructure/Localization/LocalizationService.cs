@@ -149,7 +149,9 @@ namespace Code.Infrastructure.Localization
         {
             for (int i = 0; i < LocalizationSettings.AvailableLocales.Locales.Count; i++)
             {
-                if (Application.systemLanguage.ToString() != LocalizationSettings.AvailableLocales.Locales[i].Identifier.CultureInfo.EnglishName)
+                string englishName = LocalizationSettings.AvailableLocales.Locales[i].Identifier.CultureInfo.EnglishName;
+                
+                if (Application.systemLanguage.ToString() != englishName)
                     continue;
 
                 LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[i];

@@ -9,7 +9,7 @@ using Zenject;
 
 namespace Code.Gameplay.Cheats.Cheats
 {
-    [Injectable(typeof(ICheatActionInputString))]
+   
     public class SetTutorialStepCheat : BaseCheat, ICheatActionInputString
     {
         private ITutorialService _tutorialService;
@@ -26,6 +26,8 @@ namespace Code.Gameplay.Cheats.Cheats
         public void Execute(string input)
         {
             int step = int.Parse(input);
+            
+            _progressProvider.Progress.Tutorial.TutorialUserDatas.Clear();
 
             foreach (TutorialConfig config in _staticDataService.Get<TutorialStaticData>().Configs)
             {
@@ -33,18 +35,12 @@ namespace Code.Gameplay.Cheats.Cheats
                     continue;
 
                 List<TutorialUserData> userData = _progressProvider.Progress.Tutorial.TutorialUserDatas;
-                TutorialUserData existingUserData = userData.Find(data => data.Type == config.Type);
-
-                if (existingUserData != null)
-                    existingUserData.Completed = true;
-                else
+                
+                userData.Add(new TutorialUserData
                 {
-                    userData.Add(new TutorialUserData
-                    {
-                        TypeInt = (int)config.Type,
-                        Completed = true,
-                    });
-                }
+                    TypeInt = (int)config.Type,
+                    Completed = true,
+                });
             }
 
             _tutorialService.SkipCurrentTutorial();

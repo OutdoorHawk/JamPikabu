@@ -44,3 +44,8 @@ MonoBehaviour:
     CompletedLevelsNeedToStart: 5
     Order: 3
     DisableTutorial: 0
+  - Type: 8
+    GameStateType: 2
+    CompletedLevelsNeedToStart: 5
+    Order: 4
+    DisableTutorial: 0

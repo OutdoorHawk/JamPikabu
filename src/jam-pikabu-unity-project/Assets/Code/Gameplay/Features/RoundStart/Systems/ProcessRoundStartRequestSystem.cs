@@ -1,7 +1,4 @@
 ﻿using System.Collections.Generic;
-using Code.Common.Entity;
-using Code.Common.Extensions;
-using Code.Infrastructure.States.GameStates.Game;
 using Code.Infrastructure.States.StateMachine;
 using Entitas;
 
@@ -35,5 +32,4 @@ namespace Code.Gameplay.Features.RoundState.Systems
             }
         }
     }
-    
 }

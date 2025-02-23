@@ -1,4 +1,5 @@
 ﻿using System;
+using Code.Gameplay.StaticData.Data;
 using Code.Infrastructure.States.GameStates;
 
 namespace Code.Gameplay.Tutorial.Config

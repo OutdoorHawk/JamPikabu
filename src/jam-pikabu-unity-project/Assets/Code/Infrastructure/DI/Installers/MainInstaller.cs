@@ -1,5 +1,6 @@
 using Code.Common.Logger.Service;
 using Code.Gameplay.Cameras.Provider;
+using Code.Gameplay.Cheats.Cheats;
 using Code.Gameplay.Cheats.Service;
 using Code.Gameplay.Common.Collisions;
 using Code.Gameplay.Common.EntityIndices;
@@ -100,6 +101,7 @@ namespace Code.Infrastructure.DI.Installers
             BindIntegrations();
 #if UNITY_EDITOR || CHEAT
             Container.BindInterfacesAndSelfTo<CheatsService>().AsSingle().NonLazy();
+            Container.BindInterfacesTo<SetTutorialStepCheat>().AsSingle();
 #endif
         }
 

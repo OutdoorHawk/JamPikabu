@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Code.Gameplay.Features.GameState.Service;
 using Code.Meta.Features.Consumables;
-using Code.Meta.Features.Consumables.Data;
 using Code.Meta.Features.Consumables.Service;
 using Code.Meta.Features.Days.Service;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -50,7 +50,7 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
 
         private void OnDestroy()
         {
-            _daysService.OnDayBegin -= RefreshButtons;
+            _daysService.OnDayBegin -= InitButtons;
             _consumablesUIService.OnConsumablesUpdated -= RefreshButtons;
             _gameStateService.OnStateSwitched -= RefreshButtons;
         }
@@ -59,9 +59,11 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
         {
             for (ConsumableTypeId i = 0; i < ConsumableTypeId.Count; i++)
             {
-                if (i is not ConsumableTypeId.None) 
+                if (i is not ConsumableTypeId.None)
                     CreateButton(i);
             }
+
+            RefreshAsync().Forget();
         }
 
         private void CreateButton(ConsumableTypeId typeId)
@@ -78,6 +80,12 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
             {
                 button.Refresh();
             }
+        }
+
+        private async UniTaskVoid RefreshAsync()
+        {
+            await UniTask.Yield(destroyCancellationToken);
+            RefreshButtons();
         }
     }
 }

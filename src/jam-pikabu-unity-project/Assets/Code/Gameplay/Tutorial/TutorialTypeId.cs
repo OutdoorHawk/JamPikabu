@@ -10,5 +10,6 @@
         SecondLevelHint = 5,
         BadIngredients = 6,
         ActiveConsumables = 7,
+        ActiveConsumablesShop = 8,
     }
 }
