@@ -56,6 +56,7 @@ namespace Code.Gameplay.Features.LootSpawning.Systems
                     continue;
 
                 _gameplayLootService.TrySpawnIngredientLoot();
+                _gameplayLootService.TrySpawnConsumableLoot();
 
                 if (_extraLoot.count >= _gameplayLootService.MaxExtraLootAmount)
                     continue;

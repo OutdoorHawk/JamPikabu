@@ -72,7 +72,7 @@ namespace Code.Gameplay.Features.Orders.Service
             var order = GetCurrentOrder();
             InitIngredientsDic(order);
             OnOrderUpdated?.Invoke();
-            _gameplayLootService.OrderUpdated();
+
             return _ordersFactory.CreateOrder(order);
         }
 

@@ -18,10 +18,12 @@ MonoBehaviour:
     LootTypeId: 17
     CooldownSeconds: 5
     Value: 0
-    OrderSpawnChance: 50
+    LevelNeedToUnlockSpawn: 6
+    SpawnChanceInOrder: 10
   - Id: 2
     TypeId: 1
     LootTypeId: 14
     CooldownSeconds: 12
     Value: 3
-    OrderSpawnChance: 5
+    LevelNeedToUnlockSpawn: 10
+    SpawnChanceInOrder: 5

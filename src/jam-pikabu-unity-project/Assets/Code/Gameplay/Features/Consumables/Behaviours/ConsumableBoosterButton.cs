@@ -90,7 +90,7 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
 
         private void RefreshState()
         {
-            if (_consumablesUIService.ConsumableExist(Type) == false)
+            if (_consumablesUIService.ConsumableUnlocked(Type) == false)
             {
                 gameObject.DisableElement();
                 return;

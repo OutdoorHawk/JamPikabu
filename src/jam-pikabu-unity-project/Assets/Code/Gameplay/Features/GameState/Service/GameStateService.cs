@@ -105,6 +105,7 @@ namespace Code.Gameplay.Features.GameState.Service
                 default:
                 {
                     _ordersService.CreateOrder();
+                    _gameplayLootService.CreateLootSpawner();
                     _daysService.EnterRoundPreparation();
                     _gameplayLootService.ClearCollectedLoot();
                     break;

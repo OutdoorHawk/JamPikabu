@@ -39,7 +39,7 @@ namespace Code.Gameplay.Features.Loot.Service
         private readonly List<CollectedLootData> _collectedLoot = new();
         private readonly CircularList<LootSettingsData> _availableIngredients = new();
         private readonly CircularList<LootSettingsData> _availableExtraLoot = new();
-        private readonly Queue<ConsumablesData> _consumablesToSpawn = new();
+        private readonly List<ConsumablesData> _consumablesToSpawn = new();
 
         public bool LootIsBusy { get; private set; }
         public int MaxExtraLootAmount => _availableExtraLoot.Count * LootSettings.MaxEachExtraLootAmount;
@@ -71,13 +71,9 @@ namespace Code.Gameplay.Features.Loot.Service
 
         public void CreateLootSpawner()
         {
+            RecalculateLootChances();
             InitLootBufferInternal();
             _lootSpawnerFactory.CreateLootSpawner();
-        }
-
-        public void OrderUpdated()
-        {
-            RecalculateLootChances();
         }
 
         public void TrySpawnIngredientLoot()
@@ -138,9 +134,11 @@ namespace Code.Gameplay.Features.Loot.Service
         {
             if (_consumablesToSpawn.Count == 0)
                 return;
-         
-            ConsumablesData data = _consumablesToSpawn.Dequeue();
-            SpawnLoot(data.LootTypeId);
+            
+            foreach (ConsumablesData data in _consumablesToSpawn) 
+                SpawnLoot(data.LootTypeId);
+            
+            _consumablesToSpawn.Clear();
         }
 
         public void DayEnd()
@@ -150,19 +148,17 @@ namespace Code.Gameplay.Features.Loot.Service
 
         private void RecalculateLootChances()
         {
-            var staticData = _staticDataService.Get<ConsumablesStaticData>();
-
-            foreach (PurchasedConsumableData unlockedConsumable in _consumablesUIService.GetActiveConsumables())
+            List<ConsumablesData> configs = _consumablesUIService.ConsumablesStaticData.Configs;
+            
+            foreach (ConsumablesData data in configs)
             {
-                ConsumablesData data = staticData.GetConsumableData(unlockedConsumable.Type);
-
-                if (data == null)
-                    continue;
-
-                if (CheckSpawnChance(data.OrderSpawnChance) == false)
+                if (data.LevelNeedToUnlockSpawn > 0 && _daysService.CurrentDay < data.LevelNeedToUnlockSpawn)
                     continue;
                 
-                _consumablesToSpawn.Enqueue(data);
+                if (CheckSpawnChance(data.SpawnChanceInOrder) == false)
+                    continue;
+                
+                _consumablesToSpawn.Add(data);
             }
         }
 

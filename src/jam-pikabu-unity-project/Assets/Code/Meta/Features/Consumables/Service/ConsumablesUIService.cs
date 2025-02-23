@@ -4,6 +4,7 @@ using System.Linq;
 using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Gameplay.Common.Time;
+using Code.Gameplay.Features.Consumables.Config;
 using Code.Gameplay.StaticData;
 using Code.Infrastructure.Analytics;
 using Code.Meta.Features.Consumables.Data;
@@ -17,12 +18,13 @@ namespace Code.Meta.Features.Consumables.Service
         private readonly ITimeService _timeService;
         private readonly IAnalyticsService _analyticsService;
         private readonly IStaticDataService _staticDataService;
-
+        
         private readonly Dictionary<ConsumableTypeId, PurchasedConsumableData> _purchasedItems = new();
 
         public event Action OnConsumablesUpdated;
         
         private ShopStaticData ShopStaticData => _staticDataService.Get<ShopStaticData>();
+        public ConsumablesStaticData ConsumablesStaticData => _staticDataService.Get<ConsumablesStaticData>();
 
         public ConsumablesUIService(ITimeService timeService, 
             IAnalyticsService analyticsService, 
@@ -103,7 +105,7 @@ namespace Code.Meta.Features.Consumables.Service
             return item.ExpirationTime - _timeService.TimeStamp;
         }
 
-        public bool ConsumableExist(ConsumableTypeId lootType)
+        public bool ConsumableUnlocked(ConsumableTypeId lootType)
         {
             return _purchasedItems.ContainsKey(lootType);
         }

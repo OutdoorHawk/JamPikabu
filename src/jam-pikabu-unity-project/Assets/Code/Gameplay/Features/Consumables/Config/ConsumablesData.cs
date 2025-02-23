@@ -13,6 +13,7 @@ namespace Code.Gameplay.Features.Consumables.Config
         public LootTypeId LootTypeId;
         public float CooldownSeconds;
         public int Value;
-        [Range(0, 101)] public int OrderSpawnChance;
+        public int LevelNeedToUnlockSpawn;
+        [Range(0, 101)] public int SpawnChanceInOrder;
     }
 }
