@@ -4,6 +4,9 @@ using Code.Gameplay.Tutorial.Window;
 using Code.Gameplay.Windows;
 using Code.Infrastructure.DI.Installers;
 using Code.Meta.Features.Consumables.Service;
+using Code.Meta.Features.MainMenu.Windows;
+using Code.Meta.UI.Shop.Window;
+using Code.Meta.UI.Shop.WindowService;
 using Cysharp.Threading.Tasks;
 using Zenject;
 
@@ -13,7 +16,8 @@ namespace Code.Gameplay.Tutorial.Processors
     public class ActiveConsumablesShopTutorialProcessor : BaseTutorialProcessor
     {
         private IConsumablesUIService _consumablesUIService;
-        
+        private IShopWindowService _shopWindowService;
+
         private const int MESSAGE_1 = 22;
 
         public override TutorialTypeId TypeId => TutorialTypeId.ActiveConsumablesShop;
@@ -21,9 +25,11 @@ namespace Code.Gameplay.Tutorial.Processors
         [Inject]
         private void Construct
         (
-            IConsumablesUIService consumablesUIService
+            IConsumablesUIService consumablesUIService,
+            IShopWindowService shopWindowService
         )
         {
+            _shopWindowService = shopWindowService;
             _consumablesUIService = consumablesUIService;
         }
 
@@ -43,13 +49,22 @@ namespace Code.Gameplay.Tutorial.Processors
 
         protected override async UniTask ProcessInternal(CancellationToken token)
         {
+            var menu = await FindWindow<MainMenuWindow>(token);
             var tutorialWindow = await _windowService.OpenWindow<TutorialWindow>(WindowTypeId.Tutorial);
 
-            await tutorialWindow
+            tutorialWindow
                 .ShowMessage(MESSAGE_1, anchorType: TutorialMessageAnchorType.Top)
                 .ShowDarkBackground()
-                .AwaitForTapAnywhere(token, 1);
-            ;
+                .HighlightObject(menu.ShopButton.gameObject)
+                .ShowArrow(menu.ShopButton.transform, 0, 150)
+                ;
+
+            await menu.ShopButton.OnClickAsync(token);
+
+            await FindWindow<ShopWindow>(token);
+            await UniTask.Yield(token);
+
+            _shopWindowService.SetTabSelected(ShopTabTypeId.Consumables);
 
             tutorialWindow.Close();
         }
