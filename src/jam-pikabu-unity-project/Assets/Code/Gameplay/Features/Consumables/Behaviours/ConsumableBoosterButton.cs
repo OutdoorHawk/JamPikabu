@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Consumables.Config;
 using Code.Gameplay.Features.Consumables.Factory;
 using Code.Gameplay.Features.GameState;
 using Code.Gameplay.Features.GameState.Service;
 using Code.Gameplay.StaticData;
+using Code.Infrastructure.Ads.Behaviours;
 using Code.Meta.Features.Consumables;
-using Code.Meta.Features.Consumables.Data;
 using Code.Meta.Features.Consumables.Service;
 using Code.Meta.UI.Shop.Configs;
 using DG.Tweening;
@@ -22,6 +21,8 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
     {
         public Image IconBack;
         public Image IconFilled;
+        public AdsButton ButtonAds;
+        public GameObject AdsIcon;
         public Button Button;
         public TMP_Text Amount;
 
@@ -34,7 +35,7 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
         private ConsumablesStaticData StaticData => _staticDataService.Get<ConsumablesStaticData>();
 
         private Coroutine _cooldownRoutine;
-        
+
         [Inject]
         private void Construct
         (
@@ -53,11 +54,13 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
         private void Awake()
         {
             Button.onClick.AddListener(OnButtonClicked);
+            ButtonAds.OnRewarded += OnButtonClicked;
         }
 
         private void OnDestroy()
         {
             Button.onClick.RemoveListener(OnButtonClicked);
+            ButtonAds.OnRewarded -= OnButtonClicked;
         }
 
         private void OnDisable()
@@ -72,7 +75,7 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
             ShopItemData shopData = _staticDataService
                 .Get<ShopStaticData>()
                 .GetByConsumableType(typeId);
-            
+
             IconBack.sprite = shopData.Icon;
         }
 
@@ -80,6 +83,7 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
         {
             RefreshState();
             RefreshButton();
+            RefreshAdsButton();
             RefreshText();
         }
 
@@ -101,6 +105,12 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
 
         private void RefreshButton()
         {
+            if (_cooldownRoutine != null)
+            {
+                Button.interactable = false;
+                return;
+            }
+            
             if (_consumablesUIService.GetConsumableAmount(Type) <= 0)
             {
                 Button.interactable = false;
@@ -112,7 +122,7 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
                 Button.interactable = false;
                 return;
             }
-            
+
             if (_cooldownRoutine != null)
             {
                 Button.interactable = false;
@@ -120,6 +130,21 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
             }
 
             Button.interactable = true;
+        }
+
+        private void RefreshAdsButton()
+        {
+            ButtonAds.Button.interactable = _cooldownRoutine == null;
+
+            if (_consumablesUIService.GetConsumableAmount(Type) <= 0)
+            {
+                AdsIcon.EnableElement();
+                ButtonAds.EnableElement();
+                return;
+            }
+            
+            AdsIcon.DisableElement();
+            ButtonAds.DisableElement();
         }
 
         private void OnButtonClicked()
