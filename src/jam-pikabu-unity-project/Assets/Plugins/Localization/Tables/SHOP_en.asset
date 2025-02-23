@@ -42,7 +42,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 63096704760762368
-    m_Localized: When picked up, adds bonus time.
+    m_Localized: Splits into chips, collecting them grants bonus time.
     m_Metadata:
       m_Items: []
   - m_Id: 63097343020584960
@@ -59,7 +59,9 @@ MonoBehaviour:
       m_Items:
       - rid: 8134989886593433685
   - m_Id: 65931200052809728
-    m_Localized: "When picked up, shuffles \nall the ingredients in the pile."
+    m_Localized: 'Shuffles all the ingredients
+
+      in the pile.'
     m_Metadata:
       m_Items: []
   - m_Id: 80130073319133184

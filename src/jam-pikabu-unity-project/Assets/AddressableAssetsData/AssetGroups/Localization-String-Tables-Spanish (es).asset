@@ -50,13 +50,6 @@ MonoBehaviour:
     - Locale-es
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c29444a78d3cea54887578630b6faf84
-    m_Address: SHOP_es
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-es
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fedb08ed6c787924e9e945ceb3cb300f
     m_Address: INGREDIENTS_es
     m_ReadOnly: 1
