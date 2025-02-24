@@ -2,6 +2,8 @@
 using Code.Gameplay.Features.Customers.Config;
 using Code.Gameplay.Features.Orders.Service;
 using Code.Gameplay.StaticData;
+using Code.Infrastructure.States.GameStateHandler;
+using Code.Infrastructure.States.GameStateHandler.Handlers;
 using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Service;
 using RoyalGold.Sources.Scripts.Game.MVC.Utils;
@@ -9,7 +11,7 @@ using Zenject;
 
 namespace Code.Gameplay.Features.Customers.Service
 {
-    public class CustomersService : ICustomersService, IConfigsInitHandler
+    public class CustomersService : ICustomersService, ILoadProgressStateHandler
     {
         private readonly IStaticDataService _staticDataService;
         private readonly IDaysService _daysService;
@@ -22,28 +24,45 @@ namespace Code.Gameplay.Features.Customers.Service
         private CustomerStaticData CustomerData => _staticDataService.Get<CustomerStaticData>();
 
         [Inject]
-        private CustomersService(IStaticDataService staticDataService, IDaysService daysService, IOrdersService ordersService)
+        private CustomersService
+        (
+            IStaticDataService staticDataService,
+            IDaysService daysService,
+            IOrdersService ordersService
+        )
         {
             _daysService = daysService;
             _ordersService = ordersService;
             _staticDataService = staticDataService;
         }
 
-        public void OnConfigsInitInitComplete()
+        public OrderType OrderType => OrderType.Last;
+        
+        public void OnEnterLoadProgress()
         {
-            foreach (var setup in CustomerData.Configs)
-                _configs.Add(setup);
+            OneTimeInit();
+        }
 
-            _configs.ShuffleList();
-            _ordersService.OnOrderUpdated += SetNewCustomer;
+        public void OnExitLoadProgress()
+        {
+            
         }
 
         public CustomerSetup GetCustomerSetup()
         {
             if (_currentCustomerId >= _buffer.Count)
                 return _configs[^1];
-            
+
             return _buffer[_currentCustomerId];
+        }
+
+        private void OneTimeInit()
+        {
+            foreach (var setup in CustomerData.Configs)
+                _configs.Add(setup);
+
+            _configs.ShuffleList();
+            _ordersService.OnOrderUpdated += SetNewCustomer;
         }
 
         private void SetNewCustomer()

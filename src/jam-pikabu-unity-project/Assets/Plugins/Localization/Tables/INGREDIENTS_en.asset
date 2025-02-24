@@ -133,6 +133,10 @@ MonoBehaviour:
     m_Localized: "\u0421an only be added together\nwith other ingredients."
     m_Metadata:
       m_Items: []
+  - m_Id: 68075398726111232
+    m_Localized: lvl
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

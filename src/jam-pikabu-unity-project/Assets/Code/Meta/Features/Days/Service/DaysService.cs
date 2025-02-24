@@ -157,7 +157,7 @@ namespace Code.Meta.Features.Days.Service
             OnEnterRoundPreparation?.Invoke();
         }
 
-        public void StarsRecieved(int starsReceived)
+        public void StarsReceived(int starsReceived)
         {
             _analyticsService.SendEvent(AnalyticsEventTypes.LevelEnd, CurrentDay.ToString());
             _analyticsService.SendEvent(AnalyticsEventTypes.StarsEarned, starsReceived.ToString());

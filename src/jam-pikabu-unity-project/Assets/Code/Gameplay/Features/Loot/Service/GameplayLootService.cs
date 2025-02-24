@@ -8,6 +8,7 @@ using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.Features.Loot.Data;
 using Code.Gameplay.Features.Loot.Factory;
 using Code.Gameplay.Features.LootSpawning.Factory;
+using Code.Gameplay.Features.Result.Service;
 using Code.Gameplay.StaticData;
 using Code.Infrastructure.Common;
 using Code.Infrastructure.SceneContext;
@@ -33,6 +34,7 @@ namespace Code.Gameplay.Features.Loot.Service
         private readonly ILootFactory _lootFactory;
         private readonly ISceneContextProvider _provider;
         private readonly ILootCollectionService _lootCollection;
+        private readonly IResultWindowService _resultWindowService;
         public event Action OnLootUpdate;
 
         private readonly List<LootTypeId> _collectedLootItems = new();
@@ -57,7 +59,8 @@ namespace Code.Gameplay.Features.Loot.Service
             IConsumablesUIService consumablesUIService,
             ILootFactory lootFactory,
             ISceneContextProvider provider,
-            ILootCollectionService lootCollection
+            ILootCollectionService lootCollection,
+            IResultWindowService resultWindowService
         )
         {
             _staticDataService = staticDataService;
@@ -66,7 +69,9 @@ namespace Code.Gameplay.Features.Loot.Service
             _consumablesUIService = consumablesUIService;
             _lootFactory = lootFactory;
             _provider = provider;
-            _lootCollection = lootCollection; ;
+            _lootCollection = lootCollection;
+            _resultWindowService = resultWindowService;
+            ;
         }
 
         public void CreateLootSpawner()
@@ -105,6 +110,7 @@ namespace Code.Gameplay.Features.Loot.Service
         {
             _collectedLootItems.Add(lootType);
             _collectedLoot.Add(new CollectedLootData { Type = lootType, RatingAmount = ratingAmount });
+            _resultWindowService.AddCollectedLoot(lootType);
             NotifyLootUpdated();
         }
 

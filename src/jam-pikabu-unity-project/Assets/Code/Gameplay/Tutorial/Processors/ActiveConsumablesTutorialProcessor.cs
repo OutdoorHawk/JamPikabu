@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Threading;
+﻿using System.Threading;
 using Code.Gameplay.Features.Consumables.Behaviours;
 using Code.Gameplay.Features.GameState;
 using Code.Gameplay.Features.HUD;
@@ -32,7 +31,7 @@ namespace Code.Gameplay.Tutorial.Processors
         private const int MESSAGE_2 = 21;
 
         private CancellationTokenSource _timerTokenSource;
-        
+
         private bool _success;
         private float _currentTime;
 
@@ -54,10 +53,10 @@ namespace Code.Gameplay.Tutorial.Processors
         public override bool CanStartTutorial()
         {
             TutorialConfig config = TutorialStaticData.Configs.Find(x => x.Type == TypeId);
-            
+
             if (_daysService.GetDayData().Id <= config.CompletedLevelsNeedToStart)
                 return false;
-            
+
             return base.CanStartTutorial();
         }
 
@@ -75,7 +74,7 @@ namespace Code.Gameplay.Tutorial.Processors
                 userData.Completed = false;
                 _saveLoadService.SaveProgress();
             }
-            
+
             _inputService.PlayerInput.Enable();
             _timerTokenSource?.Cancel();
         }
@@ -84,21 +83,21 @@ namespace Code.Gameplay.Tutorial.Processors
         {
             _timerTokenSource?.Cancel();
             _timerTokenSource = new CancellationTokenSource();
-            
+
             await WaitForGameState(GameStateTypeId.BeginDay, token);
 
             _gameplayLootService.SpawnLoot(LootTypeId.Spoon);
-            
+
             await DelaySeconds(1, token);
-            
+
             _gameplayLootService.SpawnLoot(LootTypeId.Spoon);
 
             await WaitForCollectConsumable(token);
 
             DisableTimer(token).Forget();
-            
+
             _inputService.PlayerInput.Disable();
-           
+
             var tutorialWindow = await _windowService.OpenWindow<TutorialWindow>(WindowTypeId.Tutorial);
             var hud = await FindWindow<PlayerHUDWindow>(token);
 
@@ -137,7 +136,7 @@ namespace Code.Gameplay.Tutorial.Processors
                 .AllOf(GameMatcher.RoundInProcess,
                     GameMatcher.RoundStateController
                 ));
-            
+
             foreach (GameEntity timer in timers)
             {
                 _currentTime = timer.RoundTimeLeft;
@@ -146,7 +145,7 @@ namespace Code.Gameplay.Tutorial.Processors
             while (_timerTokenSource.Token.IsCancellationRequested == false)
             {
                 await UniTask.Yield(token);
-                
+
                 foreach (GameEntity timer in timers)
                 {
                     timer.ReplaceRoundTimeLeft(_currentTime);

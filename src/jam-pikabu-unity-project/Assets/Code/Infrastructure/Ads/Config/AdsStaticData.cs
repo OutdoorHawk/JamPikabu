@@ -8,7 +8,7 @@ namespace Code.Infrastructure.Ads.Config
     {
         public int LevelsPassedToStartProfitAds = 3;
         public int LevelsPassedToStartInterstitialAds = 6;
-        public int DoubleProfitMinGold = 10;
+        public int DoubleProfitMinGold = 25;
         public int DoubleProfitIntervalSeconds = 200;
         
         public bool TutorialBlockAds = false;

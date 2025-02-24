@@ -2,6 +2,6 @@
 {
     public interface IConfigsInitHandler
     {
-        public void OnConfigsInitInitComplete();
+        public void OnConfigsInitComplete();
     }
 }

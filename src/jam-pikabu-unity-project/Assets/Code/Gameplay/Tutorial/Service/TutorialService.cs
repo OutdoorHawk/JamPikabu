@@ -14,6 +14,7 @@ using Code.Progress.Provider;
 using Code.Progress.SaveLoadService;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using Zenject;
 
 namespace Code.Gameplay.Tutorial.Service
 {
@@ -22,7 +23,7 @@ namespace Code.Gameplay.Tutorial.Service
         IEnterGameLoopStateHandler,
         IExitGameLoopStateHandler
     {
-        private readonly List<ITutorialProcessor> _processors;
+        private readonly LazyInject<List<ITutorialProcessor>> _processors;
         private readonly ISaveLoadService _saveLoadService;
         private readonly IStaticDataService _staticData;
         private readonly IProgressProvider _provider;
@@ -42,7 +43,7 @@ namespace Code.Gameplay.Tutorial.Service
 
         public TutorialService
         (
-            List<ITutorialProcessor> processors,
+            LazyInject<List<ITutorialProcessor>> processors,
             IStaticDataService staticDataService,
             ISaveLoadService saveLoadService,
             IProgressProvider provider,
@@ -121,7 +122,7 @@ namespace Code.Gameplay.Tutorial.Service
             foreach (var userData in userDatas)
                 _tutorialUserData.Add(userData.Type, userData);
 
-            foreach (var processor in _processors)
+            foreach (var processor in _processors.Value)
                 _tutorialProcessors.Add(processor.TypeId, processor);
 
             List<TutorialConfig> tutorialsConfigs = _staticData.Get<TutorialStaticData>().Configs;

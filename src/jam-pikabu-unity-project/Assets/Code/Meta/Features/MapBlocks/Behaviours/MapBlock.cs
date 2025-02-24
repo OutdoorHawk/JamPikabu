@@ -18,7 +18,6 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
     public class MapBlock : MonoBehaviour, ILocalizationHandler
     {
         public RectTransform LevelsParent;
-        public TMP_Text StarsEarned;
         public UnlockableIngredient UnlockableIngredient;
         public AvailableIngredientsView AvailableIngredients;
         public GameObject LockedContent;
@@ -87,25 +86,9 @@ namespace Code.Meta.Features.MapBlocks.Behaviours
             LockedBackground2.sprite = Background.sprite;
             DecorForeground.sprite = Background.sprite;
             LevelButtons.RefreshList(LevelsParent.GetComponentsInChildren<LevelButton>());
-            InitStarsAmount();
             UnlockableIngredient.Initialize(mapBlockData, Background.sprite);
             AvailableIngredients.Init(mapBlockData);
             InitLockedState();
-        }
-
-        private void InitStarsAmount()
-        {
-            return; //Disable for now
-            int earnedStars = 0;
-            int maxStars = 0;
-
-            for (int i = _mapBlockData.DaysRange.x - 1; i < _mapBlockData.DaysRange.y; i++)
-            {
-                earnedStars += _daysService.GetStarsEarnedForDay(i);
-                maxStars += _daysService.DayStarsData.Count;
-            }
-
-            StarsEarned.text = $"{earnedStars}/{maxStars}";
         }
 
         private void InitLockedState()

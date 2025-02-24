@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Code.Common.Entity;
 using Code.Common.Extensions;
@@ -30,6 +31,7 @@ using static Code.Common.Extensions.AsyncGameplayExtensions;
 
 namespace Code.Gameplay.Features.Orders.Windows
 {
+    [Obsolete]
     public class OrderWindow : BaseWindow
     {
         [SerializeField] private Image _orderIcon;

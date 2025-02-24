@@ -28,7 +28,7 @@ namespace Code.Meta.Features.Days.Service
         void BeginDay();
         void RoundEnd();
         void EnterRoundPreparation();
-        void StarsRecieved(int starsReceived);
+        void StarsReceived(int starsReceived);
         void DayComplete();
         bool CanShowTimer();
         float GetRoundDuration();

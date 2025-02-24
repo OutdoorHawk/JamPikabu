@@ -2,23 +2,22 @@
 using System.Collections.Generic;
 using Code.Gameplay.Features.Currency.Behaviours;
 using Code.Gameplay.Features.Currency.Config;
-using Code.Gameplay.Features.Currency.Factory;
+using Code.Gameplay.Features.Currency.Handler;
 using Code.Gameplay.StaticData;
+using Code.Infrastructure.States.GameStateHandler;
+using Code.Infrastructure.States.GameStateHandler.Handlers;
 using Code.Infrastructure.States.GameStates.Game;
 using Code.Infrastructure.States.StateMachine;
-using Code.Meta.Features.Days.Configs;
 
 namespace Code.Gameplay.Features.Currency.Service
 {
-    public class GameplayCurrencyService : IGameplayCurrencyService, IConfigsInitHandler
+    public class GameplayCurrencyService : IGameplayCurrencyService, IEnterGameLoopStateHandler
     {
-        private readonly IStaticDataService _staticDataService;
         private readonly IGameStateMachine _gameStateMachine;
-        private readonly ICurrencyFactory _currencyFactory;
+        private readonly IStaticDataService _staticDataService;
+        private readonly List<IGameplayCurrencyChangedHandler> _handlers;
 
         public event Action CurrencyChanged;
-
-        public int CollectedGoldInLevel { get; private set; }
 
         public CurrencyHolder Holder { get; private set; }
 
@@ -26,17 +25,14 @@ namespace Code.Gameplay.Features.Currency.Service
 
         public GameplayCurrencyService
         (
+            IGameStateMachine gameStateMachine,
             IStaticDataService staticDataService,
-            IGameStateMachine gameStateMachine
+            List<IGameplayCurrencyChangedHandler> handlers
         )
         {
-            _staticDataService = staticDataService;
             _gameStateMachine = gameStateMachine;
-        }
-
-        public void OnConfigsInitInitComplete()
-        {
-            InitCurrency();
+            _staticDataService = staticDataService;
+            _handlers = handlers;
         }
 
         public void RegisterHolder(CurrencyHolder currencyHolder)
@@ -47,6 +43,13 @@ namespace Code.Gameplay.Features.Currency.Service
         public void UnregisterHolder(CurrencyHolder currencyHolder)
         {
             Holder = null;
+        }
+
+        public OrderType OrderType => OrderType.Last;
+
+        public void OnEnterGameLoop()
+        {
+            InitCurrency();
         }
 
         public int GetCurrencyOfType(CurrencyTypeId typeId, bool applyWithdraw = true)
@@ -87,12 +90,7 @@ namespace Code.Gameplay.Features.Currency.Service
             }
 
             if (changed)
-                CurrencyChanged?.Invoke();
-        }
-
-        public void UpdateEarnedGoldInDay(int goldInDay)
-        {
-            CollectedGoldInLevel = goldInDay;
+                NotifyCurrencyChanged(typeId, newAmount);
         }
 
         private CurrencyCount GetCurrencyOfTypeInternal(CurrencyTypeId typeId)
@@ -100,21 +98,20 @@ namespace Code.Gameplay.Features.Currency.Service
             return _currencies.GetValueOrDefault(typeId);
         }
 
-        public void Cleanup()
+        private void NotifyCurrencyChanged(CurrencyTypeId typeId, int newAmount)
         {
-            _currencies.Clear();
-            CurrencyChanged = null;
+            foreach (var handler in _handlers)
+                handler.OnCurrencyChanged(typeId, newAmount);
+
+            CurrencyChanged?.Invoke();
         }
 
-        public void InitCurrency()
+        private void InitCurrency()
         {
             var currencyConfig = _staticDataService.Get<CurrencyStaticData>();
-            var roundState = _staticDataService.Get<DaysStaticData>();
 
             foreach (CurrencyConfig config in currencyConfig.Configs)
-                _currencies.Add(config.CurrencyTypeId, new CurrencyCount());
-
-            _currencies[CurrencyTypeId.Gold].Amount = roundState.StartGoldAmount;
+                _currencies[config.CurrencyTypeId] = new CurrencyCount();
         }
     }
 }

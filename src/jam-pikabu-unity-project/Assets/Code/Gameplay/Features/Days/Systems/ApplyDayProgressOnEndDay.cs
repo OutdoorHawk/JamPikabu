@@ -2,6 +2,8 @@
 using System.Linq;
 using Code.Common.Entity;
 using Code.Common.Extensions;
+using Code.Gameplay.Features.Currency;
+using Code.Gameplay.Features.Currency.Service;
 using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Configs.Stars;
 using Code.Meta.Features.Days.Service;
@@ -14,15 +16,19 @@ namespace Code.Gameplay.Features.Days.Systems
     {
         private readonly ISaveLoadService _saveLoadService;
         private readonly IDaysService _daysService;
+        private readonly IGameplayCurrencyService _gameplayCurrencyService;
+        
         private readonly IGroup<MetaEntity> _days;
         private readonly IGroup<GameEntity> _ratingPlus;
         private readonly IGroup<GameEntity> _ratingMinus;
 
         public ApplyDayProgressOnEndDay(GameContext context, MetaContext meta,
-            ISaveLoadService saveLoadService, IDaysService daysService) : base(context)
+            ISaveLoadService saveLoadService, IDaysService daysService, 
+            IGameplayCurrencyService gameplayCurrencyService) : base(context)
         {
             _saveLoadService = saveLoadService;
             _daysService = daysService;
+            _gameplayCurrencyService = gameplayCurrencyService;
 
             _days = meta.GetGroup(MetaMatcher.Day);
             _ratingPlus = context.GetGroup(GameMatcher.AllOf(GameMatcher.CurrencyStorage, GameMatcher.Plus));
@@ -50,7 +56,8 @@ namespace Code.Gameplay.Features.Days.Systems
 
                 UpdateStarsAmount(day, starsReceived);
 
-                _daysService.StarsRecieved(starsReceived);
+                _gameplayCurrencyService.UpdateCurrencyAmount(starsReceived,0, CurrencyTypeId.Star);
+                _daysService.StarsReceived(starsReceived);
                 _saveLoadService.SaveProgress();
             }
             

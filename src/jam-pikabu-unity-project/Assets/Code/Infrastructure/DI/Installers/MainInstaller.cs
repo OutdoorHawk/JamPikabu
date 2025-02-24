@@ -24,7 +24,7 @@ using Code.Gameplay.Features.Loot.UIFactory;
 using Code.Gameplay.Features.LootSpawning.Factory;
 using Code.Gameplay.Features.Orders.Factory;
 using Code.Gameplay.Features.Orders.Service;
-using Code.Gameplay.Features.ProfitAds.Service;
+using Code.Gameplay.Features.Result.Service;
 using Code.Gameplay.Features.RoundState.Factory;
 using Code.Gameplay.Features.TextNotification.Service;
 using Code.Gameplay.Input.Service;
@@ -164,7 +164,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.BindInterfacesTo<NotificationTextService>().AsSingle();
             Container.BindInterfacesTo<PreviewWindowService>().AsSingle();
             Container.BindInterfacesTo<LocalizedTimeService>().AsSingle();
-            Container.BindInterfacesTo<ProfitAdsWindowService>().AsSingle();
+            Container.BindInterfacesTo<ResultWindowService>().AsSingle();
             Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
             Container.Bind<IMousePositionService>().To<MousePositionService>().AsSingle();
             Container.Bind<ICameraProvider>().To<CameraProvider>().AsSingle();

@@ -10,8 +10,8 @@ namespace Code.Gameplay.StaticData
 {
     public class StaticDataService : IStaticDataService
     {
-        private readonly ILoggerService _loggerService;
         private readonly LazyInject<List<IConfigsInitHandler>> _handlers;
+        private readonly ILoggerService _loggerService;
         private readonly IAssetProvider _assetProvider;
 
         private readonly Dictionary<Type, BaseStaticData> _configs = new();
@@ -93,7 +93,7 @@ namespace Code.Gameplay.StaticData
         {
             foreach (var handler in _handlers.Value)
             {
-                handler.OnConfigsInitInitComplete();
+                handler.OnConfigsInitComplete();
             }
         }
     }
