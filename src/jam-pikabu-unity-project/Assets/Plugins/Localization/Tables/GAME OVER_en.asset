@@ -27,7 +27,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 409881587712
-    m_Localized: 'REWARDS:'
+    m_Localized: Reward
     m_Metadata:
       m_Items: []
   - m_Id: 5829740141432832
@@ -35,7 +35,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 28672867709440000
-    m_Localized: Offer!
+    m_Localized: Level complete
     m_Metadata:
       m_Items: []
   - m_Id: 28672988681555968

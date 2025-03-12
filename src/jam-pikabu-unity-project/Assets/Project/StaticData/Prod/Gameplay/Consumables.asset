@@ -19,11 +19,11 @@ MonoBehaviour:
     CooldownSeconds: 5
     Value: 0
     LevelNeedToUnlockSpawn: 6
-    SpawnChanceInOrder: 10
+    SpawnChanceInOrder: 100
   - Id: 2
     TypeId: 1
     LootTypeId: 14
     CooldownSeconds: 12
     Value: 3
-    LevelNeedToUnlockSpawn: 10
-    SpawnChanceInOrder: 5
+    LevelNeedToUnlockSpawn: 5
+    SpawnChanceInOrder: 100

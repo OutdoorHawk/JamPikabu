@@ -109,7 +109,7 @@ namespace Code.Gameplay.Features.Result.Window
             int stars = _resultWindowService.GetCollectedCurrency(CurrencyTypeId.Star);
             for (int i = 0; i < stars; i++)
             {
-                Stars[i].SetTrigger(AnimationParameter.Open.AsHash());
+                Stars[i].SetTrigger(AnimationParameter.Replenish.AsHash());
                 await DelaySeconds(StarsInitDuration / stars, destroyCancellationToken);
             }
         }
