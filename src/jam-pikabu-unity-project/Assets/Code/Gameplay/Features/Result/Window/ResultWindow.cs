@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Code.Common.Extensions.Animations;
+﻿using Code.Common.Extensions.Animations;
 using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation;
 using Code.Gameplay.Features.Currency.Factory;
@@ -14,7 +13,9 @@ using Code.Infrastructure.Ads.Behaviours;
 using Code.Infrastructure.Analytics;
 using Code.Meta.UI.Common;
 using Cysharp.Threading.Tasks;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 using static Code.Common.Extensions.AsyncGameplayExtensions;
 
@@ -25,9 +26,10 @@ namespace Code.Gameplay.Features.Result.Window
         public PriceInfo EarnedRatingUp;
         public PriceInfo EarnedRatingDown;
         public Animator[] Stars;
-        public PriceInfo EarnedGold;
+        public TMP_Text EarnedGold;
         public AdsButton WatchAdsButton;
-        
+        public Image ProgressBarFill;
+
         public float RatingInitDuration = 0.5f;
         public float StarsInitDuration = 0.75f;
 
@@ -101,7 +103,8 @@ namespace Code.Gameplay.Features.Result.Window
 
         private void InitEarningsGold()
         {
-            SetupPriceInfo(EarnedGold, CurrencyTypeId.Gold);
+            int amount = _resultWindowService.GetCollectedCurrency(CurrencyTypeId.Gold);
+            EarnedGold.text = amount.ToString();
         }
 
         private async UniTask InitStars()

@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 3994188925541102728}
   - component: {fileID: 6294494568210350568}
   m_Layer: 5
-  m_Name: CostText
+  m_Name: GoldAmount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1485,8 +1485,9 @@ MonoBehaviour:
   - {fileID: 1317996520893467421}
   - {fileID: 2647741011634741979}
   - {fileID: 8396852484295225124}
-  EarnedGold: {fileID: 0}
+  EarnedGold: {fileID: 6294494568210350568}
   WatchAdsButton: {fileID: 3512115649024762113}
+  ProgressBarFill: {fileID: 6494331020778476394}
   RatingInitDuration: 0.5
   StarsInitDuration: 0.75
   LootItemsHolder: {fileID: 9032966839403179657}
