@@ -8,6 +8,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 875004761571952160, guid: 31aa192fbdd459740b036c2946733b76,
+        type: 3}
+      propertyPath: _textAnimationDuration
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 1272021148645559226, guid: 31aa192fbdd459740b036c2946733b76,
         type: 3}
       propertyPath: m_Sprite

@@ -32,7 +32,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 28672867709440000
-    m_Key: GO_RESULT_TITLE
+    m_Key: GO_RESULT_WIN
     m_Metadata:
       m_Items: []
   - m_Id: 28672988681555968
@@ -41,6 +41,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 28673031002083328
     m_Key: GO_PROFIT_OFFER_DOUBLE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46055222103199744
+    m_Key: GO_RESULT_LOSE
     m_Metadata:
       m_Items: []
   m_Metadata:

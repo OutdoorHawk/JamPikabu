@@ -250,6 +250,21 @@ namespace Code.Meta.Features.Days.Service
                 .With(x => x.isSyncSeenStarsRequest = true);
         }
 
+        public bool CheckLevelHasStars(List<DayStarData> dayStars)
+        {
+            if (dayStars == null || dayStars.Count == 0)
+            {
+                return false;
+            }
+
+            if (BonusLevelType == BonusLevelType.GoldenCoins)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         private DayData GetDayDataInternal(int currentDay)
         {
             return DaysStaticData.GetDayData(currentDay);

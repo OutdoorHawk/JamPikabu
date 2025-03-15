@@ -90,7 +90,11 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
 
         private void RefreshText()
         {
-            Amount.text = $"x {_consumablesUIService.GetConsumableAmount(Type)}";
+            int amount = _consumablesUIService.GetConsumableAmount(Type);
+            
+            Amount.text = amount == 0 
+                ? string.Empty 
+                : $"x {amount.ToString()}";
         }
 
         private void RefreshState()

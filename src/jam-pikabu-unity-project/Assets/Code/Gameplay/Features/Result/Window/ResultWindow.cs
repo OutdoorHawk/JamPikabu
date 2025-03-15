@@ -1,5 +1,7 @@
-﻿using Code.Common.Extensions.Animations;
+﻿using System.Collections.Generic;
+using Code.Common.Extensions;
 using Code.Gameplay.Features.Currency;
+using Code.Gameplay.Features.Currency.Behaviours;
 using Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation;
 using Code.Gameplay.Features.Currency.Factory;
 using Code.Gameplay.Features.HUD;
@@ -10,12 +12,15 @@ using Code.Gameplay.Sound;
 using Code.Gameplay.Windows;
 using Code.Gameplay.Windows.Service;
 using Code.Infrastructure.Ads.Behaviours;
+using Code.Infrastructure.Ads.Service;
 using Code.Infrastructure.Analytics;
+using Code.Meta.Features.Days.Configs.Stars;
+using Code.Meta.Features.Days.Service;
 using Code.Meta.UI.Common;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 using static Code.Common.Extensions.AsyncGameplayExtensions;
 
@@ -25,15 +30,21 @@ namespace Code.Gameplay.Features.Result.Window
     {
         public PriceInfo EarnedRatingUp;
         public PriceInfo EarnedRatingDown;
-        public Animator[] Stars;
         public TMP_Text EarnedGold;
+        public TMP_Text TitleText;
         public AdsButton WatchAdsButton;
-        public Image ProgressBarFill;
+        public SlicedFilledImage ProgressBarFill;
+        public GameObject ProgressBar;
+        public CanvasGroup EarningsStarsContainer;
+        public RatingBarStarItem[] StarsProgressBar;
+        public Animator[] ResultStars;
 
-        public float RatingInitDuration = 0.5f;
-        public float StarsInitDuration = 0.75f;
+        public float AwakeInitDuration = 0.5f;
+        public float AdsButtonShowDelay = 0.5f;
+        public float FillBarDuration = 1f;
+        public int LootAmountInRow = 4;
 
-        public RectTransform LootItemsHolder;
+        public RectTransform[] LootRow;
         public ResultLootItem ResultLootItemPrefab;
 
         private ICurrencyFactory _currencyFactory;
@@ -41,6 +52,13 @@ namespace Code.Gameplay.Features.Result.Window
         private IAnalyticsService _analyticsService;
         private IResultWindowService _resultWindowService;
         private IInstantiator _instantiator;
+        private IDaysService _daysService;
+        private IAdsService _adsService;
+
+        private int _currentDay;
+
+        private const string WIN_KEY = "GO_RESULT_WIN";
+        private const string LOST_KEY = "GO_RESULT_LOSE";
 
         [Inject]
         private void Construct
@@ -49,9 +67,13 @@ namespace Code.Gameplay.Features.Result.Window
             IWindowService windowService,
             IAnalyticsService analyticsService,
             IResultWindowService resultWindowService,
-            IInstantiator instantiator
+            IInstantiator instantiator,
+            IDaysService daysService,
+            IAdsService adsService
         )
         {
+            _adsService = adsService;
+            _daysService = daysService;
             _instantiator = instantiator;
             _resultWindowService = resultWindowService;
             _analyticsService = analyticsService;
@@ -62,6 +84,8 @@ namespace Code.Gameplay.Features.Result.Window
         protected override void Initialize()
         {
             base.Initialize();
+           
+            _currentDay = _resultWindowService.CurrentDay;
             Init().Forget();
         }
 
@@ -79,42 +103,173 @@ namespace Code.Gameplay.Features.Result.Window
 
         private async UniTaskVoid Init()
         {
-            InitLoot();
+            InitTitle();
             InitRating();
-            await DelaySeconds(RatingInitDuration, destroyCancellationToken);
-            await InitStars();
+            InitProgressBar();
+            InitProgressBarStars();
             InitEarningsGold();
+            InitAdsButton();
+            InitEarningsStars();
+            await DelaySeconds(AwakeInitDuration, destroyCancellationToken);
+            PlayRating();
+            PlayProgressBarFill();
+            PlayStarsAnimation().Forget();
+            PlayLoot();
+            PlayEarningsStars();
+            PlayEarningsGold();
+            await DelaySeconds(AdsButtonShowDelay, destroyCancellationToken);
+            PlayAdsButton();
         }
 
-        private void InitLoot()
+        private void InitTitle()
         {
-            foreach ((LootTypeId type, int amount) in _resultWindowService.GetCollectedLoot())
-            {
-                var instance = _instantiator.InstantiatePrefabForComponent<ResultLootItem>(ResultLootItemPrefab, LootItemsHolder);
-                instance.Setup(type, amount);
-            }
+            TitleText.text = _resultWindowService.CheckGameWin() 
+                ? LocalizationService[$"GAME OVER/{WIN_KEY}"] 
+                : LocalizationService[$"GAME OVER/{LOST_KEY}"];
         }
 
         private void InitRating()
+        {
+            EarnedRatingUp.SetupPrice(0, CurrencyTypeId.Plus);
+            EarnedRatingDown.SetupPrice(0, CurrencyTypeId.Minus);
+        }
+
+        private void InitProgressBar()
+        {
+            ProgressBarFill.fillAmount = 0;
+        }
+
+        private void InitProgressBarStars()
+        {
+            if (_daysService.CheckLevelHasStars(_resultWindowService.DayStarsData) == false)
+            {
+                HideStarsAndProgressBar();
+                return;
+            }
+
+            List<DayStarData> values = _daysService.DayStarsData;
+
+            for (int i = 0; i < StarsProgressBar.Length; i++)
+            {
+                RatingBarStarItem ratingBarStarItem = StarsProgressBar[i];
+                ratingBarStarItem.Init(values[i]);
+            }
+        }
+
+        private void InitEarningsGold()
+        {
+            EarnedGold
+                .DOFade(0, 0)
+                .SetLink(gameObject);
+        }
+
+        private void InitAdsButton()
+        {
+            if (_adsService.CanShowRewarded) 
+                WatchAdsButton.transform.localScale = Vector3.zero;
+            else
+                WatchAdsButton.DisableElement();
+        }
+
+        private void InitEarningsStars()
+        {
+            EarningsStarsContainer.DisableElement();
+            
+            foreach (Animator star in ResultStars) 
+                star.DisableElement();
+        }
+
+        private void PlayRating()
         {
             SetupPriceInfo(EarnedRatingUp, CurrencyTypeId.Plus);
             SetupPriceInfo(EarnedRatingDown, CurrencyTypeId.Minus);
         }
 
-        private void InitEarningsGold()
+        private void PlayProgressBarFill()
         {
+            int rating = _resultWindowService.GetTotalRating();
+            int maxRatingInDay = _daysService.GetDayStarData(_currentDay).RatingNeedAll;
+
+            float factor = (float)rating / maxRatingInDay;
+            factor = Mathf.Clamp(factor, 0, 1);
+
+            ProgressBarFill.ToFillAmount
+            (
+                factor,
+                FillBarDuration,
+                destroyCancellationToken
+            ).Forget();
+        }
+
+        private async UniTaskVoid PlayStarsAnimation()
+        {
+            int rating = _resultWindowService.GetTotalRating();
+
+            for (int i = 0; i < StarsProgressBar.Length; i++)
+            {
+                RatingBarStarItem item = StarsProgressBar[i];
+                await DelaySeconds(FillBarDuration / StarsProgressBar.Length, destroyCancellationToken);
+
+                if (rating >= item.RatingAmount)
+                {
+                    item.PlayReplenish();
+                    ResultStars[i].EnableElement();
+                }
+                else
+                {
+                    ResultStars[i].DisableElement();
+                    item.ResetReplenish();
+                }
+            }
+        }
+
+        private void PlayLoot()
+        {
+            int rowIndex = 0;
+            int lootCount = 0;
+            foreach ((LootTypeId type, int amount) in _resultWindowService.GetCollectedLoot())
+            {
+                if (lootCount >= LootAmountInRow && rowIndex < LootRow.Length)
+                    rowIndex++;
+
+                var instance = _instantiator.InstantiatePrefabForComponent<ResultLootItem>(ResultLootItemPrefab, LootRow[rowIndex]);
+                instance.Setup(type, amount);
+                lootCount++;
+            }
+        }
+
+        private void PlayEarningsStars()
+        {
+            if (_daysService.CheckLevelHasStars(_resultWindowService.DayStarsData) == false)
+                return;
+            
+            EarningsStarsContainer.EnableElement();
+            EarningsStarsContainer.alpha = 0;
+            EarningsStarsContainer.DOFade(1, 0.5f)
+                .SetLink(gameObject);
+        }
+
+        private void HideStarsAndProgressBar()
+        {
+            ProgressBar.DisableElement();
+        }
+
+        private void PlayEarningsGold()
+        {
+            EarnedGold
+                .DOFade(1, 0.25f)
+                .SetLink(gameObject);
+
             int amount = _resultWindowService.GetCollectedCurrency(CurrencyTypeId.Gold);
             EarnedGold.text = amount.ToString();
         }
 
-        private async UniTask InitStars()
+        private void PlayAdsButton()
         {
-            int stars = _resultWindowService.GetCollectedCurrency(CurrencyTypeId.Star);
-            for (int i = 0; i < stars; i++)
-            {
-                Stars[i].SetTrigger(AnimationParameter.Replenish.AsHash());
-                await DelaySeconds(StarsInitDuration / stars, destroyCancellationToken);
-            }
+            WatchAdsButton.transform
+                .DOScale(Vector3.one, 0.4f)
+                .SetEase(Ease.OutBounce)
+                .SetLink(gameObject);
         }
 
         private void GiveReward()
@@ -122,7 +277,7 @@ namespace Code.Gameplay.Features.Result.Window
             WatchAdsButton.Button.enabled = false;
             _analyticsService.SendEvent(AnalyticsEventTypes.DoubleProfitReward);
 
-            int rewardAmount = 0; //TODO: ACTUAL REWARD
+            int rewardAmount = _resultWindowService.GetCollectedCurrency(CurrencyTypeId.Gold);
             _currencyFactory.CreateAddCurrencyRequest(CurrencyTypeId.Gold, rewardAmount, rewardAmount);
 
             PlayAnimation(rewardAmount);
@@ -144,7 +299,7 @@ namespace Code.Gameplay.Features.Result.Window
             {
                 Count = amount,
                 Type = CurrencyTypeId.Gold,
-                StartPosition = WatchAdsButton.transform.position,
+                StartPosition = WatchAdsButton.transform.position + new Vector3(0, 5, 0),
                 EndPosition = hudWindow.CurrencyHolder.PlayerCurrentGold.CurrencyIcon.transform.position,
                 StartReplenishCallback = () => _currencyFactory.CreateAddCurrencyRequest(CurrencyTypeId.Gold, 0, -amount),
                 BeginAnimationSound = SoundTypeId.Gold_Currency_Collect

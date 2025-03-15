@@ -146,7 +146,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation
         private async UniTaskVoid TextAnimation(float textFadeDuration)
         {
             _text.alpha = 1;
-            float movePosY = _text.transform.localPosition.y - 30;
+            float movePosY = _text.transform.localPosition.y - 20;
             _text.transform.DOLocalMoveY(movePosY, textFadeDuration*2);
             await DelaySeconds(0.75f, _text.destroyCancellationToken);
             _text.DOFade(0, textFadeDuration);

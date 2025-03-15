@@ -35,7 +35,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 28672867709440000
-    m_Localized: Level complete
+    m_Localized: Great job!
     m_Metadata:
       m_Items: []
   - m_Id: 28672988681555968
@@ -44,6 +44,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 28673031002083328
     m_Localized: Double it!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46055222103199744
+    m_Localized: So close! Try again!
     m_Metadata:
       m_Items: []
   references:

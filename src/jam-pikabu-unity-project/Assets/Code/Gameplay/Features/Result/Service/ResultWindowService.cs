@@ -2,53 +2,66 @@
 using System.Collections.Generic;
 using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Handler;
+using Code.Gameplay.Features.Currency.Service;
 using Code.Gameplay.Features.Loot;
 using Code.Gameplay.Features.Result.Window;
-using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows;
 using Code.Gameplay.Windows.Service;
-using Code.Infrastructure.Ads.Config;
-using Code.Infrastructure.Ads.Service;
 using Code.Infrastructure.States.GameStateHandler;
 using Code.Infrastructure.States.GameStateHandler.Handlers;
+using Code.Meta.Features.Days.Configs.Stars;
 using Code.Meta.Features.Days.Service;
 using Cysharp.Threading.Tasks;
 
 namespace Code.Gameplay.Features.Result.Service
 {
     public class ResultWindowService : IResultWindowService, 
+        IEnterGameLoopStateHandler,
         IExitGameLoopStateHandler, 
         IGameplayCurrencyChangedHandler
     {
-        private readonly IAdsService _adsService;
         private readonly IWindowService _windowService;
-        private readonly IStaticDataService _staticDataService;
         private readonly IDaysService _daysService;
+        private readonly IGameplayCurrencyService _gameplayCurrencyService;
 
         private readonly Dictionary<LootTypeId, int> _collectedLoot = new();
+        private readonly Dictionary<CurrencyTypeId, int> _initialCurrency = new();
         private readonly Dictionary<CurrencyTypeId, int> _collectedCurrency = new();
 
-        private AdsStaticData AdsStaticData => _staticDataService.Get<AdsStaticData>();
-
+        public int CurrentDay { get; private set; }
+        public List<DayStarData> DayStarsData { get; set; }
         public OrderType OrderType => OrderType.First;
 
         public ResultWindowService
         (
-            IAdsService adsService,
             IWindowService windowService,
-            IStaticDataService staticDataService,
-            IDaysService daysService
+            IDaysService daysService,
+            IGameplayCurrencyService gameplayCurrencyService
         )
         {
-            _adsService = adsService;
+            _gameplayCurrencyService = gameplayCurrencyService;
             _windowService = windowService;
-            _staticDataService = staticDataService;
             _daysService = daysService;
+        }
+
+        public void OnEnterGameLoop()
+        {
+            _daysService.OnDayBegin += CacheDayData;
+            
+            foreach ((CurrencyTypeId key, CurrencyCount value) in _gameplayCurrencyService.Currencies) 
+                _initialCurrency[key] = value.Amount;
         }
 
         public void OnExitGameLoop()
         {
+            _daysService.OnDayBegin -= CacheDayData;
             Cleanup();
+        }
+
+        private void CacheDayData()
+        {
+            CurrentDay = _daysService.CurrentDay;
+            DayStarsData = _daysService.DayStarsData;
         }
 
         public void OnCurrencyChanged(CurrencyTypeId type, int newAmount)
@@ -58,12 +71,6 @@ namespace Code.Gameplay.Features.Result.Service
 
         public async UniTask TryShowProfitWindow()
         {
-            if (_adsService.CanShowRewarded == false)
-                return;
-
-            if (_daysService.GetDaysProgress().Count < AdsStaticData.LevelsPassedToStartProfitAds)
-                return;
-
             var window = await _windowService.OpenWindow<ResultWindow>(WindowTypeId.ResultWindow);
             await UniTask.WaitWhile(() => _windowService.IsWindowOpen(WindowTypeId.ResultWindow), cancellationToken: window.destroyCancellationToken);
         }
@@ -86,7 +93,19 @@ namespace Code.Gameplay.Features.Result.Service
 
         public int GetCollectedCurrency(CurrencyTypeId currencyType)
         {
-            return _collectedCurrency.GetValueOrDefault(currencyType, 0);
+            return _collectedCurrency.GetValueOrDefault(currencyType, 0) - _initialCurrency.GetValueOrDefault(currencyType);
+        }
+
+        public int GetTotalRating()
+        {
+            int plus = _collectedCurrency.GetValueOrDefault(CurrencyTypeId.Plus, 0);
+            int minus = _collectedCurrency.GetValueOrDefault(CurrencyTypeId.Minus, 0);
+            return plus - minus;
+        }
+
+        public bool CheckGameWin()
+        {
+            return GetTotalRating() >= DayStarsData[0].RatingAmountNeed;
         }
 
         private void UpdateStats(CurrencyTypeId type, int newAmount)
@@ -103,6 +122,7 @@ namespace Code.Gameplay.Features.Result.Service
 
         private void Cleanup()
         {
+            _initialCurrency.Clear();
             _collectedLoot.Clear();
             _collectedCurrency.Clear();
         }

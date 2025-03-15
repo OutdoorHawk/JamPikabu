@@ -8,14 +8,15 @@ using Code.Infrastructure.States.GameStateHandler;
 using Code.Infrastructure.States.GameStateHandler.Handlers;
 using Code.Infrastructure.States.GameStates.Game;
 using Code.Infrastructure.States.StateMachine;
+using Zenject;
 
 namespace Code.Gameplay.Features.Currency.Service
 {
-    public class GameplayCurrencyService : IGameplayCurrencyService, IEnterGameLoopStateHandler
+    public class GameplayCurrencyService : IGameplayCurrencyService, ILoadProgressStateHandler
     {
         private readonly IGameStateMachine _gameStateMachine;
         private readonly IStaticDataService _staticDataService;
-        private readonly List<IGameplayCurrencyChangedHandler> _handlers;
+        private readonly LazyInject<List<IGameplayCurrencyChangedHandler>> _handlers;
 
         public event Action CurrencyChanged;
 
@@ -23,11 +24,15 @@ namespace Code.Gameplay.Features.Currency.Service
 
         private readonly Dictionary<CurrencyTypeId, CurrencyCount> _currencies = new();
 
+        public OrderType OrderType => OrderType.Last;
+
+        public IReadOnlyDictionary<CurrencyTypeId, CurrencyCount> Currencies => _currencies;
+
         public GameplayCurrencyService
         (
             IGameStateMachine gameStateMachine,
             IStaticDataService staticDataService,
-            List<IGameplayCurrencyChangedHandler> handlers
+            LazyInject<List<IGameplayCurrencyChangedHandler>> handlers
         )
         {
             _gameStateMachine = gameStateMachine;
@@ -45,9 +50,12 @@ namespace Code.Gameplay.Features.Currency.Service
             Holder = null;
         }
 
-        public OrderType OrderType => OrderType.Last;
+        public void OnEnterLoadProgress()
+        {
+            
+        }
 
-        public void OnEnterGameLoop()
+        public void OnExitLoadProgress()
         {
             InitCurrency();
         }
@@ -100,7 +108,7 @@ namespace Code.Gameplay.Features.Currency.Service
 
         private void NotifyCurrencyChanged(CurrencyTypeId typeId, int newAmount)
         {
-            foreach (var handler in _handlers)
+            foreach (var handler in _handlers.Value)
                 handler.OnCurrencyChanged(typeId, newAmount);
 
             CurrencyChanged?.Invoke();
