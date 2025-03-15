@@ -3493,10 +3493,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1510611105778432834, guid: e43efff8cdba71043b14f65856029c9c,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3247453383040733336, guid: e43efff8cdba71043b14f65856029c9c,
         type: 3}
       propertyPath: m_Name
       value: ConsumablesHolder
+      objectReference: {fileID: 0}
+    - target: {fileID: 6179210630789283501, guid: e43efff8cdba71043b14f65856029c9c,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6709207357413236490, guid: e43efff8cdba71043b14f65856029c9c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5.899994
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

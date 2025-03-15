@@ -77,6 +77,7 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
                 .GetByConsumableType(typeId);
 
             IconBack.sprite = shopData.Icon;
+            IconBack.color = Color.white;
         }
 
         public void Refresh()
