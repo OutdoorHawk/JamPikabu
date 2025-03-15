@@ -9,6 +9,8 @@ using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
 using Code.Infrastructure.Analytics;
 using Code.Infrastructure.SceneLoading;
+using Code.Infrastructure.States.GameStateHandler;
+using Code.Infrastructure.States.GameStateHandler.Handlers;
 using Code.Meta.Features.BonusLevel.Config;
 using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Configs.Stars;
@@ -16,7 +18,7 @@ using UnityEngine;
 
 namespace Code.Meta.Features.Days.Service
 {
-    public class DaysService : IDaysService
+    public class DaysService : IDaysService, IExitGameLoopStateHandler
     {
         public event Action OnEnterRoundPreparation;
         public event Action OnDayBegin;
@@ -53,6 +55,13 @@ namespace Code.Meta.Features.Days.Service
             _staticDataService = staticDataService;
             _soundService = soundService;
             _analyticsService = analyticsService;
+        }
+
+        public OrderType OrderType => OrderType.Last;
+        
+        public void OnExitGameLoop()
+        {
+            ExitGameLoopCleanup();
         }
 
         public void SetBonusLevel(BonusLevelData type, SceneTypeId sceneTypeId)
@@ -168,9 +177,6 @@ namespace Code.Meta.Features.Days.Service
             if (BonusLevelType is BonusLevelType.GoldenCoins) 
                 _analyticsService.SendEvent(AnalyticsEventTypes.LevelEnd, BonusLevelType.GoldenCoins.ToString());
             
-            BonusLevelType = BonusLevelType.None;
-            _bonusLevelData = null;
-            _currentDayData = null;
             OnDayComplete?.Invoke();
         }
 
@@ -287,6 +293,13 @@ namespace Code.Meta.Features.Days.Service
 
                 DayStarsData.Add(dayStarData);
             }
+        }
+        
+        private void ExitGameLoopCleanup()
+        {
+            BonusLevelType = BonusLevelType.None;
+            _bonusLevelData = null;
+            _currentDayData = null;
         }
     }
 }

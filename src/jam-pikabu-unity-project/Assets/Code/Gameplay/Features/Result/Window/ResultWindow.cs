@@ -14,6 +14,7 @@ using Code.Gameplay.Windows.Service;
 using Code.Infrastructure.Ads.Behaviours;
 using Code.Infrastructure.Ads.Service;
 using Code.Infrastructure.Analytics;
+using Code.Meta.Features.BonusLevel.Config;
 using Code.Meta.Features.Days.Configs.Stars;
 using Code.Meta.Features.Days.Service;
 using Code.Meta.UI.Common;
@@ -59,6 +60,8 @@ namespace Code.Gameplay.Features.Result.Window
 
         private const string WIN_KEY = "GO_RESULT_WIN";
         private const string LOST_KEY = "GO_RESULT_LOSE";
+        
+        private bool IsBonusLevel => _daysService.BonusLevelType != BonusLevelType.None;
 
         [Inject]
         private void Construct
@@ -123,6 +126,12 @@ namespace Code.Gameplay.Features.Result.Window
 
         private void InitTitle()
         {
+            if (IsBonusLevel)
+            {
+                TitleText.text = LocalizationService[$"GAME OVER/{WIN_KEY}"];
+                return;
+            }
+            
             TitleText.text = _resultWindowService.CheckGameWin() 
                 ? LocalizationService[$"GAME OVER/{WIN_KEY}"] 
                 : LocalizationService[$"GAME OVER/{LOST_KEY}"];
@@ -130,6 +139,13 @@ namespace Code.Gameplay.Features.Result.Window
 
         private void InitRating()
         {
+            if (IsBonusLevel)
+            {
+                EarnedRatingUp.DisableElement();
+                EarnedRatingDown.DisableElement();
+                return;
+            }
+            
             EarnedRatingUp.SetupPrice(0, CurrencyTypeId.Plus);
             EarnedRatingDown.SetupPrice(0, CurrencyTypeId.Minus);
         }
@@ -142,10 +158,7 @@ namespace Code.Gameplay.Features.Result.Window
         private void InitProgressBarStars()
         {
             if (_daysService.CheckLevelHasStars(_resultWindowService.DayStarsData) == false)
-            {
-                HideStarsAndProgressBar();
                 return;
-            }
 
             List<DayStarData> values = _daysService.DayStarsData;
 
@@ -173,7 +186,13 @@ namespace Code.Gameplay.Features.Result.Window
 
         private void InitEarningsStars()
         {
-            EarningsStarsContainer.DisableElement();
+            if (IsBonusLevel)
+            {
+                EarningsStarsContainer.DisableElement();
+                return;
+            }
+            
+            EarningsStarsContainer.alpha = 0;
             
             foreach (Animator star in ResultStars) 
                 star.DisableElement();
@@ -243,15 +262,8 @@ namespace Code.Gameplay.Features.Result.Window
             if (_daysService.CheckLevelHasStars(_resultWindowService.DayStarsData) == false)
                 return;
             
-            EarningsStarsContainer.EnableElement();
-            EarningsStarsContainer.alpha = 0;
             EarningsStarsContainer.DOFade(1, 0.5f)
                 .SetLink(gameObject);
-        }
-
-        private void HideStarsAndProgressBar()
-        {
-            ProgressBar.DisableElement();
         }
 
         private void PlayEarningsGold()

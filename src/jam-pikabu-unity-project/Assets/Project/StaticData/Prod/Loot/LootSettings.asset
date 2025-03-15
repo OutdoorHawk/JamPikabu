@@ -17,7 +17,7 @@ MonoBehaviour:
     Type: 1
     ViewPrefab: {fileID: 5269418671204374274, guid: c68002c15aaf269429bacf8e8aabd408,
       type: 3}
-    Icon: {fileID: 21300000, guid: 960d9ea6b81ffd44c97fd99ad1de401a, type: 3}
+    Icon: {fileID: 21300000, guid: 95fda8f25b80c0848a9f1e6590d41f13, type: 3}
     CanBeUsedInOrders: 0
     LocalizedName:
       m_TableReference:

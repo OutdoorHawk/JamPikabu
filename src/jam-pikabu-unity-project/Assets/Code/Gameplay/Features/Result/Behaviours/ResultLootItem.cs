@@ -2,6 +2,7 @@
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.StaticData;
 using Code.Infrastructure.Localization;
+using Code.Meta.Features.LootCollection.Configs;
 using Code.Meta.Features.LootCollection.Data;
 using Code.Meta.Features.LootCollection.Service;
 using TMPro;
@@ -40,13 +41,27 @@ namespace Code.Gameplay.Features.Result.Behaviours
                 .Get<LootSettingsStaticData>()
                 .GetConfig(type);
 
+            InitLevelText(type);
+
+            Icon.sprite = settings.Icon;
+            Icon.color = Color.white;
+            AmountText.text = $"x{amount.ToString()}";
+        }
+
+        private void InitLevelText(LootTypeId type)
+        {
+            var staticData = _staticDataService.Get<LootProgressionStaticData>();
+
+            if (staticData.GetConfig(type) == null)
+            {
+                LevelText.text = string.Empty;
+                return;
+            }
+
             if (_lootCollectionService.LootLevels.TryGetValue(type, out LootLevelsProgressionData level) && level.Level > 0)
                 LevelText.text = $"{_localizationService["INGREDIENTS/I_LVL"]} {(level.Level + 1).ToString()}";
             else
                 LevelText.text = $"{_localizationService["INGREDIENTS/I_LVL"]} {1}";
-
-            Icon.sprite = settings.Icon;
-            AmountText.text = $"x{amount.ToString()}";
         }
     }
 }

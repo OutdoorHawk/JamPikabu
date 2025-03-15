@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Code.Gameplay.Features.GameState.Service;
+using Code.Meta.Features.BonusLevel.Config;
 using Code.Meta.Features.Consumables;
 using Code.Meta.Features.Consumables.Service;
 using Code.Meta.Features.Days.Service;
@@ -57,6 +58,9 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
 
         private void InitButtons()
         {
+            if (_daysService.BonusLevelType is not BonusLevelType.None)
+                return;
+            
             for (ConsumableTypeId i = 0; i < ConsumableTypeId.Count; i++)
             {
                 if (i is not ConsumableTypeId.None)
