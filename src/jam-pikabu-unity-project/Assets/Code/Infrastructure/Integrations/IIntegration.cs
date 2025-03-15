@@ -5,7 +5,7 @@ namespace Code.Infrastructure.Integrations
 {
     public interface IIntegration
     {
-        OrderType InitOrder { get; }
-        UniTask Initialize();
+        public OrderType InitOrder { get; }
+        public UniTask Initialize();
     }
 }

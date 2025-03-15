@@ -33,6 +33,7 @@ using Code.Gameplay.StaticData;
 using Code.Gameplay.Tutorial.Service;
 using Code.Gameplay.Windows.Factory;
 using Code.Gameplay.Windows.Service;
+using Code.Infrastructure.ABTesting;
 using Code.Infrastructure.Ads.Service;
 using Code.Infrastructure.Analytics;
 using Code.Infrastructure.AssetManagement.AssetDownload;
@@ -246,6 +247,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.BindInterfacesTo<GamePushIntegration>().AsSingle();
             Container.BindInterfacesTo<GamePushAdsService>().AsSingle();
             Container.BindInterfacesTo<GamePushProgressReadWrite>().AsSingle();
+            Container.BindInterfacesTo<GamePushExperimentService>().AsSingle();
 #else
             Container.Bind<IProgressReadWrite>().To<DefaultFileProgressReadWrite>().AsSingle();
             Container.BindInterfacesTo<FakeAdsService>().AsSingle();
