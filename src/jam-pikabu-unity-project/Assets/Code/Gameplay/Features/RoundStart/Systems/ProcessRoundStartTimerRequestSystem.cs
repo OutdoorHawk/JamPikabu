@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Entitas;
 
-namespace Code.Gameplay.Features.RoundState.Systems
+namespace Code.Gameplay.Features.RoundStart.Systems
 {
     public class ProcessRoundStartTimerRequestSystem : IExecuteSystem
     {
@@ -14,8 +14,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
                 GameMatcher.AllOf(
                     GameMatcher.RoundStateController,
                     GameMatcher.RoundStartRequest,
-                    GameMatcher.RoundStartAvailable,
-                    GameMatcher.RoundDuration
+                    GameMatcher.RoundStartAvailable
                 ));
         }
 
@@ -26,7 +25,12 @@ namespace Code.Gameplay.Features.RoundState.Systems
                 entity.isRoundOver = false;
                 entity.isRoundInProcess = true;
                 entity.isRoundComplete = false;
-                entity.ReplaceRoundTimeLeft(entity.RoundDuration);
+
+                if (entity.hasRoundDuration) 
+                    entity.ReplaceRoundTimeLeft(entity.RoundDuration);
+
+                if (entity.hasHookAttemptsMax) 
+                    entity.ReplaceHookAttemptsLeft(entity.HookAttemptsMax);
             }
         }
     }

@@ -52,40 +52,53 @@ namespace Code.Gameplay.Features.RoundState.Factory
 
         private void CreateDefaultController(GameEntity roundStateController)
         {
-            float roundDuration = GetRoundDuration();
-            roundStateController.AddRoundDuration(roundDuration);
-        }
+            if (CheckBonusLevelDuration(roundStateController))
+                return;
 
-        private void CreateRoundAttemptsController(GameEntity roundStateController)
-        {
-            int attempts = GetRoundAttempts();
-
-            roundStateController
-                .AddHookAttemptsMax(attempts)
-                ;
-        }
-
-        private int GetRoundDuration()
-        {
             var daysStaticData = _staticDataService.Get<DaysStaticData>();
 
-            if (_daysService.BonusLevelType is BonusLevelType.GoldenCoins)
-                return _daysService.BonusLevelData.RoundTimeOverride;
-
-            if (_daysService.CanShowTimer() == false)
-                return (int)daysStaticData.DisabledTimerRoundDuration;
+            if (_daysService.CurrentDay >= daysStaticData.DayToStartTimer == false)
+                return;
 
             float roundDuration = _daysService.GetDayData().IsBossDay
                 ? daysStaticData.BossRoundDuration
                 : daysStaticData.DefaultRoundDuration;
 
-            return (int)roundDuration;
+            roundStateController.AddRoundDuration(roundDuration);
+            roundStateController.AddRoundTimeLeft(roundDuration);
         }
 
-        private int GetRoundAttempts()
+        private void CreateRoundAttemptsController(GameEntity roundStateController)
         {
+            if (CheckBonusLevelDuration(roundStateController))
+                return;
+
             var daysStaticData = _staticDataService.Get<DaysStaticData>();
-            return daysStaticData.DefaultRoundHookAttempts;
+
+            int attempts = _daysService.GetDayData().IsBossDay
+                ? daysStaticData.BossRoundHookAttempts
+                : daysStaticData.DefaultRoundHookAttempts;
+
+            if (_daysService.CurrentDay >= daysStaticData.DayToStartTimer == false)
+                return;
+
+            roundStateController
+                .AddHookAttemptsMax(attempts)
+                .AddHookAttemptsLeft(attempts)
+                ;
+        }
+
+        private bool CheckBonusLevelDuration(GameEntity roundStateController)
+        {
+            if (_daysService.BonusLevelType is BonusLevelType.GoldenCoins)
+            {
+                int roundTimeOverride = _daysService.BonusLevelData.RoundTimeOverride;
+                roundStateController.AddRoundDuration(roundTimeOverride);
+                roundStateController.AddRoundTimeLeft(roundTimeOverride);
+                return true;
+            }
+
+            return false;
         }
     }
 }

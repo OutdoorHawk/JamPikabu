@@ -15,8 +15,7 @@ namespace Code.Gameplay.Features.RoundStart
             //Add(systems.Create<BlockRoundStartWhenAnyOtherWindowOpenSystem>());
             Add(systems.Create<BlockRoundStartAvailableWhenNotInRoundPreparationSystem>());
 
-            Add(systems.Create<ProcessRoundStartTimerRequestSystem>()); //AB TEST 1
-            Add(systems.Create<ProcessRoundStartAttemptsRequestSystem>()); //AB TEST 2
+            Add(systems.Create<ProcessRoundStartTimerRequestSystem>());
             
             Add(systems.Create<ResetRoundStartAvailableSystem>());
         }

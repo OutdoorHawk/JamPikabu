@@ -9,6 +9,7 @@ using Code.Gameplay.Windows;
 using Code.Gameplay.Windows.Service;
 using Code.Infrastructure.States.GameStateHandler;
 using Code.Infrastructure.States.GameStateHandler.Handlers;
+using Code.Meta.Features.BonusLevel.Config;
 using Code.Meta.Features.Days.Configs.Stars;
 using Code.Meta.Features.Days.Service;
 using Cysharp.Threading.Tasks;
@@ -29,7 +30,6 @@ namespace Code.Gameplay.Features.Result.Service
         private readonly Dictionary<CurrencyTypeId, int> _collectedCurrency = new();
 
         public int CurrentDay { get; private set; }
-        public List<DayStarData> DayStarsData { get; set; }
         public OrderType OrderType => OrderType.First;
 
         public ResultWindowService
@@ -61,7 +61,6 @@ namespace Code.Gameplay.Features.Result.Service
         private void CacheDayData()
         {
             CurrentDay = _daysService.CurrentDay;
-            DayStarsData = _daysService.DayStarsData;
         }
 
         public void OnCurrencyChanged(CurrencyTypeId type, int newAmount)
@@ -105,7 +104,7 @@ namespace Code.Gameplay.Features.Result.Service
 
         public bool CheckGameWin()
         {
-            return GetTotalRating() >= DayStarsData[0].RatingAmountNeed;
+            return GetTotalRating() >= _daysService.DayStarsData[0].RatingAmountNeed;
         }
 
         private void UpdateStats(CurrencyTypeId type, int newAmount)

@@ -9,7 +9,6 @@ namespace Code.Gameplay.Features.Result.Service
     public interface IResultWindowService
     {
         int CurrentDay { get; }
-        List<DayStarData> DayStarsData { get; set; }
         UniTask TryShowProfitWindow();
         void AddCollectedLoot(LootTypeId lootTypeId);
         IReadOnlyDictionary<LootTypeId, int> GetCollectedLoot();

@@ -12,7 +12,7 @@ namespace Code.Meta.Features
     {
         public ActualizeProgressFeature(ISystemFactory systems)
         {
-            Add(systems.Create<InitializeDaySystem>());
+            Add(systems.Create<InitializeDaysProgressSystem>());
             Add(systems.Create<InitLootProgressionSystem>());
             Add(systems.Create<InitializeLootFreeUpgradeTimers>());
             

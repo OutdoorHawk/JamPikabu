@@ -25,9 +25,6 @@ namespace Code.Gameplay.Features.RoundState.Systems
                 controllers.isRoundEndRequest = false;
                 controllers.isRoundInProcess = false;
                 controllers.isCooldownUp = true;
-
-                /*if (controllers.hasRoundTimeLeft) 
-                    controllers.RemoveRoundTimeLeft();*/
             }
         }
         

@@ -12,6 +12,8 @@ namespace Code.Gameplay.Features.RoundState
             
             Add(systems.Create<ProcessEndRoundSystem>()); 
             
+            Add(systems.Create<UpdateRoundViewSystem>()); 
+            
             Add(systems.Create<MoveToRoundCompleteStateWhenHookAreNotBusySystem>()); 
         }
     }

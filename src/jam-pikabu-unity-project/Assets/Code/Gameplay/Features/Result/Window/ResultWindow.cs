@@ -17,6 +17,7 @@ using Code.Infrastructure.Analytics;
 using Code.Meta.Features.BonusLevel.Config;
 using Code.Meta.Features.Days.Configs.Stars;
 using Code.Meta.Features.Days.Service;
+using Code.Meta.Features.Days.UIService;
 using Code.Meta.UI.Common;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
@@ -54,6 +55,7 @@ namespace Code.Gameplay.Features.Result.Window
         private IResultWindowService _resultWindowService;
         private IInstantiator _instantiator;
         private IDaysService _daysService;
+        private IDaysUIService _daysUIService;
         private IAdsService _adsService;
 
         private int _currentDay;
@@ -72,9 +74,11 @@ namespace Code.Gameplay.Features.Result.Window
             IResultWindowService resultWindowService,
             IInstantiator instantiator,
             IDaysService daysService,
+            IDaysUIService daysUIService,
             IAdsService adsService
         )
         {
+            _daysUIService = daysUIService;
             _adsService = adsService;
             _daysService = daysService;
             _instantiator = instantiator;
@@ -157,7 +161,7 @@ namespace Code.Gameplay.Features.Result.Window
 
         private void InitProgressBarStars()
         {
-            if (_daysService.CheckLevelHasStars(_resultWindowService.DayStarsData) == false)
+            if (_daysUIService.CheckLevelHasStars() == false)
                 return;
 
             List<DayStarData> values = _daysService.DayStarsData;
@@ -262,7 +266,7 @@ namespace Code.Gameplay.Features.Result.Window
 
         private void PlayEarningsStars()
         {
-            if (_daysService.CheckLevelHasStars(_resultWindowService.DayStarsData) == false)
+            if (_daysUIService.CheckLevelHasStars() == false)
                 return;
             
             EarningsStarsContainer.DOFade(1, 0.5f)

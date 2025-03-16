@@ -7,7 +7,6 @@ namespace Code.Gameplay.Features.RoundState.Systems
     {
         private readonly IGroup<GameEntity> _entities;
         private readonly List<GameEntity> _buffer = new(2);
-        private readonly IGroup<GameEntity> _roundStateView;
 
         public ProcessRoundAttemptsSystem(GameContext context)
         {
@@ -17,11 +16,6 @@ namespace Code.Gameplay.Features.RoundState.Systems
                     GameMatcher.RoundInProcess,
                     GameMatcher.HookAttemptsLeft
                 ));
-
-            _roundStateView = context.GetGroup(
-                GameMatcher.AllOf(
-                    GameMatcher.RoundStateViewBehaviour
-                ));
         }
 
         public void Execute()
@@ -29,22 +23,9 @@ namespace Code.Gameplay.Features.RoundState.Systems
             foreach (var controllers in _entities.GetEntities(_buffer))
             {
                 if (controllers.HookAttemptsLeft > 0)
-                {
-                    UpdateTimerView(controllers.HookAttemptsLeft);
                     continue;
-                }
 
                 controllers.isRoundInProcess = false;
-
-                UpdateTimerView(0);
-            }
-        }
-
-        private void UpdateTimerView(int time)
-        {
-            foreach (var view in _roundStateView)
-            {
-                view.RoundStateViewBehaviour.UpdateTimer(time);
             }
         }
     }

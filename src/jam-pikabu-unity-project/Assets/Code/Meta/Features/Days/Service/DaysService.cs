@@ -32,8 +32,7 @@ namespace Code.Meta.Features.Days.Service
         
         private readonly List<DayProgressData> _daysProgress = new();
         private readonly Dictionary<int, DayProgressData> _daysProgressByDayId = new();
-        
-        public int RoundDuration { get; private set; }
+
         public BonusLevelType BonusLevelType { get; private set; }
         public List<DayStarData> DayStarsData { get; } = new(3);
 
@@ -42,10 +41,10 @@ namespace Code.Meta.Features.Days.Service
         public BonusLevelData BonusLevelData => _bonusLevelData;
         private DaysStaticData DaysStaticData => _staticDataService.Get<DaysStaticData>();
         private DayStarsStaticData DayStarsStaticData => _staticDataService.Get<DayStarsStaticData>();
-
-
+        
         public DaysService
-        (IStaticDataService staticDataService,
+        (
+            IStaticDataService staticDataService,
             ISoundService soundService,
             IAnalyticsService analyticsService
         )
@@ -57,10 +56,18 @@ namespace Code.Meta.Features.Days.Service
 
         public OrderType OrderType => OrderType.Last;
 
-
         public void OnExitGameLoop()
         {
             ExitGameLoopCleanup();
+        }
+
+        public void InitializeDaysProgress(IEnumerable<DayProgressData> daysProgress)
+        {
+            _daysProgressByDayId.Clear();
+            _daysProgress.RefreshList(daysProgress);
+
+            foreach (DayProgressData dayProgressData in _daysProgress)
+                _daysProgressByDayId[dayProgressData.DayId] = dayProgressData;
         }
 
         public void SetBonusLevel(BonusLevelData type, SceneTypeId sceneTypeId)
@@ -80,28 +87,20 @@ namespace Code.Meta.Features.Days.Service
             };
         }
 
-        public void InitializeDays(IEnumerable<DayProgressData> daysProgress)
-        {
-            _daysProgressByDayId.Clear();
-            _daysProgress.RefreshList(daysProgress);
-
-            foreach (DayProgressData dayProgressData in _daysProgress)
-                _daysProgressByDayId[dayProgressData.DayId] = dayProgressData;
-        }
-
         public bool IsCompletedFirstLevel()
         {
             return _daysProgress.Count != 0;
         }
 
+        public void SetActiveDay(int dayId)
+        {
+            SetActiveDay(DaysStaticData.GetDayData(dayId));
+        }
+
         public void SetActiveDay(DayData selectedDayId)
         {
             _currentDayData = selectedDayId;
-        }
-
-        public void SetActiveDay(int dayId)
-        {
-            _currentDayData = DaysStaticData.GetDayData(dayId);
+            InitDayStarsData();
         }
 
         public List<DayProgressData> GetDaysProgress()
@@ -128,23 +127,13 @@ namespace Code.Meta.Features.Days.Service
 
         public void BeginDay()
         {
-            var staticData = _staticDataService.Get<DaysStaticData>();
-            
             if (_currentDayData.IsBossDay)
                 _soundService.PlayMusic(SoundTypeId.SpecialGameplayMusic);
+            
             if (BonusLevelType is BonusLevelType.GoldenCoins)
                 _soundService.PlayMusic(SoundTypeId.SpecialGameplayMusic);
-
-            InitStars();
-
-            if (BonusLevelType is BonusLevelType.GoldenCoins)
-            {
-                _analyticsService.SendEvent(AnalyticsEventTypes.LevelStart, BonusLevelType.GoldenCoins.ToString());
-            }
-            else
-            {
-                _analyticsService.SendEvent(AnalyticsEventTypes.LevelStart, CurrentDay.ToString());
-            }
+            
+            SendLevelStartAnalytics();
            
             OnDayBegin?.Invoke();
         }
@@ -166,27 +155,6 @@ namespace Code.Meta.Features.Days.Service
                 _analyticsService.SendEvent(AnalyticsEventTypes.LevelEnd, BonusLevelType.GoldenCoins.ToString());
             
             OnDayComplete?.Invoke();
-        }
-
-        public bool CanShowTimer()
-        {
-            bool result = _currentDayData.Id >= DaysStaticData.DayToStartTimer;
-            return result;
-        }
-
-        public float GetRoundDuration()
-        {
-            if (BonusLevelType is BonusLevelType.GoldenCoins)
-                return _bonusLevelData.RoundTimeOverride;
-
-            if (CanShowTimer() == false)
-                return DaysStaticData.DisabledTimerRoundDuration;
-
-            float roundDuration = _currentDayData.IsBossDay
-                ? DaysStaticData.BossRoundDuration
-                : DaysStaticData.DefaultRoundDuration;
-
-            return roundDuration;
         }
 
         public bool CheckDayUnlocked(int dayId)
@@ -244,27 +212,12 @@ namespace Code.Meta.Features.Days.Service
                 .With(x => x.isSyncSeenStarsRequest = true);
         }
 
-        public bool CheckLevelHasStars(List<DayStarData> dayStars)
-        {
-            if (dayStars == null || dayStars.Count == 0)
-            {
-                return false;
-            }
-
-            if (BonusLevelType == BonusLevelType.GoldenCoins)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
         private DayData GetDayDataInternal(int currentDay)
         {
             return DaysStaticData.GetDayData(currentDay);
         }
 
-        private void InitStars()
+        private void InitDayStarsData()
         {
             DayStarsData.Clear();
 
@@ -283,11 +236,20 @@ namespace Code.Meta.Features.Days.Service
             }
         }
         
+        private void SendLevelStartAnalytics()
+        {
+            if (BonusLevelType is BonusLevelType.GoldenCoins)
+                _analyticsService.SendEvent(AnalyticsEventTypes.LevelStart, BonusLevelType.GoldenCoins.ToString());
+            else
+                _analyticsService.SendEvent(AnalyticsEventTypes.LevelStart, CurrentDay.ToString());
+        }
+        
         private void ExitGameLoopCleanup()
         {
             BonusLevelType = BonusLevelType.None;
             _bonusLevelData = null;
             _currentDayData = null;
+            DayStarsData.Clear();
         }
     }
 }

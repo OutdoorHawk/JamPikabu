@@ -4,6 +4,7 @@ using Code.Common.Extensions;
 using Code.Gameplay.Features.Currency.Service;
 using Code.Meta.Features.Days.Configs.Stars;
 using Code.Meta.Features.Days.Service;
+using Code.Meta.Features.Days.UIService;
 using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
@@ -31,6 +32,8 @@ namespace Code.Gameplay.Features.Currency.Behaviours
 
         private IDaysService _daysService;
         private IGameplayCurrencyService _gameplayCurrencyService;
+        private IDaysUIService _daysUIService;
+        
         private CancellationTokenSource _barToken;
 
         private const float CurrencyFlyDelay = 1.4f;
@@ -39,9 +42,11 @@ namespace Code.Gameplay.Features.Currency.Behaviours
         private void Construct
         (
             IDaysService daysService,
+            IDaysUIService daysUIService,
             IGameplayCurrencyService gameplayCurrencyService
         )
         {
+            _daysUIService = daysUIService;
             _gameplayCurrencyService = gameplayCurrencyService;
             _daysService = daysService;
         }
@@ -51,13 +56,13 @@ namespace Code.Gameplay.Features.Currency.Behaviours
             ResetToken();
         }
 
-        private void Start()
+        private void OnEnable()
         {
             _daysService.OnDayBegin += Init;
             _gameplayCurrencyService.CurrencyChanged += Refresh;
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             _daysService.OnDayBegin -= Init;
             _gameplayCurrencyService.CurrencyChanged -= Refresh;
@@ -65,7 +70,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours
 
         private void Init()
         {
-            if (_daysService.CheckLevelHasStars(_daysService.DayStarsData) == false)
+            if (_daysUIService.CheckLevelHasStars() == false)
             {
                 gameObject.DisableElement();
                 return;

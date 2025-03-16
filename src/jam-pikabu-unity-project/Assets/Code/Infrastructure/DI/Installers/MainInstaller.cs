@@ -56,6 +56,7 @@ using Code.Meta.Features.BonusLevel.Service;
 using Code.Meta.Features.Consumables.Service;
 using Code.Meta.Features.Days.Factory;
 using Code.Meta.Features.Days.Service;
+using Code.Meta.Features.Days.UIService;
 using Code.Meta.Features.LootCollection.Factory;
 using Code.Meta.Features.LootCollection.Service;
 using Code.Meta.Features.MainMenu.Service;
@@ -157,6 +158,7 @@ namespace Code.Infrastructure.DI.Installers
             Container.BindInterfacesTo<GameplayCurrencyService>().AsSingle();
             Container.BindInterfacesTo<GameOverService>().AsSingle();
             Container.BindInterfacesTo<DaysService>().AsSingle();
+            Container.BindInterfacesTo<DaysUIService>().AsSingle();
             Container.BindInterfacesTo<OrdersService>().AsSingle();
             Container.BindInterfacesTo<CustomersService>().AsSingle();
             Container.BindInterfacesTo<GameStateService>().AsSingle();
