@@ -22,6 +22,8 @@ namespace Code.Gameplay.Features.GrapplingHook
             Add(systems.Create<ProcessDescentRequestSystem>());
             Add(systems.Create<DescentGrapplingHookSystem>());
             Add(systems.Create<MarkLootAscendingInsideHookSystem>());
+            
+            Add(systems.Create<RemoveHookAttemptOnDescentSystem>());
 
             Add(systems.Create<ProcessAscentRequestSystem>());
             Add(systems.Create<AscentGrapplingHookSystem>());

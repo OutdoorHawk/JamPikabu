@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Code.Common.Entity;
 using Code.Common.Extensions;
-using Code.Gameplay.Features.RoundState.Factory;
 using Code.Gameplay.Sound;
 using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
@@ -24,7 +23,6 @@ namespace Code.Meta.Features.Days.Service
         public event Action OnDayBegin;
         public event Action OnDayComplete;
 
-        private readonly IRoundStateFactory _roundStateFactory;
         private readonly IStaticDataService _staticDataService;
         private readonly ISoundService _soundService;
         private readonly IAnalyticsService _analyticsService;
@@ -34,31 +32,32 @@ namespace Code.Meta.Features.Days.Service
         
         private readonly List<DayProgressData> _daysProgress = new();
         private readonly Dictionary<int, DayProgressData> _daysProgressByDayId = new();
+        
+        public int RoundDuration { get; private set; }
         public BonusLevelType BonusLevelType { get; private set; }
-
         public List<DayStarData> DayStarsData { get; } = new(3);
 
         public int CurrentDay => _currentDayData.Id;
         public int MaxDays => _staticDataService.Get<DaysStaticData>().Configs.Count;
+        public BonusLevelData BonusLevelData => _bonusLevelData;
         private DaysStaticData DaysStaticData => _staticDataService.Get<DaysStaticData>();
         private DayStarsStaticData DayStarsStaticData => _staticDataService.Get<DayStarsStaticData>();
 
+
         public DaysService
-        (
-            IRoundStateFactory roundStateFactory,
-            IStaticDataService staticDataService,
+        (IStaticDataService staticDataService,
             ISoundService soundService,
             IAnalyticsService analyticsService
         )
         {
-            _roundStateFactory = roundStateFactory;
             _staticDataService = staticDataService;
             _soundService = soundService;
             _analyticsService = analyticsService;
         }
 
         public OrderType OrderType => OrderType.Last;
-        
+
+
         public void OnExitGameLoop()
         {
             ExitGameLoopCleanup();
@@ -130,13 +129,7 @@ namespace Code.Meta.Features.Days.Service
         public void BeginDay()
         {
             var staticData = _staticDataService.Get<DaysStaticData>();
-
-            float roundDuration = GetRoundDuration();
-
-            _roundStateFactory.CreateRoundStateController()
-                .AddRoundDuration(roundDuration)
-                ;
-
+            
             if (_currentDayData.IsBossDay)
                 _soundService.PlayMusic(SoundTypeId.SpecialGameplayMusic);
             if (BonusLevelType is BonusLevelType.GoldenCoins)

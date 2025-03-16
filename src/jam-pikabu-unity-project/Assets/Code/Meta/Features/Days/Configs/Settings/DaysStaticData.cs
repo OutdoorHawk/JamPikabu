@@ -9,6 +9,7 @@ namespace Code.Meta.Features.Days.Configs
     {
         [TabGroup("Default")] public int StartGoldAmount = 0;
         [TabGroup("Default")] public float DefaultRoundDuration = 25;
+        [TabGroup("Default")] public int DefaultRoundHookAttempts = 5;
         [TabGroup("Default")] public float DisabledTimerRoundDuration = 99;
         [TabGroup("Default")] public float BossRoundDuration = 45;
         [TabGroup("Default")] public int DayToStartTimer = 5;

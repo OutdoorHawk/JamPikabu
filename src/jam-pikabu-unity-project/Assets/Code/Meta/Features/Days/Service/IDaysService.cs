@@ -12,10 +12,12 @@ namespace Code.Meta.Features.Days.Service
         event Action OnEnterRoundPreparation;
         event Action OnDayBegin;
         event Action OnDayComplete;
+        int RoundDuration { get;}
         BonusLevelType BonusLevelType { get; }
         List<DayStarData> DayStarsData { get; }
         int CurrentDay { get; }
         int MaxDays { get; }
+        BonusLevelData BonusLevelData { get; }
         void SetBonusLevel(BonusLevelData type, SceneTypeId sceneTypeId);
         void InitializeDays(IEnumerable<DayProgressData> daysProgress);
         bool IsCompletedFirstLevel();

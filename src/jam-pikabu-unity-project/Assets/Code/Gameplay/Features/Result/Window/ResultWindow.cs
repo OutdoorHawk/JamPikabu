@@ -249,7 +249,10 @@ namespace Code.Gameplay.Features.Result.Window
             foreach ((LootTypeId type, int amount) in _resultWindowService.GetCollectedLoot())
             {
                 if (lootCount >= LootAmountInRow && rowIndex < LootRow.Length)
+                {
                     rowIndex++;
+                    lootCount = 0;
+                }
 
                 var instance = _instantiator.InstantiatePrefabForComponent<ResultLootItem>(ResultLootItemPrefab, LootRow[rowIndex]);
                 instance.Setup(type, amount);

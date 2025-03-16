@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Currency.Service;
-using Code.Meta.Features.BonusLevel.Config;
-using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Configs.Stars;
 using Code.Meta.Features.Days.Service;
 using Cysharp.Threading.Tasks;
@@ -35,7 +32,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours
         private IDaysService _daysService;
         private IGameplayCurrencyService _gameplayCurrencyService;
         private CancellationTokenSource _barToken;
-        
+
         private const float CurrencyFlyDelay = 1.4f;
 
         [Inject]
@@ -68,21 +65,13 @@ namespace Code.Gameplay.Features.Currency.Behaviours
 
         private void Init()
         {
-            List<DayStarData> values = _daysService.DayStarsData;
-
-            if (values == null || values.Count == 0)
+            if (_daysService.CheckLevelHasStars(_daysService.DayStarsData) == false)
             {
                 gameObject.DisableElement();
                 return;
             }
 
-            if (_daysService.BonusLevelType == BonusLevelType.GoldenCoins)
-            {
-                gameObject.DisableElement();
-                return;
-            }
-
-            CreateItems(values);
+            CreateItems(_daysService.DayStarsData);
             InitText();
             BarWithdrawImage.fillAmount = 0;
             BarFillImage.fillAmount = 0;
@@ -92,7 +81,7 @@ namespace Code.Gameplay.Features.Currency.Behaviours
         {
             _maxRatingInDay = _daysService.GetDayStarData().RatingNeedAll;
             _items = Container.GetComponentsInChildren<RatingBarStarItem>();
-            
+
             for (int i = 0; i < _items.Length; i++)
             {
                 RatingBarStarItem ratingBarStarItem = _items[i];
@@ -148,8 +137,8 @@ namespace Code.Gameplay.Features.Currency.Behaviours
         {
             foreach (RatingBarStarItem item in _items)
             {
-                await DelaySeconds(FillBarDuration/ _items.Length, _barToken.Token);
-                
+                await DelaySeconds(FillBarDuration / _items.Length, _barToken.Token);
+
                 if (_currentPointsAmount >= item.RatingAmount)
                 {
                     item.PlayReplenish();

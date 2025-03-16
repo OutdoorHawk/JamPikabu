@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Code.Infrastructure.Integrations;
 using Code.Infrastructure.States.GameStateHandler;
 using Cysharp.Threading.Tasks;
 using GamePush;
+using UnityEngine;
 
 namespace Code.Infrastructure.ABTesting
 {
@@ -26,7 +28,32 @@ namespace Code.Infrastructure.ABTesting
 
         public ExperimentValueTypeId GetExperimentValue(ExperimentTagTypeId tag)
         {
+#if UNITY_EDITOR
+            string savedValue = PlayerPrefs.GetString(tag.ToString(), ExperimentValueTypeId.@default.ToString());
+            return Enum.Parse<ExperimentValueTypeId>(savedValue);
+#endif
             return _cachedExperiments.GetValueOrDefault(tag, ExperimentValueTypeId.@default);
         }
+
+        /*private bool InitializeValue(ExperimentTagTypeId tag, ExperimentValueTypeId value)
+        {
+            string tagKey = tag.ToString();
+
+            if (PlayerPrefs.HasKey(tagKey))
+            {
+                _cachedExperiments[tag] = Enum.TryParse(PlayerPrefs.GetString(tagKey), out ExperimentValueTypeId experimentValue)
+                    ? experimentValue
+                    : ExperimentValueTypeId.@default;
+
+                return true;
+            }
+
+            if (GP_Experiments.Has(tag.ToString(), value.ToString()))
+            {
+                _cachedExperiments[tag] = value;
+            }
+
+            return false;
+        }*/
     }
 }

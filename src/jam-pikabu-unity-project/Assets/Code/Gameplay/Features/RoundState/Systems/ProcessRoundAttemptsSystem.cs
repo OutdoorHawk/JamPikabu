@@ -1,25 +1,21 @@
 ﻿using System.Collections.Generic;
-using Code.Gameplay.Common.Time;
 using Entitas;
 
 namespace Code.Gameplay.Features.RoundState.Systems
 {
-    public class ProcessRoundTimerSystem : IExecuteSystem
+    public class ProcessRoundAttemptsSystem : IExecuteSystem
     {
-        private readonly ITimeService _time;
         private readonly IGroup<GameEntity> _entities;
         private readonly List<GameEntity> _buffer = new(2);
         private readonly IGroup<GameEntity> _roundStateView;
 
-        public ProcessRoundTimerSystem(GameContext context, ITimeService time)
+        public ProcessRoundAttemptsSystem(GameContext context)
         {
-            _time = time;
-
             _entities = context.GetGroup(
                 GameMatcher.AllOf(
                     GameMatcher.RoundStateController,
                     GameMatcher.RoundInProcess,
-                    GameMatcher.RoundTimeLeft
+                    GameMatcher.HookAttemptsLeft
                 ));
 
             _roundStateView = context.GetGroup(
@@ -32,17 +28,15 @@ namespace Code.Gameplay.Features.RoundState.Systems
         {
             foreach (var controllers in _entities.GetEntities(_buffer))
             {
-                if (controllers.RoundTimeLeft > 0)
+                if (controllers.HookAttemptsLeft > 0)
                 {
-                    float newTime = controllers.RoundTimeLeft - _time.DeltaTime;
-                    controllers.ReplaceRoundTimeLeft(newTime);
-                    UpdateTimerView((int)newTime);
+                    UpdateTimerView(controllers.HookAttemptsLeft);
                     continue;
                 }
 
                 controllers.isCooldownUp = true;
                 controllers.isRoundInProcess = false;
-                controllers.RemoveRoundTimeLeft();
+                controllers.RemoveHookAttemptsLeft();
 
                 UpdateTimerView(0);
             }

@@ -146,19 +146,21 @@ public static class GameComponentsLookup {
     public const int ResultProcessed = 135;
     public const int DayCompleteRequest = 136;
     public const int GameOver = 137;
-    public const int Round = 138;
-    public const int RoundComplete = 139;
-    public const int RoundDuration = 140;
-    public const int RoundInProcess = 141;
-    public const int RoundOver = 142;
-    public const int RoundStartAvailable = 143;
-    public const int RoundStartRequest = 144;
-    public const int RoundStateController = 145;
-    public const int RoundStateViewBehaviour = 146;
-    public const int RoundTimeLeft = 147;
-    public const int AudioSourceBehaviour = 148;
+    public const int HookAttemptsLeft = 138;
+    public const int HookAttemptsMax = 139;
+    public const int Round = 140;
+    public const int RoundComplete = 141;
+    public const int RoundDuration = 142;
+    public const int RoundInProcess = 143;
+    public const int RoundOver = 144;
+    public const int RoundStartAvailable = 145;
+    public const int RoundStartRequest = 146;
+    public const int RoundStateController = 147;
+    public const int RoundStateViewBehaviour = 148;
+    public const int RoundTimeLeft = 149;
+    public const int AudioSourceBehaviour = 150;
 
-    public const int TotalComponents = 149;
+    public const int TotalComponents = 151;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -299,6 +301,8 @@ public static class GameComponentsLookup {
         "ResultProcessed",
         "DayCompleteRequest",
         "GameOver",
+        "HookAttemptsLeft",
+        "HookAttemptsMax",
         "Round",
         "RoundComplete",
         "RoundDuration",
@@ -451,6 +455,8 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Orders.ResultProcessed),
         typeof(Code.Gameplay.Features.RoundState.DayCompleteRequest),
         typeof(Code.Gameplay.Features.RoundState.GameOver),
+        typeof(Code.Gameplay.Features.RoundState.HookAttemptsLeft),
+        typeof(Code.Gameplay.Features.RoundState.HookAttemptsMax),
         typeof(Code.Gameplay.Features.RoundState.Round),
         typeof(Code.Gameplay.Features.RoundState.RoundComplete),
         typeof(Code.Gameplay.Features.RoundState.RoundDuration),
