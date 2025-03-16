@@ -17,4 +17,5 @@ namespace Code.Gameplay.Features.RoundState
     [Game] public sealed class HookAttemptsLeft : IComponent { public int Value; }
     [Game] public sealed class HookAttemptsMax : IComponent { public int Value; }
     [Game] public sealed class RoundStateViewBehaviourComponent : IComponent { public RoundStateViewBehaviour Value; }
+    [Game] public sealed class RoundEndRequest : IComponent { }
 }

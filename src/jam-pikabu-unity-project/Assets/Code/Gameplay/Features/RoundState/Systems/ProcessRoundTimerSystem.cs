@@ -39,11 +39,8 @@ namespace Code.Gameplay.Features.RoundState.Systems
                     UpdateTimerView((int)newTime);
                     continue;
                 }
-
-                controllers.isCooldownUp = true;
-                controllers.isRoundInProcess = false;
-                controllers.RemoveRoundTimeLeft();
-
+                
+                controllers.isRoundEndRequest = true;
                 UpdateTimerView(0);
             }
         }

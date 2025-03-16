@@ -28,7 +28,6 @@ namespace Code.Meta.Features.Days.Service
         int GetStarsEarnedForDay(int day);
         int GetAllEarnedStars();
         void BeginDay();
-        void RoundEnd();
         void EnterRoundPreparation();
         void StarsReceived(int starsReceived);
         void DayComplete();

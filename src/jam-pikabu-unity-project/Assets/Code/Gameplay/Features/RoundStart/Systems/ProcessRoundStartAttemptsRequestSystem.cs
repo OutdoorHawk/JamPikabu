@@ -26,7 +26,7 @@ namespace Code.Gameplay.Features.RoundStart.Systems
                 entity.isRoundOver = false;
                 entity.isRoundInProcess = true;
                 entity.isRoundComplete = false;
-                entity.AddHookAttemptsLeft(entity.HookAttemptsMax);
+                entity.ReplaceHookAttemptsLeft(entity.HookAttemptsMax);
             }
         }
     }

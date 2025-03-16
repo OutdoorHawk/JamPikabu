@@ -29,8 +29,8 @@ namespace Code.Gameplay.Features.Loot.Systems
                 _ordersService = ordersService;
 
                 _timers = context.GetGroup(GameMatcher.AllOf(
-                    GameMatcher.RoundInProcess,
-                    GameMatcher.RoundTimeLeft));
+                    GameMatcher.RoundStateController,
+                    GameMatcher.RoundInProcess));
 
                 _lootToCollect = context.GetGroup(GameMatcher
                     .AllOf(
@@ -64,7 +64,7 @@ namespace Code.Gameplay.Features.Loot.Systems
                 {
                     foreach (var timer in _timers)
                     {
-                        timer.ReplaceRoundTimeLeft(0);
+                        timer.isRoundEndRequest = true;
                     }
                 }
             }

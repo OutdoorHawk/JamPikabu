@@ -55,8 +55,7 @@ namespace Code.Gameplay.Features.Loot.Systems
             _roundTimers = context.GetGroup(
                 GameMatcher.AllOf(
                     GameMatcher.RoundStateController,
-                    GameMatcher.RoundInProcess,
-                    GameMatcher.RoundTimeLeft
+                    GameMatcher.RoundInProcess
                 ));
         }
 
@@ -66,7 +65,7 @@ namespace Code.Gameplay.Features.Loot.Systems
             {
                 wood.isCollectLootRequest = false;
                 
-                foreach (var timer in _roundTimers)
+                foreach (var timer in _roundTimers) //TODO: add logic for attempts boost
                     timer.ReplaceRoundTimeLeft(timer.RoundTimeLeft + wood.TimerRefillAmount);
 
                 NotifyText(wood);

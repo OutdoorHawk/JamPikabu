@@ -34,9 +34,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
                     continue;
                 }
 
-                controllers.isCooldownUp = true;
                 controllers.isRoundInProcess = false;
-                controllers.RemoveHookAttemptsLeft();
 
                 UpdateTimerView(0);
             }

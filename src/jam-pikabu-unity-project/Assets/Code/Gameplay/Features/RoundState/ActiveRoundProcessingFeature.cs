@@ -10,7 +10,9 @@ namespace Code.Gameplay.Features.RoundState
             Add(systems.Create<ProcessRoundTimerSystem>()); //AB TEST 1
             Add(systems.Create<ProcessRoundAttemptsSystem>()); //AB TEST 2
             
-            Add(systems.Create<MoveToRoundCompleteStateWhenHookAreNotBusySystem>()); ;
+            Add(systems.Create<ProcessEndRoundSystem>()); 
+            
+            Add(systems.Create<MoveToRoundCompleteStateWhenHookAreNotBusySystem>()); 
         }
     }
 }

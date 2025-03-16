@@ -149,11 +149,6 @@ namespace Code.Meta.Features.Days.Service
             OnDayBegin?.Invoke();
         }
 
-        public void RoundEnd()
-        {
-            
-        }
-
         public void EnterRoundPreparation()
         {
             OnEnterRoundPreparation?.Invoke();
