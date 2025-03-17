@@ -3,6 +3,7 @@ using Code.Common.Extensions;
 using Code.Gameplay.Features.Abilities.Factory;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.StaticData;
+using Code.Infrastructure.ABTesting;
 using Code.Meta.Features.Consumables;
 using Code.Meta.Features.Days.Service;
 using Code.Meta.Features.LootCollection.Service;
@@ -16,15 +17,18 @@ namespace Code.Gameplay.Features.Loot.Factory
         private readonly IDaysService _daysService;
         private readonly ILootCollectionService _lootCollectionService;
         private readonly IAbilityFactory _abilityFactory;
+        private readonly IABTestService _abTestService;
 
         public LootFactory
         (
             IStaticDataService staticDataService,
             IDaysService daysService,
             ILootCollectionService lootCollectionService,
-            IAbilityFactory abilityFactory
+            IAbilityFactory abilityFactory,
+            IABTestService abTestService
         )
         {
+            _abTestService = abTestService;
             _staticDataService = staticDataService;
             _daysService = daysService;
             _lootCollectionService = lootCollectionService;
@@ -77,9 +81,14 @@ namespace Code.Gameplay.Features.Loot.Factory
         {
             LootSettingsData lootSetup = GetLootSetup(loot.LootTypeId);
 
+            int effectValue = (int)lootSetup.EffectValue;
+
+            if (_abTestService.GetExperimentValue(ExperimentTagTypeId.TIMER_REPLACE) is ExperimentValueTypeId.replace_timer_with_attempts) 
+                effectValue = 1;
+            
             loot
                 .With(x => x.isWoodChip = true)
-                .AddTimerRefillAmount((int)lootSetup.EffectValue)
+                .AddTimerRefillAmount(effectValue)
                 ;
         }
 

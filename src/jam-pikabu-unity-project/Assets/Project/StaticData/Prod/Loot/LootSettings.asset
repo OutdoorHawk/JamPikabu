@@ -295,7 +295,7 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
     BaseRatingValue: 1
-    EffectValue: 2
+    EffectValue: 3
     SpawnChance: 0
     AbilityType: 0
   - Id: 16

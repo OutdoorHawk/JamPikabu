@@ -24,7 +24,7 @@ namespace Code.Gameplay.Features.Loot.Systems
         private readonly ILocalizationService _localizationService;
 
         private readonly IGroup<GameEntity> _woods;
-        private readonly IGroup<GameEntity> _roundTimers;
+        private readonly IGroup<GameEntity> _roundStateControllers;
         private readonly GameContext _context;
         private readonly List<GameEntity> _buffer = new(8);
 
@@ -52,7 +52,7 @@ namespace Code.Gameplay.Features.Loot.Systems
                     GameMatcher.TimerRefillAmount
                 ));
 
-            _roundTimers = context.GetGroup(
+            _roundStateControllers = context.GetGroup(
                 GameMatcher.AllOf(
                     GameMatcher.RoundStateController,
                     GameMatcher.RoundInProcess
@@ -65,8 +65,14 @@ namespace Code.Gameplay.Features.Loot.Systems
             {
                 wood.isCollectLootRequest = false;
                 
-                foreach (var timer in _roundTimers) //TODO: add logic for attempts boost
-                    timer.ReplaceRoundTimeLeft(timer.RoundTimeLeft + wood.TimerRefillAmount);
+                foreach (var timer in _roundStateControllers) 
+                {
+                    if (timer.hasRoundTimeLeft) 
+                        timer.ReplaceRoundTimeLeft(timer.RoundTimeLeft + wood.TimerRefillAmount);
+                    
+                    if (timer.hasHookAttemptsLeft) 
+                        timer.ReplaceHookAttemptsLeft(timer.HookAttemptsLeft + wood.TimerRefillAmount);
+                }
 
                 NotifyText(wood);
                 ProcessConsumeVisuals(wood).Forget();
