@@ -117,7 +117,7 @@ namespace Code.Gameplay.Tutorial.Processors
                     .AwaitForTapAnywhere(token, 1f)
                 ;
             
-            var lootRect = hud.LootContainer.LootGrid.gameObject; //todo
+            var lootRect = hud.LootContainer.LootGrid.gameObject;
 
             await tutorialWindow
                     .ClearHighlights()

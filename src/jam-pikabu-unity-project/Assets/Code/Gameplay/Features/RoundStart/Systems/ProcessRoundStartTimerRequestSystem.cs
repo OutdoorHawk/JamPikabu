@@ -25,12 +25,6 @@ namespace Code.Gameplay.Features.RoundStart.Systems
                 entity.isRoundOver = false;
                 entity.isRoundInProcess = true;
                 entity.isRoundComplete = false;
-
-                if (entity.hasRoundDuration) 
-                    entity.ReplaceRoundTimeLeft(entity.RoundDuration);
-
-                if (entity.hasHookAttemptsMax) 
-                    entity.ReplaceHookAttemptsLeft(entity.HookAttemptsMax);
             }
         }
     }

@@ -27,6 +27,5 @@ namespace Code.Gameplay.Features.RoundState.Systems
                 controllers.isCooldownUp = true;
             }
         }
-        
     }
 }

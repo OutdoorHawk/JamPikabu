@@ -25,7 +25,7 @@ namespace Code.Gameplay.Features.RoundState.Systems
                 if (controllers.HookAttemptsLeft > 0)
                     continue;
 
-                controllers.isRoundInProcess = false;
+                controllers.isRoundEndRequest = true;
             }
         }
     }
