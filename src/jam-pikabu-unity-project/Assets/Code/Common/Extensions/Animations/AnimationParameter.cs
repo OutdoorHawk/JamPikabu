@@ -24,5 +24,7 @@
         Locked = 19,
         Reset  = 20,
         Selected  = 21,
+        
+        Count,
     }
 }

@@ -58,12 +58,14 @@ namespace Code.Infrastructure.AssetManagement.Behaviours
             }
 
             gameObject.DisableElement();
+            Destroy(gameObject);
         }
 
         private async UniTaskVoid HideAsync()
         {
             await DelaySeconds(_fillDuration, destroyCancellationToken);
             gameObject.DisableElement();
+            Destroy(gameObject);
         }
 
         private void UpdateProgress()

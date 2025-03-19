@@ -48,6 +48,7 @@ using Code.Infrastructure.SceneLoading;
 using Code.Infrastructure.States.Factory;
 using Code.Infrastructure.States.GameStateHandler;
 using Code.Infrastructure.States.GameStates;
+using Code.Infrastructure.States.GameStates.Bootstrap;
 using Code.Infrastructure.States.GameStates.Game;
 using Code.Infrastructure.States.StateMachine;
 using Code.Infrastructure.Systems;
