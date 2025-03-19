@@ -43,11 +43,11 @@ namespace Code.Infrastructure
 
         private async UniTaskVoid Initialize()
         {
-            UniTask loadIntegrationsTask = _integrationsService.LoadIntegrations();
+            _integrationsService.LoadIntegrations().Forget();
             await _downloadService.InitializeDownloadDataAsync();
             float downloadSize = _downloadService.GetDownloadSizeMb();
 
-            Debug.Log($"DOWNLOAD SIZE IS {downloadSize} Mb");
+            _loggerService.Log($"DOWNLOAD SIZE IS {downloadSize} Mb");
 
             if (downloadSize > 0)
             {
@@ -55,7 +55,6 @@ namespace Code.Infrastructure
                 await _downloadService.UpdateContentAsync();
             }
             
-            await loadIntegrationsTask;
             _loaderBehaviour.Hide();
             _gameStateMachine.Enter<BootstrapState>();
             DontDestroyOnLoad(gameObject);

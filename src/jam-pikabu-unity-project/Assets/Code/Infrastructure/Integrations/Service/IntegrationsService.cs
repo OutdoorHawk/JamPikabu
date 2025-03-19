@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Code.Common.Logger.Service;
 using Cysharp.Threading.Tasks;
 
@@ -20,15 +21,20 @@ namespace Code.Infrastructure.Integrations.Service
             _integrations = integrations;
         }
 
-        public async UniTask LoadIntegrations()
+        public async UniTaskVoid LoadIntegrations()
+        {
+            foreach (IIntegration integration in _integrations)
+            {
+                await TryInitIntegration(integration);
+            }
+        }
+
+        private async UniTask TryInitIntegration(IIntegration integration)
         {
             try
             {
-                foreach (IIntegration integration in _integrations)
-                {
-                    _loggerService.Log($"<b>[Bootstrap]</b> LoadIntegration: {integration.GetType().Name}");
-                    await integration.Initialize();
-                }
+                _loggerService.Log($"<b>[Bootstrap]</b> LoadIntegration: {integration.GetType().Name}");
+                await integration.Initialize();
             }
             catch (Exception e)
             {

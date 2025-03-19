@@ -28,8 +28,9 @@ namespace Code.Gameplay.Features
             Add(systems.Create<CooldownSystem>());
 
             Add(systems.Create<InitGrapplingHookSystem>());
-            Add(systems.Create<InitGameplayCurrency>());
 
+            Add(systems.Create<CurrencyFeature>());
+            
             Add(systems.Create<RoundStartFeature>());
             Add(systems.Create<ActiveRoundProcessingFeature>());
 
@@ -47,7 +48,6 @@ namespace Code.Gameplay.Features
 
             Add(systems.Create<StatsFeature>());
 
-            Add(systems.Create<CurrencyFeature>());
 
             Add(systems.Create<GameStateFeature>());
 

@@ -44,6 +44,7 @@ namespace Code.Gameplay.Features.Currency.Systems
                 request.isDestructed = true;
 
                 storage.ReplacePlus(storage.Plus + request.Plus);
+                storage.ReplaceCurrencyAmount(storage.Plus);
                 
                 if (request.hasWithdraw) 
                     storage.ReplaceWithdraw(storage.Withdraw + request.Withdraw);
@@ -55,6 +56,8 @@ namespace Code.Gameplay.Features.Currency.Systems
                 request.isDestructed = true;
 
                 storage.ReplaceMinus(storage.Minus + request.Minus);
+                
+                storage.ReplaceCurrencyAmount(storage.Minus);
                 
                 if (request.hasWithdraw) 
                     storage.ReplaceWithdraw(storage.Withdraw + request.Withdraw);

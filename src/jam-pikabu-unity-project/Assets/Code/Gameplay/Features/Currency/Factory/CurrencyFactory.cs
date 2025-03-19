@@ -2,7 +2,6 @@
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Currency.Behaviours.CurrencyAnimation;
 using Code.Gameplay.Features.Currency.Config;
-using Code.Gameplay.Features.Currency.Service;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows.Factory;
 using UnityEngine;
@@ -13,15 +12,13 @@ namespace Code.Gameplay.Features.Currency.Factory
     public class CurrencyFactory : ICurrencyFactory
     {
         private readonly IStaticDataService _staticDataService;
-        private readonly IGameplayCurrencyService _gameplayCurrencyService;
         private readonly IUIFactory _uiFactory;
         private readonly IInstantiator _instantiator;
 
-        public CurrencyFactory(IStaticDataService staticDataService, IGameplayCurrencyService gameplayCurrencyService,
+        public CurrencyFactory(IStaticDataService staticDataService,
             IUIFactory uiFactory, IInstantiator instantiator)
         {
             _staticDataService = staticDataService;
-            _gameplayCurrencyService = gameplayCurrencyService;
             _uiFactory = uiFactory;
             _instantiator = instantiator;
         }
@@ -33,6 +30,7 @@ namespace Code.Gameplay.Features.Currency.Factory
                 .With(x => x.isCurrencyStorage = true)
                 .AddCurrencyTypeId(CurrencyTypeId.Gold)
                 .AddGold(goldGold)
+                .AddCurrencyAmount(goldGold)
                 .AddEarnedInDay(0)
                 .AddWithdraw(0)
                 ;
@@ -42,6 +40,7 @@ namespace Code.Gameplay.Features.Currency.Factory
                 .With(x => x.isCurrencyStorage = true)
                 .AddCurrencyTypeId(CurrencyTypeId.Plus)
                 .AddPlus(0)
+                .AddCurrencyAmount(0)
                 .AddWithdraw(0)
                 ;
 
@@ -50,6 +49,7 @@ namespace Code.Gameplay.Features.Currency.Factory
                 .With(x => x.isCurrencyStorage = true)
                 .AddCurrencyTypeId(CurrencyTypeId.Minus)
                 .AddMinus(0)
+                .AddCurrencyAmount(0)
                 .AddWithdraw(0)
                 ;
         }

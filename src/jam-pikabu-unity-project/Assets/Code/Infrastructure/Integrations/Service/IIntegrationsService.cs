@@ -4,6 +4,6 @@ namespace Code.Infrastructure.Integrations.Service
 {
     public interface IIntegrationsService
     {
-        UniTask LoadIntegrations();
+        UniTaskVoid LoadIntegrations();
     }
 }

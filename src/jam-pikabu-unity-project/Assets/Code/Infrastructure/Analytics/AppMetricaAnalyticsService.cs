@@ -1,5 +1,7 @@
-﻿using Code.Infrastructure.States.GameStateHandler;
+﻿using Code.Infrastructure.Integrations;
+using Code.Infrastructure.States.GameStateHandler;
 using Code.Infrastructure.States.GameStateHandler.Handlers;
+using Cysharp.Threading.Tasks;
 using GamePush;
 using Io.AppMetrica;
 using Io.AppMetrica.Profile;
@@ -8,15 +10,17 @@ using UnityEngine;
 namespace Code.Infrastructure.Analytics
 {
     public class AppMetricaAnalyticsService : BaseAnalyticsService,
-        IEnterBootstrapStateHandler,
-        IMainMenuStateHandler
+        IMainMenuStateHandler,
+        IIntegration
     {
         public OrderType OrderType => OrderType.Last;
 
         private const string API_KEY = "ea54dbaf-6823-4663-8ebf-a6ca3166983b";
         private const string FIRST_LAUNCH_KEY = "first_launch";
 
-        public void OnEnterBootstrap()
+        public OrderType InitOrder => OrderType.Last;
+        
+        public UniTask Initialize()
         {
             AppMetrica.Activate(new AppMetricaConfig(API_KEY)
             {
@@ -27,6 +31,8 @@ namespace Code.Infrastructure.Analytics
 
             AppMetrica.SetUserProfileID(GP_Player.GetID().ToString());
             GP_Analytics.Hit(Application.absoluteURL);
+            
+            return UniTask.CompletedTask;
         }
 
         public void OnEnterMainMenu()

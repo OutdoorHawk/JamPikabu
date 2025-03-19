@@ -50,7 +50,6 @@ namespace Code.Infrastructure.States.GameStates
         {
             base.Enter();
             await LoadServiceData();
-            _gameStateHandlerService.OnEnterBootstrapState();
             OnLoaded();
         }
 
