@@ -1,4 +1,5 @@
-﻿using Code.Common.Extensions;
+﻿using System;
+using Code.Common.Extensions;
 using Code.Meta.UI.Shop.WindowService;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,7 @@ namespace Code.Meta.UI.Shop.Window
         public Button Button;
         public GameObject OpenedTabIcon;
         public GameObject ClosedTabIcon;
+        public GameObject LockedButtonTabIcon;
         public GameObject Pin;
 
         private IShopWindowService _shopWindowService;
@@ -20,6 +22,11 @@ namespace Code.Meta.UI.Shop.Window
         private void Construct(IShopWindowService shopWindowService)
         {
             _shopWindowService = shopWindowService;
+        }
+
+        private void Awake()
+        {
+            LockedButtonTabIcon.DisableElement();
         }
 
         private void Start()
@@ -33,6 +40,16 @@ namespace Code.Meta.UI.Shop.Window
         {
             Button.onClick.RemoveListener(SelectTab);
             _shopWindowService.OnSelectionChanged -= Refresh;
+        }
+
+        public void SetLocked()
+        {
+            LockedButtonTabIcon.EnableElement();
+        }
+
+        public void SetUnlocked()
+        {
+            LockedButtonTabIcon.DisableElement();
         }
 
         private void SelectTab()
