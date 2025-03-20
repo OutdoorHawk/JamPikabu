@@ -31,6 +31,7 @@ namespace Code.Gameplay.Features.Abilities.Systems
                 
                 var component = _instantiator.InstantiateComponent<StickToKinematic>(target.View.gameObject);
                 component.StickLayerMask = CollisionLayer.Hook.AsMask();
+                target.AddStickToKinematic(component);
                 ability.isDestructed = true;
             }
         }

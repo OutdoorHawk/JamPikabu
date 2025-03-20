@@ -57,7 +57,7 @@ MonoBehaviour:
       m_LocalVariables: []
   - Id: 4
     Type: 4
-    Value: 2.5
+    Value: 2
     Cooldown: 0
     ActivationChance: 100
     LocalizedDescription:

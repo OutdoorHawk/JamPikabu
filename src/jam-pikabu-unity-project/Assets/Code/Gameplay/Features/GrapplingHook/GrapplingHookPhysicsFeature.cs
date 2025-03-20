@@ -29,6 +29,7 @@ namespace Code.Gameplay.Features.GrapplingHook
             Add(systems.Create<ProcessAscentRequestSystem>());
             Add(systems.Create<AscentGrapplingHookSystem>());
             Add(systems.Create<UpdateHookStatChangesOnAscendCompleteSystem>());
+            Add(systems.Create<UpdateStickyToHookOnAscendCompleteSystem>());
 
             Add(systems.Create<GrapplingHookCollectLootSystem>());
 
