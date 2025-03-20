@@ -139,6 +139,34 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
+  - Id: 10
+    Type: 10
+    Value: 0.1
+    Cooldown: 2
+    ActivationChance: 100
+    LocalizedDescription:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - Id: 11
+    Type: 11
+    Value: -0.1
+    Cooldown: 2
+    ActivationChance: 100
+    LocalizedDescription:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   references:
     version: 2
     RefIds: []

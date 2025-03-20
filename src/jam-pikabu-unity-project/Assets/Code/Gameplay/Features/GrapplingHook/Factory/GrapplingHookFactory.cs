@@ -22,7 +22,9 @@ namespace Code.Gameplay.Features.GrapplingHook.Factory
             var config = _staticDataService.Get<GrapplingHookStaticData>();
             
             Dictionary<Stats,float> baseStats = InitStats.EmptyStatDictionary()
-                .With(x => x[Stats.Speed] = 1);
+                .With(x => x[Stats.Speed] = 1)
+                .With(x => x[Stats.Scale] = 1)
+                ;
 
             return CreateGameEntity
                     .Empty()
@@ -33,6 +35,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Factory
                     .AddYAxisDownSpeed(config.YAxisDownSpeed)
                     .AddYAxisUpSpeed(config.YAxisUpSpeed)
                     .AddSpeed(baseStats[Stats.Speed])
+                    .AddScale(baseStats[Stats.Scale])
                     .AddHookSpeedModifier(1)
                     .AddStopMovementRaycastRadius(config.StopMovementRaycastRadius)
                     .AddCollectLootRaycastRadius(config.CollectLootRaycastRadius)

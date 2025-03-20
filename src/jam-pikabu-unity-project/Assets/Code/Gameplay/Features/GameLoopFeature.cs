@@ -4,7 +4,6 @@ using Code.Gameplay.Features.CharacterStats;
 using Code.Gameplay.Features.Consumables;
 using Code.Gameplay.Features.Cooldowns.Systems;
 using Code.Gameplay.Features.Currency;
-using Code.Gameplay.Features.Currency.Systems;
 using Code.Gameplay.Features.Days.Systems;
 using Code.Gameplay.Features.Distraction;
 using Code.Gameplay.Features.GameState;
@@ -30,7 +29,7 @@ namespace Code.Gameplay.Features
             Add(systems.Create<InitGrapplingHookSystem>());
 
             Add(systems.Create<CurrencyFeature>());
-            
+
             Add(systems.Create<RoundStartFeature>());
             Add(systems.Create<ActiveRoundProcessingFeature>());
 
@@ -41,13 +40,12 @@ namespace Code.Gameplay.Features
 
             Add(systems.Create<LootSpawningFeature>());
             Add(systems.Create<LootConsumeFeature>());
-            
+
             Add(systems.Create<ConsumablesFeature>());
 
             Add(systems.Create<OrdersFeature>());
 
             Add(systems.Create<StatsFeature>());
-
 
             Add(systems.Create<GameStateFeature>());
 

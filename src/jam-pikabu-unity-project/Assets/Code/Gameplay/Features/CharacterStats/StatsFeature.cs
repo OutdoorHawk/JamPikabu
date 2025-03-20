@@ -10,6 +10,9 @@ namespace Code.Gameplay.Features.CharacterStats
             Add(systems.Create<StatChangeSystem>());
 
             Add(systems.Create<ApplySpeedFromStatsSystem>());
+            Add(systems.Create<ApplyScaleFromStatsSystem>());
+            
+            Add(systems.Create<DestroyStatsWithExpiredDurationSystem>());
         }
     }
 }

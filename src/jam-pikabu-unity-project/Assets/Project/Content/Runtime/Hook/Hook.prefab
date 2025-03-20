@@ -5926,6 +5926,7 @@ MonoBehaviour:
   _ascentDelay: 0.375
   _openClawsDelay: 0.2
   _collectAnimationDelay: 1
+  _scaleChangeDuration: 0.3
   _slowerColor: {r: 0.16470589, g: 0.9019608, b: 1, a: 1}
   _fasterColor: {r: 0.6484554, g: 0.90188676, b: 0.34543958, a: 1}
   _triggerMask:

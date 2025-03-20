@@ -1,4 +1,5 @@
-﻿using Code.Gameplay.Features.GrapplingHook.Systems;
+﻿using Code.Gameplay.Features.CharacterStats;
+using Code.Gameplay.Features.GrapplingHook.Systems;
 using Code.Infrastructure.Systems;
 
 namespace Code.Gameplay.Features.GrapplingHook
@@ -27,13 +28,15 @@ namespace Code.Gameplay.Features.GrapplingHook
 
             Add(systems.Create<ProcessAscentRequestSystem>());
             Add(systems.Create<AscentGrapplingHookSystem>());
+            Add(systems.Create<UpdateHookStatChangesOnAscendCompleteSystem>());
 
             Add(systems.Create<GrapplingHookCollectLootSystem>());
 
             Add(systems.Create<UpdateGrapplingHookBusyStateSystem>());
 
             Add(systems.Create<GrapplingHookVisualsSystem>());
-
+            Add(systems.Create<ApplyGrapplingHookScaleSystem>());
+            
             Add(systems.Create<ResetGrapplingHookMovementSystem>());
         }
     }

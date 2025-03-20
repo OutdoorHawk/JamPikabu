@@ -22,8 +22,10 @@ namespace Code.Infrastructure.Intro
 
         public async UniTask WaitForAnimationCompleteAsync()
         {
+#if !UNITY_EDITOR
             await _animationFinishedSource.Task;
             await VideoPlayer.HidePlayer();
+#endif
             Destroy(gameObject);
         }
 

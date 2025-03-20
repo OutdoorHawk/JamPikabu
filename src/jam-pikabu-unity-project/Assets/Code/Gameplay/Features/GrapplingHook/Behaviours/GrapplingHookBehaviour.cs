@@ -23,6 +23,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Behaviours
         [SerializeField] private float _ascentDelay = 0.25f;
         [SerializeField] private float _openClawsDelay = 0.2f;
         [SerializeField] private float _collectAnimationDelay = 1f;
+        [SerializeField] private float _scaleChangeDuration = 0.3f;
         [SerializeField] private Color _slowerColor;
         [SerializeField] private Color _fasterColor;
         [SerializeField] private LayerMask _triggerMask;
@@ -33,6 +34,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Behaviours
 
         private float _lastMoveDirection;
 
+        private Tween _scaleTween;
         private Tween[] _colorTweens;
         private Material[] _materials;
 
@@ -55,7 +57,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Behaviours
 
             for (int i = 0; i < renderers.Length; i++)
                 _materials[i] = renderers[i].material;
-            
+
             _heavyParticles.DisableElement();
         }
 
@@ -66,7 +68,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Behaviours
 
             if (other.isTrigger)
                 return;
-            
+
             Triggered = true;
         }
 
@@ -120,8 +122,28 @@ namespace Code.Gameplay.Features.GrapplingHook.Behaviours
         {
             if (_heavyParticles.activeSelf)
                 return;
-            
+
             ShowHeavyParticlesAsync().Forget();
+        }
+
+        public void ApplyScaleVisual(float scale)
+        {
+            Vector3 targetScale = Vector3.one * scale;
+
+            if (_scaleTween != null)
+                return;
+
+            if (transform.localScale.Equals(targetScale))
+                return;
+            
+            _soundService.PlaySound(SoundTypeId.SizeChangeAbility);
+            
+            _scaleTween = transform
+                    .DOScale(targetScale, _scaleChangeDuration)
+                    .SetEase(Ease.OutBounce)
+                    .SetLink(gameObject)
+                    .OnComplete(() => _scaleTween = null)
+                ;
         }
 
         private async UniTaskVoid CloseAndAscentAsync()
@@ -185,6 +207,11 @@ namespace Code.Gameplay.Features.GrapplingHook.Behaviours
                         .SetLink(gameObject)
                     ;
             }
+        }
+
+        private static bool CheckActivation(int activationChance)
+        {
+            return activationChance > Random.Range(0, 101);
         }
     }
 }

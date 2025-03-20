@@ -33,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.GrapplingHook.Speed speed { get { return (Code.Gameplay.Features.GrapplingHook.Speed)GetComponent(GameComponentsLookup.Speed); } }
+    public Code.Gameplay.Features.CharacterStats.Speed speed { get { return (Code.Gameplay.Features.CharacterStats.Speed)GetComponent(GameComponentsLookup.Speed); } }
     public float Speed { get { return speed.Value; } }
     public bool hasSpeed { get { return HasComponent(GameComponentsLookup.Speed); } }
 
     public GameEntity AddSpeed(float newValue) {
         var index = GameComponentsLookup.Speed;
-        var component = (Code.Gameplay.Features.GrapplingHook.Speed)CreateComponent(index, typeof(Code.Gameplay.Features.GrapplingHook.Speed));
+        var component = (Code.Gameplay.Features.CharacterStats.Speed)CreateComponent(index, typeof(Code.Gameplay.Features.CharacterStats.Speed));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceSpeed(float newValue) {
         var index = GameComponentsLookup.Speed;
-        var component = (Code.Gameplay.Features.GrapplingHook.Speed)CreateComponent(index, typeof(Code.Gameplay.Features.GrapplingHook.Speed));
+        var component = (Code.Gameplay.Features.CharacterStats.Speed)CreateComponent(index, typeof(Code.Gameplay.Features.CharacterStats.Speed));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

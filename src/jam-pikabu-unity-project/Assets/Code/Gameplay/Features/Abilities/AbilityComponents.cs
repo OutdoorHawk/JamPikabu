@@ -29,4 +29,10 @@ namespace Code.Gameplay.Features.Abilities
     [Game] public sealed class HeavyObjectSpeedFactor : IComponent { public float Value; }
     
     [Game] public sealed class StickyToHookAbility : IComponent { }
+    
+    [Game] public sealed class IncreaseHookSizeAbility : IComponent { }
+    
+    [Game] public sealed class DecreaseHookSizeAbility : IComponent { }
+    
+    [Game] public sealed class AbilityEffectValue : IComponent { public float Value;  }
 }

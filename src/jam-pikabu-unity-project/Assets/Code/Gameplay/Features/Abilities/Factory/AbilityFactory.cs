@@ -33,7 +33,7 @@ namespace Code.Gameplay.Features.Abilities.Factory
                 case AbilityTypeId.SwapPositions:
                     CreateSwapPositionsAbility(ability, typeId);
                     break;
-                case AbilityTypeId.ChangeSizes:
+                case AbilityTypeId.ChangeSizesIngredient:
                     CreateChangeSizesAbility(ability, typeId);
                     break;
                 case AbilityTypeId.HookSpeedChange:
@@ -53,6 +53,12 @@ namespace Code.Gameplay.Features.Abilities.Factory
                     break;
                 case AbilityTypeId.StickyToHook:
                     CreateStickyToHookAbility(ability, typeId);
+                    break;
+                case AbilityTypeId.IncreaseHookSize:
+                    CreateIncreaseHookSizeAbility(ability, typeId);
+                    break;
+                case AbilityTypeId.DecreaseHookSize:
+                    CreateDecreaseHookSizeAbility(ability, typeId);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(typeId), typeId, null);
@@ -154,6 +160,30 @@ namespace Code.Gameplay.Features.Abilities.Factory
         {
             ability
                 .With(x => x.isStickyToHookAbility = true)
+                ;
+        }
+
+        private void CreateIncreaseHookSizeAbility(GameEntity ability, AbilityTypeId typeId)
+        {
+            AbilityData staticData = AbilityStaticData.GetDataByType(typeId);
+            
+            ability
+                .With(x => x.isIncreaseHookSizeAbility = true)
+                .AddAbilityDuration(staticData.Cooldown)
+                .AddActivationChance(staticData.ActivationChance)
+                .AddAbilityEffectValue(staticData.Value)
+                ;
+        }
+
+        private void CreateDecreaseHookSizeAbility(GameEntity ability, AbilityTypeId typeId)
+        {
+            AbilityData staticData = AbilityStaticData.GetDataByType(typeId);
+            
+            ability
+                .With(x => x.isDecreaseHookSizeAbility = true)
+                .AddAbilityDuration(staticData.Cooldown)
+                .AddActivationChance(staticData.ActivationChance)
+                .AddAbilityEffectValue(staticData.Value)
                 ;
         }
     }

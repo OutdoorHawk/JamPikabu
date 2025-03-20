@@ -18,7 +18,7 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
                     GameMatcher.XAxisMovementAvailable,
                     GameMatcher.DescentAvailable)
             );
-            
+
             _roundStateControllers = context.GetGroup(GameMatcher
                 .AllOf(
                     GameMatcher.RoundStateController,
@@ -30,11 +30,11 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
         public void Execute()
         {
             foreach (var roundState in _roundStateControllers)
-            foreach (var _ in _hooks.GetEntities(_buffer))
+            foreach (var hook in _hooks.GetEntities(_buffer))
             {
                 if (roundState.HookAttemptsLeft <= 0)
                     continue;
-                
+
                 roundState.ReplaceHookAttemptsLeft(roundState.HookAttemptsLeft - 1);
             }
         }
