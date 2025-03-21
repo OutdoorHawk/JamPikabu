@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Code.Infrastructure.ABTesting;
 using Sirenix.OdinInspector;
+using Zenject;
 
 namespace Code.Gameplay.StaticData.Data
 {
@@ -11,6 +13,17 @@ namespace Code.Gameplay.StaticData.Data
         private readonly Dictionary<int, Dictionary<int, TData>> _uniqueIndexes = new();
         private Dictionary<int, TData> _uniqueIndex;
         private Dictionary<int, List<TData>> _nonUniqueIndex;
+        
+        protected IABTestService _abTestService;
+
+        [Inject]
+        private void Construct
+        (
+            IABTestService abTestService
+        )
+        {
+            _abTestService = abTestService;
+        }
 
         public override void OnConfigPreInit()
         {

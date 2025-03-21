@@ -54,7 +54,7 @@ namespace Code.Meta.Features.Days.Service
             _analyticsService = analyticsService;
         }
 
-        public OrderType OrderType => OrderType.Last;
+        public OrderType StateHandlerOrder => OrderType.Last;
 
         public void OnExitGameLoop()
         {

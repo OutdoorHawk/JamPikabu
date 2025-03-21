@@ -2,6 +2,6 @@
 {
     public interface IOrderableHandler
     {
-        public OrderType OrderType { get; }
+        public OrderType StateHandlerOrder { get; }
     }
 }

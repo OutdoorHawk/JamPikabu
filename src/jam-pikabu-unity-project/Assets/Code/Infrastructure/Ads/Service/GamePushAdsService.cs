@@ -27,7 +27,7 @@ namespace Code.Infrastructure.Ads.Service
         public override bool CanShowBanner => IsStickyAvailable();
         public override bool CanShowPreload => IsPreloadAvailable();
 
-        public OrderType OrderType => OrderType.Last;
+        public OrderType StateHandlerOrder => OrderType.Last;
 
         private readonly IDaysService _daysService;
         private readonly ISoundService _soundService;

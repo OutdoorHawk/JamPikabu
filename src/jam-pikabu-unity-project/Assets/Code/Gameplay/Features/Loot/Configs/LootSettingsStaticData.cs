@@ -1,4 +1,6 @@
-﻿using Code.Gameplay.StaticData.Data;
+﻿using Code.Gameplay.Features.Abilities;
+using Code.Gameplay.StaticData.Data;
+using Code.Infrastructure.ABTesting;
 using Code.Infrastructure.View;
 using UnityEngine;
 
@@ -13,7 +15,6 @@ namespace Code.Gameplay.Features.Loot.Configs
         public float DelayAfterLootSpawn = 0.4f;
         public int MaxIngredientLootAmount = 35;
         public int MaxEachExtraLootAmount = 2;
-        public int MaxConsumablesLootPerLevel = 2;
         public float CollectFlyAnimationDuration = 0.5f;
 
         public EntityView LootItemUI;
@@ -24,11 +25,22 @@ namespace Code.Gameplay.Features.Loot.Configs
             base.OnConfigInit();
 
             AddIndex(setup => (int)setup.Type);
+            InitExperiment();
         }
 
         public LootSettingsData GetConfig(LootTypeId typeId)
         {
             return GetByKey((int)typeId);
+        }
+
+        private void InitExperiment()
+        {
+            if (_abTestService.GetExperimentValue(ExperimentTagTypeId.TIMER_REPLACE)
+                is not ExperimentValueTypeId.replace_timer_with_attempts)
+                return;
+
+            GetConfig(LootTypeId.Pumpkin).AbilityType = AbilityTypeId.DecreaseHookSize;
+            GetConfig(LootTypeId.Pea).AbilityType = AbilityTypeId.IncreaseHookSize;
         }
     }
 }

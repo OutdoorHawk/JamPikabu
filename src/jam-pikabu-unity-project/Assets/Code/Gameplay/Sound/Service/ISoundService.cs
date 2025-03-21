@@ -9,7 +9,6 @@ namespace Code.Gameplay.Sound.Service
     {
         private const float DefaultSoundFadeDuration = 0.1f;
         event Action OnSongUpdated;
-        OrderType OrderType { get; }
         void SetVolume(SoundVolumeTypeId channelType, float value);
         void MuteVolume();
         void NextSong();

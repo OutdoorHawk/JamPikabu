@@ -26,11 +26,11 @@ namespace Code.Infrastructure.States.GameStateHandler
             _loadLevelStateHandlers = loadLevelStateHandlers;
             _mainMenuStateHandlers = mainMenuStateHandlers;
             
-            _enterLoadProgressStateHandlers.Sort((x, y) => x.OrderType.CompareTo(y.OrderType));
-            _enterGameLoopStateHandlers.Sort((x, y) => x.OrderType.CompareTo(y.OrderType));
-            _mainMenuStateHandlers.Sort((x, y) => x.OrderType.CompareTo(y.OrderType));
-            _exitGameLoopStateHandlers.Sort((x, y) => x.OrderType.CompareTo(y.OrderType));
-            _loadLevelStateHandlers.Sort((x, y) => x.OrderType.CompareTo(y.OrderType));
+            _enterLoadProgressStateHandlers.Sort((x, y) => x.StateHandlerOrder.CompareTo(y.StateHandlerOrder));
+            _enterGameLoopStateHandlers.Sort((x, y) => x.StateHandlerOrder.CompareTo(y.StateHandlerOrder));
+            _mainMenuStateHandlers.Sort((x, y) => x.StateHandlerOrder.CompareTo(y.StateHandlerOrder));
+            _exitGameLoopStateHandlers.Sort((x, y) => x.StateHandlerOrder.CompareTo(y.StateHandlerOrder));
+            _loadLevelStateHandlers.Sort((x, y) => x.StateHandlerOrder.CompareTo(y.StateHandlerOrder));
         }
 
         public void OnEnterLoadProgressState()

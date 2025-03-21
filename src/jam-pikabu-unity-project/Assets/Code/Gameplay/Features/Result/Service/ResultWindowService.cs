@@ -25,7 +25,7 @@ namespace Code.Gameplay.Features.Result.Service
         private readonly Dictionary<CurrencyTypeId, int> _collectedCurrency = new();
 
         public int CurrentDay { get; private set; }
-        public OrderType OrderType => OrderType.Last;
+        public OrderType StateHandlerOrder => OrderType.Last;
 
         public ResultWindowService
         (

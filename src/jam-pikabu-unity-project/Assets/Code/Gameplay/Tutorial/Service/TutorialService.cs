@@ -39,7 +39,7 @@ namespace Code.Gameplay.Tutorial.Service
 
         public event Action OnTutorialUpdate;
 
-        public OrderType OrderType => OrderType.Tutorial;
+        public OrderType StateHandlerOrder => OrderType.Tutorial;
 
         public TutorialService
         (

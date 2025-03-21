@@ -102,7 +102,7 @@ namespace Code.Gameplay.Sound.Service
 
         #region ILoadProgressStateStateHandler
 
-        public OrderType OrderType => OrderType.Last;
+        public OrderType StateHandlerOrder => OrderType.Last;
 
         public void OnEnterLoadProgress()
         {

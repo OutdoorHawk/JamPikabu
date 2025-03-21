@@ -24,7 +24,7 @@ namespace Code.Gameplay.Features.Currency.Service
 
         private readonly Dictionary<CurrencyTypeId, CurrencyCount> _currencies = new();
 
-        public OrderType OrderType => OrderType.Last;
+        public OrderType StateHandlerOrder => OrderType.Last;
 
         public IReadOnlyDictionary<CurrencyTypeId, CurrencyCount> Currencies => _currencies;
 

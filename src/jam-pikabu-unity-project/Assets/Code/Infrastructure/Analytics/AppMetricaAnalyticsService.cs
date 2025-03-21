@@ -1,4 +1,5 @@
-﻿using Code.Infrastructure.Integrations;
+﻿using Code.Infrastructure.ABTesting;
+using Code.Infrastructure.Integrations;
 using Code.Infrastructure.States.GameStateHandler;
 using Code.Infrastructure.States.GameStateHandler.Handlers;
 using Cysharp.Threading.Tasks;
@@ -13,12 +14,18 @@ namespace Code.Infrastructure.Analytics
         IMainMenuStateHandler,
         IIntegration
     {
-        public OrderType OrderType => OrderType.Last;
+        private readonly IABTestService _abTestService;
 
         private const string API_KEY = "ea54dbaf-6823-4663-8ebf-a6ca3166983b";
         private const string FIRST_LAUNCH_KEY = "first_launch";
 
+        public OrderType StateHandlerOrder => OrderType.Last;
         public OrderType InitOrder => OrderType.Last;
+
+        public AppMetricaAnalyticsService(IABTestService abTestService)
+        {
+            _abTestService = abTestService;
+        }
         
         public UniTask Initialize()
         {
@@ -76,9 +83,14 @@ namespace Code.Infrastructure.Analytics
 
         private void SendUserPassedLevel()
         {
+            ExperimentValueTypeId experimentValue = _abTestService.GetExperimentValue(ExperimentTagTypeId.TIMER_REPLACE);
+            
             var userProfile = new UserProfile()
                 .Apply(Attribute.CustomCounter("passed_levels")
-                    .WithDelta(1));
+                    .WithDelta(1))
+                .Apply(Attribute.CustomNumber(nameof(ExperimentTagTypeId.TIMER_REPLACE))
+                    .WithValue((int)experimentValue))
+                ;
 
             AppMetrica.ReportUserProfile(userProfile);
         }
