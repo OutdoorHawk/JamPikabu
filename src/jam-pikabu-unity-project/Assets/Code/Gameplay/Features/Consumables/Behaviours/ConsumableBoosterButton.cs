@@ -156,6 +156,7 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
         {
             _consumablesFactory.ActivateConsumable(Type);
             StartCooldown();
+            RefreshButton();
         }
 
         private void StartCooldown()
@@ -163,16 +164,16 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
             ConsumablesData data = StaticData.GetConsumableData(Type);
             _cooldownRoutine = StartCoroutine(CooldownRoutine(data.CooldownSeconds));
             IconFilled.fillAmount = 1;
-            IconFilled.DOFillAmount(0, data.CooldownSeconds)
-                .SetEase(Ease.Linear)
-                .SetLink(gameObject);
         }
 
         private IEnumerator CooldownRoutine(float cooldownSeconds)
         {
-            yield return new WaitForSeconds(cooldownSeconds);
+            while (_gameStateService.CurrentState is GameStateTypeId.RoundLoop)
+                yield return null;
+            
             _cooldownRoutine = null;
             Refresh();
+            IconFilled.fillAmount = 0;
         }
     }
 }

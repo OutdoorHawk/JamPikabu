@@ -137,6 +137,18 @@ MonoBehaviour:
     m_Localized: lvl
     m_Metadata:
       m_Items: []
+  - m_Id: 93126833477996544
+    m_Localized: 'Increases hook scale
+
+      for a short time.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 93127012935487488
+    m_Localized: 'Decreases hook scale
+
+      for a short time.'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

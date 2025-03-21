@@ -46,7 +46,7 @@ namespace Code.Infrastructure
 
         private async UniTaskVoid Initialize()
         {
-            _integrationsService.LoadIntegrations().Forget();
+            UniTask loadIntegrationsTask = _integrationsService.LoadIntegrations();
             await _downloadService.InitializeDownloadDataAsync();
             float downloadSize = _downloadService.GetDownloadSizeMb();
 
@@ -57,6 +57,8 @@ namespace Code.Infrastructure
                 _loaderBehaviour.Init();
                 await _downloadService.UpdateContentAsync();
             }
+
+            await loadIntegrationsTask;
             
             _loaderBehaviour.Hide();
             _gameStateMachine.Enter<BootstrapState, BootstrapStatePayload>(new BootstrapStatePayload(_introAnimator));

@@ -128,6 +128,20 @@ MonoBehaviour:
     m_Localized: "You\u2019ve opened the consumables tab in the ledger! "
     m_Metadata:
       m_Items: []
+  - m_Id: 150770639186382848
+    m_Localized: 'The timer shows how much time you have left to prepare the order.
+
+      If
+      it reaches zero, the round will end!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160211834098634752
+    m_Localized: 'The counter shows how many attempts you have left to complete the
+      order.
+
+      If it reaches zero, the round will end!'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

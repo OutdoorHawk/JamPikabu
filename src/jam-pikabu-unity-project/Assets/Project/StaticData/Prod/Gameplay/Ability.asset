@@ -146,9 +146,9 @@ MonoBehaviour:
     ActivationChance: 100
     LocalizedDescription:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 93126833477996544
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
@@ -160,9 +160,9 @@ MonoBehaviour:
     ActivationChance: 100
     LocalizedDescription:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 93127012935487488
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0

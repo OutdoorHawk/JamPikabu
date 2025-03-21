@@ -19,9 +19,10 @@ namespace Code.Infrastructure.Integrations.Service
         {
             _loggerService = loggerService;
             _integrations = integrations;
+            _integrations.Sort((x, y) => x.InitOrder.CompareTo(y.InitOrder));
         }
 
-        public async UniTaskVoid LoadIntegrations()
+        public async UniTask LoadIntegrations()
         {
             foreach (IIntegration integration in _integrations)
             {

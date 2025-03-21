@@ -10,7 +10,7 @@ namespace Code.Infrastructure.ABTesting
 {
     public class GamePushExperimentService : IABTestService, IIntegration
     {
-        public OrderType InitOrder => OrderType.Last;
+        public OrderType InitOrder => OrderType.Second;
 
         private readonly Dictionary<ExperimentTagTypeId, ExperimentValueTypeId> _cachedExperiments = new();
 

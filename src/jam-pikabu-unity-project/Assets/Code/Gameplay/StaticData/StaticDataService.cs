@@ -15,6 +15,7 @@ namespace Code.Gameplay.StaticData
         private readonly IAssetProvider _assetProvider;
 
         private readonly Dictionary<Type, BaseStaticData> _configs = new();
+        private readonly DiContainer _diContainer;
 
         private const string BUILD_CONFIG = "BuildConfig";
 
@@ -22,9 +23,11 @@ namespace Code.Gameplay.StaticData
         (
             ILoggerService loggerService,
             LazyInject<List<IConfigsInitHandler>> handlers,
-            IAssetProvider assetProvider
+            IAssetProvider assetProvider,
+            DiContainer diContainer
         )
         {
+            _diContainer = diContainer;
             _loggerService = loggerService;
             _handlers = handlers;
             _assetProvider = assetProvider;
@@ -59,6 +62,11 @@ namespace Code.Gameplay.StaticData
             }
             
             _configs[buildConfig.GetType()] = buildConfig;
+
+            foreach (var config in result)
+            {
+                _diContainer.Inject(config);
+            }
 
             foreach (var config in result)
             {

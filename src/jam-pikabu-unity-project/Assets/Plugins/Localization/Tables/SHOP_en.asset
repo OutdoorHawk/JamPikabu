@@ -68,6 +68,10 @@ MonoBehaviour:
     m_Localized: 'At stock:'
     m_Metadata:
       m_Items: []
+  - m_Id: 90987674651021312
+    m_Localized: Breaks into chips, collecting them gives the claw an extra attempt.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

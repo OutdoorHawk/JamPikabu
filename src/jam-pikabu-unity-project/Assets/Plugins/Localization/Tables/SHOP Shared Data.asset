@@ -59,6 +59,10 @@ MonoBehaviour:
     m_Key: CONSUMABLES_AMOUNT
     m_Metadata:
       m_Items: []
+  - m_Id: 90987674651021312
+    m_Key: S_WOOD_CONSUMABLE_DESCRIPTION_B
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

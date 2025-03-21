@@ -1,9 +1,7 @@
-using System.Collections.Generic;
 using Code.Common.Logger.Service;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows.Factory;
 using Code.Infrastructure.AssetManagement.AssetProvider;
-using Code.Infrastructure.Integrations;
 using Code.Infrastructure.Localization;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
@@ -30,8 +28,7 @@ namespace Code.Infrastructure.States.GameStates.Bootstrap
             IStaticDataService staticDataService,
             IAssetProvider assetProvider,
             ILocalizationService localizationService,
-            ILoggerService loggerService,
-            List<IIntegration> integrations
+            ILoggerService loggerService
         )
         {
             _localizationService = localizationService;
