@@ -28,7 +28,7 @@ namespace Code.Infrastructure.ABTesting
 
         public ExperimentValueTypeId GetExperimentValue(ExperimentTagTypeId tag)
         {
-#if UNITY_EDITOR
+#if CHEAT
             string savedValue = PlayerPrefs.GetString(tag.ToString(), ExperimentValueTypeId.@default.ToString());
             return Enum.Parse<ExperimentValueTypeId>(savedValue);
 #endif
