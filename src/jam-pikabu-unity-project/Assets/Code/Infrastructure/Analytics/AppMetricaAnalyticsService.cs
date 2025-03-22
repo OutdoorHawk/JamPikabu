@@ -39,6 +39,7 @@ namespace Code.Infrastructure.Analytics
             AppMetrica.SetUserProfileID(GP_Player.GetID().ToString());
             GP_Analytics.Hit(Application.absoluteURL);
             
+            _logger.Log("[Analytics] AppMetrica initialized");
             return UniTask.CompletedTask;
         }
 

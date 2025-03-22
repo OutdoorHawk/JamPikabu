@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Code.Gameplay.Sound.Service;
 using Code.Gameplay.StaticData;
@@ -98,7 +99,6 @@ namespace Code.Infrastructure.Ads.Service
 
         public void OnExitMainMenu()
         {
-            
         }
 
         public void OnExitGameLoop()
@@ -114,7 +114,16 @@ namespace Code.Infrastructure.Ads.Service
             base.RequestInterstitial();
 
             _analyticsService.SetAdsType(adsType: AdsEventTypes.Interstitial);
-            GP_Ads.ShowFullscreen(onFullscreenStart: Started, onFullscreenClose: Finished);
+
+            try
+            {
+                GP_Ads.ShowFullscreen(onFullscreenStart: Started, onFullscreenClose: Finished);
+            }
+            catch (Exception e)
+            {
+                NotifyErrorHandlers(e.ToString());
+                ResetAdsSettings();
+            }
         }
 
         public override void RequestRewardedAd()
@@ -122,7 +131,16 @@ namespace Code.Infrastructure.Ads.Service
             base.RequestRewardedAd();
 
             _analyticsService.SetAdsType(adsType: AdsEventTypes.Rewarded);
-            GP_Ads.ShowRewarded(_identifier, RewardedSuccess, Started, Finished);
+            
+            try
+            {
+                GP_Ads.ShowRewarded(_identifier, RewardedSuccess, Started, Finished);
+            }
+            catch (Exception e)
+            {
+                NotifyErrorHandlers(e.ToString());
+                ResetAdsSettings();
+            }
         }
 
         public override void RequestBanner()
@@ -142,8 +160,7 @@ namespace Code.Infrastructure.Ads.Service
         private void Started()
         {
             _analyticsService.SendEventAds(AdStarted);
-            _soundService.MuteVolume();
-            Time.timeScale = 0;
+            SetAdsSettings();
             NotifyStartedHandlers();
         }
 
@@ -151,7 +168,7 @@ namespace Code.Infrastructure.Ads.Service
         {
             _analyticsService.SendEvent(AdRewardedSuccess);
             NotifySuccessfulHandlers();
-            Time.timeScale = 1;
+            ResetAdsSettings();
         }
 
         private void Finished(bool success)
@@ -159,8 +176,7 @@ namespace Code.Infrastructure.Ads.Service
             if (success == false)
                 NotifyErrorHandlers("");
 
-            _soundService.ResetVolume();
-            Time.timeScale = 1;
+            ResetAdsSettings();
         }
 
         private bool IsFullscreenAvailable()
@@ -195,6 +211,18 @@ namespace Code.Infrastructure.Ads.Service
             bool result = GP_Ads.IsRewardedAvailable();
             Logger.Log($"[AD] IsRewardedAvailable: {result}");
             return result;
+        }
+
+        private void SetAdsSettings()
+        {
+            _soundService.MuteVolume();
+            Time.timeScale = 0;
+        }
+
+        private void ResetAdsSettings()
+        {
+            _soundService.ResetVolume();
+            Time.timeScale = 1;
         }
     }
 }

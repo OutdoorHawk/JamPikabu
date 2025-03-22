@@ -25,5 +25,5 @@ MonoBehaviour:
     LootTypeId: 14
     CooldownSeconds: 12
     Value: 2
-    LevelNeedToUnlockSpawn: 5
+    LevelNeedToUnlockSpawn: 12
     SpawnChanceInOrder: 5

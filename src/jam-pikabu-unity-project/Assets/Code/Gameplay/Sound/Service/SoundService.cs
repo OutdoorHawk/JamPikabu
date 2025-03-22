@@ -36,7 +36,7 @@ namespace Code.Gameplay.Sound.Service
         private Coroutine _sfxFadeCoroutine;
 
         private Tweener _fadeTween;
-        private bool _firstInit = true;
+        private bool _initialized;
 
         private const int MIN_MIXER_VOLUME = -60;
         private const int MAX_MIXER_VOLUME = 5;
@@ -67,12 +67,6 @@ namespace Code.Gameplay.Sound.Service
             PlayerPrefs.Save();
         }
 
-        public void MuteVolume()
-        {
-            for (SoundVolumeTypeId i = 0; i < SoundVolumeTypeId.Count; i++)
-                SetValueToChanel(i.ToString(), 0);
-        }
-
         public void SetVolumeWithoutSave(SoundVolumeTypeId channelType, float value)
         {
             SetValueToChanel(channelType.ToString(), value);
@@ -100,14 +94,44 @@ namespace Code.Gameplay.Sound.Service
 
         #endregion
 
+        #region Unity Events
+
+        private void OnApplicationFocus(bool hasFocus)
+        {
+            if (_initialized == false)
+                return;
+
+            if (hasFocus)
+            {
+                ResetVolume();
+            }
+            else
+            {
+                MuteVolume();
+            }
+        }
+
+        #endregion
+
+        public void MuteVolume()
+        {
+            for (SoundVolumeTypeId i = 0; i < SoundVolumeTypeId.Count; i++)
+                SetValueToChanel(i.ToString(), 0);
+        }
+
+        public void ResetVolume()
+        {
+            for (SoundVolumeTypeId i = 0; i < SoundVolumeTypeId.Count; i++)
+                LoadVolume(i);
+        }
+
         #region ILoadProgressStateStateHandler
 
         public OrderType StateHandlerOrder => OrderType.Last;
 
         public void OnEnterLoadProgress()
         {
-            InitSoundService();
-            
+            InitSoundService().Forget();
         }
 
         public void OnExitLoadProgress()
@@ -121,7 +145,6 @@ namespace Code.Gameplay.Sound.Service
 
         public void OnExitMainMenu()
         {
-            
         }
 
         #endregion
@@ -197,22 +220,17 @@ namespace Code.Gameplay.Sound.Service
             _mainSoundContainer = Instantiate(go, transform).GetComponent<MainSoundContainer>();
 
             ResetVolume();
-            
+
             SoundConfig soundSetup = GetSoundConfig(SoundTypeId.GameplayMusic);
-            
-            int clipIndex = PlayerPrefs.HasKey(CurrentMusicClipIndex) 
-                ? Random.Range(0, soundSetup.Data.Clips.Length) 
+
+            int clipIndex = PlayerPrefs.HasKey(CurrentMusicClipIndex)
+                ? Random.Range(0, soundSetup.Data.Clips.Length)
                 : 0;
-            
+
             PlayerPrefs.SetInt(CurrentMusicClipIndex, clipIndex);
 
             PlayCurrentSong().Forget();
-        }
-
-        public void ResetVolume()
-        {
-            for (SoundVolumeTypeId i = 0; i < SoundVolumeTypeId.Count; i++)
-                LoadVolume(i);
+            _initialized = true;
         }
 
         private void LoadVolume(SoundVolumeTypeId channelType)
