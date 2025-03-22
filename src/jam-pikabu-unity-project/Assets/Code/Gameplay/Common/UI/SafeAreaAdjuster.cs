@@ -1,4 +1,5 @@
-﻿using Code.Gameplay.Windows.Factory;
+﻿using System;
+using Code.Gameplay.Windows.Factory;
 using UnityEngine;
 using Zenject;
 
@@ -9,6 +10,7 @@ namespace Code.Gameplay.Common.UI
         [SerializeField] private RectTransform _targetRectTransform;
         
         private IUIFactory _uiFactory;
+        private Vector2 _screenSafeAreaCached;
 
         [Inject]
         private void Construct
@@ -19,7 +21,7 @@ namespace Code.Gameplay.Common.UI
             _uiFactory = uiFactory;
         }
 
-        private void Start()
+        private void Update()
         {
             ApplySafeAreaAdjustment();
         }
@@ -29,7 +31,11 @@ namespace Code.Gameplay.Common.UI
             if (_targetRectTransform == null)
                 return;
 
-            _targetRectTransform.sizeDelta = Screen.safeArea.size / _uiFactory.Canvas.scaleFactor;
+            if (_screenSafeAreaCached.Equals(Screen.safeArea.size))
+                return;
+
+            _screenSafeAreaCached = Screen.safeArea.size;
+            _targetRectTransform.sizeDelta = _screenSafeAreaCached / _uiFactory.Canvas.scaleFactor;
         }
     }
 }

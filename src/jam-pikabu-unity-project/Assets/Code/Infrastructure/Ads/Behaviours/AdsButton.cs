@@ -19,6 +19,8 @@ namespace Code.Infrastructure.Ads.Behaviours
 
         public Button Button => _button;
 
+        public bool RewardedAdsAvailable => _adsService.CanShowRewarded;
+
         [Inject]
         private void Construct(IAdsService adsService)
         {

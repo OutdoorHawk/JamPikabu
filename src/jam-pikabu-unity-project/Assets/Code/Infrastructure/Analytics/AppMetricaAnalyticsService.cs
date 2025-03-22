@@ -33,7 +33,8 @@ namespace Code.Infrastructure.Analytics
             {
                 Logs = true,
                 SessionTimeout = 60,
-                FirstActivationAsUpdate = !IsFirstLaunch()
+                FirstActivationAsUpdate = !IsFirstLaunch(),
+                DataSendingEnabled = true
             });
 
             AppMetrica.SetUserProfileID(GP_Player.GetID().ToString());
@@ -63,6 +64,7 @@ namespace Code.Infrastructure.Analytics
             base.SendEventAds(eventName);
             string eventParameters = "{\"ad_type\":\"" + _adsType + "\"}";
             AppMetrica.ReportEvent(eventName, eventParameters);
+            GP_Analytics.Goal(eventName, _adsType.ToString());
             _adsType = AdsEventTypes.Unknown;
         }
 
@@ -77,6 +79,8 @@ namespace Code.Infrastructure.Analytics
                 string eventParameters = "{\"value\":\"" + value + "\"}";
                 AppMetrica.ReportEvent(eventName, eventParameters);
             }
+            
+            GP_Analytics.Goal(eventName, value);
 
             if (eventName.Equals(AnalyticsEventTypes.LevelEnd))
                 SendUserPassedLevel();

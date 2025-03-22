@@ -141,6 +141,13 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
         {
             ButtonAds.Button.interactable = _cooldownRoutine == null;
 
+            if (ButtonAds.RewardedAdsAvailable == false)
+            {
+                AdsIcon.DisableElement();
+                ButtonAds.DisableElement();
+                return;
+            }
+
             if (_consumablesUIService.GetConsumableAmount(Type) <= 0)
             {
                 AdsIcon.EnableElement();
