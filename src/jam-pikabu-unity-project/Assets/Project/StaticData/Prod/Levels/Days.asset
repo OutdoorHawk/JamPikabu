@@ -434,8 +434,8 @@ MonoBehaviour:
     SceneId: 2
     DistractionObjects: 010000000100000001000000
   StartGoldAmount: 10
-  DefaultRoundDuration: 25
-  BossRoundDuration: 45
+  DefaultRoundDuration: 30
+  BossRoundDuration: 50
   DefaultRoundHookAttempts: 5
   BossRoundHookAttempts: 8
   DayToStartTimer: 5

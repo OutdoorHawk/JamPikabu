@@ -19,11 +19,13 @@ MonoBehaviour:
     CooldownSeconds: 5
     Value: 0
     LevelNeedToUnlockSpawn: 6
-    SpawnChanceInOrder: 10
+    AdRewardedAmount: 5
+    SpawnChanceInOrder: 20
   - Id: 2
     TypeId: 1
     LootTypeId: 14
     CooldownSeconds: 12
     Value: 2
     LevelNeedToUnlockSpawn: 12
-    SpawnChanceInOrder: 5
+    AdRewardedAmount: 1
+    SpawnChanceInOrder: 10
