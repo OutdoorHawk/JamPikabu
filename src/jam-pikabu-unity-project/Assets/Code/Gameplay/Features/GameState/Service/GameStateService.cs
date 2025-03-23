@@ -2,6 +2,7 @@
 using Code.Gameplay.Features.GameState.Factory;
 using Code.Gameplay.Features.Loot.Service;
 using Code.Gameplay.Features.Orders.Service;
+using Code.Gameplay.Features.RoundState.Factory;
 using Code.Infrastructure.States.StateMachine;
 using Code.Meta.Features.BonusLevel.Config;
 using Code.Meta.Features.Days.Service;
@@ -15,6 +16,7 @@ namespace Code.Gameplay.Features.GameState.Service
         private readonly IOrdersService _ordersService;
         private readonly IGameplayLootService _gameplayLootService;
         private readonly IDaysService _daysService;
+        private readonly IRoundStateFactory _roundStateFactory;
 
         public GameStateTypeId CurrentState { get; private set; }
 
@@ -26,7 +28,8 @@ namespace Code.Gameplay.Features.GameState.Service
             IGameStateMachine gameStateMachine,
             IOrdersService ordersService,
             IGameplayLootService gameplayLootService,
-            IDaysService daysService
+            IDaysService daysService,
+            IRoundStateFactory roundStateFactory
         )
         {
             _gameStateFactory = gameStateFactory;
@@ -34,6 +37,7 @@ namespace Code.Gameplay.Features.GameState.Service
             _ordersService = ordersService;
             _gameplayLootService = gameplayLootService;
             _daysService = daysService;
+            _roundStateFactory = roundStateFactory;
         }
 
         public void AskToSwitchState(GameStateTypeId newState)
@@ -74,6 +78,8 @@ namespace Code.Gameplay.Features.GameState.Service
 
         private void EnterBeginDay()
         {
+            _roundStateFactory.CreateRoundStateController();
+            
             switch (_daysService.BonusLevelType)
             {
                 case BonusLevelType.GoldenCoins:

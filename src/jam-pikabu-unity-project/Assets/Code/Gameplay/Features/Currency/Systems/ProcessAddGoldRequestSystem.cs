@@ -35,6 +35,8 @@ namespace Code.Gameplay.Features.Currency.Systems
                     storage.ReplaceWithdraw(storage.Withdraw + request.Withdraw);
 
                 storage.ReplaceEarnedInDay(storage.EarnedInDay + request.Gold);
+                
+                storage.ReplaceCurrencyAmount(storage.Gold);
             }
         }
     }

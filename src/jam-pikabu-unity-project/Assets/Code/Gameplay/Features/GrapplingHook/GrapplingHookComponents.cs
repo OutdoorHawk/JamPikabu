@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Code.Gameplay.Features.GrapplingHook
 {
     [Game] public sealed class GrapplingHook : IComponent { }
-    [Game] public sealed class Speed : IComponent { public float Value; }
+
     [Game] public sealed class HookSpeedModifier : IComponent { public float Value; }
     [Game] public sealed class XAxisSpeed : IComponent { public float Value; }
     [Game] public sealed class YAxisDownSpeed : IComponent { public float Value; }

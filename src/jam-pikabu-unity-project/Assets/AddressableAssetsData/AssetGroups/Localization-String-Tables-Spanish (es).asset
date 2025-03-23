@@ -22,6 +22,13 @@ MonoBehaviour:
     - Locale-es
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2acd824bfeef8814790e4235586cf414
+    m_Address: GAME OVER_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2c1de7a568b2b8e49a02bbc0fb3193e6
     m_Address: GAMEPLAY_es
     m_ReadOnly: 1
@@ -36,8 +43,22 @@ MonoBehaviour:
     - Locale-es
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 87e03102efdc2a64ab42aeddbe484318
+    m_Address: TUTORIAL_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bd9ca2f3c36c1884f9f65482d3635638
     m_Address: MAIN MENU_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c29444a78d3cea54887578630b6faf84
+    m_Address: SHOP_es
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-es

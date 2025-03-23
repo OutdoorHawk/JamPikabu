@@ -14,12 +14,12 @@ namespace Code.Gameplay.Cheats.Cheats
         public void Execute()
         {
             IGroup<GameEntity> timers = _gameContext.GetGroup(GameMatcher.AllOf(
-                GameMatcher.RoundInProcess,
-                GameMatcher.RoundTimeLeft));
+                GameMatcher.RoundStateController,
+                GameMatcher.RoundInProcess));
             
             foreach (var timer in timers)
             {
-                timer.ReplaceRoundTimeLeft(0);
+                timer.isRoundEndRequest = true;
             }
         }
     }

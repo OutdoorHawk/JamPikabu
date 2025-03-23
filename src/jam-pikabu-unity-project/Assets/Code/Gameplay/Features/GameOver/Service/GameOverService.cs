@@ -58,7 +58,7 @@ namespace Code.Gameplay.Features.GameOver.Service
             _progressProvider = progressProvider;
         }
 
-        public OrderType OrderType => OrderType.First;
+        public OrderType StateHandlerOrder => OrderType.First;
 
         public void OnEnterGameLoop()
         {

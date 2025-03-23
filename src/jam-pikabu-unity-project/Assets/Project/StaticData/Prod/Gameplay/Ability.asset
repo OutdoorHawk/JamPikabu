@@ -57,7 +57,7 @@ MonoBehaviour:
       m_LocalVariables: []
   - Id: 4
     Type: 4
-    Value: 2.5
+    Value: 2
     Cooldown: 0
     ActivationChance: 100
     LocalizedDescription:
@@ -135,6 +135,34 @@ MonoBehaviour:
         m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
       m_TableEntryReference:
         m_KeyId: 66641465232805888
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - Id: 10
+    Type: 10
+    Value: 0.1
+    Cooldown: 2
+    ActivationChance: 100
+    LocalizedDescription:
+      m_TableReference:
+        m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+      m_TableEntryReference:
+        m_KeyId: 93126833477996544
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - Id: 11
+    Type: 11
+    Value: -0.1
+    Cooldown: 2
+    ActivationChance: 100
+    LocalizedDescription:
+      m_TableReference:
+        m_TableCollectionName: GUID:a17a10c6ed09ff248b952b3e362f0e43
+      m_TableEntryReference:
+        m_KeyId: 93127012935487488
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0

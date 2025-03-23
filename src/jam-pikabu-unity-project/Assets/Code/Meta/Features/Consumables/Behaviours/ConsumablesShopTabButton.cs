@@ -1,5 +1,6 @@
 ﻿using Code.Common.Extensions;
 using Code.Meta.Features.Consumables.Service;
+using Code.Meta.UI.Shop.Window;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -8,8 +9,8 @@ namespace Code.Meta.Features.Consumables.Behaviours
 {
     public class ConsumablesShopTabButton : MonoBehaviour
     {
-        public GameObject LockedButton;
         public GameObject UnlockedButton;
+        public ShopTabButton ShopTabButton;
         public Button OpenTabButton;
         
         private IConsumablesUIService _consumablesUIService;
@@ -32,13 +33,13 @@ namespace Code.Meta.Features.Consumables.Behaviours
         {
             if (_consumablesUIService.GetActiveConsumables().Count <= 0)
             {
-                LockedButton.EnableElement();
+                ShopTabButton.SetLocked();
                 UnlockedButton.DisableElement();
                 OpenTabButton.enabled = false;
                 return;
             }
 
-            LockedButton.DisableElement();
+            ShopTabButton.SetUnlocked();
             UnlockedButton.EnableElement();
             OpenTabButton.enabled = true;
         }

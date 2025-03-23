@@ -1,4 +1,5 @@
-﻿using Code.Gameplay.Features.GrapplingHook.Systems;
+﻿using Code.Gameplay.Features.CharacterStats;
+using Code.Gameplay.Features.GrapplingHook.Systems;
 using Code.Infrastructure.Systems;
 
 namespace Code.Gameplay.Features.GrapplingHook
@@ -22,16 +23,21 @@ namespace Code.Gameplay.Features.GrapplingHook
             Add(systems.Create<ProcessDescentRequestSystem>());
             Add(systems.Create<DescentGrapplingHookSystem>());
             Add(systems.Create<MarkLootAscendingInsideHookSystem>());
+            
+            Add(systems.Create<RemoveHookAttemptOnDescentSystem>());
 
             Add(systems.Create<ProcessAscentRequestSystem>());
             Add(systems.Create<AscentGrapplingHookSystem>());
+            Add(systems.Create<UpdateHookStatChangesOnAscendCompleteSystem>());
+            Add(systems.Create<UpdateStickyToHookOnAscendCompleteSystem>());
 
             Add(systems.Create<GrapplingHookCollectLootSystem>());
 
             Add(systems.Create<UpdateGrapplingHookBusyStateSystem>());
 
             Add(systems.Create<GrapplingHookVisualsSystem>());
-
+            Add(systems.Create<ApplyGrapplingHookScaleSystem>());
+            
             Add(systems.Create<ResetGrapplingHookMovementSystem>());
         }
     }

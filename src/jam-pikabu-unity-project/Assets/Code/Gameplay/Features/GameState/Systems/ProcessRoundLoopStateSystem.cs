@@ -40,7 +40,7 @@ namespace Code.Gameplay.Features.GameState.Systems
             _activeRoundTimer = context.GetGroup(
                 GameMatcher.AllOf(
                     GameMatcher.RoundStateController,
-                    GameMatcher.RoundTimeLeft
+                    GameMatcher.RoundInProcess
                 ));
             
             _busyLoot = context.GetGroup(

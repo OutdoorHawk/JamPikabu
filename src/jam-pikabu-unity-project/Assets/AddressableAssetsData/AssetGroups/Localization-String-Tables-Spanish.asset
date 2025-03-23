@@ -14,28 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: Localization-String-Tables-Spanish
   m_GUID: 281eff952e218d048ab3780932b88b72
-  m_SerializeEntries:
-  - m_GUID: 2acd824bfeef8814790e4235586cf414
-    m_Address: GAME OVER_es
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-es
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 87e03102efdc2a64ab42aeddbe484318
-    m_Address: TUTORIAL_es
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-es
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c29444a78d3cea54887578630b6faf84
-    m_Address: SHOP_es
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-es
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 8c977aa4f64b21b42892fe1ca41dafc7, type: 2}
   m_SchemaSet:

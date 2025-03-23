@@ -2,7 +2,6 @@
 {
     public interface IGameStateHandlerService
     {
-        void OnEnterBootstrapState();
         void OnEnterLoadProgressState();
         void OnExitLoadProgressState();
         void OnEnterMainMenu();

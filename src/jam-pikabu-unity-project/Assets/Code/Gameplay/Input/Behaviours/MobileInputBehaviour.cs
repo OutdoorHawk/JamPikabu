@@ -10,7 +10,7 @@ namespace Code.Gameplay.Input.Behaviours
     {
         private IGameStateHandlerService _gameStateHandler;
 
-        public OrderType OrderType => OrderType.First;
+        public OrderType StateHandlerOrder => OrderType.First;
 
         [Inject]
         private void Construct(IGameStateHandlerService gameStateHandler)

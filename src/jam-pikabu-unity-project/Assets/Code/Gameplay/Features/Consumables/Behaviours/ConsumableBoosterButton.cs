@@ -9,7 +9,6 @@ using Code.Infrastructure.Ads.Behaviours;
 using Code.Meta.Features.Consumables;
 using Code.Meta.Features.Consumables.Service;
 using Code.Meta.UI.Shop.Configs;
-using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,6 +24,7 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
         public GameObject AdsIcon;
         public Button Button;
         public TMP_Text Amount;
+        public TMP_Text AdsAmount;
 
         private IStaticDataService _staticDataService;
         private IConsumablesUIService _consumablesUIService;
@@ -54,13 +54,13 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
         private void Awake()
         {
             Button.onClick.AddListener(OnButtonClicked);
-            ButtonAds.OnRewarded += OnButtonClicked;
+            ButtonAds.OnRewarded += AdRewarded;
         }
 
         private void OnDestroy()
         {
             Button.onClick.RemoveListener(OnButtonClicked);
-            ButtonAds.OnRewarded -= OnButtonClicked;
+            ButtonAds.OnRewarded -= AdRewarded;
         }
 
         private void OnDisable()
@@ -78,6 +78,7 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
 
             IconBack.sprite = shopData.Icon;
             IconBack.color = Color.white;
+            AdsAmount.text = $"+{StaticData.GetConsumableData(typeId).AdRewardedAmount}";
         }
 
         public void Refresh()
@@ -91,9 +92,9 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
         private void RefreshText()
         {
             int amount = _consumablesUIService.GetConsumableAmount(Type);
-            
-            Amount.text = amount == 0 
-                ? string.Empty 
+
+            Amount.text = amount == 0
+                ? string.Empty
                 : $"x {amount.ToString()}";
         }
 
@@ -115,13 +116,13 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
                 Button.interactable = false;
                 return;
             }
-            
+
             if (_consumablesUIService.GetConsumableAmount(Type) <= 0)
             {
                 Button.interactable = false;
                 return;
             }
-            
+
             if (_gameStateService.CurrentState is not GameStateTypeId.RoundLoop)
             {
                 Button.interactable = false;
@@ -141,21 +142,40 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
         {
             ButtonAds.Button.interactable = _cooldownRoutine == null;
 
+            if (ButtonAds.RewardedAdsAvailable == false)
+            {
+                AdsIcon.DisableElement();
+                ButtonAds.DisableElement();
+                AdsAmount.DisableElement();
+                return;
+            }
+
             if (_consumablesUIService.GetConsumableAmount(Type) <= 0)
             {
                 AdsIcon.EnableElement();
                 ButtonAds.EnableElement();
+                AdsAmount.EnableElement();
                 return;
             }
-            
+
             AdsIcon.DisableElement();
             ButtonAds.DisableElement();
+            AdsAmount.DisableElement();
         }
 
         private void OnButtonClicked()
         {
             _consumablesFactory.ActivateConsumable(Type);
             StartCooldown();
+            RefreshButton();
+        }
+
+        private void AdRewarded()
+        {
+            for (int i = 0; i < StaticData.GetConsumableData(Type).AdRewardedAmount; i++)
+                _consumablesUIService.AddConsumable(Type);
+            
+            Refresh();
         }
 
         private void StartCooldown()
@@ -163,16 +183,16 @@ namespace Code.Gameplay.Features.Consumables.Behaviours
             ConsumablesData data = StaticData.GetConsumableData(Type);
             _cooldownRoutine = StartCoroutine(CooldownRoutine(data.CooldownSeconds));
             IconFilled.fillAmount = 1;
-            IconFilled.DOFillAmount(0, data.CooldownSeconds)
-                .SetEase(Ease.Linear)
-                .SetLink(gameObject);
         }
 
         private IEnumerator CooldownRoutine(float cooldownSeconds)
         {
-            yield return new WaitForSeconds(cooldownSeconds);
+            while (_gameStateService.CurrentState is GameStateTypeId.RoundLoop)
+                yield return null;
+
             _cooldownRoutine = null;
             Refresh();
+            IconFilled.fillAmount = 0;
         }
     }
 }

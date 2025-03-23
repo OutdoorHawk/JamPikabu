@@ -7,7 +7,7 @@ namespace Code.Infrastructure.Analytics
 {
     public class GamePushAnalyticsService : BaseAnalyticsService, IMainMenuStateHandler, ILoadProgressStateHandler
     {
-        public OrderType OrderType => OrderType.Last;
+        public OrderType StateHandlerOrder => OrderType.Last;
 
         public void OnEnterLoadProgress()
         {

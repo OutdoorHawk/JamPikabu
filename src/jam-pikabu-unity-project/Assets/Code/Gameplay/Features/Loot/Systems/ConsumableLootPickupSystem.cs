@@ -81,7 +81,7 @@ namespace Code.Gameplay.Features.Loot.Systems
             consumable.isBusy = true;
             consumable.Retain(this);
 
-            await FlyAnimation(consumable.Transform,consumable.SpriteRenderer, endPosition, endRotation);
+            await FlyAnimation(consumable.Transform, consumable.SpriteRenderer, endPosition, endRotation);
 
             GameEntity retained = _context.GetEntityWithId(woodId);
 

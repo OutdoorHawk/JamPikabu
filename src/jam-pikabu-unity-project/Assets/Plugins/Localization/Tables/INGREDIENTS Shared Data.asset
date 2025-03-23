@@ -131,6 +131,14 @@ MonoBehaviour:
     m_Key: I_LVL
     m_Metadata:
       m_Items: []
+  - m_Id: 93126833477996544
+    m_Key: I_INCREASE_HOOK_SCALE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 93127012935487488
+    m_Key: I_DECREASE_HOOK_SCALE
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

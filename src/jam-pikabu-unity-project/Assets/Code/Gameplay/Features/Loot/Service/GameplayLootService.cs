@@ -13,10 +13,9 @@ using Code.Gameplay.StaticData;
 using Code.Infrastructure.Common;
 using Code.Infrastructure.SceneContext;
 using Code.Meta.Features.BonusLevel.Config;
-using Code.Meta.Features.Consumables;
-using Code.Meta.Features.Consumables.Data;
 using Code.Meta.Features.Consumables.Service;
 using Code.Meta.Features.DayLootSettings.Configs;
+using Code.Meta.Features.Days.Configs;
 using Code.Meta.Features.Days.Service;
 using Code.Meta.Features.LootCollection.Service;
 using RoyalGold.Sources.Scripts.Game.MVC.Utils;
@@ -123,7 +122,7 @@ namespace Code.Gameplay.Features.Loot.Service
         {
             _collectedLootItems.Clear();
             _collectedLoot.Clear();
-          
+
             NotifyLootUpdated();
         }
 
@@ -140,10 +139,10 @@ namespace Code.Gameplay.Features.Loot.Service
         {
             if (_consumablesToSpawn.Count == 0)
                 return;
-            
-            foreach (ConsumablesData data in _consumablesToSpawn) 
+
+            foreach (ConsumablesData data in _consumablesToSpawn)
                 SpawnLoot(data.LootTypeId);
-            
+
             _consumablesToSpawn.Clear();
         }
 
@@ -155,15 +154,15 @@ namespace Code.Gameplay.Features.Loot.Service
         private void RecalculateLootChances()
         {
             List<ConsumablesData> configs = _consumablesUIService.ConsumablesStaticData.Configs;
-            
+
             foreach (ConsumablesData data in configs)
             {
                 if (data.LevelNeedToUnlockSpawn > 0 && _daysService.CurrentDay < data.LevelNeedToUnlockSpawn)
                     continue;
-                
+
                 if (CheckSpawnChance(data.SpawnChanceInOrder) == false)
                     continue;
-                
+
                 _consumablesToSpawn.Add(data);
             }
         }
@@ -175,38 +174,61 @@ namespace Code.Gameplay.Features.Loot.Service
             var currentDay = _daysService.GetDayData();
             _availableIngredients.Clear();
 
-            if (_daysService.BonusLevelType is BonusLevelType.GoldenCoins)
+            switch (_daysService.BonusLevelType)
             {
-                BonusLevelData bonusLevelData = _staticDataService.Get<BonusLevelStaticData>().Configs[0];
-                foreach (LootTypeId typeId in bonusLevelData.AvailableIngredients)
+                case BonusLevelType.GoldenCoins:
                 {
-                    _availableIngredients.Add(staticData.GetConfig(typeId));
+                    FillBonusLevelLootBuffer(staticData);
+                    break;
                 }
-
-                var lootLevels = _lootCollection.LootLevels.Values.ToList();
-
-                if (lootLevels.Count > 0)
+                default:
                 {
-                    LootTypeId lootTypeId = lootLevels[Random.Range(0, lootLevels.Count)].Type;
-                    _availableIngredients.Add(staticData.GetConfig(lootTypeId));
-                }
-            }
-            else
-            {
-                MapBlockData mapBlock = dayLootSettingsStaticData.GetMapBlockDataByDayId(currentDay.Id);
-
-                foreach (LootTypeId lootTypeId in mapBlock.AvailableIngredients)
-                {
-                    _availableIngredients.Add(staticData.GetConfig(lootTypeId));
-                }
-
-                foreach (LootTypeId lootTypeId in mapBlock.ExtraLoot)
-                {
-                    _availableExtraLoot.Add(staticData.GetConfig(lootTypeId));
+                    FillDefaultLootBuffer(dayLootSettingsStaticData, currentDay, staticData);
+                    break;
                 }
             }
 
             FallbackRandom(staticData);
+        }
+
+        private void FillBonusLevelLootBuffer(LootSettingsStaticData staticData)
+        {
+            BonusLevelData bonusLevelData = _staticDataService.Get<BonusLevelStaticData>().Configs[0];
+            foreach (LootTypeId typeId in bonusLevelData.AvailableIngredients)
+            {
+                _availableIngredients.Add(staticData.GetConfig(typeId));
+            }
+
+            var lootLevels = _lootCollection.LootLevels.Values.ToList();
+            
+            if (lootLevels.Count <= 0) 
+                return;
+            
+            lootLevels.ShuffleList();
+
+            for (int i = 0; i < bonusLevelData.MainLevelsIngredientsAmount; i++)
+            {
+                if (i >= lootLevels.Count)
+                    break;
+                
+                LootTypeId lootTypeId = lootLevels[i].Type;
+                _availableIngredients.Add(staticData.GetConfig(lootTypeId));
+            }
+        }
+
+        private void FillDefaultLootBuffer(MapBlocksStaticData dayLootSettingsStaticData, DayData currentDay, LootSettingsStaticData staticData)
+        {
+            MapBlockData mapBlock = dayLootSettingsStaticData.GetMapBlockDataByDayId(currentDay.Id);
+
+            foreach (LootTypeId lootTypeId in mapBlock.AvailableIngredients)
+            {
+                _availableIngredients.Add(staticData.GetConfig(lootTypeId));
+            }
+
+            foreach (LootTypeId lootTypeId in mapBlock.ExtraLoot)
+            {
+                _availableExtraLoot.Add(staticData.GetConfig(lootTypeId));
+            }
         }
 
         private void FallbackRandom(LootSettingsStaticData staticData)

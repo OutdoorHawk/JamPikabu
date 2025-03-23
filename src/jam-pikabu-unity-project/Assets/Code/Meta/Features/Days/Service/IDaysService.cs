@@ -16,22 +16,20 @@ namespace Code.Meta.Features.Days.Service
         List<DayStarData> DayStarsData { get; }
         int CurrentDay { get; }
         int MaxDays { get; }
+        BonusLevelData BonusLevelData { get; }
+        void InitializeDaysProgress(IEnumerable<DayProgressData> daysProgress);
         void SetBonusLevel(BonusLevelData type, SceneTypeId sceneTypeId);
-        void InitializeDays(IEnumerable<DayProgressData> daysProgress);
         bool IsCompletedFirstLevel();
-        void SetActiveDay(DayData selectedDayId);
         void SetActiveDay(int dayId);
+        void SetActiveDay(DayData selectedDayId);
         List<DayProgressData> GetDaysProgress();
         bool TryGetDayProgress(int dayId, out DayProgressData dayProgress);
         int GetStarsEarnedForDay(int day);
         int GetAllEarnedStars();
         void BeginDay();
-        void RoundEnd();
         void EnterRoundPreparation();
         void StarsReceived(int starsReceived);
         void DayComplete();
-        bool CanShowTimer();
-        float GetRoundDuration();
         bool CheckDayUnlocked(int dayId);
         DayData GetDayData();
         DayData GetDayData(int currentDay);
@@ -39,6 +37,5 @@ namespace Code.Meta.Features.Days.Service
         DayStarsSetup GetDayStarData(int currentDay);
         float GetDayGoldFactor();
         void SyncStarsSeen(int dayId);
-        bool CheckLevelHasStars(List<DayStarData> dayStars);
     }
 }

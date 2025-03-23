@@ -9,8 +9,8 @@ namespace Code.Gameplay.Sound.Service
     {
         private const float DefaultSoundFadeDuration = 0.1f;
         event Action OnSongUpdated;
-        OrderType OrderType { get; }
         void SetVolume(SoundVolumeTypeId channelType, float value);
+        void ResetVolume();
         void MuteVolume();
         void NextSong();
         void PreviousSong();
@@ -26,6 +26,5 @@ namespace Code.Gameplay.Sound.Service
         void StopSound(SoundTypeId typeId);
         void PlayMusic(SoundTypeId typeId);
         void StopMusic();
-        void ResetVolume();
     }
 }

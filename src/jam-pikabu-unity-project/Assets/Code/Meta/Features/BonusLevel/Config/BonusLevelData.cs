@@ -14,6 +14,7 @@ namespace Code.Meta.Features.BonusLevel.Config
         public int FreePlayResetTimeMinutes = 300;
         public float GoldFactorModifier = 2;
         public int RoundTimeOverride = 45;
+        public int MainLevelsIngredientsAmount = 2;
         public List<LootTypeId> AvailableIngredients;
 
         public int ResetTimeSeconds => FreePlayResetTimeMinutes * 60;

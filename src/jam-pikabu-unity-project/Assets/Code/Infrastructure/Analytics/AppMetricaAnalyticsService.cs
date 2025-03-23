@@ -1,5 +1,8 @@
-﻿using Code.Infrastructure.States.GameStateHandler;
+﻿using Code.Infrastructure.ABTesting;
+using Code.Infrastructure.Integrations;
+using Code.Infrastructure.States.GameStateHandler;
 using Code.Infrastructure.States.GameStateHandler.Handlers;
+using Cysharp.Threading.Tasks;
 using GamePush;
 using Io.AppMetrica;
 using Io.AppMetrica.Profile;
@@ -8,25 +11,37 @@ using UnityEngine;
 namespace Code.Infrastructure.Analytics
 {
     public class AppMetricaAnalyticsService : BaseAnalyticsService,
-        IEnterBootstrapStateHandler,
-        IMainMenuStateHandler
+        IMainMenuStateHandler,
+        IIntegration
     {
-        public OrderType OrderType => OrderType.Last;
+        private readonly IABTestService _abTestService;
 
         private const string API_KEY = "ea54dbaf-6823-4663-8ebf-a6ca3166983b";
         private const string FIRST_LAUNCH_KEY = "first_launch";
 
-        public void OnEnterBootstrap()
+        public OrderType StateHandlerOrder => OrderType.Last;
+        public OrderType InitOrder => OrderType.Last;
+
+        public AppMetricaAnalyticsService(IABTestService abTestService)
+        {
+            _abTestService = abTestService;
+        }
+        
+        public UniTask Initialize()
         {
             AppMetrica.Activate(new AppMetricaConfig(API_KEY)
             {
                 Logs = true,
                 SessionTimeout = 60,
-                FirstActivationAsUpdate = !IsFirstLaunch()
+                FirstActivationAsUpdate = !IsFirstLaunch(),
+                DataSendingEnabled = true
             });
 
             AppMetrica.SetUserProfileID(GP_Player.GetID().ToString());
             GP_Analytics.Hit(Application.absoluteURL);
+            
+            _logger.Log("[Analytics] AppMetrica initialized");
+            return UniTask.CompletedTask;
         }
 
         public void OnEnterMainMenu()
@@ -49,6 +64,7 @@ namespace Code.Infrastructure.Analytics
             base.SendEventAds(eventName);
             string eventParameters = "{\"ad_type\":\"" + _adsType + "\"}";
             AppMetrica.ReportEvent(eventName, eventParameters);
+            GP_Analytics.Goal(eventName, _adsType.ToString());
             _adsType = AdsEventTypes.Unknown;
         }
 
@@ -63,6 +79,8 @@ namespace Code.Infrastructure.Analytics
                 string eventParameters = "{\"value\":\"" + value + "\"}";
                 AppMetrica.ReportEvent(eventName, eventParameters);
             }
+            
+            GP_Analytics.Goal(eventName, value);
 
             if (eventName.Equals(AnalyticsEventTypes.LevelEnd))
                 SendUserPassedLevel();
@@ -70,9 +88,14 @@ namespace Code.Infrastructure.Analytics
 
         private void SendUserPassedLevel()
         {
+            ExperimentValueTypeId experimentValue = _abTestService.GetExperimentValue(ExperimentTagTypeId.TIMER_REPLACE);
+            
             var userProfile = new UserProfile()
                 .Apply(Attribute.CustomCounter("passed_levels")
-                    .WithDelta(1));
+                    .WithDelta(1))
+                .Apply(Attribute.CustomNumber(nameof(ExperimentTagTypeId.TIMER_REPLACE))
+                    .WithValue((int)experimentValue))
+                ;
 
             AppMetrica.ReportUserProfile(userProfile);
         }

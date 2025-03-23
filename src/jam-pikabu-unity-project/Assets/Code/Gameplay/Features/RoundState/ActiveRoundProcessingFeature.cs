@@ -7,8 +7,14 @@ namespace Code.Gameplay.Features.RoundState
     {
         public ActiveRoundProcessingFeature(ISystemFactory systems)
         {
-            Add(systems.Create<ProcessRoundTimerSystem>());
-            Add(systems.Create<MoveToRoundCompleteStateWhenHookAreNotBusySystem>()); ;
+            Add(systems.Create<ProcessRoundTimerSystem>()); //AB TEST 1
+            Add(systems.Create<ProcessRoundAttemptsSystem>()); //AB TEST 2
+            
+            Add(systems.Create<ProcessEndRoundSystem>()); 
+            
+            Add(systems.Create<UpdateRoundViewSystem>()); 
+            
+            Add(systems.Create<MoveToRoundCompleteStateWhenHookAreNotBusySystem>()); 
         }
     }
 }

@@ -5,7 +5,7 @@ namespace Code.Infrastructure.Analytics
 {
     public abstract class BaseAnalyticsService : IAnalyticsService
     {
-        private ILoggerService _logger;
+        protected ILoggerService _logger;
         protected AdsEventTypes _adsType;
 
         [Inject]
@@ -21,17 +21,17 @@ namespace Code.Infrastructure.Analytics
 
         public virtual void SendEventAds(string eventName)
         {
-            _logger.Log($"[Analytics event ads] {eventName} {_adsType}");
+            _logger.Log($"[Analytics] {eventName} {_adsType}");
         }
         
         public virtual void SendEvent(string eventName)
         {
-            _logger.Log($"[Analytics event] {eventName}");
+            _logger.Log($"[Analytics] {eventName}");
         }
 
         public virtual void SendEvent(string eventName, string value)
         {
-            _logger.Log($"[Analytics event] {eventName}: {value}");
+            _logger.Log($"[Analytics] {eventName}: {value}");
         }
     }
 }

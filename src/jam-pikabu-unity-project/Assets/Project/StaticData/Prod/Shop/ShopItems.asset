@@ -37,7 +37,7 @@ MonoBehaviour:
       m_LocalVariables: []
     Cost:
       CurrencyType: 1
-      Amount: 50
+      Amount: 5
     ConsumableType: 2
     MinutesDuration: 0
   - Id: 2
@@ -57,14 +57,14 @@ MonoBehaviour:
       m_TableReference:
         m_TableCollectionName: GUID:257c2cea6ea3f7644b70dd1457151e70
       m_TableEntryReference:
-        m_KeyId: 63096704760762368
-        m_Key: 
+        m_KeyId: 0
+        m_Key: S_WOOD_CONSUMABLE_DESCRIPTION
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
     Cost:
       CurrencyType: 1
-      Amount: 75
+      Amount: 50
     ConsumableType: 1
     MinutesDuration: 0
   references:

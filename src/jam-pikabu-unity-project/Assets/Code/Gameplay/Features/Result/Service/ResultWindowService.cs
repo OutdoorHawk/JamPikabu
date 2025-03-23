@@ -1,45 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Code.Gameplay.Features.Currency;
 using Code.Gameplay.Features.Currency.Handler;
-using Code.Gameplay.Features.Currency.Service;
 using Code.Gameplay.Features.Loot;
 using Code.Gameplay.Features.Result.Window;
 using Code.Gameplay.Windows;
 using Code.Gameplay.Windows.Service;
 using Code.Infrastructure.States.GameStateHandler;
 using Code.Infrastructure.States.GameStateHandler.Handlers;
-using Code.Meta.Features.Days.Configs.Stars;
 using Code.Meta.Features.Days.Service;
 using Cysharp.Threading.Tasks;
 
 namespace Code.Gameplay.Features.Result.Service
 {
-    public class ResultWindowService : IResultWindowService, 
+    public class ResultWindowService : IResultWindowService,
         IEnterGameLoopStateHandler,
-        IExitGameLoopStateHandler, 
+        IExitGameLoopStateHandler,
         IGameplayCurrencyChangedHandler
     {
         private readonly IWindowService _windowService;
         private readonly IDaysService _daysService;
-        private readonly IGameplayCurrencyService _gameplayCurrencyService;
 
         private readonly Dictionary<LootTypeId, int> _collectedLoot = new();
         private readonly Dictionary<CurrencyTypeId, int> _initialCurrency = new();
         private readonly Dictionary<CurrencyTypeId, int> _collectedCurrency = new();
 
         public int CurrentDay { get; private set; }
-        public List<DayStarData> DayStarsData { get; set; }
-        public OrderType OrderType => OrderType.First;
+        public OrderType StateHandlerOrder => OrderType.Last;
 
         public ResultWindowService
         (
             IWindowService windowService,
-            IDaysService daysService,
-            IGameplayCurrencyService gameplayCurrencyService
+            IDaysService daysService
         )
         {
-            _gameplayCurrencyService = gameplayCurrencyService;
             _windowService = windowService;
             _daysService = daysService;
         }
@@ -47,9 +40,6 @@ namespace Code.Gameplay.Features.Result.Service
         public void OnEnterGameLoop()
         {
             _daysService.OnDayBegin += CacheDayData;
-            
-            foreach ((CurrencyTypeId key, CurrencyCount value) in _gameplayCurrencyService.Currencies) 
-                _initialCurrency[key] = value.Amount;
         }
 
         public void OnExitGameLoop()
@@ -61,12 +51,16 @@ namespace Code.Gameplay.Features.Result.Service
         private void CacheDayData()
         {
             CurrentDay = _daysService.CurrentDay;
-            DayStarsData = _daysService.DayStarsData;
         }
 
         public void OnCurrencyChanged(CurrencyTypeId type, int newAmount)
         {
             UpdateStats(type, newAmount);
+        }
+
+        public void InitInitialCurrency(CurrencyTypeId type, int amount)
+        {
+            _initialCurrency[type] = amount;
         }
 
         public async UniTask TryShowProfitWindow()
@@ -105,7 +99,7 @@ namespace Code.Gameplay.Features.Result.Service
 
         public bool CheckGameWin()
         {
-            return GetTotalRating() >= DayStarsData[0].RatingAmountNeed;
+            return GetTotalRating() >= _daysService.DayStarsData[0].RatingAmountNeed;
         }
 
         private void UpdateStats(CurrencyTypeId type, int newAmount)

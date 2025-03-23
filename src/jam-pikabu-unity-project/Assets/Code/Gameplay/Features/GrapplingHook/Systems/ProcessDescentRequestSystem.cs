@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Code.Gameplay.Sound;
-using Code.Gameplay.Sound.Service;
 using Entitas;
 
 namespace Code.Gameplay.Features.GrapplingHook.Systems
@@ -9,11 +8,9 @@ namespace Code.Gameplay.Features.GrapplingHook.Systems
     {
         private readonly IGroup<GameEntity> _entities;
         private readonly List<GameEntity> _buffer = new(2);
-        private readonly ISoundService _soundService;
 
-        public ProcessDescentRequestSystem(GameContext context, ISoundService soundService)
+        public ProcessDescentRequestSystem(GameContext context)
         {
-            _soundService = soundService;
             _entities = context.GetGroup(GameMatcher
                 .AllOf(
                     GameMatcher.GrapplingHook,

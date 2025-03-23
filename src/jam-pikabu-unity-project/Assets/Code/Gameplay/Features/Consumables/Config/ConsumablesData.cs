@@ -14,6 +14,7 @@ namespace Code.Gameplay.Features.Consumables.Config
         public float CooldownSeconds;
         public int Value;
         public int LevelNeedToUnlockSpawn;
+        public int AdRewardedAmount = 1;
         [Range(0, 101)] public int SpawnChanceInOrder;
     }
 }

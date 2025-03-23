@@ -8,6 +8,7 @@ namespace Code.Gameplay.Features.CharacterStats
     {
         Unknown = 0,
         Speed = 1,
+        Scale = 2,
     }
 
     public static class InitStats

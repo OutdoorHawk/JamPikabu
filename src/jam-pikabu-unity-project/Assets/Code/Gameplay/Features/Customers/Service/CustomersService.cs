@@ -36,7 +36,7 @@ namespace Code.Gameplay.Features.Customers.Service
             _staticDataService = staticDataService;
         }
 
-        public OrderType OrderType => OrderType.Last;
+        public OrderType StateHandlerOrder => OrderType.Last;
         
         public void OnEnterLoadProgress()
         {
