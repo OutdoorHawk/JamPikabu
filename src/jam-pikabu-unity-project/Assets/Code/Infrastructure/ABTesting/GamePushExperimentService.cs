@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Code.Infrastructure.Analytics;
 using Code.Infrastructure.Integrations;
 using Code.Infrastructure.States.GameStateHandler;
 using Cysharp.Threading.Tasks;
@@ -10,9 +11,16 @@ namespace Code.Infrastructure.ABTesting
 {
     public class GamePushExperimentService : IABTestService, IIntegration
     {
+        private readonly IAnalyticsService _analyticsService;
+        
         public OrderType InitOrder => OrderType.Second;
 
         private readonly Dictionary<ExperimentTagTypeId, ExperimentValueTypeId> _cachedExperiments = new();
+
+        public GamePushExperimentService(IAnalyticsService analyticsService)
+        {
+            _analyticsService = analyticsService;
+        }
 
         public UniTask Initialize()
         {
@@ -23,6 +31,7 @@ namespace Code.Infrastructure.ABTesting
                     _cachedExperiments[tag] = value;
             }
 
+            SendPlayerExperiment();
             return UniTask.CompletedTask;
         }
 
@@ -33,6 +42,12 @@ namespace Code.Infrastructure.ABTesting
             return Enum.Parse<ExperimentValueTypeId>(savedValue);
 #endif
             return _cachedExperiments.GetValueOrDefault(tag, ExperimentValueTypeId.@default);
+        }
+
+        private void SendPlayerExperiment()
+        {
+            int experimentValue = (int)GetExperimentValue(ExperimentTagTypeId.TIMER_REPLACE);
+            _analyticsService.SendEvent(AnalyticsEventTypes.ExperimentTimer, experimentValue.ToString());
         }
 
         /*private bool InitializeValue(ExperimentTagTypeId tag, ExperimentValueTypeId value)

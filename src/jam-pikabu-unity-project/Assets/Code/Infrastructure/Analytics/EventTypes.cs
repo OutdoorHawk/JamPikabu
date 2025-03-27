@@ -14,6 +14,7 @@
         public const string Purchase = "PURCHASE_CONSUMABLE";
         public const string DoubleProfitReward = "DOUBLE_PROFIT";
         public const string SpendConsumable = "SPEND_CONSUMABLE";
+        public const string ExperimentTimer = "EXPERIMENT_TIMER";
     }
 
     public enum AdsEventTypes

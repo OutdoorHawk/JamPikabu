@@ -252,6 +252,9 @@ namespace Code.Gameplay.Features.Result.Window
             int lootCount = 0;
             foreach ((LootTypeId type, int amount) in _resultWindowService.GetCollectedLoot())
             {
+                if (type is LootTypeId.WoodChip)
+                    continue;
+                
                 if (lootCount >= LootAmountInRow && rowIndex < LootRow.Length)
                 {
                     rowIndex++;
