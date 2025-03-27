@@ -1,5 +1,4 @@
-﻿using Code.Infrastructure.ABTesting;
-using Code.Infrastructure.Integrations;
+﻿using Code.Infrastructure.Integrations;
 using Code.Infrastructure.States.GameStateHandler;
 using Code.Infrastructure.States.GameStateHandler.Handlers;
 using Cysharp.Threading.Tasks;
@@ -14,19 +13,12 @@ namespace Code.Infrastructure.Analytics
         IMainMenuStateHandler,
         IIntegration
     {
-        private readonly IABTestService _abTestService;
-
         private const string API_KEY = "ea54dbaf-6823-4663-8ebf-a6ca3166983b";
         private const string FIRST_LAUNCH_KEY = "first_launch";
 
         public OrderType StateHandlerOrder => OrderType.Last;
         public OrderType InitOrder => OrderType.Last;
 
-        public AppMetricaAnalyticsService(IABTestService abTestService)
-        {
-            _abTestService = abTestService;
-        }
-        
         public UniTask Initialize()
         {
             AppMetrica.Activate(new AppMetricaConfig(API_KEY)
@@ -39,7 +31,7 @@ namespace Code.Infrastructure.Analytics
 
             AppMetrica.SetUserProfileID(GP_Player.GetID().ToString());
             GP_Analytics.Hit(Application.absoluteURL);
-            
+
             _logger.Log("[Analytics] AppMetrica initialized");
             return UniTask.CompletedTask;
         }
@@ -79,7 +71,7 @@ namespace Code.Infrastructure.Analytics
                 string eventParameters = "{\"value\":\"" + value + "\"}";
                 AppMetrica.ReportEvent(eventName, eventParameters);
             }
-            
+
             GP_Analytics.Goal(eventName, value);
 
             if (eventName.Equals(AnalyticsEventTypes.LevelEnd))
@@ -88,13 +80,9 @@ namespace Code.Infrastructure.Analytics
 
         private void SendUserPassedLevel()
         {
-            ExperimentValueTypeId experimentValue = _abTestService.GetExperimentValue(ExperimentTagTypeId.TIMER_REPLACE);
-            
             var userProfile = new UserProfile()
-                .Apply(Attribute.CustomCounter("passed_levels")
-                    .WithDelta(1))
-                .Apply(Attribute.CustomNumber(nameof(ExperimentTagTypeId.TIMER_REPLACE))
-                    .WithValue((int)experimentValue))
+                    .Apply(Attribute.CustomCounter("passed_levels")
+                        .WithDelta(1))
                 ;
 
             AppMetrica.ReportUserProfile(userProfile);

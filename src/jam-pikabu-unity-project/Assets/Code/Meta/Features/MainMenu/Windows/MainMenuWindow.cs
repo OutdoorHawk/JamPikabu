@@ -12,6 +12,8 @@ using Code.Meta.Features.MainMenu.Behaviours;
 using Code.Meta.Features.MainMenu.Service;
 using Code.Meta.Features.MapBlocks.Behaviours;
 using Cysharp.Threading.Tasks;
+using GamePush;
+using TMPro;
 using UnityEngine.UI;
 using Zenject;
 
@@ -23,6 +25,7 @@ namespace Code.Meta.Features.MainMenu.Windows
         public Button PlayButton;
         public Button ShopButton;
         public BonusLevelButton BonusLevelButton;
+        public TMP_Text PlayerIdText;
 
         private IGameStateMachine _gameStateMachine;
         private IMapMenuService _mapMenuService;
@@ -53,6 +56,7 @@ namespace Code.Meta.Features.MainMenu.Windows
         protected override void Initialize()
         {
             base.Initialize();
+            InitPlayerId();
             MapContainer.Init();
             Refresh();
         }
@@ -114,6 +118,11 @@ namespace Code.Meta.Features.MainMenu.Windows
             };
 
             _gameStateMachine.Enter<LoadLevelState, LoadLevelPayloadParameters>(parameters);
+        }
+
+        private void InitPlayerId()
+        {
+            PlayerIdText.text = $"ID: {GP_Player.GetID()}";
         }
     }
 }

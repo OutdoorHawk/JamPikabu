@@ -21,7 +21,7 @@ namespace Code.Gameplay.Common.UI
             _uiFactory = uiFactory;
         }
 
-        private void Update()
+        private void Start()
         {
             ApplySafeAreaAdjustment();
         }

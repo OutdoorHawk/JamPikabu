@@ -1,4 +1,5 @@
-﻿using Code.Common.Logger.Service;
+﻿using System.Threading.Tasks;
+using Code.Common.Logger.Service;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
@@ -32,9 +33,26 @@ namespace Code.Infrastructure.Intro
             VideoPlayer.url = VideoPath;
             PlayerImage.color = Color.white;
             VideoPlayer.Prepare();
+            UniTask preparedTask = PreparedTask();
+            UniTask timeOutTask = TimeOutTask();
+            await UniTask.WhenAny(preparedTask, timeOutTask);
+            
+            if (VideoPlayer.isPrepared)
+            {
+                VideoPlayer.Play();
+                await DelaySeconds((float)VideoPlayer.length, destroyCancellationToken);
+            }
+        }
+
+        private async UniTask PreparedTask()
+        {
             await UniTask.WaitUntil(() => VideoPlayer.isPrepared, cancellationToken: destroyCancellationToken);
-            VideoPlayer.Play();
-            await DelaySeconds((float)VideoPlayer.length, destroyCancellationToken);
+        }
+
+        private async UniTask TimeOutTask()
+        {
+            const int prepareTimeout = 4;
+            await DelaySeconds(prepareTimeout, destroyCancellationToken);
         }
 
         public async UniTask HidePlayer()
