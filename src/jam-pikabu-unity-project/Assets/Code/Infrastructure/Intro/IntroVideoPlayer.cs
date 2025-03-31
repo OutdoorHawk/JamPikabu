@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Code.Common.Logger.Service;
+﻿using Code.Common.Logger.Service;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
@@ -15,19 +14,8 @@ namespace Code.Infrastructure.Intro
         public VideoPlayer VideoPlayer;
         public RawImage PlayerImage;
 
-        private static readonly string VideoPath = Application.streamingAssetsPath + "/Intro.mp4";
-
-        private ILoggerService _loggerService;
-
-        [Inject]
-        private void Construct
-        (
-            ILoggerService loggerService
-        )
-        {
-            _loggerService = loggerService;
-        }
-
+        private const string VideoPath = "https://s3.gamepush.com/games/18323/v120/StreamingAssets/intro_video.mp4";
+        
         public async UniTask WaitForVideoCompleteAsync()
         {
             VideoPlayer.url = VideoPath;
@@ -51,7 +39,7 @@ namespace Code.Infrastructure.Intro
 
         private async UniTask TimeOutTask()
         {
-            const int prepareTimeout = 4;
+            const int prepareTimeout = 3;
             await DelaySeconds(prepareTimeout, destroyCancellationToken);
         }
 
