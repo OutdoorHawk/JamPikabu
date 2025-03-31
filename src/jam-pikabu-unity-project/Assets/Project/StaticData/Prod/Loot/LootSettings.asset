@@ -145,7 +145,7 @@ MonoBehaviour:
     BaseRatingValue: 1
     EffectValue: 0
     SpawnChance: 100
-    AbilityType: 5
+    AbilityType: 10
   - Id: 8
     Type: 8
     ViewPrefab: {fileID: 5505315513054863998, guid: 5e25540141c57d2469d24eb10630057c,
@@ -240,7 +240,7 @@ MonoBehaviour:
     BaseRatingValue: 1
     EffectValue: 0
     SpawnChance: 100
-    AbilityType: 9
+    AbilityType: 11
   - Id: 13
     Type: 13
     ViewPrefab: {fileID: 168960851586940954, guid: c247e3160612f214aa94ff1fa0380e32,
@@ -295,7 +295,7 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
     BaseRatingValue: 1
-    EffectValue: 3
+    EffectValue: 1
     SpawnChance: 0
     AbilityType: 0
   - Id: 16
@@ -361,7 +361,6 @@ MonoBehaviour:
   DelayAfterLootSpawn: 0.4
   MaxIngredientLootAmount: 35
   MaxEachExtraLootAmount: 2
-  MaxConsumablesLootPerLevel: 2
   CollectFlyAnimationDuration: 0.75
   LootItemUI: {fileID: 6122044623407222926, guid: 17a9554d4999c3b43a5c2052ad4cdf08,
     type: 3}

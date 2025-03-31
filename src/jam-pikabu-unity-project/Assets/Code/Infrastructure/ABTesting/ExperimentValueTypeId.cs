@@ -3,7 +3,7 @@
     public enum ExperimentValueTypeId
     {
         @default = 0,
-        replace_timer_with_attempts = 1,
+        replace_attempts_with_timer = 1,
         
         Count 
     }

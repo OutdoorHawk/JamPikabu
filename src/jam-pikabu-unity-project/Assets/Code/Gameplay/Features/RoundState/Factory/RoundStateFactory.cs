@@ -42,10 +42,10 @@ namespace Code.Gameplay.Features.RoundState.Factory
             switch (_abTestService.GetExperimentValue(ExperimentTagTypeId.TIMER_REPLACE))
             {
                 case ExperimentValueTypeId.@default:
-                    CreateDefaultController(roundStateController);
-                    break;
-                case ExperimentValueTypeId.replace_timer_with_attempts:
                     CreateRoundAttemptsController(roundStateController);
+                    break;
+                case ExperimentValueTypeId.replace_attempts_with_timer:
+                    CreateDefaultController(roundStateController);
                     break;
             }
         }

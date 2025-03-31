@@ -83,7 +83,7 @@ namespace Code.Gameplay.Features.Loot.Systems
         {
             var notificationTextParameters = new NotificationTextParameters()
             {
-                Text = $"+{wood.TimerRefillAmount}{_localizationService["COMMON/TIMER_SECONDS"]}",
+                Text = $"+{wood.TimerRefillAmount}",
                 StartPosition = _uiFactory.GetWorldPositionForUI(wood.Transform.position)
             };
 

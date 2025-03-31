@@ -134,8 +134,12 @@ namespace Code.Gameplay.Tutorial.Processors
         {
             GameEntity[] timers = GetGameEntitiesGroup(GameMatcher
                 .AllOf(GameMatcher.RoundInProcess,
-                    GameMatcher.RoundStateController
+                    GameMatcher.RoundStateController,
+                    GameMatcher.RoundTimeLeft
                 ));
+
+            if (timers.Length == 0)
+                return;
 
             foreach (GameEntity timer in timers)
             {

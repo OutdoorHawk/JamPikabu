@@ -28,4 +28,4 @@ MonoBehaviour:
     Value: 2
     LevelNeedToUnlockSpawn: 12
     AdRewardedAmount: 1
-    SpawnChanceInOrder: 10
+    SpawnChanceInOrder: 100
