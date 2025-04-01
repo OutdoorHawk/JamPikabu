@@ -46,6 +46,8 @@ namespace Code.Infrastructure
 
         private async UniTaskVoid Initialize()
         {
+            _loggerService.Log($"Game version: {Application.version}");
+            
             UniTask loadIntegrationsTask = _integrationsService.LoadIntegrations();
             await _downloadService.InitializeDownloadDataAsync();
             float downloadSize = _downloadService.GetDownloadSizeMb();

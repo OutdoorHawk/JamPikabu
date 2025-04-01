@@ -1,3 +1,4 @@
+using System;
 using Code.Common.Logger.Service;
 using Code.Gameplay.StaticData;
 using Code.Gameplay.Windows.Factory;
@@ -41,9 +42,16 @@ namespace Code.Infrastructure.States.GameStates.Bootstrap
 
         public async void Enter(BootstrapStatePayload payload)
         {
-            await LoadServiceData();
-            await payload.IntroAnimator.WaitForAnimationCompleteAsync();
-            OnLoaded();
+            try
+            {
+                await LoadServiceData();
+                await payload.IntroAnimator.WaitForAnimationCompleteAsync();
+                OnLoaded();
+            }
+            catch (Exception e)
+            {
+                OnLoaded();
+            }
         }
 
         private async UniTask LoadServiceData()
