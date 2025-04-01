@@ -64,10 +64,10 @@ namespace Code.Gameplay.Tutorial.Processors
 
         private int GetMessage()
         {
-            if (_abTestService.GetExperimentValue(ExperimentTagTypeId.TIMER_REPLACE) is ExperimentValueTypeId.replace_timer_with_attempts)
-                return MESSAGE_REPLACE;
-            
-            return MESSAGE_1;
+            if (_abTestService.GetExperimentValue(ExperimentTagTypeId.TIMER_REPLACE) is ExperimentValueTypeId.replace_attempts_with_timer)
+                return MESSAGE_1;
+
+            return MESSAGE_REPLACE;
         }
     }
 }

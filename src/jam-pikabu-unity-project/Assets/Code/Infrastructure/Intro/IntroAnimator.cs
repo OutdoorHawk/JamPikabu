@@ -1,6 +1,9 @@
-﻿using System.Threading;
+﻿using System;
+using Code.Gameplay.Input.Service;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using Zenject;
 
 namespace Code.Infrastructure.Intro
 {
@@ -9,30 +12,51 @@ namespace Code.Infrastructure.Intro
         public IntroVideoPlayer VideoPlayer;
 
         private UniTaskCompletionSource _animationFinishedSource;
+        
+        private IInputService _inputService;
+
+        [Inject]
+        private void Construct
+        (
+            IInputService inputService
+        )
+        {
+            _inputService = inputService;
+        }
 
         private void Awake()
         {
-            InitSource(destroyCancellationToken);
+            InitSource();
         }
 
         private void Start()
         {
             PlayIntroAnimation().Forget();
+            _inputService.PlayerInput.Player.Jump.performed += SkipIntro;
+        }
+
+        private void OnDestroy()
+        {
+            _inputService.PlayerInput.Player.Jump.performed -= SkipIntro;
+            _animationFinishedSource?.TrySetResult();
+        }
+
+        private void SkipIntro(InputAction.CallbackContext _)
+        {
+            _animationFinishedSource?.TrySetResult();
         }
 
         public async UniTask WaitForAnimationCompleteAsync()
         {
-#if !UNITY_EDITOR
             await _animationFinishedSource.Task;
             await VideoPlayer.HidePlayer();
-#endif
+
             Destroy(gameObject);
         }
 
-        private void InitSource(CancellationToken cancellationToken)
+        private void InitSource()
         {
             _animationFinishedSource = new UniTaskCompletionSource();
-            destroyCancellationToken.Register(() => _animationFinishedSource.TrySetCanceled(cancellationToken));
         }
 
         private async UniTaskVoid PlayIntroAnimation()

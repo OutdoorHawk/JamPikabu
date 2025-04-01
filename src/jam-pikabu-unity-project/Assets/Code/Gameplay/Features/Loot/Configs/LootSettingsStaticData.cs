@@ -35,10 +35,9 @@ namespace Code.Gameplay.Features.Loot.Configs
 
         private void InitExperiment()
         {
-            if (_abTestService.GetExperimentValue(ExperimentTagTypeId.TIMER_REPLACE)
-                is not ExperimentValueTypeId.replace_timer_with_attempts)
+            if (_abTestService.GetExperimentValue(ExperimentTagTypeId.TIMER_REPLACE) is ExperimentValueTypeId.replace_attempts_with_timer)
                 return;
-
+            
             GetConfig(LootTypeId.Pumpkin).AbilityType = AbilityTypeId.DecreaseHookSize;
             GetConfig(LootTypeId.Pea).AbilityType = AbilityTypeId.IncreaseHookSize;
         }

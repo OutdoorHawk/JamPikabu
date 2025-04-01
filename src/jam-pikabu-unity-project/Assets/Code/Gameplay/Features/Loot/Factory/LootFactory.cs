@@ -83,8 +83,8 @@ namespace Code.Gameplay.Features.Loot.Factory
 
             int effectValue = (int)lootSetup.EffectValue;
 
-            if (_abTestService.GetExperimentValue(ExperimentTagTypeId.TIMER_REPLACE) is ExperimentValueTypeId.replace_timer_with_attempts) 
-                effectValue = 1;
+            if (_abTestService.GetExperimentValue(ExperimentTagTypeId.TIMER_REPLACE) is ExperimentValueTypeId.replace_attempts_with_timer) 
+                effectValue = 3;
             
             loot
                 .With(x => x.isWoodChip = true)

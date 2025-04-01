@@ -30,7 +30,7 @@ namespace Code.Meta.UI.Shop.Configs
 
         private void InitAbTest()
         {
-            if (_abTestService.GetExperimentValue(ExperimentTagTypeId.TIMER_REPLACE) is not ExperimentValueTypeId.replace_timer_with_attempts)
+            if (_abTestService.GetExperimentValue(ExperimentTagTypeId.TIMER_REPLACE) is ExperimentValueTypeId.replace_attempts_with_timer)
             {
                 GetByConsumableType(ConsumableTypeId.Wood).DescriptionLocale.TableEntryReference = "S_WOOD_CONSUMABLE_DESCRIPTION";
                 return;
